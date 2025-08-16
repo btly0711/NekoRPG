@@ -769,7 +769,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 6,
             
-            locations: [{location: "纳家 - 3"}],
+            locations: [{location: "纳家练兵场 - 3"}],
         },
         unlock_text: "还不够...不要为了击败最弱的魔物沾沾自喜啊，路还很长！",
     });
