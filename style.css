@@ -1,0 +1,1922 @@
+
+:root {
+	--background_gradient: linear-gradient(to bottom right, #232f47, #15152d);
+	--options_gradient: linear-gradient(to bottom right, #637088f7, #353572f7);
+	--options_display: none;
+
+	--equipment_display: inline-block;
+	--consumables_display: inline-block;
+	--other_display: inline-block;
+
+	--inventory_div_display: block;
+	--character_combat_div_display: none;
+
+	--trader_equipment_display: inline-block;
+	--trader_consumable_display: inline-block;
+	--trader_other_display: inline-block;
+
+	--message_combat_display: inline-block;
+	--message_unlocks_display: inline-block;
+	--message_loot_display: inline-block;
+	--message_events_display: inline-block;
+	--message_background_display: inline-block;
+	--message_crafting_display: inline-block;
+
+	--trade_ammount_button_display: none;
+	--item_use_button_display: inline-block;
+	 
+	--item_tooltip_top: 0px;
+	--item_tooltip_left: 0px;
+
+	--recipe_tooltip_top: 0px;
+	--recipe_tooltip_left: 0px;
+
+	--job_tooltip_top: 0px;
+	--job_tooltip_left: 0px;
+
+	--skill_tooltip_top: 0px;
+	--skill_tooltip_left: 0px;
+	--enemy_div_display: block;
+
+	--stat_tooltip_top: 0px;
+	--stat_tooltip_left: 0px;
+
+	--location_type_tooltip_top: 0px;
+	--location_type_tooltip_left: 0px;
+
+	--location__desc_tooltip_top: 0px;
+	--location_desc_tooltip_left: 0px;
+	--location_desc_tooltip_visibility: hidden;
+
+
+	--stance_tooltip_top: 0px;
+	--stance_tooltip_left: 0px;
+
+	--bestiary_entry_tooltip_top: 0px;
+	--bestiary_entry_tooltip_left: 0px;
+
+	--actions_div_height_default: 420px;
+	--actions_div_height_combat: 120px;
+	--actions_div_height: var(--actions_div_height_default);
+	--actions_div_top_default: 340px;
+	--actions_div_top_combat: 640px;
+	--actions_div_top: var(--actions_div_top_default);
+
+	--options_action_textsize: 16px;
+	--location_name_div_width: 250px;
+
+	--active_button_color: #435270;
+	--tooltip_background_color: rgba(92, 92, 92, 0.97);
+}
+
+
+body {
+	background-color: #05040f;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: normal;
+	cursor: default;
+	color: white;
+	-webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@-moz-document url-prefix(){
+    body {
+        scrollbar-color: silver #191928;
+		scrollbar-width: thin;
+    }
+}
+
+#loading_screen {
+	visibility: visible;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	font-size: 150px;
+	background-color: #1c1c4b;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.box_div {
+	background-image: var(--background_gradient);
+	border: 3px solid #797691;
+	position: absolute;
+}
+
+.message_common { 
+	text-align: center;
+	width: inherit;
+	max-width: 395px;
+	height: auto;
+	display: inline-block;
+	word-wrap: break-word;
+	padding: 2px;
+	padding-right:20px;
+	font-size: 12px;
+}
+
+ .message_items_obtained {
+	 color: gold;
+	 font-weight: bold;
+ }
+
+ .message_victory {
+	 color: green;
+	 font-weight: bold;
+ }
+
+ .message_hero_defeated {
+	 color:crimson;
+	 font-weight: bold;
+ }
+
+ .message_enemy_attacked {
+	 color: lightblue;
+ }
+
+ .message_enemy_attacked_critically {
+	color: rgb(90, 151, 221);
+ }
+
+ .message_hero_attacked {
+	 color: crimson;
+ }
+ .message_hero_attacked_critically, .message_critical {
+	 color: crimson;
+	 font-weight: bold;
+ }
+
+ .message_spec_hint {
+	color: lightblue;
+	font-weight: bold;
+ }
+ .message_travel {
+	 font-weight: bold;
+ }
+
+ .message_location_unlocked {
+	 font-weight: bold;
+ }
+
+ .message_notification {
+	font-weight: bold;
+	font-size: 12px;
+	color: yellow;
+	text-align: left;
+ }
+
+ .message_background {
+	font-style: italic;
+	color: rgb(171, 171, 255);
+ }
+
+ .action_travel, .activity_unavailable, .start_dialogue,  .end_dialogue_button, .start_trade, .dialogue_trade, .choices_return_button, .start_activity, .location_choices, #action_status_div, #action_end_div {
+	text-align: left;
+	font-size: 20px;
+	border-bottom: 1px solid white;
+	cursor: pointer;
+	padding: 5px;
+ }
+
+
+
+ #action_status_div, #action_end_div {
+	text-align: center;
+	font-size: 20px;
+
+	border-bottom: 1px solid white;
+	cursor: pointer;
+	padding: 5px;
+ }
+
+ #options_panel {
+	display: var(--options_display);
+	position: fixed;
+	background-image: var(--options_gradient);
+	width: 600px;
+	height: fit-content;
+	border: 4px solid blueviolet;
+	z-index: 2;
+	bottom: 50px;
+	left: 300px;
+ }
+
+ @media only screen and (max-height: 857px) {
+	#options_panel {
+		position: absolute;
+		top: 405px;
+	}
+}
+
+ #close_options {
+	position: absolute;
+	font-size: 40px;
+	left: 548px;
+	top: 2px;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	outline: 3px solid gray;
+	cursor: pointer;
+	z-index: 3;
+ }
+
+ #options_choices {
+	position: relative;
+	left: 5px;
+	font-size: 20px;
+ }
+
+ #options_choices input {
+	outline: 1px solid black;
+ }
+ 
+ .options_choice {
+	margin: 10px;
+	width: fit-content;
+	border: 2px solid gray;
+	padding: 3px;
+ }
+
+ .options_button {
+	width: fit-content;
+	margin-left: 40px;;
+	margin-right: auto;
+	padding: 10px 10px;
+	height: 20px;
+	background-image: linear-gradient(to left, #232f47, #15152d);
+	color: white;
+	cursor: pointer;
+	text-align: center;
+	font-size: 20px;
+	margin-top: 5px;
+}
+
+ .options_button:hover {
+	background-image: linear-gradient(to right, #232f47, #15152d);
+ }
+
+ .fas, .far {
+	 width: 30px;
+ }
+
+.activity_unavailable {
+	color: gray;
+	cursor: not-allowed;
+}
+
+.action_travel:hover, .start_dialogue:hover, .start_trade:hover, .start_activity:hover, .location_choices:hover,
+.dialogue_textline:hover, .end_dialogue_button:hover, .dialogue_trade:hover, .choices_return_button:hover {
+	background-color: #2c3953;
+}
+.dialogue_textline {
+	text-align: center;
+	font-size: var(--options_action_textsize);
+
+	border-bottom: 1px solid white;
+	cursor: pointer;
+	padding: 5px;
+}
+	#dialogue_answer_div {
+		border-bottom: 1px solid white;
+		font-style: italic;
+		text-align: center;
+		background-color: #15152d;
+		font-size: var(--options_action_textsize);
+		/*
+			padding set to 5 through code
+		*/
+	}
+
+.inventory_item, .trader_item {
+	 font-size: 13px;
+	 display: inline-block;
+}
+
+.equipped_item_control {
+	width: 385px;
+	border-bottom: 1px dotted white;
+	font-size: 13px;
+	background-color: rgba(255, 236, 128, 0.15);
+	padding-bottom: 1px;
+	padding-top: 1px;
+}
+
+.inventory_item_control {
+	border-bottom: 1px dotted white;
+	width: 385px;
+}
+.item_additional_content {
+	float: right;
+	width: fit-content;
+}
+
+.item_tooltip, .job_tooltip, .location_tooltip, .recipe_tooltip {
+	 display: none;
+	 text-align: left;
+	 color: white;
+	 font-weight: normal;
+	 background-color: var(--tooltip_background_color);
+	 border-radius: 10px;
+	 margin-left: 30px;
+	 margin-top: 20px;
+	 padding: 5px;
+	 position: absolute;
+	 z-index: 1000;
+	 width: 200px;
+	 pointer-events: none;
+	 font-size: 14px;
+	 border: 1px solid white;
+}
+
+.recipe_tooltip {
+	width: 250px;
+}
+
+.location_tooltip {
+	font-size: 16px;
+	top: var(--location_desc_tooltip_top);
+	left: var(--location_desc_tooltip_left);
+	display: none;
+	visibility: var(--location_desc_tooltip_visibility);
+	text-align: left;
+	color: white;
+	font-weight: normal;
+	background-color: var(--tooltip_background_color);
+	border-radius: 10px;
+	margin-left: 30px;
+	margin-top: 20px;
+	padding: 5px;
+	position: absolute;
+	z-index: 1000;
+	width: 200px;
+	pointer-events: none;
+}
+
+.item_tooltip {
+	top: var(--item_tooltip_top);
+	left: var(--item_tooltip_left);
+} 
+
+.recipe_tooltip {
+	top: var(--recipe_tooltip_top);
+	left: var(--recipe_tooltip_left);
+}
+.job_tooltip {
+	top: var(--job_tooltip_top);
+	left: var(--job_tooltip_left);
+	font-size: 16px;
+	width: 250px;
+}
+
+.equipment_slot_div:hover .item_tooltip, .trader_item_control:hover .item_tooltip, .inventory_item_control:hover .item_tooltip, 
+.equipped_item_control:hover .item_tooltip, .start_activity:hover .job_tooltip, .activity_unavailable:hover .job_tooltip, 
+.effects_div:hover .effects_tooltip, #location_name_div:hover .location_tooltip, .selectable_component:hover .item_tooltip{
+	display: block;
+}
+
+.stat_tooltip {
+	display: none;
+	background-color: var(--tooltip_background_color);
+	border-radius: 10px;
+	padding: 5px;
+	position: absolute;
+	z-index: 10;
+	width: 300px;
+	pointer-events: none;
+	top: var(--stat_tooltip_top);
+	left: var(--stat_tooltip_left);
+	border: 1px solid white;
+}
+	.stat_breakdown {
+		text-align: left;
+	}
+
+.stat_slot_div:hover .stat_tooltip {
+	 display: block;
+}
+
+.skill_tooltip {
+	display: none;
+	background-color: var(--tooltip_background_color);
+	border-radius: 10px;
+	padding: 5px;
+	position: absolute;
+	z-index: 1000;
+	width: 300px;
+	top: var(--skill_tooltip_top);
+	left: var(--skill_tooltip_left);
+	pointer-events: none;
+	border: 1px solid white;
+}
+		.skill_tooltip_next_milestone {
+			color: rgb(206, 206, 206);
+		}
+
+		.skill_bar_max:hover .skill_tooltip {
+			display: block;
+		}
+
+		.skill_id {
+			color: rgb(190, 190, 190);
+			font-style: italic;
+		}
+
+#skill_list_div {
+	display: block;
+}
+
+.skill_div {
+	display: none;
+}
+.skill_category_div {
+	padding: 3px;
+	border-bottom: 1px solid gray;
+}
+.skill_category_div:not(.skill_category_expanded):hover {
+	background-color: var(--active_button_color);
+}
+.skill_category_expanded .skill_div {
+	display: block;
+}
+.skill_category_expanded .skill_dropdown_icon {
+	transform: rotate(180deg);
+}
+.activity_efficiency_info {
+	color: rgb(190, 190, 190);
+	font-style: italic;
+}
+
+
+#stance_list_div {
+	display: none;
+}
+
+.skill_stance_control_button {
+	float:left;
+	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-width: 121.3px;
+	text-align: center;
+	outline: 1px solid white;
+	cursor: pointer;
+	margin: 1px;
+	font-size: 20px;
+}
+
+.item_slot {
+	color: rgb(149, 255, 190);
+}
+
+.equip_item_button, .unequip_item_button {
+	 cursor: pointer;
+	 font-weight: bold;
+	 font-size: 13px;
+	 text-align: right;
+	 display: var(--item_use_button_display);
+}
+
+.equip_item_button {
+	width: 48px;
+}
+
+.unequip_item_button {
+	width: 60px;
+}
+
+.book_finished + .item_use_button {
+	visibility:hidden;
+}
+
+.book_name {
+	font-style: italic;
+}
+
+.book_finished .inventory_item_name .book_name{
+	color: silver;
+}
+
+.book_active {
+	background-color: rgba(255, 236, 128, 0.3);
+}
+
+.book_active .inventory_item{
+	color: gold;
+}
+
+.item_use_button {
+	display: var(--item_use_button_display);
+	width: 39px;
+	font-weight: bold;
+	cursor: pointer;
+	font-size: 13px;
+	text-align: right;
+	float: left;
+}
+
+.item_value {
+	text-align: right;
+	font-size: 13px;
+	width: 54px;
+	border-left: 1px solid white;
+	padding-left: 4px;
+	float: right;
+}
+
+.inventory_control_button {
+	float:left;
+	padding: 3px;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-width: 87.9px; /* ouch */
+	text-align: center;
+	outline: 1px solid white;
+	margin: 1px;
+	cursor: pointer;
+}
+
+.equipped_item_control .equipped_item, .equipped_item_name .item_slot {
+	color: gold;
+}
+
+.equipped_item {
+	font-weight: bold;
+	display: inline-block;
+}
+
+.character_item_control.item_to_trade {
+	background-color: rgba(0, 128, 0, 0.4);
+}
+
+.item_component_list {
+	color: rgb(190, 190, 190);
+	font-style: italic;
+}
+
+.character_item_equippable {
+	display: var(--equipment_display);
+}
+
+.character_item_usable, .character_item_book {
+	display: var(--consumables_display);
+}
+
+.character_item_other, .character_item_loot, .character_item_material, .character_item_component {
+	display: var(--other_display);
+}
+
+.character_control_button {
+	float:left;
+	padding: 6px;
+	min-width: 119.3px;
+	font-size: 14px;
+	text-align: center;
+	margin: 1px;
+	outline: 1px solid white;
+	cursor: pointer;
+}
+
+.active_effect_tooltip {
+	border: 2px solid gray;
+	border-radius: 10px;
+	padding: 3px;
+	margin-top: 1px;
+}
+.active_effect_name_and_duration {
+	width: 100%;
+	border-bottom: 1px solid gray;
+}
+.active_effect_duration {
+	text-align: right;
+	float: right;
+}
+
+.message_border { 
+	border-bottom: 1px solid #47465f;
+	position: relative;
+	bottom: 0px;
+	padding-top: 5px;
+	max-width: 350px;
+	margin: auto;
+}
+
+.equipment_slot_div {
+	text-align: center;
+	font-size: 14px;
+	width: 100%;
+	height: 28px;
+	margin-bottom: 1px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border: 1px solid white;
+	padding-top: auto;
+}
+
+.equipment_slot_empty {
+	color: silver;
+	font-style: italic;
+	font-size: 12px;
+}
+
+.equipment_slot_empty .item_tooltip {
+	font-size: 14px;
+	font-style: normal;
+}
+
+.grid_container {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.stat_slot_div, .loot_slot_div {
+	width: 100%;
+	height: 20px;
+	padding-top: 2px;
+	margin-left: 1px;
+	outline: 1px solid white;
+}
+
+	.stat_value {
+		text-align: right;
+		display: inline-block;
+		width: 65px;
+	}
+
+	.stat_name {
+		display: inline-block;
+		width: 98px;
+		padding-left: 4px;
+	}
+	.loot_name {
+		display: inline-block;
+		
+	    margin-top: -4px;
+		width: 200px;
+		padding-left: 4px;
+	}
+
+	.loot_name, .loot_chance_current {
+		float:left;
+	}
+
+	.loot_chance_base {
+		text-align: right;
+		padding-left:2px;
+		padding-right:2px;
+	}
+	.loot_chance_current{
+		padding-left:2px;
+		padding-right:2px;
+	}
+	
+
+.skill_bar_max {
+	border: 2px solid rgb(3, 255, 36);
+	margin: auto;
+	margin-top: 5px;
+	width: 90%;
+}
+
+.skill_bar_current {
+	background-color: rgb(3, 255, 36);
+	height: 8px;
+}
+
+.skill_bar_text {
+	display: flex;
+	color: white;
+	width: 100%;
+}
+
+.skill_bar_name {
+	text-align: left;
+	width: 80%;
+}
+
+.skill_bar_xp {
+	text-align: right;
+	width: 20%;
+	float: right;
+}
+
+.skill_bar_text:after {
+	clear: both;
+}
+
+#crafting_window {
+	display: none;
+	height: 400px;
+}
+
+	#crafting_mainpage_buttons {
+		font-size: 20px;
+		top: 0px;
+	}
+		.crafting_mainpage_button {
+			float:left;
+			padding: 3px;
+			padding-left: 2.4px;
+			padding-right: 2.4px;
+			min-width: 63px;
+			max-width: fit-content;
+			text-align: center;
+			outline: 1px solid white;
+			margin: 1px;
+			cursor: pointer;
+		}
+
+	.crafting_subpage_buttons {
+		font-size: 18px;
+	}
+		.crafting_subpage_button {
+			padding: 3px 0px 3px 0px;
+			float:left;
+			text-align: center;
+			outline: 1px solid white;
+			cursor: pointer;
+			margin-left: 1px;
+		}
+		.crafting_subpage_button_1 {
+			width: 398px;
+		}
+		.crafting_subpage_button_2 {
+			width: 198.5px;
+		}
+		.crafting_subpage_button_3 {
+			width: 132px;
+		}
+
+.crafting_recipe_list {
+	height: 333px;
+	width:100%;
+	top: 60px;
+	overflow-y: scroll;
+}
+		
+.recipe_div {
+	width: 376px;
+	border-bottom: 2px dashed white;
+	font-size: 16px;
+	padding: 2px;
+}
+
+.recipe_unavailable {
+	color: gray;
+}
+
+.recipe_hidden {
+	display: none;
+}
+
+
+.weapon_recipe + .shield_recipe, .shield_recipe + .armor_recipe, .armor_recipe + .clothing_recipe {
+	border-top: 5px solid white;
+}
+
+.recipe_name:hover, .selected_recipe .recipe_name, .crafting_selection:hover, .selected_component_category, .selectable_component:hover, .selectable_material:hover {
+	background-color: var(--active_button_color);
+}
+
+.selected_component, .selected_component:hover {
+	background-color: rgba(0, 128, 0, 0.5);
+}
+
+.selected_component_icon, .selected_material_icon {
+	visibility: hidden;
+}
+
+.selected_component .selected_component_icon, .selected_material .selected_material_icon {
+	visibility: visible;
+}
+
+.selected_recipe .recipe_name {
+	border-bottom: 1px dashed white;
+}
+
+.recipe_creation_button {
+	display: none;
+	font-size: 18px;
+	padding: 3px 0px 3px 0px;
+	background-color: rgba(128, 128, 128, 0.5);
+	text-align: center;
+}
+.selected_recipe .recipe_creation_button {
+	display: block;
+}
+.recipe_div:not(.selected_recipe) > div > div > div {
+	display: none;
+}
+.recipe_tooltip {
+	display: none;
+	position: absolute;
+	font-size: 14px;
+}
+.recipe_result {
+	border: 1px solid white;
+	padding: 5px;
+}
+
+.recipe_div:hover .items_recipe_tooltip.recipe_tooltip{
+	display: block;
+}
+
+.recipe_creation_button:hover .recipe_tooltip{
+	display: block;
+}
+
+.selectable_material:hover .recipe_tooltip, .selectable_component:hover .recipe_tooltip{
+	display: block;
+}
+
+.crafting_selection {
+	display: none;
+	border-bottom: 1px solid white;
+	padding: 3px;
+}
+.selectable_component, .selectable_material {
+	border-bottom: 1px dotted white;
+	padding: 3px;
+	padding-left: 10px;
+}
+
+.selected_recipe .crafting_selection {
+	display: block;
+}
+
+.recipe_name {
+	display: block;
+	padding-bottom: 5px;
+}
+
+.folded_crafting_selection, .folded_material_list {
+	display: none;
+}
+
+.selected_recipe .folded_material_list {
+	display: block;
+}
+
+.selected_recipe .crafting_dropdown_icon, .selected_component_category .subcrafting_dropdown_icon {
+	transform: rotate(180deg);
+}
+
+.selected_component_list, .selected_material_list {
+	display: block;
+}
+
+.sl_button {
+	width: fit-content;
+	padding: 10px 10px;
+	height: 20px;
+	background-image: linear-gradient(to left, #232f47, #15152d);
+	color: white;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+}
+
+.sl_button:hover {
+	background-image: none;
+	background-color: #2c3953;
+}
+
+.game_info a, .game_info span {
+	width: fit-content;
+	padding: 10px 10px;
+	height: 20px;
+	background-image: linear-gradient(to left, #232f47, #15152d);
+	color: white;
+	cursor: pointer;
+	text-align: center;
+	display: inline-block;
+	text-decoration: none;
+}
+
+.game_info a:hover, .game_info span:hover {
+	background-image: none;
+	background-color: #2c3953;
+}
+
+i {
+	vertical-align: -4px;
+} 
+
+#bottom_panel_div i{
+	margin-top: -3px;
+}
+
+.trader_category_button {
+	float:left;
+	padding: 3px 0px 3px 0px;
+	width: 98px;
+	text-align: center;
+	outline: 1px solid white;
+	margin: 2px 1px;
+	cursor: pointer;
+}
+
+.character_sorting_button {
+    float: left;
+	width: 198px;
+	text-align: center;
+	outline: 1px solid white;
+	cursor: pointer;
+	margin: 1px;
+	font-size: 16px;
+}
+
+
+.character_control_button:hover, .inventory_control_button:hover, 
+.trader_category_button:hover, .trader_sorting_button:hover, .active_selection_button, .character_sorting_button:hover {
+	background-color: var(--active_button_color) !important;
+	background-image: none;
+}
+
+.trader_item_control.item_to_trade {
+	background-color: rgba(255, 0, 0, 0.4);
+}
+
+.trade_ammount_button {
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 14px;
+	padding-left: 5px;
+	float: left;
+}
+.trade_ammount_buttons {
+	display: var(--trade_ammount_button_display);
+	width: 55px;
+	vertical-align: bottom;
+	text-align: right;
+}
+
+.trader_item_other, .trader_item_loot, .trader_item_material, .trader_item_component, .trader_item_book {
+	display: var(--trader_other_display);
+}
+.trader_item_equippable {
+	display: var(--trader_equipment_display);
+}
+.trader_item_usable, .trader_item_book {
+	display: var(--trader_consumable_display);
+}
+
+#inventory_combat_switch_selection {
+	width: 400px;
+	text-align: center;
+	position: absolute;
+	top: 353px;
+	background-color: #202044;
+	float: left;
+}
+
+#switch_to_inventory {
+	float:left;
+	border-right: 2px solid gray;
+}
+#switch_to_combat {
+	border-left: 2px solid gray;
+}
+#switch_to_inventory, #switch_to_combat {
+	width: 198px;
+	cursor: pointer;
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.coin{
+	font-weight: bold;
+}
+
+.coin_copper{
+	color: rgb(207, 144, 60);
+}
+.coin_moneyK{
+	color: rgb(240,0,0);
+}
+
+.coin_moneyM{
+	color: rgb(31,30,51);
+}
+
+.coin_moneyB{
+	color: rgb(185,235,135);
+}
+
+.coin_moneyT{
+	color: rgb(103,40,200);
+}
+
+.realm{
+	font-weight: bold;
+}
+
+.realm_basic{
+	color:white;
+}
+
+.realm_terra{
+	color:#75E97E;
+}
+
+.realm_sky{
+	color:#6FAEE4;
+}
+
+.realm_cloudy{
+	color:#C76EE7;
+}
+
+.realm_realm{
+	color:#E06BBB;
+}
+
+.realm_world{
+	color:#F0EA28;
+}
+
+.skill_sorting_button {
+	float:left;
+	width: 198px;
+	text-align: center;
+	outline: 1px solid white;
+	cursor: pointer;
+	margin: 1px;
+	font-size: 16px;
+}
+
+#accept_trade_button, #cancel_trade_button, .trader_sorting_button {
+    float:left;
+	width: 198px;
+	text-align: center;
+	outline: 1px solid white;
+	margin: -1px 1px;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+#accept_trade_button {
+	background-color: green;
+}
+
+#active_effect_count {
+	text-align: right;
+	width: 90px;
+	font-weight: bold;
+}
+
+#action_status_div, #time_for_earnings_div {
+	font-size: var(--options_action_textsize);
+	font-style: italic;
+	cursor: default;
+}
+#time_for_earnings_div, #action_xp_div {
+	color: rgb(192,192,192);
+	border-bottom: 1px solid white;
+	text-align: center;	
+	padding: 5px;
+	font-size: var(--options_action_textsize);
+}
+
+#action_end_text, #action_end_earnings {
+	display: inline;
+	font-size: var(--options_action_textsize);
+}
+
+#gathering_progress_bar {
+	height: 30px;
+	background-color: purple;
+	width: 0px;
+}
+
+#gathering_progress_bar_max {
+	width: 100%;
+	border-bottom: 1px solid white;
+	background-color: rgba(48, 0, 48, 0.596);
+}
+
+#location_actions_div :not(#action_end_div):hover #gathering_tooltip{
+	display: block;
+}
+
+#action_end_earnings {
+
+	font-style: italic;
+	color: gray;
+	padding-left: 10px;
+}
+
+#cancel_trade_button {
+	background-color: red;
+}
+
+#location_related_div {
+	width: 400px;
+	height: var(--actions_div_height);
+	left: 410px;
+	top: var(--actions_div_top);
+}
+
+#basic_character_info_div {
+    width: 400px;
+    height: 130px;
+    z-index: 1;
+}
+
+#bottom_panel_div {
+	display: flex;
+	position: fixed;
+	width: 100%;
+	height: 40px;
+	background-image: linear-gradient(to right, #232f47, #15152d);
+	border-top: 2px solid gray;
+	bottom: 0px;
+	left: 0px;
+}
+		@media only screen and (max-height: 857px) {
+			#bottom_panel_div {
+				position: absolute;
+				top: 810px;
+			}
+		}
+		@media only screen and (max-width: 1241px) {
+			#bottom_panel_div {
+				width: 1250px;
+			}
+		}
+
+#character_div {
+    width: 400px;
+    top: 136px;
+    height: 215px;
+	max-width: 400px;
+	max-height: 300px;
+    border-top: none;
+}
+
+#character_name_field {
+	text-align: center;
+	width: 120px;
+	margin: auto;
+	border: 0px;
+	background-color: #3a4e75;
+	color: white;
+	position: absolute;
+	top: 10px;
+	font-size: 16px;
+	left: 140px;
+}
+
+#character_healthbar_max {
+	outline: 2px solid rgb(199, 0, 0);
+	background-color: rgba(255, 46, 46, 0.3);
+	margin: auto;
+	width: 85%;
+	height: 16px;
+	margin-top: 10px;
+}
+#character_healthbar_current {
+	background-color: rgb(255, 46, 46);
+	height: 100%;
+}
+
+#character_health_value, #character_health_text, #character_xp_value, #character_level_div {
+	color: white;
+	width: 100%;
+}
+#character_health_value, #character_health_text {
+	text-align: center;
+}
+
+#character_health_value {
+	position: absolute;
+	width: 400px;
+	top: 63px;
+	font-size: 18px;
+}
+#character_health_text {
+	text-align: left; margin-left: 28px;
+}
+
+#character_level_div {
+	text-align: center;
+	border: 1px solid white;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 350px;
+	font-weight: bold;
+}
+
+#character_rank_div {
+	text-align: center;
+	margin-top:10px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	width: 398px;
+	
+	font-size: 18px;
+	font-weight: bold;
+}
+
+
+#character_xp_bar_max {
+	outline: 2px solid rgb(255, 126, 0);
+	margin: auto;
+	margin-top: 35px;
+	width: 85%;
+	height: 20px;
+	background-color: rgba(255, 165, 0, 0.3);
+}
+
+#character_xp_bar_current {
+	height: 20px;
+	background-color: orange;
+}
+
+#character_xp_value {
+	position: absolute;
+	font-size: 18px;
+	width: 400px;
+	top: 36px;
+	text-align: center;
+}
+
+#character_equipment_div { 
+	margin: auto;
+	width: 350px;
+	position: relative;
+	top: 8px;
+	display: none;
+}
+
+#character_tools_div {
+	display: none;
+}
+
+#character_stats_div {
+	width: 350px;
+	margin: auto;
+}
+
+#character_control_div {
+	color: white;
+	position: absolute;
+	bottom: 0px;
+}
+
+#effects_div {
+	font-size: 16px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	width: 200px;
+	background-color: #232f47;
+}
+		#character_effects{
+			position: absolute;
+			top: 158px;
+			left: 100px;
+		}
+
+#effects_div div{
+	display: inline-block;
+}
+
+#effects_tooltip {
+	display: none;
+	position: absolute;
+	left: 220px;
+	z-index: 1000;
+	background-color: var(--tooltip_background_color);
+	color: white;
+	border-radius: 10px;
+	margin-left: 30px;
+	padding: 10px; 
+	max-width: 300px;
+	width: fit-content;
+	height: auto;
+	border: 1px solid white;
+}
+
+#exit_trade_button {
+	float:left;
+	width: 398px;
+	text-align: center;
+	border: 1px solid white;
+	border-top: none;
+	border-bottom: none;
+	cursor: pointer;
+	font-size: 20px;
+	padding: 3px 0px 0px 0px;
+	background-color: rgba(255, 241, 117, 0.2);
+}
+
+#exit_crafting_button {
+	position: absolute;
+	float: left;
+	top: 393px;
+	width: 398px;
+	text-align: center;
+	border: 1px solid white;
+	cursor: pointer;
+	font-size: 20px;
+	padding: 3px 0px 0px 0px;
+	background-color: rgba(255, 241, 117, 0.2);
+}
+
+
+#combat_div {
+	width: 400px;
+	height: 560px;
+	position: relative;
+	left: 410px;
+	top: 68px;
+}
+		.enemy_div {
+			color: white;
+			display: var(--enemy_div_display);
+			font-size: 14px;
+			height: 66px;
+			outline: 2px solid silver;
+			width: 100%;
+		}
+				
+				.enemy_stats, #attack_stats  {
+					height: 18px;
+					text-align: left;
+					width: 400px;
+				}
+				.enemy_name{
+					height: 18px;
+					text-align: right;
+					width: 400px;
+				}
+					.enemy_stat, .attack_stat {
+						display: inline-block;
+						text-align: left;
+						font-size: 12px;
+					}
+					.enemy_stat_short, .attack_stat_short {
+						width: 60px;
+					}
+					.enemy_stat_long, .attack_stat_long {
+						width: 60px;
+					}
+
+				.enemy_health_div {
+					margin-bottom: 0px;
+					height: 18px;
+				}
+					.enemy_healthbar_max {
+						border: 2px solid rgb(199, 0, 0);
+						background-color: rgba(255, 46, 46, 0.3);
+						height: 16px;
+					}
+						.enemy_healthbar_current {
+							background-color: red;
+							width: 100%;
+							height: 100%;
+							margin-left: auto;
+						}
+
+					.enemy_health_value {
+						position: relative;
+						top: -18px;
+						width: 100%;
+						text-align: center;
+					}
+				.enemy_attack_bar {
+					background-color: rgb(156, 0, 156);
+					height: 10px;
+					animation-iteration-count: infinite;
+					animation-timing-function: linear;
+					margin-left: auto;
+				}
+
+	#character_combat_stats {
+		width: 400px;
+		top: 150px;
+	}
+
+	#character_combat_management{
+		width: 400px;
+		top: 386px;
+		display: var(--character_combat_div_display);
+	}
+		#character_stance_name {
+			padding: 3px;
+			margin-top: 2px;
+			margin-bottom: 2px;
+			width: 244px;
+			border: 1px solid gray;
+			text-align: center;
+		}
+			#character_stance_selection {
+				display: none;
+				position: absolute;
+				width: fit-content;
+				height: fit-content;
+				outline: 2px solid gray;
+				top: 45px;
+				background-color:#232f47;
+				text-align: left;
+			}
+			#character_stance_name:hover #character_stance_selection, #character_stance_selection:hover {
+				display: block;
+			}
+
+		#character_attack_bar {
+			background-color: rgb(156, 0, 156);
+			height: 20px;
+		}			
+		#attack_stats {
+			text-align: left;
+		}		
+
+#enemy_count_div { 
+	width: 100%;
+	padding-top: 2px;
+	bottom: 0px;
+	position: absolute;
+}
+
+#enemy_count_content {
+	color: white;
+	width: 50%;
+	font-size: 17px;
+	padding-right: 5px;
+	margin-left: auto;
+	text-align: right;
+	
+}
+
+#enemies_left_div {
+	width: 30px;
+	display: inline-block;
+	text-align: right;
+}
+
+#inventory_content_div {
+	height: 300px;
+	overflow-y: scroll;
+}
+
+#inventory_control_div {
+	font-size: 20px;
+	position: absolute;
+	top: 351px;
+}
+
+#inventory_div {
+	width: 400px;
+	height: 381px;
+	top: 379px;
+	display: var(--inventory_div_display);
+}
+
+.item_image {
+	position: relative;
+	top: 4px;
+}
+
+#journal_div {
+	width: 400px;
+	left: 820px;
+	height: 330px;
+	top: 0px
+}
+	#quests_header {
+		width: 100%;
+		text-align: center;
+		padding-top: 5px;
+		margin-bottom: 5px;
+	}
+
+	#journal_control_div {
+		font-size: 20px;
+	}
+		.journal_control_button{
+			float: left;
+			width: 131.3px;
+			text-align: center;
+			outline: 1px solid white;
+			cursor: pointer;
+			margin: 1px;
+			font-size: 18px;
+		}
+			#story_box_div {
+				width:100%;
+				height: 255px;
+			}
+
+			#quests_box_div, #data_box_div{
+				width: 100%;
+				height: 255px;
+				display: none;
+				overflow-y: scroll;
+			}
+
+			#bestiary_box_div{
+				width: 100%;
+				height: 255px;
+				display: block;
+				overflow-y: scroll;
+
+			}
+				.bestiary_entry_div, .data_entry {
+					width: 380px;
+					display: flex;
+					box-shadow: 0 -1px 0 gray, 0 1px 0 gray;
+					margin-bottom: 1px;
+				}
+					.bestiary_entry_name {
+						float: left;
+						width:295px;
+						text-align: left;
+						padding-left: 5px;
+					}
+					.bestiary_entry_kill_count{
+						text-align: right;
+						width:90px;
+						padding-right: 5px;
+					}
+
+					.bestiary_entry_tooltip {
+						display: none;
+						background-color: var(--tooltip_background_color);
+						border-radius: 10px;
+						padding: 5px;
+						position: absolute;
+						z-index: 1000;
+						width: 360px;
+						top: var(--bestiary_entry_tooltip_top);
+						left: var(--bestiary_entry_tooltip_left);
+						pointer-events: none;
+						border: 1px solid white;
+					}
+						.bestiary_entry_div:hover .bestiary_entry_tooltip {
+							display: block;
+						}
+
+.data_entry_value {
+	width: 90px;
+	text-align: right;
+}
+
+.data_entry_name {
+	width: 300px;
+}
+
+#skills_and_stances_div {
+	left: 820px;
+	top: 340px;
+	width: 400px;
+	height: 420px;
+}
+
+#skill_list_div, #stance_list_div {
+	height: 386px;
+}
+		#skill_list {
+			overflow-y: scroll;
+			height: 366px;
+			padding-bottom:3px;
+		}
+
+.skill_xp_gain {
+	padding-bottom: 10px;
+	padding-top: 5px;
+	color: white;
+	font-size: 16px;
+}
+
+#stance_list {
+	font-size: 20px;
+	width: 100%;
+}
+
+.stance_tooltip {
+	display: none;
+	z-index: 1000;
+	width: 300px;
+	font-size: 16px;
+	position: absolute;
+	pointer-events: none;
+	background-color: var(--tooltip_background_color);
+	border-radius: 10px;
+	padding: 5px;
+	top: var(--stance_tooltip_top);
+	left: var(--stance_tooltip_left);
+	text-align: left;
+	border: 1px solid white;
+}
+.stance_list_entry:hover .stance_tooltip {
+	display: block;
+}
+.stance_tooltip:hover {
+	display: none;
+}
+
+.stances_button {
+	text-align: center;
+	border-right: 1px solid gray;
+	border-bottom: 2px dotted gray;
+}
+
+.stance_list_fav, .stance_list_header_fav {
+	width: 50px;
+	border-right: 1px solid gray;
+	border-bottom: 2px dotted gray;
+}
+
+.stance_list_select, .stance_list_header_select {
+	width: 75px;
+	border-right: 1px solid gray;
+	border-bottom: 2px dotted gray;
+}
+
+.stances_name, .stance_list_header_name {
+	width: 300px;
+	padding-left: 10px;
+	text-align: left;
+	border-bottom: 2px dotted gray;
+}
+
+#location_actions_div {
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow-y: scroll;
+}
+
+#location_div {
+	width: 400px;
+	height: 263px;
+	left: 410px;
+	top: 70px;
+	border-top: 0px;
+}
+		#location_description_div {
+			height: 113px;
+			font-style: italic;
+			color: rgb(224, 224, 224);
+			padding: 5px;
+		}
+
+#time_and_location {
+	left: 410px;
+	width: 400px;
+	font-size: 20px;
+}
+		#location_name_div {
+			padding: 4px;
+			width: var(--location_name_div_width);
+			height:fit-content;
+			float: left;
+			z-index: 2;
+		}
+		#location_types_div {
+			left: 292px;
+			width: 100px;
+			height: 23px;
+			padding: 2px;
+			position: absolute;
+			text-align: right;
+			font-size: 12px;
+		}
+			.location_type_div {
+				float: left;
+				width: 50px;
+			}
+
+				.location_type_tooltip {
+					display: none;
+					background-color: var(--tooltip_background_color);
+					border-radius: 10px;
+					padding: 5px;
+					position: absolute;
+					z-index: 1000;
+					width: 200px;
+					top: var(--location_type_tooltip_top);
+					left: var(--location_type_tooltip_left);
+					pointer-events: none;
+					text-align: left;
+				}
+
+					.location_type_div:hover .location_type_tooltip {
+						display: block;
+					}
+
+		#time_div {
+			padding: 2px;
+			text-align: right;
+			border-bottom: 1px solid white;
+		}
+			.icon {
+				position: relative;
+				top:3px;
+			}
+			.icon_night {
+				color: gray;
+			}
+			.icon_day {
+				color: orange;
+			}
+#location_name_div:hover #location_description_tooltip {
+	display: block;
+}
+
+#location_description_tooltip {
+	font-style: italic;
+	display: none;
+	background-color: var(--tooltip_background_color);
+	border-radius: 10px;
+	margin-left: 30px;
+	padding: 5px;
+	position: absolute;
+	z-index: 1000;
+	max-width: 500px;
+	font-size: 18px;
+	width: fit-content;
+	height: auto;
+}
+
+#main_controller {
+    margin-bottom: 5px;
+    display: flex;
+	height: 40px;
+    width: fit-content;
+
+}
+
+#main_content {
+    position: absolute;
+	background-image: var(--background_gradient);
+	top: 5px;
+	left: 5px;
+
+	/*
+	kinda necessary to set size, just for background gradient to render properly,
+	as all childs are set to `position: absolute` so they are not in the flow (so they dont affect the size)
+	*/
+	width: 1241px;
+	height: 766px;
+}
+
+#message_log_div {
+	top: 0px;
+	width: 400px;
+	height: 760px;
+	left: 1230px;
+	padding-right: 15px;
+	margin-bottom: 20px;
+}
+
+	#message_box_div {
+		width: 415px;
+		height: 734px;
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+
+	#message_controls {
+		width: 415px;
+		position: absolute;
+	}
+		.message_control_button {
+			float: left;
+			padding: 3px;
+			padding-left: 4px;
+			padding-right: 4px;
+			min-width: 40px;
+			text-align: center;
+			outline: 1px solid white;
+			margin: 1px;
+			cursor: pointer;
+		}
+	.message_combat {
+		display: var(--message_combat_display);
+	}
+	.message_unlocks {
+		display: var(--message_unlocks_display);
+	}
+	.message_loot {
+		display: var(--message_loot_display);
+	}
+	.message_events {
+		display: var(--message_events_display);
+	}
+	.message_background {
+		display: var(--message_background_display);
+	}
+	.message_crafting {
+		display: var(--message_crafting_display);
+	}
+
+#money_div {
+	color: white;
+	border-bottom: 1px solid white;
+	padding: 2px 5px 2px 5px;
+}
+
+
+#saved_file_input {
+	display: none;
+}
+
+#start_sleeping_div{
+	text-align: left;
+	font-size: 20px;
+	border-bottom: 1px solid white;
+	cursor: pointer;
+	padding: 5px;
+}
+
+#start_sleeping_div:hover, #action_end_div:hover, #end_sleeping_div:hover {
+	background-color: #2c3953;
+}
+
+#trade_div {
+    display: none;
+}
+
+#trader_inventory_div {
+    height: 311px;
+	width: 100%;
+	overflow-y: scroll;
+}
+
+#trade_price_div {
+	color: white;
+	outline: 1px solid white;
+	padding: 2px 1px 2px 1px;
+	width: 261px;
+	float: left;
+	margin: 1px;
+}
+
+#trader_cost_mult {
+	width: 131px;
+	color: white;
+	outline: 1px solid white;
+	padding: 2px 1px 2px 1px;
+	margin: 1px;
+	float:left;
+	color: orange;
+	font-weight: bold;
+}
+
+#trader_cost_mult_text {
+	width: 60px;
+	float: left;
+	padding-left: 5px;
+}
+
+#trader_cost_mult_value {
+	width: 60px;
+	float: left;
+	text-align: right;
+	padding-right: 5px;
+}
+
+#trade_price_text {
+	display: inline-block;
+	width: 80px;
+	padding-left: 5px;
+}
+
+#trade_price_value {
+	width: 164px;
+	display: inline-block;
+	text-align: right;
+	padding-right: 5px;
+}
+
+/* scrollbar */
+::-webkit-scrollbar {
+	width: 15px;
+	height: 10px;;
+  }
+
+::-webkit-scrollbar-track {
+	background: #191928; 
+  }
+   
+::-webkit-scrollbar-thumb {
+	background: silver; 
+  }
+  
+::-webkit-scrollbar-thumb:hover {
+	background: white; 
+  }
