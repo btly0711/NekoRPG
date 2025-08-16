@@ -1974,7 +1974,9 @@ function create_save() {
  * @returns save string encoded to base64
  */
 function save_to_file() {
-    return btoa(create_save());
+    
+    const encodedContent = encodeURIComponent(create_save());
+    return btoa(encodedContent);
 }
 
 /**
@@ -2652,9 +2654,9 @@ function load(save_data) {
 function load_from_file(save_string) {
     try{
         if(is_on_dev()) {
-            localStorage.setItem(dev_save_key, atob(save_string));
+            localStorage.setItem(dev_save_key, decodeURIComponent(atob(save_string)));
         } else {
-            localStorage.setItem(save_key, atob(save_string));
+            localStorage.setItem(save_key, decodeURIComponent(atob(save_string)));
         }        
         window.location.reload(false);
     } catch (error) {

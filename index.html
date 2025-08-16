@@ -16,17 +16,6 @@
 
         <Title>Neko RPG</Title>
     </head>
-    <script>
-                // 配置路径前缀
-        const isGitHubPages = window.location.hostname.includes('github.io');
-        const basePath = isGitHubPages ? '/NekoRPG' : '';
-
-        // 动态设置图片路径
-        document.querySelectorAll('img').forEach(img => {
-        const originalSrc = img.getAttribute('data-src') || img.src;
-        img.src = basePath + originalSrc;
-        });
-    </script>
 
 
     <body onload = "prepareGame()">
@@ -896,9 +885,9 @@
         </div>
 
         <div id = "bottom_panel_div">
-            <div id = "save_button" class = "sl_button" onclick = "saveProgress()"> Save </div>
-            <div id = "save_to_file_button" class = "sl_button" onclick = "saveToFile()"> Export </div>
-            <label id = "load_from_file_button" class = "sl_button" for = "saved_file_input"> Import </label> 
+            <div id = "save_button" class = "sl_button" onclick = "saveProgress()"> 保存 </div>
+            <div id = "save_to_file_button" class = "sl_button" onclick = "saveToFile()"> 导出 </div>
+            <label id = "load_from_file_button" class = "sl_button" for = "saved_file_input"> 导入 </label> 
             <input id = "saved_file_input" type='file' accept = 'text/plain' onchange = 'loadProgress(event)'>	
 
             <div id = "options_button" class = "game_info" onclick="openOptions()"><span><i class="material-icons">settings</i></span></div>
@@ -1171,7 +1160,7 @@
             function saveToFile() {
                 var a = window.document.createElement('a');
                 a.href = window.URL.createObjectURL(new Blob([save_to_file()], {type: 'text/plain'}));
-                a.download = `yet-another-idle-rpg ${getDate()}.txt`;
+                a.download = `neko-rpg ${getDate()}.txt`;
 
                 document.body.appendChild(a);
                 a.click();
