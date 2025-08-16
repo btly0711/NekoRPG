@@ -2313,7 +2313,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "金属残片熔炼而成的铁锭。可以用于制作作剑刃，盔甲", 
         value: 10,
         material_type: "metal",
-        image: "../image/item/iron_ingot.png",
+        image: "../NekoRPG/image/item/iron_ingot.png",
     });
 })();
 
@@ -2324,7 +2324,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "煮熟的年幼凶兽肉排。食用后每秒回复40点血量，持续60秒",//血药模版 
         value: 5,
         effects: [{effect: "饱食", duration: 60}],
-        image: "../image/item/O1_cooked_meat.png",
+        image: "../NekoRPG/image/item/O1_cooked_meat.png",
     });
 })();
 //炼金
@@ -2333,7 +2333,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "粘合织料", 
         description: "涂抹了凝胶的飞蛾翅膀结合体，适合与皮肤亲密接触",
         value: 3,
-        image: "../image/item/mixed_comp01.png",
+        image: "../NekoRPG/image/item/mixed_comp01.png",
     });
 })();
 
@@ -2343,7 +2343,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始黄宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷1点", 
         value: 1,
-        image: "../image/item/gem11_1.png",
+        image: "../NekoRPG/image/item/gem11_1.png",
         effects: [],
         gem_value: 1,
     });
@@ -2351,7 +2351,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始蓝宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷2点",
         value: 2,
-        image: "../image/item/gem12_2.png",
+        image: "../NekoRPG/image/item/gem12_2.png",
         effects: [],
         gem_value: 2,
     });
@@ -2359,7 +2359,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始红宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷5点",
         value: 5,
-        image: "../image/item/gem13_5.png",
+        image: "../NekoRPG/image/item/gem13_5.png",
         effects: [],
         gem_value: 5,
     });
@@ -2367,7 +2367,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始绿宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷10点", 
         value: 10,
-        image: "../image/item/gem14_10.png",
+        image: "../NekoRPG/image/item/gem14_10.png",
         effects: [],
         gem_value: 10,
     });
@@ -2381,61 +2381,61 @@ item_templates["Twist liek a snek"] = new Book({
         name: "凝胶", 
         description: "从死去的史莱姆中发现的凝胶。因为某种用途所以有些微价值", 
         value: 1,
-        image: "../image/item/rubber.png",
+        image: "../NekoRPG/image/item/rubber.png",
     });
     item_templates["金属残片"] = new OtherItem({
         name: "金属残片", 
         description: "损坏的普通金属片。已经无法用于制造剑盾，但或许还能重新熔炼？", 
         value: 1,
-        image: "../image/item/iron_fragment.png",
+        image: "../NekoRPG/image/item/iron_fragment.png",
     });
     item_templates["魔力碎晶"] = new OtherItem({
         name: "魔力碎晶", 
         description: "一小块残留着魔力的水晶。内部的能量仍然足以烤肉或炼铁。",//烤肉 
         value: 2,
-        image: "../image/item/magic_fragment.png",
+        image: "../NekoRPG/image/item/magic_fragment.png",
     });
     item_templates["飞蛾翅膀"] = new OtherItem({
         name: "飞蛾翅膀", 
         description: "飞蛾留下的完整翅膀。可以用作衣服的材料", 
         value: 2,
-        image: "../image/item/fly_wing.png",
+        image: "../NekoRPG/image/item/fly_wing.png",
     });
     item_templates["坚硬石块"] = new OtherItem({
         name: "坚硬石块", 
         description: "燕岗城郊山上的大块石头，废弃傀儡和石头人也是它们制造的。", 
         value: 2,
-        image: "../image/item/hard_rock.png",
+        image: "../NekoRPG/image/item/hard_rock.png",
     });
     item_templates["微尘·凶兽肉块"] = new OtherItem({
         name: "微尘·凶兽肉块", 
         description: "微尘级凶兽的肉。散发着腥味，或许需要烤一烤？", //加魔力碎晶
         value: 2,
-        image: "../image/item/O1_meat.png",
+        image: "../NekoRPG/image/item/O1_meat.png",
     });
     item_templates["骨头"] = new OtherItem({
         name: "骨头", 
         description: "一根粗大的骨头。光是拿着就感觉阴森森的..", 
         value: 1,
-        image: "../image/item/bone.png",
+        image: "../NekoRPG/image/item/bone.png",
     });
     item_templates["铜骨"] = new OtherItem({
         name: "铜骨", 
         description: "万物级骷髅死后留下的青铜骨头。它的硬度和韧性都很不错！", 
         value: 5,
-        image: "../image/item/copper_bone.png",
+        image: "../NekoRPG/image/item/copper_bone.png",
     });
     item_templates["铜板"] = new OtherItem({
         name: "铜板", 
         description: "燕岗领铸造的小型通用钱币", 
         value: 1,
-        image: "../image/item/1C.png",
+        image: "../NekoRPG/image/item/1C.png",
     });
     item_templates["大铜板"] = new OtherItem({
         name: "大铜板", 
         description: "燕岗领铸造的通用钱币，面值5C", 
         value: 5,
-        image: "../image/item/5C.png",
+        image: "../NekoRPG/image/item/5C.png",
     });
 })();
 
