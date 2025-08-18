@@ -517,7 +517,7 @@ class Textline {
                 "原作：Yet Another Idle RPG - miktaew <br>" +
                 "设定来自： 我吃西红柿《吞噬星空》,千夜《纳可物语》 <br>",
                 unlocks: {
-                    locations: ["燕岗城","燕岗城 - 1"],
+                    locations: ["燕岗城"],
                 },
                 locks_lines: ["MT10_clear"],
             })
