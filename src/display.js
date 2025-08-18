@@ -1144,7 +1144,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
         }
     } else {
         item_name_div.innerHTML = `<span class="item_image"><img src=${target_item.image}></span>`;
-        console.log(target_item);
+        //console.log(target_item);
         item_name_div.innerHTML += `<span class = "item_category"></span> <span class = "item_name">${target_item.getName()}</span>`;
     }
     
@@ -1268,7 +1268,7 @@ function update_displayed_enemies() {
                     
             // const enemy_img = enemies_div.children[i].children[0].children[0].createElement("div"); //enemy description
             // enemy_img.innerHTML = `<img src="${current_enemies[i].image}"><br>`;
-            console.log(current_enemies[i].image);
+            //console.log(current_enemies[i].image);
 
             let disp_speed;
 

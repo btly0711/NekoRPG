@@ -653,6 +653,77 @@ class Enemy {
             {item_name: "初始蓝宝石", chance:0.03},
         ],
     });
+    //1-2 below
+    enemy_templates["纳家待从"] = new Enemy({
+        name: "纳家待从", 
+        description: "普通的纳家随从。因为在城内大街上，出手点到为止。", 
+        xp_value: 13, 
+        rank: 1201,
+        image: "../NekoRPG/image/enemy/E1201.png",
+        realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
+        size: "small",
+        spec: [5],
+        tags: [],
+        stats: {health: 344, attack: 111, agility: 60, attack_speed: 1.1, defense: 44} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.005},
+            {item_name: "大铜板", chance: 0.4},
+            {item_name: "金属残片", chance:0.2},
+        ],
+    });
+    enemy_templates["轻型傀儡"] = new Enemy({
+        name: "轻型傀儡", 
+        description: "上漆铁皮做成的傀儡，比它那石头兄弟强大一些。", 
+        xp_value: 8, 
+        rank: 1202,
+        image: "../NekoRPG/image/enemy/E1202.png",
+        realm: "<span class=realm_basic><b>万物级高等 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 150, attack: 103, agility: 80, attack_speed: 1.2, defense: 33} , //都说了是轻型的！
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.005},
+            {item_name: "金属残片", chance:0.3},
+            {item_name: "魔力碎晶", chance:0.1},
+        ],
+    });
+    enemy_templates["出芽红茸茸"] = new Enemy({
+        name: "出芽红茸茸", 
+        description: "茸茸家族的另一个成员——尽管它只比出牙茸茸强大了一丝。", 
+        xp_value: 8, 
+        rank: 1203,
+        image: "../NekoRPG/image/enemy/E1203.png",
+        realm: "<span class=realm_basic><b>万物级高等 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 97, attack: 97, agility: 60, attack_speed: 1.1, defense: 42} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.005},
+            {item_name: "凝胶", chance:0.3},
+            {item_name: "魔力碎晶", chance:0.1},
+        ],
+    });
+    enemy_templates["万物级异兽"] = new Enemy({
+        name: "万物级异兽", 
+        description: "掌握着牵制力量的异兽。在能量加持下，它的肉营养十分丰富。", 
+        xp_value: 8, 
+        rank: 1204,
+        image: "../NekoRPG/image/enemy/E1204.png",
+        realm: "<span class=realm_basic><b>万物级高等 +</b></span>",
+        size: "small",
+        spec: [5],
+        tags: [],
+        stats: {health: 840, attack: 128, agility: 60, attack_speed: 1.2, defense: 16} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "万物·凶兽肉块", chance:0.1},
+        ],
+    });
 })();
 
 
@@ -661,9 +732,10 @@ class Enemy {
     enemy_templates["纳家待从[BOSS]"] = new Enemy({
         name: "纳家待从[BOSS]", 
         description: "", 
+        add_to_bestiary: false,
         xp_value: 13, 
         rank: 1101,
-        image: "../NekoRPG/image/enemy/B1101.png",
+        image: "../NekoRPG/image/boss/B1101.png",
         realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
         size: "small",
         spec: [5],

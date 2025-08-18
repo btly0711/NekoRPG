@@ -69,13 +69,13 @@ window.REALMS=[
 [0,"微尘级初级",0,0,0],
 [1,"微尘级中级",1,50,10],
 [2,"微尘级高级",3,200,100],
-[3,"万物级初等",6,700,2000],//0.2spd 以下未平衡
+[3,"万物级初等",6,700,2000],//0.2spd 
 [4,"万物级高等",12,3000,10000],
 
 [5,"万物级巅峰",25,1500,25000],//以下未平衡
 [6,"潮汐级初等",40,3000,60000],//0.3spd
 [7,"潮汐级高等",70,9000,240000],
-[8,"潮汐级巅峰",100,18000,800000],
+[8,"潮汐级巅峰",100,18000,9223372036854775807],
 
 ];
 //境界，X级存储了该等级的数据
@@ -898,7 +898,10 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
         if(count >= 40) {
             count = 0;
             do_enemy_combat_action(enemy_id,Spec_S);
-            if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S);//2连击
+            if(current_enemies != null)
+            {
+                if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S);//2连击
+            }
         }
         do_enemy_attack_loop(enemy_id, count);
 
@@ -1140,9 +1143,9 @@ function do_enemy_combat_action(enemy_id,spec_hint) {
     
     if(!character.wears_armor())
         {
-            add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: damage_taken});
+            add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: damage_taken/2});
         } else {
-            add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: damage_taken/5});
+            add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: damage_taken/10});
         }
 
     
@@ -2683,8 +2686,32 @@ function load_from_localstorage() {
             load(JSON.parse(localStorage.getItem(save_key)));
         }
     } catch(error) {
-        console.error("Something went wrong on loading from localStorage!");
-        console.error(error);
+        // console.error("Something went wrong on loading from localStorage!");
+        // console.error(error);
+        
+        console.error("❌ ERROR loading from localStorage!");
+        // console.error("Error details:", error);
+        
+        // // 获取更详细的存储信息
+        // console.error("Storage keys:", Object.keys(localStorage));
+        
+        // // 记录存储大小
+        // let totalSize = 0;
+        // for (let i = 0; i < localStorage.length; i++) {
+        //     const key = localStorage.key(i);
+        //     const value = localStorage.getItem(key);
+        //     totalSize += key.length + value.length;
+        // }
+        // console.error(`Total localStorage size: ~${Math.round(totalSize / 1024)}KB`);
+        
+        // // 用户友好的错误信息
+        // const errorMsg = `Failed to load save data: ${error.message || 'Unknown error'}`;
+        // log_message(errorMsg, "error");
+        
+        // 尝试恢复
+        console.warn("Attempting to load empty state...");
+        window.location.reload();
+        load_from_localstorage();
     }
 }
 
@@ -2708,7 +2735,7 @@ function load_backup() {
             }
         }
     } catch(error) {
-        console.error("Something went wrong on loading from localStorage!");
+        console.error("Something went wrong on loading from localStorage[BACKUP]!");
         console.error(error);
     }
 }
@@ -2733,7 +2760,7 @@ function load_other_release_save() {
             }
         }
     } catch(error) {
-        console.error("Something went wrong on loading from localStorage!");
+        console.error("Something went wrong on loading from localStorage[REALESE]!");
         console.error(error);
     }
 }

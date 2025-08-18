@@ -866,7 +866,7 @@ function getItem(item_data) {
         case "MATERIAL":
             return new Material(item_data);
         default:
-            throw new Error(`Wrong item type: ${item_data.item_type}`);
+            throw new Error(`Wrong item type: ${item_data.item_type} , item: ${item_data}`);
     }
 }
 
@@ -2263,7 +2263,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 50,
         component_tier: 1,
         full_armor_name: "铁制头盔",
-        defense_value: 5,
+        defense_value: 3,
         stats: {
             attack_speed: {
                 multiplier: 0.95,
@@ -2277,7 +2277,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 80,
         component_tier: 1,
         full_armor_name: "铁制胸甲",
-        defense_value: 8,
+        defense_value: 5,
     });
     item_templates["铁制腿甲"] = new ArmorComponent({
         name: "铁制腿甲",
@@ -2286,7 +2286,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 70,
         component_tier: 1,
         full_armor_name: "铁制腿甲",
-        defense_value: 7,
+        defense_value: 4,
     });
     item_templates["铁制战靴"] = new ArmorComponent({
         name: "铁制战靴",
@@ -2295,7 +2295,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 40,
         component_tier: 1,
         full_armor_name: "铁制战靴",
-        defense_value: 4,
+        defense_value: 2,
         stats: {
             agility: {
                 multiplier: 0.9,
@@ -2325,6 +2325,13 @@ item_templates["Twist liek a snek"] = new Book({
         value: 5,
         effects: [{effect: "饱食", duration: 60}],
         image: "../NekoRPG/image/item/O1_cooked_meat.png",
+    });
+    item_templates["万物·凶兽肉排"] = new UsableItem({
+        name: "万物·凶兽肉排", 
+        description: "虽然颜色很奇怪但是真的能吃！食用后每秒回复80点血量，持续60秒",
+        value: 12,
+        effects: [{effect: "饱食 II", duration: 60}],
+        image: "../NekoRPG/image/item/O5_cooked_meat.png",
     });
 })();
 //炼金
@@ -2436,6 +2443,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "燕岗领铸造的通用钱币，面值5C", 
         value: 5,
         image: "../NekoRPG/image/item/5C.png",
+    });
+    item_templates["万物·凶兽肉块"] = new OtherItem({
+        name: "万物·凶兽肉块", 
+        description: "万物级凶兽的肉。蕴含的气血充沛，价格略高。", //加魔力碎晶
+        value: 8,
+        image: "../NekoRPG/image/item/O5_meat.png",
     });
 })();
 

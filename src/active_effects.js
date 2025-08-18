@@ -56,4 +56,13 @@ effect_templates["饱食"] = new ActiveEffect({
     }
 });
 
+effect_templates["饱食 II"] = new ActiveEffect({
+    name: "饱食 II",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 80},
+        }
+    }
+});
+
 export {effect_templates, ActiveEffect};

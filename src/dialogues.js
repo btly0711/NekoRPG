@@ -508,13 +508,18 @@ class Textline {
                 
                 locks_lines: ["Neko是谁"],
             }),
-            "MT10_clear": new Textline({//目前残局：MT10 该剧情或许应该换个NPC讲...
+            "MT10_clear": new Textline({
                 is_unlocked: false,
                 name: "打开大门",
-                text: "恭喜你抵达了当前版本[V0.10]的终点！<br>" +
-                "MOD - NekoRPG作者：超自然生物吐火研究协会 - 纱雪(持续呜呜中=w=)" +
-                "原作：Yet Another Idle RPG - miktaew" +
-                "设定来自： 我吃西红柿《吞噬星空》,千夜《纳可物语》",
+                text: "在[V0.13]中，该对话理论上不会解锁。<br>" +
+                "如果是旧版本更新存档，可使用此条对话以解锁后续区域。<br>" +
+                "MOD - NekoRPG作者：超自然生物吐火研究协会 - 纱雪(持续呜呜中=w=) <br>" +
+                "原作：Yet Another Idle RPG - miktaew <br>" +
+                "设定来自： 我吃西红柿《吞噬星空》,千夜《纳可物语》 <br>",
+                unlocks: {
+                    locations: ["燕岗城","燕岗城 - 1"],
+                },
+                locks_lines: ["MT10_clear"],
             })
             // "what happened": new Textline({
             //     name: "My head hurts.. What happened?",

@@ -145,7 +145,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true}) {
                 character.stats.flat.level.health = character.stats.flat.level.max_health;
                 character.stats.flat.level.agility = (character.stats.flat.level.agility || 0) + this_realm[2];
                 character.stats.flat.level.defense = (character.stats.flat.level.defense || 0) + this_realm[2];
-                character.stats.flat.level.attack_power = ( character.stats.flat.level.attack_power || 0) + this_realm[2]; 
+                character.stats.flat.level.attack_power = ( character.stats.flat.level.attack_power || 0) + this_realm[2] * 2; 
                 character.stats.flat.level.attack_speed = ( character.stats.flat.level.attack_speed || 0) + realm_spd_gain;
                 
                 let total_skill_xp_multiplier = 1.1;
@@ -157,7 +157,8 @@ character.add_xp = function ({xp_to_add, use_bonus = true}) {
 
                 //显示-提高属性
                 let gains = "";
-                gains += `攻击,防御,敏捷提高了${this_realm[2]}<br>`;
+                gains += `攻击提高了${this_realm[2] * 2}<br>`;
+                gains += `防御,敏捷提高了${this_realm[2]}<br>`;
                 gains += `生命上限提高了${this_realm[3]}<br>`;
                 if(realm_spd_gain != 0) gains += `小阶段突破，攻击速度额外增加${realm_spd_gain}<br>`;
                 

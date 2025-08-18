@@ -673,6 +673,14 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         success_chance: [0.5,1],
         recipe_level: [0,3],
         recipe_skill: "Cooking",
+    });cooking_recipes.items["万物级·烤肉"] = new ItemRecipe({
+        name: "万物级·烤肉",
+        recipe_type: "material",
+        materials: [{material_id: "万物·凶兽肉块", count: 1},{material_id: "魔力碎晶", count: 3}], 
+        result: {result_id: "万物·凶兽肉排", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [2,5],
+        recipe_skill: "Cooking",
     });
 })();
 

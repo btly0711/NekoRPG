@@ -672,7 +672,7 @@ function get_location_type_penalty(type, stage, stat) {
         traders: ["自动售货机"],
         dialogues: ["猫妖"],
         name: "纳家大厅", 
-    });
+    });//1-1
     locations["练兵场深处"] = new Location({ 
         connected_locations: [{location: locations["纳家大厅"], custom_text: "返回大厅"}], 
         description: "练兵场深处的一间小木屋",
@@ -681,6 +681,9 @@ function get_location_type_penalty(type, stage, stat) {
         unlock_text: "前面的路似乎无人值守...会不会这里就是前往外界的通道呢？",
         name: "练兵场深处", 
     });
+
+
+
     locations["Village"].connected_locations.push({location: locations["纳家大厅"]});
 
     locations["纳可的房间"] = new Location({
@@ -885,10 +888,13 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 200,
         },
         repeatable_reward: {
-            textlines: [{dialogue: "猫妖", lines: ["MT10_clear"]}],
+            //textlines: [{dialogue: "猫妖", lines: ["MT10_clear"]}],
+            locations: [{location: "燕岗城"}],
         },
         unlock_text: "请留步，小姐。      这里禁止大地级之下的子弟随意出入。"
     });
+
+    
     
     locations["纳家大厅"].connected_locations.push({location: locations["练兵场深处"]}); 
 
@@ -900,6 +906,40 @@ function get_location_type_penalty(type, stage, stat) {
     locations["练兵场深处"].connected_locations.push({location: locations["纳家练兵场 - 6"]});
     locations["练兵场深处"].connected_locations.push({location: locations["纳家练兵场 - 7"]});
     locations["练兵场深处"].connected_locations.push({location: locations["纳家练兵场 - X"], custom_text: "前往挑战门边的待从"});
+
+
+
+    
+    locations["燕岗城"] = new Location({ 
+        connected_locations: [{location: locations["练兵场深处"], custom_text: "回到纳家"}], 
+        description: "熙熙攘攘的燕岗城外城。尽管是崇尚力量的世界，市民间仍然有讲不完的话题。",
+        
+        is_unlocked: false,
+        unlock_text: "无论见到多少次，城市的繁华仍然令人侧目。但现在，尽快出城才是最重要的！",
+        name: "燕岗城", 
+    });//1-2
+    locations["练兵场深处"].connected_locations.push({location: locations["燕岗城"]});
+
+    locations["燕岗城 - 1"] = new Combat_zone({
+        description: "燕岗城14环的普通街道。", //MT9~10
+        enemy_count: 20, 
+        enemies_list: ["试炼木偶","纳家待从","出芽红茸茸","轻型傀儡","万物级异兽"],
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_variation: 0.1,
+        is_unlocked: true, 
+        name: "燕岗城 - 1", 
+        parent_location: locations["燕岗城"],
+        first_reward: {
+            xp: 75,
+        },
+        repeatable_reward: {
+            xp: 50,
+        },
+    });
+    
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 1"]});
+
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 
