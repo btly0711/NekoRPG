@@ -49,8 +49,9 @@ class Stance {
             const multipliers = {};
             Object.keys(this.stat_multipliers).forEach(stat => {
                 if(this.stat_multipliers[stat] < 1) {
-                    multipliers[stat] = this.stat_multipliers[stat] + (1 - this.stat_multipliers[stat]) * skills[this.related_skill].current_level/(2*skills[this.related_skill].max_level);
+                    multipliers[stat] = this.stat_multipliers[stat] + (1 - this.stat_multipliers[stat]) * skills[this.related_skill].current_level/(skills[this.related_skill].max_level);
                     //div by 2 because penalties don't get fully nullified, only cut in half (e.g. x0.8 -> x0.9)
+                    //什么鬼？满级了惩罚归零简直天经地义...
                 }
                 else {
                     multipliers[stat] =  this.stat_multipliers[stat] + (this.stat_multipliers[stat]-1) * skills[this.related_skill].current_level/skills[this.related_skill].max_level;
@@ -62,10 +63,10 @@ class Stance {
 }
 
 stances["normal"] = new Stance({
-    name: "Normal Stance",
+    name: "[无]",
     id: "normal",
     is_unlocked: true,
-    description: "A normal and basic stance. It doesn't excell in anything, but also doesn't suffer any major flaws and is energy efficient.",
+    description: "不使用任何秘法，仅仅利用蛮力来战斗。",
     stat_multipliers: {}
 })
 
@@ -138,4 +139,30 @@ stances["flowing water"] = new Stance({
     },
     target_count: 2,
 });
+//血洛大陆秘法↓
+stances["MB_Speed"] = new Stance({
+    name: "融血·疾",
+    id: "MB_Speed",
+    description: "可以稍微加快攻击速度。",
+    related_skill: "MergeBlood",
+    stat_multipliers: {
+        attack_speed: 1.1,
+        agility: 1.1,
+        max_health: 0.75,
+    },
+    target_count: 1,
+});
+
+stances["MB_Power"] = new Stance({
+    name: "融血·锐",
+    id: "MB_Power",
+    related_skill: "MergeBlood",
+    description: "可以略微增强攻击力。",
+    stat_multipliers: {
+        attack_power: 1.1,
+        max_health: 0.75,
+    },
+    target_count: 1,
+});
+
 export {stances};

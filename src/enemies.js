@@ -611,10 +611,10 @@ class Enemy {
         tags: [],
         stats: {health: 120, attack: 72, agility: 24, attack_speed: 1.1, defense: 15}, 
         loot_list: [
-            {item_name: "铜板", chance:0.8},
-            {item_name: "铜板", chance:0.8},
-            {item_name: "铜板", chance:0.8},
-            {item_name: "大铜板", chance:0.4},
+            {item_name: "铜板", chance:0.4},
+            {item_name: "铜板", chance:0.4},
+            {item_name: "铜板", chance:0.4},
+            {item_name: "大铜板", chance:0.2},
             {item_name: "初始黄宝石", chance:0.08},
             {item_name: "初始蓝宝石", chance:0.01},
         ],
@@ -687,7 +687,7 @@ class Enemy {
             {item_name: "初始蓝宝石", chance:0.03},
             {item_name: "初始红宝石", chance:0.005},
             {item_name: "金属残片", chance:0.3},
-            {item_name: "魔力碎晶", chance:0.1},
+            {item_name: "合金残片", chance:0.1},
         ],
     });
     enemy_templates["出芽红茸茸"] = new Enemy({
@@ -721,7 +721,61 @@ class Enemy {
         stats: {health: 840, attack: 128, agility: 60, attack_speed: 1.2, defense: 16} , 
         loot_list: [
             {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "万物·凶兽肉块", chance:0.1},
+            {item_name: "万物·凶兽肉块", chance:0.04},
+            {item_name: "异兽皮", chance:0.04},
+        ],
+    });
+    enemy_templates["高速傀儡"] = new Enemy({
+        name: "高速傀儡", 
+        description: "轻便合金做成的傀儡，为了速度舍弃了防御", 
+        xp_value: 13, 
+        rank: 1205,
+        image: "../NekoRPG/image/enemy/E1205.png",
+        realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
+        size: "small",
+        spec: [6],
+        tags: [],
+        stats: {health: 150, attack: 180, agility: 120, attack_speed: 1.1, defense: 0} , //不要忘记agi基准值是80，spd基准值还是1.1
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "金属残片", chance:0.2},
+            {item_name: "合金残片", chance:0.15},
+        ],
+    });//需要3连击
+    enemy_templates["黄毛茸茸"] = new Enemy({
+        name: "黄毛茸茸", 
+        description: "学会了魔攻的血牛茸茸！", 
+        xp_value: 13, 
+        rank: 1206,
+        image: "../NekoRPG/image/enemy/E1206.png",
+        realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
+        size: "small",
+        spec: [0],
+        tags: [],
+        stats: {health: 600, attack: 20, agility: 80, attack_speed: 1.1, defense: 45} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "凝胶", chance:0.3},
+            {item_name: "魔力碎晶", chance:0.15},
+        ],
+    });
+    enemy_templates["纳家塑像"] = new Enemy({
+        name: "纳家塑像", 
+        description: "纳家量产的傀儡塑像。战力不强，但胜在便宜。", 
+        xp_value: 13, 
+        rank: 1207,
+        image: "../NekoRPG/image/enemy/E1207.png",
+        realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
+        size: "small",
+        spec: [1],
+        tags: [],
+        stats: {health: 4, attack: 140, agility: 60, attack_speed: 1.1, defense: 0} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "坚硬石块", chance: 0.3},
         ],
     });
 })();
@@ -731,7 +785,7 @@ class Enemy {
 (function(){
     enemy_templates["纳家待从[BOSS]"] = new Enemy({
         name: "纳家待从[BOSS]", 
-        description: "", 
+        description: "如果看到这段描述，说明游戏存在问题，请反馈。", 
         add_to_bestiary: false,
         xp_value: 13, 
         rank: 1101,
@@ -746,6 +800,22 @@ class Enemy {
             {item_name: "初始红宝石", chance:1.0},
             {item_name: "初始蓝宝石", chance:1.0},
             {item_name: "初始蓝宝石", chance:1.0},//固定掉落
+        ],
+    });
+    enemy_templates["百家小卒[BOSS]"] = new Enemy({
+        name: "百家小卒[BOSS]", 
+        description: "如果看到这段描述，说明游戏存在问题，请反馈。", 
+        add_to_bestiary: false,
+        xp_value: 13, 
+        rank: 1201,
+        image: "../NekoRPG/image/boss/B1201.png",
+        realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
+        size: "small",
+        spec: [2],
+        tags: [],
+        stats: {health: 6600, attack: 144, agility: 100, attack_speed: 1.1, defense: 60}, //与原作相同
+        loot_list: [
+            //奖励在秘法石碑后面
         ],
     });
     enemy_templates["Village guard (heavy)"] = new Enemy({

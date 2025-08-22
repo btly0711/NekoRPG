@@ -661,6 +661,17 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [0,10],
         recipe_skill: "Smelting",
     });
+    //1-2
+    
+    smelting_recipes.items["熔炼精钢"] = new ItemRecipe({
+        name: "熔炼精钢",
+        recipe_type: "material",
+        materials: [{material_id: "铁锭", count: 1},{material_id: "合金残片", count: 2},{material_id: "魔力碎晶", count: 3}], 
+        result: {result_id: "精钢锭", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [2,7],
+        recipe_skill: "Smelting",
+    });
 })();
 
 (function(){

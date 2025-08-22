@@ -71,9 +71,9 @@ window.REALMS=[
 [2,"微尘级高级",3,200,100],
 [3,"万物级初等",6,700,2000],//0.2spd 
 [4,"万物级高等",12,3000,10000],
+[5,"万物级巅峰",25,6000,50000],
 
-[5,"万物级巅峰",25,1500,25000],//以下未平衡
-[6,"潮汐级初等",40,3000,60000],//0.3spd
+[6,"潮汐级初等",40,3000,60000],//以下未平衡 0.3spd
 [7,"潮汐级高等",70,9000,240000],
 [8,"潮汐级巅峰",100,18000,9223372036854775807],
 
@@ -751,7 +751,7 @@ function unlock_combat_stance(stance_id) {
 
     stances[stance_id].is_unlocked = true;
     update_displayed_stance_list();
-    log_message(`You have learned a new stance: "${stances[stance_id].name}"`, "location_unlocked") 
+    log_message(`解锁了一个秘法: "${stances[stance_id].name}"`, "location_unlocked") 
 }
 
 function change_stance(stance_id, is_temporary = false) {
@@ -769,6 +769,7 @@ function change_stance(stance_id, is_temporary = false) {
     }
     
     current_stance = stance_id;
+    console.log(current_stance);
 
     update_character_stats();
     reset_combat_loops();
@@ -901,6 +902,13 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
             if(current_enemies != null)
             {
                 if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S);//2连击
+
+                if(current_enemies[enemy_id].spec.includes(6))
+                {
+                    do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S);
+                    if(current_enemies != null) do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S);
+                }//3连击
+
             }
         }
         do_enemy_attack_loop(enemy_id, count);
@@ -940,10 +948,12 @@ function set_character_attack_loop({base_cooldown}) {
         return;
     }
 
-     if(current_stance !== "normal") {
-        change_stance("normal", true);
-        return;
-    }
+    //  if(current_stance !== "normal") {
+    //     change_stance("normal", true);
+    //     return;
+    // }
+    //WTF is this?
+
 
     let target_count = stances[current_stance].target_count;
     if(target_count > 1 && stances[current_stance].related_skill) {
@@ -986,7 +996,7 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
             for(let i = 0; i < targets.length; i++) {
                 do_character_combat_action({target: targets[i], attack_power});
             }
-
+            console.log(current_stance);
             if(stances[current_stance].related_skill) {
                 leveled = add_xp_to_skill({skill: skills[stances[current_stance].related_skill], xp_to_add: targets.reduce((sum,enemy)=>sum+enemy.xp_value,0)/targets.length});
                 
@@ -1988,16 +1998,24 @@ function save_to_file() {
  */
 function save_to_localStorage({key, is_manual}) {
     const save = create_save();
-    if(save) {
-        localStorage.setItem(key, save);
+    if(locations["纳家练兵场 - 1"].is_unlocked)
+    {
+        if(save) {
+            localStorage.setItem(key, save);
+        }
+        
+        if(is_manual) {
+            log_message("手动保存游戏");
+            save_counter = 0;
+        }
+        return JSON.parse(save).saved_at;
     }
-    
-    if(is_manual) {
-        log_message("手动保存游戏");
+    else
+    {
+        log_message("已阻止生成不安全的存档");
         save_counter = 0;
+        return 0;
     }
-
-    return JSON.parse(save).saved_at;
 }
 
 function save_progress() {

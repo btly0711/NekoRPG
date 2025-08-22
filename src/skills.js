@@ -492,13 +492,13 @@ function format_skill_rewards(milestone){
 //combat stances
 (function(){
     skills["Stance mastery"] = new Skill({skill_id: "Stance mastery", 
-                                    names: {0: "Stance proficiency", 10: "Stance mastery"}, 
-                                    description: "Knowledge on how to apply different stances in combat",
+                                    names: {0: "秘法入门", 10: "秘法精通"}, 
+                                    description: "如何在战斗中灵活使用各种秘法的知识",
                                     base_xp_cost: 60,
                                     category: "Stance",
                                     max_level: 30,
                                     get_effect_description: ()=> {
-                                        return `Increases xp gains of all combat stance skills of level lower than this, x1.1 per level of difference`;
+                                        return `增加所有低于此技能等级的秘法技能经验获取，每相差一级*1.1`;
                                     },
                                 });
     skills["Quick steps"] = new Skill({skill_id: "Quick steps", 
@@ -566,7 +566,18 @@ function format_skill_rewards(milestone){
                                 max_level: 30,
                                 get_effect_description: ()=> {
                                     return `Improves efficiency of the 'Flowing Water' stance`;
-                                }});         
+                                }});
+    skills["MergeBlood"] = new Skill({skill_id: "MergeBlood", 
+                                    names: {0: "融血术"}, 
+                                    parent_skill: "Stance mastery",
+                                    description: "最普遍的血洛术式。", 
+                                    max_level_coefficient: 1.25,
+                                    base_xp_cost: 60,
+                                    category: "Stance",
+                                    max_level: 30,
+                                    get_effect_description: ()=> {
+                                        return `增加[融血术]秘法的使用效果`;
+                                    }});             
                                
 })();
 

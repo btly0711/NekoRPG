@@ -891,7 +891,7 @@ function get_location_type_penalty(type, stage, stat) {
             //textlines: [{dialogue: "猫妖", lines: ["MT10_clear"]}],
             locations: [{location: "燕岗城"}],
         },
-        unlock_text: "请留步，小姐。      这里禁止大地级之下的子弟随意出入。"
+        unlock_text: "请留步，小姐。<br>这里禁止大地级之下的子弟随意出入。"
     });
 
     
@@ -914,6 +914,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["练兵场深处"], custom_text: "回到纳家"}], 
         description: "熙熙攘攘的燕岗城外城。尽管是崇尚力量的世界，市民间仍然有讲不完的话题。",
         
+        dialogues: ["秘法石碑 - 1"],
         is_unlocked: false,
         unlock_text: "无论见到多少次，城市的繁华仍然令人侧目。但现在，尽快出城才是最重要的！",
         name: "燕岗城", 
@@ -935,10 +936,54 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 50,
+            locations: [{location: "燕岗城 - 2"}],
         },
     });
-    
+
+    locations["燕岗城 - 2"] = new Combat_zone({
+        description: "燕岗城15环的普通街道。", //MT9~10
+        enemy_count: 20, 
+        enemies_list: ["出芽红茸茸","轻型傀儡","万物级异兽","高速傀儡","黄毛茸茸","纳家塑像"],
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_variation: 0.1,
+        is_unlocked: false, 
+        name: "燕岗城 - 2", 
+        parent_location: locations["燕岗城"],
+        first_reward: {
+            xp: 90,
+        },
+        repeatable_reward: {
+            xp: 70,
+            locations: [{location: "燕岗城 - 秘法石碑"}],
+            textlines: [{dialogue: "秘法石碑 - 1", lines: ["Power", "Speed"]}],
+        },
+    });
+
+    locations["燕岗城 - 秘法石碑"] = new Challenge_zone({
+        description: "燕岗城主“石风雄”刻录的石碑，记载了基础的血洛秘法。",
+        enemy_count: 1, 
+        enemies_list: ["百家小卒[BOSS]"],
+        enemy_group_size: [2,2],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "燕岗城 - 秘法石碑", 
+        leave_text: "暂时退避",
+        parent_location: locations["燕岗城"],
+        first_reward: {
+            xp: 200,
+            //stances: ["MB_Speed"/*,"MB_Power"*/],
+        },
+        repeatable_reward: {
+            //此处应有战斗姿态
+            textlines: [{dialogue: "秘法石碑 - 1", lines: ["Power", "Speed"]}],
+        },
+        unlock_text: "哪来的小丫头？想参悟这里的秘法，先过了我们这关！"
+    });
+
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 1"]});
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 2"]});
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 秘法石碑"]});
 
 
     locations["Nearby cave"] = new Location({ 

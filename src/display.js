@@ -2510,7 +2510,7 @@ function update_stat_description(stat) {
         <br>基础值: ${Math.round(100*character.base_stats[stat])/100}`;
     }
 
-    let BreakDownMap = {"Level":"境界","Skills":"技能","Skill milestones":"技能里程碑","Equipment":"装备","Environment":"环境","Light level":"光照","Gems":"宝石"};
+    let BreakDownMap = {"Level":"境界","Skills":"技能","Skill milestones":"技能里程碑","Equipment":"装备","Environment":"环境","Light level":"光照","Gems":"宝石","Stance":"秘法"};
     Object.keys(character.stats.flat).forEach(stat_type => {
         if(character.stats.flat[stat_type][stat] && character.stats.flat[stat_type][stat] !== 0) {
             target.innerHTML += `<br>${BreakDownMap[capitalize_first_letter(stat_type.replace("_"," "))]}: +${Math.round(100*character.stats.flat[stat_type][stat])/100}`;
@@ -2844,7 +2844,7 @@ function create_new_skill_bar(skill) {
         skill_bar_divs[skill.category] = {};
 
         const skill_category_div = document.createElement("div");
-        const SkillsCategoryMap = {"Activity":"行动","Character":"角色","Combat":"战斗","Environmental":"环境","Weapon":"武器","Crafting":"合成","Gathering":"收集"};
+        const SkillsCategoryMap = {"Activity":"行动","Character":"角色","Combat":"战斗","Environmental":"环境","Weapon":"武器","Stance":"秘法","Crafting":"合成","Gathering":"收集"};
         skill_category_div.innerHTML = `<i class="material-icons icon skill_dropdown_icon"> keyboard_double_arrow_down </i>${SkillsCategoryMap[skill.category]} 技能`;
         skill_category_div.dataset.skill_category = skill.category;
         skill_category_div.classList.add("skill_category_div");
@@ -3081,9 +3081,9 @@ function update_displayed_stance_list() {
 
     stance_list.innerHTML = 
     `<tr class="stance_list_entry stance_list_header">
-        <th class="stance_list_header stance_list_header_fav">Fav</th>
-        <th class="stance_list_header stance_list_header_select">Select</th>
-        <th class="stance_list_header stance_list_header_name">Name</th>
+        <th class="stance_list_header stance_list_header_fav">星标</th>
+        <th class="stance_list_header stance_list_header_select">选择</th>
+        <th class="stance_list_header stance_list_header_name">名称</th>
     </tr>`
 
     Object.keys(stances).forEach(stance => {
@@ -3243,6 +3243,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [3, "2连击", "#ffee77", "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>2次</span>。"],
 [4, "疾走", "#5dc44b", "这个敌人出手快而敏捷。<br>敌人首先发动一次<span style='color:#87CEFA'>3连击</span>。"],
 [5, "牵制", "#25c1d9", "牵制对手的招式可能成为窍门或是负累。<br>敌人每回合伤害*<span style='color:#87CEFA'>（敌人防御力/角色防御力）</span>。"],
+[6, "3连击", "#ffee77", "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>3次</span>。"],
 ];
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
 //命名空间：[i][0]序号，[i][1]名称,[i][2]颜色,[i][3]描述

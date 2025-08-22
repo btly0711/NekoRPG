@@ -13,7 +13,7 @@ class Trader extends InventoryHaver {
     constructor({name,
                  trade_text = `与 ${name} 交易`,
                  location_name,
-                 refresh_time = 4,
+                 refresh_time = 1,
                  refresh_shift = 0,
                  inventory_template,
                  profit_margin = 2,

@@ -533,6 +533,30 @@ class Textline {
             // }),
         }
     });
+    dialogues["秘法石碑 - 1"] = new Dialogue({
+        name: "秘法石碑 - 1",
+        textlines: {
+            "Speed": new Textline({
+                is_unlocked: false,
+                name: "参悟融血·疾",
+                text: "融血·疾 已加入可选秘法！",
+                locks_lines: ["Speed"],
+                unlocks: {
+                    stances: ["MB_Speed"],
+                },
+            }), 
+            "Power": new Textline({
+                is_unlocked: false,
+                name: "参悟融血·锐",
+                text: "融血·锐 已加入可选秘法！",
+
+                locks_lines: ["Power"],
+                unlocks: {
+                    stances: ["MB_Power"],
+                },
+            }), 
+        }
+    });
 })();
 
 export {dialogues};
