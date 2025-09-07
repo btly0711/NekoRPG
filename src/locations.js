@@ -74,6 +74,7 @@ class Combat_zone {
                 id,
                  description, 
                  getDescription,
+                 rank = 0,
                  is_unlocked = true, 
                  is_finished = false,
                  types = [], //{type, xp_gain}
@@ -100,6 +101,7 @@ class Combat_zone {
         this.otherUnlocks = otherUnlocks || function() {return;}
         this.is_unlocked = is_unlocked;
         this.is_finished = is_finished;
+        this.rank = rank;
         this.types = types; //special properties of the location, e.g. "narrow" or "dark"
         this.enemy_groups_list = enemy_groups_list; //predefined enemy teams, names only
         this.enemies_list = enemies_list; //possible enemies (to be used if there's no enemy_groups_list), names only
@@ -753,6 +755,7 @@ function get_location_type_penalty(type, stage, stat) {
             locations: [{location: "纳家练兵场 - 2"}],
             //解锁地点必须在可重复奖励
         },
+        rank:1,
         
         unlock_text: "要救姐姐，必须先提升自己的实力！先去练兵场与魔物对战吧。",
     });
@@ -774,6 +777,8 @@ function get_location_type_penalty(type, stage, stat) {
             
             locations: [{location: "纳家练兵场 - 3"}],
         },
+        
+        rank:2,
         unlock_text: "还不够...不要为了击败最弱的魔物沾沾自喜啊，路还很长！",
     });
 
@@ -794,7 +799,8 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 8,
             
             locations: [{location: "练兵场深处"}],
-        }
+        },
+        rank:3
     });
 
     locations["纳家练兵场 - 4"] = new Combat_zone({
@@ -805,6 +811,8 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_variation: 0.1,
         is_unlocked: true, 
         name: "纳家练兵场 - 4", 
+        
+        rank:4,
         parent_location: locations["练兵场深处"],
         first_reward: {
             xp: 20,
@@ -824,6 +832,8 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_variation: 0.1,
         is_unlocked: false, 
         name: "纳家练兵场 - 5", 
+        
+        rank:5,
         parent_location: locations["练兵场深处"],
         first_reward: {
             xp: 30,
@@ -843,6 +853,8 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_variation: 0.1,
         is_unlocked: false, 
         name: "纳家练兵场 - 6", 
+        
+        rank:6,
         parent_location: locations["练兵场深处"],
         first_reward: {
             xp: 40,
@@ -862,6 +874,8 @@ function get_location_type_penalty(type, stage, stat) {
         types: [],
         enemy_stat_variation: 0.1,
         is_unlocked: false, 
+        
+        rank:7,
         name: "纳家练兵场 - 7", 
         parent_location: locations["练兵场深处"],
         first_reward: {
@@ -929,7 +943,9 @@ function get_location_type_penalty(type, stage, stat) {
         types: [],
         enemy_stat_variation: 0.1,
         is_unlocked: true, 
-        name: "燕岗城 - 1", 
+        name: "燕岗城 - 1",
+        
+        rank:11, 
         parent_location: locations["燕岗城"],
         first_reward: {
             xp: 75,
@@ -947,6 +963,8 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_group_size: [1,1],
         types: [],
         enemy_stat_variation: 0.1,
+        
+        rank:12,
         is_unlocked: false, 
         name: "燕岗城 - 2", 
         parent_location: locations["燕岗城"],
@@ -956,7 +974,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 70,
             locations: [{location: "燕岗城 - 秘法石碑"}],
-            textlines: [{dialogue: "秘法石碑 - 1", lines: ["Power", "Speed"]}],
+            locations: [{location: "燕岗城 - 3"}],
         },
     });
 
@@ -981,9 +999,30 @@ function get_location_type_penalty(type, stage, stat) {
         unlock_text: "哪来的小丫头？想参悟这里的秘法，先过了我们这关！"
     });
 
+    locations["燕岗城 - 3"] = new Combat_zone({
+        description: "燕岗城16环的普通街道。", //MT9~10
+        enemy_count: 20, 
+        enemies_list: ["高速傀儡","黄毛茸茸","纳家塑像","出芽橙茸茸","森林野蝠","血洛喽啰"],
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_variation: 0.1,
+        
+        rank: 13,
+        is_unlocked: false, 
+        name: "燕岗城 - 3", 
+        parent_location: locations["燕岗城"],
+        first_reward: {
+            xp: 110,
+        },
+        repeatable_reward: {
+            xp: 80,
+        },
+    });
+
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 1"]});
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 2"]});
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 秘法石碑"]});
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 3"]});
 
 
     locations["Nearby cave"] = new Location({ 

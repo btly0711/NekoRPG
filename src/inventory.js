@@ -58,6 +58,11 @@ class InventoryHaver {
             }
         }
     }
+
+    is_in_inventory(item)
+    {
+        return item in this.inventory;
+    }
 }
 
 export {InventoryHaver};

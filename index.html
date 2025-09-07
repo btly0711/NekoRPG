@@ -658,6 +658,7 @@
                     <div id = "journal_control_div" class="activable_buttons">
                         <div id = "journal_show_quests" class = "journal_control_button" onclick = "showQuests()"> 任务 </div>
                         <div id = "journal_show_bestiary" class = "journal_control_button active_selection_button" onclick = "showBestiary()"> 怪物手册 </div>
+                        <div id = "journal_show_levelary" class = "journal_control_button" onclick = "showLevelary()"> 楼层手册 </div>
                         <div id = "journal_show_data" class = "journal_control_button" onclick = "showData()"> 统计 </div>
                     </div>
                     <div id = "quests_box_div">
@@ -673,6 +674,11 @@
 
                         </div>
                         
+                    </div>
+                    <div id = "levelary_box_div" style="display: none">
+                        <div id = "levelary_list" style="display: none">
+
+                        </div>
                     </div>
                     <div id = "data_box_div">
                         <div id = "data_list">
@@ -1028,16 +1034,26 @@
                 document.getElementById("data_box_div").style.display = "block";
                 document.getElementById("quests_box_div").style.display = "none";
                 document.getElementById("bestiary_box_div").style.display = "none";
+                document.getElementById("levelary_box_div").style.display = "none";
             }
             function showQuests() {
                 document.getElementById("data_box_div").style.display = "none";
                 document.getElementById("quests_box_div").style.display = "block";
                 document.getElementById("bestiary_box_div").style.display = "none";
+                document.getElementById("levelary_box_div").style.display = "none";
             }
             function showBestiary() {
                 document.getElementById("data_box_div").style.display = "none";
                 document.getElementById("quests_box_div").style.display = "none";
                 document.getElementById("bestiary_box_div").style.display = "block";
+                document.getElementById("levelary_box_div").style.display = "none";
+            }
+            function showLevelary() {
+                document.getElementById("data_box_div").style.display = "none";
+                document.getElementById("quests_box_div").style.display = "none";
+                document.getElementById("bestiary_box_div").style.display = "none";
+                document.getElementById("levelary_box_div").style.display = "block";
+                document.getElementById("levelary_list").style.display = "block";
             }
 
             function showCharacterStats() {
@@ -1256,7 +1272,7 @@
             }
 
             function prepareGame() { //called on body loaded
-                document.getElementById("changelog_button").children[0].innerHTML = "V0.13";
+                document.getElementById("changelog_button").children[0].innerHTML = "V0.15";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1274,7 +1290,25 @@
                         unequip_item(clicked_element.parentNode.parentNode.getAttribute("data-item_slot"));
                     } 
                     else if(clicked_element.classList.contains("item_use_button")) {
-                        if(clicked_element.parentNode.parentNode.classList.contains("character_item_book")) {
+                        if(clicked_element.classList.contains("item_use_max"))
+                        {
+                            let item_key = clicked_element.parentNode.parentNode.getAttribute("data-character_item");
+                            use_item_max(item_key);
+                            // while(character.is_in_inventory(item_key))
+                            // {
+                            //     use_item(item_key);
+                            //     update_displayed_character_inventory(character_sorting);
+                            // }
+                        }
+                        if(clicked_element.classList.contains("item_use_10"))
+                        {
+                            for(let i=1;i<=10;i++)
+                            {
+                                use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"));
+                                update_displayed_character_inventory(character_sorting);
+                            }
+                        }
+                        else if(clicked_element.parentNode.parentNode.classList.contains("character_item_book")) {
                             start_reading(clicked_element.parentNode.parentNode.getAttribute("data-character_item"));
                         } else {
                             use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"));

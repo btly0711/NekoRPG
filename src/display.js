@@ -72,6 +72,10 @@ const stance_list = document.getElementById("stance_list");
 const bestiary_entry_divs = {};
 const bestiary_list = document.getElementById("bestiary_list");
 
+
+const levelary_entry_divs = {};
+const levelary_list = document.getElementById("levelary_list");
+
 const combat_switch = document.getElementById("switch_to_combat")
 const inventory_switch = document.getElementById("switch_to_inventory")
 
@@ -1169,10 +1173,28 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
 
     if(target === "character") {
         if(target_item.item_type === "USABLE") {
+            if(target_item.gem_value != 0) {
+                
+                const item_use_max = document.createElement("div");
+                item_use_max.classList.add("item_use_button");
+                item_use_max.classList.add("item_use_max");
+                item_use_max.innerText = "[MAX]";
+                item_additional.appendChild(item_use_max);
+
+
+
+                const item_use_10 = document.createElement("div");
+                item_use_10.classList.add("item_use_button");
+                item_use_10.classList.add("item_use_10");
+                item_use_10.innerText = "[x10]";
+                item_additional.appendChild(item_use_10);
+                //console.log(item_count);
+            }
             const item_use_button = document.createElement("div");
             item_use_button.classList.add("item_use_button");
             item_use_button.innerText = "[使用]";
             item_additional.appendChild(item_use_button);
+            
         } else if(target_item.item_type === "BOOK") {
             const item_read_button = document.createElement("div");
             item_read_button.classList.add("item_use_button");
@@ -3244,6 +3266,9 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [4, "疾走", "#5dc44b", "这个敌人出手快而敏捷。<br>敌人首先发动一次<span style='color:#87CEFA'>3连击</span>。"],
 [5, "牵制", "#25c1d9", "牵制对手的招式可能成为窍门或是负累。<br>敌人每回合伤害*<span style='color:#87CEFA'>（敌人防御力/角色防御力）</span>。"],
 [6, "3连击", "#ffee77", "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>3次</span>。"],
+[7, "撕裂", "#a52a2a", "这个敌人攻击非常凶猛，造成了撕裂效果。<br>敌人的战斗伤害增加<span style='color:#87CEFA'>一半</span>。"],
+[8, "衰弱", "#f2a4e8", "用毒魔法弱化对手的能力。<br>与该敌人战斗时，角色的攻防效力削弱<span style='color:#87CEFA'>10%</span>。"],
+		
 ];
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
 //命名空间：[i][0]序号，[i][1]名称,[i][2]颜色,[i][3]描述
@@ -3442,7 +3467,7 @@ function create_new_bestiary_entry(enemy_name) {
     bestiary_entry_divs[enemy_name].appendChild(kill_counter);
     bestiary_entry_divs[enemy_name].appendChild(bestiary_tooltip);
 
-    bestiary_entry_divs[enemy_name].setAttribute("data-bestiary", enemy.rank);
+    bestiary_entry_divs[enemy_name].setAttribute("data-bestiary", -1*enemy.rank);
     bestiary_entry_divs[enemy_name].classList.add("bestiary_entry_div");
     bestiary_list.appendChild(bestiary_entry_divs[enemy_name]);
 
@@ -3464,6 +3489,97 @@ function clear_bestiary() {
         delete bestiary_entry_divs[enemy];
     });
 }
+
+
+function create_new_levelary_entry(level_name) {
+    levelary_entry_divs[level_name] = document.createElement("div");
+    
+    const level = locations[level_name];
+
+    //console.log(level);
+
+    const name_div = document.createElement("div");
+    name_div.innerHTML = level_name;
+    name_div.classList.add("bestiary_entry_name");
+    const kill_counter = document.createElement("div");
+    kill_counter.innerHTML = `${Math.floor(level.rank/10)+1} - ${level.rank%10}`;
+    kill_counter.classList.add("bestiary_entry_kill_count");
+    
+
+    const levelary_tooltip = document.createElement("div");
+    levelary_tooltip.classList.add("bestiary_entry_tooltip");
+    const tooltip_xp = document.createElement("div"); //base xp enemy gives
+    tooltip_xp.innerHTML = level.description;
+
+    const tooltip_tags = document.createElement("div");
+    const tooltip_enemies = document.createElement("div");
+    
+    if(level.types.length > 0) {
+        tooltip_tags.innerHTML = `<br><br>楼层属性：`;
+        
+        const LocationTypesMap = {"dark":"黑暗"}
+        const LocationStageMap = {1:"I",2:"II",3:"III"};
+        for(let j=0;j<level.types.length;j++)
+        {
+            tooltip_tags.innerHTML +="<br>";
+            
+            tooltip_tags.innerHTML +=`${LocationTypesMap[level.types[j].type]} ${LocationStageMap[level.types[j].stage]} : ${location_types[level.types[j].type].stages[level.types[j].stage].description}`;
+        }
+    }
+
+    tooltip_enemies.innerHTML = `<br><br>此处敌人：<br>`;
+    for(let j=0;j<level.enemies_list.length;j++)
+    {
+        tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
+     }
+     tooltip_enemies.innerHTML += `<br>此处战利品：<br>`;
+    let lootlist = {0:0};
+     for(let j=0;j<level.enemies_list.length;j++)
+    {
+        let C_enemy = enemy_templates[level.enemies_list[j]];
+        
+        console.log(C_enemy);
+        for(let k=0;k<C_enemy.loot_list.length;k++)
+        {
+            if(lootlist[C_enemy.loot_list[k].item_name] == undefined)
+            {
+                lootlist[C_enemy.loot_list[k].item_name] = 0;
+                
+                tooltip_enemies.innerHTML += `<${C_enemy.loot_list[k].item_name}> `;
+            }
+        }
+        //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
+    }
+
+
+    levelary_tooltip.appendChild(tooltip_xp);
+    levelary_tooltip.appendChild(tooltip_tags);
+    levelary_tooltip.appendChild(tooltip_enemies);
+
+    levelary_entry_divs[level_name].appendChild(name_div);
+    levelary_entry_divs[level_name].appendChild(kill_counter);
+    levelary_entry_divs[level_name].appendChild(levelary_tooltip);
+
+    levelary_entry_divs[level_name].setAttribute("data-levelary", -1*level.rank);
+    levelary_entry_divs[level_name].classList.add("bestiary_entry_div");
+    levelary_list.appendChild(levelary_entry_divs[level_name]);
+
+    // sorts levelary_list div by enemy rank
+    [...levelary_list.children].sort((a,b)=>parseInt(a.getAttribute("data-levelary")) - parseInt(b.getAttribute("data-levelary")))
+                                .forEach(node=>levelary_list.appendChild(node));
+}
+
+
+function update_levelary_entry(level_name) {
+    levelary_entry_divs[level_name].children[1].innerHTML = enemy_killcount[enemy_name];
+}
+
+function clear_levelary() {
+    Object.keys(levelary_entry_divs).forEach((level) => {
+        delete levelary_entry_divs[level];
+    });
+}
+
 
 function clear_skill_list(){
     while(skill_list.firstChild) {
@@ -3588,6 +3704,7 @@ export {
     update_enemy_attack_bar,
     update_displayed_location_choices,
     create_new_bestiary_entry,
+    create_new_levelary_entry,
     update_bestiary_entry,
     clear_bestiary,
     start_reading_display,

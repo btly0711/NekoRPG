@@ -204,6 +204,10 @@ class Item {
     getName() {
         return this.name;
     }
+    
+    getImage() {
+        return this.image;
+    }
 
     getDescription() {
         return this.description;

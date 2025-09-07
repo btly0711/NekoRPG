@@ -672,6 +672,24 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [2,7],
         recipe_skill: "Smelting",
     });
+    smelting_recipes.items["精炼宝石 I"] = new ItemRecipe({
+        name: "精炼宝石 I",
+        recipe_type: "material",
+        materials: [{material_id: "初始黄宝石", count: 5},{material_id: "魔力碎晶", count: 2}], 
+        result: {result_id: "初始蓝宝石", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [4,14],
+        recipe_skill: "Smelting",
+    });
+    smelting_recipes.items["精炼宝石 II"] = new ItemRecipe({
+        name: "精炼宝石 II",
+        recipe_type: "material",
+        materials: [{material_id: "初始蓝宝石", count: 5},{material_id: "魔力碎晶", count: 4}], 
+        result: {result_id: "初始红宝石", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [8,18],
+        recipe_skill: "Smelting",
+    });
 })();
 
 (function(){

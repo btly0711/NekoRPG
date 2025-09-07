@@ -524,7 +524,12 @@ body {
 	text-align: right;
 	float: left;
 }
-
+.item_use_10{
+	padding-top:3px;
+}
+.item_use_max{
+	padding-top:3px;
+}
 .item_value {
 	text-align: right;
 	font-size: 13px;
@@ -1508,7 +1513,7 @@ i {
 	}
 		.journal_control_button{
 			float: left;
-			width: 131.3px;
+			width: 98px;
 			text-align: center;
 			outline: 1px solid white;
 			cursor: pointer;

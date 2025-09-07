@@ -778,6 +778,60 @@ class Enemy {
             {item_name: "坚硬石块", chance: 0.3},
         ],
     });
+    enemy_templates["出芽橙茸茸"] = new Enemy({
+        name: "出芽橙茸茸", 
+        description: "非常普通的出芽茸茸。实力几乎是境界的底端。", 
+        xp_value: 13, 
+        rank: 1208,
+        image: "../NekoRPG/image/enemy/E1208.png",
+        realm: "<span class=realm_basic><b>万物级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 300, attack: 175, agility: 90, attack_speed: 1.1, defense: 30} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "凝胶", chance: 0.4},
+            {item_name: "魔力碎晶", chance:0.15},
+        ],
+    });
+    enemy_templates["森林野蝠"] = new Enemy({
+        name: "森林野蝠", 
+        description: "24层魔塔的红蝙蝠转生来了，携带伤害加深！", 
+        xp_value: 13, 
+        rank: 1209,
+        image: "../NekoRPG/image/enemy/E1209.png",
+        realm: "<span class=realm_basic><b>万物级巅峰 +</b></span>",
+        size: "small",
+        spec: [7],
+        tags: [],
+        stats: {health: 440, attack: 120, agility: 90, attack_speed: 1.1, defense: 50} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "异兽皮", chance: 0.06},
+            {item_name: "魔力碎晶", chance:0.05},
+        ],
+    });
+    enemy_templates["血洛喽啰"] = new Enemy({
+        name: "血洛喽啰", 
+        description: "和它的弟弟相比，因出场太晚惨遭忘却的存在", 
+        xp_value: 21, 
+        rank: 1210,
+        image: "../NekoRPG/image/enemy/E1210.png",
+        realm: "<span class=realm_basic><b>潮汐级初等</b></span>",
+        size: "small",
+        spec: [8],
+        tags: [],
+        stats: {health: 700, attack: 151, agility: 120, attack_speed: 1.2, defense: 70} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.02},
+            {item_name: "合金残片", chance: 0.15},
+            {item_name: "金属残片", chance: 0.35},
+        ],
+    });
 })();
 
 
@@ -785,8 +839,8 @@ class Enemy {
 (function(){
     enemy_templates["纳家待从[BOSS]"] = new Enemy({
         name: "纳家待从[BOSS]", 
-        description: "如果看到这段描述，说明游戏存在问题，请反馈。", 
-        add_to_bestiary: false,
+        description: "用出全部力量的纳家待从。在家里出手就是无所顾忌！", 
+        add_to_bestiary: true,
         xp_value: 13, 
         rank: 1101,
         image: "../NekoRPG/image/boss/B1101.png",
@@ -804,8 +858,8 @@ class Enemy {
     });
     enemy_templates["百家小卒[BOSS]"] = new Enemy({
         name: "百家小卒[BOSS]", 
-        description: "如果看到这段描述，说明游戏存在问题，请反馈。", 
-        add_to_bestiary: false,
+        description: "为了抢夺秘法而用出全力的百家小卒。", 
+        add_to_bestiary: true,
         xp_value: 13, 
         rank: 1201,
         image: "../NekoRPG/image/boss/B1201.png",

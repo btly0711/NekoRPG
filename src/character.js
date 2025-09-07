@@ -528,7 +528,7 @@ character.wears_armor = function () {
  * @param {*}
  * @returns [actual damage taken; Boolean if character should faint] 
  */
-character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = true, give_skill_xp = true}) {
+character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = true, give_skill_xp = true},def_mul = 1) {
         /*
         TODO:
                 - damage types: "physical", "elemental", "ma.gic"
@@ -544,7 +544,7 @@ character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = tr
                 damage_taken = Math.ceil(10*Math.max(damage_value,0))/10;//魔攻，无视防御
         }
         else{
-                damage_taken = Math.ceil(10*Math.max(damage_value - character.stats.full.defense,0))/10;
+                damage_taken = Math.ceil(10*Math.max(damage_value - character.stats.full.defense * def_mul,0))/10;
                 
         }
 

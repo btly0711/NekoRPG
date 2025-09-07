@@ -32,6 +32,7 @@ import { end_activity_animation,
          update_enemy_attack_bar, update_character_attack_bar,
          update_displayed_location_choices,
          create_new_bestiary_entry,
+         create_new_levelary_entry,
          update_bestiary_entry,
          start_reading_display,
          update_displayed_xp_bonuses, 
@@ -769,7 +770,7 @@ function change_stance(stance_id, is_temporary = false) {
     }
     
     current_stance = stance_id;
-    console.log(current_stance);
+    //console.log(current_stance);
 
     update_character_stats();
     reset_combat_loops();
@@ -876,6 +877,8 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
     let Spec_S = "";
     if(current_enemies[enemy_id].spec.includes(0)) Spec_S += "[魔攻]"
     if(current_enemies[enemy_id].spec.includes(5)) Spec_S += "[牵制]"
+    if(current_enemies[enemy_id].spec.includes(7)) Spec_S += "[撕裂]"
+    if(current_enemies[enemy_id].spec.includes(8)) Spec_S += "[衰弱]"
     if(is_new) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
         enemy_timer_adjustment[enemy_id] = 0;
@@ -996,7 +999,7 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
             for(let i = 0; i < targets.length; i++) {
                 do_character_combat_action({target: targets[i], attack_power});
             }
-            console.log(current_stance);
+            //console.log(current_stance);
             if(stances[current_stance].related_skill) {
                 leveled = add_xp_to_skill({skill: skills[stances[current_stance].related_skill], xp_to_add: targets.reduce((sum,enemy)=>sum+enemy.xp_value,0)/targets.length});
                 
@@ -1112,6 +1115,11 @@ function do_enemy_combat_action(enemy_id,spec_hint) {
     }
     // HAS NO SHIELD
 
+    if(attacker.spec.includes(7))//撕裂
+    {
+        spec_mul *= 1.5;
+    }
+
 
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
@@ -1140,8 +1148,11 @@ function do_enemy_combat_action(enemy_id,spec_hint) {
         damage_dealt *= spec_mul;//乘以怪物技能伤害倍率
         spec_hint += "[" + format_number(spec_mul * 100) + "%]";
     }
-    
-    let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt});
+    let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为怪物攻击乘数
+    if(attacker.spec.includes(8)) sdef_mul *= 0.9;//衰弱
+
+
+    let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt},sdef_mul);
 
     if(critted)
     {
@@ -1178,7 +1189,9 @@ function do_enemy_combat_action(enemy_id,spec_hint) {
 
 function do_character_combat_action({target, attack_power}) {
 
-    const hero_base_damage = attack_power;
+    let satk_mul = 1;//角色攻击乘数
+    if(target.spec.includes(8)) satk_mul *= 0.9;//衰弱
+    const hero_base_damage = attack_power * satk_mul;
 
     let damage_dealt;
     
@@ -1224,7 +1237,10 @@ function do_character_combat_action({target, attack_power}) {
             damage_dealt=Math.min(damage_dealt,1.0);//坚固
             Spec_E += "[坚固]"
         }
-        
+        if(target.spec.includes(8))
+        {
+            Spec_E += "[衰弱]"
+        }
         
         target.stats.health -= damage_dealt;
         if(critted) {
@@ -1693,7 +1709,17 @@ function use_item(item_key) {
     const {id} = JSON.parse(item_key);
     const item_effects = item_templates[id].effects;
     const G_value = item_templates[id].gem_value;
-    console.log(G_value);
+    //console.log(G_value);
+
+    if(!character.is_in_inventory(item_key))
+    {
+        
+        update_displayed_effects();
+        character.stats.add_active_effect_bonus();
+        update_character_stats();
+        console.log("item can't found");
+        return;
+    }
 
     let used = false;
     for(let i = 0; i < item_effects.length; i++) {
@@ -1705,8 +1731,10 @@ function use_item(item_key) {
         }
     }
 
+
     if(G_value > 0)//using gems
     {
+        console.log(item_templates[id]);
         used=true;
         let pa = Math.random()*4;
         let message = `使用 ${item_templates[id].name} , `
@@ -1787,6 +1815,18 @@ function use_item(item_key) {
     }
     remove_from_character_inventory([{item_key}]);
 }
+
+function use_item_max(item_key)
+{
+    while(character.is_in_inventory(item_key))
+    {
+        use_item(item_key);
+        update_displayed_character_inventory(character_sorting);
+    }
+    return;
+}
+
+
 
 function get_date() {
     const date = new Date();
@@ -2626,6 +2666,19 @@ function load(save_data) {
         });
     }
 
+    Object.keys(save_data.locations).forEach(level_name => {
+        //console.log(level_name);
+        //console.log(save_data.locations[level_name]);
+
+        
+        if(save_data.locations[level_name].enemy_groups_killed >= 2)
+        {
+            //console.log(1);   
+            document.getElementById("levelary_box_div").style.display = "block";
+            create_new_levelary_entry(level_name);
+        } 
+    });
+
     update_character_stats();
     update_displayed_character_inventory();
 
@@ -2752,6 +2805,7 @@ function load_backup() {
                 log_message("Can't load backup as there is none yet.");
             }
         }
+        
     } catch(error) {
         console.error("Something went wrong on loading from localStorage[BACKUP]!");
         console.error(error);
@@ -3067,6 +3121,7 @@ window.format_money = format_money;
 window.get_character_money = character.get_character_money;
 
 window.use_item = use_item;
+window.use_item_max = use_item_max;
 
 window.do_enemy_combat_action = do_enemy_combat_action;
 

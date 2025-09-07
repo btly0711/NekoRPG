@@ -276,7 +276,7 @@ class Skill {
     }
     get_parent_xp_multiplier() {
         if(this.parent_skill) {
-            return (1.1**Math.max(0,skills[this.parent_skill].current_level));
+            return (1.1**Math.max(0,skills[this.parent_skill].current_level-this.current_level));
         } else {
             return 1;
         }
