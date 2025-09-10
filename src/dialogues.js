@@ -557,6 +557,24 @@ class Textline {
             }), 
         }
     });
+    
+    dialogues["路人甲"] = new Dialogue({
+        name: "路人甲",
+        textlines: {
+            "shop": new Textline({ 
+                is_unlocked: false,
+                name: "你好？这附近有商店吗？",
+                text: "小丫头，刚从家族里出来的吧？<br>" +
+                "燕岗城中心寸土寸金，商店一般都开在16环外。<br>" +
+                "距离这里最近的一处是连锁店“燕岗杂货铺”<br>"+"往东再走一里半即可到达",
+
+                unlocks: {
+                    traders: ["燕岗杂货铺"],
+                },
+                locks_lines: ["shop"],
+            }), 
+        }
+    });
 })();
 
 export {dialogues};

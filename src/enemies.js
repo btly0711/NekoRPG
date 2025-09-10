@@ -687,7 +687,7 @@ class Enemy {
             {item_name: "初始蓝宝石", chance:0.03},
             {item_name: "初始红宝石", chance:0.005},
             {item_name: "金属残片", chance:0.3},
-            {item_name: "合金残片", chance:0.1},
+            {item_name: "合金残片", chance:0.05},
         ],
     });
     enemy_templates["出芽红茸茸"] = new Enemy({
@@ -722,7 +722,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始蓝宝石", chance:0.03},
             {item_name: "万物·凶兽肉块", chance:0.04},
-            {item_name: "异兽皮", chance:0.04},
+            {item_name: "异兽皮", chance:0.02},
         ],
     });
     enemy_templates["高速傀儡"] = new Enemy({
@@ -740,7 +740,7 @@ class Enemy {
             {item_name: "初始蓝宝石", chance:0.03},
             {item_name: "初始红宝石", chance:0.01},
             {item_name: "金属残片", chance:0.2},
-            {item_name: "合金残片", chance:0.15},
+            {item_name: "合金残片", chance:0.08},
         ],
     });//需要3连击
     enemy_templates["黄毛茸茸"] = new Enemy({
@@ -810,7 +810,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始蓝宝石", chance:0.03},
             {item_name: "初始红宝石", chance:0.01},
-            {item_name: "异兽皮", chance: 0.06},
+            {item_name: "异兽皮", chance: 0.04},
             {item_name: "魔力碎晶", chance:0.05},
         ],
     });
@@ -827,9 +827,133 @@ class Enemy {
         stats: {health: 700, attack: 151, agility: 120, attack_speed: 1.2, defense: 70} , 
         loot_list: [
             {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.02},
-            {item_name: "合金残片", chance: 0.15},
-            {item_name: "金属残片", chance: 0.35},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "合金残片", chance: 0.10},
+            {item_name: "金属残片", chance: 0.40},
+        ],
+    });
+    enemy_templates["百家小卒"] = new Enemy({
+        name: "百家小卒", 
+        description: "没那么拼命的百家小卒，受轻伤就会离去。", 
+        xp_value: 13, 
+        rank: 1211,
+        image: "../NekoRPG/image/enemy/E1211.png",
+        realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
+        size: "small",
+        spec: [2],
+        tags: [],
+        stats: {health: 660, attack: 144, agility: 90, attack_speed: 1.1, defense: 60} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "大铜板", chance: 0.50},
+            {item_name: "金属残片", chance: 0.30},
+        ],
+    });
+    enemy_templates["下位佣兵"] = new Enemy({
+        name: "下位佣兵", 
+        description: "底层的血洛佣兵，看守着平庸的宝物", 
+        xp_value: 21, 
+        rank: 1212,
+        image: "../NekoRPG/image/enemy/E1212.png",
+        realm: "<span class=realm_basic><b>潮汐级初等</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 560, attack: 230, agility: 120, attack_speed: 1.2, defense: 48} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "合金残片", chance: 0.12},
+            {item_name: "铁锭", chance: 0.15},
+        ],
+    });
+    enemy_templates["地龙荒兽"] = new Enemy({
+        name: "地龙荒兽", 
+        description: "因为种族优势，采取了先发制人战略的异兽", 
+        xp_value: 21, 
+        rank: 1213,
+        image: "../NekoRPG/image/enemy/E1213.png",
+        realm: "<span class=realm_basic><b>潮汐级初等</b></span>",
+        size: "small",
+        spec: [4],
+        tags: [],
+        stats: {health: 190, attack: 340, agility: 120, attack_speed: 1.2, defense: 60} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "异兽皮", chance: 0.06},
+            {item_name: "万物·凶兽肉块", chance: 0.06},
+        ],
+    });
+    enemy_templates["毒虫"] = new Enemy({
+        name: "毒虫", 
+        description: "构造诡异的软泥，与其战斗时候属性会反转！", 
+        xp_value: 21, 
+        rank: 1214,
+        image: "../NekoRPG/image/enemy/E1214.png",
+        realm: "<span class=realm_basic><b>潮汐级初等</b></span>",
+        size: "small",
+        spec: [9],
+        tags: [],
+        stats: {health: 560, attack: 230, agility: 120, attack_speed: 1.2, defense: 48} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "魔力碎晶", chance: 0.5},
+        ],
+    });
+    enemy_templates["精壮青年"] = new Enemy({
+        name: "精壮青年", 
+        description: "燕岗城的精壮青年，实力在同龄人中算得上靠前", 
+        xp_value: 21, 
+        rank: 1215,
+        image: "../NekoRPG/image/enemy/E1215.png",
+        realm: "<span class=realm_basic><b>潮汐级初等</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 900, attack: 181, agility: 140, attack_speed: 1.2, defense: 40} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "大铜板", chance: 0.5},
+            {item_name: "铁剑·改", count: [1], quality: [81, 100], chance: 0.2},
+        ],
+    });enemy_templates["法师学徒"] = new Enemy({
+        name: "法师学徒", 
+        description: "比青年法师强大的法师，学会了全新的魔法", 
+        xp_value: 21, 
+        rank: 1216,
+        image: "../NekoRPG/image/enemy/E1216.png",
+        realm: "<span class=realm_basic><b>潮汐级初等 +</b></span>",
+        size: "small",
+        spec: [10],
+        tags: [],
+        stats: {health: 900, attack: 240, agility: 180, attack_speed: 1.2, defense: 80} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "初始绿宝石", chance:0.005},
+            {item_name: "魔力碎晶", chance: 0.5},
+        ],
+    });
+    enemy_templates["生灵骸骨"] = new Enemy({
+        name: "生灵骸骨", 
+        description: "聚魂的基础上又凝聚了部分血肉的不死族，攻防兼备。", 
+        xp_value: 21, 
+        rank: 1217,
+        image: "../NekoRPG/image/enemy/E1217.png",
+        realm: "<span class=realm_basic><b>潮汐级初等 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1120, attack: 236, agility: 200, attack_speed: 1.2, defense: 105} , 
+        loot_list: [
+            {item_name: "初始蓝宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "铜骨", chance: 0.3},
+            {item_name: "万物·凶兽肉块", chance: 0.05},
         ],
     });
 })();
@@ -863,11 +987,11 @@ class Enemy {
         xp_value: 13, 
         rank: 1201,
         image: "../NekoRPG/image/boss/B1201.png",
-        realm: "<span class=realm_basic><b>万物级巅峰</b></span>",
+        realm: "<span class=realm_basic><b>万物级巅峰 +</b></span>",
         size: "small",
         spec: [2],
         tags: [],
-        stats: {health: 6600, attack: 144, agility: 100, attack_speed: 1.1, defense: 60}, //与原作相同
+        stats: {health: 6600, attack: 144, agility: 90, attack_speed: 1.1, defense: 60}, //与原作相同
         loot_list: [
             //奖励在秘法石碑后面
         ],

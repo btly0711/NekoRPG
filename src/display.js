@@ -3268,6 +3268,9 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [6, "3连击", "#ffee77", "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>3次</span>。"],
 [7, "撕裂", "#a52a2a", "这个敌人攻击非常凶猛，造成了撕裂效果。<br>敌人的战斗伤害增加<span style='color:#87CEFA'>一半</span>。"],
 [8, "衰弱", "#f2a4e8", "用毒魔法弱化对手的能力。<br>与该敌人战斗时，角色的攻防效力削弱<span style='color:#87CEFA'>10%</span>。"],
+[9, "反转", "#FFC0CB", "微妙的战斗领悟，使用诡异的战法，为攻守双方带来全新的策略维度。<br>战斗中，角色<span style='color:yellow'>攻击与防御效力交换</span>。"],
+[10, "回风", "#8ED1A6","借助风元素的势进行的二段不对等打击。<br>敌人每回合以<span style='color:#87CEFA'>0.8、1.2倍</span>攻击<span style='color:yellow'>各攻击一次</span>。"],
+		
 		
 ];
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
@@ -3476,6 +3479,33 @@ function create_new_bestiary_entry(enemy_name) {
                                 .forEach(node=>bestiary_list.appendChild(node));
 }
 
+
+
+function add_bestiary_lines(zone)
+{
+    //console.log(zone);
+    //zone 11-> 1-1，rank作为1200处理
+    //sorts bestiary_list div by enemy rank
+    bestiary_entry_divs[zone] = document.createElement("div");
+    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫外围",15:"地宫核心"}
+    const name_div = document.createElement("div");
+    name_div.innerHTML = `<b>【${ZoneNameMap[zone]}】</b>`;
+    name_div.classList.add("bestiary_entry_name");
+
+    const kill_counter = document.createElement("div");
+    kill_counter.innerHTML = `<b>区域 ${Math.floor(zone/10)} - ${zone%10}</b>`;
+    kill_counter.classList.add("bestiary_entry_kill_count");
+
+    bestiary_entry_divs[zone].appendChild(name_div);
+    bestiary_entry_divs[zone].appendChild(kill_counter);
+
+    bestiary_entry_divs[zone].setAttribute("data-bestiary", -100*(zone+1));
+    bestiary_entry_divs[zone].classList.add("bestiary_entry_div");
+    bestiary_list.appendChild(bestiary_entry_divs[zone]);
+    [...bestiary_list.children].sort((a,b)=>parseInt(a.getAttribute("data-bestiary")) - parseInt(b.getAttribute("data-bestiary")))
+                                .forEach(node=>bestiary_list.appendChild(node));
+}
+
 /**
  * updates the bestiary entry of an enemy, that is killcount and on-hover droprates
  * @param {String} enemy_name 
@@ -3538,7 +3568,7 @@ function create_new_levelary_entry(level_name) {
     {
         let C_enemy = enemy_templates[level.enemies_list[j]];
         
-        console.log(C_enemy);
+        //console.log(C_enemy);
         for(let k=0;k<C_enemy.loot_list.length;k++)
         {
             if(lootlist[C_enemy.loot_list[k].item_name] == undefined)
@@ -3704,6 +3734,7 @@ export {
     update_enemy_attack_bar,
     update_displayed_location_choices,
     create_new_bestiary_entry,
+    add_bestiary_lines,
     create_new_levelary_entry,
     update_bestiary_entry,
     clear_bestiary,

@@ -155,6 +155,13 @@ class TradeItem {
         is_unlocked: true,
         location_name: "纳家大厅",
     });
+    traders["燕岗杂货铺"] = new Trader({
+        name: "燕岗杂货铺",
+        inventory_template: "Basic II",
+        is_unlocked: false,
+        location_name: "燕岗城",
+        profit_margin: 3,
+    });
 })();
 
 //create inventory templates
@@ -266,5 +273,28 @@ class TradeItem {
             new TradeItem({item_name: "粘合裤子", count: [1], quality: [40, 80], chance: 0.5}),
             new TradeItem({item_name: "粘合鞋子", count: [1], quality: [40, 80], chance: 0.5}),
     ];
+
+    inventory_templates["Basic II"] = 
+    [
+            new TradeItem({item_name: "金属残片", count: [10,25]}),
+            new TradeItem({item_name: "魔力碎晶", count: [10,25]}),
+            
+            
+            new TradeItem({item_name: "铁锭", count: [5,15]}),
+            new TradeItem({item_name: "合金残片", count: [0,10], chance: 0.8}),
+            new TradeItem({item_name: "异兽皮", count: [0,19], chance: 0.8}),
+
+            new TradeItem({item_name: "万物·凶兽肉排", count: [2,5], chance: 0.8}),
+            
+            new TradeItem({item_name: "铁剑·改", count: [1], quality: [81, 120], chance: 0.8}),
+            new TradeItem({item_name: "精钢剑", count: [1], quality: [41, 80], chance: 0.3}),
+
+            new TradeItem({item_name: "异兽帽子", count: [1], quality: [40, 80], chance: 0.5}),
+            new TradeItem({item_name: "异兽背心", count: [1], quality: [40, 80], chance: 0.5}),
+            new TradeItem({item_name: "异兽裤子", count: [1], quality: [40, 80], chance: 0.5}),
+            new TradeItem({item_name: "异兽鞋子", count: [1], quality: [40, 80], chance: 0.5}),
+    ];
+
+
 })();
 export {traders};

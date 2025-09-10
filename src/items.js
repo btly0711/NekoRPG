@@ -2185,6 +2185,23 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    
+    item_templates["精钢剑刃"] = new WeaponComponent({
+        name: "剑刃", description: "由精钢锭打造出的剑刃，远远比铁剑刃锋利",
+        component_type: "long blade",
+        value: 100,
+        component_tier: 1,
+        name_prefix: "精钢",
+        attack_value: 48,
+        stats: {
+            crit_rate: {
+                flat: 0.12,
+            },
+            attack_speed: {
+                multiplier: 1.06,
+            }
+        }
+    });
     item_templates["骨剑柄"] = new WeaponComponent({
         name: "骨剑柄", description: "由白骨制成的剑柄。易碎，所以使用时会影响自身",
         component_type: "short handle",
@@ -2225,6 +2242,12 @@ item_templates["Twist liek a snek"] = new Book({
             handle: "铜骨剑柄",
         }
     });
+    item_templates["精钢剑"] = new Weapon({
+        components: {
+            head: "精钢剑刃",
+            handle: "铜骨剑柄",
+        }
+    });
 })();
 //盔甲部件
 (function(){
@@ -2258,6 +2281,38 @@ item_templates["Twist liek a snek"] = new Book({
         value: 8,
         component_type: "shoes interior",
         base_defense: 2,
+        component_tier: 1,
+    });
+    item_templates["异兽帽子"] = new Armor({
+        name: "异兽帽子", 
+        description: "由异兽皮制成的头部内甲", 
+        value: 80,
+        component_type: "helmet interior",
+        base_defense: 10,
+        component_tier: 1,
+    });
+    item_templates["异兽背心"] = new Armor({
+        name: "异兽背心", 
+        description: "由异兽皮制成的胸部内甲", 
+        value: 120,
+        component_type: "chestplate interior",
+        base_defense: 16,
+        component_tier: 1,
+    });
+    item_templates["异兽裤子"] = new Armor({
+        name: "异兽裤子", 
+        description: "由异兽皮制成的腿部内甲", 
+        value: 100,
+        component_type: "leg armor interior",
+        base_defense: 14,
+        component_tier: 1,
+    });
+    item_templates["异兽袜子"] = new Armor({
+        name: "异兽袜子", 
+        description: "由异兽皮制成的脚部内甲", 
+        value: 60,
+        component_type: "shoes interior",
+        base_defense: 8,
         component_tier: 1,
     });
     item_templates["铁制头盔"] = new ArmorComponent({
@@ -2323,7 +2378,7 @@ item_templates["Twist liek a snek"] = new Book({
         id: "精钢锭",
         name: "精钢锭", 
         description: "掺杂了其他金属的铁合金。硬而脆，只能用作剑刃。", 
-        value: 30,
+        value: 50,
         material_type: "metal",
         image: "../NekoRPG/image/item/steel_ingot.png",
     });
@@ -2466,13 +2521,13 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["合金残片"] = new OtherItem({
         name: "合金残片", 
         description: "傀儡身上的特殊金属，掺杂在铁锭中可以增强硬度", 
-        value: 5,
+        value: 8,
         image: "../NekoRPG/image/item/alloy_fragment.png",
     });
     item_templates["异兽皮"] = new OtherItem({
         name: "异兽皮", 
         description: "万物级异兽的皮毛，兼具硬度和韧性", 
-        value: 10,
+        value: 20,
         image: "../NekoRPG/image/item/O5_leather.png",
     });
 })();

@@ -32,6 +32,7 @@ import { end_activity_animation,
          update_enemy_attack_bar, update_character_attack_bar,
          update_displayed_location_choices,
          create_new_bestiary_entry,
+         add_bestiary_lines,
          create_new_levelary_entry,
          update_bestiary_entry,
          start_reading_display,
@@ -707,7 +708,7 @@ function start_textline(textline_key){
         const trader = traders[textline.unlocks.traders[i]];
         if(!trader.is_unlocked) {
             trader.is_unlocked = true;
-            log_message(`You can now trade with ${trader.name}`, "activity_unlocked");
+            log_message(`解锁新商人: ${trader.name}`, "activity_unlocked");
         }
     }
 
@@ -875,10 +876,13 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
     count = count || 0;
     update_enemy_attack_bar(enemy_id, count);
     let Spec_S = "";
-    if(current_enemies[enemy_id].spec.includes(0)) Spec_S += "[魔攻]"
-    if(current_enemies[enemy_id].spec.includes(5)) Spec_S += "[牵制]"
-    if(current_enemies[enemy_id].spec.includes(7)) Spec_S += "[撕裂]"
-    if(current_enemies[enemy_id].spec.includes(8)) Spec_S += "[衰弱]"
+    if(current_enemies[enemy_id].spec.includes(0)) Spec_S += "[魔攻]";
+    if(current_enemies[enemy_id].spec.includes(5)) Spec_S += "[牵制]";
+    if(current_enemies[enemy_id].spec.includes(7)) Spec_S += "[撕裂]";
+    if(current_enemies[enemy_id].spec.includes(8)) Spec_S += "[衰弱]";
+    if(current_enemies[enemy_id].spec.includes(9)) Spec_S += "[反转]";
+    if(current_enemies[enemy_id].spec.includes(10)) Spec_S += "[回风]";
+    
     if(is_new) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
         enemy_timer_adjustment[enemy_id] = 0;
@@ -901,15 +905,20 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
         count++;
         if(count >= 40) {
             count = 0;
-            do_enemy_combat_action(enemy_id,Spec_S);
+            if(current_enemies[enemy_id].spec.includes(10))
+            {
+                do_enemy_combat_action(enemy_id,Spec_S,0.8);
+                do_enemy_combat_action(enemy_id,Spec_S,1.2);//回风
+            }
+            else do_enemy_combat_action(enemy_id,Spec_S,1);
             if(current_enemies != null)
             {
-                if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S);//2连击
+                if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S,1);//2连击
 
                 if(current_enemies[enemy_id].spec.includes(6))
                 {
-                    do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S);
-                    if(current_enemies != null) do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S);
+                    do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
+                    if(current_enemies != null) do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
                 }//3连击
 
             }
@@ -1075,7 +1084,7 @@ function format_number(some_number)
  * 
  * @param {String} attacker id of enemy
 */ 
-function do_enemy_combat_action(enemy_id,spec_hint) {
+function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1) {
     
     /*
     tiny workaround, as character being defeated while facing multiple enemies,
@@ -1092,7 +1101,7 @@ function do_enemy_combat_action(enemy_id,spec_hint) {
 
     //it will be changed with environment or spec stat.
 
-    const enemy_base_damage = attacker.stats.attack;
+    const enemy_base_damage = attacker.stats.attack * E_atk_mul;
 
     let damage_dealt;
 
@@ -1143,13 +1152,20 @@ function do_enemy_combat_action(enemy_id,spec_hint) {
         amulet: null
     */
 
+    if(E_atk_mul != 1)
+    {
+        spec_hint += "[ATK " + format_number(E_atk_mul * 100) + "%]";
+        //怪物增攻
+    }
     if(spec_mul != 1)
     {
-        damage_dealt *= spec_mul;//乘以怪物技能伤害倍率
-        spec_hint += "[" + format_number(spec_mul * 100) + "%]";
+        damage_dealt *= spec_mul;
+        spec_hint += "[DMG " + format_number(spec_mul * 100) + "%]";
+        //最终增伤
     }
-    let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为怪物攻击乘数
+    let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为最终增伤
     if(attacker.spec.includes(8)) sdef_mul *= 0.9;//衰弱
+    if(attacker.spec.includes(9)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense;//反转
 
 
     let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt},sdef_mul);
@@ -1191,6 +1207,8 @@ function do_character_combat_action({target, attack_power}) {
 
     let satk_mul = 1;//角色攻击乘数
     if(target.spec.includes(8)) satk_mul *= 0.9;//衰弱
+    if(target.spec.includes(9)) satk_mul *= character.stats.full.defense / character.stats.full.attack_power;//反转
+
     const hero_base_damage = attack_power * satk_mul;
 
     let damage_dealt;
@@ -1237,10 +1255,8 @@ function do_character_combat_action({target, attack_power}) {
             damage_dealt=Math.min(damage_dealt,1.0);//坚固
             Spec_E += "[坚固]"
         }
-        if(target.spec.includes(8))
-        {
-            Spec_E += "[衰弱]"
-        }
+        if(target.spec.includes(8)) Spec_E += "[衰弱]";
+        if(target.spec.includes(9)) Spec_E += "[反转]";
         
         target.stats.health -= damage_dealt;
         if(critted) {
@@ -1290,6 +1306,8 @@ function kill_enemy(target) {
         } else {
             enemy_killcount[target.name] = 1;
             create_new_bestiary_entry(target.name);
+            if(target.name == "毛茸茸") add_bestiary_lines(11);
+            else if(target.name == "纳家待从") add_bestiary_lines(12);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -2660,11 +2678,15 @@ function load(save_data) {
     //then same with s.t.a.m.i.n.a below
 
     if(save_data["enemy_killcount"]) {
+        
+        add_bestiary_lines(11);
         Object.keys(save_data["enemy_killcount"]).forEach(enemy_name => {
             enemy_killcount[enemy_name] = save_data["enemy_killcount"][enemy_name];
             create_new_bestiary_entry(enemy_name);
+            if(enemy_name == "纳家待从") add_bestiary_lines(12);
         });
     }
+
 
     Object.keys(save_data.locations).forEach(level_name => {
         //console.log(level_name);

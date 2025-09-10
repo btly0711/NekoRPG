@@ -928,7 +928,8 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["练兵场深处"], custom_text: "回到纳家"}], 
         description: "熙熙攘攘的燕岗城外城。尽管是崇尚力量的世界，市民间仍然有讲不完的话题。",
         
-        dialogues: ["秘法石碑 - 1"],
+        dialogues: ["秘法石碑 - 1","路人甲"],
+        traders: ["燕岗杂货铺"],
         is_unlocked: false,
         unlock_text: "无论见到多少次，城市的繁华仍然令人侧目。但现在，尽快出城才是最重要的！",
         name: "燕岗城", 
@@ -936,7 +937,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["练兵场深处"].connected_locations.push({location: locations["燕岗城"]});
 
     locations["燕岗城 - 1"] = new Combat_zone({
-        description: "燕岗城14环的普通街道。", //MT9~10
+        description: "燕岗城14环的普通街道。", //MT11-12
         enemy_count: 20, 
         enemies_list: ["试炼木偶","纳家待从","出芽红茸茸","轻型傀儡","万物级异兽"],
         enemy_group_size: [1,1],
@@ -957,7 +958,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
 
     locations["燕岗城 - 2"] = new Combat_zone({
-        description: "燕岗城15环的普通街道。", //MT9~10
+        description: "燕岗城15环的普通街道。", //MT13-14
         enemy_count: 20, 
         enemies_list: ["出芽红茸茸","轻型傀儡","万物级异兽","高速傀儡","黄毛茸茸","纳家塑像"],
         enemy_group_size: [1,1],
@@ -1000,7 +1001,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
 
     locations["燕岗城 - 3"] = new Combat_zone({
-        description: "燕岗城16环的普通街道。", //MT9~10
+        description: "燕岗城16环的普通街道。", //MT15-16
         enemy_count: 20, 
         enemies_list: ["高速傀儡","黄毛茸茸","纳家塑像","出芽橙茸茸","森林野蝠","血洛喽啰"],
         enemy_group_size: [1,1],
@@ -1016,6 +1017,50 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 80,
+            textlines: [{dialogue: "路人甲", lines: ["shop"]}],
+            locations: [{location: "燕岗城 - 4"}],
+        },
+    });
+
+    locations["燕岗城 - 4"] = new Combat_zone({
+        description: "燕岗城17环的普通街道。", //MT17-18
+        enemy_count: 20, 
+        enemies_list: ["森林野蝠","血洛喽啰","百家小卒","下位佣兵","地龙荒兽","毒虫"],
+        enemy_group_size: [1,2],
+        types: [],
+        enemy_stat_variation: 0.1,
+        
+        rank: 14,
+        is_unlocked: false, 
+        name: "燕岗城 - 4", 
+        parent_location: locations["燕岗城"],
+        first_reward: {
+            xp: 130,
+        },
+        repeatable_reward: {
+            xp: 100,
+            locations: [{location: "燕岗城 - 5"}],
+        },
+        unlock_text: "从这里已经可以隐隐约约看见城门了..燕岗城共有18环，再往外就是城郊。"
+    });
+    
+    locations["燕岗城 - 5"] = new Combat_zone({
+        description: "燕岗城最外环的环城街道。", //MT17-18
+        enemy_count: 20, 
+        enemies_list: ["下位佣兵","地龙荒兽","毒虫","精壮青年","法师学徒","生灵骸骨"],
+        enemy_group_size: [2,3],
+        types: [],
+        enemy_stat_variation: 0.1,
+        
+        rank: 15,
+        is_unlocked: false, 
+        name: "燕岗城 - 5", 
+        parent_location: locations["燕岗城"],
+        first_reward: {
+            xp: 150,
+        },
+        repeatable_reward: {
+            xp: 120,
         },
     });
 
@@ -1023,6 +1068,8 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 2"]});
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 秘法石碑"]});
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 3"]});
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 4"]});
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 5"]});
 
 
     locations["Nearby cave"] = new Location({ 
