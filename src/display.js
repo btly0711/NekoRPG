@@ -670,7 +670,7 @@ function log_loot(loot_list, is_combat=true) {
     if(loot_list.length == 0) {
         return;
     }
-
+    
     let message = `${is_combat?"掉落 ":"获取 "} "` + loot_list[0]["item"]["name"] + `" x` + loot_list[0]["count"];
     if(loot_list.length > 1) {
         for(let i = 1; i < loot_list.length; i++) {

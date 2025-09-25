@@ -262,6 +262,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         name: "剑刃",
         materials: [
             {material_id: "铁锭", count: 2, result_id: "铁剑刃"}, 
+            {material_id: "精钢锭", count: 2, result_id: "精钢剑刃"}, 
             //未完待续
         ],
         item_type: "Component",
@@ -394,7 +395,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         name: "脚部内甲",
         materials: [
             {material_id: "粘合织料", count: 2, result_id: "粘合袜子"},
-            {material_id: "异兽皮", count: 3, result_id: "异兽袜子"},
+            {material_id: "异兽皮", count: 2, result_id: "异兽袜子"},
         ],
         item_type: "Component",
         recipe_skill: "Crafting",
@@ -688,10 +689,10 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     smelting_recipes.items["精炼宝石 II"] = new ItemRecipe({
         name: "精炼宝石 II",
         recipe_type: "material",
-        materials: [{material_id: "初始蓝宝石", count: 5},{material_id: "魔力碎晶", count: 4}], 
+        materials: [{material_id: "红色刀币", count: 3},{material_id: "魔力碎晶", count: 4}], 
         result: {result_id: "初始红宝石", count: 1},
         success_chance: [0.3,1],
-        recipe_level: [8,18],
+        recipe_level: [6,16],
         recipe_skill: "Smelting",
     });
 })();

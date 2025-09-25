@@ -2172,7 +2172,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["铁剑刃"] = new WeaponComponent({
         name: "铁剑刃", description: "由铁锭打造出的剑刃，是铁剑的核心部件",
         component_type: "long blade",
-        value: 20,
+        value: 125,
         component_tier: 1,
         name_prefix: "铁",
         attack_value: 16,
@@ -2187,9 +2187,9 @@ item_templates["Twist liek a snek"] = new Book({
     });
     
     item_templates["精钢剑刃"] = new WeaponComponent({
-        name: "剑刃", description: "由精钢锭打造出的剑刃，远远比铁剑刃锋利",
+        name: "精钢剑刃", description: "由精钢锭打造出的剑刃，远远比铁剑刃锋利",
         component_type: "long blade",
-        value: 100,
+        value: 2100,
         component_tier: 1,
         name_prefix: "精钢",
         attack_value: 48,
@@ -2205,7 +2205,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["骨剑柄"] = new WeaponComponent({
         name: "骨剑柄", description: "由白骨制成的剑柄。易碎，所以使用时会影响自身",
         component_type: "short handle",
-        value: 10,
+        value: 15,
         component_tier: 1,
         stats: {
             attack_speed: {
@@ -2219,7 +2219,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["铜骨剑柄"] = new WeaponComponent({
         name: "铜骨剑柄", description: "由铜骨制成的剑柄。结实好用！",
         component_type: "short handle",
-        value: 20,
+        value: 50,
         component_tier: 1,
         stats: {
             attack_speed: {
@@ -2254,7 +2254,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["粘合帽子"] = new Armor({
         name: "粘合帽子", 
         description: "由凝胶，飞蛾翅膀粘合成的头部内甲", 
-        value: 10,
+        value: 45,
         component_type: "helmet interior",
         base_defense: 2,
         component_tier: 1,
@@ -2262,7 +2262,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["粘合背心"] = new Armor({
         name: "粘合背心", 
         description: "由凝胶，飞蛾翅膀粘合成的胸部内甲", 
-        value: 16,
+        value: 60,
         component_type: "chestplate interior",
         base_defense: 4,
         component_tier: 1,
@@ -2270,7 +2270,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["粘合裤子"] = new Armor({
         name: "粘合裤子", 
         description: "由凝胶，飞蛾翅膀粘合成的腿部内甲", 
-        value: 14,
+        value: 60,
         component_type: "leg armor interior",
         base_defense: 3,
         component_tier: 1,
@@ -2278,7 +2278,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["粘合袜子"] = new Armor({
         name: "粘合袜子", 
         description: "由凝胶，飞蛾翅膀粘合成的脚部内甲", 
-        value: 8,
+        value: 30,
         component_type: "shoes interior",
         base_defense: 2,
         component_tier: 1,
@@ -2286,7 +2286,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽帽子"] = new Armor({
         name: "异兽帽子", 
         description: "由异兽皮制成的头部内甲", 
-        value: 80,
+        value: 5400,
         component_type: "helmet interior",
         base_defense: 10,
         component_tier: 1,
@@ -2294,7 +2294,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽背心"] = new Armor({
         name: "异兽背心", 
         description: "由异兽皮制成的胸部内甲", 
-        value: 120,
+        value: 7200,
         component_type: "chestplate interior",
         base_defense: 16,
         component_tier: 1,
@@ -2302,7 +2302,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽裤子"] = new Armor({
         name: "异兽裤子", 
         description: "由异兽皮制成的腿部内甲", 
-        value: 100,
+        value: 7200,
         component_type: "leg armor interior",
         base_defense: 14,
         component_tier: 1,
@@ -2310,7 +2310,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽袜子"] = new Armor({
         name: "异兽袜子", 
         description: "由异兽皮制成的脚部内甲", 
-        value: 60,
+        value: 3600,
         component_type: "shoes interior",
         base_defense: 8,
         component_tier: 1,
@@ -2319,21 +2319,16 @@ item_templates["Twist liek a snek"] = new Book({
         name: "铁制头盔",
         description: "制式的铁制头盔外壳，因阻挡视野会略微影响攻击速度",
         component_type: "helmet exterior",
-        value: 50,
+        value: 187,
         component_tier: 1,
         full_armor_name: "铁制头盔",
         defense_value: 3,
-        stats: {
-            attack_speed: {
-                multiplier: 0.95,
-            },
-        }
     });
     item_templates["铁制胸甲"] = new ArmorComponent({
         name: "铁制胸甲",
         description: "制式的铁制胸甲外壳",
         component_type: "chestplate exterior",
-        value: 80,
+        value: 250,
         component_tier: 1,
         full_armor_name: "铁制胸甲",
         defense_value: 5,
@@ -2342,7 +2337,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "铁制腿甲",
         description: "制式的铁制腿甲外壳",
         component_type: "leg armor exterior",
-        value: 70,
+        value: 250,
         component_tier: 1,
         full_armor_name: "铁制腿甲",
         defense_value: 4,
@@ -2351,15 +2346,10 @@ item_templates["Twist liek a snek"] = new Book({
         name: "铁制战靴",
         description: "制式的铁制战靴外壳，会略微影响行动",
         component_type: "shoes exterior",
-        value: 40,
+        value: 125,
         component_tier: 1,
         full_armor_name: "铁制战靴",
         defense_value: 2,
-        stats: {
-            agility: {
-                multiplier: 0.9,
-            },
-        }
     });
 })();
 //盔甲
@@ -2370,17 +2360,17 @@ item_templates["Twist liek a snek"] = new Book({
         id: "铁锭",
         name: "铁锭", 
         description: "金属残片熔炼而成的铁锭。可以用于制作作剑刃，盔甲", 
-        value: 10,
+        value: 30,
         material_type: "metal",
-        image: "../NekoRPG/image/item/iron_ingot.png",
+        image: "../image/item/iron_ingot.png",
     });
     item_templates["精钢锭"] = new Material({
         id: "精钢锭",
         name: "精钢锭", 
         description: "掺杂了其他金属的铁合金。硬而脆，只能用作剑刃。", 
-        value: 50,
+        value: 1050,
         material_type: "metal",
-        image: "../NekoRPG/image/item/steel_ingot.png",
+        image: "../image/item/steel_ingot.png",
     });
 })();
 
@@ -2389,16 +2379,16 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["微尘·凶兽肉排"] = new UsableItem({
         name: "微尘·凶兽肉排", 
         description: "煮熟的年幼凶兽肉排。食用后每秒回复40点血量，持续60秒",//血药模版 
-        value: 5,
+        value: 20,
         effects: [{effect: "饱食", duration: 60}],
-        image: "../NekoRPG/image/item/O1_cooked_meat.png",
+        image: "../image/item/O1_cooked_meat.png",
     });
     item_templates["万物·凶兽肉排"] = new UsableItem({
         name: "万物·凶兽肉排", 
         description: "虽然颜色很奇怪但是真的能吃！食用后每秒回复80点血量，持续60秒",
-        value: 12,
+        value: 120,
         effects: [{effect: "饱食 II", duration: 60}],
-        image: "../NekoRPG/image/item/O5_cooked_meat.png",
+        image: "../image/item/O5_cooked_meat.png",
     });
 })();
 //炼金
@@ -2406,8 +2396,8 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["粘合织料"] = new OtherItem({
         name: "粘合织料", 
         description: "涂抹了凝胶的飞蛾翅膀结合体，适合与皮肤亲密接触",
-        value: 3,
-        image: "../NekoRPG/image/item/mixed_comp01.png",
+        value: 12,
+        image: "../image/item/mixed_comp01.png",
     });
 })();
 
@@ -2417,7 +2407,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始黄宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷1点或生命50点", 
         value: 1,
-        image: "../NekoRPG/image/item/gem11_1.png",
+        image: "../image/item/gem11_1.png",
         effects: [],
         gem_value: 1,
     });
@@ -2425,7 +2415,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始蓝宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷2点或生命100点",
         value: 2,
-        image: "../NekoRPG/image/item/gem12_2.png",
+        image: "../image/item/gem12_2.png",
         effects: [],
         gem_value: 2,
     });
@@ -2433,7 +2423,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始红宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷5点或生命250点",
         value: 5,
-        image: "../NekoRPG/image/item/gem13_5.png",
+        image: "../image/item/gem13_5.png",
         effects: [],
         gem_value: 5,
     });
@@ -2441,7 +2431,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始绿宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷10点或生命500点", 
         value: 10,
-        image: "../NekoRPG/image/item/gem14_10.png",
+        image: "../image/item/gem14_10.png",
         effects: [],
         gem_value: 10,
     });
@@ -2453,82 +2443,105 @@ item_templates["Twist liek a snek"] = new Book({
 (function(){
     item_templates["凝胶"] = new OtherItem({
         name: "凝胶", 
-        description: "从死去的史莱姆中发现的凝胶。因为某种用途所以有些微价值", 
+        description: "从死去的史莱姆中发现的凝胶。可以用作缓冲垫，但并不耐用。", 
         value: 1,
-        image: "../NekoRPG/image/item/rubber.png",
+        image: "../image/item/rubber.png",
     });
     item_templates["金属残片"] = new OtherItem({
         name: "金属残片", 
         description: "损坏的普通金属片。已经无法用于制造剑盾，但或许还能重新熔炼？", 
-        value: 1,
-        image: "../NekoRPG/image/item/iron_fragment.png",
+        value: 4,
+        image: "../image/item/iron_fragment.png",
     });
     item_templates["魔力碎晶"] = new OtherItem({
         name: "魔力碎晶", 
         description: "一小块残留着魔力的水晶。内部的能量仍然足以烤肉或炼铁。",//烤肉 
-        value: 2,
-        image: "../NekoRPG/image/item/magic_fragment.png",
+        value: 6,
+        image: "../image/item/magic_fragment.png",
     });
     item_templates["飞蛾翅膀"] = new OtherItem({
         name: "飞蛾翅膀", 
         description: "飞蛾留下的完整翅膀。可以用作衣服的材料", 
-        value: 2,
-        image: "../NekoRPG/image/item/fly_wing.png",
+        value: 8,
+        image: "../image/item/fly_wing.png",
     });
     item_templates["坚硬石块"] = new OtherItem({
         name: "坚硬石块", 
         description: "燕岗城郊山上的大块石头，废弃傀儡和石头人也是它们制造的。", 
-        value: 2,
-        image: "../NekoRPG/image/item/hard_rock.png",
+        value: 5,
+        image: "../image/item/hard_rock.png",
     });
     item_templates["微尘·凶兽肉块"] = new OtherItem({
         name: "微尘·凶兽肉块", 
         description: "微尘级凶兽的肉。散发着腥味，或许需要烤一烤？", //加魔力碎晶
-        value: 2,
-        image: "../NekoRPG/image/item/O1_meat.png",
+        value: 8,
+        image: "../image/item/O1_meat.png",
     });
     item_templates["骨头"] = new OtherItem({
         name: "骨头", 
         description: "一根粗大的骨头。光是拿着就感觉阴森森的..", 
-        value: 1,
-        image: "../NekoRPG/image/item/bone.png",
+        value: 6,
+        image: "../image/item/bone.png",
     });
     item_templates["铜骨"] = new OtherItem({
         name: "铜骨", 
         description: "万物级骷髅死后留下的青铜骨头。它的硬度和韧性都很不错！", 
-        value: 5,
-        image: "../NekoRPG/image/item/copper_bone.png",
+        value: 20,
+        image: "../image/item/copper_bone.png",
     });
     item_templates["铜板"] = new OtherItem({
         name: "铜板", 
-        description: "燕岗领铸造的小型通用钱币", 
+        description: "燕岗领铸造的通用钱币", 
         value: 1,
-        image: "../NekoRPG/image/item/1C.png",
+        image: "../image/item/1C.png",
     });
     item_templates["大铜板"] = new OtherItem({
         name: "大铜板", 
         description: "燕岗领铸造的通用钱币，面值5C", 
         value: 5,
-        image: "../NekoRPG/image/item/5C.png",
+        image: "../image/item/5C.png",
     });
+    //以下为打钱的东西
+    item_templates["五彩凝胶"] = new OtherItem({
+        name: "五彩凝胶", 
+        description: "完整，色彩鲜艳的凝胶。能卖个好价钱！", 
+        value: 75,
+        image: "../image/item/rubber_colorful.png",
+    });
+    item_templates["银钱"] = new OtherItem({
+        name: "银钱", 
+        description: "燕岗领铸造的通用钱币，面值100C", 
+        value: 100,
+        image: "../image/item/100C.png",
+    });
+
+
     //1-2
     item_templates["万物·凶兽肉块"] = new OtherItem({
         name: "万物·凶兽肉块", 
         description: "万物级凶兽的肉。蕴含的气血充沛，价格略高。", //加魔力碎晶
-        value: 8,
-        image: "../NekoRPG/image/item/O5_meat.png",
+        value: 600,
+        image: "../image/item/O5_meat.png",
     });
     item_templates["合金残片"] = new OtherItem({
         name: "合金残片", 
         description: "傀儡身上的特殊金属，掺杂在铁锭中可以增强硬度", 
-        value: 8,
-        image: "../NekoRPG/image/item/alloy_fragment.png",
+        value: 500,
+        image: "../image/item/alloy_fragment.png",
     });
     item_templates["异兽皮"] = new OtherItem({
         name: "异兽皮", 
         description: "万物级异兽的皮毛，兼具硬度和韧性", 
-        value: 20,
-        image: "../NekoRPG/image/item/O5_leather.png",
+        value: 1600,
+        image: "../image/item/O5_leather.png",
+    });
+    //以下为打钱的东西
+    
+    item_templates["红色刀币"] = new OtherItem({
+        name: "红色刀币", 
+        description: "血洛大陆的通用钱币，面值1X=1000C", 
+        value: 1e3,
+        image: "../image/item/1X.png",
     });
 })();
 

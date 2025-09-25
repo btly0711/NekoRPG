@@ -974,8 +974,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 70,
-            locations: [{location: "燕岗城 - 秘法石碑"}],
-            locations: [{location: "燕岗城 - 3"}],
+            locations: [{location: "燕岗城 - 3"},{location: "燕岗城 - 秘法石碑"}],
         },
     });
 
@@ -1061,7 +1060,28 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 120,
+            locations: [{location: "燕岗城 - X"}],
         },
+    });
+
+    
+    locations["燕岗城 - X"] = new Challenge_zone({
+        description: "燕岗城的城门，只要击败拦路的石精即可出门！",
+        enemy_count: 1, 
+        enemies_list: ["腐蚀质石精[BOSS]"],
+        enemy_group_size: [1,1],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "燕岗城 - X", 
+        leave_text: "暂时返回",
+        parent_location: locations["燕岗城"],
+        first_reward: {
+            xp: 300,
+        },
+        repeatable_reward: {
+            locations: [{location: "燕岗近郊"}],
+        },
+        unlock_text: "终于到城门脚下了...<br>这成精的花岗岩是什么啊！只能先击败它了。"
     });
 
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 1"]});
@@ -1070,7 +1090,20 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 3"]});
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 4"]});
     locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - 5"]});
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗城 - X"], custom_text: "与城门下的石精战斗"});
 
+
+    
+    locations["燕岗近郊"] = new Location({ 
+        connected_locations: [{location: locations["燕岗城"], custom_text: "回城"}], 
+        description: "燕岗城外的区域。鸟语花香，绿树成荫，却潜藏着大量潮汐级魔物。[V0.20 版本终点]",
+        
+        is_unlocked: false,
+        unlock_text: "终于出城了！现在，找个人问问一些情报吧。",//先触发百兰剧情再解锁1-3-1！
+        name: "燕岗近郊", 
+    });//1-3
+    
+    locations["燕岗城"].connected_locations.push({location: locations["燕岗近郊"]});
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 

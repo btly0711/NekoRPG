@@ -906,25 +906,28 @@
             <div id="options_choices">
                 <div class="options_choice">
                     <input type="checkbox" id="options_textsize" name="options_textsize" value="options_textsize" onclick = "option_uniform_textsize()" />
-                    <label for="options_textsize">Increase size of text in dialogues</label>
+                    <label for="options_textsize">增加对话字体尺寸</label>
                 </div>
                 <div class="options_choice">
                     <input type="checkbox" id="options_bed_return" name="options_bed_return" value="options_bed_return" onclick = "option_bed_return()"/>
-                    <label for="options_bed_return">Return to last bed upon defeat</label>
+                    <label for="options_bed_return">在战败时回到床上</label>
                 </div>
                 <div class="options_choice">
                     <input type="checkbox" id="options_save_messagelog_settings" name="options_save_messagelog_settings" value="options_save_messagelog_settings" onclick = "option_remember_filters()"/>
-                    <label for="options_save_messagelog_settings">Remember message log filters</label>
+                    <label for="options_save_messagelog_settings">保持日志过滤器</label>
                 </div>
                 <div class="options_choice">
                     <input type="checkbox" id="options_dont_autoswitch_to_combat" name="options_dont_autoswitch_to_combat" value="options_dont_autoswitch_to_combat" onclick = "option_combat_autoswitch()"/>
-                    <label for="options_dont_autoswitch_to_combat">Don't autoswitch out from inventory when starting combat</label>
+                    <label for="options_dont_autoswitch_to_combat">开始战斗时不自动切出物品栏</label>
                 </div>
             </div>
             <div id="close_options" onclick="closeOptions()"> X </div>
-            <div id = "backup_load_button" class="options_button" onclick = "loadTheBackup()">Load the backup autosave</div>
-            <div id = "import_other_save_button" class="options_button" onclick = "importOtherSave()"> Import save from </div>
-            <div id = "hard_reset_button" class="options_button" onclick = "hardReset()"> Hard reset the game <i class="material-icons"> warning_amber </i> </div>
+            <div id = "backup_load_button" class="options_button" onclick = "loadTheBackup()">加载备份自动存档</div>
+            <!--这一段是我也不知道干啥的！-->
+            <!--
+            <div id = "import_other_save_button" class="options_button" onclick = "importOtherSave()"> Import save from </div> 
+            -->
+            <div id = "hard_reset_button" class="options_button" onclick = "hardReset()"> 硬重置游戏 <i class="material-icons"> warning_amber </i> </div>
         </div>
 
         <script>
@@ -1198,7 +1201,7 @@
             };
 
             function hardReset() {
-                let confirmation = prompt(`This will erase all your progress and you will have to start from the very beginning. If you are sure this is what you want, type "reset" below`);
+                let confirmation = prompt(`这会删除你全部的进度，而你不得不从最开始玩起。如果这就是你想要的，在下面打出"reset"。`);
 
                 if(confirmation === "reset" || confirmation === `"reset"`) {
                     localStorage.removeItem("save data");
@@ -1223,7 +1226,7 @@
             }
 
             function loadTheBackup() {
-                let confirmation = prompt(`This will load your backup save, losing all the progress you made it since then. It is not recommended unless something broke, in which case please export the broken save and report the issue. If you are sure this is what you want, type "load" below`);
+                let confirmation = prompt(`这会加载你的备份存档，失去从那时以来的一切进度。一般不建议这么做，除非什么东西出bug了。这时请导出bug存档并联系作者。如果这就是你想要的，在下面打出"load"。`);
 
                 if(confirmation === "load" || confirmation === `"load"`) {
                     loadBackup();
@@ -1272,7 +1275,7 @@
             }
 
             function prepareGame() { //called on body loaded
-                document.getElementById("changelog_button").children[0].innerHTML = "V0.17";
+                document.getElementById("changelog_button").children[0].innerHTML = "V0.20";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
