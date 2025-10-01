@@ -686,7 +686,7 @@ function start_textline(textline_key){
     }
 
     for(let i = 0; i < textline.unlocks.items.length; i++) {
-        log_message(`${character.name} obtained "${item_templates[textline.unlocks.items[i]].getName()}"`);
+        log_message(`${character.name} 获取了 "${item_templates[textline.unlocks.items[i]].getName()}"`);
         add_to_character_inventory([{item: item_templates[textline.unlocks.items[i]]}]);
     }
 
@@ -855,9 +855,9 @@ function reset_combat_loops() {
 
     let fastest_cooldown = [character_attack_cooldown, ...enemy_attack_cooldowns].sort((a,b) => a - b)[0];
 
-    //scale all attacks to be not faster than 1 per second
-    if(fastest_cooldown < 1) {
-        const cooldown_multiplier = 1/fastest_cooldown;
+    //scale all attacks to be not faster than 10 per second
+    if(fastest_cooldown < 0.1) {
+        const cooldown_multiplier = 0.1/fastest_cooldown;
         character_attack_cooldown *= cooldown_multiplier;
         for(let i = 0; i < current_enemies.length; i++) {
             enemy_attack_cooldowns[i] *= cooldown_multiplier;

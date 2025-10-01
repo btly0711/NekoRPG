@@ -104,6 +104,14 @@ class Gathering extends Training {
         base_skills_names: ["Meditation"],
         is_unlocked: true,
     });
+    //下面是被NekoRPG利用的activities
+    activities["Running"] = new Training({
+        name: "Running",
+        action_text: "练习奔跑",
+        description: "基础的运动之一",
+        base_skills_names: ["Running"],
+        is_unlocked: true,
+    });
 })();
 
 //resource gatherings

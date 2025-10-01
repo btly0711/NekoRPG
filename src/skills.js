@@ -1135,6 +1135,66 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
                                         }
                                     }
                                 });
+    skills["Running"] = new Skill({skill_id: "Running",
+    description: "训练敏捷和速度的最佳方案！",
+    names: {0: "跑步",20: "神行术",40: "瞬间移动"},
+    max_level: 50,
+    xp_scaling: 1.8,
+    category: "Activity",
+    max_level_coefficient: 1.2833,
+    base_xp_cost: 40,
+    rewards: {
+      milestones: {
+          1: {
+              stats: {
+                agility: {
+                    flat:10
+                },
+              },
+          },
+          3: {
+              stats: {
+                agility: {
+                    multiplier: 1.05
+                },
+              },
+          },
+          5: {
+              stats: {
+                agility: {
+                    flat:20
+                },
+              },
+          },
+          7: {
+              stats: {
+                agility: {
+                    multiplier: 1.05
+                },
+              },
+          },
+          10: {
+            stats: {
+                agility: {
+                    flat:30
+                },
+            }
+          }
+      }
+    },
+    get_effect_description: ()=> {
+      let value = skills["Running"].get_coefficient("multiplicative");
+      if(value >= 100) {
+          value = Math.round(value);
+      } else if(value >= 10 && value < 100) {
+          value = Math.round(value*10)/10; 
+      } else {
+          value = Math.round(value*100)/100;
+      }
+      return `将攻击速度乘以 ${value}`;
+    },
+    
+    });
     skills["Meditation"] = new Skill({skill_id: "Meditation",
                                 names: {0: "Meditation"}, 
                                 description: "Focus your mind",

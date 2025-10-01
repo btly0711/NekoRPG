@@ -1099,11 +1099,33 @@ function get_location_type_penalty(type, stage, stat) {
         description: "燕岗城外的区域。鸟语花香，绿树成荫，却潜藏着大量潮汐级魔物。[V0.20 版本终点]",
         
         is_unlocked: false,
+        dialogues: ["百兰"],
         unlock_text: "终于出城了！现在，找个人问问一些情报吧。",//先触发百兰剧情再解锁1-3-1！
         name: "燕岗近郊", 
     });//1-3
     
     locations["燕岗城"].connected_locations.push({location: locations["燕岗近郊"]});
+
+
+    locations["燕岗近郊 - 0"] = new Challenge_zone({
+        description: "城门外不远处。看起来是时候给看不起人的大叔一点教训了！",
+        enemy_count: 1, 
+        enemies_list: ["百兰[BOSS]"],
+        enemy_group_size: [1,1],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "燕岗近郊 - 0", 
+        leave_text: "暂时返回",
+        parent_location: locations["燕岗近郊"],
+        first_reward: {
+            xp: 800,
+        },
+        repeatable_reward: {
+            textlines: [{dialogue: "百兰", lines: ["defeat"]}],
+        },
+        unlock_text: "我说大叔，这么大年纪了欺负一个女孩子，不太好吧。看来需要一点教训呢。"
+    });
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 0"], custom_text: "与百兰战斗"});
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 
@@ -1611,6 +1633,16 @@ function get_location_type_penalty(type, stage, stat) {
             require_tool: false,
         }),
     };
+    locations["燕岗近郊"].activities = {
+        
+        "Running": new LocationActivity({
+            activity_name: "Running",
+            infinite: true,
+            starting_text: "在郊区尽情地跑步",
+            skill_xp_per_tick: 1,
+            is_unlocked: true,
+        }),
+    }
 })();
 
 //add actions

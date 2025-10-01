@@ -359,14 +359,13 @@ character.stats.add_all_equipment_bonus = function() {
 }
 
 character.stats.add_weapon_type_bonuses = function() {
+        
+        character.stats.multiplier.skills.attack_power = 1;
+        character.stats.multiplier.skills.attack_speed = skills["Running"].get_coefficient("multiplicative");
         if(character.equipment.weapon == null) {
                 //没有武器 = 加成很少 Unarmed可以去死了！
-                character.stats.multiplier.skills.attack_power = 1;
-                character.stats.multiplier.skills.attack_speed = 1;
                 character.stats.multiplier.skills.crit_rate = (skills["Unarmed"].get_coefficient());
         } else {
-                character.stats.multiplier.skills.attack_speed = 1;
-                character.stats.multiplier.skills.attack_power = 1;
                 character.stats.multiplier.skills.crit_rate = skills[weapon_type_to_skill[character.equipment.weapon.weapon_type]].get_coefficient();
                 //character.stats.multiplier.skills.attack_points = skills[weapon_type_to_skill[character.equipment.weapon.weapon_type]].get_coefficient()**0.3333;
         }
@@ -379,6 +378,7 @@ character.stats.add_weapon_type_bonuses = function() {
  */
 character.stats.add_all_skill_level_bonus = function() {
         character.stats.flat.skills.defense = 2**skills["Iron skin"].get_level_bonus();
+        character.stats.multiplier.skills.attack_speed = skills["Running"].get_coefficient("multiplicative");
         character.stats.multiplier.skills.strength = skills["Weightlifting"].get_coefficient("multiplicative");
         character.stats.multiplier.skills.block_strength = 1 + 5*skills["Shield blocking"].get_level_bonus();
         character.stats.multiplier.skills.agility = skills["Combat"].get_coefficient("multiplicative")/*skills["Equilibrium"].get_coefficient("multiplicative")*/;

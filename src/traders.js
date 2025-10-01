@@ -266,12 +266,12 @@ class TradeItem {
             
             new TradeItem({item_name: "微尘·凶兽肉排", count: [2,5], chance: 0.5}),
             
-            new TradeItem({item_name: "铁剑", count: [1], quality: [40, 80], chance: 0.8}),
+            new TradeItem({item_name: "铁剑", count: [1], quality: [61, 100], chance: 0.8}),
             new TradeItem({item_name: "铁剑·改", count: [1], quality: [81, 120], chance: 0.2}),
-            new TradeItem({item_name: "粘合帽子", count: [1], quality: [40, 80], chance: 0.5}),
-            new TradeItem({item_name: "粘合背心", count: [1], quality: [40, 80], chance: 0.5}),
-            new TradeItem({item_name: "粘合裤子", count: [1], quality: [40, 80], chance: 0.5}),
-            new TradeItem({item_name: "粘合鞋子", count: [1], quality: [40, 80], chance: 0.5}),
+            new TradeItem({item_name: "粘合帽子", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "粘合背心", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "粘合裤子", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "粘合鞋子", count: [1], quality: [61, 100], chance: 0.5}),
     ];
 
     inventory_templates["Basic II"] = 
@@ -287,12 +287,12 @@ class TradeItem {
             new TradeItem({item_name: "万物·凶兽肉排", count: [2,5], chance: 0.8}),
             
             new TradeItem({item_name: "铁剑·改", count: [1], quality: [81, 120], chance: 0.8}),
-            new TradeItem({item_name: "精钢剑", count: [1], quality: [41, 80], chance: 0.3}),
+            new TradeItem({item_name: "精钢剑", count: [1], quality: [71, 110], chance: 0.3}),
 
-            new TradeItem({item_name: "异兽帽子", count: [1], quality: [40, 80], chance: 0.5}),
-            new TradeItem({item_name: "异兽背心", count: [1], quality: [40, 80], chance: 0.5}),
-            new TradeItem({item_name: "异兽裤子", count: [1], quality: [40, 80], chance: 0.5}),
-            new TradeItem({item_name: "异兽鞋子", count: [1], quality: [40, 80], chance: 0.5}),
+            new TradeItem({item_name: "异兽帽子", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "异兽背心", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "异兽裤子", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "异兽鞋子", count: [1], quality: [61, 100], chance: 0.5}),
     ];
 
 

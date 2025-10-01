@@ -575,6 +575,62 @@ class Textline {
             }), 
         }
     });
+    
+    dialogues["百兰"] = new Dialogue({
+        name: "百兰",
+        textlines: {
+            "before": new Textline({ 
+                is_unlocked: true,
+                name: "请问你是？",
+                text: "哪来的小丫头，你这点修为一个人出门历练，<br>真的没问题吗？外面的荒兽可是会吃人的。",
+
+                unlocks: {
+                    textlines: [{dialogue: "百兰", lines: ["before2"]}],
+                },
+                locks_lines: ["before"],
+            }),
+            "before2": new Textline({ 
+                is_unlocked: false,
+                name: "这位大叔，看不起人可是不对的哦。",
+                text: "嘿，谁是大叔啊，信不信我——",
+
+                unlocks: {
+                    locations: ["燕岗近郊 - 0"],
+                },
+                locks_lines: ["before2"],
+            }), 
+            "defeat": new Textline({ 
+                is_unlocked: false,
+                name: "等等，大叔你手上拿的是什么？",
+                text: "这，这是地图，<br>绘制的是最近新发现的一处藏宝地。",
+
+                unlocks: {
+                    textlines: [{dialogue: "百兰", lines: ["defeat2"]}],
+                },
+                locks_lines: ["defeat"],
+            }), 
+            "defeat2": new Textline({ 
+                is_unlocked: false,
+                name: "有更详细的信息吗？",
+                text: "有的有的，听说里面有不少好东西，<br>危险度还挺高的，鲜少有人能够活着出来。",
+
+                unlocks: {
+                    textlines: [{dialogue: "百兰", lines: ["defeat3"]}],
+                },
+                locks_lines: ["defeat2"],
+            }), 
+            "defeat3": new Textline({ 
+                is_unlocked: false,
+                name: "交出这个，你可以走啦。",
+                text: "……也罢。<br>（唉，这次居然栽在一个小丫头手上，<br>运气是真的差，回头要如何和家族交待……）",
+
+                unlocks: {
+                    items: ["地图-藏宝地"],
+                },
+                locks_lines: ["defeat3"],
+            }),
+        }
+    });
 })();
 
 export {dialogues};

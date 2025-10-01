@@ -2475,13 +2475,13 @@ function update_displayed_stats() { //updates displayed stats
             stats_divs[key].innerHTML = `${(character.stats.full[key]*100).toFixed(1)}%`;
         } 
         else if(key === "attack_speed") {
-            stats_divs[key].innerHTML = `${(character.get_attack_speed()).toFixed(1)}`;
+            stats_divs[key].innerHTML = `${format_number(character.get_attack_speed())}`;
         }
         else if(key === "attack_power") {
-            stats_divs[key].innerHTML = `${(character.get_attack_power()).toFixed(1)}`;
+            stats_divs[key].innerHTML = `${format_number(character.get_attack_power())}`;
         }
         else {
-            stats_divs[key].innerHTML = `${(character.stats.full[key]).toFixed(1)}`;
+            stats_divs[key].innerHTML = `${format_number(character.stats.full[key])}`;
         }
         update_stat_description(key);
     });
@@ -2596,15 +2596,16 @@ function format_money(num) {
     let value;
     const sign = num >= 0 ? '' : '-';
     num = Math.abs(num);
-    
+    console.log(num);
+
     if(num > 0) {
         value = (`${num%1000}<span class="coin coin_copper">C</span>`);
 
-        if(num > 999) {
+        if(num > 999.5) {
             value = (`${Math.floor(num/1000)%1000}<span class="coin coin_moneyK">X</span> `) + value;
-            if(num > 999999) {
+            if(num > 999999.5) {
                 value = (Math.floor(num/1000)%100 != 0?`${Math.floor(num/1000000)%1000}<span class="coin coin_moneyM">Z</span> ` :``) + value;
-                if(num > 999999999) {
+                if(num > 999999999.5) {
                     value = `${Math.floor(num/1e9)%1000}<span class="coin coin_moneyB">D</span> ` + value;
                     if(num >= 1e12) {
                         value = `${Math.floor(num/1e12)}<span class="coin coin_moneyT">B</span> ` + value;
@@ -2640,8 +2641,8 @@ function update_displayed_character_xp(did_level = false) {
 }
 
 function update_displayed_xp_bonuses() {
-    data_entry_divs.character.innerHTML = `<span class="data_entry_name">基础等级经验获取:</span><span class="data_entry_value">x${Math.round(100*get_hero_xp_gain())/100}</span>`;
-    data_entry_divs.skills.innerHTML = `<span class="data_entry_name">基础技能经验获取:</span><span class="data_entry_value">x${Math.round(100*get_skills_overall_xp_gain())/100}</span>`;
+    data_entry_divs.character.innerHTML = `<span class="data_entry_name">基础等级经验获取:</span><span class="data_entry_value">x${format_number(get_hero_xp_gain())}</span>`;
+    data_entry_divs.skills.innerHTML = `<span class="data_entry_name">基础技能经验获取:</span><span class="data_entry_value">x${format_number(get_skills_overall_xp_gain())}</span>`;
 }
 
 
@@ -2723,7 +2724,7 @@ function start_activity_display(current_activity) {
     if(activities[current_activity.activity_name].base_skills_names) {
         const needed_xp = skills[activities[current_activity.activity_name].base_skills_names].current_level == skills[activities[current_activity.activity_name].base_skills_names].max_level? "Max": `${Math.round(10000*skills[activities[current_activity.activity_name].base_skills_names].current_xp/skills[activities[current_activity.activity_name].base_skills_names].xp_to_next_lvl)/100}%`
         if(activities[current_activity.activity_name].type !== "GATHERING") {
-            action_xp_div.innerText = `Getting ${current_activity.skill_xp_per_tick} base xp per in-game minute to ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
+            action_xp_div.innerText = `每秒得到 ${skills[activities[current_activity.activity_name].base_skills_names].name()} ${current_activity.skill_xp_per_tick} 基础经验值   (${needed_xp})`;
         } else {
             action_xp_div.innerText = `Getting ${current_activity.skill_xp_per_tick} base xp per gathering cycle to ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
         }
@@ -2739,7 +2740,9 @@ function start_activity_display(current_activity) {
 
 
     const action_end_text = document.createElement("div");
-    action_end_text.innerText = `Finish ${current_activity.activity_name}`;
+    const ActivityNameMap = {"Running":"跑步"};
+    const dev_ACNMap = false;
+    action_end_text.innerText = `结束 ${dev_ACNMap?current_activity.activity_name:ActivityNameMap[current_activity.activity_name]}`;
     action_end_text.id = "action_end_text";
 
 
@@ -2801,7 +2804,7 @@ function update_displayed_ongoing_activity(current_activity, is_job){
     const needed_xp = skills[activities[current_activity.activity_name].base_skills_names].current_level == skills[activities[current_activity.activity_name].base_skills_names].max_level? "Max": `${Math.round(10000*skills[activities[current_activity.activity_name].base_skills_names].current_xp/skills[activities[current_activity.activity_name].base_skills_names].xp_to_next_lvl)/100}%`
     
     if(activities[current_activity.activity_name].type !== "GATHERING") {
-        action_xp_div.innerText = `Getting ${current_activity.skill_xp_per_tick} base xp per in-game minute to ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
+        action_xp_div.innerText = `每秒获取 ${format_number(current_activity.skill_xp_per_tick*get_skills_overall_xp_gain())}  ${skills[activities[current_activity.activity_name].base_skills_names].name()} 经验值 (${needed_xp})`;
     } else {
         action_xp_div.innerText = `Getting ${current_activity.skill_xp_per_tick} base xp per gathering cycle to ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
     }
