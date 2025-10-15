@@ -523,9 +523,21 @@ body {
 	font-size: 13px;
 	text-align: right;
 	float: left;
+}.bigger_button {
+	display: var(--item_use_button_display);
+	width: 39px;
+	cursor: pointer;
+	font-size: 18px;
+	text-align: right;
+	float: left;
 }
 .item_use_10{
 	padding-top:3px;
+}
+.recipe_10{
+	padding-top:6px;
+	display:inline-block;
+	order:2;
 }
 .item_use_max{
 	padding-top:3px;
@@ -774,6 +786,10 @@ body {
 	border-bottom: 2px dashed white;
 	font-size: 16px;
 	padding: 2px;
+	text-align: left;
+	display:block;
+	flex-direction:row;
+	flex-wrap:wrap;
 }
 
 .recipe_unavailable {
@@ -860,16 +876,20 @@ body {
 }
 
 .recipe_name {
-	display: block;
+	width: 366px;
+	text-align: left;
+	display: inline-block;
 	padding-bottom: 5px;
 }
 
-.folded_crafting_selection, .folded_material_list {
-	display: none;
-}
 
 .selected_recipe .folded_material_list {
 	display: block;
+}
+
+.folded_crafting_selection, .folded_material_list{
+	display: none;
+	order:-1;
 }
 
 .selected_recipe .crafting_dropdown_icon, .selected_component_category .subcrafting_dropdown_icon {
@@ -1533,6 +1553,13 @@ i {
 			}
 
 			#bestiary_box_div{
+				width: 100%;
+				height: 255px;
+				display: block;
+				overflow-y: scroll;
+
+			}
+			#levelary_box_div{
 				width: 100%;
 				height: 255px;
 				display: block;

@@ -448,8 +448,8 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    
-    log_message(`${character.name} finished ${current_activity.activity_name}`, "activity_finished");
+    let ActivityEndMap = {"Running":"跑步"}
+    log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     
     if(current_activity.earnings) {
         character.money += current_activity.earnings;
@@ -1272,6 +1272,9 @@ function do_character_combat_action({target, attack_power}) {
 
             log_message(target.name + " 被打败", "enemy_defeated");
 
+            if(target.name == "纳家待从") add_bestiary_lines(12);
+            if(target.name == "腐蚀质石精") add_bestiary_lines(13);
+
             //gained xp multiplied ny TOTAL size of enemy group raised to 1/3
             let xp_reward = target.xp_value * (current_enemies.length**0.3334);
             add_xp_to_character(xp_reward, true);
@@ -1493,6 +1496,7 @@ function get_location_rewards(location) {
         
 
         if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
+            create_new_levelary_entry(location);
             log_message(`首次通过 ${location.name} ，获取 ${location.first_reward.xp} 经验 `, "location_reward");
             add_xp_to_character(location.first_reward.xp);
         }
@@ -2684,6 +2688,8 @@ function load(save_data) {
             enemy_killcount[enemy_name] = save_data["enemy_killcount"][enemy_name];
             create_new_bestiary_entry(enemy_name);
             if(enemy_name == "纳家待从") add_bestiary_lines(12);
+            if(enemy_name == "腐蚀质石精") add_bestiary_lines(13);
+
         });
     }
 

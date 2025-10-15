@@ -626,8 +626,19 @@ class Textline {
 
                 unlocks: {
                     items: ["地图-藏宝地"],
+                    locations: ["燕岗近郊 - 1"],
                 },
                 locks_lines: ["defeat3"],
+            }),
+            "V0.21 Recover": new Textline({ 
+                is_unlocked: true,
+                name: "V0.21更新存档请点击此提示获取下一区域访问权限",
+                text: "已开启3 - 1区域！",
+
+                unlocks: {
+                    locations: ["燕岗近郊 - 1"],
+                },
+                locks_lines: ["V0.21 Recover"],
             }),
         }
     });

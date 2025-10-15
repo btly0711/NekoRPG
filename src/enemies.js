@@ -245,7 +245,7 @@ class Enemy {
         stats: {health: 3, attack: 3, agility: 1, attack_speed: 1, defense: 0}, 
         loot_list: [
             {item_name: "凝胶", chance: 0.04},
-            {item_name: "初始黄宝石", chance:0.01},
+            {item_name: "初始黄宝石", chance:0.015},
             //0.05C(=)
         ]
     });
@@ -263,7 +263,7 @@ class Enemy {
         loot_list: [
             {item_name: "凝胶", chance: 0.01},
             {item_name: "金属残片", chance:0.01},
-            {item_name: "初始黄宝石", chance:0.01},
+            {item_name: "初始黄宝石", chance:0.015},
             //0.06C(+0.01C)
         ],
     });
@@ -281,7 +281,7 @@ class Enemy {
         stats: {health: 5, attack: 6, agility: 1.5, attack_speed: 1.0, defense: 0}, 
         loot_list: [
             {item_name: "凝胶", chance: 0.06},
-            {item_name: "初始黄宝石", chance:0.01},
+            {item_name: "初始黄宝石", chance:0.015},
             //0.07C(-0.01C)
         ],
     });
@@ -301,7 +301,7 @@ class Enemy {
         stats: {health: 3, attack: 10, agility: 4, attack_speed: 1.0, defense: 0}, 
         loot_list: [
             {item_name: "飞蛾翅膀", chance: 0.01},
-            {item_name: "初始黄宝石", chance:0.01},
+            {item_name: "初始黄宝石", chance:0.015},
             
             //0.09C(+0.01C)
         ],
@@ -322,7 +322,7 @@ class Enemy {
         stats: {health: 12, attack: 7, agility: 1.8, attack_speed: 1.0, defense: 1}, 
         loot_list: [
             {item_name: "骨头", chance: 0.02},
-            {item_name: "初始黄宝石", chance:0.03},
+            {item_name: "初始黄宝石", chance:0.045},
             
             //0.15C(-0.02C)
         ],
@@ -341,7 +341,7 @@ class Enemy {
         loot_list: [
             {item_name: "凝胶", chance: 0.06},
             {item_name: "金属残片", chance:0.02},
-            {item_name: "初始黄宝石", chance:0.03},
+            {item_name: "初始黄宝石", chance:0.045},
             //0.17C(+0.01C)
         ],
     });
@@ -359,7 +359,7 @@ class Enemy {
         stats: {health: 6, attack: 3, agility: 3, attack_speed: 1.0, defense: 3}, 
         loot_list: [
             {item_name: "魔力碎晶", chance: 0.03},
-            {item_name: "初始黄宝石", chance:0.03},
+            {item_name: "初始黄宝石", chance:0.045},
             
             //0.27C(+0.01C)
         ],
@@ -379,7 +379,7 @@ class Enemy {
         loot_list: [
             {item_name: "微尘·凶兽肉块", chance: 0.01},
             {item_name: "骨头", chance: 0.01},
-            {item_name: "初始黄宝石", chance:0.03},
+            {item_name: "初始黄宝石", chance:0.045},
 
             //0.27C(+0.01C)
         ],
@@ -399,7 +399,7 @@ class Enemy {
         loot_list: [
             {item_name: "坚硬石块", chance: 0.04},
             {item_name: "魔力碎晶", chance: 0.04},
-            {item_name: "初始黄宝石", chance:0.05},
+            {item_name: "初始黄宝石", chance:0.075},
             
             //0.47C(-0.03C)
         ],
@@ -419,7 +419,7 @@ class Enemy {
         loot_list: [
             {item_name: "凝胶", chance: 0.10},
             {item_name: "魔力碎晶", chance: 0.04},
-            {item_name: "初始黄宝石", chance:0.05},
+            {item_name: "初始黄宝石", chance:0.075},
             //0.39C(-0.11C)
         ],
     });
@@ -438,7 +438,7 @@ class Enemy {
         loot_list: [
             {item_name: "飞蛾翅膀", chance: 0.04},
             {item_name: "魔力碎晶", chance: 0.06},
-            {item_name: "初始黄宝石", chance:0.05},
+            {item_name: "初始黄宝石", chance:0.075},
             //0.73C(-0.07C)
         ],
     });
@@ -457,7 +457,7 @@ class Enemy {
         loot_list: [
             {item_name: "凝胶", chance: 0.1},
             {item_name: "五彩凝胶", chance: 0.01},
-            {item_name: "初始黄宝石", chance:0.05},
+            {item_name: "初始黄宝石", chance:0.075},
             //0.90C(+0.01C)
         ],
     });
@@ -477,7 +477,7 @@ class Enemy {
             {item_name: "骨头", chance: 0.1},
             {item_name: "金属残片", chance: 0.08},
             {item_name: "魔力碎晶", chance: 0.05},
-            {item_name: "初始黄宝石", chance:0.05},
+            {item_name: "初始黄宝石", chance:0.075},
 
             //1.27C(+0.47C)   
         ],
@@ -496,7 +496,7 @@ class Enemy {
         stats: {health: 33, attack: 18, agility: 8, attack_speed: 1.0, defense: 9}, 
         loot_list: [
             {item_name: "飞蛾翅膀", chance: 0.1},
-            {item_name: "初始黄宝石", chance:0.05},
+            {item_name: "初始黄宝石", chance:0.075},
             //0.45C(-0.35C)
         ],
 
@@ -518,7 +518,7 @@ class Enemy {
         loot_list: [
             {item_name: "魔力碎晶", chance: 0.1},
             {item_name: "金属残片", chance: 0.1},
-            {item_name: "初始黄宝石", chance:0.08},
+            {item_name: "初始黄宝石", chance:0.12},
             //1.08C(-0.52C)
         ],
     });
@@ -537,7 +537,7 @@ class Enemy {
         loot_list: [
             {item_name: "坚硬石块", chance: 0.2},
             {item_name: "魔力碎晶", chance: 0.04},
-            {item_name: "初始黄宝石", chance:0.08},
+            {item_name: "初始黄宝石", chance:0.12},
             //1.32C(-0.28C)
         ],
     });
@@ -554,7 +554,7 @@ class Enemy {
         tags: [],
         stats: {health: 48, attack: 49, agility: 20, attack_speed: 1.1, defense: 12}, 
         loot_list: [
-            {item_name: "初始黄宝石", chance:0.08},
+            {item_name: "初始黄宝石", chance:0.12},
             {item_name: "五彩凝胶", chance: 0.04},
             //3.08C(+1.48C)
         ],
@@ -573,7 +573,7 @@ class Enemy {
         stats: {health: 40, attack: 63, agility: 24, attack_speed: 1.1, defense: 14}, 
         loot_list: [
             {item_name: "铜骨", chance: 0.1},
-            {item_name: "初始黄宝石", chance:0.08},
+            {item_name: "初始黄宝石", chance:0.12},
             //2.08C(+0.48C)
         ],
     });
@@ -590,7 +590,7 @@ class Enemy {
         stats: {health: 70, attack: 17, agility: 24, attack_speed: 1.1, defense: 17}, 
         loot_list: [
             {item_name: "魔力碎晶", chance: 0.15},
-            {item_name: "初始黄宝石", chance:0.08},
+            {item_name: "初始黄宝石", chance:0.12},
             //0.98C(-0.62C)
         ],
     });
@@ -609,8 +609,8 @@ class Enemy {
             {item_name: "凝胶", chance: 0.1},
             {item_name: "五彩凝胶", chance: 0.02},
             {item_name: "金属残片", chance:0.15},
-            {item_name: "初始黄宝石", chance:0.08},
-            {item_name: "初始蓝宝石", chance:0.01},
+            {item_name: "初始黄宝石", chance:0.12},
+            {item_name: "初始蓝宝石", chance:0.015},
 
             //2.30C(-0.26C)
         ],
@@ -629,8 +629,8 @@ class Enemy {
         loot_list: [
             {item_name: "微尘·凶兽肉块", chance: 0.2},
             {item_name: "金属残片", chance:0.15},
-            {item_name: "初始黄宝石", chance:0.08},
-            {item_name: "初始蓝宝石", chance:0.01},
+            {item_name: "初始黄宝石", chance:0.12},
+            {item_name: "初始蓝宝石", chance:0.015},
 
             //2.40C(-0.16C)
         ],
@@ -651,8 +651,8 @@ class Enemy {
             {item_name: "铜板", chance:0.4},
             {item_name: "铜板", chance:0.4},
             {item_name: "大铜板", chance:0.2},
-            {item_name: "初始黄宝石", chance:0.08},
-            {item_name: "初始蓝宝石", chance:0.01},
+            {item_name: "初始黄宝石", chance:0.12},
+            {item_name: "初始蓝宝石", chance:0.015},
 
             //2.30C(-0.26C)
         ],
@@ -672,8 +672,8 @@ class Enemy {
             {item_name: "凝胶", chance: 0.1},
             {item_name: "魔力碎晶", chance: 0.1},
             {item_name: "五彩凝胶", chance: 0.05},
-            {item_name: "初始黄宝石", chance:0.04},
-            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始黄宝石", chance:0.06},
+            {item_name: "初始蓝宝石", chance:0.045},
             //4.55C(-0.55C)
         ],
     });
@@ -690,12 +690,12 @@ class Enemy {
         stats: {health: 240, attack: 69, agility: 40, attack_speed: 1.1, defense: 35}, 
         loot_list: [
             {item_name: "魔力碎晶", chance: 1},
-            {item_name: "初始黄宝石", chance:0.04},
-            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始黄宝石", chance:0.06},
+            {item_name: "初始蓝宝石", chance:0.045},
             //4.10C(-0.90C)
         ],
     });
-    //1-2 below
+    //1-2 below  （WIP:从这以下的掉落物价值都出问题了！万物巅峰16C 潮汐初等50C 潮汐高等160C才对！
     enemy_templates["纳家待从"] = new Enemy({
         name: "纳家待从", 
         description: "普通的纳家随从。因为在城内大街上，出手点到为止。", 
@@ -708,11 +708,11 @@ class Enemy {
         tags: [],
         stats: {health: 344, attack: 111, agility: 60, attack_speed: 1.1, defense: 44} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.005},
-            {item_name: "银钱", chance: 0.4},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.008},
+            {item_name: "银钱", chance: 0.1},
             {item_name: "金属残片", chance:0.4},
-            //41.68C(-0.90C)
+            //~16C
         ],
     });
     enemy_templates["轻型傀儡"] = new Enemy({
@@ -727,12 +727,11 @@ class Enemy {
         tags: [],
         stats: {health: 150, attack: 103, agility: 80, attack_speed: 1.2, defense: 33} , //都说了是轻型的！
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.005},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.008},
             {item_name: "金属残片", chance:0.3},
             {item_name: "合金残片", chance:0.05},
-            
-            //26.28C(+1.28C)
+            //~9C
         ],
     });
     enemy_templates["出芽红茸茸"] = new Enemy({
@@ -747,12 +746,12 @@ class Enemy {
         tags: [],
         stats: {health: 97, attack: 97, agility: 60, attack_speed: 1.1, defense: 42} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.005},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.008},
             {item_name: "凝胶", chance:0.3},
-            {item_name: "五彩凝胶", chance:0.3},
+            {item_name: "五彩凝胶", chance:0.1},
             {item_name: "魔力碎晶", chance:0.1},
-            //23.48C(-1.52C)
+            //~9C
         ],
     });
     enemy_templates["万物级异兽"] = new Enemy({
@@ -767,10 +766,10 @@ class Enemy {
         tags: [],
         stats: {health: 840, attack: 128, agility: 60, attack_speed: 1.2, defense: 16} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始蓝宝石", chance:0.045},
             {item_name: "万物·凶兽肉块", chance:0.03},
             {item_name: "异兽皮", chance:0.01},
-            //34.06C(+9.06C)
+            //~9C
         ],
     });
     enemy_templates["高速傀儡"] = new Enemy({
@@ -785,11 +784,11 @@ class Enemy {
         tags: [],
         stats: {health: 150, attack: 180, agility: 120, attack_speed: 1.1, defense: 0} , //不要忘记agi基准值是80，spd基准值还是1.1
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.015},
             {item_name: "金属残片", chance:0.2},
-            {item_name: "合金残片", chance:0.08},
-            //40.88C(-9.12C)
+            {item_name: "合金残片", chance:0.1}
+            //~16C
         ],
     });//需要3连击
     enemy_templates["黄毛茸茸"] = new Enemy({
@@ -804,13 +803,13 @@ class Enemy {
         tags: [],
         stats: {health: 600, attack: 20, agility: 80, attack_speed: 1.1, defense: 45} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.015},
             {item_name: "凝胶", chance:0.3},
-            {item_name: "五彩凝胶", chance:0.6},
+            {item_name: "五彩凝胶", chance:0.2},
             {item_name: "魔力碎晶", chance:0.15},
             
-            //45C(-5C)
+            //~16C
         ],
     });
     enemy_templates["纳家塑像"] = new Enemy({
@@ -825,11 +824,11 @@ class Enemy {
         tags: [],
         stats: {health: 4, attack: 140, agility: 60, attack_speed: 1.1, defense: 0} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.015},
             {item_name: "坚硬石块", chance: 0.3},
-            {item_name: "银钱", chance: 0.3},
-            //30C(-20C)
+            {item_name: "银钱", chance: 0.12},
+            //~16C
         ],
     });
     enemy_templates["出芽橙茸茸"] = new Enemy({
@@ -844,12 +843,12 @@ class Enemy {
         tags: [],
         stats: {health: 300, attack: 175, agility: 90, attack_speed: 1.1, defense: 30} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.015},
             {item_name: "凝胶", chance: 0.4},
-            {item_name: "五彩凝胶", chance:1},
+            {item_name: "五彩凝胶", chance:0.3},
             {item_name: "魔力碎晶", chance:0.15},
-            //75C(-5C)
+            //~26C
         ],
     });
     enemy_templates["森林野蝠"] = new Enemy({
@@ -864,11 +863,11 @@ class Enemy {
         tags: [],
         stats: {health: 440, attack: 120, agility: 90, attack_speed: 1.1, defense: 50} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.01},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.015},
             {item_name: "异兽皮", chance: 0.05},
-            {item_name: "魔力碎晶", chance:0.05},
-            //80C(-5C)
+            {item_name: "魔力碎晶", chance:0.15},
+            //~26C
         ],
     });
     enemy_templates["血洛喽啰"] = new Enemy({
@@ -883,12 +882,12 @@ class Enemy {
         tags: [],
         stats: {health: 700, attack: 151, agility: 120, attack_speed: 1.2, defense: 70} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.025},
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.04},
             {item_name: "合金残片", chance: 0.10},
             {item_name: "金属残片", chance: 0.40},
-            {item_name: "红色刀币", chance: 0.10},
-            //150C(-10C)
+            {item_name: "红色刀币", chance: 0.02},
+            //~50C
         ],
     });
     enemy_templates["百家小卒"] = new Enemy({
@@ -903,11 +902,11 @@ class Enemy {
         tags: [],
         stats: {health: 660, attack: 144, agility: 90, attack_speed: 1.1, defense: 60} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.03},
-            {item_name: "初始红宝石", chance:0.01},
-            {item_name: "银钱", chance: 0.50},
+            {item_name: "初始蓝宝石", chance:0.045},
+            {item_name: "初始红宝石", chance:0.015},
+            {item_name: "银钱", chance: 0.15},
             {item_name: "金属残片", chance: 0.30},
-            //50C(~)
+            //~16C
         ],
     });
     enemy_templates["下位佣兵"] = new Enemy({
@@ -922,12 +921,12 @@ class Enemy {
         tags: [],
         stats: {health: 560, attack: 230, agility: 120, attack_speed: 1.2, defense: 48} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.025},
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.04},
             {item_name: "合金残片", chance: 0.12},
-            {item_name: "红色刀币", chance: 0.1},
-            {item_name: "铁锭", chance: 0.15},
-            //164C(+4C)
+            {item_name: "银钱", chance: 0.25},
+            {item_name: "铁锭", chance: 0.25},
+            //50C
         ],
     });
     enemy_templates["地龙荒兽"] = new Enemy({
@@ -942,11 +941,11 @@ class Enemy {
         tags: [],
         stats: {health: 190, attack: 340, agility: 120, attack_speed: 1.2, defense: 60} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.025},
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.04},
             {item_name: "异兽皮", chance: 0.08},
             {item_name: "万物·凶兽肉块", chance: 0.08},
-            //160C(-~)
+            //~50C
         ],
     });
     enemy_templates["毒虫"] = new Enemy({
@@ -961,12 +960,12 @@ class Enemy {
         tags: [],
         stats: {health: 560, attack: 230, agility: 120, attack_speed: 1.2, defense: 48} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.025},
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.04},
             {item_name: "魔力碎晶", chance: 0.5},
             {item_name: "异兽皮", chance: 0.12},
 
-            //120C(-40C)
+            //~50C
         ],
     });
     enemy_templates["精壮青年"] = new Enemy({
@@ -981,11 +980,11 @@ class Enemy {
         tags: [],
         stats: {health: 900, attack: 181, agility: 140, attack_speed: 1.2, defense: 40} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.025},
-            {item_name: "红色刀币", chance: 0.1},
-            {item_name: "银钱", chance: 0.5},
-            //150C(-10C)
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "红色刀币", chance: 0.01},
+            {item_name: "银钱", chance: 0.4},
+            //~50C
             //{item_name: "铁剑·改", count: [1], quality: [81, 100], chance: 0.2},
         ],
     });enemy_templates["法师学徒"] = new Enemy({
@@ -1000,12 +999,12 @@ class Enemy {
         tags: [],
         stats: {health: 900, attack: 240, agility: 150, attack_speed: 1.2, defense: 80} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.025},
-            {item_name: "初始绿宝石", chance:0.015},
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
             {item_name: "魔力碎晶", chance: 0.5},
-            {item_name: "红色刀币", chance: 0.2},
-            //203C(-47C)
+            {item_name: "红色刀币", chance: 0.08},
+            //~90C
         ],
     });
     enemy_templates["生灵骸骨"] = new Enemy({
@@ -1020,12 +1019,99 @@ class Enemy {
         tags: [],
         stats: {health: 1120, attack: 236, agility: 160, attack_speed: 1.2, defense: 105} , 
         loot_list: [
-            {item_name: "初始蓝宝石", chance:0.02},
-            {item_name: "初始红宝石", chance:0.025},
+            {item_name: "初始蓝宝石", chance:0.03},
+            {item_name: "初始红宝石", chance:0.04},
             {item_name: "铜骨", chance: 0.6},
             {item_name: "万物·凶兽肉块", chance: 0.15},
             {item_name: "异兽皮", chance: 0.1},
-            //262C(+2C)
+            //~90C
+        ],
+    });
+    enemy_templates["腐蚀质石精"] = new Enemy({
+        name: "腐蚀质石精", 
+        description: "城外的大石头。敌意不重，轻伤就会离去。", 
+        xp_value: 34, 
+        rank: 1301,
+        image: "../NekoRPG/image/enemy/E1301.png",
+        realm: "<span class=realm_basic><b>潮汐级高等</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1770, attack: 380, agility: 200, attack_speed: 1.2, defense: 160}, //可能改动
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "毒液", chance:0.08},
+            //应为160C
+        ],
+    });
+    enemy_templates["绿毛茸茸"] = new Enemy({
+        name: "绿毛茸茸", 
+        description: "毛茸茸家族-野生限定版", 
+        xp_value: 21, 
+        rank: 1302,
+        image: "../NekoRPG/image/enemy/E1302.png",
+        realm: "<span class=realm_basic><b>潮汐级初等 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 375, attack: 438, agility: 160, attack_speed: 1.2, defense: 135}, //可能改动
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "五彩凝胶", chance:0.5},
+            {item_name: "灵液", chance:0.01},
+            //应为90C
+        ],
+    });
+    enemy_templates["荒野蜂"] = new Enemy({
+        name: "荒野蜂", 
+        description: "变异的巨型黄蜂。它的毒液可以使人衰弱。", 
+        xp_value: 21, 
+        rank: 1303,
+        image: "../NekoRPG/image/enemy/E1303.png",
+        realm: "<span class=realm_basic><b>潮汐级初等 +</b></span>",
+        size: "small",
+        spec: [8],
+        tags: [],
+        stats: {health: 850, attack: 360, agility: 180, attack_speed: 1.2, defense: 90}, //可能改动
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.03},
+            {item_name: "毒液", chance:0.04},
+            //应为90C
+        ],
+    });
+    enemy_templates["切叶虫茧"] = new Enemy({
+        name: "切叶虫茧", 
+        description: "破茧而出的蝴蝶。它的锋利前肢可以撕裂敌人。", 
+        xp_value: 21, 
+        rank: 1304,
+        image: "../NekoRPG/image/enemy/E1304.png",
+        realm: "<span class=realm_basic><b>潮汐级初等 +</b></span>",
+        size: "small",
+        spec: [7],
+        tags: [],
+        stats: {health: 520, attack: 380, agility: 140, attack_speed: 1.2, defense: 150}, //可能改动
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            //应为90C 掉落WIP
+        ],
+    });
+    enemy_templates["花灵液"] = new Enemy({
+        name: "花灵液", 
+        description: "绿毛茸茸的变异种。不规则的外形使它兼具灵活和承伤。", 
+        xp_value: 34, 
+        rank: 1305,
+        image: "../NekoRPG/image/enemy/E1305.png",
+        realm: "<span class=realm_basic><b>潮汐级高等</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1400, attack: 415, agility: 220, attack_speed: 1.2, defense: 50}, //可能改动
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "灵液", chance:0.06},
+            //应为160C
         ],
     });
 })();

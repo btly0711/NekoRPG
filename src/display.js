@@ -1347,7 +1347,7 @@ function update_displayed_health_of_enemies() {
         enemies_div.children[i].children[0].children[2].children[0].children[0].style.width = 
             Math.max(0, 100*current_enemies[i].stats.health/current_enemies[i].stats.max_health) + "%";
 
-            enemies_div.children[i].children[0].children[2].children[1].innerText = `${Math.ceil(current_enemies[i].stats.health)}/${Math.ceil(current_enemies[i].stats.max_health)} hp`;
+            enemies_div.children[i].children[0].children[2].children[1].innerText = `${format_number(current_enemies[i].stats.health)}/${format_number(current_enemies[i].stats.max_health)} hp`;
 
     }
 }
@@ -1960,6 +1960,12 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
     recipe_div.dataset.recipe_id = recipe_id;
 
     if(subcategory === "items") {
+        
+        // const recipe_10 = document.createElement("span");
+        // recipe_10.classList.add("bigger_button");
+        // recipe_10.classList.add("recipe_10");
+        // recipe_10.innerText="[x10]";
+        // recipe_div.appendChild(recipe_10);
         recipe_div.children[0].innerHTML = '<i class="material-icons icon" style="visibility:hidden"> keyboard_double_arrow_down </i>' + recipe_div.children[0].innerHTML;
         //invisible icon added just so it properly matches in height and text position with recipes in other subcategories
         if(!recipe.get_availability()) {
@@ -1969,6 +1975,7 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
         recipe_div.addEventListener("click", (event)=>{
             if(event.target.classList.contains("recipe_name") && !event.target.parentNode.classList.contains("recipe_unavailable")) {
                 window.useRecipe(event.target);
+                //normal items
             }
         });
         recipe_div.append(create_recipe_tooltip({category, subcategory, recipe_id}));
@@ -2076,6 +2083,8 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
         accept_recipe_button.classList.add("recipe_creation_button");
         accept_recipe_button.addEventListener("click", (event)=>{
             window.useRecipe(event.target);
+            console.log("Used:Recipe 2");
+            //equipments
         });
 
         recipe_div.append(component_selections);
@@ -2377,7 +2386,10 @@ function update_displayed_material_choice({category, subcategory, recipe_id, ref
             item_div.addEventListener("click", (event)=>{
                 item_div.classList.add("selected_material");
                 window.useRecipe(event.target.parentNode);
+                console.log("Used:Recipe 1");
                 item_div.classList.remove("selected_material"); //this is so stupid
+
+                //comps
             });
         } else {
             item_div.classList.add("recipe_unavailable");
@@ -2596,7 +2608,6 @@ function format_money(num) {
     let value;
     const sign = num >= 0 ? '' : '-';
     num = Math.abs(num);
-    console.log(num);
 
     if(num > 0) {
         value = (`${num%1000}<span class="coin coin_copper">C</span>`);

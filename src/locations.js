@@ -1096,7 +1096,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["燕岗近郊"] = new Location({ 
         connected_locations: [{location: locations["燕岗城"], custom_text: "回城"}], 
-        description: "燕岗城外的区域。鸟语花香，绿树成荫，却潜藏着大量潮汐级魔物。[V0.20 版本终点]",
+        description: "燕岗城外的区域。鸟语花香，绿树成荫，却潜藏着大量潮汐级魔物。",
         
         is_unlocked: false,
         dialogues: ["百兰"],
@@ -1108,7 +1108,7 @@ function get_location_type_penalty(type, stage, stat) {
 
 
     locations["燕岗近郊 - 0"] = new Challenge_zone({
-        description: "城门外不远处。看起来是时候给看不起人的大叔一点教训了！",
+        description: "城门外不远处。看起来是时候给看不起人的大叔一点教训了！",//MT22
         enemy_count: 1, 
         enemies_list: ["百兰[BOSS]"],
         enemy_group_size: [1,1],
@@ -1125,8 +1125,33 @@ function get_location_type_penalty(type, stage, stat) {
         },
         unlock_text: "我说大叔，这么大年纪了欺负一个女孩子，不太好吧。看来需要一点教训呢。"
     });
+    locations["燕岗近郊 - 1"] = new Combat_zone({
+        description: "沿着藏宝图向前，必经之路上的魔物区域", //MT23-24
+        enemy_count: 20, 
+        enemies_list: ["生灵骸骨","腐蚀质石精","绿毛茸茸","切叶虫茧","荒野蜂","花灵液"],
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_variation: 0.1,
+        is_unlocked: false, 
+        name: "燕岗近郊 - 1",
+        
+        rank:21, 
+        parent_location: locations["燕岗近郊"],
+        first_reward: {
+            xp: 200,
+        },
+        repeatable_reward: {
+            xp: 150,
+        },
+    });
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 0"], custom_text: "与百兰战斗"});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 1"]});
+    
 
+
+
+
+    
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 
         getDescription: function() {

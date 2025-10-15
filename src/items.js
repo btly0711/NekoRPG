@@ -2189,7 +2189,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["精钢剑刃"] = new WeaponComponent({
         name: "精钢剑刃", description: "由精钢锭打造出的剑刃，远远比铁剑刃锋利",
         component_type: "long blade",
-        value: 2100,
+        value: 900,
         component_tier: 1,
         name_prefix: "精钢",
         attack_value: 48,
@@ -2286,7 +2286,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽帽子"] = new Armor({
         name: "异兽帽子", 
         description: "由异兽皮制成的头部内甲", 
-        value: 5400,
+        value: 1800,
         component_type: "helmet interior",
         base_defense: 10,
         component_tier: 1,
@@ -2294,7 +2294,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽背心"] = new Armor({
         name: "异兽背心", 
         description: "由异兽皮制成的胸部内甲", 
-        value: 7200,
+        value: 2400,
         component_type: "chestplate interior",
         base_defense: 16,
         component_tier: 1,
@@ -2302,7 +2302,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽裤子"] = new Armor({
         name: "异兽裤子", 
         description: "由异兽皮制成的腿部内甲", 
-        value: 7200,
+        value: 2400,
         component_type: "leg armor interior",
         base_defense: 14,
         component_tier: 1,
@@ -2310,7 +2310,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["异兽袜子"] = new Armor({
         name: "异兽袜子", 
         description: "由异兽皮制成的脚部内甲", 
-        value: 3600,
+        value: 1200,
         component_type: "shoes interior",
         base_defense: 8,
         component_tier: 1,
@@ -2368,7 +2368,7 @@ item_templates["Twist liek a snek"] = new Book({
         id: "精钢锭",
         name: "精钢锭", 
         description: "掺杂了其他金属的铁合金。硬而脆，只能用作剑刃。", 
-        value: 1050,
+        value: 400,
         material_type: "metal",
         image: "../NekoRPG/image/item/steel_ingot.png",
     });
@@ -2397,7 +2397,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["万物·凶兽肉排"] = new UsableItem({
         name: "万物·凶兽肉排", 
         description: "虽然颜色很奇怪但是真的能吃！食用后每秒回复80点血量，持续60秒",
-        value: 800,
+        value: 240,
         effects: [{effect: "饱食 II", duration: 60}],
         image: "../NekoRPG/image/item/O5_cooked_meat.png",
     });
@@ -2445,6 +2445,38 @@ item_templates["Twist liek a snek"] = new Book({
         image: "../NekoRPG/image/item/gem14_10.png",
         effects: [],
         gem_value: 10,
+    });
+    item_templates["高级黄宝石"] = new UsableItem({
+        name: "高级黄宝石", 
+        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷20点或生命1000点", 
+        value: 20,
+        image: "../NekoRPG/image/item/gem21_20.png",
+        effects: [],
+        gem_value: 20,
+    });
+    item_templates["高级蓝宝石"] = new UsableItem({
+        name: "高级蓝宝石", 
+        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷50点或生命2500点",
+        value: 50,
+        image: "../NekoRPG/image/item/gem22_50.png",
+        effects: [],
+        gem_value: 50,
+    });
+    item_templates["高级红宝石"] = new UsableItem({
+        name: "高级红宝石", 
+        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷100点或生命5000点",
+        value: 100,
+        image: "../NekoRPG/image/item/gem23_100.png",
+        effects: [],
+        gem_value: 100,
+    });
+    item_templates["高级绿宝石"] = new UsableItem({
+        name: "高级绿宝石", 
+        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷200点或生命1万点", 
+        value: 200,
+        image: "../NekoRPG/image/item/gem24_200.png",
+        effects: [],
+        gem_value: 200,
     });
 })();
 
@@ -2512,6 +2544,43 @@ item_templates["Twist liek a snek"] = new Book({
         value: 5,
         image: "../NekoRPG/image/item/5C.png",
     });
+
+
+    //1-2
+    item_templates["万物·凶兽肉块"] = new OtherItem({
+        name: "万物·凶兽肉块", 
+        description: "万物级凶兽的肉。蕴含的气血充沛，价格略高。", //加魔力碎晶
+        value: 200,
+        image: "../NekoRPG/image/item/O5_meat.png",
+    });
+    item_templates["合金残片"] = new OtherItem({
+        name: "合金残片", 
+        description: "傀儡身上的特殊金属，掺杂在铁锭中可以增强硬度", 
+        value: 150,
+        image: "../NekoRPG/image/item/alloy_fragment.png",
+    });
+    item_templates["异兽皮"] = new OtherItem({
+        name: "异兽皮", 
+        description: "万物级异兽的皮毛，兼具硬度和韧性", 
+        value: 500,
+        image: "../NekoRPG/image/item/O5_leather.png",
+    });
+
+    //1-3
+    item_templates["毒液"] = new OtherItem({
+        name: "毒液", 
+        description: "郊外常见的毒素集合体。A1级合金“紫铜”需要它作为原材料。", 
+        value: 2000,
+        image: "../NekoRPG/image/item/poison_drop.png",
+    });
+    item_templates["灵液"] = new OtherItem({
+        name: "灵液", 
+        description: "潮汐级魔物的精华，具有多种优异性能。", 
+        value: 2500,
+        image: "../NekoRPG/image/item/aura_drop.png",
+    });
+
+
     //以下为打钱的东西
     item_templates["五彩凝胶"] = new OtherItem({
         name: "五彩凝胶", 
@@ -2525,29 +2594,6 @@ item_templates["Twist liek a snek"] = new Book({
         value: 100,
         image: "../NekoRPG/image/item/100C.png",
     });
-
-
-    //1-2
-    item_templates["万物·凶兽肉块"] = new OtherItem({
-        name: "万物·凶兽肉块", 
-        description: "万物级凶兽的肉。蕴含的气血充沛，价格略高。", //加魔力碎晶
-        value: 600,
-        image: "../NekoRPG/image/item/O5_meat.png",
-    });
-    item_templates["合金残片"] = new OtherItem({
-        name: "合金残片", 
-        description: "傀儡身上的特殊金属，掺杂在铁锭中可以增强硬度", 
-        value: 500,
-        image: "../NekoRPG/image/item/alloy_fragment.png",
-    });
-    item_templates["异兽皮"] = new OtherItem({
-        name: "异兽皮", 
-        description: "万物级异兽的皮毛，兼具硬度和韧性", 
-        value: 1600,
-        image: "../NekoRPG/image/item/O5_leather.png",
-    });
-    //以下为打钱的东西
-    
     item_templates["红色刀币"] = new OtherItem({
         name: "红色刀币", 
         description: "血洛大陆的通用钱币，面值1X=1000C", 
