@@ -112,6 +112,13 @@ class Gathering extends Training {
         base_skills_names: ["Running"],
         is_unlocked: true,
     });
+    activities["Swimming"] = new Training({
+        name: "Swimming",
+        action_text: "练习游泳",
+        description: "基础的运动之一",
+        base_skills_names: ["Swimming"],
+        is_unlocked: true,
+    });
 })();
 
 //resource gatherings

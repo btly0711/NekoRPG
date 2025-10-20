@@ -695,7 +695,7 @@ class Enemy {
             //4.10C(-0.90C)
         ],
     });
-    //1-2 below  （WIP:从这以下的掉落物价值都出问题了！万物巅峰16C 潮汐初等50C 潮汐高等160C才对！
+    //1-2 below  
     enemy_templates["纳家待从"] = new Enemy({
         name: "纳家待从", 
         description: "普通的纳家随从。因为在城内大街上，出手点到为止。", 
@@ -1037,7 +1037,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 1770, attack: 380, agility: 200, attack_speed: 1.2, defense: 160}, //可能改动
+        stats: {health: 1770, attack: 380, agility: 200, attack_speed: 1.2, defense: 160},
         loot_list: [
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "初始绿宝石", chance:0.02},
@@ -1055,7 +1055,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 375, attack: 438, agility: 160, attack_speed: 1.2, defense: 135}, //可能改动
+        stats: {health: 375, attack: 438, agility: 160, attack_speed: 1.2, defense: 135},
         loot_list: [
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "五彩凝胶", chance:0.5},
@@ -1073,7 +1073,7 @@ class Enemy {
         size: "small",
         spec: [8],
         tags: [],
-        stats: {health: 850, attack: 360, agility: 180, attack_speed: 1.2, defense: 90}, //可能改动
+        stats: {health: 850, attack: 360, agility: 180, attack_speed: 1.2, defense: 90},
         loot_list: [
             {item_name: "初始绿宝石", chance:0.03},
             {item_name: "毒液", chance:0.04},
@@ -1090,10 +1090,11 @@ class Enemy {
         size: "small",
         spec: [7],
         tags: [],
-        stats: {health: 520, attack: 380, agility: 140, attack_speed: 1.2, defense: 150}, //可能改动
+        stats: {health: 520, attack: 380, agility: 140, attack_speed: 1.2, defense: 150}, 
         loot_list: [
             {item_name: "初始红宝石", chance:0.04},
-            //应为90C 掉落WIP
+            {item_name: "天蚕丝", chance:0.03},
+            //应为90C
         ],
     });
     enemy_templates["花灵液"] = new Enemy({
@@ -1106,12 +1107,87 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 1400, attack: 415, agility: 220, attack_speed: 1.2, defense: 50}, //可能改动
+        stats: {health: 1400, attack: 415, agility: 220, attack_speed: 1.2, defense: 50}, 
         loot_list: [
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "灵液", chance:0.06},
             //应为160C
+        ],
+    });
+    enemy_templates["燕岗领从者"] = new Enemy({
+        name: "燕岗领从者", 
+        description: "随处可见的普通修者。修为不高，财产不多。", 
+        xp_value: 34, 
+        rank: 1306,
+        image: "../NekoRPG/image/enemy/E1306.png",
+        realm: "<span class=realm_basic><b>潮汐级高等</b></span>",
+        size: "small",
+        spec: [3],
+        tags: [],
+        stats: {health: 1400, attack: 464, agility: 240, attack_speed: 1.2, defense: 190}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "银钱", chance:0.6},
+            {item_name: "红色刀币", chance:0.1},
+            //应为160C
+        ],
+    });
+    enemy_templates["野生幽灵"] = new Enemy({
+        name: "野生幽灵", 
+        description: "在荒野中生存下来的幽灵。非常脆弱，但飘忽不定。", 
+        xp_value: 34, 
+        rank: 1307,
+        image: "../NekoRPG/image/enemy/E1307.png",
+        realm: "<span class=realm_basic><b>潮汐级高等</b></span>",
+        size: "small",
+        spec: [2],
+        tags: [],
+        stats: {health: 290, attack: 875, agility: 360, attack_speed: 1.2, defense: 125}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "潮汐·凶兽肉排", chance:1.0},
+            //应为160C
+        ],
+    });
+    enemy_templates["荒兽尼尔"] = new Enemy({
+        name: "荒兽尼尔", 
+        description: "一种鸟类荒兽.肌肉发达，皮糙肉厚。", 
+        xp_value: 34, 
+        rank: 1308,
+        image: "../NekoRPG/image/enemy/E1308.png",
+        realm: "<span class=realm_basic><b>潮汐级高等 +</b></span>",
+        size: "small",
+        spec: [5],
+        tags: [],
+        stats: {health: 1080, attack: 910, agility: 320, attack_speed: 1.2, defense: 190}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "天蚕丝", chance:0.04},
+            {item_name: "潮汐·凶兽肉块", chance:0.03},
+            //应为260C
+        ],
+    });
+    enemy_templates["司雍世界修士"] = new Enemy({
+        name: "司雍世界修士", 
+        description: "稍微罕见一些的普通修者，在潮汐级高等中算是强者。", 
+        xp_value: 34, 
+        rank: 1309,
+        image: "../NekoRPG/image/enemy/E1309.png",
+        realm: "<span class=realm_basic><b>潮汐级高等 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1080, attack: 550, agility: 300, attack_speed: 1.2, defense: 230}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "精钢锭", chance:0.5},
+            {item_name: "银钱", chance:0.5},
+            //应为260C
         ],
     });
 })();

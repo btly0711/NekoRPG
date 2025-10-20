@@ -448,7 +448,7 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    let ActivityEndMap = {"Running":"跑步"}
+    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     
     if(current_activity.earnings) {
@@ -1271,10 +1271,6 @@ function do_character_combat_action({target, attack_power}) {
             target.stats.health = 0; //to not go negative on displayed value
 
             log_message(target.name + " 被打败", "enemy_defeated");
-
-            if(target.name == "纳家待从") add_bestiary_lines(12);
-            if(target.name == "腐蚀质石精") add_bestiary_lines(13);
-
             //gained xp multiplied ny TOTAL size of enemy group raised to 1/3
             let xp_reward = target.xp_value * (current_enemies.length**0.3334);
             add_xp_to_character(xp_reward, true);
@@ -1311,6 +1307,7 @@ function kill_enemy(target) {
             create_new_bestiary_entry(target.name);
             if(target.name == "毛茸茸") add_bestiary_lines(11);
             else if(target.name == "纳家待从") add_bestiary_lines(12);
+            else if(target.name == "腐蚀质石精") add_bestiary_lines(13);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);

@@ -24,6 +24,36 @@ const weapon_type_to_skill = {
     "wand": "Wands"
 };
 
+const units=['','万','亿','兆','京','垓','秭','穣','沟','涧','正','载','极'];
+
+function format_number(some_number)
+{
+    let f_result = "";
+    let len=Math.floor(Math.log10(some_number)) + 1;//位数！
+    if(some_number<0)
+    {
+        f_result+='-';
+        some_number*=-1;
+    }
+    if(some_number<1e-4) f_result += '0';
+    else if(len<=4||len==6)
+    {
+        f_result += String(some_number).substring(0,6);
+    }
+    else if(len==5)
+    {
+        f_result += String(some_number).substring(0,5);
+    }
+    else
+    {
+        let unitid = Math.floor((len-2)/4);
+        f_result += String(some_number/(Math.pow(10000,unitid))).substring(0,((len - unitid*4==5)?5:6));
+        f_result += units[unitid];
+    }
+    return f_result;
+}
+
+
 const which_skills_affect_skill = {};
 
 class Skill {
@@ -1184,14 +1214,60 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     },
     get_effect_description: ()=> {
       let value = skills["Running"].get_coefficient("multiplicative");
-      if(value >= 100) {
-          value = Math.round(value);
-      } else if(value >= 10 && value < 100) {
-          value = Math.round(value*10)/10; 
-      } else {
-          value = Math.round(value*100)/100;
+      return `将攻击速度乘以 ${format_number(value)}`;
+    },
+    
+    });
+    skills["Swimming"] = new Skill({skill_id: "Swimming",
+    description: "增加循环系统功能的运动！",
+    names: {0: "游泳",20: "水中窜",40: "水遁"},
+    max_level: 50,
+    xp_scaling: 1.8,
+    category: "Activity",
+    max_level_coefficient: 1.2833,
+    base_xp_cost: 40,
+    rewards: {
+      milestones: {
+          1: {
+              stats: {
+                health_regeneration_flat: {
+                    flat:20
+                },
+              },
+          },
+          3: {
+              stats: {
+                max_health: {
+                    multiplier: 1.05
+                },
+              },
+          },
+          5: {
+              stats: {
+                health_regeneration_flat: {
+                    flat:30
+                },
+              },
+          },
+          7: {
+              stats: {
+                max_health: {
+                    multiplier: 1.05
+                },
+              },
+          },
+          10: {
+            stats: {
+                health_regeneration_flat: {
+                    flat:50
+                },
+            }
+          }
       }
-      return `将攻击速度乘以 ${value}`;
+    },
+    get_effect_description: ()=> {
+      let value = skills["Swimming"].get_coefficient("multiplicative");
+      return `将生命上限乘以 ${format_number(value)}`;
     },
     
     });
@@ -1329,14 +1405,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     },
     get_effect_description: ()=> {
       let value = skills["Weightlifting"].get_coefficient("multiplicative");
-      if(value >= 100) {
-          value = Math.round(value);
-      } else if(value >= 10 && value < 100) {
-          value = Math.round(value*10)/10; 
-      } else {
-          value = Math.round(value*100)/100;
-      }
-      return `Multiplies strength by ${value}`;
+      return `Multiplies strength by ${format_number(value)}`;
     },
     
     });
@@ -1397,14 +1466,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     },
     get_effect_description: ()=> {
       let value = skills["Equilibrium"].get_coefficient("multiplicative");
-      if(value >= 100) {
-          value = Math.round(value);
-      } else if(value >= 10 && value < 100) {
-          value = Math.round(value*10)/10; 
-      } else {
-          value = Math.round(value*100)/100;
-      }
-      return `Multiplies agility by ${value}`;
+      return `Multiplies agility by ${format_number(value)}`;
     },
     
     });

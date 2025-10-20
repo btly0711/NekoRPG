@@ -35,6 +35,7 @@ function format_reading_time(time) {
 const stat_names = {"strength": "str",
                     "health": "hp",
                     "max_health": "生命上限", //same as for "health"
+                    "health_regeneration_flat": "生命恢复", //same as for "health"
                     "agility": "敏捷",
                     "dexterity": "dex",
                     "UK1": "UK1",

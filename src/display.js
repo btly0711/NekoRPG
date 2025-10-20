@@ -106,7 +106,8 @@ const stats_divs = {agility: document.getElementById("agility_slot"),
                     attack_speed: document.getElementById("attack_speed_slot"), attack_power: document.getElementById("attack_power_slot"), 
                     defense: document.getElementById("defense_slot"), crit_rate: document.getElementById("crit_rate_slot"), 
                     crit_multiplier: document.getElementById("crit_multiplier_slot"),
-                    max_health: document.getElementById("strength_slot")
+                    max_health: document.getElementById("strength_slot"),
+                    health_regeneration_flat: document.getElementById("intuition_slot")
                     };
 
 
@@ -426,15 +427,18 @@ function create_effect_tooltip(effect_name, duration) {
         tooltip.innerHTML += `<br> `;
         //for regeneration bonuses, it is assumed they are only flat and not multiplicative
         //${capitalize_first_letter(key.replaceAll("_", " ").replace("flat","").replace("percent",""))}
+            let sign = stat_value.flat > 0? "+":"-";
+            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷"}
         if(key === "health_regeneration_flat") 
         {   
-            const sign = stat_value.flat > 0? "+":"-";
             tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}`;
         } else if(key === "health_regeneration_percent") {
             const sign = stat_value.percent > 0? "+":"-";
             tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}%`;
         } else {
-            //WIP
+
+            tooltip.innerHTML += `${EffectToolTipMap[key]} : ${sign}${stat_value.flat}`;
+            //百分比的WIP
         }
     }
 
@@ -2544,15 +2548,15 @@ function update_stat_description(stat) {
         <br>基础值: ${Math.round(100*character.base_stats[stat])/100}`;
     }
 
-    let BreakDownMap = {"Level":"境界","Skills":"技能","Skill milestones":"技能里程碑","Equipment":"装备","Environment":"环境","Light level":"光照","Gems":"宝石","Stance":"秘法"};
+    let BreakDownMap = {"level":"境界","skills":"技能","skill_milestones":"技能里程碑","equipment":"装备","environment":"环境","light_level":"光照","gems":"宝石","stance":"秘法","active_effect":"效果"};
     Object.keys(character.stats.flat).forEach(stat_type => {
         if(character.stats.flat[stat_type][stat] && character.stats.flat[stat_type][stat] !== 0) {
-            target.innerHTML += `<br>${BreakDownMap[capitalize_first_letter(stat_type.replace("_"," "))]}: +${Math.round(100*character.stats.flat[stat_type][stat])/100}`;
+            target.innerHTML += `<br>${BreakDownMap[stat_type]}: +${Math.round(100*character.stats.flat[stat_type][stat])/100}`;
         }
     });
     Object.keys(character.stats.multiplier).forEach(stat_type => {
         if(character.stats.multiplier[stat_type][stat] && character.stats.multiplier[stat_type][stat] !== 1) {
-            target.innerHTML += `<br>${BreakDownMap[capitalize_first_letter(stat_type.replace("_"," "))]}: x${Math.round(100*character.stats.multiplier[stat_type][stat])/100}`;
+            target.innerHTML += `<br>${BreakDownMap[stat_type]}: x${Math.round(100*character.stats.multiplier[stat_type][stat])/100}`;
         }
     });
     
@@ -2735,7 +2739,7 @@ function start_activity_display(current_activity) {
     if(activities[current_activity.activity_name].base_skills_names) {
         const needed_xp = skills[activities[current_activity.activity_name].base_skills_names].current_level == skills[activities[current_activity.activity_name].base_skills_names].max_level? "Max": `${Math.round(10000*skills[activities[current_activity.activity_name].base_skills_names].current_xp/skills[activities[current_activity.activity_name].base_skills_names].xp_to_next_lvl)/100}%`
         if(activities[current_activity.activity_name].type !== "GATHERING") {
-            action_xp_div.innerText = `每秒得到 ${skills[activities[current_activity.activity_name].base_skills_names].name()} ${current_activity.skill_xp_per_tick} 基础经验值   (${needed_xp})`;
+            action_xp_div.innerText = `每秒得到 ${current_activity.skill_xp_per_tick} ${skills[activities[current_activity.activity_name].base_skills_names].name()} 基础经验值   (${needed_xp})`;
         } else {
             action_xp_div.innerText = `Getting ${current_activity.skill_xp_per_tick} base xp per gathering cycle to ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
         }
@@ -2751,7 +2755,7 @@ function start_activity_display(current_activity) {
 
 
     const action_end_text = document.createElement("div");
-    const ActivityNameMap = {"Running":"跑步"};
+    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳"};
     const dev_ACNMap = false;
     action_end_text.innerText = `结束 ${dev_ACNMap?current_activity.activity_name:ActivityNameMap[current_activity.activity_name]}`;
     action_end_text.id = "action_end_text";

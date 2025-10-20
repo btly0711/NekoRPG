@@ -2401,6 +2401,13 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [{effect: "饱食 II", duration: 60}],
         image: "../NekoRPG/image/item/O5_cooked_meat.png",
     });
+    item_templates["潮汐·凶兽肉排"] = new UsableItem({
+        name: "潮汐·凶兽肉排", 
+        description: "潮汐级凶兽的肉。不仅可以回血，还可以增加少许领悟！", 
+        value: 8000,
+        effects: [{effect: "饱食 III", duration: 60}],
+        image: "../NekoRPG/image/item/O8_cooked_meat.png",
+    });
 })();
 //炼金
 (function(){
@@ -2579,6 +2586,20 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2500,
         image: "../NekoRPG/image/item/aura_drop.png",
     });
+    item_templates["天蚕丝"] = new OtherItem({
+        name: "天蚕丝", 
+        description: "切叶虫茧的构建材料，蕴含有风元素。初步具有智慧的潮汐级凶兽也常常携带着它。", 
+        value: 3000,
+        image: "../NekoRPG/image/item/sky_silk.png",
+    });
+    item_templates["潮汐·凶兽肉块"] = new OtherItem({
+        name: "潮汐·凶兽肉块", 
+        description: "潮汐级凶兽的肉。蕴含有元素之力，没有煤炭火焰难以煮熟。", 
+        value: 5000,
+        image: "../NekoRPG/image/item/O8_meat.png",
+    });
+
+
 
 
     //以下为打钱的东西

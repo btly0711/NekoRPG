@@ -26,7 +26,7 @@ character.base_stats = {
         max_health: 50, 
         health: 50,
         health_regeneration_flat: 0, //in combat
-       // health_regeneration_percent: 0, //too op
+        health_regeneration_percent: 0, //too op
        
         attack_power: 1, 
         defense: 0,
@@ -382,6 +382,8 @@ character.stats.add_all_skill_level_bonus = function() {
         character.stats.multiplier.skills.strength = skills["Weightlifting"].get_coefficient("multiplicative");
         character.stats.multiplier.skills.block_strength = 1 + 5*skills["Shield blocking"].get_level_bonus();
         character.stats.multiplier.skills.agility = skills["Combat"].get_coefficient("multiplicative")/*skills["Equilibrium"].get_coefficient("multiplicative")*/;
+        
+        character.stats.multiplier.skills.max_health = skills["Swimming"].get_coefficient("multiplicative");
         
         character.stats.add_weapon_type_bonuses();
 }

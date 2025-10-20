@@ -1142,10 +1142,42 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 150,
+            locations: [{location: "燕岗近郊 - 2"},{location:"郊区河流"}],
+        },
+    });
+    locations["燕岗近郊 - 2"] = new Combat_zone({
+        description: "沿着藏宝图向前，埋伏着不怀好意修士的区域", //MT25-26
+        enemy_count: 20, 
+        enemies_list: ["荒野蜂","花灵液","燕岗领从者","野生幽灵","司雍世界修士"],//荒兽尼尔在原作中就不存在
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_variation: 0.1,
+        is_unlocked: false, 
+        name: "燕岗近郊 - 2",
+        
+        rank:22, 
+        parent_location: locations["燕岗近郊"],
+        first_reward: {
+            xp: 220,
+        },
+        repeatable_reward: {
+            xp: 160,
         },
     });
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 0"], custom_text: "与百兰战斗"});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 1"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 2"]});
+    
+    
+    
+    locations["郊区河流"] = new Location({ 
+        connected_locations: [{location: locations["燕岗近郊"], custom_text: "回到藏宝图的路线上"}], 
+        description: "敞亮的小河，可以用于练习游泳技术！",
+        
+        is_unlocked: false,
+        name: "郊区河流", 
+    });
+    locations["燕岗近郊"].connected_locations.push({location: locations["郊区河流"]});
     
 
 
@@ -1664,6 +1696,16 @@ function get_location_type_penalty(type, stage, stat) {
             activity_name: "Running",
             infinite: true,
             starting_text: "在郊区尽情地跑步",
+            skill_xp_per_tick: 1,
+            is_unlocked: true,
+        }),
+    }
+    locations["郊区河流"].activities = {
+        
+        "Swimming": new LocationActivity({
+            activity_name: "Swimming",
+            infinite: true,
+            starting_text: "在河中练习游泳",
             skill_xp_per_tick: 1,
             is_unlocked: true,
         }),
