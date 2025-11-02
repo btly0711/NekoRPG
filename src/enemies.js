@@ -1148,7 +1148,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "初始绿宝石", chance:0.02},
-            {item_name: "潮汐·凶兽肉排", chance:1.0},
+            //{item_name: "潮汐·凶兽肉排", chance:1.0},
             //应为160C
         ],
     });
@@ -1188,6 +1188,61 @@ class Enemy {
             {item_name: "精钢锭", chance:0.5},
             {item_name: "银钱", chance:0.5},
             //应为260C
+        ],
+    });
+    enemy_templates["潮汐级荒兽"] = new Enemy({
+        name: "潮汐级荒兽", 
+        description: "一种地行性荒兽，肉比荒兽尼尔略多一些", 
+        xp_value: 34, 
+        rank: 1310,
+        image: "../NekoRPG/image/enemy/E1310.png",
+        realm: "<span class=realm_basic><b>潮汐级高等 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 870, attack: 610, agility: 300, attack_speed: 1.2, defense: 190}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "潮汐·凶兽肉块", chance:0.05},
+            //应为260C
+        ],
+    });
+    enemy_templates["掠原蝠"] = new Enemy({
+        name: "掠原蝠", 
+        description: "一种以速度闻名的小型荒兽，什么都会叼一点", 
+        xp_value: 34, 
+        rank: 1311,
+        image: "../NekoRPG/image/enemy/E1311.png",
+        realm: "<span class=realm_basic><b>潮汐级高等 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 720, attack: 670, agility: 360, attack_speed: 1.2, defense: 210}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "灵液", chance:0.03},
+            {item_name: "毒液", chance:0.03},
+            {item_name: "天蚕丝", chance:0.04},
+            //应为260C
+        ],
+    });
+    enemy_templates["黑夜傀儡"] = new Enemy({
+        name: "黑夜傀儡", 
+        description: "岩石中自发产生的傀儡，体内时常镶嵌着宝石", 
+        xp_value: 34, 
+        rank: 1312,
+        image: "../NekoRPG/image/enemy/E1312.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1600, attack: 585, agility: 360, attack_speed: 1.2, defense: 320}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.4},
+            {item_name: "初始绿宝石", chance:0.2},
+            //应为500C
         ],
     });
 })();

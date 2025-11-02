@@ -65,10 +65,12 @@ class ItemRecipe extends Recipe {
     }
 
     get_success_chance(station_tier=1) {
-        const level = Math.min(this.recipe_level[1]-this.recipe_level[0]+1, Math.max(0,skills[this.recipe_skill].current_level-this.recipe_level[0]+1));
-        const skill_modifier = Math.min(1,(0||(level+(station_tier-1))/(this.recipe_level[1]-this.recipe_level[0]+1)));
-        return this.success_chance[0]*(this.success_chance[1]/this.success_chance[0])**skill_modifier;
-    }
+        //const level = Math.min(this.recipe_level[1]-this.recipe_level[0]+1, Math.max(0,skills[this.recipe_skill].current_level-this.recipe_level[0]+1));
+        //const skill_modifier = Math.min(1,(0||(level+(station_tier-1))/(this.recipe_level[1]-this.recipe_level[0]+1)));
+        //return this.success_chance[0]*(this.success_chance[1]/this.success_chance[0])**skill_modifier;
+        const level_d = Math.max(this.recipe_level[1]-skills[this.recipe_skill].current_level-station_tier,0);
+        return 0.85**level_d;
+        }
 
     get_availability() {
         for(let i = 0; i < this.materials.length; i++) {
@@ -237,11 +239,11 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         throw new Error(`Tried to use a recipe that doesn't exist: ${category} -> ${subcategory} -> ${recipe_id}`);
     }
     if(subcategory === "items") {
-        exp_value = Math.max(exp_value,1.5*selected_recipe.recipe_level[1]);
+        exp_value = Math.max(exp_value,1.4*selected_recipe.recipe_level[1] * 2);
         //maybe scale with materials needed?
         
         if(selected_recipe.recipe_level[1] < skill_level) {
-            exp_value = Math.max(1,exp_value * Math.max(0,Math.min(5,(selected_recipe.recipe_level[1]+6-skill_level))/5));
+            exp_value *= 0.8 ** (skill_level - selected_recipe.recipe_level[1]);
         }
     } else if (subcategory === "components" || selected_recipe.recipe_type === "component") {
         const result_level = 8*result_tier;
@@ -657,15 +659,6 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [0,5],
         recipe_skill: "Smelting",
     });
-    smelting_recipes.items["提炼宝石"] = new ItemRecipe({
-        name: "提炼宝石",
-        recipe_type: "material",
-        materials: [{material_id: "坚硬石块", count: 1},{material_id: "魔力碎晶", count: 1}], 
-        result: {result_id: "初始黄宝石", count: 1},
-        success_chance: [0.2,1],
-        recipe_level: [0,10],
-        recipe_skill: "Smelting",
-    });
     //1-2
     
     smelting_recipes.items["熔炼精钢"] = new ItemRecipe({
@@ -675,24 +668,6 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "精钢锭", count: 1},
         success_chance: [0.5,1],
         recipe_level: [2,7],
-        recipe_skill: "Smelting",
-    });
-    smelting_recipes.items["精炼宝石 I"] = new ItemRecipe({
-        name: "精炼宝石 I",
-        recipe_type: "material",
-        materials: [{material_id: "初始黄宝石", count: 5},{material_id: "魔力碎晶", count: 2}], 
-        result: {result_id: "初始蓝宝石", count: 1},
-        success_chance: [0.3,1],
-        recipe_level: [4,14],
-        recipe_skill: "Smelting",
-    });
-    smelting_recipes.items["精炼宝石 II"] = new ItemRecipe({
-        name: "精炼宝石 II",
-        recipe_type: "material",
-        materials: [{material_id: "红色刀币", count: 3},{material_id: "魔力碎晶", count: 4}], 
-        result: {result_id: "初始红宝石", count: 1},
-        success_chance: [0.3,1],
-        recipe_level: [6,16],
         recipe_skill: "Smelting",
     });
 })();
@@ -727,6 +702,34 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "粘合织料", count: 1},
         success_chance: [0.5,1],
         recipe_level: [1,2],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items["提炼宝石"] = new ItemRecipe({
+        name: "提炼宝石",
+        recipe_type: "material",
+        materials: [{material_id: "坚硬石块", count: 1},{material_id: "魔力碎晶", count: 1}], 
+        result: {result_id: "初始黄宝石", count: 1},
+        success_chance: [0.2,1],
+        recipe_level: [0,6],
+        recipe_skill: "Alchemy",
+    });
+    
+    alchemy_recipes.items["精炼宝石 I"] = new ItemRecipe({
+        name: "精炼宝石 I",
+        recipe_type: "material",
+        materials: [{material_id: "初始黄宝石", count: 5},{material_id: "魔力碎晶", count: 2}], 
+        result: {result_id: "初始蓝宝石", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [4,8],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items["精炼宝石 II"] = new ItemRecipe({
+        name: "精炼宝石 II",
+        recipe_type: "material",
+        materials: [{material_id: "红色刀币", count: 3},{material_id: "魔力碎晶", count: 4}], 
+        result: {result_id: "初始红宝石", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [6,10],
         recipe_skill: "Alchemy",
     });
 })();

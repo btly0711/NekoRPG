@@ -700,11 +700,11 @@ function get_location_type_penalty(type, stage, stat) {
                 is_unlocked: true, 
                 use_text: "前往工作台", 
                 tiers: {
-                    crafting: 1,
-                    forging: 1,
-                    smelting: 1,
-                    cooking: 1,
-                    alchemy: 1,
+                    crafting: 0,
+                    forging: 0,
+                    smelting: 0,
+                    cooking: 0,
+                    alchemy: 0,
                 }
             },
         
@@ -1162,11 +1162,32 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 160,
+            locations: [{location: "燕岗近郊 - 3"},{location:"郊区小屋"}],
+        },
+    });
+    locations["燕岗近郊 - 3"] = new Combat_zone({
+        description: "沿着藏宝图向前，存在大量荒兽的的区域", //MT25-26
+        enemy_count: 20, 
+        enemies_list: ["荒兽尼尔","司雍世界修士","潮汐级荒兽","掠原蝠","黑夜傀儡"],//荒兽尼尔在原作中就不存在
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_variation: 0.1,
+        is_unlocked: false, 
+        name: "燕岗近郊 - 3",
+        
+        rank:23, 
+        parent_location: locations["燕岗近郊"],
+        first_reward: {
+            xp: 240,
+        },
+        repeatable_reward: {
+            xp: 180,
         },
     });
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 0"], custom_text: "与百兰战斗"});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 1"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 2"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 3"]});
     
     
     
@@ -1177,7 +1198,30 @@ function get_location_type_penalty(type, stage, stat) {
         is_unlocked: false,
         name: "郊区河流", 
     });
+    locations["郊区小屋"] = new Location({ 
+        connected_locations: [{location: locations["燕岗近郊"], custom_text: "回到藏宝图的路线上"}], 
+        description: "荒废的小屋，内有比练习用工作台略好的工作台，也可以用于休息！",
+        
+        is_unlocked: false,
+        sleeping: {
+            text: "闭好门窗，睡一会",
+            xp: 1
+        },
+        crafting: {
+           is_unlocked: true, 
+            use_text: "使用共享工作台[Tier+2]", 
+            tiers: {
+                   crafting: 2,
+                forging: 2,
+                smelting: 2,
+                cooking: 2,
+                alchemy: 2,
+            }
+            },
+        name: "郊区小屋", 
+    });
     locations["燕岗近郊"].connected_locations.push({location: locations["郊区河流"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["郊区小屋"]});
     
 
 
