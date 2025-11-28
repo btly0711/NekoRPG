@@ -125,7 +125,7 @@ class Gathering extends Training {
 (function(){
     activities["mining"] = new Gathering({
         name: "mining",
-        action_text: "Swinging the pickaxe",
+        action_text: "抡着镐子",
         description: "Swing you pickaxe against the hard rock",
         base_skills_names: ["Mining"],
         is_unlocked: true,

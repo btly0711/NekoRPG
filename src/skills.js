@@ -1484,8 +1484,8 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     });
 
     skills["Mining"] = new Skill({skill_id: "Mining",
-        names: {0: "Mining"}, 
-        description: "Get better with mining the ores",
+        names: {0: "挖掘"}, 
+        description: "提升挖掘矿石的技能",
         category: "Activity",
         base_xp_cost: 10,
         visibility_treshold: 4,

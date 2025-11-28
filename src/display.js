@@ -249,13 +249,27 @@ function create_item_tooltip_content({item, options={}}) {
         } else {
             item_tooltip += `<br><br><b style="color: ${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
         }
+        let SkillLevelMap = {"Mining":"挖掘"};
+        if(item.bonus_skill_levels != {})
+        {
+            let S_levels = item.bonus_skill_levels;
+            item_tooltip += `<br>`;
+            item_tooltip += `<br>`;
+            Object.keys(S_levels).forEach(S_name => {
+                        
+                        if(S_levels[S_name] > 0) {
+                            item_tooltip += `${SkillLevelMap[S_name]}: +${S_levels[S_name]}<br>`
+                        }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部",}
+            });
+        }
+
+        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子"}
         if(item.equip_slot === "weapon") {
-            item_tooltip += `<br><br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
+            item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
         else if(item.offhand_type !== "shield") {
-            item_tooltip += `<br><br>槽位: <b>${EquipSlotMap[item.equip_slot]}</b>`;
+            item_tooltip += `<br>槽位: <b>${EquipSlotMap[item.equip_slot]}</b>`;
         }
 
         if(item.components) {
@@ -1248,7 +1262,7 @@ function update_displayed_equipment() {
         if(character.equipment[key] == null) { //no item in slot
             eq_tooltip = document.createElement("span");
             eq_tooltip.classList.add("item_tooltip");
-            let mapp={"head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","method":"秘法","realm":"领域","law":"法则","props":"道具","special":"特殊"};
+            let mapp={"head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","method":"秘法","realm":"领域","law":"法则","props":"道具","special":"特殊","pickaxe":"镐子"};
             equipment_slots_divs[key].innerHTML = `${mapp[key]} 槽位`;
             equipment_slots_divs[key].classList.add("equipment_slot_empty");
             eq_tooltip.innerHTML = `你的 ${mapp[key]} 槽位`;
@@ -2447,12 +2461,12 @@ function create_gathering_tooltip(location_activity) {
     }
 
     if(location_activity.gained_resources.scales_with_skill) {
-        gathering_tooltip.innerHTML = `<span class="activity_efficiency_info">Efficiency scaling:<br>"${skill_names}" skill lvl ${location_activity.gained_resources.skill_required[0]} to ${location_activity.gained_resources.skill_required[1]}</span><br><br>`;
+        gathering_tooltip.innerHTML = `<span class="activity_efficiency_info">效率折算:<br>"${skill_names}" 技能等级 ${location_activity.gained_resources.skill_required[0]} 到 ${location_activity.gained_resources.skill_required[1]}</span><br><br>`;
     }
 
-    gathering_tooltip.innerHTML += `Every ${format_reading_time(gathering_time_needed)}, chance to find:`;
+    gathering_tooltip.innerHTML += `每 ${format_reading_time(gathering_time_needed)}, 发现的机会:`;
     for(let i = 0; i < gained_resources.length; i++) {
-        gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" at ${Math.round(100*gained_resources[i].chance)}%`;
+        gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" (${Math.round(100*gained_resources[i].chance)}%)`;
     }
 
     return gathering_tooltip;
@@ -2472,11 +2486,11 @@ function update_gathering_tooltip(current_activity) {
     }
 
     if(current_activity.gained_resources.scales_with_skill) {
-        gathering_tooltip.innerHTML = `<span class="activity_efficiency_info">Efficiency scaling:<br>"${skill_names}" skill lvl ${current_activity.gained_resources.skill_required[0]} to ${current_activity.gained_resources.skill_required[1]}</span><br><br>`;
+        gathering_tooltip.innerHTML = `<span class="activity_efficiency_info">效率折算:<br>"${skill_names}" 技能等级 ${current_activity.gained_resources.skill_required[0]} 到 ${current_activity.gained_resources.skill_required[1]}</span><br><br>`;
     }
-    gathering_tooltip.innerHTML += `Every ${format_reading_time(gathering_time_needed)}, chance to find:`;
+    gathering_tooltip.innerHTML += `每 ${format_reading_time(gathering_time_needed)}, 发现的机会:`;
     for(let i = 0; i < gained_resources.length; i++) {
-        gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" at ${Math.round(100*gained_resources[i].chance)}%`;
+        gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" (${Math.round(100*gained_resources[i].chance)}%)`;
     }
 }
 
@@ -2742,7 +2756,7 @@ function start_activity_display(current_activity) {
         if(activities[current_activity.activity_name].type !== "GATHERING") {
             action_xp_div.innerText = `每秒得到 ${current_activity.skill_xp_per_tick} ${skills[activities[current_activity.activity_name].base_skills_names].name()} 基础经验值   (${needed_xp})`;
         } else {
-            action_xp_div.innerText = `Getting ${current_activity.skill_xp_per_tick} base xp per gathering cycle to ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
+            action_xp_div.innerText = `得到 ${current_activity.skill_xp_per_tick} 基本经验 每个采集循环 对于 ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
         }
     }
     else {
@@ -2756,7 +2770,7 @@ function start_activity_display(current_activity) {
 
 
     const action_end_text = document.createElement("div");
-    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳"};
+    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳","mining":"挖掘"};
     const dev_ACNMap = false;
     action_end_text.innerText = `结束 ${dev_ACNMap?current_activity.activity_name:ActivityNameMap[current_activity.activity_name]}`;
     action_end_text.id = "action_end_text";
@@ -2822,7 +2836,7 @@ function update_displayed_ongoing_activity(current_activity, is_job){
     if(activities[current_activity.activity_name].type !== "GATHERING") {
         action_xp_div.innerText = `每秒获取 ${format_number(current_activity.skill_xp_per_tick*get_skills_overall_xp_gain())}  ${skills[activities[current_activity.activity_name].base_skills_names].name()} 经验值 (${needed_xp})`;
     } else {
-        action_xp_div.innerText = `Getting ${current_activity.skill_xp_per_tick} base xp per gathering cycle to ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
+        action_xp_div.innerText = `得到 ${current_activity.skill_xp_per_tick} 基本经验 每个采集循环 对于 ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
     }
     if(current_activity.gained_resources) {
         document.getElementById("gathering_progress_bar").style.width = 385*current_activity.gathering_time/current_activity.gathering_time_needed+"px";

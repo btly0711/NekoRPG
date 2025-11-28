@@ -376,6 +376,7 @@ class Equippable extends Item {
         this.item_type = "EQUIPPABLE";
         this.stackable = false;
         this.components = {};
+        this.bonus_skill_levels = item_data.bonus_skill_levels || {};
 
         this.quality = Math.round(item_data.quality) || 100;
 
@@ -455,6 +456,10 @@ class Equippable extends Item {
         }
 
         return stats;
+    }
+    
+    getBonusSkillLevels() {
+        return this.bonus_skill_levels;
     }
 }
 
@@ -2144,6 +2149,24 @@ item_templates["Twist liek a snek"] = new Book({
         value: 10,
         equip_slot: "sickle",
     });
+
+    
+    item_templates["精钢镐"] = new Tool({
+        name: "精钢镐",
+        description: "一把普通的精钢镐头，可以用于开采紫铜",
+        value: 1000,
+        equip_slot: "pickaxe",
+    });
+    item_templates["紫铜镐"] = new Tool({
+        name: "紫铜镐",
+        description: "一把紫铜镐头，开采能力有了大幅度加强",
+        value: 66666,
+        equip_slot: "pickaxe",
+        bonus_skill_levels: {
+            "Mining": 4,
+        }
+    });
+
 })();
 
 //usables:
@@ -2190,7 +2213,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "精钢剑刃", description: "由精钢锭打造出的剑刃，远远比铁剑刃锋利",
         component_type: "long blade",
         value: 900,
-        component_tier: 1,
+        component_tier: 2,
         name_prefix: "精钢",
         attack_value: 48,
         stats: {
@@ -2220,10 +2243,24 @@ item_templates["Twist liek a snek"] = new Book({
         name: "铜骨剑柄", description: "由铜骨制成的剑柄。结实好用！",
         component_type: "short handle",
         value: 50,
-        component_tier: 1,
+        component_tier: 2,
         stats: {
             attack_speed: {
                 multiplier: 1.00,
+            },
+        }
+    });
+    item_templates["改良剑柄"] = new WeaponComponent({
+        name: "改良剑柄", description: "由多种材料组合的剑柄。能够提供复合提升！",
+        component_type: "short handle",
+        value: 25000,
+        component_tier: 3,
+        stats: {
+            agility: {
+                flat: 40.00,
+            },
+            crit_multipler: {
+                flat: 0.3,
             },
         }
     });
@@ -2289,7 +2326,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1800,
         component_type: "helmet interior",
         base_defense: 10,
-        component_tier: 1,
+        component_tier: 2,
     });
     item_templates["异兽背心"] = new Armor({
         name: "异兽背心", 
@@ -2297,7 +2334,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2400,
         component_type: "chestplate interior",
         base_defense: 16,
-        component_tier: 1,
+        component_tier: 2,
     });
     item_templates["异兽裤子"] = new Armor({
         name: "异兽裤子", 
@@ -2305,7 +2342,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2400,
         component_type: "leg armor interior",
         base_defense: 14,
-        component_tier: 1,
+        component_tier: 2,
     });
     item_templates["异兽袜子"] = new Armor({
         name: "异兽袜子", 
@@ -2313,7 +2350,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1200,
         component_type: "shoes interior",
         base_defense: 8,
-        component_tier: 1,
+        component_tier: 2,
     });
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
@@ -2372,6 +2409,32 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "../NekoRPG/image/item/steel_ingot.png",
     });
+    item_templates["紫铜锭"] = new Material({
+        id: "精钢锭",
+        name: "精钢锭", 
+        description: "勉强入级的A1级金属，性能均匀", 
+        value: 18888,
+        material_type: "metal",
+        image: "../NekoRPG/image/item/purplecopper_ingot.png",
+    });
+})();
+
+//矿石
+(function(){
+    item_templates["紫铜矿"] = new OtherItem({
+        id: "紫铜矿",
+        name: "紫铜矿", 
+        description: "普通的A1级金属矿石，可以使用毒液彻底炼化", 
+        value: 2222,
+        image: "../NekoRPG/image/item/purplecopper_ore.png",
+    });
+    item_templates["煤炭"] = new OtherItem({
+        id: "煤炭",
+        name: "煤炭", 
+        description: "真正的煤炭！吸收了部分能量的它，可以提供比魔力碎晶高得多的温度。", 
+        value: 3333,
+        image: "../NekoRPG/image/item/coal.png",
+    });
 })();
 
 //任务物品
@@ -2416,6 +2479,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "涂抹了凝胶的飞蛾翅膀结合体，适合与皮肤亲密接触",
         value: 12,
         image: "../NekoRPG/image/item/mixed_comp01.png",
+    });
+    item_templates["润灵铜骨"] = new OtherItem({
+        name: "润灵铜骨", 
+        description: "用灵液将铜骨和天蚕丝融合的产物", 
+        value: 10000,
+        image: "../NekoRPG/image/item/aura_bone.png",
     });
 })();
 

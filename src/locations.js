@@ -5,6 +5,8 @@ import { dialogues as dialoguesList} from "./dialogues.js";
 import { skills } from "./skills.js";
 import { current_game_time } from "./game_time.js";
 import { activities } from "./activities.js";
+
+import { get_total_skill_level } from "./character.js";
 const locations = {};
 const location_types = {};
 //contains all the created locations
@@ -359,12 +361,19 @@ class LocationActivity{
 
     getActivityEfficiency = function() {
         let skill_modifier = 1;
+        //console.log("1");
         if(this.gained_resources.scales_with_skill){
             let skill_level_sum = 0;
             for(let i = 0; i < activities[this.activity_name].base_skills_names?.length; i++) {
+                let S_max = this.gained_resources.skill_required[1];
+                let S_min = this.gained_resources.skill_required[0];
+                let S_id = activities[this.activity_name].base_skills_names[i];
                 skill_level_sum += Math.min(
-                    this.gained_resources.skill_required[1]-this.gained_resources.skill_required[0]+1, Math.max(0,skills[activities[this.activity_name].base_skills_names[i]].current_level-this.gained_resources.skill_required[0]+1)
-                )/(this.gained_resources.skill_required[1]-this.gained_resources.skill_required[0]+1);
+                    S_max-S_min, Math.max(0,get_total_skill_level(S_id)-S_min)
+                )/(S_max-S_min);
+                //console.log(S_id);
+                //console.log(get_total_skill_level(S_id));
+                
             }
             skill_modifier = (skill_level_sum/activities[this.activity_name].base_skills_names?.length) ?? 1;
         }
@@ -1162,7 +1171,8 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 160,
-            locations: [{location: "燕岗近郊 - 3"},{location:"郊区小屋"}],
+            locations: [{location: "燕岗近郊 - 3"},{location:"燕岗矿井"}],
+            //activities: [{location:"燕岗矿井", activity:"miningP_copper"}],
         },
     });
     locations["燕岗近郊 - 3"] = new Combat_zone({
@@ -1198,9 +1208,9 @@ function get_location_type_penalty(type, stage, stat) {
         is_unlocked: false,
         name: "郊区河流", 
     });
-    locations["郊区小屋"] = new Location({ 
+    locations["燕岗矿井"] = new Location({ 
         connected_locations: [{location: locations["燕岗近郊"], custom_text: "回到藏宝图的路线上"}], 
-        description: "荒废的小屋，内有比练习用工作台略好的工作台，也可以用于休息！",
+        description: "荒废的矿井，内有比练习用工作台略好的工作台，简单的休息室，地下还有部分残余的A1级金属！",
         
         is_unlocked: false,
         sleeping: {
@@ -1218,10 +1228,10 @@ function get_location_type_penalty(type, stage, stat) {
                 alchemy: 2,
             }
             },
-        name: "郊区小屋", 
+        name: "燕岗矿井", 
     });
     locations["燕岗近郊"].connected_locations.push({location: locations["郊区河流"]});
-    locations["燕岗近郊"].connected_locations.push({location: locations["郊区小屋"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗矿井"]});
     
 
 
@@ -1754,6 +1764,37 @@ function get_location_type_penalty(type, stage, stat) {
             is_unlocked: true,
         }),
     }
+    
+    locations["燕岗矿井"].activities = {
+        
+        "miningP_copper": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "挖掘部分紫铜矿石",
+            skill_xp_per_tick: 1,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "紫铜矿", ammount: [[1,1], [1,3]], chance: [0.4, 1.0]}], 
+                time_period: [10, 4],
+                skill_required: [0, 10],
+                scales_with_skill: true,
+            },
+        }),
+
+        "miningCoal": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "挖掘煤矿石",
+            skill_xp_per_tick: 2,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "煤炭", ammount: [[1,1], [1,2]], chance: [0.4, 1.0]}], 
+                time_period: [12, 5],
+                skill_required: [3, 13],
+                scales_with_skill: true,
+            },
+        }),
+    };
 })();
 
 //add actions

@@ -1060,6 +1060,7 @@ class Enemy {
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "五彩凝胶", chance:0.5},
             {item_name: "灵液", chance:0.01},
+            {item_name: "紫铜镐", chance:1},
             //应为90C
         ],
     });

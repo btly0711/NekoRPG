@@ -85,6 +85,8 @@ character.stats.multiplier = {
 };
 
 character.xp_bonuses = {};
+
+character.bonus_skill_levels = {};
 character.xp_bonuses.total_multiplier = {
         hero: 1,
         all: 1,
@@ -330,6 +332,7 @@ character.stats.add_all_equipment_bonus = function() {
         //reset as they will be recalculated
         character.stats.flat.equipment = {};
         character.stats.multiplier.equipment = {};
+        character.bonus_skill_levels = {};
 
         //iterate over slots
         Object.keys(character.equipment).forEach(slot => {
@@ -352,11 +355,34 @@ character.stats.add_all_equipment_bonus = function() {
                                 character.stats.multiplier.equipment[stat] = (character.stats.multiplier.equipment[stat] || 1) * stats[stat].multiplier;
                         }
                 });
+
+                let S_levels = character.equipment[slot].bonus_skill_levels;
+                
+                Object.keys(S_levels).forEach(S_name => {
+                        
+                        if(S_levels[S_name] > 0) {
+                                if(character.bonus_skill_levels[S_name] == undefined)
+                                {
+                                        character.bonus_skill_levels[S_name] = S_levels[S_name];
+                                }
+                                else
+                                {
+                                        character.bonus_skill_levels[S_name] += S_levels[S_name];
+                                }
+                        }
+
+                });
         });
 
         character.stats.add_weapon_type_bonuses();
         //add weapon speed bonus (technically a bonus related to equipment, so its in this function)
+
+        
+
 }
+
+
+
 
 character.stats.add_weapon_type_bonuses = function() {
         
@@ -668,5 +694,9 @@ function get_hero_xp_gain() {
         return (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1)
 }
 
+function get_total_skill_level(skill_id) {
+        return skills[skill_id].current_level + (character.bonus_skill_levels[skill_id] || 0);
+}
+
 export {character, add_to_character_inventory, remove_from_character_inventory, equip_item_from_inventory, equip_item, 
-        unequip_item, update_character_stats, get_skill_xp_gain, get_hero_xp_gain, get_skills_overall_xp_gain, add_location_penalties};
+        unequip_item, update_character_stats, get_skill_xp_gain, get_hero_xp_gain, get_skills_overall_xp_gain, add_location_penalties,get_total_skill_level};

@@ -448,7 +448,7 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳"}
+    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","Mining":"挖矿"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     
     if(current_activity.earnings) {
@@ -1888,8 +1888,10 @@ function create_save() {
         save_data.total_kills = total_kills;
         save_data.global_flags = global_flags;
         save_data.gem_stats = character.stats.flat.gems;//存储宝石属性
+        
         save_data["character"] = {
                                 name: character.name, titles: character.titles, 
+                                bonus_skill_levels:  character.bonus_skill_levels,
                                 inventory: {}, equipment: character.equipment,
                                 money: character.money, 
                                 xp: {
@@ -1897,6 +1899,7 @@ function create_save() {
                                 },
                                 hp_to_full: character.stats.full.max_health - character.stats.full.health,
                             };
+                            
         //no need to save all stats; on loading, base stats will be taken from code and then additional stuff will be calculated again (in case anything changed)
         Object.keys(character.inventory).forEach(key =>{
             save_data["character"].inventory[key] = {count: character.inventory[key].count};
@@ -2106,6 +2109,7 @@ function load(save_data) {
 
     name_field.value = save_data.character.name;
     character.name = save_data.character.name;
+    character.bonus_skill_levels = save_data.character.bonus_skill_levels;
     character.stats.flat.gems = save_data.gem_stats;
 
     last_location_with_bed = save_data.last_location_with_bed;
@@ -2770,6 +2774,7 @@ function load_from_file(save_string) {
  */
 function load_from_localstorage() {
     try{
+        
         if(is_on_dev()) {
             if(localStorage.getItem(dev_save_key)){
                 load(JSON.parse(localStorage.getItem(dev_save_key)));

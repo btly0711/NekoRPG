@@ -132,15 +132,15 @@ class ComponentRecipe extends ItemRecipe{
     get_quality_range(tier = 0) {
         const skill = skills[this.recipe_skill];
         //const quality = (150+(5*skill.current_level-skill.max_level)+(20*tier))/100;
-        const quality = (90+(3*skill.current_level)+(20*tier))/100;
+        const quality = (80+(3*skill.current_level)+(15*tier))/100;
         //tier=工作台tier-部件tier
         //console.log(skill.current_level)
-        return [Math.max(10,Math.round(25*(quality-0.15))*4), Math.max(10,Math.round(25*(quality+0.1))*4)];
+        return [Math.max(10,Math.round(25*(quality-0.1))*4), Math.max(10,Math.round(25*(quality+0.1))*4)];
     }
 
     get_quality_cap() {
         const skill = skills[this.recipe_skill];
-        return Math.min(Math.round(100*(1+0.03*skill.current_level)),500);
+        return Math.min(Math.round(100*(1+0.02*skill.current_level)),500);
     }
 
     get_quality(tier = 0) {
@@ -162,6 +162,7 @@ class EquipmentRecipe extends Recipe {
     }) {
         super({name, id, is_unlocked, recipe_type: "equipment", result, getResult: null, recipe_level: [1,1], recipe_skill, success_rate: [1,1]})
         this.components = components;
+        
         this.item_type = item_type;
         this.getResult = function(component_1, component_2, station_tier = 1){
             const comp_quality_weighted = this.get_component_quality_weighted(component_1, component_2);
@@ -275,6 +276,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [
             {material_id: "骨头", count: 2, result_id: "骨剑柄"}, 
             {material_id: "铜骨", count: 2, result_id: "铜骨剑柄"}, 
+            {material_id: "润灵铜骨", count: 2, result_id: "改良剑柄"}, 
             //未完待续
         ],
         item_type: "Component",
@@ -670,6 +672,16 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [2,7],
         recipe_skill: "Smelting",
     });
+
+    smelting_recipes.items["熔炼紫铜"] = new ItemRecipe({
+        name: "熔炼紫铜",
+        recipe_type: "material",
+        materials: [{material_id: "紫铜矿", count: 2},{material_id: "毒液", count: 1},{material_id:"煤炭", count: 1}], 
+        result: {result_id: "紫铜锭", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [8,11],
+        recipe_skill: "Smelting",
+    });
 })();
 
 (function(){
@@ -691,7 +703,40 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [2,5],
         recipe_skill: "Cooking",
     });
+    cooking_recipes.items["潮汐级·烤肉"] = new ItemRecipe({
+        name: "潮汐级·烤肉",
+        recipe_type: "material",
+        materials: [{material_id: "潮汐·凶兽肉块", count: 1},{material_id: "煤炭", count: 1}], 
+        result: {result_id: "潮汐·凶兽肉排", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [5,8],
+        recipe_skill: "Cooking",
+    });
 })();
+
+//锻造[镐头]
+(function(){
+    
+    forging_recipes.items["精钢镐"] = new ItemRecipe({
+        name: "精钢镐",
+        recipe_type: "material",
+        materials: [{material_id: "精钢锭", count: 3},{material_id: "铜骨", count: 1}], 
+        result: {result_id: "精钢镐", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [3,8],
+        recipe_skill: "Forging",
+    });
+    forging_recipes.items["紫铜镐"] = new ItemRecipe({
+        name: "紫铜镐",
+        recipe_type: "material",
+        materials: [{material_id: "紫铜锭", count: 3},{material_id: "润灵铜骨", count: 1}], 
+        result: {result_id: "紫铜镐", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [6,11],
+        recipe_skill: "Forging",
+    });
+})();
+
 
 //炼金
 (function(){
@@ -702,6 +747,15 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "粘合织料", count: 1},
         success_chance: [0.5,1],
         recipe_level: [1,2],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items["润灵铜骨"] = new ItemRecipe({
+        name: "铜骨注灵",
+        recipe_type: "material",
+        materials: [{material_id: "铜骨", count: 1},{material_id: "天蚕丝", count: 1},{material_id:"灵液",count:2}],
+        result: {result_id: "润灵铜骨", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [8,12],
         recipe_skill: "Alchemy",
     });
     alchemy_recipes.items["提炼宝石"] = new ItemRecipe({
