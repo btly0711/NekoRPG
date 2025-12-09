@@ -1033,6 +1033,7 @@ i {
 
 .coin_moneyM{
 	color: rgb(31,30,51);
+	-webkit-text-stroke: 0.5px white;
 }
 
 .coin_moneyB{
@@ -1393,10 +1394,10 @@ i {
 						font-size: 12px;
 					}
 					.enemy_stat_short, .attack_stat_short {
-						width: 60px;
+						width: 55px;
 					}
 					.enemy_stat_long, .attack_stat_long {
-						width: 60px;
+						width: 75px;
 					}
 
 				.enemy_health_div {

@@ -266,6 +266,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [
             {material_id: "铁锭", count: 2, result_id: "铁剑刃"}, 
             {material_id: "精钢锭", count: 2, result_id: "精钢剑刃"}, 
+            {material_id: "紫铜锭", count: 2, result_id: "紫铜剑刃"}, 
             //未完待续
         ],
         item_type: "Component",

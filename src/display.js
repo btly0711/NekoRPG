@@ -290,7 +290,7 @@ function create_item_tooltip_content({item, options={}}) {
         }
 
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤"}
         if(!options.skip_quality && options?.quality?.length == 2) {
             if(item.getAttack) {
                 item_tooltip += 
@@ -391,7 +391,7 @@ function create_item_tooltip_content({item, options={}}) {
             item_tooltip += `<br>Size-specific attack power: x${item.attack_multiplier}`;
         }
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤"}
         Object.keys(item.stats).forEach(function(effect_key) {
 
             if(item.stats[effect_key].flat != null) {
@@ -442,7 +442,7 @@ function create_effect_tooltip(effect_name, duration) {
         //for regeneration bonuses, it is assumed they are only flat and not multiplicative
         //${capitalize_first_letter(key.replaceAll("_", " ").replace("flat","").replace("percent",""))}
             let sign = stat_value.flat > 0? "+":"-";
-            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷"}
+            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤"}
         if(key === "health_regeneration_flat") 
         {   
             tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}`;
@@ -1337,12 +1337,12 @@ function update_displayed_enemies() {
             }
 
             //enemies_div.children[i].children[0].children[1].innerHTML = `AP : ${Math.round(ap)} | EP : ${Math.round(ep)}`;
-            enemies_div.children[i].children[0].children[1].children[0].innerHTML = `| 伤害: ${current_enemies[i].stats.attack}`;
-            enemies_div.children[i].children[0].children[1].children[1].innerHTML = `攻速: ${disp_speed}`;
-            enemies_div.children[i].children[0].children[1].children[2].innerHTML = `命中: ${Math.min(100,Math.max(0,Math.round(100*hit_chance)))}%`; //100% if shield!
-            enemies_div.children[i].children[0].children[1].children[3].innerHTML = `闪避: ${Math.min(100,Math.max(0,Math.round(100*evasion_chance)))}%`;
-            enemies_div.children[i].children[0].children[1].children[4].innerHTML = `防御: ${current_enemies[i].stats.defense}`;
-
+            enemies_div.children[i].children[0].children[1].children[0].innerHTML = `| 伤害: ${format_number(current_enemies[i].stats.attack)}`;
+            enemies_div.children[i].children[0].children[1].children[1].innerHTML = `防御: ${format_number(current_enemies[i].stats.defense)}`;
+            enemies_div.children[i].children[0].children[1].children[2].innerHTML = `攻速: ${format_number(disp_speed)}`;
+            enemies_div.children[i].children[0].children[1].children[3].innerHTML = `命中: ${Math.floor(100*hit_chance)}%`; //100% if shield!
+            enemies_div.children[i].children[0].children[1].children[4].innerHTML = `闪避: ${Math.floor(100*evasion_chance)}%`;
+            
         } else {
             enemies_div.children[i].children[0].style.display = "none"; //just hide it
         }     
@@ -1839,7 +1839,7 @@ function update_displayed_combat_location(location) {
 function create_location_types_display(current_location){
     for(let i = 0; i < current_location.types?.length; i++) {
         const type_div = document.createElement("div");
-        const LocationTypesMap = {"dark":"黑暗"}
+        const LocationTypesMap = {"dark":"黑暗","aura":"光环"}
         type_div.innerHTML = LocationTypesMap[current_location.types[i].type] + (current_location.types[i].stage>1?` ${"I".repeat(current_location.types[i].stage)}`:"");
         type_div.classList.add("location_type_div");
 
@@ -3303,7 +3303,8 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [8, "衰弱", "#f2a4e8", "用毒魔法弱化对手的能力。<br>与该敌人战斗时，角色的攻防效力削弱<span style='color:#87CEFA'>10%</span>。"],
 [9, "反转", "#FFC0CB", "微妙的战斗领悟，使用诡异的战法，为攻守双方带来全新的策略维度。<br>战斗中，角色<span style='color:yellow'>攻击与防御效力交换</span>。"],
 [10, "回风", "#8ED1A6","借助风元素的势进行的二段不对等打击。<br>敌人每回合以<span style='color:#87CEFA'>0.8、1.2倍</span>攻击<span style='color:yellow'>各攻击一次</span>。"],
-		
+[11, "光环", "#E6E099","光环异兽的身周总是围着一群异兽，并且个个都看起来很亢奋。(效果整合在楼层属性中)"],
+			
 		
 ];
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
@@ -3580,7 +3581,7 @@ function create_new_levelary_entry(level_name) {
     if(level.types.length > 0) {
         tooltip_tags.innerHTML = `<br><br>楼层属性：`;
         
-        const LocationTypesMap = {"dark":"黑暗"}
+        const LocationTypesMap = {"dark":"黑暗","aura":"光环"}
         const LocationStageMap = {1:"I",2:"II",3:"III"};
         for(let j=0;j<level.types.length;j++)
         {

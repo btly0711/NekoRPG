@@ -85,6 +85,7 @@ class Combat_zone {
                  enemy_group_size = [1,1],
                  enemy_count = 30,
                  enemy_stat_variation = 0,
+                 enemy_stat_halo = 0,
                  parent_location, 
                  leave_text,
                  first_reward = {},
@@ -140,6 +141,8 @@ class Combat_zone {
             console.error(`Stat variation for enemies in zone "${this.name}" is set to unallowed value and was corrected to a default 0`);
         }
 
+        this.enemy_stat_halo = enemy_stat_halo;//improving
+
         this.parent_location = parent_location;
         if(!locations[this.parent_location.name]) {
             throw new Error(`Couldn't add parent location "${this.parent_location.name}" to zone "${this.name}"`)
@@ -192,50 +195,52 @@ class Combat_zone {
         for(let i = 0; i < enemy_group.length; i++) {
             const enemy = enemy_templates[enemy_group[i]];
             let newEnemy;
-            if(this.enemy_stat_variation != 0) {
+            // if(this.enemy_stat_variation != 0) {
 
-                const variation = Math.random() * this.enemy_stat_variation;
+            //     const variation = Math.random() * this.enemy_stat_variation;
+            //     const halo = this.enemy_stat_halo;
+            //     const base = 1 + variation + halo;
+            //     const vary = 2 * variation;
+            //     newEnemy = new Enemy({
+            //                             name: enemy.name, 
+            //                             description: enemy.description, 
+            //                             xp_value: enemy.xp_value,
+            //                             spec: enemy.spec,
+            //                             stats: {
+            //                                 health: Math.round(enemy.stats.health * (base - Math.random() * vary)),
+            //                                 attack: Math.round(enemy.stats.attack * (base - Math.random() * vary)),
+            //                                 agility: Math.round(enemy.stats.agility * (base - Math.random() * vary)),
+            //                                 dexterity: Math.round(enemy.stats.dexterity * (base - Math.random() * vary)),
+            //                                 intuition: Math.round(enemy.stats.intuition * (base - Math.random() * vary)),
+            //                                 attack_speed: Math.round(enemy.stats.attack_speed * (base - Math.random() * vary) * 100) / 100,
+            //                                 defense: Math.round(enemy.stats.defense * (base - Math.random() * vary))
+            //                             },
+            //                             loot_list: enemy.loot_list,
+            //                             image: enemy.image,
+            //                             add_to_bestiary: enemy.add_to_bestiary,
+            //                             size: enemy.size,
+            //                         });
 
-                const base = 1 + variation;
-                const vary = 2 * variation;
-                newEnemy = new Enemy({
-                                        name: enemy.name, 
-                                        description: enemy.description, 
-                                        xp_value: enemy.xp_value,
-                                        spec: enemy.spec,
-                                        stats: {
-                                            health: Math.round(enemy.stats.health * (base - Math.random() * vary)),
-                                            attack: Math.round(enemy.stats.attack * (base - Math.random() * vary)),
-                                            agility: Math.round(enemy.stats.agility * (base - Math.random() * vary)),
-                                            dexterity: Math.round(enemy.stats.dexterity * (base - Math.random() * vary)),
-                                            intuition: Math.round(enemy.stats.intuition * (base - Math.random() * vary)),
-                                            attack_speed: Math.round(enemy.stats.attack_speed * (base - Math.random() * vary) * 100) / 100,
-                                            defense: Math.round(enemy.stats.defense * (base - Math.random() * vary))
-                                        },
-                                        loot_list: enemy.loot_list,
-                                        image: enemy.image,
-                                        add_to_bestiary: enemy.add_to_bestiary,
-                                        size: enemy.size,
-                                    });
-
-            } else {
+            // } else {
+                
+            const halo = this.enemy_stat_halo + 1;
                 newEnemy = new Enemy({name: enemy.name, 
                     description: enemy.description, 
                     xp_value: enemy.xp_value,
                     stats: {
                         health: enemy.stats.health,
-                        attack: enemy.stats.attack,
-                        agility: enemy.stats.agility,
+                        attack: enemy.stats.attack * halo,
+                        agility: enemy.stats.agility * halo,
                         dexterity: enemy.stats.dexterity,
                         intuition: enemy.stats.intuition,
                         attack_speed: enemy.stats.attack_speed,
-                        defense: enemy.stats.defense
+                        defense: enemy.stats.defense * halo
                     },
                     loot_list: enemy.loot_list,
                     add_to_bestiary: enemy.add_to_bestiary,
                     size: enemy.size
                 });
-            }
+            //}
             newEnemy.is_alive = true;
             enemies.push(newEnemy); 
         }
@@ -1176,12 +1181,11 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["燕岗近郊 - 3"] = new Combat_zone({
-        description: "沿着藏宝图向前，存在大量荒兽的的区域", //MT25-26
+        description: "沿着藏宝图向前，存在大量荒兽的区域", //MT25-26
         enemy_count: 20, 
-        enemies_list: ["荒兽尼尔","司雍世界修士","潮汐级荒兽","掠原蝠","黑夜傀儡"],//荒兽尼尔在原作中就不存在
+        enemies_list: ["荒兽尼尔","司雍世界修士","潮汐级荒兽","掠原蝠","黑夜傀儡"],
         enemy_group_size: [1,1],
         types: [],
-        enemy_stat_variation: 0.1,
         is_unlocked: false, 
         name: "燕岗近郊 - 3",
         
@@ -1192,12 +1196,34 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 180,
+            locations: [{location: "燕岗近郊 - 4"}],
+        },
+    });
+    locations["燕岗近郊 - 4"] = new Combat_zone({
+        description: "存在光环荒兽的区域，荒兽的整体实力被影响着上了一个台阶", //MT25-26
+        enemy_count: 20, 
+        enemies_list: ["掠原蝠","黑夜傀儡","咬一口","绿原行者","初生鬼","灵蔓茸茸"],//16-18三只怪放在-5
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_halo: 0.1,
+        is_unlocked: false, 
+        name: "燕岗近郊 - 4",
+        
+        rank:24, 
+        parent_location: locations["燕岗近郊"],
+        first_reward: {
+            xp: 300,
+        },
+        repeatable_reward: {
+            xp: 240,
+            locations: [{location: "燕岗近郊 - 4"}],
         },
     });
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 0"], custom_text: "与百兰战斗"});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 1"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 2"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 3"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 4"]});
     
     
     
@@ -1774,8 +1800,8 @@ function get_location_type_penalty(type, stage, stat) {
             skill_xp_per_tick: 1,
             is_unlocked: true,
             gained_resources: {
-                resources: [{name: "紫铜矿", ammount: [[1,1], [1,3]], chance: [0.4, 1.0]}], 
-                time_period: [10, 4],
+                resources: [{name: "紫铜矿", ammount: [[1,1], [1,1]], chance: [0.4, 1.0]}], 
+                time_period: [20, 8],
                 skill_required: [0, 10],
                 scales_with_skill: true,
             },
@@ -1788,8 +1814,8 @@ function get_location_type_penalty(type, stage, stat) {
             skill_xp_per_tick: 2,
             is_unlocked: true,
             gained_resources: {
-                resources: [{name: "煤炭", ammount: [[1,1], [1,2]], chance: [0.4, 1.0]}], 
-                time_period: [12, 5],
+                resources: [{name: "煤炭", ammount: [[1,1], [1,1]], chance: [0.4, 1.0]}], 
+                time_period: [24, 10],
                 skill_required: [3, 13],
                 scales_with_skill: true,
             },

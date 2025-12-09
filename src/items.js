@@ -2225,6 +2225,23 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    
+    item_templates["紫铜剑刃"] = new WeaponComponent({
+        name: "紫铜剑刃", description: "由紫铜锭打造出的剑刃，锋利的同时兼具灵敏",
+        component_type: "long blade",
+        value: 45000,
+        component_tier: 3,
+        name_prefix: "紫铜",
+        attack_value: 160,
+        stats: {
+            crit_rate: {
+                flat: 0.14,
+            },
+            attack_speed: {
+                multiplier: 1.08,
+            }
+        }
+    });
     item_templates["骨剑柄"] = new WeaponComponent({
         name: "骨剑柄", description: "由白骨制成的剑柄。易碎，所以使用时会影响自身",
         component_type: "short handle",
@@ -2259,7 +2276,7 @@ item_templates["Twist liek a snek"] = new Book({
             agility: {
                 flat: 40.00,
             },
-            crit_multipler: {
+            crit_multiplier: {
                 flat: 0.3,
             },
         }
@@ -2388,6 +2405,62 @@ item_templates["Twist liek a snek"] = new Book({
         full_armor_name: "铁制战靴",
         defense_value: 2,
     });
+    item_templates["紫铜头盔"] = new ArmorComponent({
+        name: "紫铜头盔",
+        description: "A1级盔甲，轻便而坚硬",
+        component_type: "helmet exterior",
+        value: 66666,
+        component_tier: 2,
+        full_armor_name: "紫铜头盔",
+        defense_value: 45,
+        stats: {
+            agility: {
+                flat: 45.00,
+            },
+        }
+    });
+    item_templates["紫铜胸甲"] = new ArmorComponent({
+        name: "紫铜胸甲",
+        description: "A1级盔甲，轻便而坚硬",
+        component_type: "chestplate exterior",
+        value: 88888,
+        component_tier: 2,
+        full_armor_name: "紫铜胸甲",
+        defense_value: 60,
+        stats: {
+            agility: {
+                flat: 60.00,
+            },
+        }
+    });
+    item_templates["紫铜腿甲"] = new ArmorComponent({
+        name: "紫铜腿甲",
+        description: "A1级盔甲，轻便而坚硬",
+        component_type: "leg armor exterior",
+        value: 88888,
+        component_tier: 2,
+        full_armor_name: "紫铜腿甲",
+        defense_value: 60,
+        stats: {
+            agility: {
+                flat: 60.00,
+            },
+        }
+    });
+    item_templates["紫铜战靴"] = new ArmorComponent({
+        name: "紫铜战靴",
+        description: "A1级盔甲，轻便而坚硬",
+        component_type: "shoes exterior",
+        value: 44444,
+        component_tier: 2,
+        full_armor_name: "紫铜战靴",
+        defense_value: 30,
+        stats: {
+            agility: {
+                flat: 30.00,
+            },
+        }
+    });
 })();
 //盔甲
 
@@ -2410,8 +2483,8 @@ item_templates["Twist liek a snek"] = new Book({
         image: "../NekoRPG/image/item/steel_ingot.png",
     });
     item_templates["紫铜锭"] = new Material({
-        id: "精钢锭",
-        name: "精钢锭", 
+        id: "紫铜锭",
+        name: "紫铜锭", 
         description: "勉强入级的A1级金属，性能均匀", 
         value: 18888,
         material_type: "metal",

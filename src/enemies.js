@@ -1232,7 +1232,7 @@ class Enemy {
     enemy_templates["黑夜傀儡"] = new Enemy({
         name: "黑夜傀儡", 
         description: "岩石中自发产生的傀儡，体内时常镶嵌着宝石", 
-        xp_value: 34, 
+        xp_value: 55, 
         rank: 1312,
         image: "../NekoRPG/image/enemy/E1312.png",
         realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
@@ -1241,11 +1241,110 @@ class Enemy {
         tags: [],
         stats: {health: 1600, attack: 585, agility: 360, attack_speed: 1.2, defense: 320}, 
         loot_list: [
-            {item_name: "初始红宝石", chance:0.4},
+            {item_name: "初始红宝石", chance:0.2},
             {item_name: "初始绿宝石", chance:0.2},
             //应为500C
         ],
     });
+    enemy_templates["来一口"] = new Enemy({
+        name: "来一口", 
+        description: "一种潜伏在地下的魔物，专门攻击冒险者防御不足的区域，极为难缠", 
+        xp_value: 55, 
+        rank: 1313,
+        image: "../NekoRPG/image/enemy/E1313.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
+        size: "small",
+        spec: [0,7],
+        tags: [],
+        stats: {health: 700, attack: 288, agility: 300, attack_speed: 1.2, defense: 288}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "毒液", chance:0.25},
+            //应为500C
+        ],
+    });
+    enemy_templates["绿原行者"] = new Enemy({
+        name: "绿原行者", 
+        description: "潜力耗尽却堪堪达到潮汐级巅峰的老人，为了大地级的契机可以付出一切", 
+        xp_value: 55, 
+        rank: 1314,
+        image: "../NekoRPG/image/enemy/E1314.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 2000, attack: 700, agility: 270, attack_speed: 1.2, defense: 350}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "煤炭", chance:0.15},
+            //应为500C
+        ],
+    });
+    enemy_templates["绿原行者"] = new Enemy({
+        name: "绿原行者", 
+        description: "潜力耗尽却堪堪达到潮汐级巅峰的老人，为了大地级的契机可以付出一切", 
+        xp_value: 55, 
+        rank: 1314,
+        image: "../NekoRPG/image/enemy/E1314.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 2000, attack: 700, agility: 270, attack_speed: 1.2, defense: 350}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "煤炭", chance:0.15},
+            //应为500C
+        ],
+    });
+    enemy_templates["初生鬼"] = new Enemy({
+        name: "初生鬼", 
+        description: "死去冒险者的怨念凝聚成的魔物。对了，匙弱在这里显然无效..", 
+        xp_value: 55, 
+        rank: 1315,
+        image: "../NekoRPG/image/enemy/E1315.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 3430, attack: 720, agility: 400, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "煤炭", chance:0.15},
+            //应为500C
+        ],
+    });
+    //1316 1317 1318，1317/1318均为潮汐级巅峰+,1316-》B1302
+    
+    enemy_templates["灵蔓茸茸"] = new Enemy({
+        name: "灵蔓茸茸", 
+        description: "蕴含着狂暴力量的茸茸，周围的魔物都会被其影响，变得暴戾", 
+        xp_value: 55, 
+        rank: 1319,
+        image: "../NekoRPG/image/enemy/E1319.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [11],
+        stats: {health: 3430, attack: 720, agility: 400, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.04},
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "毒液", chance:0.15},
+            {item_name: "灵液", chance:0.10},
+            {item_name: "天蚕丝", chance:0.15},
+            //应为900C
+        ],
+    });
+
+
+
+    //1401是那个【夜行幽灵】，大地三阶的作为1-5怪物了
+    //大地三阶的强化版作为某种（根本没想过让玩家打）的boss战*B1401*，可以用镐子把宝石刨出来（跳过boss战）
 })();
 
 
@@ -1285,8 +1384,6 @@ class Enemy {
         loot_list: [
             {item_name: "银钱", chance: 1},
             {item_name: "银钱", chance: 1},
-            {item_name: "银钱", chance: 1},
-            {item_name: "银钱", chance: 1},
             //奖励在秘法石碑后面
         ],
     });
@@ -1305,6 +1402,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:1.0},
             {item_name: "初始绿宝石", chance:1.0},
+            {item_name: "毒液", chance: 1},
+            {item_name: "毒液", chance: 1},
         ],
     });
     enemy_templates["百兰[BOSS]"] = new Enemy({
