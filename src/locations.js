@@ -914,9 +914,6 @@ function get_location_type_penalty(type, stage, stat) {
         name: "纳家练兵场 - X", 
         leave_text: "听话离去",
         parent_location: locations["练兵场深处"],
-        first_reward: {
-            xp: 200,
-        },
         repeatable_reward: {
             //textlines: [{dialogue: "猫妖", lines: ["MT10_clear"]}],
             locations: [{location: "燕岗城"}],
@@ -1004,10 +1001,6 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗城 - 秘法石碑", 
         leave_text: "暂时退避",
         parent_location: locations["燕岗城"],
-        first_reward: {
-            xp: 200,
-            //stances: ["MB_Speed"/*,"MB_Power"*/],
-        },
         repeatable_reward: {
             //此处应有战斗姿态
             textlines: [{dialogue: "秘法石碑 - 1", lines: ["Power", "Speed"]}],
@@ -1091,9 +1084,6 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗城 - X", 
         leave_text: "暂时返回",
         parent_location: locations["燕岗城"],
-        first_reward: {
-            xp: 300,
-        },
         repeatable_reward: {
             locations: [{location: "燕岗近郊"}],
         },
@@ -1133,9 +1123,6 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗近郊 - 0", 
         leave_text: "暂时返回",
         parent_location: locations["燕岗近郊"],
-        first_reward: {
-            xp: 800,
-        },
         repeatable_reward: {
             textlines: [{dialogue: "百兰", lines: ["defeat"]}],
         },

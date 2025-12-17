@@ -387,6 +387,10 @@ function create_item_tooltip_content({item, options={}}) {
 
             item_tooltip += `<br>攻击力: + ${item.attack_value}`;
         }
+        if(item?.defense_value) {
+
+            item_tooltip += `<br>防御力: + ${item.defense_value}`;
+        }
         if(item?.attack_multiplier && item.attack_multiplier !== 1) {
             item_tooltip += `<br>Size-specific attack power: x${item.attack_multiplier}`;
         }
