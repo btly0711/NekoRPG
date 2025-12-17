@@ -448,7 +448,7 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","Mining":"挖矿"}
+    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     
     if(current_activity.earnings) {
@@ -830,8 +830,9 @@ function set_new_combat({enemies} = {}) {
     }
 
     //attach loops
+    //console.log(current_enemies);
     for(let i = 0; i < current_enemies.length; i++) {
-        do_enemy_attack_loop(i, 0, true);
+        do_enemy_attack_loop(i, 0, 1,true);
     }
 
     set_character_attack_loop({base_cooldown: character_attack_cooldown});
@@ -872,7 +873,7 @@ function reset_combat_loops() {
  * @param {*} enemy_id 
  * @param {*} cooldown 
  */
-function do_enemy_attack_loop(enemy_id, count, is_new = false) {
+function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_round:回合数
     count = count || 0;
     update_enemy_attack_bar(enemy_id, count);
     let Spec_S = "";
@@ -882,11 +883,13 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
     if(current_enemies[enemy_id].spec.includes(8)) Spec_S += "[衰弱]";
     if(current_enemies[enemy_id].spec.includes(9)) Spec_S += "[反转]";
     if(current_enemies[enemy_id].spec.includes(10)) Spec_S += "[回风]";
+    if(current_enemies[enemy_id].spec.includes(12)) Spec_S += "[时封]";
+    console.log(current_enemies[enemy_id]);
     
-    if(is_new) {
+    if(isnew) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
         enemy_timer_adjustment[enemy_id] = 0;
-        if(current_enemies[enemy_id].spec.includes(2)) do_enemy_combat_action(enemy_id,"[迅捷]");//迅捷(开局攻击)
+        if(current_enemies[enemy_id].spec.includes(2)) do_enemy_combat_action(enemy_id,"[迅捷]"+Spec_S);//迅捷(开局攻击)
         if(current_enemies[enemy_id].spec.includes(4))
         {
             do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);
@@ -903,12 +906,19 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
         enemy_timers[enemy_id][1] = Date.now();
         update_enemy_attack_bar(enemy_id, count);
         count++;
+        let atk_sign = 0;
         if(count >= 40) {
             count = 0;
             if(current_enemies[enemy_id].spec.includes(10))
             {
                 do_enemy_combat_action(enemy_id,Spec_S,0.8);
                 do_enemy_combat_action(enemy_id,Spec_S,1.2);//回风
+            }
+            else  if(current_enemies[enemy_id].spec.includes(12))
+            {
+                do_enemy_combat_action(enemy_id,Spec_S,1,E_round);//时封
+                console.log(E_round);
+                atk_sign += 1;
             }
             else do_enemy_combat_action(enemy_id,Spec_S,1);
             if(current_enemies != null)
@@ -923,7 +933,7 @@ function do_enemy_attack_loop(enemy_id, count, is_new = false) {
 
             }
         }
-        do_enemy_attack_loop(enemy_id, count);
+        do_enemy_attack_loop(enemy_id, count,E_round + atk_sign,false);
 
         if(enemy_timer_variance_accumulator[enemy_id] <= 5/tickrate && enemy_timer_variance_accumulator[enemy_id] >= -5/tickrate) {
             enemy_timer_adjustment[enemy_id] = time_variance_accumulator;
@@ -1084,7 +1094,7 @@ function format_number(some_number)
  * 
  * @param {String} attacker id of enemy
 */ 
-function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1) {
+function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) {
     
     /*
     tiny workaround, as character being defeated while facing multiple enemies,
@@ -1157,6 +1167,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1) {
         spec_hint += "[ATK " + format_number(E_atk_mul * 100) + "%]";
         //怪物增攻
     }
+    spec_mul *= E_dmg_mul;//计算在loop函数中的增伤
     if(spec_mul != 1)
     {
         damage_dealt *= spec_mul;

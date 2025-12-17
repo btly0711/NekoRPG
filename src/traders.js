@@ -162,6 +162,13 @@ class TradeItem {
         location_name: "燕岗城",
         profit_margin: 3,
     });
+    traders["矿井集市"] = new Trader({
+        name: "矿井集市",
+        inventory_template: "Basic III",
+        is_unlocked: true,
+        location_name: "燕岗矿井",
+        profit_margin: 3.2,
+    });
 })();
 
 //create inventory templates
@@ -293,6 +300,33 @@ class TradeItem {
             new TradeItem({item_name: "异兽背心", count: [1], quality: [61, 100], chance: 0.5}),
             new TradeItem({item_name: "异兽裤子", count: [1], quality: [61, 100], chance: 0.5}),
             new TradeItem({item_name: "异兽鞋子", count: [1], quality: [61, 100], chance: 0.5}),
+    ];
+
+    inventory_templates["Basic III"] = 
+    [
+            new TradeItem({item_name: "异兽皮", count: [15,40]}),
+            new TradeItem({item_name: "铜骨", count: [10,25]}),
+            new TradeItem({item_name: "精钢锭", count: [5,15]}),
+            //旧物品
+
+
+            new TradeItem({item_name: "紫铜矿石", count: [0,10], chance: 0.7}),
+            new TradeItem({item_name: "煤炭", count: [0,10], chance: 0.8}),
+            new TradeItem({item_name: "灵液", count: [0,10], chance: 0.8}),
+            new TradeItem({item_name: "毒液", count: [0,10], chance: 0.8}),
+            //初级产品
+
+
+            new TradeItem({item_name: "润灵铜骨", count: [2,4], chance: 0.4}),
+            new TradeItem({item_name: "潮汐·凶兽肉排", count: [2,5], chance: 0.9}),
+            //加工品
+
+
+            new TradeItem({item_name: "紫铜头盔", count: [1], quality: [41, 80], chance: 0.4}),
+            new TradeItem({item_name: "紫铜胸甲", count: [1], quality: [41, 80], chance: 0.4}),
+            new TradeItem({item_name: "紫铜腿甲", count: [1], quality: [41, 80], chance: 0.4}),
+            new TradeItem({item_name: "紫铜战靴", count: [1], quality: [41, 80], chance: 0.4}),
+            //装备
     ];
 
 

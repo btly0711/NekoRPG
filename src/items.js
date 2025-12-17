@@ -2156,6 +2156,9 @@ item_templates["Twist liek a snek"] = new Book({
         description: "一把普通的精钢镐头，可以用于开采紫铜",
         value: 1000,
         equip_slot: "pickaxe",
+        bonus_skill_levels: {
+            "Mining": 1,
+        }
     });
     item_templates["紫铜镐"] = new Tool({
         name: "紫铜镐",
@@ -2232,7 +2235,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 45000,
         component_tier: 3,
         name_prefix: "紫铜",
-        attack_value: 160,
+        attack_value: 240,
         stats: {
             crit_rate: {
                 flat: 0.14,

@@ -227,6 +227,7 @@ class Combat_zone {
                 newEnemy = new Enemy({name: enemy.name, 
                     description: enemy.description, 
                     xp_value: enemy.xp_value,
+                    spec: enemy.spec,
                     stats: {
                         health: enemy.stats.health,
                         attack: enemy.stats.attack * halo,
@@ -237,6 +238,7 @@ class Combat_zone {
                         defense: enemy.stats.defense * halo
                     },
                     loot_list: enemy.loot_list,
+                    image: enemy.image,
                     add_to_bestiary: enemy.add_to_bestiary,
                     size: enemy.size
                 });
@@ -1181,7 +1183,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["燕岗近郊 - 3"] = new Combat_zone({
-        description: "沿着藏宝图向前，存在大量荒兽的区域", //MT25-26
+        description: "沿着藏宝图向前，存在大量荒兽的区域", //MT27-28
         enemy_count: 20, 
         enemies_list: ["荒兽尼尔","司雍世界修士","潮汐级荒兽","掠原蝠","黑夜傀儡"],
         enemy_group_size: [1,1],
@@ -1200,7 +1202,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["燕岗近郊 - 4"] = new Combat_zone({
-        description: "存在光环荒兽的区域，荒兽的整体实力被影响着上了一个台阶", //MT25-26
+        description: "存在光环荒兽的区域，荒兽的整体实力被影响着上了一个台阶", //MT29-30
         enemy_count: 20, 
         enemies_list: ["掠原蝠","黑夜傀儡","咬一口","绿原行者","初生鬼","灵蔓茸茸"],//16-18三只怪放在-5
         enemy_group_size: [1,1],
@@ -1216,7 +1218,27 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 240,
-            locations: [{location: "燕岗近郊 - 4"}],
+            locations: [{location: "燕岗近郊 - 5"}],
+        },
+    });
+    locations["燕岗近郊 - 5"] = new Combat_zone({
+        description: "更接近光环来源的区域，吸引来了大地级强者", //MT31-32
+        enemy_count: 20, 
+        enemies_list: ["初生鬼","燕岗领佣兵","冷冻火","缠绕骸骨","灵蔓茸茸"],//16-18三只怪放在-5
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_halo: 0.1,
+        is_unlocked: false, 
+        name: "燕岗近郊 - 5",
+        
+        rank:25, 
+        parent_location: locations["燕岗近郊"],
+        first_reward: {
+            xp: 360,
+        },
+        repeatable_reward: {
+            xp: 300,
+            //locations: [{location: "燕岗近郊 - 4"}],
         },
     });
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 0"], custom_text: "与百兰战斗"});
@@ -1224,6 +1246,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 2"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 3"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 4"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 5"]});
     
     
     
@@ -1236,7 +1259,8 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["燕岗矿井"] = new Location({ 
         connected_locations: [{location: locations["燕岗近郊"], custom_text: "回到藏宝图的路线上"}], 
-        description: "荒废的矿井，内有比练习用工作台略好的工作台，简单的休息室，地下还有部分残余的A1级金属！",
+        description: "围绕着矿井的修者聚集地，内有比练习用工作台略好的工作台，简单的休息室，地下还有部分残余的A1级金属！",
+        traders: ["矿井集市"],
         
         is_unlocked: false,
         sleeping: {

@@ -27,13 +27,13 @@ class Enemy {
         this.xp_value = xp_value;
         this.stats = stats;
         this.spec = spec;
+        console.log(spec);
         this.image = image;//image
         //only ma.gic & defense can be 0 in stats, other things will cause issues
         this.stats.max_health = stats.health;
         this.loot_list = loot_list;
         this.tags = {};
         this.realm = realm;
-        this.sp=[];
         for(let i = 0; i <tags.length; i++) {
             this.tags[tags[i]] = true;
         }
@@ -1060,7 +1060,6 @@ class Enemy {
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "五彩凝胶", chance:0.5},
             {item_name: "灵液", chance:0.01},
-            {item_name: "紫铜镐", chance:1},
             //应为90C
         ],
     });
@@ -1318,7 +1317,65 @@ class Enemy {
             //应为500C
         ],
     });
-    //1316 1317 1318，1317/1318均为潮汐级巅峰+,1316-》B1302
+    enemy_templates["燕岗领佣兵"] = new Enemy({
+        name: "燕岗领佣兵", 
+        description: "第一只大地级魔物。温馨提醒：大地级以上经验增长速率会翻倍！", 
+        xp_value: 89, 
+        rank: 1316,
+        image: "../NekoRPG/image/enemy/E1316.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [3],
+        tags: [],
+        stats: {health: 2990, attack: 1225, agility: 600, attack_speed: 1.2, defense: 400}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "毒液", chance:0.6},
+            {item_name: "紫铜锭", chance:0.2},
+            //应为5X
+        ],
+    });
+
+    enemy_templates["冷冻火"] = new Enemy({
+        name: "冷冻火", 
+        description: "不要想着和它打消耗战...当然，除非你可以防杀它。", 
+        xp_value: 55, 
+        rank: 1317,
+        image: "../NekoRPG/image/enemy/E1317.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰 +</b></span>",
+        size: "small",
+        spec: [3],//时封
+        tags: [],
+        stats: {health: 2100, attack: 750, agility: 360, attack_speed: 1.2, defense: 100}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.02},
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "灵液", chance:0.35},
+            //应为900C
+        ],
+    });
+
+    enemy_templates["缠绕骸骨"] = new Enemy({
+        name: "缠绕骸骨", 
+        description: "生灵骸骨的加强版。它身上的骨头是上好的材料！", 
+        xp_value: 55, 
+        rank: 1318,
+        image: "../NekoRPG/image/enemy/E1318.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1350, attack: 960, agility: 400, attack_speed: 1.2, defense: 240}, 
+        loot_list: [
+            {item_name: "初始红宝石", chance:0.02},
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "天蚕丝", chance:0.2},
+            {item_name: "润灵铜骨", chance:0.03},
+            //应为900C
+        ],
+    });
+
     
     enemy_templates["灵蔓茸茸"] = new Enemy({
         name: "灵蔓茸茸", 
@@ -1332,8 +1389,8 @@ class Enemy {
         tags: [11],
         stats: {health: 3430, attack: 720, agility: 400, attack_speed: 1.2, defense: 0}, 
         loot_list: [
-            {item_name: "初始红宝石", chance:0.04},
-            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "初始红宝石", chance:0.02},
+            {item_name: "初始绿宝石", chance:0.04},
             {item_name: "毒液", chance:0.15},
             {item_name: "灵液", chance:0.10},
             {item_name: "天蚕丝", chance:0.15},
