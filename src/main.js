@@ -884,7 +884,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(9)) Spec_S += "[反转]";
     if(current_enemies[enemy_id].spec.includes(10)) Spec_S += "[回风]";
     if(current_enemies[enemy_id].spec.includes(12)) Spec_S += "[时封]";
-    console.log(current_enemies[enemy_id]);
+    //console.log(current_enemies[enemy_id]);
     
     if(isnew) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
@@ -917,7 +917,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
             else  if(current_enemies[enemy_id].spec.includes(12))
             {
                 do_enemy_combat_action(enemy_id,Spec_S,1,E_round);//时封
-                console.log(E_round);
+                //console.log(E_round);
                 atk_sign += 1;
             }
             else do_enemy_combat_action(enemy_id,Spec_S,1);
