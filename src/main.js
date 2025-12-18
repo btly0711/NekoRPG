@@ -71,13 +71,18 @@ window.REALMS=[
 [0,"微尘级初级",0,0,0],
 [1,"微尘级中级",1,50,5],
 [2,"微尘级高级",3,200,100],
-[3,"万物级初等",6,700,1200],//0.2spd 
-[4,"万物级高等",12,3000,8000],
-[5,"万物级巅峰",25,6000,15000],
+[3,"万物级初等",6,700,1200],//0.1spd 
+[4,"万物级高等",12,3000,4000],
+[5,"万物级巅峰",25,6000,8000],
 
-[6,"潮汐级初等",40,10000,60000],//以下未平衡 0.3spd
-[7,"潮汐级高等",70,9000,240000],
-[8,"潮汐级巅峰",100,18000,9223372036854775807],
+[6,"潮汐级初等",40,10000,24000],//0.1spd
+[7,"潮汐级高等",70,20000,60000],
+[8,"潮汐级巅峰",100,40000,360000],
+
+
+[9,"大地级一阶",200,120000,300000],//以下未平衡(需要加入微火)
+[10,"大地级二阶",300,250000,450000],
+[11,"大地级三阶",500,550000,600000],
 
 ];
 //境界，X级存储了该等级的数据
@@ -2714,7 +2719,7 @@ function load(save_data) {
         if(save_data.locations[level_name].enemy_groups_killed >= 2)
         {
             //console.log(1);   
-            document.getElementById("levelary_box_div").style.display = "block";
+            document.getElementById("levelary_box_div").style.display = "none";
             create_new_levelary_entry(level_name);
         } 
     });
@@ -2798,32 +2803,32 @@ function load_from_localstorage() {
             load(JSON.parse(localStorage.getItem(save_key)));
         }
     } catch(error) {
-        // console.error("Something went wrong on loading from localStorage!");
-        // console.error(error);
+        console.error("Something went wrong on loading from localStorage!");
+        console.error(error);
         
         console.error("❌ ERROR loading from localStorage!");
-        // console.error("Error details:", error);
+        console.error("Error details:", error);
         
-        // // 获取更详细的存储信息
-        // console.error("Storage keys:", Object.keys(localStorage));
+        // 获取更详细的存储信息
+        console.error("Storage keys:", Object.keys(localStorage));
         
-        // // 记录存储大小
-        // let totalSize = 0;
-        // for (let i = 0; i < localStorage.length; i++) {
-        //     const key = localStorage.key(i);
-        //     const value = localStorage.getItem(key);
-        //     totalSize += key.length + value.length;
-        // }
-        // console.error(`Total localStorage size: ~${Math.round(totalSize / 1024)}KB`);
+        // 记录存储大小
+        let totalSize = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            const value = localStorage.getItem(key);
+            totalSize += key.length + value.length;
+        }
+        console.error(`Total localStorage size: ~${Math.round(totalSize / 1024)}KB`);
         
-        // // 用户友好的错误信息
-        // const errorMsg = `Failed to load save data: ${error.message || 'Unknown error'}`;
-        // log_message(errorMsg, "error");
+        // 用户友好的错误信息
+        const errorMsg = `Failed to load save data: ${error.message || 'Unknown error'}`;
+        log_message(errorMsg, "error");
         
-        // 尝试恢复
+        尝试恢复
         console.warn("Attempting to load empty state...");
-        window.location.reload();
-        load_from_localstorage();
+        // window.location.reload();
+        // load_from_localstorage();
     }
 }
 

@@ -2669,7 +2669,15 @@ function update_displayed_character_xp(did_level = false) {
 
     //console.log(window.REALMS);
     if(did_level) {
-        character_level_div.innerText = `境界 : ${window.REALMS[character.xp.current_level][1]}`;
+        if(character.xp.current_level >= 9)
+        {
+            
+            character_level_div.innerText = `境界 : <span class='realm_terra'>${window.REALMS[character.xp.current_level][1]}</span>`;
+        }
+        else
+        {
+            character_level_div.innerText = `境界 : ${window.REALMS[character.xp.current_level][1]}`;
+        }
         update_displayed_health();
     }
 }
@@ -3532,6 +3540,10 @@ function add_bestiary_lines(zone)
 
     const kill_counter = document.createElement("div");
     kill_counter.innerHTML = `<b>区域 ${Math.floor(zone/10)} - ${zone%10}</b>`;
+
+    //console.log(zone);
+    //if(zone==0) return;
+     
     kill_counter.classList.add("bestiary_entry_kill_count");
 
     bestiary_entry_divs[zone].appendChild(name_div);
@@ -3572,6 +3584,10 @@ function create_new_levelary_entry(level_name) {
     const kill_counter = document.createElement("div");
     kill_counter.innerHTML = `${Math.floor(level.rank/10)+1} - ${level.rank%10}`;
     kill_counter.classList.add("bestiary_entry_kill_count");
+
+    
+    //console.log(level.rank);
+    if(level.rank==0) return;
     
 
     const levelary_tooltip = document.createElement("div");
