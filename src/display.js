@@ -1521,7 +1521,7 @@ function update_displayed_normal_location(location) {
             const crafting_button = document.createElement("div");
             crafting_button.classList.add("location_choices");
             crafting_button.setAttribute("onclick", 'openCraftingWindow()');
-            crafting_button.innerHTML = `<i class="material-icons">construction</i> ${location.crafting.use_text}`;
+            crafting_button.innerHTML = `<span style="color:#c0ffc0"><i class="material-icons">construction</i> ${location.crafting.use_text}</span>`;
             action_div.appendChild(crafting_button);
         }
     }
@@ -1596,8 +1596,8 @@ function create_location_choices({location, category, add_icons = true, is_comba
             
             const trader_div = document.createElement("div");  
 
-            trader_div.innerHTML = add_icons ? `<i class="material-icons">storefront</i>   ` : "";
-            trader_div.innerHTML += traders[location.traders[i]].trade_text;
+            trader_div.innerHTML = add_icons ? `<span style="color:#ffffd0"><i class="material-icons">storefront</i>   ` : "";
+            trader_div.innerHTML += traders[location.traders[i]].trade_text + `</span>`;
             trader_div.classList.add("start_trade");
             trader_div.setAttribute("data-trader", location.traders[i]);
             trader_div.setAttribute("onclick", "startTrade(this.getAttribute('data-trader'));");
@@ -1706,10 +1706,10 @@ function create_location_choices({location, category, add_icons = true, is_comba
                 } else {
                     action.classList.add("travel_combat");
                     if("custom_text" in location.connected_locations[i]) {
-                        action.innerHTML = `<i class="material-icons">warning_amber</i> ` + location.connected_locations[i].custom_text;
+                        action.innerHTML = `<span style="color:#ffc0c0"><i class="material-icons">warning_amber</i> ` + location.connected_locations[i].custom_text + `</span>`;
                     }
                     else {
-                        action.innerHTML = `<i class="material-icons">warning_amber</i>  ` + "进入 [" + location.connected_locations[i].location.name+"]";
+                        action.innerHTML = `<span style="color:#ffc0c0"><i class="material-icons">warning_amber</i>  ` + "进入 [" + location.connected_locations[i].location.name+"]</span>";
                     }
                 }
             
@@ -1725,7 +1725,7 @@ function create_location_choices({location, category, add_icons = true, is_comba
                 const action = document.createElement("div");
                 action.classList.add("travel_combat");
                 
-                action.innerHTML = `<i class="material-icons">warning_amber</i>  快速返回 [${last_combat.name}]`;
+                action.innerHTML = `<span style="color:#ffd8c0"><i class="material-icons">warning_amber</i>  快速返回 [${last_combat.name}]</span>`;
                 
                 action.classList.add("action_travel");
                 action.setAttribute("data-travel", last_combat.name);
@@ -1753,7 +1753,7 @@ function create_location_choices({location, category, add_icons = true, is_comba
             const action = document.createElement("div");
             action.classList.add("travel_normal");
             
-            action.innerHTML = `<i class="material-icons">directions</i> 快速返回 [${last_bed.name}]`;
+            action.innerHTML = `<span style="color:#c0c0ff"><i class="material-icons">directions</i> 快速返回 [${last_bed.name}]</span>`;
             
             action.classList.add("action_travel");
             action.setAttribute("data-travel", last_bed.name);
