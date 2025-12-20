@@ -1569,7 +1569,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         names: {0: "坚韧皮肤", 5: "木质皮肤", 10: "铁制皮肤"},
         description: "杀不死我的，都将使我更强大",
         base_xp_cost: 400,
-        xp_scaling: 2.2,
+        xp_scaling: 2.5,
         max_level: 30,
         max_level_bonus: 30,
         get_effect_description: ()=> {

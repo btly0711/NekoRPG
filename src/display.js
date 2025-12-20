@@ -1772,10 +1772,10 @@ function create_location_choices({location, category, add_icons = true, is_comba
 
             action.classList.add("travel_combat");
             if("custom_text" in available_challenges[i]) {
-                action.innerHTML = `<i class="material-icons icon">warning_amber</i>  ` + available_challenges[i].custom_text;
+                action.innerHTML = `<span style="color:#ff8080"><i class="material-icons icon">warning_amber</i>  ` + available_challenges[i].custom_text + `</span>`;
             }
             else {
-                action.innerHTML = `<i class="material-icons">warning_amber</i>  ` + "进入 " + available_challenges[i].location.name;
+                action.innerHTML = `<span style="color:#ff8080"><i class="material-icons">warning_amber</i>  ` + "进入 " + available_challenges[i].location.name + `</span>`;
             }
             
             action.classList.add("action_travel");
@@ -2685,11 +2685,11 @@ function update_displayed_character_xp(did_level = false) {
         if(character.xp.current_level >= 9)
         {
             
-            character_level_div.innerText = `境界 : <span class='realm_terra'>${window.REALMS[character.xp.current_level][1]}</span>`;
+            character_level_div.innerHTML = `<span class='realm_terra'>境界 : ${window.REALMS[character.xp.current_level][1]}</span>`;
         }
         else
         {
-            character_level_div.innerText = `境界 : ${window.REALMS[character.xp.current_level][1]}`;
+            character_level_div.innerHTML = `境界 : ${window.REALMS[character.xp.current_level][1]}`;
         }
         update_displayed_health();
     }

@@ -1480,6 +1480,23 @@ class Enemy {
             {item_name: "初始绿宝石", chance:1.0},
         ],
     });
+    enemy_templates["燕岗领佣兵[BOSS]"] = new Enemy({
+        name: "燕岗领佣兵[BOSS]", 
+        description: "守在地宫门口，伺机而动的佣兵。已经截胡许多修者，底蕴丰厚。", 
+        add_to_bestiary: true,
+        xp_value: 34, 
+        rank: 1399,
+        image: "../NekoRPG/image/boss/B1302.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [2],
+        tags: [],
+        stats: {health: 29900, attack: 1225, agility: 600, attack_speed: 1.2, defense: 400}, 
+        loot_list: [
+            {item_name: "高级黄宝石", chance:1},
+            {item_name: "高级黄宝石", chance:1},
+        ],
+    });
     enemy_templates["Village guard (heavy)"] = new Enemy({
         name: "Village guard (heavy)", 
         description: "", 

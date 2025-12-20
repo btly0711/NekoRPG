@@ -28,10 +28,10 @@ character.base_stats = {
         health_regeneration_flat: 0, //in combat
         health_regeneration_percent: 0, //too op
        
-        attack_power: 1, 
+        attack_power: 1000, 
         defense: 0,
         agility: 1, 
-        attack_speed: 1, 
+        attack_speed: 5, 
         crit_rate: 0.01, 
         crit_multiplier: 1.5,
 

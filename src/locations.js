@@ -1246,9 +1246,29 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 360,
-            //locations: [{location: "燕岗近郊 - 4"}],
+            locations: [{location: "燕岗近郊 - X"}],
         },
+        unlock_text: "眼前的建筑物，应该就是藏宝地了吧。前面有人，这身装束是燕岗领的佣兵？"
+        
     });
+
+    
+    locations["燕岗近郊 - X"] = new Challenge_zone({
+        description: "地宫的门口，狂暴气息的来源。部分着魔的佣兵滞留在此处。",
+        enemy_count: 1, 
+        enemies_list: ["燕岗领佣兵[BOSS]"],
+        enemy_group_size: [2,2],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "燕岗近郊 - X", 
+        leave_text: "暂时返回",
+        parent_location: locations["燕岗近郊"],
+        repeatable_reward: {
+            locations: [{location: "地宫入口"}],
+        },
+        unlock_text: "不对劲，这些人看向我的时候，眼神怎么这么疯狂？难道是中了邪术吗？"
+    });
+
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 0"], custom_text: "与百兰战斗"});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 1"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 2"]});
@@ -1256,6 +1276,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 4"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 5"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 6"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - X"], custom_text: "强行进入地宫"});
     
     
     
@@ -1292,6 +1313,19 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗近郊"].connected_locations.push({location: locations["郊区河流"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗矿井"]});
     
+
+    
+    locations["地宫入口"] = new Location({ 
+        connected_locations: [{location: locations["燕岗近郊"], custom_text: "离开地宫"}], 
+        description: "地宫的表层。宝石的气息浓郁，但有大地级三阶的魔物把守。[V0.30前版本终点]",
+        
+        is_unlocked: false,
+        //此处应有一个boss战和一个偷宝石的法子(10颗高级蓝宝石)
+        unlock_text: "这些人的异常，恐怕和这栋建筑里的东西，脱不了干系。",
+        name: "地宫入口", 
+    });//1-4
+    
+    locations["燕岗近郊"].connected_locations.push({location: locations["地宫入口"]});
 
 
 
