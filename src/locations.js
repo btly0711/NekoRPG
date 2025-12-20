@@ -229,7 +229,7 @@ class Combat_zone {
                     xp_value: enemy.xp_value,
                     spec: enemy.spec,
                     stats: {
-                        health: enemy.stats.health,
+                        health: enemy.stats.health * halo,
                         attack: enemy.stats.attack * halo,
                         agility: enemy.stats.agility * halo,
                         dexterity: enemy.stats.dexterity,
@@ -1191,7 +1191,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗近郊 - 4"] = new Combat_zone({
         description: "存在光环荒兽的区域，荒兽的整体实力被影响着上了一个台阶", //MT29-30
         enemy_count: 20, 
-        enemies_list: ["掠原蝠","黑夜傀儡","咬一口","绿原行者","初生鬼","灵蔓茸茸"],//16-18三只怪放在-5
+        enemies_list: ["掠原蝠","黑夜傀儡","来一口","绿原行者","初生鬼","灵蔓茸茸"],//16-18三只怪放在-5
         enemy_group_size: [1,1],
         types: [],
         enemy_stat_halo: 0.1,
@@ -1211,7 +1211,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗近郊 - 5"] = new Combat_zone({
         description: "更接近光环来源的区域，吸引来了大地级强者", //MT31-32
         enemy_count: 20, 
-        enemies_list: ["初生鬼","燕岗领佣兵","冷冻火","缠绕骸骨","灵蔓茸茸"],//16-18三只怪放在-5
+        enemies_list: ["绿原行者","初生鬼","燕岗领佣兵","冷冻火","缠绕骸骨","灵蔓茸茸"],//16-18三只怪放在-5
         enemy_group_size: [1,1],
         types: [],
         enemy_stat_halo: 0.1,
@@ -1225,6 +1225,27 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 300,
+            locations: [{location: "燕岗近郊 - 6"}],
+        },
+    });
+
+    locations["燕岗近郊 - 6"] = new Combat_zone({
+        description: "地宫浮现在地平线上，触手可及。不过，附近的怪物已经愈加狂暴了。", //MT33-34
+        enemy_count: 20, 
+        enemies_list: ["绿原行者","初生鬼","燕岗领佣兵","冷冻火","缠绕骸骨","灵蔓茸茸"],
+        enemy_group_size: [1,1],
+        types: [],
+        enemy_stat_halo: 0.2,
+        is_unlocked: false, 
+        name: "燕岗近郊 - 6",
+        
+        rank:26, 
+        parent_location: locations["燕岗近郊"],
+        first_reward: {
+            xp: 420,
+        },
+        repeatable_reward: {
+            xp: 360,
             //locations: [{location: "燕岗近郊 - 4"}],
         },
     });
@@ -1234,6 +1255,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 3"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 4"]});
     locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 5"]});
+    locations["燕岗近郊"].connected_locations.push({location: locations["燕岗近郊 - 6"]});
     
     
     
@@ -1781,7 +1803,7 @@ function get_location_type_penalty(type, stage, stat) {
             require_tool: false,
         }),
     };
-    locations["燕岗近郊"].activities = {
+    locations["郊区河流"].activities = {
         
         "Running": new LocationActivity({
             activity_name: "Running",
@@ -1790,9 +1812,6 @@ function get_location_type_penalty(type, stage, stat) {
             skill_xp_per_tick: 1,
             is_unlocked: true,
         }),
-    }
-    locations["郊区河流"].activities = {
-        
         "Swimming": new LocationActivity({
             activity_name: "Swimming",
             infinite: true,

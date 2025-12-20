@@ -11,7 +11,7 @@ var inventory_templates = {};
 
 class Trader extends InventoryHaver {
     constructor({name,
-                 trade_text = `与 ${name} 交易`,
+                 trade_text = `<span style="color:#ffffd0">与 ${name} 交易</span>`,
                  location_name,
                  refresh_time = 1,
                  refresh_shift = 0,
@@ -310,7 +310,7 @@ class TradeItem {
             //旧物品
 
 
-            new TradeItem({item_name: "紫铜矿石", count: [0,10], chance: 0.7}),
+            new TradeItem({item_name: "紫铜矿", count: [0,10], chance: 0.7}),
             new TradeItem({item_name: "煤炭", count: [0,10], chance: 0.8}),
             new TradeItem({item_name: "灵液", count: [0,10], chance: 0.8}),
             new TradeItem({item_name: "毒液", count: [0,10], chance: 0.8}),

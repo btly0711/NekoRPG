@@ -2236,7 +2236,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 45000,
         component_tier: 3,
         name_prefix: "紫铜",
-        attack_value: 240,
+        attack_value: 200,
         stats: {
             crit_rate: {
                 flat: 0.14,

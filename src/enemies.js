@@ -1345,7 +1345,7 @@ class Enemy {
         image: "../NekoRPG/image/enemy/E1317.png",
         realm: "<span class=realm_basic><b>潮汐级巅峰 +</b></span>",
         size: "small",
-        spec: [3],//时封
+        spec: [12],//时封
         tags: [],
         stats: {health: 2100, attack: 750, agility: 360, attack_speed: 1.2, defense: 100}, 
         loot_list: [

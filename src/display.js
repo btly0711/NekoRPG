@@ -1543,6 +1543,7 @@ function update_displayed_normal_location(location) {
     }
 
     location_name_span.innerText = current_location.name;
+    //console.log(current_location);
     document.getElementById("location_description_div").innerText = current_location.getDescription();
 }
 
@@ -1827,6 +1828,7 @@ function update_displayed_combat_location(location) {
     action_div.append(...action);
 
     location_name_span.innerText = current_location.name;
+
     if(current_location.types.length == 0) {
         document.documentElement.style.setProperty('--location_name_div_width', '390px');
     } else {
@@ -1841,11 +1843,20 @@ function update_displayed_combat_location(location) {
 }
 
 function create_location_types_display(current_location){
+    
+    if(current_location.enemy_stat_halo != 0)
+    {
+        const type_div = document.createElement("div");
+        type_div.innerHTML += `光环 ${format_number(current_location.enemy_stat_halo*100.0)} %`;
+        location_types_div.appendChild(type_div);
+    }
     for(let i = 0; i < current_location.types?.length; i++) {
         const type_div = document.createElement("div");
         const LocationTypesMap = {"dark":"黑暗","aura":"光环"}
         type_div.innerHTML = LocationTypesMap[current_location.types[i].type] + (current_location.types[i].stage>1?` ${"I".repeat(current_location.types[i].stage)}`:"");
         type_div.classList.add("location_type_div");
+
+        console.log(current_location);
 
         const type_tooltip = document.createElement("div");
         type_tooltip.innerHTML = location_types[current_location.types[i].type].stages[current_location.types[i].stage].description;
@@ -1853,6 +1864,8 @@ function create_location_types_display(current_location){
 
         const {type, stage} = current_location.types[i];
         const {effects} = location_types[type].stages[stage];
+
+        
         
         if(effects?.multipliers) {
             type_tooltip.innerHTML += `<br>`;
@@ -3610,7 +3623,10 @@ function create_new_levelary_entry(level_name) {
             tooltip_tags.innerHTML +=`${LocationTypesMap[level.types[j].type]} ${LocationStageMap[level.types[j].stage]} : ${location_types[level.types[j].type].stages[level.types[j].stage].description}`;
         }
     }
-
+    if(level.enemy_stat_halo != 0)
+    {
+        tooltip_tags.innerHTML += `<br>光环 ${format_number(level.enemy_stat_halo * 100.0)} %`;
+    }
     tooltip_enemies.innerHTML = `<br><br>此处敌人：<br>`;
     for(let j=0;j<level.enemies_list.length;j++)
     {
