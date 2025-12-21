@@ -2491,7 +2491,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "金属残片熔炼而成的铁锭。可以用于制作作剑刃，盔甲", 
         value: 30,
         material_type: "metal",
-        image: "../NekoRPG/image/item/iron_ingot.png",
+        image: "image/item/iron_ingot.png",
     });
     item_templates["精钢锭"] = new Material({
         id: "精钢锭",
@@ -2499,7 +2499,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "掺杂了其他金属的铁合金。硬而脆，只能用作剑刃。", 
         value: 400,
         material_type: "metal",
-        image: "../NekoRPG/image/item/steel_ingot.png",
+        image: "image/item/steel_ingot.png",
     });
     item_templates["紫铜锭"] = new Material({
         id: "紫铜锭",
@@ -2507,7 +2507,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "勉强入级的A1级金属，性能均匀", 
         value: 16666,
         material_type: "metal",
-        image: "../NekoRPG/image/item/purplecopper_ingot.png",
+        image: "image/item/purplecopper_ingot.png",
     });
 })();
 
@@ -2518,14 +2518,14 @@ item_templates["Twist liek a snek"] = new Book({
         name: "紫铜矿", 
         description: "普通的A1级金属矿石，可以使用毒液彻底炼化", 
         value: 2222,
-        image: "../NekoRPG/image/item/purplecopper_ore.png",
+        image: "image/item/purplecopper_ore.png",
     });
     item_templates["煤炭"] = new OtherItem({
         id: "煤炭",
         name: "煤炭", 
         description: "真正的煤炭！吸收了部分能量的它，可以提供比魔力碎晶高得多的温度。", 
         value: 999,
-        image: "../NekoRPG/image/item/coal.png",
+        image: "image/item/coal.png",
     });
 })();
 
@@ -2536,7 +2536,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "地图-藏宝地", 
         description: "绘制着最近新发现的一处藏宝地。(纳可已经记住地点，可以放心售卖)", 
         value: 999,
-        image: "../NekoRPG/image/item/MT15.png",
+        image: "image/item/MT15.png",
     });
 })();
 
@@ -2547,21 +2547,21 @@ item_templates["Twist liek a snek"] = new Book({
         description: "煮熟的年幼凶兽肉排。食用后每秒回复40点血量，持续60秒",//血药模版 
         value: 20,
         effects: [{effect: "饱食", duration: 60}],
-        image: "../NekoRPG/image/item/O1_cooked_meat.png",
+        image: "image/item/O1_cooked_meat.png",
     });
     item_templates["万物·凶兽肉排"] = new UsableItem({
         name: "万物·凶兽肉排", 
         description: "虽然颜色很奇怪但是真的能吃！食用后每秒回复80点血量，持续60秒",
         value: 240,
         effects: [{effect: "饱食 II", duration: 60}],
-        image: "../NekoRPG/image/item/O5_cooked_meat.png",
+        image: "image/item/O5_cooked_meat.png",
     });
     item_templates["潮汐·凶兽肉排"] = new UsableItem({
         name: "潮汐·凶兽肉排", 
         description: "潮汐级凶兽的肉。不仅可以回血，还可以增加少许领悟！", 
         value: 6000,
         effects: [{effect: "饱食 III", duration: 60}],
-        image: "../NekoRPG/image/item/O8_cooked_meat.png",
+        image: "image/item/O8_cooked_meat.png",
     });
 })();
 //炼金
@@ -2570,13 +2570,13 @@ item_templates["Twist liek a snek"] = new Book({
         name: "粘合织料", 
         description: "涂抹了凝胶的飞蛾翅膀结合体，适合与皮肤亲密接触",
         value: 12,
-        image: "../NekoRPG/image/item/mixed_comp01.png",
+        image: "image/item/mixed_comp01.png",
     });
     item_templates["润灵铜骨"] = new OtherItem({
         name: "润灵铜骨", 
         description: "用灵液将铜骨和天蚕丝融合的产物", 
         value: 10000,
-        image: "../NekoRPG/image/item/aura_bone.png",
+        image: "image/item/aura_bone.png",
     });
 })();
 
@@ -2586,7 +2586,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始黄宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷1点或生命50点", 
         value: 1,
-        image: "../NekoRPG/image/item/gem11_1.png",
+        image: "image/item/gem11_1.png",
         effects: [],
         gem_value: 1,
     });
@@ -2594,7 +2594,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始蓝宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷2点或生命100点",
         value: 2,
-        image: "../NekoRPG/image/item/gem12_2.png",
+        image: "image/item/gem12_2.png",
         effects: [],
         gem_value: 2,
     });
@@ -2602,7 +2602,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始红宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷5点或生命250点",
         value: 5,
-        image: "../NekoRPG/image/item/gem13_5.png",
+        image: "image/item/gem13_5.png",
         effects: [],
         gem_value: 5,
     });
@@ -2610,7 +2610,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "初始绿宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷10点或生命500点", 
         value: 10,
-        image: "../NekoRPG/image/item/gem14_10.png",
+        image: "image/item/gem14_10.png",
         effects: [],
         gem_value: 10,
     });
@@ -2618,7 +2618,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "高级黄宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷20点或生命1000点", 
         value: 20,
-        image: "../NekoRPG/image/item/gem21_20.png",
+        image: "image/item/gem21_20.png",
         effects: [],
         gem_value: 20,
     });
@@ -2626,7 +2626,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "高级蓝宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷50点或生命2500点",
         value: 50,
-        image: "../NekoRPG/image/item/gem22_50.png",
+        image: "image/item/gem22_50.png",
         effects: [],
         gem_value: 50,
     });
@@ -2634,7 +2634,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "高级红宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷100点或生命5000点",
         value: 100,
-        image: "../NekoRPG/image/item/gem23_100.png",
+        image: "image/item/gem23_100.png",
         effects: [],
         gem_value: 100,
     });
@@ -2642,7 +2642,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "高级绿宝石", 
         description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷200点或生命1万点", 
         value: 200,
-        image: "../NekoRPG/image/item/gem24_200.png",
+        image: "image/item/gem24_200.png",
         effects: [],
         gem_value: 200,
     });
@@ -2656,61 +2656,61 @@ item_templates["Twist liek a snek"] = new Book({
         name: "凝胶", 
         description: "从死去的史莱姆中发现的凝胶。可以用作缓冲垫，但并不耐用。", 
         value: 1,
-        image: "../NekoRPG/image/item/rubber.png",
+        image: "image/item/rubber.png",
     });
     item_templates["金属残片"] = new Loot({
         name: "金属残片", 
         description: "损坏的普通金属片。已经无法用于制造剑盾，但或许还能重新熔炼？", 
         value: 4,
-        image: "../NekoRPG/image/item/iron_fragment.png",
+        image: "image/item/iron_fragment.png",
     });
     item_templates["魔力碎晶"] = new Loot({
         name: "魔力碎晶", 
         description: "一小块残留着魔力的水晶。内部的能量仍然足以烤肉或炼铁。",//烤肉 
         value: 6,
-        image: "../NekoRPG/image/item/magic_fragment.png",
+        image: "image/item/magic_fragment.png",
     });
     item_templates["飞蛾翅膀"] = new Loot({
         name: "飞蛾翅膀", 
         description: "飞蛾留下的完整翅膀。可以用作衣服的材料", 
         value: 8,
-        image: "../NekoRPG/image/item/fly_wing.png",
+        image: "image/item/fly_wing.png",
     });
     item_templates["坚硬石块"] = new Loot({
         name: "坚硬石块", 
         description: "燕岗城郊山上的大块石头，废弃傀儡和石头人也是它们制造的。", 
         value: 5,
-        image: "../NekoRPG/image/item/hard_rock.png",
+        image: "image/item/hard_rock.png",
     });
     item_templates["微尘·凶兽肉块"] = new Loot({
         name: "微尘·凶兽肉块", 
         description: "微尘级凶兽的肉。散发着腥味，或许需要烤一烤？", //加魔力碎晶
         value: 8,
-        image: "../NekoRPG/image/item/O1_meat.png",
+        image: "image/item/O1_meat.png",
     });
     item_templates["骨头"] = new Loot({
         name: "骨头", 
         description: "一根粗大的骨头。光是拿着就感觉阴森森的..", 
         value: 6,
-        image: "../NekoRPG/image/item/bone.png",
+        image: "image/item/bone.png",
     });
     item_templates["铜骨"] = new Loot({
         name: "铜骨", 
         description: "万物级骷髅死后留下的青铜骨头。它的硬度和韧性都很不错！", 
         value: 20,
-        image: "../NekoRPG/image/item/copper_bone.png",
+        image: "image/item/copper_bone.png",
     });
     item_templates["铜板"] = new Loot({
         name: "铜板", 
         description: "燕岗领铸造的通用钱币", 
         value: 1,
-        image: "../NekoRPG/image/item/1C.png",
+        image: "image/item/1C.png",
     });
     item_templates["大铜板"] = new Loot({
         name: "大铜板", 
         description: "燕岗领铸造的通用钱币，面值5C", 
         value: 5,
-        image: "../NekoRPG/image/item/5C.png",
+        image: "image/item/5C.png",
     });
 
 
@@ -2719,19 +2719,19 @@ item_templates["Twist liek a snek"] = new Book({
         name: "万物·凶兽肉块", 
         description: "万物级凶兽的肉。蕴含的气血充沛，价格略高。", //加魔力碎晶
         value: 200,
-        image: "../NekoRPG/image/item/O5_meat.png",
+        image: "image/item/O5_meat.png",
     });
     item_templates["合金残片"] = new Loot({
         name: "合金残片", 
         description: "傀儡身上的特殊金属，掺杂在铁锭中可以增强硬度", 
         value: 150,
-        image: "../NekoRPG/image/item/alloy_fragment.png",
+        image: "image/item/alloy_fragment.png",
     });
     item_templates["异兽皮"] = new Loot({
         name: "异兽皮", 
         description: "万物级异兽的皮毛，兼具硬度和韧性", 
         value: 500,
-        image: "../NekoRPG/image/item/O5_leather.png",
+        image: "image/item/O5_leather.png",
     });
 
     //1-3
@@ -2739,25 +2739,25 @@ item_templates["Twist liek a snek"] = new Book({
         name: "毒液", 
         description: "郊外常见的毒素集合体。A1级合金“紫铜”需要它作为原材料。", 
         value: 2000,
-        image: "../NekoRPG/image/item/poison_drop.png",
+        image: "image/item/poison_drop.png",
     });
     item_templates["灵液"] = new Loot({
         name: "灵液", 
         description: "潮汐级魔物的精华，具有多种优异性能。", 
         value: 2500,
-        image: "../NekoRPG/image/item/aura_drop.png",
+        image: "image/item/aura_drop.png",
     });
     item_templates["天蚕丝"] = new Loot({
         name: "天蚕丝", 
         description: "切叶虫茧的构建材料，蕴含有风元素。初步具有智慧的潮汐级凶兽也常常携带着它。", 
         value: 3000,
-        image: "../NekoRPG/image/item/sky_silk.png",
+        image: "image/item/sky_silk.png",
     });
     item_templates["潮汐·凶兽肉块"] = new Loot({
         name: "潮汐·凶兽肉块", 
         description: "潮汐级凶兽的肉。蕴含有元素之力，没有煤炭火焰难以煮熟。", 
         value: 5000,
-        image: "../NekoRPG/image/item/O8_meat.png",
+        image: "image/item/O8_meat.png",
     });
 
 
@@ -2768,19 +2768,19 @@ item_templates["Twist liek a snek"] = new Book({
         name: "五彩凝胶", 
         description: "完整，色彩鲜艳的凝胶。能卖个好价钱！", 
         value: 75,
-        image: "../NekoRPG/image/item/rubber_colorful.png",
+        image: "image/item/rubber_colorful.png",
     });
     item_templates["银钱"] = new Loot({
         name: "银钱", 
         description: "燕岗领铸造的通用钱币，面值100C", 
         value: 100,
-        image: "../NekoRPG/image/item/100C.png",
+        image: "image/item/100C.png",
     });
     item_templates["红色刀币"] = new Loot({
         name: "红色刀币", 
         description: "血洛大陆的通用钱币，面值1X=1000C", 
         value: 1e3,
-        image: "../NekoRPG/image/item/1X.png",
+        image: "image/item/1X.png",
     });
 })();
 
