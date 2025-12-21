@@ -120,6 +120,12 @@ character.xp = {
         total_xp_to_next_lvl: base_xp_cost, base_xp_cost: base_xp_cost, xp_scaling: 1.8
 };
 character.starting_xp = character.xp;
+character.get_xp_bonus = function(){
+        return (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1);
+}
+character.get_hero_realm = function(){
+        return character.xp.current_level;
+}
 
 character.add_xp = function ({xp_to_add, use_bonus = true}) {
         if(use_bonus) {

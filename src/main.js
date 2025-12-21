@@ -72,17 +72,17 @@ window.REALMS=[
 [1,"微尘级中级",1,50,5],
 [2,"微尘级高级",3,200,100],
 [3,"万物级初等",6,700,1200],//0.1spd 
-[4,"万物级高等",12,3000,4000],
-[5,"万物级巅峰",25,6000,8000],
+[4,"万物级高等",12,3000,4800],
+[5,"万物级巅峰",25,6000,16000],
 
-[6,"潮汐级初等",40,10000,24000],//0.1spd
-[7,"潮汐级高等",70,20000,60000],
-[8,"潮汐级巅峰",100,40000,360000],
+[6,"潮汐级初等",40,10000,36000],//0.1spd
+[7,"潮汐级高等",70,20000,160000],
+[8,"潮汐级巅峰",100,40000,99999999],//计划:最早1-5开放
 
 
-[9,"大地级一阶",200,120000,300000],//以下未平衡(需要加入微火)
-[10,"大地级二阶",300,250000,450000],
-[11,"大地级三阶",500,550000,600000],
+[9,"大地级一阶",200,120000,3000000],//以下未平衡(需要加入微火)
+[10,"大地级二阶",300,250000,4500000],
+[11,"大地级三阶",500,550000,6000000],
 
 ];
 //境界，X级存储了该等级的数据
@@ -295,9 +295,30 @@ function option_combat_autoswitch(option) {
         checkbox.checked = option;
     }
 }
+const bgm = document.getElementById('bgm');
+
+const musicList = {
+  1: 'bgms/1.mp3',
+  2: 'bgms/2.mp3',
+  3: 'bgms/3.mp3',
+  4: 'bgms/4.mp3',
+};
+
+function switchBGM(key) {
+  console.log(bgm.src);
+  console.log(musicList[key]);
+  if (bgm.src.includes(musicList[key]) && bgm.src.length >= 5 && musicList[key].length >= 5) return;  // 已是当前音乐
+  bgm.pause();
+  bgm.src = musicList[key];
+  bgm.load();             // 重新加载新资源
+  bgm.volume = 0.5;
+  bgm.play();
+}
 
 function change_location(location_name) {
     let location = locations[location_name];
+    //console.log(location.bgm);
+    if(location.bgm != "") switchBGM(location.bgm);
 
     if(location_name !== current_location?.name && location.is_finished) {
         return;
@@ -1218,6 +1239,52 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     update_displayed_health();
 }
+function get_enemy_realm(enemy){
+    let realm_index = enemy.realm.search("<b>")
+    let realm_e = 0;//enemy
+    let realm_f = enemy.realm[realm_index + 3];//first
+    let realm_l = enemy.realm[realm_index + 6];//last
+    switch (realm_f){
+        case "微":
+            realm_e += 0;
+            break;
+        case "万":
+            realm_e += 3;
+            break;
+        case "潮":
+            realm_e += 6;
+            break;
+        case "大":
+            realm_e += 9;
+            break;  
+    }
+    switch (realm_l){
+        case "初":
+            realm_e += 0;
+            break;
+        case "中":
+            realm_e += 1;
+            break;
+        case "高":
+            realm_e += 1;
+            break;
+        case "巅":
+            realm_e += 2;
+            break;
+        case "一":
+            realm_e += 0;
+            break;
+        case "二":
+            realm_e += 1;
+            break;  
+        case "三":
+            realm_e += 2;
+            break;  
+    }
+    if(realm_l == "高" && realm_e == 1) realm_e += 1;//微尘高级 特判
+    if(realm_l == "巅" && realm_e >= 11) realm_e += 6;//大地级以上巅峰指九阶而不是三阶
+    return realm_e;
+}
 
 function do_character_combat_action({target, attack_power}) {
 
@@ -1286,12 +1353,24 @@ function do_character_combat_action({target, attack_power}) {
             total_kills++;
             target.stats.health = 0; //to not go negative on displayed value
 
-            log_message(target.name + " 被打败", "enemy_defeated");
             //gained xp multiplied ny TOTAL size of enemy group raised to 1/3
             let xp_reward = target.xp_value * (current_enemies.length**0.3334);
+            let realm_diff =  get_enemy_realm(target) - character.get_hero_realm();
+            let realm_mul = realm_diff >= 0 ? Math.pow(1.25,realm_diff) : Math.pow(5,realm_diff);
+            xp_reward *= realm_mul;
             add_xp_to_character(xp_reward, true);
+
+
+            let xp_display = xp_reward * character.get_xp_bonus();
+            let tooltip_ex = "";
+            console.log(realm_mul);
+            if(realm_mul > 1) tooltip_ex = "(越级+" + format_number((realm_mul - 1)*100) + "%)";
+            if(realm_mul < 1) tooltip_ex = "(压级-" + format_number((1 - realm_mul)*100) + "%)";
+
+
             
 
+            log_message(target.name + " 被打败,获取 " + format_number(xp_display) + " 经验值" + tooltip_ex, "enemy_defeated");
             var loot = target.get_loot();
             if(loot.length > 0) {
                 log_loot(loot);

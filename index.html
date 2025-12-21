@@ -22,6 +22,8 @@
         <div id = "loading_screen">
             LOADING
         </div>
+        <audio id="bgm" loop preload="auto">
+        </audio>
 
         <!-- tooltip for active character effects-->
         <div id = "effects_tooltip"> 
@@ -90,6 +92,7 @@
                         <div id = "inventory_show_all" class = "inventory_control_button active_selection_button" onclick = "showAllItems()"> 全部 </div>
                         <div id = "inventory_show_equipment" class = "inventory_control_button" onclick = "showOnlyEquipment()"> 装备 </div>
                         <div id = "inventory_show_consumable" class = "inventory_control_button" onclick = "showOnlyConsumables()"> 消耗品 </div>
+                        <div id = "inventory_show_loot" class = "inventory_control_button" onclick = "showOnlyLoot()"> 掉落物 </div>
                         <div id = "inventory_show_other" class = "inventory_control_button" onclick = "showOnlyOther()"> 杂项 </div> 
                     </div>
                 </div>
@@ -949,17 +952,26 @@
             function showOnlyEquipment() {
                 document.documentElement.style.setProperty('--equipment_display', 'inline-block');
                 document.documentElement.style.setProperty('--consumables_display', 'none');
+                document.documentElement.style.setProperty('--loot_display', 'none');
                 document.documentElement.style.setProperty('--other_display', 'none');
             }
             function showOnlyConsumables() {
                 document.documentElement.style.setProperty('--equipment_display', 'none');
                 document.documentElement.style.setProperty('--consumables_display', 'inline-block');
+                document.documentElement.style.setProperty('--loot_display', 'none');
                 document.documentElement.style.setProperty('--other_display', 'none');
 
+            }
+            function showOnlyLoot() {
+                document.documentElement.style.setProperty('--equipment_display', 'none');
+                document.documentElement.style.setProperty('--consumables_display', 'none');
+                document.documentElement.style.setProperty('--loot_display', 'inline-block');
+                document.documentElement.style.setProperty('--other_display', 'none');
             }
             function showOnlyOther() {
                 document.documentElement.style.setProperty('--equipment_display', 'none');
                 document.documentElement.style.setProperty('--consumables_display', 'none');
+                document.documentElement.style.setProperty('--loot_display', 'none');
                 document.documentElement.style.setProperty('--other_display', 'inline-block');
             }
 
@@ -1275,7 +1287,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V0.28a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V0.30";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

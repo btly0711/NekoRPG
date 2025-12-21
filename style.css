@@ -6,6 +6,7 @@
 
 	--equipment_display: inline-block;
 	--consumables_display: inline-block;
+	--loot_display: inline-block;
 	--other_display: inline-block;
 
 	--inventory_div_display: block;
@@ -131,7 +132,7 @@ body {
  }
 
  .message_victory {
-	 color: green;
+	 color: lime;
 	 font-weight: bold;
  }
 
@@ -556,7 +557,7 @@ body {
 	padding: 3px;
 	padding-left: 5px;
 	padding-right: 5px;
-	min-width: 87.9px; /* ouch */
+	min-width: 68px; /* ouch */
 	text-align: center;
 	outline: 1px solid white;
 	margin: 1px;
@@ -589,7 +590,12 @@ body {
 	display: var(--consumables_display);
 }
 
-.character_item_other, .character_item_loot, .character_item_material, .character_item_component {
+.character_item_loot {
+	display: var(--loot_display);
+}
+
+
+.character_item_other, .character_item_material, .character_item_component {
 	display: var(--other_display);
 }
 

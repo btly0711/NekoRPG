@@ -29,9 +29,10 @@ class Location {
                 getBackgroundNoises,
                 crafting = null,
                 tags = {},
+                bgm = "",
             }) {
         // always a safe zone
-
+        this.bgm = bgm;
         this.name = name; //needs to be the same as key in locations
         this.id = id || name;
         this.description = description;
@@ -94,9 +95,11 @@ class Combat_zone {
                  unlock_text,
                  is_challenge = false,
                  tags = {},
+                 bgm = "",
                 }) {
 
         this.name = name;
+        this.bgm = bgm,
         this.id = id || name;
         this.unlock_text = unlock_text;
         this.description = description;
@@ -228,6 +231,7 @@ class Combat_zone {
                     description: enemy.description, 
                     xp_value: enemy.xp_value,
                     spec: enemy.spec,
+                    realm: enemy.realm,
                     stats: {
                         health: enemy.stats.health * halo,
                         attack: enemy.stats.attack * halo,
@@ -685,6 +689,7 @@ function get_location_type_penalty(type, stage, stat) {
     //NekoRPG noncombat locations below
     locations["纳家大厅"] = new Location({ 
         connected_locations: [], 
+        bgm: 1,
         
         description: "一处明亮整洁的大厅，纳可平时活动的地方。",
         traders: ["自动售货机"],
@@ -694,6 +699,8 @@ function get_location_type_penalty(type, stage, stat) {
     locations["练兵场深处"] = new Location({ 
         connected_locations: [{location: locations["纳家大厅"], custom_text: "返回大厅"}], 
         description: "练兵场深处的一间小木屋",
+        
+        bgm: 1,
         
         is_unlocked: false,
         unlock_text: "前面的路似乎无人值守...会不会这里就是前往外界的通道呢？",
@@ -709,6 +716,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "温馨的小房间，里面摆着一张粉色小床和一张练习用的工作台。",
         name: "纳可的房间",
         is_unlocked: true,
+        bgm: 1,
         sleeping: {
             text: "睡一会",
             xp: 1},
@@ -772,6 +780,7 @@ function get_location_type_penalty(type, stage, stat) {
             //解锁地点必须在可重复奖励
         },
         rank:1,
+        bgm:1,
         
         unlock_text: "要救姐姐，必须先提升自己的实力！先去练兵场与魔物对战吧。",
     });
@@ -795,6 +804,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         
         rank:2,
+        bgm:1,
         unlock_text: "还不够...不要为了击败最弱的魔物沾沾自喜啊，路还很长！",
     });
 
@@ -812,11 +822,12 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 16,
         },
         repeatable_reward: {
-            xp: 8,
+            xp: 2,
             
             locations: [{location: "练兵场深处"}],
         },
-        rank:3
+        rank:3,
+        bgm:1,
     });
 
     locations["纳家练兵场 - 4"] = new Combat_zone({
@@ -829,12 +840,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "纳家练兵场 - 4", 
         
         rank:4,
+        bgm:1,
         parent_location: locations["练兵场深处"],
         first_reward: {
             xp: 20,
         },
         repeatable_reward: {
-            xp: 10,
+            xp: 3,
             
             locations: [{location: "纳家练兵场 - 5"}],
         }
@@ -850,12 +862,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "纳家练兵场 - 5", 
         
         rank:5,
+        bgm:1,
         parent_location: locations["练兵场深处"],
         first_reward: {
             xp: 30,
         },
         repeatable_reward: {
-            xp: 15,
+            xp: 5,
             
             locations: [{location: "纳家练兵场 - 6"}],
         },
@@ -871,12 +884,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "纳家练兵场 - 6", 
         
         rank:6,
+        bgm:1,
         parent_location: locations["练兵场深处"],
         first_reward: {
             xp: 40,
         },
         repeatable_reward: {
-            xp: 20,
+            xp: 7,
             
             locations: [{location: "纳家练兵场 - 7"}],
         },
@@ -892,13 +906,14 @@ function get_location_type_penalty(type, stage, stat) {
         is_unlocked: false, 
         
         rank:7,
+        bgm:1,
         name: "纳家练兵场 - 7", 
         parent_location: locations["练兵场深处"],
         first_reward: {
             xp: 50,
         },
         repeatable_reward: {
-            xp: 30,
+            xp: 10,
             locations: [{location: "纳家练兵场 - X"}],
         },
         unlock_text: "附近有许多可疑的门！不过想要检查它们的话，必须先击败眼前成群结对的敌人..",
@@ -907,6 +922,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纳家练兵场 - X"] = new Challenge_zone({
         description: "一扇厚重的门前。看起来想出去必须把待从打晕过去...",
         enemy_count: 1, 
+        bgm:1,
         enemies_list: ["纳家待从[BOSS]"],
         enemy_group_size: [1,1],
         is_unlocked: false, 
@@ -941,6 +957,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["练兵场深处"], custom_text: "回到纳家"}], 
         description: "熙熙攘攘的燕岗城外城。尽管是崇尚力量的世界，市民间仍然有讲不完的话题。",
         
+        bgm: 2,
         dialogues: ["秘法石碑 - 1","路人甲"],
         traders: ["燕岗杂货铺"],
         is_unlocked: false,
@@ -960,12 +977,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗城 - 1",
         
         rank:11, 
+        bgm:2,
         parent_location: locations["燕岗城"],
         first_reward: {
             xp: 75,
         },
         repeatable_reward: {
-            xp: 50,
+            xp: 18,
             locations: [{location: "燕岗城 - 2"}],
         },
     });
@@ -979,6 +997,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_variation: 0.1,
         
         rank:12,
+        bgm:2,
         is_unlocked: false, 
         name: "燕岗城 - 2", 
         parent_location: locations["燕岗城"],
@@ -986,7 +1005,7 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 90,
         },
         repeatable_reward: {
-            xp: 70,
+            xp: 24,
             locations: [{location: "燕岗城 - 3"},{location: "燕岗城 - 秘法石碑"}],
         },
     });
@@ -996,6 +1015,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_count: 1, 
         enemies_list: ["百家小卒[BOSS]"],
         enemy_group_size: [2,2],
+        bgm:2,
         is_unlocked: false, 
         is_challenge: true,
         name: "燕岗城 - 秘法石碑", 
@@ -1017,6 +1037,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_variation: 0.1,
         
         rank: 13,
+        bgm:2,
         is_unlocked: false, 
         name: "燕岗城 - 3", 
         parent_location: locations["燕岗城"],
@@ -1024,7 +1045,7 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 110,
         },
         repeatable_reward: {
-            xp: 80,
+            xp: 28,
             textlines: [{dialogue: "路人甲", lines: ["shop"]}],
             locations: [{location: "燕岗城 - 4"}],
         },
@@ -1039,6 +1060,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_variation: 0.1,
         
         rank: 14,
+        bgm:2,
         is_unlocked: false, 
         name: "燕岗城 - 4", 
         parent_location: locations["燕岗城"],
@@ -1046,7 +1068,7 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 130,
         },
         repeatable_reward: {
-            xp: 100,
+            xp: 32,
             locations: [{location: "燕岗城 - 5"}],
         },
         unlock_text: "从这里已经可以隐隐约约看见城门了..燕岗城共有18环，再往外就是城郊。"
@@ -1061,6 +1083,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_variation: 0.1,
         
         rank: 15,
+        bgm:2,
         is_unlocked: false, 
         name: "燕岗城 - 5", 
         parent_location: locations["燕岗城"],
@@ -1068,7 +1091,7 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 150,
         },
         repeatable_reward: {
-            xp: 120,
+            xp: 40,
             locations: [{location: "燕岗城 - X"}],
         },
     });
@@ -1077,6 +1100,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["燕岗城 - X"] = new Challenge_zone({
         description: "燕岗城的城门，只要击败拦路的石精即可出门！",
         enemy_count: 1, 
+        bgm:2,
         enemies_list: ["腐蚀质石精[BOSS]"],
         enemy_group_size: [1,1],
         is_unlocked: false, 
@@ -1104,6 +1128,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["燕岗城"], custom_text: "回城"}], 
         description: "燕岗城外的区域。鸟语花香，绿树成荫，却潜藏着大量潮汐级魔物。",
         
+        bgm: 3,
         is_unlocked: false,
         dialogues: ["百兰"],
         unlock_text: "终于出城了！现在，找个人问问一些情报吧。",//先触发百兰剧情再解锁1-3-1！
@@ -1126,6 +1151,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             textlines: [{dialogue: "百兰", lines: ["defeat"]}],
         },
+        bgm:3,
         unlock_text: "我说大叔，这么大年纪了欺负一个女孩子，不太好吧。看来需要一点教训呢。"
     });
     locations["燕岗近郊 - 1"] = new Combat_zone({
@@ -1139,12 +1165,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗近郊 - 1",
         
         rank:21, 
+        bgm:3,
         parent_location: locations["燕岗近郊"],
         first_reward: {
             xp: 200,
         },
         repeatable_reward: {
-            xp: 150,
+            xp: 50,
             locations: [{location: "燕岗近郊 - 2"},{location:"郊区河流"}],
         },
     });
@@ -1159,12 +1186,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗近郊 - 2",
         
         rank:22, 
+        bgm:3,
         parent_location: locations["燕岗近郊"],
         first_reward: {
             xp: 220,
         },
         repeatable_reward: {
-            xp: 160,
+            xp: 54,
             locations: [{location: "燕岗近郊 - 3"},{location:"燕岗矿井"}],
             //activities: [{location:"燕岗矿井", activity:"miningP_copper"}],
         },
@@ -1179,12 +1207,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗近郊 - 3",
         
         rank:23, 
+        bgm:3,
         parent_location: locations["燕岗近郊"],
         first_reward: {
             xp: 240,
         },
         repeatable_reward: {
-            xp: 180,
+            xp: 60,
             locations: [{location: "燕岗近郊 - 4"}],
         },
     });
@@ -1199,12 +1228,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗近郊 - 4",
         
         rank:24, 
+        bgm:3,
         parent_location: locations["燕岗近郊"],
         first_reward: {
             xp: 300,
         },
         repeatable_reward: {
-            xp: 240,
+            xp: 80,
             locations: [{location: "燕岗近郊 - 5"}],
         },
     });
@@ -1219,12 +1249,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗近郊 - 5",
         
         rank:25, 
+        bgm:3,
         parent_location: locations["燕岗近郊"],
         first_reward: {
             xp: 360,
         },
         repeatable_reward: {
-            xp: 300,
+            xp: 100,
             locations: [{location: "燕岗近郊 - 6"}],
         },
     });
@@ -1240,12 +1271,13 @@ function get_location_type_penalty(type, stage, stat) {
         name: "燕岗近郊 - 6",
         
         rank:26, 
+        bgm:3,
         parent_location: locations["燕岗近郊"],
         first_reward: {
             xp: 420,
         },
         repeatable_reward: {
-            xp: 360,
+            xp: 120,
             locations: [{location: "燕岗近郊 - X"}],
         },
         unlock_text: "眼前的建筑物，应该就是藏宝地了吧。前面有人，这身装束是燕岗领的佣兵？"
@@ -1261,6 +1293,7 @@ function get_location_type_penalty(type, stage, stat) {
         is_unlocked: false, 
         is_challenge: true,
         name: "燕岗近郊 - X", 
+        bgm:3,
         leave_text: "暂时返回",
         parent_location: locations["燕岗近郊"],
         repeatable_reward: {
@@ -1292,6 +1325,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "围绕着矿井的修者聚集地，内有比练习用工作台略好的工作台，简单的休息室，地下还有部分残余的A1级金属！",
         traders: ["矿井集市"],
         
+        bgm: 3,
         is_unlocked: false,
         sleeping: {
             text: "闭好门窗，睡一会",
@@ -1323,6 +1357,7 @@ function get_location_type_penalty(type, stage, stat) {
         //此处应有一个boss战和一个偷宝石的法子(10颗高级蓝宝石)
         unlock_text: "这些人的异常，恐怕和这栋建筑里的东西，脱不了干系。",
         name: "地宫入口", 
+        bgm: 4,
     });//1-4
     
     locations["燕岗近郊"].connected_locations.push({location: locations["地宫入口"]});

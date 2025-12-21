@@ -235,6 +235,19 @@ class Material extends OtherItem {
     }
 }
 
+
+class Loot extends OtherItem {
+    constructor(item_data) {
+        super(item_data);
+        this.item_type = "LOOT";
+        this.saturates_market = true;
+        this.price_recovers = true;
+        this.material_type = item_data.material_type;
+        this.tags["loot"] = true;
+    }
+}
+
+
 class ItemComponent extends Item {
     constructor(item_data) {
         super(item_data);
@@ -874,6 +887,8 @@ function getItem(item_data) {
             else throw new Error(`Item ${item_data.name} has a wrong component type`);
         case "MATERIAL":
             return new Material(item_data);
+        case "LOOT":
+            return new Loot(item_data);
         default:
             return new OtherItem(item_data);
             //throw new Error(`Wrong item type: ${item_data.item_type} , item: ${item_data}`);
@@ -2233,7 +2248,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["紫铜剑刃"] = new WeaponComponent({
         name: "紫铜剑刃", description: "由紫铜锭打造出的剑刃，锋利的同时兼具灵敏",
         component_type: "long blade",
-        value: 45000,
+        value: 40000,
         component_tier: 3,
         name_prefix: "紫铜",
         attack_value: 200,
@@ -2413,7 +2428,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "紫铜头盔",
         description: "A1级盔甲，轻便而坚硬",
         component_type: "helmet exterior",
-        value: 66666,
+        value: 60000,
         component_tier: 2,
         full_armor_name: "紫铜头盔",
         defense_value: 45,
@@ -2427,7 +2442,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "紫铜胸甲",
         description: "A1级盔甲，轻便而坚硬",
         component_type: "chestplate exterior",
-        value: 88888,
+        value: 80000,
         component_tier: 2,
         full_armor_name: "紫铜胸甲",
         defense_value: 60,
@@ -2441,7 +2456,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "紫铜腿甲",
         description: "A1级盔甲，轻便而坚硬",
         component_type: "leg armor exterior",
-        value: 88888,
+        value: 80000,
         component_tier: 2,
         full_armor_name: "紫铜腿甲",
         defense_value: 60,
@@ -2455,7 +2470,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "紫铜战靴",
         description: "A1级盔甲，轻便而坚硬",
         component_type: "shoes exterior",
-        value: 44444,
+        value: 40000,
         component_tier: 2,
         full_armor_name: "紫铜战靴",
         defense_value: 30,
@@ -2490,7 +2505,7 @@ item_templates["Twist liek a snek"] = new Book({
         id: "紫铜锭",
         name: "紫铜锭", 
         description: "勉强入级的A1级金属，性能均匀", 
-        value: 18888,
+        value: 16666,
         material_type: "metal",
         image: "../NekoRPG/image/item/purplecopper_ingot.png",
     });
@@ -2509,7 +2524,7 @@ item_templates["Twist liek a snek"] = new Book({
         id: "煤炭",
         name: "煤炭", 
         description: "真正的煤炭！吸收了部分能量的它，可以提供比魔力碎晶高得多的温度。", 
-        value: 3333,
+        value: 999,
         image: "../NekoRPG/image/item/coal.png",
     });
 })();
@@ -2544,7 +2559,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["潮汐·凶兽肉排"] = new UsableItem({
         name: "潮汐·凶兽肉排", 
         description: "潮汐级凶兽的肉。不仅可以回血，还可以增加少许领悟！", 
-        value: 8000,
+        value: 6000,
         effects: [{effect: "饱食 III", duration: 60}],
         image: "../NekoRPG/image/item/O8_cooked_meat.png",
     });
@@ -2637,61 +2652,61 @@ item_templates["Twist liek a snek"] = new Book({
 
 //怪物掉落
 (function(){
-    item_templates["凝胶"] = new OtherItem({
+    item_templates["凝胶"] = new Loot({
         name: "凝胶", 
         description: "从死去的史莱姆中发现的凝胶。可以用作缓冲垫，但并不耐用。", 
         value: 1,
         image: "../NekoRPG/image/item/rubber.png",
     });
-    item_templates["金属残片"] = new OtherItem({
+    item_templates["金属残片"] = new Loot({
         name: "金属残片", 
         description: "损坏的普通金属片。已经无法用于制造剑盾，但或许还能重新熔炼？", 
         value: 4,
         image: "../NekoRPG/image/item/iron_fragment.png",
     });
-    item_templates["魔力碎晶"] = new OtherItem({
+    item_templates["魔力碎晶"] = new Loot({
         name: "魔力碎晶", 
         description: "一小块残留着魔力的水晶。内部的能量仍然足以烤肉或炼铁。",//烤肉 
         value: 6,
         image: "../NekoRPG/image/item/magic_fragment.png",
     });
-    item_templates["飞蛾翅膀"] = new OtherItem({
+    item_templates["飞蛾翅膀"] = new Loot({
         name: "飞蛾翅膀", 
         description: "飞蛾留下的完整翅膀。可以用作衣服的材料", 
         value: 8,
         image: "../NekoRPG/image/item/fly_wing.png",
     });
-    item_templates["坚硬石块"] = new OtherItem({
+    item_templates["坚硬石块"] = new Loot({
         name: "坚硬石块", 
         description: "燕岗城郊山上的大块石头，废弃傀儡和石头人也是它们制造的。", 
         value: 5,
         image: "../NekoRPG/image/item/hard_rock.png",
     });
-    item_templates["微尘·凶兽肉块"] = new OtherItem({
+    item_templates["微尘·凶兽肉块"] = new Loot({
         name: "微尘·凶兽肉块", 
         description: "微尘级凶兽的肉。散发着腥味，或许需要烤一烤？", //加魔力碎晶
         value: 8,
         image: "../NekoRPG/image/item/O1_meat.png",
     });
-    item_templates["骨头"] = new OtherItem({
+    item_templates["骨头"] = new Loot({
         name: "骨头", 
         description: "一根粗大的骨头。光是拿着就感觉阴森森的..", 
         value: 6,
         image: "../NekoRPG/image/item/bone.png",
     });
-    item_templates["铜骨"] = new OtherItem({
+    item_templates["铜骨"] = new Loot({
         name: "铜骨", 
         description: "万物级骷髅死后留下的青铜骨头。它的硬度和韧性都很不错！", 
         value: 20,
         image: "../NekoRPG/image/item/copper_bone.png",
     });
-    item_templates["铜板"] = new OtherItem({
+    item_templates["铜板"] = new Loot({
         name: "铜板", 
         description: "燕岗领铸造的通用钱币", 
         value: 1,
         image: "../NekoRPG/image/item/1C.png",
     });
-    item_templates["大铜板"] = new OtherItem({
+    item_templates["大铜板"] = new Loot({
         name: "大铜板", 
         description: "燕岗领铸造的通用钱币，面值5C", 
         value: 5,
@@ -2700,19 +2715,19 @@ item_templates["Twist liek a snek"] = new Book({
 
 
     //1-2
-    item_templates["万物·凶兽肉块"] = new OtherItem({
+    item_templates["万物·凶兽肉块"] = new Loot({
         name: "万物·凶兽肉块", 
         description: "万物级凶兽的肉。蕴含的气血充沛，价格略高。", //加魔力碎晶
         value: 200,
         image: "../NekoRPG/image/item/O5_meat.png",
     });
-    item_templates["合金残片"] = new OtherItem({
+    item_templates["合金残片"] = new Loot({
         name: "合金残片", 
         description: "傀儡身上的特殊金属，掺杂在铁锭中可以增强硬度", 
         value: 150,
         image: "../NekoRPG/image/item/alloy_fragment.png",
     });
-    item_templates["异兽皮"] = new OtherItem({
+    item_templates["异兽皮"] = new Loot({
         name: "异兽皮", 
         description: "万物级异兽的皮毛，兼具硬度和韧性", 
         value: 500,
@@ -2720,25 +2735,25 @@ item_templates["Twist liek a snek"] = new Book({
     });
 
     //1-3
-    item_templates["毒液"] = new OtherItem({
+    item_templates["毒液"] = new Loot({
         name: "毒液", 
         description: "郊外常见的毒素集合体。A1级合金“紫铜”需要它作为原材料。", 
         value: 2000,
         image: "../NekoRPG/image/item/poison_drop.png",
     });
-    item_templates["灵液"] = new OtherItem({
+    item_templates["灵液"] = new Loot({
         name: "灵液", 
         description: "潮汐级魔物的精华，具有多种优异性能。", 
         value: 2500,
         image: "../NekoRPG/image/item/aura_drop.png",
     });
-    item_templates["天蚕丝"] = new OtherItem({
+    item_templates["天蚕丝"] = new Loot({
         name: "天蚕丝", 
         description: "切叶虫茧的构建材料，蕴含有风元素。初步具有智慧的潮汐级凶兽也常常携带着它。", 
         value: 3000,
         image: "../NekoRPG/image/item/sky_silk.png",
     });
-    item_templates["潮汐·凶兽肉块"] = new OtherItem({
+    item_templates["潮汐·凶兽肉块"] = new Loot({
         name: "潮汐·凶兽肉块", 
         description: "潮汐级凶兽的肉。蕴含有元素之力，没有煤炭火焰难以煮熟。", 
         value: 5000,
@@ -2749,19 +2764,19 @@ item_templates["Twist liek a snek"] = new Book({
 
 
     //以下为打钱的东西
-    item_templates["五彩凝胶"] = new OtherItem({
+    item_templates["五彩凝胶"] = new Loot({
         name: "五彩凝胶", 
         description: "完整，色彩鲜艳的凝胶。能卖个好价钱！", 
         value: 75,
         image: "../NekoRPG/image/item/rubber_colorful.png",
     });
-    item_templates["银钱"] = new OtherItem({
+    item_templates["银钱"] = new Loot({
         name: "银钱", 
         description: "燕岗领铸造的通用钱币，面值100C", 
         value: 100,
         image: "../NekoRPG/image/item/100C.png",
     });
-    item_templates["红色刀币"] = new OtherItem({
+    item_templates["红色刀币"] = new Loot({
         name: "红色刀币", 
         description: "血洛大陆的通用钱币，面值1X=1000C", 
         value: 1e3,

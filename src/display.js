@@ -2685,7 +2685,7 @@ function update_displayed_character_xp(did_level = false) {
         if(character.xp.current_level >= 9)
         {
             
-            character_level_div.innerHTML = `<span class='realm_terra'>境界 : ${window.REALMS[character.xp.current_level][1]}</span>`;
+            character_level_div.innerHTML = `<span class=realm_terra>境界 : ${window.REALMS[character.xp.current_level][1]}</span>`;
         }
         else
         {

@@ -238,7 +238,7 @@ class Enemy {
         description: "普通的浅色史莱姆", 
         xp_value: 1, 
         rank: 1101,
-        image: "../NekoRPG/image/enemy/E1101.png",
+        image: "image/enemy/E1101.png",
         realm: "<span class=realm_basic><b>微尘级初级</b></span>",
         size: "small",
         tags: [],
