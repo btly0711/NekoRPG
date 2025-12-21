@@ -1224,7 +1224,7 @@ class Enemy {
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "灵液", chance:0.03},
             {item_name: "毒液", chance:0.03},
-            {item_name: "天蚕丝", chance:0.04},
+            {item_name: "异兽皮", chance:0.15},
             //应为260C
         ],
     });
@@ -1259,7 +1259,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "初始绿宝石", chance:0.02},
-            {item_name: "毒液", chance:0.25},
+            {item_name: "毒液", chance:0.20},
+            {item_name: "异兽皮", chance:0.20},
             //应为500C
         ],
     });
@@ -1278,24 +1279,7 @@ class Enemy {
             {item_name: "初始红宝石", chance:0.04},
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "煤炭", chance:0.15},
-            //应为500C
-        ],
-    });
-    enemy_templates["绿原行者"] = new Enemy({
-        name: "绿原行者", 
-        description: "潜力耗尽却堪堪达到潮汐级巅峰的老人，为了大地级的契机可以付出一切", 
-        xp_value: 55, 
-        rank: 1314,
-        image: "image/enemy/E1314.png",
-        realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
-        size: "small",
-        spec: [],
-        tags: [],
-        stats: {health: 2000, attack: 700, agility: 270, attack_speed: 1.2, defense: 350}, 
-        loot_list: [
-            {item_name: "初始红宝石", chance:0.04},
-            {item_name: "初始绿宝石", chance:0.02},
-            {item_name: "煤炭", chance:0.15},
+            {item_name: "异兽皮", chance:0.60},
             //应为500C
         ],
     });

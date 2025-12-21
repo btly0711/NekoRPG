@@ -77,10 +77,10 @@ window.REALMS=[
 
 [6,"潮汐级初等",40,10000,36000],//0.1spd
 [7,"潮汐级高等",70,20000,160000],
-[8,"潮汐级巅峰",100,40000,99999999],//计划:最早1-5开放
+[8,"潮汐级巅峰",100,40000,2400000],//计划:最早1-5开放
 
 
-[9,"大地级一阶",200,120000,3000000],//以下未平衡(需要加入微火)
+[9,"大地级一阶",200,120000,2147483647],//以下未平衡(需要加入微火)
 [10,"大地级二阶",300,250000,4500000],
 [11,"大地级三阶",500,550000,6000000],
 
@@ -305,8 +305,8 @@ const musicList = {
 };
 
 function switchBGM(key) {
-  console.log(bgm.src);
-  console.log(musicList[key]);
+//   console.log(bgm.src);
+//   console.log(musicList[key]);
   if (bgm.src.includes(musicList[key]) && bgm.src.length >= 5 && musicList[key].length >= 5) return;  // 已是当前音乐
   bgm.pause();
   bgm.src = musicList[key];
@@ -1363,7 +1363,7 @@ function do_character_combat_action({target, attack_power}) {
 
             let xp_display = xp_reward * character.get_xp_bonus();
             let tooltip_ex = "";
-            console.log(realm_mul);
+            //console.log(realm_mul);
             if(realm_mul > 1) tooltip_ex = "(越级+" + format_number((realm_mul - 1)*100) + "%)";
             if(realm_mul < 1) tooltip_ex = "(压级-" + format_number((1 - realm_mul)*100) + "%)";
 
@@ -1587,7 +1587,7 @@ function get_location_rewards(location) {
         should_return = true;
         
 
-        if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
+    if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
             create_new_levelary_entry(location);
             log_message(`首次通过 ${location.name} ，获取 ${location.first_reward.xp} 经验 `, "location_reward");
             add_xp_to_character(location.first_reward.xp);
