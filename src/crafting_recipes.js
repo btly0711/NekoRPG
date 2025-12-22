@@ -64,7 +64,8 @@ class ItemRecipe extends Recipe {
         }
     }
 
-    get_success_chance(station_tier=1) {
+    get_success_chance(station_tier=0) {
+        //console.log(station_tier)
         //const level = Math.min(this.recipe_level[1]-this.recipe_level[0]+1, Math.max(0,skills[this.recipe_skill].current_level-this.recipe_level[0]+1));
         //const skill_modifier = Math.min(1,(0||(level+(station_tier-1))/(this.recipe_level[1]-this.recipe_level[0]+1)));
         //return this.success_chance[0]*(this.success_chance[1]/this.success_chance[0])**skill_modifier;
@@ -132,7 +133,7 @@ class ComponentRecipe extends ItemRecipe{
     get_quality_range(tier = 0) {
         const skill = skills[this.recipe_skill];
         //const quality = (150+(5*skill.current_level-skill.max_level)+(20*tier))/100;
-        const quality = (80+(3*skill.current_level)+(15*tier))/100;
+        const quality = (80+(3*skill.current_level)+(12*tier))/100;
         //tier=工作台tier-部件tier
         //console.log(skill.current_level)
         return [Math.max(10,Math.round(25*(quality-0.1))*4), Math.max(10,Math.round(25*(quality+0.1))*4)];
@@ -206,7 +207,7 @@ class EquipmentRecipe extends Recipe {
 
     get_quality_range(component_quality, tier = 0) {
         const skill = skills[this.recipe_skill];
-        const quality = (60+component_quality+(3*skill.current_level-skill.max_level)+20*(tier));
+        const quality = (64+component_quality+(3*skill.current_level-skill.max_level)+12*(tier));
         return [Math.max(10,Math.round(quality-15)), Math.max(10,Math.round(quality+15))];
     }
 

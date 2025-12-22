@@ -2234,10 +2234,10 @@ function update_recipe_tooltip({category, subcategory, recipe_id, components}) {
 
 function create_recipe_tooltip_content({category, subcategory, recipe_id, material, components}) {
     const recipe = recipes[category][subcategory][recipe_id];
-    const station_tier = current_location?.crafting?.tiers[category] || 1;
+    const station_tier = current_location?.crafting?.tiers[category] || 0;
     let tooltip = "";
     if(subcategory === "items") {
-        const success_chance = Math.round(100*recipe.get_success_chance());
+        const success_chance = Math.round(100*recipe.get_success_chance(station_tier));
         tooltip += `配方等级：${recipe.recipe_level[1]}<br>`
         tooltip += `成功率: <b><span style="color:${success_chance > 74?"lime":success_chance>49?"yellow":success_chance>24?"orange":"red"}">${success_chance}%</span></b><br><br>材料:<br>`;
         for(let i = 0; i < recipe.materials.length; i++) {

@@ -1850,11 +1850,21 @@ function use_item(item_key) {
     {
         console.log(item_templates[id]);
         used=true;
-        let pa = Math.random()*4;
         let message = `使用 ${item_templates[id].name} , `
         let SCGV = 30;//SoftCappedGemValue
         let HPMV = 50;//HealthPointMultiplierValue
-        if(pa<1)//STR
+        let P1,P2,P3,P4;//相对概率(修正后)
+        P1=Math.pow((character.stats.flat.gems.attack_power/G_value +1),-1.5);
+        if(character.stats.flat.gems.attack_power >= SCGV*G_value) P1*=0.5;
+        P2=Math.pow((character.stats.flat.gems.defense/G_value +1),-1.5);
+        if(character.stats.flat.gems.defense >= SCGV*G_value) P2*=0.5;
+        P3=Math.pow((character.stats.flat.gems.agility/G_value +1),-1.5);
+        if(character.stats.flat.gems.agility >= SCGV*G_value) P3*=0.5;
+        P4=Math.pow((character.stats.flat.gems.max_health/G_value/HPMV +1),-1.5);
+        if(character.stats.flat.gems.agility >= SCGV*HPMV*G_value) P4*=0.5;
+        
+        let pa = Math.random()*(P1+P2+P3+P4);
+        if(pa<P1)//STR
         {
             message += `攻击上升了 `;
             character.stats.flat.gems.attack_power=character.stats.flat.gems.attack_power || 0;
@@ -1870,7 +1880,7 @@ function use_item(item_key) {
                 message += `${format_number(R_value)}[软上限]`;
             }
         }
-        else if(pa<2)//DEF
+        else if(pa<P1+P2)//DEF
         {
             message += `防御上升了 `;
             character.stats.flat.gems.defense=character.stats.flat.gems.defense || 0;
@@ -1886,7 +1896,7 @@ function use_item(item_key) {
                 message += `${format_number(R_value)}[软上限]`;
             }
         }
-        else if(pa<3)//AGI
+        else if(pa<P1+P2+P3)//AGI
         {
             message += `敏捷上升了 `;
             character.stats.flat.gems.agility=character.stats.flat.gems.agility || 0;
