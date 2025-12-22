@@ -114,6 +114,10 @@ character.equipment = {
 };
 character.money = 0;
 
+character.C_scaling = {
+        "40G":0,
+};
+
 const base_xp_cost = 10;
 character.xp = {
         current_level: 0, total_xp: 0, current_xp: 0, xp_to_next_lvl: base_xp_cost, 

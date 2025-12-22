@@ -207,7 +207,7 @@ class EquipmentRecipe extends Recipe {
 
     get_quality_range(component_quality, tier = 0) {
         const skill = skills[this.recipe_skill];
-        const quality = (64+component_quality+(3*skill.current_level-skill.max_level)+12*(tier));
+        const quality = (64+component_quality+(3*skill.current_level-skill.max_level)+5*(tier));
         return [Math.max(10,Math.round(quality-15)), Math.max(10,Math.round(quality+15))];
     }
 

@@ -339,6 +339,10 @@ class LocationActivity{
                  unlock_text,
                  gained_resources,
                  require_tool = true,
+                 exp_scaling = false,
+                 scaling_id = "",
+                 done_actions = 0,
+                 exp_o = 1.6,
                  }) 
     {
         this.activity_name = activity_name; //name of activity from activities.js
@@ -347,6 +351,10 @@ class LocationActivity{
         this.get_payment = get_payment;
         this.is_unlocked = is_unlocked;
         this.unlock_text = unlock_text;
+        this.exp_scaling = exp_scaling;
+        this.scaling_id = scaling_id;
+        this.done_actions = done_actions;
+        this.exp_o = exp_o;
         this.working_period = working_period; //if exists -> time that needs to be worked to earn anything; only for jobs
         this.infinite = infinite; //if true -> can be done 24/7, otherwise requires availability time
         if(this.infinite && availability_time) {
@@ -387,9 +395,13 @@ class LocationActivity{
                 
             }
             skill_modifier = (skill_level_sum/activities[this.activity_name].base_skills_names?.length) ?? 1;
+        }let fixed_timemul = 1.0;
+        if(this.exp_scaling)
+        {
+            fixed_timemul = Math.pow(this.exp_o,this.done_actions);
         }
-        const gathering_time_needed = Math.floor(this.gained_resources.time_period[0]*(this.gained_resources.time_period[1]/this.gained_resources.time_period[0])**skill_modifier);
-
+        const gathering_time_needed = Math.floor(fixed_timemul * this.gained_resources.time_period[0]*(this.gained_resources.time_period[1]/this.gained_resources.time_period[0])**skill_modifier);
+        
         const gained_resources = [];
 
         for(let i = 0; i < this.gained_resources.resources.length; i++) {
@@ -1353,15 +1365,33 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["燕岗近郊"], custom_text: "离开地宫"}], 
         description: "地宫的表层。宝石的气息浓郁，但有大地级三阶的魔物把守。[V0.30前版本终点]",
         
+        dialogues: ["地宫老人"],
         is_unlocked: false,
         //此处应有一个boss战和一个偷宝石的法子(10颗高级蓝宝石)
         unlock_text: "这些人的异常，恐怕和这栋建筑里的东西，脱不了干系。",
         name: "地宫入口", 
         bgm: 4,
+        unlock_text: "好可怕的气息，刚进门就是这么可怕的怪物！"
     });//1-4
+    locations["地宫 - 看门人"] = new Challenge_zone({
+        description: "你确定要和它战斗吗..挨打变强现在可是削弱了哦！",
+        enemy_count: 4, 
+        enemies_list: ["地宫看门人[BOSS]"],
+        enemy_group_size: [1,1],
+        is_unlocked: true, 
+        is_challenge: true,
+        name: "地宫 - 看门人", 
+        bgm:4,
+        leave_text: "离开这个是非之地",
+        parent_location: locations["地宫入口"],
+        repeatable_reward: {},
+
+        //unlock_text: "不对劲，这些人看向我的时候，眼神怎么这么疯狂？难道是中了邪术吗？"
+    });
     
     locations["燕岗近郊"].connected_locations.push({location: locations["地宫入口"]});
-
+    locations["地宫入口"].connected_locations.push({location: locations["地宫 - 看门人"], custom_text: "与大地级三阶魔物抢夺宝石"});
+    
 
 
 
@@ -1892,7 +1922,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["燕岗矿井"].activities = {
         
-        "miningP_copper": new LocationActivity({
+        "miningP_Copper": new LocationActivity({
             activity_name: "mining",
             infinite: true,
             starting_text: "挖掘部分紫铜矿石",
@@ -1920,6 +1950,24 @@ function get_location_type_penalty(type, stage, stat) {
             },
         }),
     };
+    locations["地宫入口"].activities = {
+        "mining40Gem": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "偷偷用镐子挖出宝石",
+            skill_xp_per_tick: 10,
+            is_unlocked: true,
+            exp_scaling: true,
+            scaling_id: "40G",
+            exp_o:1.6,//每完成一次需要的时间指数提升
+            gained_resources: {
+                resources: [{name: "高级蓝宝石", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
+                time_period: [10, 2],
+                skill_required: [0, 10],
+                scales_with_skill: true,
+            },
+        }),
+    }
 })();
 
 //add actions

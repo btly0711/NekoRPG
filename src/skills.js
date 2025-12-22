@@ -1185,7 +1185,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
           3: {
               stats: {
                 agility: {
-                    multiplier: 1.05
+                    multiplier: 1.01
                 },
               },
           },
@@ -1199,7 +1199,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
           7: {
               stats: {
                 agility: {
-                    multiplier: 1.05
+                    multiplier: 1.02
                 },
               },
           },

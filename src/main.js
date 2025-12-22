@@ -449,6 +449,12 @@ function start_activity(selected_activity) {
     if(!activities[current_activity.activity_name]) {
         throw `No such activity as ${current_activity.activity_name} could be found`;
     }
+    if(current_activity.exp_scaling)
+    {
+
+        current_activity.done_actions = (character.C_scaling[current_activity.scaling_id] || 0);
+    
+    }
 
     if(activities[current_activity.activity_name].type === "JOB") {
         if(!can_work(current_activity)) {
@@ -470,13 +476,19 @@ function start_activity(selected_activity) {
         current_activity.gathering_time_needed = current_activity.getActivityEfficiency().gathering_time_needed;
     }
 
+
     start_activity_display(current_activity);
 }
 
 function end_activity() {
     let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
+    if(current_activity.exp_scaling)
+    {
+        character.C_scaling[current_activity.scaling_id] = current_activity.done_actions;
+        log_message(`该行动已进行${current_activity.done_actions}次`, "activity_finished");
     
+    }
     if(current_activity.earnings) {
         character.money += current_activity.earnings;
         log_message(`${character.name} earned ${format_money(current_activity.earnings)}`, "activity_money");
@@ -1999,6 +2011,7 @@ function create_save() {
                                 bonus_skill_levels:  character.bonus_skill_levels,
                                 inventory: {}, equipment: character.equipment,
                                 money: character.money, 
+                                C_scaling: character.C_scaling,
                                 xp: {
                                 total_xp: character.xp.total_xp,
                                 },
@@ -2062,6 +2075,7 @@ function create_save() {
                                              working_time: current_activity.working_time, 
                                              earnings: current_activity.earnings,
                                              gathering_time: current_activity.gathering_time,
+                                             done_actions: current_activity.done_actions,
                                             };
         }
         
@@ -2243,6 +2257,9 @@ function load(save_data) {
 
     character.money = (save_data.character.money || 0) * ((is_from_before_eco_rework == 1)*10 || 1);
     update_displayed_money();
+
+    if(save_data.character.C_scaling != undefined) character.C_scaling = save_data.character.C_scaling;
+    else character.C_scaling = {};
 
     add_xp_to_character(save_data.character.xp.total_xp, false);
 
@@ -2838,8 +2855,11 @@ function load(save_data) {
             }
 
             current_activity.gathering_time = save_data.current_activity.gathering_time;
+            current_activity.done_actions = save_data.current_activity.done_actions;
             
         } else {
+            console.log(activity_id);
+            console.log(activities[activity_id]);
             console.warn("Couldn't find saved activity! It might have been removed");
         }
     }
@@ -3038,6 +3058,13 @@ function update() {
                 if(current_activity.gained_resources)
                 {
                     if(current_activity.gathering_time >= current_activity.gathering_time_needed) { 
+                        if(current_activity.exp_scaling)
+                        {
+                            current_activity.done_actions += 1;
+                            character.C_scaling[current_activity.scaling_id] = current_activity.done_actions;
+                            activities[current_activity.activity_name].done_actions += 1;
+                        }
+                        
                         const {gathering_time_needed, gained_resources} = current_activity.getActivityEfficiency();
 
                         current_activity.gathering_time_needed = gathering_time_needed;
@@ -3052,6 +3079,9 @@ function update() {
                         }
 
                         if(items.length > 0) {
+                            
+                            console.log(current_activity);
+                            
                             log_loot(items, false);
                             add_to_character_inventory(items);
                         }

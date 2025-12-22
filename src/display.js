@@ -2482,9 +2482,19 @@ function create_gathering_tooltip(location_activity) {
     }
 
     gathering_tooltip.innerHTML += `每 ${format_reading_time(gathering_time_needed)}, 发现的机会:`;
+    
     for(let i = 0; i < gained_resources.length; i++) {
         gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" (${Math.round(100*gained_resources[i].chance)}%)`;
     }
+    
+    if(location_activity.exp_scaling && location_activity.done_actions != 0 )
+    {
+        let exp_t = location_activity.done_actions;
+        let exp_s = location_activity.exp_o;
+        gathering_tooltip.innerHTML += `<br><br><b><span style="color:red">收益递减:</span></b><br>因为已经进行的 ${exp_t} 次行动,<br> 消耗的时间 x ${format_number(Math.pow(exp_s,exp_t))}`;
+    }
+
+    
 
     return gathering_tooltip;
 }
@@ -2508,6 +2518,12 @@ function update_gathering_tooltip(current_activity) {
     gathering_tooltip.innerHTML += `每 ${format_reading_time(gathering_time_needed)}, 发现的机会:`;
     for(let i = 0; i < gained_resources.length; i++) {
         gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" (${Math.round(100*gained_resources[i].chance)}%)`;
+    }
+    if(current_activity.exp_scaling)
+    {
+        let exp_t = current_activity.done_actions;
+        let exp_s = current_activity.exp_o;
+        gathering_tooltip.innerHTML += `<br><br><b><span style="color:red">收益递减:</span></b><br>因为已经进行的 ${exp_t} 次行动,<br> 消耗的时间 x ${format_number(Math.pow(exp_s,exp_t))}`;
     }
 }
 

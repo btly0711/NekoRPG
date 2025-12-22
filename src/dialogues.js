@@ -631,7 +631,7 @@ class Textline {
                 locks_lines: ["defeat3"],
             }),
             "V0.21 Recover": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "V0.21更新存档请点击此提示获取下一区域访问权限",
                 text: "已开启3 - 1区域！",
 
@@ -640,6 +640,21 @@ class Textline {
                 },
                 locks_lines: ["V0.21 Recover"],
             }),
+        }
+    });
+    
+    dialogues["地宫老人"] = new Dialogue({
+        name: "地宫老人",
+        textlines: {
+            "dig": new Textline({ 
+                is_unlocked: true,
+                name: "唔..老人家，想要说什么啊？",
+                text: "有些时候，直接打怪收效甚微。<br>" +
+                "但是当你用你的镐子取巧，<br>" +
+                "便可能产生意想不到的奇效。”<br>"+"不过，也不要贪多...<br>边际收益递减在这里展现的淋漓尽致。",
+
+                locks_lines: ["dig"],
+            }), 
         }
     });
 })();

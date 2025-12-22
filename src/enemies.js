@@ -1304,7 +1304,7 @@ class Enemy {
     enemy_templates["燕岗领佣兵"] = new Enemy({
         name: "燕岗领佣兵", 
         description: "第一只大地级魔物。温馨提醒：大地级以上经验增长速率会翻倍！", 
-        xp_value: 89, 
+        xp_value: 144, 
         rank: 1316,
         image: "image/enemy/E1316.png",
         realm: "<span class=realm_terra><b>大地级一阶</b></span>",
@@ -1468,7 +1468,7 @@ class Enemy {
         name: "燕岗领佣兵[BOSS]", 
         description: "守在地宫门口，伺机而动的佣兵。已经截胡许多修者，底蕴丰厚。", 
         add_to_bestiary: true,
-        xp_value: 34, 
+        xp_value: 144, 
         rank: 1399,
         image: "image/boss/B1302.png",
         realm: "<span class=realm_terra><b>大地级一阶</b></span>",
@@ -1479,6 +1479,24 @@ class Enemy {
         loot_list: [
             {item_name: "高级黄宝石", chance:1},
             {item_name: "高级黄宝石", chance:1},
+        ],
+    });
+    enemy_templates["地宫看门人[BOSS]"] = new Enemy({
+        name: "地宫看门人[BOSS]", 
+        description: "说实在的...你真的要打它吗?", 
+        add_to_bestiary: true,
+        xp_value: 987, 
+        rank: 1497,
+        image: "image/boss/B1401.png",
+        realm: "<span class=realm_terra><b>大地级三阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 270000, attack: 7500, agility: 5000, attack_speed: 1.2, defense: 3750}, 
+        loot_list: [
+            {item_name: "高级红宝石", chance:1},
+            {item_name: "高级蓝宝石", chance:1},
+            {item_name: "高级蓝宝石", chance:1},
         ],
     });
     enemy_templates["Village guard (heavy)"] = new Enemy({
