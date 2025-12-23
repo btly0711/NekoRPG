@@ -1314,7 +1314,7 @@ class Enemy {
         stats: {health: 2990, attack: 1225, agility: 600, attack_speed: 1.2, defense: 400}, 
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.01},
             {item_name: "毒液", chance:0.6},
             {item_name: "紫铜锭", chance:0.2},
             //应为5X
@@ -1381,11 +1381,245 @@ class Enemy {
             //应为900C
         ],
     });
+    //以下为1-4的怪物[掉落物WIP]
+    enemy_templates["夜行幽灵"] = new Enemy({
+        name: "夜行幽灵", 
+        description: "它会复制你的攻击然后喂给你！幸好有3回合的上限", 
+        xp_value: 55, 
+        rank: 1401,
+        image: "image/enemy/E1401.png",
+        realm: "<span class=realm_basic><b>潮汐级巅峰 +</b></span>",
+        size: "small",
+        spec: [13],
+        tags: [],
+        stats: {health: 1000, attack: 1800, agility: 700, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            //应为900C
+        ],
+    });
+    enemy_templates["石风家族剑士"] = new Enemy({
+        name: "石风家族剑士", 
+        description: "因为是家族旁系中的旁系，倒是不用担心打了他城主找上门", 
+        xp_value: 144, 
+        rank: 1402,
+        image: "image/enemy/E1402.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 4000, attack: 1450, agility: 800, attack_speed: 1.2, defense: 500}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.01},
+            //应为5X
+        ],
+    });
+    enemy_templates["能量络合球"] = new Enemy({
+        name: "能量络合球", 
+        description: "由纯粹的有组织能量产生的生物体。天生魔攻，但十分脆弱。", 
+        xp_value: 144, 
+        rank: 1403,
+        image: "image/enemy/E1403.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 980, attack: 830, agility: 830, attack_speed: 1.2, defense: 830}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.01},
+            //应为5X
+        ],
+    });
+    enemy_templates["短视蝠"] = new Enemy({
+        name: "短视蝠", 
+        description: "它巨大的眼球并没有使它的视力变好...它似乎忘了凸透镜成像的原理。", 
+        xp_value: 144, 
+        rank: 1404,
+        image: "image/enemy/E1404.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 7500, attack: 1300, agility: 650, attack_speed: 1.2, defense: 800}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.01},
+            //应为5X
+        ],
+    });
+    enemy_templates["金衣除草者"] = new Enemy({
+        name: "金衣除草者", 
+        description: "它的阵法虽然布置慢了点，但是效果还是很强的。", 
+        xp_value: 144, 
+        rank: 1405,
+        image: "image/enemy/E1405.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [14],
+        tags: [],
+        stats: {health: 1920, attack: 2580, agility: 880, attack_speed: 0.9, defense: 280}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.01},
+            //应为5X
+        ],
+    });
+    enemy_templates["阴暗茸茸"] = new Enemy({
+        name: "阴暗茸茸", 
+        description: "它的绝对黑暗逆转了攻防的规则。不过，谁说这一定是件坏事呢？", 
+        xp_value: 144, 
+        rank: 1406,
+        image: "image/enemy/E1406.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [9],
+        tags: [],
+        stats: {health: 5800, attack: 1150, agility: 900, attack_speed: 1.2, defense: 300}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.01},
+            //应为5X
+        ],
+    });
+    enemy_templates["地宫妖偶"] = new Enemy({
+        name: "地宫妖偶", 
+        description: "在地宫里读书学到牵制技巧的妖偶。顺带一提，牵制已经登上了“坑魔特效榜”第二名！", 
+        xp_value: 144, 
+        rank: 1407,
+        image: "image/enemy/E1407.png",
+        realm: "<span class=realm_terra><b>大地级一阶</b></span>",
+        size: "small",
+        spec: [5],
+        tags: [],
+        stats: {health: 3000, attack: 2500, agility: 900, attack_speed: 1.2, defense: 600}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.01},
+            //应为5X
+        ],
+    });
+     enemy_templates["地宫虫卒"] = new Enemy({
+        name: "地宫虫卒", 
+        description: "他看了更多的书，发现了牵制是大坑。可惜，它自己的属性不怎么样..", 
+        xp_value: 233, 
+        rank: 1408,
+        image: "image/enemy/E1408.png",
+        realm: "<span class=realm_terra><b>大地级一阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 6400, attack: 1700, agility: 1200, attack_speed: 1.2, defense: 750}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.03},
+            //应为9X
+        ],
+    });
+    enemy_templates["地刺"] = new Enemy({
+        name: "地刺", 
+        description: "埋伏在暗处的刺球茸茸。失去了捕捉技能——倒不如说这里所有魔物都有捕捉技能。", 
+        xp_value: 233, 
+        rank: 1409,
+        image: "image/enemy/E1409.png",
+        realm: "<span class=realm_terra><b>大地级一阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 6300, attack: 2400, agility: 1080, attack_speed: 1.2, defense: 1200}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.03},
+            //应为9X
+        ],
+    });
+    enemy_templates["探险者亡魂"] = new Enemy({
+        name: "探险者亡魂", 
+        description: "黑化强十倍，洗白弱三分。这不就看到前者的表现了吗~", 
+        xp_value: 233, 
+        rank: 1410,
+        image: "image/enemy/E1410.png",
+        realm: "<span class=realm_terra><b>大地级一阶 +</b></span>",
+        size: "small",
+        spec: [15],
+        tags: [],
+        stats: {health: 600, attack: 4000, agility: 1600, attack_speed: 1.2, defense: 1500}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.03},
+            //应为9X
+        ],
+    });
+    enemy_templates["布菇妖"] = new Enemy({
+        name: "布菇妖", 
+        description: "它的孢子中含有使人衰弱的毒素。在外界早已不见它踪迹，但在黑暗的地宫中却大量存在。", 
+        xp_value: 233, 
+        rank: 1411,
+        image: "image/enemy/E1411.png",
+        realm: "<span class=realm_terra><b>大地级一阶 +</b></span>",
+        size: "small",
+        spec: [8],
+        tags: [],
+        stats: {health: 7000, attack: 2250, agility: 1400, attack_speed: 1.2, defense: 400}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.03},
+            //应为9X
+        ],
+    });
+    enemy_templates["腾风塑像"] = new Enemy({
+        name: "腾风塑像", 
+        description: "如同一阵真正的风暴！疾风？不过对它拙劣的模仿罢了！", 
+        xp_value: 233, 
+        rank: 1412,
+        image: "image/enemy/E1412.png",
+        realm: "<span class=realm_terra><b>大地级一阶 +</b></span>",
+        size: "small",
+        spec: [16],
+        tags: [],
+        stats: {health: 2800, attack: 1800, agility: 1600, attack_speed: 1.2, defense: 1000}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.03},
+            //应为9X
+        ],
+    });
+    enemy_templates["出芽黄茸茸"] = new Enemy({
+        name: "出芽黄茸茸", 
+        description: "血脉高贵的黄色茸茸，一旦出芽就意味着进入大地级。当然，99.8%暴毙的黄茸茸不会对此有意见的。", 
+        xp_value: 233, 
+        rank: 1413,
+        image: "image/enemy/E1413.png",
+        realm: "<span class=realm_terra><b>大地级一阶 +</b></span>",
+        size: "small",
+        spec: [0],
+        tags: [],
+        stats: {health: 4200, attack: 800, agility: 1500, attack_speed: 1.2, defense: 800}, 
+        loot_list: [
+            {item_name: "初始绿宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.03},
+            //应为9X
+        ],
+    });
+    enemy_templates["大地级卫戍"] = new Enemy({
+        name: "大地级卫戍", 
+        description: "把守着地宫浅层宝藏的卫戍。在地宫浅层属于出类拔萃的存在。", 
+        xp_value: 377, 
+        rank: 1414,
+        image: "image/enemy/E1414.png",
+        realm: "<span class=realm_terra><b>大地级二阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 5500, attack: 3360, agility: 1800, attack_speed: 1.2, defense: 12800}, 
+        loot_list: [
+            {item_name: "高级黄宝石", chance:0.03},
+            {item_name: "高级蓝宝石", chance:0.02},
+            //应为16X
+        ],
+    });
 
-
-
-    //1401是那个【夜行幽灵】，大地三阶的作为1-5怪物了
-    //大地三阶的强化版作为某种（根本没想过让玩家打）的boss战*B1401*，可以用镐子把宝石刨出来（跳过boss战）
 })();
 
 
@@ -1490,7 +1724,7 @@ class Enemy {
         image: "image/boss/B1401.png",
         realm: "<span class=realm_terra><b>大地级三阶</b></span>",
         size: "small",
-        spec: [],
+        spec: [17],
         tags: [],
         stats: {health: 270000, attack: 7500, agility: 5000, attack_speed: 1.2, defense: 3750}, 
         loot_list: [

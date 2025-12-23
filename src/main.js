@@ -921,7 +921,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(8)) Spec_S += "[衰弱]";
     if(current_enemies[enemy_id].spec.includes(9)) Spec_S += "[反转]";
     if(current_enemies[enemy_id].spec.includes(10)) Spec_S += "[回风]";
-    if(current_enemies[enemy_id].spec.includes(12)) Spec_S += "[时封]";
+    if(current_enemies[enemy_id].spec.includes(17)) Spec_S += "[执着]";
     //console.log(current_enemies[enemy_id]);
     
     if(isnew) {
@@ -933,6 +933,13 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
             do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);
             do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);
             do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);//疾走(开局3连击)
+        }
+        if(current_enemies[enemy_id].spec.includes(16))//飓风(开局4x5连击)
+        {
+            for(let cb=1;cb<=4;cb++)
+            {
+                do_enemy_combat_action(enemy_id,"[飓风]"+Spec_S,1,5);
+            }
         }
     }
 
@@ -954,11 +961,37 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
             }
             else  if(current_enemies[enemy_id].spec.includes(12))
             {
-                do_enemy_combat_action(enemy_id,Spec_S,1,E_round);//时封
+                do_enemy_combat_action(enemy_id,"[时封]"+Spec_S,1,E_round);//时封
                 //console.log(E_round);
-                atk_sign += 1;
+            }
+            else  if(current_enemies[enemy_id].spec.includes(15))
+            {
+                do_enemy_combat_action(enemy_id,"[异界之门]"+Spec_S,1,E_round * 2 - 1);//异界
+                //console.log(E_round);
             }
             else do_enemy_combat_action(enemy_id,Spec_S,1);
+
+            if(current_enemies[enemy_id].spec.includes(13))//惑幻
+            {
+                do_enemy_combat_action(enemy_id,"[惑幻]"+Spec_S,0);
+            }
+            if(current_enemies[enemy_id].spec.includes(14))//斩阵
+            {
+                if(E_round == 2)
+                {
+                    do_enemy_combat_action(enemy_id,"[斩阵·起]"+Spec_S,2);
+                }
+                else if(E_round == 4)
+                {
+                    do_enemy_combat_action(enemy_id,"[斩阵·承]"+Spec_S,3);
+                }
+                else if(E_round == 6)
+                {
+                    do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
+                }
+            }
+            
+            atk_sign += 1;
             if(current_enemies != null)
             {
                 if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S,1);//2连击
@@ -1177,6 +1210,18 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         spec_mul *= 1.5;
     }
 
+    let E_atk_mul_f = E_atk_mul;
+    if(attacker.spec.includes(13) && E_atk_mul == 0)//标记
+    {
+        //console.log(attacker.stats);
+        E_atk_mul_f = character.stats.full.attack_power / attacker.stats.attack;//惑幻
+    }
+    if(attacker.spec.includes(17))
+    {
+        //console.log(character.stats);
+        E_atk_mul_f += character.stats.full.health / attacker.stats.attack / 200;//执着
+    }
+
 
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
@@ -1200,16 +1245,18 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         amulet: null
     */
 
-    if(E_atk_mul != 1)
+    if(E_atk_mul_f != 1)
     {
-        spec_hint += "[ATK " + format_number(E_atk_mul * 100) + "%]";
+        if(E_atk_mul_f < 10) spec_hint += "[ATK " + format_number(E_atk_mul_f * 100) + "%]";
+        else spec_hint += "[ATK " + format_number(E_atk_mul_f) + "x]";
         //怪物增攻
     }
     spec_mul *= E_dmg_mul;//计算在loop函数中的增伤
     if(spec_mul != 1)
     {
         damage_dealt *= spec_mul;
-        spec_hint += "[DMG " + format_number(spec_mul * 100) + "%]";
+        if(spec_mul < 10) spec_hint += "[DMG " + format_number(spec_mul * 100) + "%]";
+        else spec_hint += "[DMG " + format_number(spec_mul) + "x]";
         //最终增伤
     }
     let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为最终增伤
@@ -1340,8 +1387,8 @@ function do_character_combat_action({target, attack_power}) {
             critted = false;
         }
         
-        damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense, damage_dealt*0.1, 0))/10;
-        //没有强制伤害
+        damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense, damage_dealt*0.001, 0))/10;
+        //强制伤害0.1%
 
         let Spec_E = "";
 
@@ -1415,6 +1462,7 @@ function kill_enemy(target) {
             if(target.name == "毛茸茸") add_bestiary_lines(11);
             else if(target.name == "纳家待从") add_bestiary_lines(12);
             else if(target.name == "腐蚀质石精") add_bestiary_lines(13);
+            else if(target.name == "夜行幽灵") add_bestiary_lines(14);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -2812,6 +2860,7 @@ function load(save_data) {
             create_new_bestiary_entry(enemy_name);
             if(enemy_name == "纳家待从") add_bestiary_lines(12);
             if(enemy_name == "腐蚀质石精") add_bestiary_lines(13);
+            if(enemy_name == "夜行幽灵") add_bestiary_lines(14);
 
         });
     }

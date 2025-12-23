@@ -133,10 +133,10 @@ class ComponentRecipe extends ItemRecipe{
     get_quality_range(tier = 0) {
         const skill = skills[this.recipe_skill];
         //const quality = (150+(5*skill.current_level-skill.max_level)+(20*tier))/100;
-        const quality = (80+(3*skill.current_level)+(12*tier))/100;
+        const quality = (80+(2*skill.current_level)+(10*tier))/100;
         //tier=工作台tier-部件tier
         //console.log(skill.current_level)
-        return [Math.max(10,Math.round(25*(quality-0.1))*4), Math.max(10,Math.round(25*(quality+0.1))*4)];
+        return [Math.max(10,Math.round(25*(quality-0.15))*4), Math.max(10,Math.round(25*(quality+0.15))*4)];
     }
 
     get_quality_cap() {
@@ -206,8 +206,8 @@ class EquipmentRecipe extends Recipe {
     }
 
     get_quality_range(component_quality, tier = 0) {
-        const skill = skills[this.recipe_skill];
-        const quality = (64+component_quality+(3*skill.current_level-skill.max_level)+5*(tier));
+        //const skill = skills[this.recipe_skill];
+        const quality = component_quality
         return [Math.max(10,Math.round(quality-15)), Math.max(10,Math.round(quality+15))];
     }
 
@@ -222,7 +222,7 @@ class EquipmentRecipe extends Recipe {
     }
 
     get_component_quality_weighted(component_1, component_2) {
-        return (component_1.quality*component_1.component_tier + component_2.quality*component_2.component_tier)/(component_1.component_tier+component_2.component_tier);
+        return (component_1.quality*(component_1.component_tier + 1) + component_2.quality*(component_2.component_tier + 1))/(component_1.component_tier+component_2.component_tier+2);
     }
 }
 

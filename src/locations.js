@@ -1363,16 +1363,15 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["地宫入口"] = new Location({ 
         connected_locations: [{location: locations["燕岗近郊"], custom_text: "离开地宫"}], 
-        description: "地宫的表层。宝石的气息浓郁，但有大地级三阶的魔物把守。[V0.30前版本终点]",
+        description: "地宫的入口处。宝石的气息浓郁，但有大地级三阶的魔物把守。[V0.30前版本终点]",
         
         dialogues: ["地宫老人"],
         is_unlocked: false,
         //此处应有一个boss战和一个偷宝石的法子(10颗高级蓝宝石)
-        unlock_text: "这些人的异常，恐怕和这栋建筑里的东西，脱不了干系。",
         name: "地宫入口", 
         bgm: 4,
         unlock_text: "好可怕的气息，刚进门就是这么可怕的怪物！"
-    });//1-4
+    });//1-4pre
     locations["地宫 - 看门人"] = new Challenge_zone({
         description: "你确定要和它战斗吗..挨打变强现在可是削弱了哦！",
         enemy_count: 4, 
@@ -1388,9 +1387,103 @@ function get_location_type_penalty(type, stage, stat) {
 
         //unlock_text: "不对劲，这些人看向我的时候，眼神怎么这么疯狂？难道是中了邪术吗？"
     });
+    locations["地宫浅层"] = new Location({ 
+        connected_locations: [{location: locations["地宫入口"], custom_text: "回到入口处"}], 
+        description: "地宫的浅层。盘踞着大量魔物，也潜藏着许多宝藏。[V0.32版本终点]",
+        
+        is_unlocked: true,
+        name: "地宫浅层", 
+        bgm: 4,
+    });//1-4
     
     locations["燕岗近郊"].connected_locations.push({location: locations["地宫入口"]});
+    locations["地宫入口"].connected_locations.push({location: locations["地宫浅层"]});
     locations["地宫入口"].connected_locations.push({location: locations["地宫 - 看门人"], custom_text: "与大地级三阶魔物抢夺宝石"});
+    locations["地宫 - 1"] = new Combat_zone({
+        description: "地宫/地下2-3层", 
+        enemy_count: 20, 
+        enemies_list: ["夜行幽灵","石风家族剑士","能量络合球","短视蝠","金衣除草者"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        name: "地宫 - 1",
+        
+        rank:31, 
+        bgm:4,
+        parent_location: locations["地宫浅层"],
+        first_reward: {
+            xp: 480,
+        },
+        repeatable_reward: {
+            xp: 160,
+            locations: [{location: "地宫 - 2"}],
+        },
+    });
+    locations["地宫 - 2"] = new Combat_zone({
+        description: "地宫/地下4-6层", 
+        enemy_count: 20, 
+        enemies_list: ["短视蝠","金衣除草者","阴暗茸茸","地宫妖偶","地宫虫卒"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "地宫 - 2",
+        
+        rank:32, 
+        bgm:4,
+        parent_location: locations["地宫浅层"],
+        first_reward: {
+            xp: 540,
+        },
+        repeatable_reward: {
+            xp: 180,
+            locations: [{location: "地宫 - 3"}],
+        },
+    });
+    locations["地宫 - 3"] = new Combat_zone({
+        description: "地宫/地下7-10层", 
+        enemy_count: 20, 
+        enemies_list: ["地宫虫卒","地宫妖偶","地刺","探险者亡魂","布菇妖","腾风塑像"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "地宫 - 3",
+        
+        rank:33, 
+        bgm:4,
+        parent_location: locations["地宫浅层"],
+        first_reward: {
+            xp: 600,
+        },
+        repeatable_reward: {
+            xp: 200,
+            locations: [{location: "地宫 - 4"}],
+        },
+    });
+    locations["地宫 - 4"] = new Combat_zone({
+        description: "地宫/地下11-15层", 
+        enemy_count: 20, 
+        enemies_list: ["地刺","探险者亡魂","布菇妖","腾风塑像","出芽黄茸茸","大地级卫戍"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "地宫 - 4",
+        
+        rank:34, 
+        bgm:4,
+        parent_location: locations["地宫浅层"],
+        first_reward: {
+            xp: 720,
+        },
+        repeatable_reward: {
+            xp: 240,
+            //locations: [{location: "地宫 - X"}],
+        },
+    });
+
+    locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 1"]});
+    locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 2"]});
+    locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 3"]});
+    locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 4"]});
     
 
 

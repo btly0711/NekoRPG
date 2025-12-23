@@ -253,7 +253,7 @@ class ItemComponent extends Item {
         super(item_data);
         this.item_type = "COMPONENT";
         this.stackable = false;
-        this.component_tier = item_data.component_tier || 1;
+        this.component_tier = item_data.component_tier || 0;
         this.stats = item_data.stats || {};
         this.tags["equipment component"] = true;
         this.quality = Math.round(item_data.quality) || 100;
@@ -625,7 +625,7 @@ class Armor extends Equippable {
 
             this.component_type = item_data.component_type;
             this.value = item_data.value;
-            this.component_tier = item_data.component_tier || 1;
+            this.component_tier = item_data.component_tier || 0;
             this.base_defense = item_data.base_defense;
 
             if(item_data.component_type === "helmet interior") {
@@ -2215,7 +2215,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "铁剑刃", description: "由铁锭打造出的剑刃，是铁剑的核心部件",
         component_type: "long blade",
         value: 125,
-        component_tier: 1,
+        component_tier: 0,
         name_prefix: "铁",
         attack_value: 16,
         stats: {
@@ -2232,7 +2232,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "精钢剑刃", description: "由精钢锭打造出的剑刃，远远比铁剑刃锋利",
         component_type: "long blade",
         value: 900,
-        component_tier: 2,
+        component_tier: 1,
         name_prefix: "精钢",
         attack_value: 48,
         stats: {
@@ -2249,7 +2249,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "紫铜剑刃", description: "由紫铜锭打造出的剑刃，锋利的同时兼具灵敏",
         component_type: "long blade",
         value: 40000,
-        component_tier: 3,
+        component_tier: 2,
         name_prefix: "紫铜",
         attack_value: 200,
         stats: {
@@ -2265,7 +2265,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "骨剑柄", description: "由白骨制成的剑柄。易碎，所以使用时会影响自身",
         component_type: "short handle",
         value: 15,
-        component_tier: 1,
+        component_tier: 0,
         stats: {
             attack_speed: {
                 multiplier: 0.95,
@@ -2279,7 +2279,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "铜骨剑柄", description: "由铜骨制成的剑柄。结实好用！",
         component_type: "short handle",
         value: 50,
-        component_tier: 2,
+        component_tier: 1,
         stats: {
             attack_speed: {
                 multiplier: 1.00,
@@ -2290,7 +2290,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "改良剑柄", description: "由多种材料组合的剑柄。能够提供复合提升！",
         component_type: "short handle",
         value: 25000,
-        component_tier: 3,
+        component_tier: 2,
         stats: {
             agility: {
                 flat: 40.00,
@@ -2330,7 +2330,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 45,
         component_type: "helmet interior",
         base_defense: 2,
-        component_tier: 1,
+        component_tier: 0,
     });
     item_templates["粘合背心"] = new Armor({
         name: "粘合背心", 
@@ -2338,7 +2338,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 60,
         component_type: "chestplate interior",
         base_defense: 4,
-        component_tier: 1,
+        component_tier: 0,
     });
     item_templates["粘合裤子"] = new Armor({
         name: "粘合裤子", 
@@ -2346,7 +2346,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 60,
         component_type: "leg armor interior",
         base_defense: 3,
-        component_tier: 1,
+        component_tier: 0,
     });
     item_templates["粘合袜子"] = new Armor({
         name: "粘合袜子", 
@@ -2354,7 +2354,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 30,
         component_type: "shoes interior",
         base_defense: 2,
-        component_tier: 1,
+        component_tier: 0,
     });
     item_templates["异兽帽子"] = new Armor({
         name: "异兽帽子", 
@@ -2362,7 +2362,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1800,
         component_type: "helmet interior",
         base_defense: 10,
-        component_tier: 2,
+        component_tier: 1,
     });
     item_templates["异兽背心"] = new Armor({
         name: "异兽背心", 
@@ -2370,7 +2370,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2400,
         component_type: "chestplate interior",
         base_defense: 16,
-        component_tier: 2,
+        component_tier: 1,
     });
     item_templates["异兽裤子"] = new Armor({
         name: "异兽裤子", 
@@ -2378,7 +2378,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2400,
         component_type: "leg armor interior",
         base_defense: 14,
-        component_tier: 2,
+        component_tier: 1,
     });
     item_templates["异兽袜子"] = new Armor({
         name: "异兽袜子", 
@@ -2386,14 +2386,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1200,
         component_type: "shoes interior",
         base_defense: 8,
-        component_tier: 2,
+        component_tier: 1,
     });
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
         description: "制式的铁制头盔外壳，因阻挡视野会略微影响攻击速度",
         component_type: "helmet exterior",
         value: 187,
-        component_tier: 1,
+        component_tier: 0,
         full_armor_name: "铁制头盔",
         defense_value: 3,
     });
@@ -2402,7 +2402,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "制式的铁制胸甲外壳",
         component_type: "chestplate exterior",
         value: 250,
-        component_tier: 1,
+        component_tier: 0,
         full_armor_name: "铁制胸甲",
         defense_value: 5,
     });
@@ -2411,7 +2411,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "制式的铁制腿甲外壳",
         component_type: "leg armor exterior",
         value: 250,
-        component_tier: 1,
+        component_tier: 0,
         full_armor_name: "铁制腿甲",
         defense_value: 4,
     });
@@ -2420,7 +2420,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "制式的铁制战靴外壳，会略微影响行动",
         component_type: "shoes exterior",
         value: 125,
-        component_tier: 1,
+        component_tier: 0,
         full_armor_name: "铁制战靴",
         defense_value: 2,
     });
