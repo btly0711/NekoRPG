@@ -76,7 +76,7 @@ window.REALMS=[
 [5,"万物级巅峰",25,6000,16000],
 
 [6,"潮汐级初等",40,10000,36000],//0.1spd
-[7,"潮汐级高等",70,20000,160000],
+[7,"潮汐级高等",70,20000,120000],
 [8,"潮汐级巅峰",100,40000,2400000],//计划:最早1-5开放
 
 
@@ -1648,7 +1648,8 @@ function get_location_rewards(location) {
         
 
     if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
-            create_new_levelary_entry(location);
+        //console.log("1st/pass")
+            create_new_levelary_entry(location.name);
             log_message(`首次通过 ${location.name} ，获取 ${location.first_reward.xp} 经验 `, "location_reward");
             add_xp_to_character(location.first_reward.xp);
         }
@@ -1664,7 +1665,7 @@ function get_location_rewards(location) {
     location.otherUnlocks();
 
     for(let i = 0; i < location.repeatable_reward.locations?.length; i++) { //unlock locations
-
+        console.log(location.repeatable_reward);
         if(!location.repeatable_reward.locations[i].required_clears || location.enemy_groups_killed/location.enemy_count >= location.repeatable_reward.locations[i].required_clears){
             unlock_location(locations[location.repeatable_reward.locations[i].location]);
         }
@@ -1908,20 +1909,21 @@ function use_item(item_key) {
 
     if(G_value > 0)//using gems
     {
-        console.log(item_templates[id]);
+        //console.log(item_templates[id]);
         used=true;
         let message = `使用 ${item_templates[id].name} , `
         let SCGV = 30;//SoftCappedGemValue
         let HPMV = 50;//HealthPointMultiplierValue
         let P1,P2,P3,P4;//相对概率(修正后)
-        P1=Math.pow((character.stats.flat.gems.attack_power/G_value +1),-1.5);
+        P1=Math.pow(((character.stats.flat.gems.attack_power||0)/G_value +1),-1.5);
         if(character.stats.flat.gems.attack_power >= SCGV*G_value) P1*=0.5;
-        P2=Math.pow((character.stats.flat.gems.defense/G_value +1),-1.5);
+        P2=Math.pow(((character.stats.flat.gems.defense||0)/G_value +1),-1.5);
         if(character.stats.flat.gems.defense >= SCGV*G_value) P2*=0.5;
-        P3=Math.pow((character.stats.flat.gems.agility/G_value +1),-1.5);
+        P3=Math.pow(((character.stats.flat.gems.agility||0)/G_value +1),-1.5);
         if(character.stats.flat.gems.agility >= SCGV*G_value) P3*=0.5;
-        P4=Math.pow((character.stats.flat.gems.max_health/G_value/HPMV +1),-1.5);
+        P4=Math.pow(((character.stats.flat.gems.max_health||0)/G_value/HPMV +1),-1.5);
         if(character.stats.flat.gems.agility >= SCGV*HPMV*G_value) P4*=0.5;
+        
         
         let pa = Math.random()*(P1+P2+P3+P4);
         if(pa<P1)//STR

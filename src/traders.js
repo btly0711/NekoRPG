@@ -92,6 +92,9 @@ class Trader extends InventoryHaver {
 
                 }
             }
+            //console.log(inventory_template[i]);
+
+
         }
 
         //just add items based on their chances and counts in inventory_template
@@ -278,7 +281,7 @@ class TradeItem {
             new TradeItem({item_name: "粘合帽子", count: [1], quality: [61, 100], chance: 0.5}),
             new TradeItem({item_name: "粘合背心", count: [1], quality: [61, 100], chance: 0.5}),
             new TradeItem({item_name: "粘合裤子", count: [1], quality: [61, 100], chance: 0.5}),
-            new TradeItem({item_name: "粘合鞋子", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "粘合袜子", count: [1], quality: [61, 100], chance: 0.5}),
     ];
 
     inventory_templates["Basic II"] = 
@@ -299,7 +302,7 @@ class TradeItem {
             new TradeItem({item_name: "异兽帽子", count: [1], quality: [61, 100], chance: 0.5}),
             new TradeItem({item_name: "异兽背心", count: [1], quality: [61, 100], chance: 0.5}),
             new TradeItem({item_name: "异兽裤子", count: [1], quality: [61, 100], chance: 0.5}),
-            new TradeItem({item_name: "异兽鞋子", count: [1], quality: [61, 100], chance: 0.5}),
+            new TradeItem({item_name: "异兽袜子", count: [1], quality: [61, 100], chance: 0.5}),
     ];
 
     inventory_templates["Basic III"] = 

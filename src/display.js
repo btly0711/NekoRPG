@@ -2556,9 +2556,31 @@ function update_displayed_stats() { //updates displayed stats
     //character_rank_div.innerText = `战力: ${chara_rank}`;//看战力以拟合后续【排位】曲线
 
     //
-    let chara_result = 2e18 / Math.pow(chara_rank,0.9);//原作下大地级人口共[亿亿计]，加学徒级翻百倍，角色战力在城主级时推测为【垓】。
+    let chara_result = Math.ceil(4e11 * Math.pow(chara_rank,-0.655));//拟合结果
+    
     //此处应有Format
-    character_rank_div.innerText = `燕岗领排名: ${format_number(chara_result)}`;//正常工作代码
+    character_rank_div.innerText = `燕岗领排名: `;
+    let C_re = Math.floor(chara_result / 1e8);
+    
+    let C_rw = Math.floor(Math.floor(chara_result - C_re * 1e8) / 1e4);
+    let C_r = Math.round(chara_result - C_re * 1e8 - C_rw * 1e4);
+    if(C_re >= 1)
+    {
+        character_rank_div.innerText += `${C_re},`
+        if(C_rw < 1000) character_rank_div.innerText += `0`
+        if(C_rw < 100) character_rank_div.innerText += `0`
+        if(C_rw < 10) character_rank_div.innerText += `0`
+        if(C_rw < 1) character_rank_div.innerText += `0,`
+    }
+    if(C_rw >= 1)
+    {
+        character_rank_div.innerText += `${C_rw},`
+        if(C_r < 1000) character_rank_div.innerText += `0`
+        if(C_r < 100) character_rank_div.innerText += `0`
+        if(C_r < 10) character_rank_div.innerText += `0`
+        if(C_r < 1) character_rank_div.innerText += `0`
+    }
+    if(C_r >= 1) character_rank_div.innerText += `${C_r}`;
 
 
 
@@ -3609,7 +3631,8 @@ function create_new_levelary_entry(level_name) {
     
     const level = locations[level_name];
 
-    //console.log(level);
+    console.log(locations);
+    console.log(level_name);
 
     const name_div = document.createElement("div");
     name_div.innerHTML = level_name;
@@ -3619,7 +3642,7 @@ function create_new_levelary_entry(level_name) {
     kill_counter.classList.add("bestiary_entry_kill_count");
 
     
-    //console.log(level.rank);
+    console.log(level.rank);
     if(level.rank==0) return;
     
 

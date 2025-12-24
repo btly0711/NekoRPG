@@ -1544,7 +1544,7 @@ class Enemy {
         size: "small",
         spec: [15],
         tags: [],
-        stats: {health: 600, attack: 4000, agility: 1600, attack_speed: 1.2, defense: 1500}, 
+        stats: {health: 3000, attack: 4000, agility: 1600, attack_speed: 1.2, defense: 1500}, 
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
@@ -1612,7 +1612,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 5500, attack: 3360, agility: 1800, attack_speed: 1.2, defense: 12800}, 
+        stats: {health: 5500, attack: 3360, agility: 1800, attack_speed: 1.2, defense: 1280}, 
         loot_list: [
             {item_name: "高级黄宝石", chance:0.03},
             {item_name: "高级蓝宝石", chance:0.02},
@@ -1724,7 +1724,7 @@ class Enemy {
         image: "image/boss/B1401.png",
         realm: "<span class=realm_terra><b>大地级三阶</b></span>",
         size: "small",
-        spec: [17],
+        spec: [],
         tags: [],
         stats: {health: 270000, attack: 7500, agility: 5000, attack_speed: 1.2, defense: 3750}, 
         loot_list: [
