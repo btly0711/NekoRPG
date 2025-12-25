@@ -2220,7 +2220,7 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 16,
         stats: {
             crit_rate: {
-                flat: 0.1,
+                flat: 0.06,
             },
             attack_speed: {
                 multiplier: 1.05,
@@ -2237,7 +2237,7 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 48,
         stats: {
             crit_rate: {
-                flat: 0.12,
+                flat: 0.08,
             },
             attack_speed: {
                 multiplier: 1.06,
@@ -2254,10 +2254,45 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 200,
         stats: {
             crit_rate: {
-                flat: 0.14,
+                flat: 0.10,
             },
             attack_speed: {
                 multiplier: 1.08,
+            }
+        }
+    });
+    item_templates["宝石剑刃"] = new WeaponComponent({
+        name: "宝石剑刃", description: "经过打造的宝石灌注剑刃。具有魔力，暴击率提升。",
+        component_type: "long blade",
+        value: 500e3,
+        component_tier: 3,
+        name_prefix: "宝石",
+        attack_value: 500,
+        stats: {
+            crit_rate: {
+                flat: 0.12,
+            },
+            attack_speed: {
+                multiplier: 1.09,
+            }
+        }
+    });
+    item_templates["地宫剑刃"] = new WeaponComponent({
+        name: "地宫剑刃", description: "地宫金属制造的剑刃。灵活性较强，敏捷提升。",
+        component_type: "long blade",
+        value: 500e3,
+        component_tier: 3,
+        name_prefix: "地宫",
+        attack_value: 500,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_speed: {
+                multiplier: 1.09,
+            },
+            agility: {
+                flat:80,
             }
         }
     });
@@ -2509,6 +2544,23 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/purplecopper_ingot.png",
     });
+    
+    item_templates["宝石锭"] = new Material({
+        id: "宝石锭",
+        name: "宝石锭", 
+        description: "利用能力宝石打成的锭。这可不会被软上限..", 
+        value: 200e3,
+        material_type: "metal",
+        image: "image/item/gem_ingot.png",
+    });
+    item_templates["地宫金属锭"] = new Material({
+        id: "地宫金属锭",
+        name: "地宫金属锭", 
+        description: "地宫材料铸造成的紫铜合金，平均强度约为A2级别。来路不明的材料导致它具有毒性，无法制作护甲。此外，因市场快速饱和，它的市场价还没有它材料的一半贵。", 
+        value: 200e3,
+        material_type: "metal",
+        image: "image/item/TPmetal_ingot.png",
+    });
 })();
 
 //矿石
@@ -2538,6 +2590,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 999,
         image: "image/item/MT15.png",
     });
+    
+    item_templates["牵制-从入门到精通"] = new OtherItem({
+        id: "牵制-从入门到精通",
+        name: "牵制-从入门到精通", 
+        description: "被完全涂黑了，只留下一句血洛大陆通用语的血书：牵制毁一生,匙弱穷三代。", 
+        value: 11037,
+        image: "image/item/BurnBlood.png",
+    });
 })();
 
 //消耗品
@@ -2562,6 +2622,20 @@ item_templates["Twist liek a snek"] = new Book({
         value: 6000,
         effects: [{effect: "饱食 III", duration: 60}],
         image: "image/item/O8_cooked_meat.png",
+    });
+    item_templates["地宫恢复药水"] = new UsableItem({
+        name: "地宫恢复药水", 
+        description: "它并不十分好喝。悲哀的是，地宫怪物的肉口感更糟...", 
+        value: 210e3,
+        effects: [{effect: "恢复 A1", duration: 60}],
+        image: "image/item/A1_medicine.png",
+    });
+    item_templates["地宫狂暴药水"] = new UsableItem({
+        name: "地宫狂暴药水", 
+        description: "可以短时间内大幅增强你的力量。嘛，就是有一点副作用...", 
+        value: 420e3,
+        effects: [{effect: "强化 A1", duration: 30},{effect: "虚弱", duration: 90}],
+        image: "image/item/A1_booster.png",
     });
 })();
 //炼金
@@ -2760,6 +2834,31 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/O8_meat.png",
     });
 
+    //1-4
+    item_templates["大地级魂魄"] = new Loot({
+        name: "大地级魂魄", 
+        description: "纯灵体怪物体内的魂魄。经处理后可以成为纯净的能量。", 
+        value: 80e3,
+        image: "image/item/A1_soul.png",
+    });
+    item_templates["巨型眼球"] = new Loot({
+        name: "巨型眼球", 
+        description: "大地级魔物的眼球，可以作为生命恢复药剂的素材", 
+        value: 100e3,
+        image: "image/item/A1_eye.png",
+    });
+    item_templates["A1·能量核心"] = new Loot({
+        name: "A1·能量核心", 
+        description: "部分“内丹”修炼体系魔物体内的核心。可以在短时间内诱导出巨大的力量。", 
+        value: 120e3,
+        image: "image/item/A1_crystal.png",
+    });
+    item_templates["断剑"] = new Loot({
+        name: "断剑", 
+        description: "魔物使用的土制低劣武器。虽然本身易于断裂，但是它的潜力不止于此", 
+        value: 80e3,
+        image: "image/item/A1_sword.png",
+    });
 
 
 

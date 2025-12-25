@@ -268,6 +268,8 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "铁锭", count: 2, result_id: "铁剑刃"}, 
             {material_id: "精钢锭", count: 2, result_id: "精钢剑刃"}, 
             {material_id: "紫铜锭", count: 2, result_id: "紫铜剑刃"}, 
+            {material_id: "宝石锭", count: 3, result_id: "宝石剑刃"}, 
+            {material_id: "地宫金属锭", count: 3, result_id: "地宫剑刃"}, 
             //未完待续
         ],
         item_type: "Component",
@@ -688,6 +690,42 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [8,11],
         recipe_skill: "Smelting",
     });
+    smelting_recipes.items["地宫合金"] = new ItemRecipe({
+        name: "地宫合金",
+        recipe_type: "material",
+        materials: [{material_id: "紫铜锭", count: 1},{material_id: "断剑", count: 3},{material_id:"A1·能量核心", count: 1}], 
+        result: {result_id: "地宫金属锭", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [8,13],
+        recipe_skill: "Smelting",
+    });
+    smelting_recipes.items["地宫合金-粗制"] = new ItemRecipe({
+        name: "地宫合金-粗制",
+        recipe_type: "material",
+        materials: [{material_id: "紫铜锭", count: 2},{material_id: "断剑", count: 5},{material_id:"煤炭", count: 5}], 
+        result: {result_id: "地宫金属锭", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [8,15],
+        recipe_skill: "Smelting",
+    });
+    smelting_recipes.items["锤炼宝石"] = new ItemRecipe({
+        name: "锤炼宝石",
+        recipe_type: "material",
+        materials: [{material_id: "初始黄宝石", count: 1},{material_id: "初始蓝宝石", count: 1},{material_id: "初始红宝石", count: 1},{material_id: "初始绿宝石", count: 1}], 
+        result: {result_id: "宝石锭", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [8,13],
+        recipe_skill: "Smelting",
+    });
+    smelting_recipes.items["锤炼宝石-快捷"] = new ItemRecipe({
+        name: "锤炼宝石-快捷",
+        recipe_type: "material",
+        materials: [{material_id: "高级黄宝石", count: 4}], 
+        result: {result_id: "宝石锭", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [8,15],
+        recipe_skill: "Smelting",
+    });
 })();
 
 (function(){
@@ -790,6 +828,25 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "初始红宝石", count: 1},
         success_chance: [0.3,1],
         recipe_level: [6,10],
+        recipe_skill: "Alchemy",
+    });
+    
+    alchemy_recipes.items["地宫恢复药水"] = new ItemRecipe({
+        name: "地宫恢复药水",
+        recipe_type: "material",
+        materials: [{material_id: "大地级魂魄", count: 1},{material_id: "巨型眼球", count: 1}], 
+        result: {result_id: "地宫恢复药水", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [11,11],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items["地宫狂暴药水"] = new ItemRecipe({
+        name: "地宫狂暴药水",
+        recipe_type: "material",
+        materials: [{material_id: "大地级魂魄", count: 3},{material_id: "A1·能量核心", count: 1}], 
+        result: {result_id: "地宫狂暴药水", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [12,12],
         recipe_skill: "Alchemy",
     });
 })();

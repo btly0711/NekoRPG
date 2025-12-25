@@ -1384,7 +1384,7 @@ class Enemy {
     //以下为1-4的怪物[掉落物WIP]
     enemy_templates["夜行幽灵"] = new Enemy({
         name: "夜行幽灵", 
-        description: "它会复制你的攻击然后喂给你！幸好有3回合的上限", 
+        description: "地宫里唯一的潮汐级魔物。靠着灯光的方便存活了下来。", 
         xp_value: 55, 
         rank: 1401,
         image: "image/enemy/E1401.png",
@@ -1395,6 +1395,7 @@ class Enemy {
         stats: {health: 1000, attack: 1800, agility: 700, attack_speed: 1.2, defense: 0}, 
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "灵液", chance:0.36}
             //应为900C
         ],
     });
@@ -1412,6 +1413,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
             {item_name: "高级黄宝石", chance:0.01},
+            {item_name: "断剑", chance:0.025},
+            {item_name: "紫铜锭", chance:0.18},
             //应为5X
         ],
     });
@@ -1429,6 +1432,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
             {item_name: "高级黄宝石", chance:0.01},
+            {item_name: "大地级魂魄", chance:0.06},
             //应为5X
         ],
     });
@@ -1446,6 +1450,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
             {item_name: "高级黄宝石", chance:0.01},
+            {item_name: "巨型眼球", chance:0.05},
             //应为5X
         ],
     });
@@ -1463,6 +1468,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
             {item_name: "高级黄宝石", chance:0.01},
+            {item_name: "断剑", chance:0.03},
+            {item_name: "润灵铜骨", chance:0.25},
             //应为5X
         ],
     });
@@ -1480,6 +1487,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
             {item_name: "高级黄宝石", chance:0.01},
+            {item_name: "大地级魂魄", chance:0.045},
+            {item_name: "A1·能量核心", chance:0.02},
             //应为5X
         ],
     });
@@ -1497,6 +1506,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
             {item_name: "高级黄宝石", chance:0.01},
+            {item_name: "牵制-从入门到精通", chance:0.01},
             //应为5X
         ],
     });
@@ -1514,6 +1524,9 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
+            {item_name: "牵制-从入门到精通", chance:0.001},
+            {item_name: "断剑", chance:0.05},
+            {item_name: "润灵铜骨", chance:0.5},
             //应为9X
         ],
     });
@@ -1531,6 +1544,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
+            {item_name: "巨型眼球", chance:0.06},
+            {item_name: "A1·能量核心", chance:0.02},
             //应为9X
         ],
     });
@@ -1548,12 +1563,14 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
+            {item_name: "大地级魂魄", chance:0.075},
+            {item_name: "A1·能量核心", chance:0.02},
             //应为9X
         ],
     });
     enemy_templates["布菇妖"] = new Enemy({
         name: "布菇妖", 
-        description: "它的孢子中含有使人衰弱的毒素。在外界早已不见它踪迹，但在黑暗的地宫中却大量存在。", 
+        description: "它的孢子中含有使人衰弱的毒素。在外界它的踪迹早已消失，但黑暗的地宫中它却四处蔓延。", 
         xp_value: 233, 
         rank: 1411,
         image: "image/enemy/E1411.png",
@@ -1565,6 +1582,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
+            {item_name: "紫铜锭", chance:0.35},
+            {item_name: "毒液", chance:1.0},
             //应为9X
         ],
     });
@@ -1582,6 +1601,8 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
+            {item_name: "断剑", chance:0.06},
+            {item_name: "A1·能量核心", chance:0.02},
             //应为9X
         ],
     });
@@ -1599,12 +1620,13 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
+            {item_name: "A1·能量核心", chance:0.06},
             //应为9X
         ],
     });
     enemy_templates["大地级卫戍"] = new Enemy({
         name: "大地级卫戍", 
-        description: "把守着地宫浅层宝藏的卫戍。在地宫浅层属于出类拔萃的存在。", 
+        description: "我本是此地的叹息之墙，直到纱雪发现def里面多加了个0..", 
         xp_value: 377, 
         rank: 1414,
         image: "image/enemy/E1414.png",
@@ -1616,6 +1638,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级黄宝石", chance:0.03},
             {item_name: "高级蓝宝石", chance:0.02},
+            {item_name: "地宫金属锭", chance:0.03},
             //应为16X
         ],
     });
@@ -1711,20 +1734,20 @@ class Enemy {
         tags: [],
         stats: {health: 29900, attack: 1225, agility: 600, attack_speed: 1.2, defense: 400}, 
         loot_list: [
-            {item_name: "高级黄宝石", chance:1},
-            {item_name: "高级黄宝石", chance:1},
+            //{item_name: "高级黄宝石", chance:1},
+            //{item_name: "高级黄宝石", chance:1},
         ],
     });
     enemy_templates["地宫看门人[BOSS]"] = new Enemy({
         name: "地宫看门人[BOSS]", 
-        description: "说实在的...你真的要打它吗?", 
+        description: "听说，有喵在叠铁质皮肤...", 
         add_to_bestiary: true,
         xp_value: 987, 
         rank: 1497,
         image: "image/boss/B1401.png",
         realm: "<span class=realm_terra><b>大地级三阶</b></span>",
         size: "small",
-        spec: [],
+        spec: [9],
         tags: [],
         stats: {health: 270000, attack: 7500, agility: 5000, attack_speed: 1.2, defense: 3750}, 
         loot_list: [

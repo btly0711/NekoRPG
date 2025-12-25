@@ -77,4 +77,37 @@ effect_templates["饱食 III"] = new ActiveEffect({
     }
 });
 
+
+effect_templates["恢复 A1"] = new ActiveEffect({
+    name: "恢复 A1",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 1200},
+        }
+    }
+});
+
+
+effect_templates["强化 A1"] = new ActiveEffect({
+    name: "强化 A1",
+    effects: {
+        stats: {
+            health_regeneration_percent: {flat: 1},
+            attack_power:{flat:320},
+            defense:{flat:320},
+            agility:{flat:320},
+        }
+    }
+});
+
+
+effect_templates["虚弱"] = new ActiveEffect({
+    name: "虚弱",
+    effects: {
+        stats: {
+            health_regeneration_percent: {flat: -1},
+        }
+    }
+});
+
 export {effect_templates, ActiveEffect};

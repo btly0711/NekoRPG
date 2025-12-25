@@ -2052,7 +2052,7 @@ function get_location_type_penalty(type, stage, stat) {
             is_unlocked: true,
             exp_scaling: true,
             scaling_id: "40G",
-            exp_o:1.6,//每完成一次需要的时间指数提升
+            exp_o:1.5,//每完成一次需要的时间指数提升
             gained_resources: {
                 resources: [{name: "高级蓝宝石", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
                 time_period: [10, 2],
