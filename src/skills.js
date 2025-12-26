@@ -1633,8 +1633,9 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         category: "Character",
         base_xp_cost: 100,
         max_level: 25,
+        xp_scaling: 2,
         get_effect_description: ()=> {
-            return `将购买价格降低到原价的 ${Math.round((1 - skills["Haggling"].get_level_bonus())*100)}%`;
+            return `将购买价格降低到原价的 ${Math.round((1 - skills["Haggling"].get_level_bonus())*100)}%(不低于100%)`;
         },
         max_level_bonus: 0.5
     });

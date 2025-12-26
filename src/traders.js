@@ -106,7 +106,7 @@ class Trader extends InventoryHaver {
      * @returns {Number} trader's profit margin multiplied by bonus from the haggling skill
      */
     getProfitMargin() {
-        return Math.max(1,this.profit_margin * (1 - skills["Haggling"].get_level_bonus()));
+        return Math.max(1.1,this.profit_margin * (1 - skills["Haggling"].get_level_bonus()));
     }
 
     getItemPrice(value) {
