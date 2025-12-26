@@ -2316,9 +2316,9 @@ item_templates["Twist liek a snek"] = new Book({
         }
     });
     item_templates["地宫剑刃"] = new WeaponComponent({
-        name: "地宫剑刃", description: "地宫金属制造的剑刃。灵活性较强，敏捷提升。",
+        name: "地宫剑刃", description: "地宫金属制造的剑刃。因为市场饱和根本卖不出去，但是自用还是好用的。",
         component_type: "long blade",
-        value: 500e3,
+        value: 120e3,
         component_tier: 3,
         name_prefix: "地宫",
         attack_value: 500,
