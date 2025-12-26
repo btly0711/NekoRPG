@@ -264,7 +264,7 @@ function create_item_tooltip_content({item, options={}}) {
             });
         }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子"}
+        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具"}
         if(item.equip_slot === "weapon") {
             item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
@@ -290,7 +290,7 @@ function create_item_tooltip_content({item, options={}}) {
         }
 
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复"}
         if(!options.skip_quality && options?.quality?.length == 2) {
             if(item.getAttack) {
                 item_tooltip += 
@@ -323,7 +323,8 @@ function create_item_tooltip_content({item, options={}}) {
             if(item.getAttack) {
                 item_tooltip += 
                     `<br><br>攻击: ${Math.round(10*item.getAttack())/10}`;
-            } else if(item.getDefense) { 
+            } else if(item.getDefense && item.equip_slot != "props") { 
+            //console.log(item);
                 item_tooltip += 
                 `<br><br>防御: ${Math.round(10*item.getDefense())/10}`;
             } else if(item.offhand_type === "shield") {
@@ -395,7 +396,7 @@ function create_item_tooltip_content({item, options={}}) {
             item_tooltip += `<br>Size-specific attack power: x${item.attack_multiplier}`;
         }
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤","Health Regeneration Flat":"生命恢复"}
         Object.keys(item.stats).forEach(function(effect_key) {
 
             if(item.stats[effect_key].flat != null) {
@@ -451,7 +452,7 @@ function create_effect_tooltip(effect_name, duration) {
         {   
             tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}`;
         } else if(key === "health_regeneration_percent") {
-            const sign = stat_value.percent > 0? "+":"-";
+            const sign = stat_value.flat > 0? "+":"";
             tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}%`;
         } else {
 
@@ -1130,7 +1131,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     if("quality" in target_item) {
         item_control_div.dataset.item_quality = target_item.quality;
     }
-    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器"};
+    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具"};
     if(target_item.tags?.equippable) {
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;
@@ -2689,7 +2690,7 @@ function format_money(num) {
         if(num > 999.5) {
             value = (`${Math.floor(num/1000)%1000}<span class="coin coin_moneyK">X</span> `) + value;
             if(num > 999999.5) {
-                value = (Math.floor(num/1000)%100 != 0?`${Math.floor(num/1000000)%1000}<span class="coin coin_moneyM">Z</span> ` :``) + value;
+                value = (`${Math.floor(num/1000000)%1000}<span class="coin coin_moneyM">Z</span> ` ) + value;
                 if(num > 999999999.5) {
                     value = `${Math.floor(num/1e9)%1000}<span class="coin coin_moneyB">D</span> ` + value;
                     if(num >= 1e12) {
@@ -3373,6 +3374,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [15, "异界之门", "#808080","时元素领悟。触及了一丝命运规律的领悟，张开的黑暗之门似通向另一个世界。<br>每一回合战斗伤害变为<span style='color:#87CEFA'>2*回合数-1</span>倍。"],
 [16, "飓风", "#337d3d","这个敌人迅疾如风，引动了天地间的风元素异象。<br>敌人首先发动4段<span style='color:#87CEFA'>5倍伤害</span>的攻击。"],
 [17, "执着", "#cbb2d9","铁杵磨成针。<br>敌人的攻击额外增加角色生命的0.5%。"],
+[18, "贪婪", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>角色每拥有${format_money(enemy.spec_value[18])},该敌人伤害减少<span style='color:#87CEFA'>1%</span>.`}]
 ];
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
 //命名空间：[i][0]序号，[i][1]名称,[i][2]颜色,[i][3]描述
@@ -3506,7 +3508,9 @@ function create_new_bestiary_entry(enemy_name) {
     const spec_stats = document.createElement("div"); //enemy description
 
     for(let ine=0;ine<enemy.spec.length;ine++){
-        spec_stats.innerHTML += `<br><b><font color="${spec_stat[enemy.spec[ine]][2]}">${spec_stat[enemy.spec[ine]][1]} </font></b> ：${spec_stat[enemy.spec[ine]][3]} `;
+        console.log(spec_stat[enemy.spec[ine]][3]);
+        let S_STS = spec_stat[enemy.spec[ine]];
+        spec_stats.innerHTML += `<br><b><font color="${S_STS[2]}">${S_STS[1]} </font></b> ：${S_STS[3][0]==undefined?S_STS[3](enemy):S_STS[3]} `;
     }
     
     stat_line_5.appendChild(spec_stats);
@@ -3631,8 +3635,8 @@ function create_new_levelary_entry(level_name) {
     
     const level = locations[level_name];
 
-    console.log(locations);
-    console.log(level_name);
+    //console.log(locations);
+    //console.log(level_name);
 
     const name_div = document.createElement("div");
     name_div.innerHTML = level_name;
@@ -3642,7 +3646,7 @@ function create_new_levelary_entry(level_name) {
     kill_counter.classList.add("bestiary_entry_kill_count");
 
     
-    console.log(level.rank);
+    //console.log(level.rank);
     if(level.rank==0) return;
     
 

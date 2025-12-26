@@ -18,6 +18,7 @@ class Enemy {
                  tags = [],
                  realm = 1,
                  spec = [],
+                 spec_value = {},
                  image = "",
                 }) {
                     
@@ -27,6 +28,7 @@ class Enemy {
         this.xp_value = xp_value;
         this.stats = stats;
         this.spec = spec;
+        this.spec_value = spec_value;
         //console.log(spec);
         this.image = image;//image
         //only ma.gic & defense can be 0 in stats, other things will cause issues
@@ -1285,13 +1287,14 @@ class Enemy {
     });
     enemy_templates["初生鬼"] = new Enemy({
         name: "初生鬼", 
-        description: "死去冒险者的怨念凝聚成的魔物。对了，匙弱在这里显然无效..", 
+        description: "死去冒险者的怨念凝聚成的魔物。因贫困而死的它至死渴望着金钱。", 
         xp_value: 55, 
         rank: 1315,
         image: "image/enemy/E1315.png",
         realm: "<span class=realm_basic><b>潮汐级巅峰</b></span>",
         size: "small",
-        spec: [],
+        spec: [18],
+        spec_value:{18:2000},
         tags: [],
         stats: {health: 3430, attack: 720, agility: 400, attack_speed: 1.2, defense: 0}, 
         loot_list: [
@@ -1395,7 +1398,8 @@ class Enemy {
         stats: {health: 1000, attack: 1800, agility: 700, attack_speed: 1.2, defense: 0}, 
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "灵液", chance:0.36}
+            {item_name: "灵液", chance:0.36},
+            //{item_name: "宝石吊坠", chance:1}
             //应为900C
         ],
     });
@@ -1506,7 +1510,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.04},
             {item_name: "高级黄宝石", chance:0.01},
-            {item_name: "牵制-从入门到精通", chance:0.01},
+            {item_name: "牵制-从入门到入土", chance:0.01},
             //应为5X
         ],
     });
@@ -1524,7 +1528,7 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
-            {item_name: "牵制-从入门到精通", chance:0.001},
+            {item_name: "牵制-从入门到入土", chance:0.001},
             {item_name: "断剑", chance:0.05},
             {item_name: "润灵铜骨", chance:0.5},
             //应为9X
@@ -1563,9 +1567,10 @@ class Enemy {
         loot_list: [
             {item_name: "初始绿宝石", chance:0.02},
             {item_name: "高级黄宝石", chance:0.03},
-            {item_name: "大地级魂魄", chance:0.075},
-            {item_name: "A1·能量核心", chance:0.02},
+            {item_name: "大地级魂魄", chance:0.225},
+            {item_name: "A1·能量核心", chance:0.06},
             //应为9X
+            //因为这玩意真的太强了所以翻了三倍
         ],
     });
     enemy_templates["布菇妖"] = new Enemy({

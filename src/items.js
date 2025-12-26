@@ -498,6 +498,28 @@ class Artifact extends Equippable {
     }
 }
 
+class Props extends Equippable {
+    constructor(item_data) {
+        super(item_data);
+        this.components = undefined;
+        this.equip_slot = "props";
+        this.stats = item_data.stats;
+
+        this.tags["props"] = true;
+        if(!this.id) {
+            this.id = this.getName();
+        }
+    }
+
+    getValue() {
+        return this.value;
+    } 
+
+    getStats(){
+        return this.stats;
+    }
+}
+
 class Tool extends Equippable {
     constructor(item_data) {
         super(item_data);
@@ -639,7 +661,9 @@ class Armor extends Equippable {
             } else if(item_data.component_type === "shoes interior") {
                 this.equip_slot = "feet";
             } else {
-                throw new Error(`Component type "${item_data.component_type}" doesn't correspond to any armor slot!`);
+                this.equip_slot = "props";
+
+                //throw new Error(`Component type "${item_data.component_type}" doesn't correspond to any armor slot!`);
             }
         }
 
@@ -2188,6 +2212,20 @@ item_templates["Twist liek a snek"] = new Book({
 
 })();
 
+(function(){
+    item_templates["宝石吊坠"] = new Props({
+        name: "宝石吊坠",
+        description: "蕴含着纯净的生命能量，增强对空气中游离能量的吸收速率。", 
+        value: 545455,
+        stats: {
+            health_regeneration_flat: {
+                flat: 150,
+            },
+        }
+    });
+
+})();
+
 //usables:
 (function(){
 
@@ -2549,14 +2587,14 @@ item_templates["Twist liek a snek"] = new Book({
         id: "宝石锭",
         name: "宝石锭", 
         description: "利用能力宝石打成的锭。这可不会被软上限..", 
-        value: 200e3,
+        value: 120e3,
         material_type: "metal",
         image: "image/item/gem_ingot.png",
     });
     item_templates["地宫金属锭"] = new Material({
         id: "地宫金属锭",
         name: "地宫金属锭", 
-        description: "地宫材料铸造成的紫铜合金，平均强度约为A2级别。来路不明的材料导致它具有毒性，无法制作护甲。此外，因市场快速饱和，它的市场价还没有它材料的一半贵。", 
+        description: "强度在A2级别的合金。鱼龙混杂的地宫材料导致它有毒，无法制作护甲。此外，因快速的市场饱和，它的市场价还没有它材料的一半贵。", 
         value: 200e3,
         material_type: "metal",
         image: "image/item/TPmetal_ingot.png",
@@ -2591,9 +2629,9 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/MT15.png",
     });
     
-    item_templates["牵制-从入门到精通"] = new OtherItem({
-        id: "牵制-从入门到精通",
-        name: "牵制-从入门到精通", 
+    item_templates["牵制-从入门到入土"] = new OtherItem({
+        id: "牵制-从入门到入土",
+        name: "牵制-从入门到入土", 
         description: "被完全涂黑了，只留下一句血洛大陆通用语的血书：牵制毁一生,匙弱穷三代。", 
         value: 11037,
         image: "image/item/BurnBlood.png",

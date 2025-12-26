@@ -922,6 +922,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(9)) Spec_S += "[反转]";
     if(current_enemies[enemy_id].spec.includes(10)) Spec_S += "[回风]";
     if(current_enemies[enemy_id].spec.includes(17)) Spec_S += "[执着]";
+    if(current_enemies[enemy_id].spec.includes(18)) Spec_S += "[贪婪]";
     //console.log(current_enemies[enemy_id]);
     
     if(isnew) {
@@ -1200,8 +1201,11 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     {
         spec_mul *= attacker.stats.defense/character.stats.full.defense;
         if(spec_mul == Infinity) spec_mul = 9999.99;//防止除以0
-
-
+    }
+    if(attacker.spec.includes(18))//贪婪
+    {
+        spec_mul *= (1 - 0.01*(character.money/attacker.spec_value[18]));
+        spec_mul = Math.max(spec_mul,0);
     }
     // HAS NO SHIELD
 
@@ -1665,9 +1669,19 @@ function get_location_rewards(location) {
     location.otherUnlocks();
 
     for(let i = 0; i < location.repeatable_reward.locations?.length; i++) { //unlock locations
-        console.log(location.repeatable_reward);
+        //console.log(location.repeatable_reward);
         if(!location.repeatable_reward.locations[i].required_clears || location.enemy_groups_killed/location.enemy_count >= location.repeatable_reward.locations[i].required_clears){
             unlock_location(locations[location.repeatable_reward.locations[i].location]);
+        }
+    }
+
+    for(let i = 0; i < location.repeatable_reward.traders?.length; i++) { //unlock traders
+        const trader = traders[location.repeatable_reward.traders[i].traders];
+       // console.log(trader);
+       // console.log(location.repeatable_reward.traders[i].traders);
+        if(!trader.is_unlocked) {
+            trader.is_unlocked = true;
+            log_message(`解锁新商人: ${trader.name}`, "activity_unlocked");
         }
     }
     

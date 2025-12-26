@@ -106,7 +106,7 @@ class Trader extends InventoryHaver {
      * @returns {Number} trader's profit margin multiplied by bonus from the haggling skill
      */
     getProfitMargin() {
-        return 1 + (this.profit_margin - 1) * (1 - skills["Haggling"].get_level_bonus());
+        return Math.max(1,this.profit_margin * (1 - skills["Haggling"].get_level_bonus()));
     }
 
     getItemPrice(value) {
@@ -171,6 +171,13 @@ class TradeItem {
         is_unlocked: true,
         location_name: "燕岗矿井",
         profit_margin: 3.2,
+    });
+    traders["金属批发商"] = new Trader({
+        name: "金属批发商",
+        inventory_template: "Terra Palace",
+        is_unlocked: false,
+        location_name: "地宫浅层",
+        profit_margin: 1.5,
     });
 })();
 
@@ -330,6 +337,12 @@ class TradeItem {
             new TradeItem({item_name: "紫铜腿甲", count: [1], quality: [41, 80], chance: 0.4}),
             new TradeItem({item_name: "紫铜战靴", count: [1], quality: [41, 80], chance: 0.4}),
             //装备
+    ];
+
+    
+    inventory_templates["Terra Palace"] = 
+    [
+            new TradeItem({item_name: "地宫金属锭", count: [999,999]}),
     ];
 
 

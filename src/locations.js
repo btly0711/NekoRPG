@@ -231,6 +231,7 @@ class Combat_zone {
                     description: enemy.description, 
                     xp_value: enemy.xp_value,
                     spec: enemy.spec,
+                    spec_value:enemy.spec_value,
                     realm: enemy.realm,
                     stats: {
                         health: enemy.stats.health * halo,
@@ -1390,6 +1391,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["地宫浅层"] = new Location({ 
         connected_locations: [{location: locations["地宫入口"], custom_text: "回到入口处"}], 
         description: "地宫的浅层。盘踞着大量魔物，也潜藏着许多宝藏。[V0.32版本终点]",
+        traders: ["金属批发商"],
         
         is_unlocked: true,
         name: "地宫浅层", 
@@ -1402,7 +1404,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["地宫 - 1"] = new Combat_zone({
         description: "地宫/地下2-3层", 
         enemy_count: 20, 
-        enemies_list: ["夜行幽灵","石风家族剑士","能量络合球","短视蝠","金衣除草者"],
+        enemies_list: ["夜行幽灵","石风家族剑士","能量络合球","地宫妖偶","金衣除草者"],
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: true, 
@@ -1421,7 +1423,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["地宫 - 2"] = new Combat_zone({
         description: "地宫/地下4-6层", 
-        enemy_count: 20, 
+        enemy_count: 2, 
         enemies_list: ["短视蝠","金衣除草者","阴暗茸茸","地宫妖偶","地宫虫卒"],
         enemy_group_size: [1,1],
         types: [],
@@ -1437,12 +1439,13 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 180,
             locations: [{location: "地宫 - 3"}],
+            traders: [{traders:"金属批发商"}],
         },
     });
     locations["地宫 - 3"] = new Combat_zone({
         description: "地宫/地下7-10层", 
         enemy_count: 20, 
-        enemies_list: ["地宫虫卒","地宫妖偶","地刺","探险者亡魂","布菇妖","腾风塑像"],
+        enemies_list: ["地宫虫卒","短视蝠","地刺","布菇妖","腾风塑像"],
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: false, 

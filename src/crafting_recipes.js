@@ -268,8 +268,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "铁锭", count: 2, result_id: "铁剑刃"}, 
             {material_id: "精钢锭", count: 2, result_id: "精钢剑刃"}, 
             {material_id: "紫铜锭", count: 2, result_id: "紫铜剑刃"}, 
-            {material_id: "宝石锭", count: 3, result_id: "宝石剑刃"}, 
-            {material_id: "地宫金属锭", count: 3, result_id: "地宫剑刃"}, 
+            {material_id: "地宫金属锭", count: 2, result_id: "地宫剑刃"}, 
             //未完待续
         ],
         item_type: "Component",
@@ -630,32 +629,22 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     });
 })();
 
-//trinkets
-(function(){
-    crafting_recipes.items["Wolf trophy"] = new ItemRecipe({
-        name: "Wolf trophy",
-        id: "Wolf trophy",
-        recipe_type: "equipment",
-        materials: [{material_id: "High quality wolf fang", count: 5}],
-        result: {result_id: "Wolf trophy", count: 1},
-        success_chance: [0.5,1],
-        recipe_level: [1,10],
-        recipe_skill: "Crafting",
-    });
-    crafting_recipes.items["Boar trophy"] = new ItemRecipe({
-        name: "Boar trophy",
-        id: "Boar trophy",
-        recipe_type: "equipment",
-        materials: [{material_id: "High quality boar tusk", count: 5}],
-        result: {result_id: "Boar trophy", count: 1},
-        success_chance: [0.5,1],
-        recipe_level: [5,15],
-        recipe_skill: "Crafting",
-    });
-})();
 */
 //NekoRPG 合成 ↓
 
+//trinkets
+(function(){
+    crafting_recipes.items["宝石吊坠"] = new ItemRecipe({
+        name: "宝石吊坠",
+        id: "宝石吊坠",
+        recipe_type: "items",
+        materials: [{material_id: "宝石锭", count: 4},{material_id:"A1·能量核心",count:1}],
+        result: {result_id: "宝石吊坠", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [1,12],
+        recipe_skill: "Crafting",
+    });
+})();
 //熔炼配方
 
 (function(){
@@ -711,7 +700,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     smelting_recipes.items["锤炼宝石"] = new ItemRecipe({
         name: "锤炼宝石",
         recipe_type: "material",
-        materials: [{material_id: "初始黄宝石", count: 1},{material_id: "初始蓝宝石", count: 1},{material_id: "初始红宝石", count: 1},{material_id: "初始绿宝石", count: 1}], 
+        materials: [{material_id: "初始红宝石", count: 2},{material_id: "初始绿宝石", count: 4},{material_id: "高级黄宝石", count: 4}], 
         result: {result_id: "宝石锭", count: 1},
         success_chance: [0.5,1],
         recipe_level: [8,13],
@@ -723,7 +712,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [{material_id: "高级黄宝石", count: 4}], 
         result: {result_id: "宝石锭", count: 1},
         success_chance: [0.5,1],
-        recipe_level: [8,15],
+        recipe_level: [8,13],
         recipe_skill: "Smelting",
     });
 })();
