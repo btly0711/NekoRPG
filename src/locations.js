@@ -1423,7 +1423,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["地宫 - 2"] = new Combat_zone({
         description: "地宫/地下4-6层", 
-        enemy_count: 2, 
+        enemy_count: 20, 
         enemies_list: ["短视蝠","金衣除草者","阴暗茸茸","地宫妖偶","地宫虫卒"],
         enemy_group_size: [1,1],
         types: [],
