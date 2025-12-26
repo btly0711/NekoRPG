@@ -700,7 +700,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     smelting_recipes.items["锤炼宝石"] = new ItemRecipe({
         name: "锤炼宝石",
         recipe_type: "material",
-        materials: [{material_id: "初始红宝石", count: 2},{material_id: "初始绿宝石", count: 4},{material_id: "高级黄宝石", count: 4}], 
+        materials: [{material_id: "初始红宝石", count: 2},{material_id: "初始绿宝石", count: 4},{material_id: "高级黄宝石", count: 2}], 
         result: {result_id: "宝石锭", count: 1},
         success_chance: [0.5,1],
         recipe_level: [8,13],
