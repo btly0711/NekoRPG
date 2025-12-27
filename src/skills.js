@@ -614,9 +614,9 @@ function format_skill_rewards(milestone){
                                     parent_skill: "Stance mastery",
                                     description: "天空级强者的修炼功法，对所有技能大有裨益", 
                                     max_level_coefficient: 1.25,
-                                    base_xp_cost: 640000,
+                                    base_xp_cost: 600000,
                                     max_level: 3,
-                                    xp_scaling:10,
+                                    xp_scaling:20,
                                     get_effect_description: ()=> {
                                         return `增加基础经验获取量`;
                                     },
