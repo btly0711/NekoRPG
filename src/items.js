@@ -519,6 +519,27 @@ class Props extends Equippable {
         return this.stats;
     }
 }
+class Method extends Equippable {
+    constructor(item_data) {
+        super(item_data);
+        this.components = undefined;
+        this.equip_slot = "method";
+        this.stats = item_data.stats;
+
+        this.tags["method"] = true;
+        if(!this.id) {
+            this.id = this.getName();
+        }
+    }
+
+    getValue() {
+        return this.value;
+    } 
+
+    getStats(){
+        return this.stats;
+    }
+}
 
 class Tool extends Equippable {
     constructor(item_data) {
@@ -613,7 +634,6 @@ class Armor extends Equippable {
 
             this.components.internal = item_data.components.internal; //only the name
             this.components.external = item_data.components.external; //only the name
-
             if(item_templates[this.components.internal].component_type === "helmet interior") {
                 this.equip_slot = "head";
             } else if(item_templates[this.components.internal].component_type === "chestplate interior") {
@@ -650,6 +670,7 @@ class Armor extends Equippable {
             this.component_tier = item_data.component_tier || 0;
             this.base_defense = item_data.base_defense;
 
+            //console.log(this);
             if(item_data.component_type === "helmet interior") {
                 this.equip_slot = "head";
             } else if(item_data.component_type === "chestplate interior") {
@@ -660,7 +681,10 @@ class Armor extends Equippable {
                 this.equip_slot = "arms";
             } else if(item_data.component_type === "shoes interior") {
                 this.equip_slot = "feet";
-            } else {
+            } else if(this.tags.method){
+                this.equip_slot = "method"
+            }
+            else {
                 this.equip_slot = "props";
 
                 //throw new Error(`Component type "${item_data.component_type}" doesn't correspond to any armor slot!`);
@@ -2215,11 +2239,28 @@ item_templates["Twist liek a snek"] = new Book({
 (function(){
     item_templates["宝石吊坠"] = new Props({
         name: "宝石吊坠",
+        id: "宝石吊坠",
         description: "蕴含着纯净的生命能量，增强对空气中游离能量的吸收速率。", 
         value: 545455,
         stats: {
             health_regeneration_flat: {
                 flat: 150,
+            },
+        }
+    });
+
+})();
+
+
+(function(){
+    item_templates["三月断宵"] = new Method({
+        name: "三月断宵",
+        id: "三月断宵",
+        description: "可供天空级强者修炼的功法，大幅提升技能熟练度积累的效率，同时小幅度增加对游离能量的吸收效率", 
+        value: 909090,
+        stats: {
+            health_regeneration_flat: {
+                flat: 100,
             },
         }
     });
@@ -2305,7 +2346,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 500e3,
         component_tier: 3,
         name_prefix: "宝石",
-        attack_value: 500,
+        attack_value: 640,
         stats: {
             crit_rate: {
                 flat: 0.12,
@@ -2321,7 +2362,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 120e3,
         component_tier: 3,
         name_prefix: "地宫",
-        attack_value: 500,
+        attack_value: 640,
         stats: {
             crit_rate: {
                 flat: 0.10,
@@ -2553,6 +2594,62 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["地宫头盔"] = new ArmorComponent({
+        name: "地宫头盔",
+        description: "有一定的毒性，但在荒兽海中显得无关紧要。",
+        component_type: "helmet exterior",
+        value: 270e3,
+        component_tier: 3,
+        full_armor_name: "地宫头盔",
+        defense_value: 180,
+        stats: {
+            health_regeneration_flat: {
+                flat: -60.00,
+            },
+        }
+    });
+    item_templates["地宫胸甲"] = new ArmorComponent({
+        name: "地宫胸甲",
+        description: "有一定的毒性，但在荒兽海中显得无关紧要。",
+        component_type: "chestplate exterior",
+        value: 360e3,
+        component_tier: 3,
+        full_armor_name: "地宫胸甲",
+        defense_value: 240,
+        stats: {
+            health_regeneration_flat: {
+                flat: -80.00,
+            },
+        }
+    });
+    item_templates["地宫腿甲"] = new ArmorComponent({
+        name: "地宫腿甲",
+        description: "有一定的毒性，但在荒兽海中显得无关紧要。",
+        component_type: "leg armor exterior",
+        value: 360e3,
+        component_tier: 3,
+        full_armor_name: "地宫腿甲",
+        defense_value: 240,
+        stats: {
+            health_regeneration_flat: {
+                flat: -80.00,
+            },
+        }
+    });
+    item_templates["地宫战靴"] = new ArmorComponent({
+        name: "地宫战靴",
+        description: "有一定的毒性，但在荒兽海中显得无关紧要。",
+        component_type: "shoes exterior",
+        value: 180e3,
+        component_tier: 3,
+        full_armor_name: "地宫战靴",
+        defense_value: 120,
+        stats: {
+            health_regeneration_flat: {
+                flat: -40.00,
+            },
+        }
+    });
 })();
 //盔甲
 
@@ -2594,7 +2691,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["地宫金属锭"] = new Material({
         id: "地宫金属锭",
         name: "地宫金属锭", 
-        description: "强度在A2级别的合金。鱼龙混杂的地宫材料导致它有毒，无法制作护甲。此外，因快速的市场饱和，它的市场价还没有它材料的一半贵。", 
+        description: "强度在A2级别的合金。鱼龙混杂的地宫材料导致它制作的护甲有毒，销路糟糕。此外，因快速的市场饱和，它的市场价还没有它材料的一半贵。", 
         value: 200e3,
         material_type: "metal",
         image: "image/item/TPmetal_ingot.png",

@@ -298,8 +298,8 @@ class TradeItem {
             
             
             new TradeItem({item_name: "铁锭", count: [5,15]}),
-            new TradeItem({item_name: "合金残片", count: [0,10], chance: 0.8}),
-            new TradeItem({item_name: "异兽皮", count: [0,19], chance: 0.8}),
+            new TradeItem({item_name: "合金残片", count: [1,10], chance: 0.8}),
+            new TradeItem({item_name: "异兽皮", count: [1,25], chance: 0.8}),
 
             new TradeItem({item_name: "万物·凶兽肉排", count: [2,5], chance: 0.8}),
             
@@ -320,10 +320,10 @@ class TradeItem {
             //旧物品
 
 
-            new TradeItem({item_name: "紫铜矿", count: [0,10], chance: 0.7}),
-            new TradeItem({item_name: "煤炭", count: [0,10], chance: 0.8}),
-            new TradeItem({item_name: "灵液", count: [0,10], chance: 0.8}),
-            new TradeItem({item_name: "毒液", count: [0,10], chance: 0.8}),
+            new TradeItem({item_name: "紫铜矿", count: [1,12], chance: 0.7}),
+            new TradeItem({item_name: "煤炭", count: [1,12], chance: 0.8}),
+            new TradeItem({item_name: "灵液", count: [1,12], chance: 0.8}),
+            new TradeItem({item_name: "毒液", count: [1,12], chance: 0.8}),
             //初级产品
 
 

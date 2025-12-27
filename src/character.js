@@ -413,7 +413,7 @@ character.stats.add_weapon_type_bonuses = function() {
  * only a few skills really matter here
  */
 character.stats.add_all_skill_level_bonus = function() {
-        character.stats.flat.skills.defense = 2**skills["Iron skin"].get_level_bonus();
+        character.stats.flat.skills.defense = 1.618281828**skills["Iron skin"].get_level_bonus();
         character.stats.multiplier.skills.attack_speed = skills["Running"].get_coefficient("multiplicative");
         character.stats.multiplier.skills.strength = skills["Weightlifting"].get_coefficient("multiplicative");
         character.stats.multiplier.skills.block_strength = 1 + 5*skills["Shield blocking"].get_level_bonus();

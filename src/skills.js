@@ -516,7 +516,8 @@ function format_skill_rewards(milestone){
                                         return `将空手暴击率 增加${Math.round(skills["Unarmed"].get_coefficient("multiplicative")*1000-1000)/10}%`;
                                     },
                                     max_level_coefficient: 64, //even with 8x more it's still gonna be worse than just using a weapon lol
-                                    });                                
+                                    });          
+                              
 })();
 
 //combat stances
@@ -607,7 +608,41 @@ function format_skill_rewards(milestone){
                                     max_level: 30,
                                     get_effect_description: ()=> {
                                         return `增加[融血术]秘法的使用效果`;
-                                    }});             
+                                    }});            
+    skills["3Moon/Night"] = new Skill({skill_id: "3Moon/Night", 
+                                    names: {0: "三月断宵",1:"三月断宵·小成",2:"三月断宵·大成",3:"三月断宵·圆满2"}, 
+                                    parent_skill: "Stance mastery",
+                                    description: "天空级强者的修炼功法，对所有技能大有裨益", 
+                                    max_level_coefficient: 1.25,
+                                    base_xp_cost: 640000,
+                                    max_level: 3,
+                                    xp_scaling:10,
+                                    get_effect_description: ()=> {
+                                        return `增加基础经验获取量`;
+                                    },
+                                    category: "Stance",
+                                    rewards: {
+                                        milestones: {
+                                            1: {
+                                                    xp_multipliers: {
+                                                        all: 2.0,
+                                                    }
+                                            },
+                                            2: {
+                                                    xp_multipliers: {
+                                                        all: 1.5,
+                                                    }
+                                            },
+                                            3: {
+                                                    xp_multipliers: {
+                                                        all: 1.33,
+                                                    }
+                                            },
+                                        }
+                                    }
+                                });
+                                    
+                                    
                                
 })();
 
@@ -1573,7 +1608,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         max_level: 30,
         max_level_bonus: 30,
         get_effect_description: ()=> {
-            return `增加基础防御 ${2**Math.round(skills["Iron skin"].get_level_bonus())}`;
+            return `增加基础防御 ${1.618281828**Math.round(skills["Iron skin"].get_level_bonus())}`;
         },
     }); 
 })();

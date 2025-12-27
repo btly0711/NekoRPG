@@ -1402,7 +1402,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["地宫入口"].connected_locations.push({location: locations["地宫浅层"]});
     locations["地宫入口"].connected_locations.push({location: locations["地宫 - 看门人"], custom_text: "与大地级三阶魔物抢夺宝石"});
     locations["地宫 - 1"] = new Combat_zone({
-        description: "地宫/地下2-3层", 
+        description: "遍地都是大地级强者的空旷“藏宝地”。", 
         enemy_count: 20, 
         enemies_list: ["夜行幽灵","石风家族剑士","能量络合球","地宫妖偶","金衣除草者"],
         enemy_group_size: [1,1],
@@ -1422,7 +1422,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["地宫 - 2"] = new Combat_zone({
-        description: "地宫/地下4-6层", 
+        description: "充满荒兽与狂暴的人类的地宫区域，其中的人类似乎已经变成了杀戮机器。", 
         enemy_count: 20, 
         enemies_list: ["短视蝠","金衣除草者","阴暗茸茸","地宫妖偶","地宫虫卒"],
         enemy_group_size: [1,1],
@@ -1441,9 +1441,10 @@ function get_location_type_penalty(type, stage, stat) {
             locations: [{location: "地宫 - 3"}],
             traders: [{traders:"金属批发商"}],
         },
+        unlock_text: "回去呼叫家族的人吗？恐怕要耽误太多的时间，姐姐也会有危险。不，现在不是想这些的时候。"
     });
     locations["地宫 - 3"] = new Combat_zone({
-        description: "地宫/地下7-10层", 
+        description: "危机四伏的地宫区域。对了，地宫金属正在打折出售！", 
         enemy_count: 20, 
         enemies_list: ["地宫虫卒","短视蝠","地刺","布菇妖","腾风塑像"],
         enemy_group_size: [1,1],
@@ -1459,11 +1460,12 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 200,
-            locations: [{location: "地宫 - 4"}],
+            locations: [{location: "地宫 - 4"},{location: "地宫 - 石壁"}],
         },
+        unlock_text: "有强者说过……机缘永远是自己争取到的。想要静坐着，等着它砸到头上并不现实。"
     });
     locations["地宫 - 4"] = new Combat_zone({
-        description: "地宫/地下11-15层", 
+        description: "荒兽组成的海洋，在石壁上可以发现找到修炼用的功法。", 
         enemy_count: 20, 
         enemies_list: ["地刺","探险者亡魂","布菇妖","腾风塑像","出芽黄茸茸","大地级卫戍"],
         enemy_group_size: [1,1],
@@ -1479,7 +1481,41 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 240,
-            //locations: [{location: "地宫 - X"}],
+            locations: [{location: "地宫 - X"}],
+        },
+        
+        unlock_text: "石壁上镌刻着一些字样。看起来好像是一种修炼的功法。"
+    });
+    
+    locations["地宫 - X"] = new Challenge_zone({
+        description: "地宫的15层，荒兽海的终点。继续往下的路被深邃之影堵住了。",
+        enemy_count: 1, 
+        enemies_list: ["深邃之影[BOSS]"],
+        enemy_group_size: [1,1],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "地宫 - X", 
+        bgm:4,
+        leave_text: "暂时返回",
+        parent_location: locations["地宫浅层"],
+        repeatable_reward: {
+            locations: [{location: "地宫深层"}],
+        },
+        unlock_text: "大地级二阶，而且很明显，不是刚突破的那一种。是这些荒兽的头目吗？"
+    });
+    
+    locations["地宫 - 石壁"] = new Challenge_zone({
+        description: "地宫13层刻录着修炼功法的石壁。不过，只有清理荒兽才有时间参悟它们。",
+        enemy_count: 1, 
+        enemies_list: ["行走树妖[BOSS]"],
+        enemy_group_size: [1,1],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "地宫 - 石壁", 
+        bgm:4,
+        leave_text: "暂时返回",
+        parent_location: locations["地宫浅层"],
+        repeatable_reward: {
         },
     });
 
@@ -1487,9 +1523,23 @@ function get_location_type_penalty(type, stage, stat) {
     locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 2"]});
     locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 3"]});
     locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 4"]});
+    locations["地宫浅层"].connected_locations.push({location: locations["地宫 - 石壁"], custom_text: "清理石壁周围的二阶荒兽"});
+    locations["地宫浅层"].connected_locations.push({location: locations["地宫 - X"], custom_text: "与荒兽头目交战"});
     
+    
+    
+    locations["地宫深层"] = new Location({ 
+        connected_locations: [{location: locations["地宫浅层"], custom_text: "回到浅层处"}], 
+        description: "荒兽海之后的区域。纳娜米被困在此处。[V0.40前版本终点]",
+        
+        //dialogues: ["纳娜米"],
+        is_unlocked: false,
+        name: "地宫入口", 
+        bgm: 5,
+        unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
+    });//1-5
 
-
+    locations["地宫浅层"].connected_locations.push({location: locations["地宫深层"]});
 
     
     locations["Nearby cave"] = new Location({ 

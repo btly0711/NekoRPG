@@ -243,11 +243,13 @@ function create_item_tooltip_content({item, options={}}) {
         if(options?.quality && options.quality[0]) {
             quality = options.quality[0];
         }
-
-        if(!options.skip_quality && options?.quality?.length == 2) {
-            item_tooltip += `<br><br><b>品质: <span style="color: ${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span style="color: ${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
-        } else {
-            item_tooltip += `<br><br><b style="color: ${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
+        if(item.equip_slot != "props" && item.equip_slot != "method")//disable quality
+        {
+            if(!options.skip_quality && options?.quality?.length == 2) {
+                item_tooltip += `<br><br><b>品质: <span style="color: ${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span style="color: ${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
+            } else {
+                item_tooltip += `<br><br><b style="color: ${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
+            }
         }
         let SkillLevelMap = {"Mining":"挖掘"};
         if(item.bonus_skill_levels != {})
@@ -264,7 +266,7 @@ function create_item_tooltip_content({item, options={}}) {
             });
         }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具"}
+        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具","method":"秘法"}
         if(item.equip_slot === "weapon") {
             item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
@@ -323,7 +325,7 @@ function create_item_tooltip_content({item, options={}}) {
             if(item.getAttack) {
                 item_tooltip += 
                     `<br><br>攻击: ${Math.round(10*item.getAttack())/10}`;
-            } else if(item.getDefense && item.equip_slot != "props") { 
+            } else if(item.getDefense && item.equip_slot != "props" && item.equip_slot != "method") { 
             //console.log(item);
                 item_tooltip += 
                 `<br><br>防御: ${Math.round(10*item.getDefense())/10}`;
@@ -340,7 +342,7 @@ function create_item_tooltip_content({item, options={}}) {
 
                 if(equip_stats[effect_key].flat != null) {
                     item_tooltip += 
-                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: +${equip_stats[effect_key].flat}`;
+                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: ${equip_stats[effect_key].flat>0?"+":""}${equip_stats[effect_key].flat}`;
                 }
                 if(equip_stats[effect_key].multiplier != null) {
                     item_tooltip += 
@@ -396,12 +398,12 @@ function create_item_tooltip_content({item, options={}}) {
             item_tooltip += `<br>Size-specific attack power: x${item.attack_multiplier}`;
         }
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤","Health Regeneration Flat":"生命恢复"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复"}
         Object.keys(item.stats).forEach(function(effect_key) {
 
             if(item.stats[effect_key].flat != null) {
                 item_tooltip += 
-                `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: +${item.stats[effect_key].flat}`;
+                `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: ${item.stats[effect_key].flat>0?"+":""}${item.stats[effect_key].flat}`;
             }
             if(item.stats[effect_key].multiplier != null) {
                 item_tooltip += 
@@ -450,6 +452,7 @@ function create_effect_tooltip(effect_name, duration) {
             const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤"}
         if(key === "health_regeneration_flat") 
         {   
+            let sign = stat_value.flat > 0? "+":"-";
             tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}`;
         } else if(key === "health_regeneration_percent") {
             const sign = stat_value.flat > 0? "+":"";
@@ -1131,7 +1134,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     if("quality" in target_item) {
         item_control_div.dataset.item_quality = target_item.quality;
     }
-    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具"};
+    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法"};
     if(target_item.tags?.equippable) {
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;
@@ -1267,7 +1270,7 @@ function update_displayed_equipment() {
         if(character.equipment[key] == null) { //no item in slot
             eq_tooltip = document.createElement("span");
             eq_tooltip.classList.add("item_tooltip");
-            let mapp={"head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","method":"秘法","realm":"领域","law":"法则","props":"道具","special":"特殊","pickaxe":"镐子"};
+            let mapp={"head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","method":"秘法","realm":"领域","law":"法则","props":"道具","special":"特殊","pickaxe":"镐子","method":"秘法"};
             equipment_slots_divs[key].innerHTML = `${mapp[key]} 槽位`;
             equipment_slots_divs[key].classList.add("equipment_slot_empty");
             eq_tooltip.innerHTML = `你的 ${mapp[key]} 槽位`;
@@ -2680,28 +2683,21 @@ function update_displayed_time() {
  * @param {Boolean} round if the value should be rounded a bit
  */
 function format_money(num) {
-    let value;
+    let value=``;
     const sign = num >= 0 ? '' : '-';
     num = Math.abs(num);
 
     if(num > 0) {
-        value = (`${num%1000}<span class="coin coin_copper">C</span>`);
-
-        if(num > 999.5) {
-            value = (`${Math.floor(num/1000)%1000}<span class="coin coin_moneyK">X</span> `) + value;
-            if(num > 999999.5) {
-                value = (`${Math.floor(num/1000000)%1000}<span class="coin coin_moneyM">Z</span> ` ) + value;
-                if(num > 999999999.5) {
-                    value = `${Math.floor(num/1e9)%1000}<span class="coin coin_moneyB">D</span> ` + value;
-                    if(num >= 1e12) {
-                        value = `${Math.floor(num/1e12)}<span class="coin coin_moneyT">B</span> ` + value;
-                        
-                    }
-                }
-            
-            }  
-        }
-
+        let cC=Math.floor(num%1000);
+        if(cC!=0) value = (`${cC}<span class="coin coin_copper">C</span> `);
+        let cX=Math.floor(((num-cC+500)/1000)%1000);
+        if(cX!=0) value = (`${cX}<span class="coin coin_moneyK">X</span> `) + value;
+        let cZ=Math.floor(((num-cX*1e3+500e3)/1e6)%1000);
+        if(cZ!=0) value = (`${cZ}<span class="coin coin_moneyM">Z</span> `) + value;
+        let cD=Math.floor(((num-cZ*1e6+500e6)/1e9)%1000);
+        if(cD!=0) value = (`${cD}<span class="coin coin_moneyB">D</span> `) + value;
+        let cB=Math.floor(((num-cD*1e9+500e9)/1e12));
+        if(cB!=0) value = (`${cB}<span class="coin coin_moneyT">D</span> `) + value;
         return sign + value;
 
     } else {
@@ -3508,7 +3504,7 @@ function create_new_bestiary_entry(enemy_name) {
     const spec_stats = document.createElement("div"); //enemy description
 
     for(let ine=0;ine<enemy.spec.length;ine++){
-        console.log(spec_stat[enemy.spec[ine]][3]);
+        //console.log(spec_stat[enemy.spec[ine]][3]);
         let S_STS = spec_stat[enemy.spec[ine]];
         spec_stats.innerHTML += `<br><b><font color="${S_STS[2]}">${S_STS[1]} </font></b> ：${S_STS[3][0]==undefined?S_STS[3](enemy):S_STS[3]} `;
     }

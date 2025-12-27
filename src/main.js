@@ -1372,16 +1372,20 @@ function do_character_combat_action({target, attack_power}) {
 
     if(hit_chance > Math.random()) {//hero's attack hits
 
+        damage_dealt = Math.round(100 * hero_base_damage * (1.2 - Math.random() * 0.4) )/100;
+        //0.8-1.2倍率浮动
         if(character.equipment.weapon != null) {
-            damage_dealt = Math.round(10 * hero_base_damage * (1.2 - Math.random() * 0.4) )/10;
 
             add_xp_to_skill({skill: skills[weapon_type_to_skill[character.equipment.weapon.weapon_type]], xp_to_add: target.xp_value}); 
 
         } else {
-            damage_dealt = Math.round(10 * hero_base_damage * (1.2 - Math.random() * 0.4) )/10;
             add_xp_to_skill({skill: skills['Unarmed'], xp_to_add: target.xp_value});
         }
-        //small randomization by up to 20%, then bonus from skill
+        if(character.equipment.method != null)
+        {
+            //console.log(character.equipment.method);
+            if(character.equipment.method.id=="三月断宵") add_xp_to_skill({skill: skills['3Moon/Night'], xp_to_add: target.xp_value});
+        }
         
         if(character.stats.full.crit_rate > Math.random()) {
             damage_dealt = Math.round(10*damage_dealt * character.stats.full.crit_multiplier)/10;

@@ -54,11 +54,13 @@ class ItemRecipe extends Recipe {
         getResult,
         recipe_level,
         recipe_skill,
+        Q_able,
         success_chance = [1,1],
     }) {
         super({name, id, is_unlocked, recipe_type, result, getResult, recipe_level, recipe_skill});
         this.materials = materials;
         this.success_chance = success_chance;
+        this.Q_able = Q_able;
         if(this.success_chance[0]==0){
             this.success_chance[0] = 0.1;
         }
@@ -141,7 +143,7 @@ class ComponentRecipe extends ItemRecipe{
 
     get_quality_cap() {
         const skill = skills[this.recipe_skill];
-        return Math.min(Math.round(100*(1+0.02*skill.current_level)),500);
+        return Math.min(Math.round(100*(1+0.05*skill.current_level)),500);
     }
 
     get_quality(tier = 0) {
@@ -213,7 +215,7 @@ class EquipmentRecipe extends Recipe {
 
     get_quality_cap() {
         const skill = skills[this.recipe_skill];
-        return Math.min(Math.round(100*(1+2*skill.current_level/skill.max_level)),250);
+        return Math.min(Math.round(100*(1+0.05*skill.current_level)),250);
     }
 
     get_quality(component_quality, tier = 0) {
@@ -332,6 +334,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [
             {material_id: "铁锭", count: 3, result_id: "铁制头盔"}, 
             {material_id: "紫铜锭", count: 3, result_id: "紫铜头盔"}, 
+            {material_id: "地宫金属锭", count: 3, result_id: "地宫头盔"}, 
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -353,6 +356,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [
             {material_id: "铁锭", count: 4, result_id: "铁制胸甲"}, 
             {material_id: "紫铜锭", count: 4, result_id: "紫铜胸甲"}, 
+            {material_id: "地宫金属锭", count: 4, result_id: "地宫胸甲"}, 
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -374,6 +378,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [
             {material_id: "铁锭", count: 4, result_id: "铁制腿甲"}, 
             {material_id: "紫铜锭", count: 4, result_id: "紫铜腿甲"}, 
+            {material_id: "地宫金属锭", count: 4, result_id: "地宫腿甲"}, 
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -396,6 +401,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [
             {material_id: "铁锭", count: 2, result_id: "铁制战靴"}, 
             {material_id: "紫铜锭", count: 2, result_id: "紫铜战靴"}, 
+            {material_id: "地宫金属锭", count: 2, result_id: "地宫战靴"}, 
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -641,6 +647,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         materials: [{material_id: "宝石锭", count: 4},{material_id:"A1·能量核心",count:1}],
         result: {result_id: "宝石吊坠", count: 1},
         success_chance: [0.5,1],
+        Q_able: true,
         recipe_level: [1,12],
         recipe_skill: "Crafting",
     });
