@@ -610,7 +610,7 @@ function format_skill_rewards(milestone){
                                         return `增加[融血术]秘法的使用效果`;
                                     }});            
     skills["3Moon/Night"] = new Skill({skill_id: "3Moon/Night", 
-                                    names: {0: "三月断宵",1:"三月断宵·小成",2:"三月断宵·大成",3:"三月断宵·圆满2"}, 
+                                    names: {0: "三月断宵",1:"三月断宵·小成",2:"三月断宵·大成",3:"三月断宵·圆满"}, 
                                     parent_skill: "Stance mastery",
                                     description: "天空级强者的修炼功法，对所有技能大有裨益", 
                                     max_level_coefficient: 1.25,
@@ -1603,12 +1603,12 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         category: "Combat",
         names: {0: "坚韧皮肤", 5: "木质皮肤", 10: "铁制皮肤"},
         description: "杀不死我的，都将使我更强大",
-        base_xp_cost: 400,
-        xp_scaling: 2.5,
-        max_level: 30,
-        max_level_bonus: 30,
+        base_xp_cost: 100,
+        xp_scaling: 2.0,
+        max_level: 100,
+        max_level_bonus: 1.00,
         get_effect_description: ()=> {
-            return `增加基础防御 ${1.618281828**Math.round(skills["Iron skin"].get_level_bonus())}`;
+            return `增加基础防御 ${Math.round(100*skills["Iron skin"].get_level_bonus())} %`;
         },
     }); 
 })();

@@ -1364,7 +1364,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["地宫入口"] = new Location({ 
         connected_locations: [{location: locations["燕岗近郊"], custom_text: "离开地宫"}], 
-        description: "地宫的入口处。宝石的气息浓郁，但有大地级三阶的魔物把守。[V0.30前版本终点]",
+        description: "地宫的入口处。宝石的气息浓郁，但有大地级三阶的魔物把守。",
         
         dialogues: ["地宫老人"],
         is_unlocked: false,
@@ -1390,7 +1390,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["地宫浅层"] = new Location({ 
         connected_locations: [{location: locations["地宫入口"], custom_text: "回到入口处"}], 
-        description: "地宫的浅层。盘踞着大量魔物，也潜藏着许多宝藏。[V0.32版本终点]",
+        description: "地宫的浅层。盘踞着大量魔物，也潜藏着许多宝藏。",
         traders: ["金属批发商"],
         
         is_unlocked: true,
@@ -1534,7 +1534,7 @@ function get_location_type_penalty(type, stage, stat) {
         
         //dialogues: ["纳娜米"],
         is_unlocked: false,
-        name: "地宫入口", 
+        name: "地宫深层", 
         bgm: 5,
         unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//1-5

@@ -1316,8 +1316,8 @@ class Enemy {
         tags: [],
         stats: {health: 2990, attack: 1225, agility: 600, attack_speed: 1.2, defense: 400}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.01},
             {item_name: "毒液", chance:0.6},
             {item_name: "紫铜锭", chance:0.2},
             //应为5X
@@ -1397,7 +1397,7 @@ class Enemy {
         tags: [],
         stats: {health: 1000, attack: 1800, agility: 700, attack_speed: 1.2, defense: 0}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
+            {item_name: "高级黄宝石", chance:0.02},
             {item_name: "灵液", chance:0.36},
             //{item_name: "宝石吊坠", chance:1}
             //应为900C
@@ -1415,8 +1415,8 @@ class Enemy {
         tags: [],
         stats: {health: 4000, attack: 1450, agility: 800, attack_speed: 1.2, defense: 500}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.01},
             {item_name: "断剑", chance:0.025},
             {item_name: "紫铜锭", chance:0.18},
             //应为5X
@@ -1430,12 +1430,12 @@ class Enemy {
         image: "image/enemy/E1403.png",
         realm: "<span class=realm_terra><b>大地级一阶</b></span>",
         size: "small",
-        spec: [],
+        spec: [0],
         tags: [],
         stats: {health: 980, attack: 830, agility: 830, attack_speed: 1.2, defense: 830}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.01},
             {item_name: "大地级魂魄", chance:0.06},
             //应为5X
         ],
@@ -1452,8 +1452,8 @@ class Enemy {
         tags: [],
         stats: {health: 7500, attack: 1300, agility: 650, attack_speed: 1.2, defense: 800}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.01},
             {item_name: "巨型眼球", chance:0.05},
             //应为5X
         ],
@@ -1470,8 +1470,8 @@ class Enemy {
         tags: [],
         stats: {health: 1920, attack: 2580, agility: 880, attack_speed: 0.9, defense: 280}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.01},
             {item_name: "断剑", chance:0.03},
             {item_name: "润灵铜骨", chance:0.25},
             //应为5X
@@ -1489,8 +1489,8 @@ class Enemy {
         tags: [],
         stats: {health: 5800, attack: 1150, agility: 900, attack_speed: 1.2, defense: 300}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.01},
             {item_name: "大地级魂魄", chance:0.045},
             {item_name: "A1·能量核心", chance:0.02},
             //应为5X
@@ -1508,8 +1508,8 @@ class Enemy {
         tags: [],
         stats: {health: 3000, attack: 2500, agility: 900, attack_speed: 1.2, defense: 600}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.04},
-            {item_name: "高级黄宝石", chance:0.02},
+            {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.01},
             {item_name: "牵制-从入门到入土", chance:0.01},
             //应为5X
         ],
@@ -1526,8 +1526,9 @@ class Enemy {
         tags: [],
         stats: {health: 6400, attack: 1700, agility: 1200, attack_speed: 1.2, defense: 750}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.02},
+
             {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.02},
             {item_name: "牵制-从入门到入土", chance:0.001},
             {item_name: "断剑", chance:0.05},
             {item_name: "润灵铜骨", chance:0.5},
@@ -1546,8 +1547,9 @@ class Enemy {
         tags: [],
         stats: {health: 6300, attack: 2400, agility: 1080, attack_speed: 1.2, defense: 1200}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.02},
+
             {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.02},
             {item_name: "巨型眼球", chance:0.06},
             {item_name: "A1·能量核心", chance:0.02},
             //应为9X
@@ -1565,8 +1567,9 @@ class Enemy {
         tags: [],
         stats: {health: 3000, attack: 4000, agility: 1600, attack_speed: 1.2, defense: 1500}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.02},
+
             {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.02},
             {item_name: "大地级魂魄", chance:0.225},
             {item_name: "A1·能量核心", chance:0.06},
             //应为9X
@@ -1585,8 +1588,9 @@ class Enemy {
         tags: [],
         stats: {health: 7000, attack: 2250, agility: 1400, attack_speed: 1.2, defense: 400}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.02},
+
             {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.02},
             {item_name: "紫铜锭", chance:0.35},
             {item_name: "毒液", chance:1.0},
             //应为9X
@@ -1604,8 +1608,9 @@ class Enemy {
         tags: [],
         stats: {health: 2800, attack: 1800, agility: 1600, attack_speed: 1.2, defense: 1000}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.02},
+
             {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.02},
             {item_name: "断剑", chance:0.06},
             {item_name: "A1·能量核心", chance:0.02},
             //应为9X
@@ -1623,8 +1628,9 @@ class Enemy {
         tags: [],
         stats: {health: 4200, attack: 800, agility: 1500, attack_speed: 1.2, defense: 800}, 
         loot_list: [
-            {item_name: "初始绿宝石", chance:0.02},
+
             {item_name: "高级黄宝石", chance:0.04},
+            {item_name: "高级蓝宝石", chance:0.02},
             {item_name: "A1·能量核心", chance:0.06},
             //应为9X
         ],
@@ -1641,8 +1647,8 @@ class Enemy {
         tags: [],
         stats: {health: 5500, attack: 3360, agility: 1800, attack_speed: 1.2, defense: 1280}, 
         loot_list: [
-            {item_name: "高级黄宝石", chance:0.04},
-            {item_name: "高级蓝宝石", chance:0.02},
+            {item_name: "高级蓝宝石", chance:0.04},
+            {item_name: "高级红宝石", chance:0.005},
             {item_name: "地宫金属锭", chance:0.03},
             //应为16X
         ],

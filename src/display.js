@@ -2000,11 +2000,12 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
 
     if(subcategory === "items") {
         
-        // const recipe_10 = document.createElement("span");
-        // recipe_10.classList.add("bigger_button");
-        // recipe_10.classList.add("recipe_10");
-        // recipe_10.innerText="[x10]";
-        // recipe_div.appendChild(recipe_10);
+        const recipe_max = document.createElement("span");
+        recipe_max.classList.add("recipe_10_button");
+        recipe_max.classList.add("recipe_10");
+        recipe_max.innerText="[max]";
+        recipe_div.appendChild(recipe_max);
+
         recipe_div.children[0].innerHTML = '<i class="material-icons icon" style="visibility:hidden"> keyboard_double_arrow_down </i>' + recipe_div.children[0].innerHTML;
         //invisible icon added just so it properly matches in height and text position with recipes in other subcategories
         if(!recipe.get_availability()) {
@@ -2017,17 +2018,28 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
                 //normal items
             }
         });
+        recipe_max.addEventListener("click", (event)=>{
+            window.useRecipemax(event.target);
+            //console.log("max1")
+                //normal items
+        });
+
         recipe_div.append(create_recipe_tooltip({category, subcategory, recipe_id}));
+        
+        
+
     } else if(subcategory === "components") {
         recipe_div.children[0].innerHTML = '<i class="material-icons icon crafting_dropdown_icon"> keyboard_double_arrow_down </i>' + recipe_div.children[0].innerHTML;
         const material_selection = document.createElement("div");
         material_selection.classList.add("folded_material_list");
+        
         recipe_div.addEventListener("click", (event)=>{
             if(event.target.classList.contains("recipe_name") || event.target.classList.contains("crafting_dropdown_icon")) {
                 window.updateDisplayedMaterialChoice({category, subcategory, recipe_id});
                 toggle_exclusive_class({element: recipe_div, class_name: "selected_recipe"});
             } 
         });
+        
 
         recipe_div.append(material_selection);
     } else if(recipe.recipe_type === "component") {
@@ -2422,13 +2434,26 @@ function update_displayed_material_choice({category, subcategory, recipe_id, ref
         item_div.classList.add("selectable_material");
         item_div.dataset.item_key = materials[i].item.getInventoryKey();
 
+        const recipe_max = document.createElement("span");
+        recipe_max.classList.add("bigger_button");
+        recipe_max.classList.add("recipe_10");
+        recipe_max.innerText="[max]";
         if(material_recipe.count <= materials[i].count) {
             item_div.addEventListener("click", (event)=>{
+                //console.log(event.target.parentNode);
                 item_div.classList.add("selected_material");
                 window.useRecipe(event.target.parentNode);
-                console.log("Used:Recipe 1");
+                //console.log("Used:Recipe 1");
                 item_div.classList.remove("selected_material"); //this is so stupid
 
+                //comps
+            });
+            recipe_max.addEventListener("click", (event)=>{
+                //console.log(event.target.parentNode.parentNode);
+                item_div.classList.add("selected_material");
+                window.useRecipemax(event.target.parentNode);
+                item_div.classList.remove("selected_material"); //this is so stupid
+                //console.log("Used:Recipe 1");
                 //comps
             });
         } else {
@@ -2437,6 +2462,7 @@ function update_displayed_material_choice({category, subcategory, recipe_id, ref
 
         item_div.append(create_recipe_tooltip({category, subcategory, recipe_id, material: material_recipe}));
         material_selections_div.appendChild(item_div);
+        material_selections_div.appendChild(recipe_max);
     }
     if(!refreshing) {
         material_selections_div.lastChild?.scrollIntoView();
@@ -2532,7 +2558,7 @@ function update_gathering_tooltip(current_activity) {
 }
 
 function update_displayed_health() { //call it when using healing items, resting or getting hit
-    current_health_value_div.innerText = Math.ceil(character.stats.full.health) + "/" + Math.ceil(character.stats.full.max_health) + " HP";
+    current_health_value_div.innerText = format_number(character.stats.full.health) + "/" + format_number(character.stats.full.max_health) + " HP";
     current_health_bar.style.width = (character.stats.full.health*100/character.stats.full.max_health).toString() +"%";
 }
 
@@ -2713,7 +2739,7 @@ function update_displayed_character_xp(did_level = false) {
         charaxter_xp_value
     */
     character_xp_div.children[0].children[0].style.width = `${100*character.xp.current_xp/window.REALMS[character.xp.current_level+1][4]}%`;
-    character_xp_div.children[1].innerText = `Next : ${Math.floor(character.xp.current_xp)}/${Math.ceil(window.REALMS[character.xp.current_level+1][4])}`;
+    character_xp_div.children[1].innerText = `Next : ${format_number(character.xp.current_xp)}/${format_number(window.REALMS[character.xp.current_level+1][4])}`;
 
     //console.log(window.REALMS);
     if(did_level) {

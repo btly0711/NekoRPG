@@ -131,7 +131,7 @@ character.get_hero_realm = function(){
         return character.xp.current_level;
 }
 
-character.add_xp = function ({xp_to_add, use_bonus = true}) {
+character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
         if(use_bonus) {
                 xp_to_add *= (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1);
         }
@@ -142,6 +142,10 @@ character.add_xp = function ({xp_to_add, use_bonus = true}) {
         let levelupresult = "";
         while(character.xp.current_xp >= window.REALMS[character.xp.current_level+1][4])
         {
+                if(character.xp.current_level == 8 && !ignore_cap){
+                        character.xp.current_xp = 79999999;
+                        return `<b>被<span class="realm_terra">大地级瓶颈</span>限制 - 经验已锁定</b>`
+                }
                 character.xp.current_level += 1;
 
                 let this_realm = window.REALMS[character.xp.current_level];
@@ -413,7 +417,7 @@ character.stats.add_weapon_type_bonuses = function() {
  * only a few skills really matter here
  */
 character.stats.add_all_skill_level_bonus = function() {
-        character.stats.flat.skills.defense = 1.618281828**skills["Iron skin"].get_level_bonus();
+        character.stats.multiplier.skills.defense = 1 + skills["Iron skin"].get_level_bonus();
         character.stats.multiplier.skills.attack_speed = skills["Running"].get_coefficient("multiplicative");
         character.stats.multiplier.skills.strength = skills["Weightlifting"].get_coefficient("multiplicative");
         character.stats.multiplier.skills.block_strength = 1 + 5*skills["Shield blocking"].get_level_bonus();

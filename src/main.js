@@ -76,13 +76,13 @@ window.REALMS=[
 [5,"万物级巅峰",25,6000,16000],
 
 [6,"潮汐级初等",40,10000,36000],//0.1spd
-[7,"潮汐级高等",70,20000,120000],
-[8,"潮汐级巅峰",100,40000,2400000],//计划:最早1-5开放
+[7,"潮汐级高等",100,20000,120000],
+[8,"潮汐级巅峰",150,40000,2400000],//计划:最早1-5开放
 
 
-[9,"大地级一阶",200,120000,2147483647],//以下未平衡(需要加入微火)
-[10,"大地级二阶",300,250000,4500000],
-[11,"大地级三阶",500,550000,6000000],
+[9,"大地级一阶",200,120000,80000000],//以下未平衡(需要加入微火)
+[10,"大地级二阶",300,250000,6e7],
+[11,"大地级三阶",500,550000,1.2e8],
 
 ];
 //境界，X级存储了该等级的数据
@@ -302,11 +302,20 @@ const musicList = {
   2: 'bgms/2.mp3',
   3: 'bgms/3.mp3',
   4: 'bgms/4.mp3',
+  5: 'bgms/5.mp3',
 };
 
+let hasPlayed = false;  // 确保只触发一次
+
 function switchBGM(key) {
-//   console.log(bgm.src);
-//   console.log(musicList[key]);
+    
+    if (!hasPlayed) {
+        hasPlayed = true;
+        bgm.play().catch(error => {
+            console.log("播放失败:", error);
+            hasPlayed = false;
+        });
+    }
   if (bgm.src.includes(musicList[key]) && bgm.src.length >= 5 && musicList[key].length >= 5) return;  // 已是当前音乐
   bgm.pause();
   bgm.src = musicList[key];
@@ -1278,14 +1287,9 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     }
 
     
-    if(!character.wears_armor())
-        {
-            add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: damage_taken/2});
-        } else {
-            add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: damage_taken/10});
-        }
-
+    add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
     
+
     if(fainted) {
         total_deaths++;
         log_message(character.name + " 失败了", "hero_defeat");
@@ -1752,12 +1756,17 @@ function clear_enemies() {
     current_enemies = null;
 }
 
-function use_recipe(target) {
+let latest_comp = "";
 
+function use_recipe(target,stated = false) {
+
+    //if(!stated) console.log("unfix",target);
+    //else console.log("fix",target);
     const category = target.parentNode.parentNode.dataset.crafting_category;
     const subcategory = target.parentNode.parentNode.dataset.crafting_subcategory;
     const recipe_id = target.parentNode.dataset.recipe_id;
     const station_tier = current_location.crafting.tiers[category];
+    let stated_f = 0;
 
     if(!category || !subcategory || !recipe_id) {
         //shouldn't be possible to reach this
@@ -1786,11 +1795,11 @@ function use_recipe(target) {
                     total_crafting_successes++;
                     add_to_character_inventory([{item: item_templates[result_id], count: count}]);
                     
-                    log_message(`制造了 ${item_templates[result_id].getName()} x${count}`, "crafting");
-
+                    if(!stated) log_message(`制造了 ${item_templates[result_id].getName()} x${count}`, "crafting");
+                    else stated_f +=1;
                     leveled = add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value});
                 } else {
-                    log_message(`制造 ${item_templates[result_id].getName()} 失败!`, "crafting");
+                    if(!stated) log_message(`制造 ${item_templates[result_id].getName()} 失败!`, "crafting");
 
                     leveled = add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value/2});
                 }
@@ -1805,15 +1814,22 @@ function use_recipe(target) {
             } else {
                 console.warn(`Tried to use an unavailable recipe!`);
             }
+            if(stated) return stated_f;
             
         } else if(subcategory === "components" || selected_recipe.recipe_type === "component" ) {
             //read the selected material, pass it as param
 
             const material_div = recipe_div.children[1].querySelector(".selected_material");
+            //console.log(material_div);
+            //console.log(recipe_id);
             if(!material_div) {
-                return;
+                console.log("div not found")
+                return -1;
             } else {
                 const material_1_key = material_div.dataset.item_key;
+                let H_q = 0;
+                //console.log(material_div);
+                //console.log(material_1_key);
                 const {id} = JSON.parse(material_1_key);
                 const recipe_material = selected_recipe.materials.filter(x=> x.material_id===id)[0];
 
@@ -1823,25 +1839,35 @@ function use_recipe(target) {
                     result = selected_recipe.getResult(character.inventory[material_1_key].item, station_tier);
                     add_to_character_inventory([{item: result, count: 1}]);
                     remove_from_character_inventory([{item_key: material_1_key, item_count: recipe_material.count}]);
-                    log_message(`制造了 ${result.getName()} [品质 ${result.quality}%]`, "crafting");
-                    
+                    if(!stated) log_message(`制造了 ${result.getName()} [品质 ${result.quality}%]`, "crafting");
+                    else H_q = result.quality;
+                    latest_comp = result.getName();
                     const exp_value = get_recipe_xp_value({category, subcategory, recipe_id, material_count: recipe_material.count, rarity_multiplier: rarity_multipliers[result.getRarity()], result_tier: result.component_tier});
                     
                     leveled = add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value});
-                    material_div.classList.remove("selected_material");
+                    if(!stated) material_div.classList.remove("selected_material");
                     if(character.inventory[material_1_key]) { 
                         //if item is still present in inventory + if there's not enough of it = change recipe color
                         if(recipe_material.count > character.inventory[material_1_key].count) { 
                             material_div.classList.add("recipe_unavailable");
                         }
-                    } else {
+                    } else if(!stated){
                         material_div.remove();
                     }
-                    update_displayed_material_choice({category, subcategory, recipe_id, refreshing: true});
+                    if(!stated) update_displayed_material_choice({category, subcategory, recipe_id, refreshing: true});
                     //update_displayed_crafting_recipes();
                 } else {
                     console.log("Tried to create an item without having necessary materials");
+                    H_q = -1;
+                    if(stated)
+                    {
+                        
+                        if(!character.inventory[material_1_key]) material_div.remove();
+                        material_div.classList.remove("selected_material");
+                        update_displayed_material_choice({category, subcategory, recipe_id, refreshing: true});
+                    }
                 }
+                if(stated) return H_q;
             }
             
         } else if(subcategory === "equipment") {
@@ -1880,6 +1906,59 @@ function use_recipe(target) {
             }
             //update_displayed_crafting_recipes();
         }  
+    }
+}
+
+function use_recipe_max(target) {
+    const category = target.parentNode.parentNode.dataset.crafting_category;
+    const subcategory = target.parentNode.parentNode.dataset.crafting_subcategory;
+    const recipe_id = target.parentNode.dataset.recipe_id;
+    const station_tier = current_location.crafting.tiers[category];
+    // console.log(category);
+    // console.log(subcategory);
+    // console.log(recipe_id);
+    //console.log("max2")
+    if(!category || !subcategory || !recipe_id) {
+        //shouldn't be possible to reach this
+        throw new Error(`Tried to use a recipe but either category, subcategory, or recipe id was not passed: ${category} - ${subcategory} - ${recipe_id}`);
+    } else if(!recipes[category][subcategory][recipe_id]) {
+        //shouldn't be possible to reach this
+        throw new Error(`Tried to use a recipe that doesn't exist: ${category} -> ${subcategory} -> ${recipe_id}`);
+    } else {
+        const selected_recipe = recipes[category][subcategory][recipe_id];
+        const recipe_div = document.querySelector(`[data-crafting_category="${category}"] [data-crafting_subcategory="${subcategory}"] [data-recipe_id="${recipe_id}"]`);
+        let leveled = false;
+        let result;
+        if(subcategory === "items") {
+            let cnt = 0;
+            let cnt_s = 0;
+            while(selected_recipe.get_availability()) {
+                cnt++;
+                cnt_s += use_recipe(target,true);
+            }
+            result = selected_recipe.getResult();
+            const {result_id, count} = result;
+            log_message(`批量制造了 ${item_templates[result_id].getName()} ,其中 ${cnt_s}/${cnt} 成功`, "crafting");
+
+        } else if(subcategory === "components" || selected_recipe.recipe_type === "component" ) {
+        
+            let cnt = 0;
+            let cnt_b = 0;
+            let cnt_f = 0;
+            
+            while(cnt_f != -1)
+            {
+                cnt++;
+                cnt_f = use_recipe(target,true)
+                cnt_b = Math.max(cnt_b,cnt_f);
+                //console.log(cnt_f);
+                //console.log(cnt_b);
+            }
+            log_message(`批量制造了 ${latest_comp} * ${cnt} ,其中最高品质为 ${cnt_b} %`, "crafting");
+
+        } else if(subcategory === "equipment") {
+
+        }
     }
 }
 
@@ -3373,6 +3452,7 @@ window.closeCraftingWindow = close_crafting_window;
 window.switchCraftingRecipesPage = switch_crafting_recipes_page;
 window.switchCraftingRecipesSubpage = switch_crafting_recipes_subpage;
 window.useRecipe = use_recipe;
+window.useRecipemax = use_recipe_max;
 window.updateDisplayedComponentChoice = update_displayed_component_choice;
 window.updateDisplayedMaterialChoice = update_displayed_material_choice;
 window.updateRecipeTooltip = update_recipe_tooltip;

@@ -526,18 +526,29 @@ body {
 	float: left;
 }.bigger_button {
 	display: var(--item_use_button_display);
-	width: 39px;
+	width: 36px;
 	cursor: pointer;
-	font-size: 18px;
+	font-size: 15px;
+	top:-33px;
+	position:relative;
 	text-align: right;
-	float: left;
+	float: right;
+}
+.recipe_10_button {
+	display: var(--item_use_button_display);
+	width: 36px;
+	cursor: pointer;
+	font-size: 15px;
+	text-align: right;
+	float: right;
 }
 .item_use_10{
 	padding-top:3px;
 }
 .recipe_10{
 	padding-top:6px;
-	display:inline-block;
+	right:6px;
+	display:inline-flex;
 	order:2;
 }
 .item_use_max{
@@ -874,7 +885,11 @@ body {
 .selectable_component, .selectable_material {
 	border-bottom: 1px dotted white;
 	padding: 3px;
-	padding-left: 10px;
+	padding-left: 4px;
+	box-sizing: border-box;
+	margin-right: auto;
+    overflow: hidden; 
+	right:40px;
 }
 
 .selected_recipe .crafting_selection {
@@ -882,7 +897,7 @@ body {
 }
 
 .recipe_name {
-	width: 366px;
+	width: 336px;
 	text-align: left;
 	display: inline-block;
 	padding-bottom: 5px;
@@ -1280,7 +1295,7 @@ i {
 	position: absolute;
 	font-size: 18px;
 	width: 400px;
-	top: 36px;
+	top: 32px;
 	text-align: center;
 }
 
