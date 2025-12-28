@@ -167,12 +167,12 @@ const units=['','万','亿','兆','京','垓','秭','穣','沟','涧','正','载
 function format_number(some_number)
 {
     let f_result = "";
-    let len=Math.floor(Math.log10(some_number)) + 1;//位数！
     if(some_number<0)
     {
         f_result+='-';
         some_number*=-1;
     }
+    let len=Math.floor(Math.log10(some_number)) + 1;//位数！
     if(some_number<1e-4) f_result += '0';
     else if(len<=4||len==6)
     {
