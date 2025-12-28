@@ -946,6 +946,7 @@
             function showAllItems() {
                 document.documentElement.style.setProperty('--equipment_display', 'inline-block');
                 document.documentElement.style.setProperty('--consumables_display', 'inline-block');
+                document.documentElement.style.setProperty('--loot_display', 'inline-block');
                 document.documentElement.style.setProperty('--other_display', 'inline-block');
             }
             function showOnlyEquipment() {
@@ -1286,7 +1287,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V0.40";
+                document.getElementById("changelog_button").children[0].innerHTML = "V0.40a";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
