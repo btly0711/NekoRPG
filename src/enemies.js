@@ -1758,7 +1758,7 @@ class Enemy {
         image: "image/boss/B1401.png",
         realm: "<span class=realm_terra><b>大地级三阶</b></span>",
         size: "small",
-        spec: [9],
+        spec: [],
         tags: [],
         stats: {health: 270000, attack: 7500, agility: 5000, attack_speed: 1.2, defense: 3750}, 
         loot_list: [

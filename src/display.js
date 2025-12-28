@@ -243,7 +243,7 @@ function create_item_tooltip_content({item, options={}}) {
         if(options?.quality && options.quality[0]) {
             quality = options.quality[0];
         }
-        if(item.equip_slot != "props" && item.equip_slot != "method")//disable quality
+        if(item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special")//disable quality
         {
             if(!options.skip_quality && options?.quality?.length == 2) {
                 item_tooltip += `<br><br><b>品质: <span style="color: ${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span style="color: ${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
@@ -266,7 +266,7 @@ function create_item_tooltip_content({item, options={}}) {
             });
         }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具","method":"秘法"}
+        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具","method":"秘法","special":"特殊"}
         if(item.equip_slot === "weapon") {
             item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
@@ -325,7 +325,7 @@ function create_item_tooltip_content({item, options={}}) {
             if(item.getAttack) {
                 item_tooltip += 
                     `<br><br>攻击: ${Math.round(10*item.getAttack())/10}`;
-            } else if(item.getDefense && item.equip_slot != "props" && item.equip_slot != "method") { 
+            } else if(item.getDefense && item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special") { 
             //console.log(item);
                 item_tooltip += 
                 `<br><br>防御: ${Math.round(10*item.getDefense())/10}`;
@@ -1134,7 +1134,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     if("quality" in target_item) {
         item_control_div.dataset.item_quality = target_item.quality;
     }
-    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法"};
+    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法","special":"特殊"};
     if(target_item.tags?.equippable) {
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;

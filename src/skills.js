@@ -809,6 +809,7 @@ function format_skill_rewards(milestone){
                                     names: {0: "武器熟练", 15: "武器精通"}, 
                                     description: "关于所有武器的知识",
                                     category: "Weapon",
+                                    max_level: 60,
                                     get_effect_description: ()=> {
                                         return `增加所有武器技能经验获取，每1级增加10%`;
                                     },
@@ -1663,16 +1664,16 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
 (function(){
     skills["Haggling"] = new Skill({
         skill_id: "Haggling",
-        names: {0: "讨价还价",10:"精通·讨价还价",25:"大师·讨价还价"},
+        names: {0: "讨价还价",15:"精通·讨价还价",35:"大师·讨价还价"},
         description: "交易的艺术",
         category: "Character",
         base_xp_cost: 100,
-        max_level: 25,
+        max_level: 50,
         xp_scaling: 2,
         get_effect_description: ()=> {
             return `将购买价格降低到原价的 ${Math.round((1 - skills["Haggling"].get_level_bonus())*100)}%(不低于100%)`;
         },
-        max_level_bonus: 0.5
+        max_level_bonus: 0.8
     });
     
 })();

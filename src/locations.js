@@ -1533,9 +1533,9 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["地宫浅层"], custom_text: "回到浅层处"}], 
         description: "荒兽海之后的区域。纳娜米被困在此处。[V0.40前版本终点]",
         
-        //dialogues: ["纳娜米"],
         is_unlocked: false,
         name: "地宫深层", 
+        dialogues: ["纳娜米"],
         bgm: 5,
         unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//1-5

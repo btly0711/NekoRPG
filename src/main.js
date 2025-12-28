@@ -731,10 +731,10 @@ function start_textline(textline_key){
             log_message(`${flag_unlock_texts[textline.unlocks.flags[i]]}`, "activity_unlocked");
         }
     }
-
+    console.log(textline.unlocks.items);
     for(let i = 0; i < textline.unlocks.items.length; i++) {
-        log_message(`${character.name} 获取了 "${item_templates[textline.unlocks.items[i]].getName()}"`);
-        add_to_character_inventory([{item: item_templates[textline.unlocks.items[i]]}]);
+        log_message(`${character.name} 获取了 "${textline.unlocks.items[i].item_name}"`);
+        add_to_character_inventory([{item: item_templates[textline.unlocks.items[i].item_name]}]);
     }
 
     if(textline.unlocks.money && typeof textline.unlocks.money === "number") {

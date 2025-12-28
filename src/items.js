@@ -540,6 +540,27 @@ class Method extends Equippable {
         return this.stats;
     }
 }
+class Special extends Equippable {
+    constructor(item_data) {
+        super(item_data);
+        this.components = undefined;
+        this.equip_slot = "special";
+        this.stats = item_data.stats;
+
+        this.tags["special"] = true;
+        if(!this.id) {
+            this.id = this.getName();
+        }
+    }
+
+    getValue() {
+        return this.value;
+    } 
+
+    getStats(){
+        return this.stats;
+    }
+}
 
 class Tool extends Equippable {
     constructor(item_data) {
@@ -683,6 +704,8 @@ class Armor extends Equippable {
                 this.equip_slot = "feet";
             } else if(this.tags.method){
                 this.equip_slot = "method"
+            } else if(this.tags.special){
+                this.equip_slot = "special"
             }
             else {
                 this.equip_slot = "props";
@@ -2267,6 +2290,26 @@ item_templates["Twist liek a snek"] = new Book({
 
 })();
 
+(function(){
+    item_templates["纳娜米"] = new Special({
+        name: "纳娜米",
+        id: "纳娜米",
+        description: "别卖姐姐！你这个恶魔！<br>(Tips:没有姐姐的话地宫不会被削弱到1/100属性)", 
+        value: 861082712,//B1镭射枪的预估价格约为数百B。
+        stats: {
+            attack_power: {
+                multiplier: 1.3,
+            },
+            defense: {
+                multiplier: 1.3,
+            },
+            agility: {
+                multiplier: 1.3,
+            },
+        }
+    });
+
+})();
 //usables:
 (function(){
 

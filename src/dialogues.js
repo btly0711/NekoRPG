@@ -652,8 +652,80 @@ class Textline {
                 text: "有些时候，直接打怪收效甚微。<br>" +
                 "但是当你用你的镐子取巧，<br>" +
                 "便可能产生意想不到的奇效。”<br>"+"不过，也不要贪多...<br>边际收益递减在这里展现的淋漓尽致。",
-
+                
                 locks_lines: ["dig"],
+            }),
+        }
+    });
+
+    
+    dialogues["纳娜米"] = new Dialogue({
+        name: "纳娜米",
+        textlines: {
+            "1": new Textline({ 
+                is_unlocked: true,
+                name: "姐姐！",
+                text: "可可？！<br>你为什么在这里，这里很危险，<br>听姐姐的话，别胡闹，快回家族去。",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米", lines: ["2"]}],
+                },
+                locks_lines: ["1"],
+            }),
+            "2": new Textline({ 
+                is_unlocked: true,
+                name: "不。如果是听话的孩子，这种时候不可能丢下姐姐不管的。",
+                text: "……怪姐姐没有说清楚。<br>其实这次探险，是纳布家主默许的。<br>或者说，是他有意安排我来的。",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米", lines: ["3"]}],
+                },
+                locks_lines: ["2"],
+            }),
+            "3": new Textline({ 
+                is_unlocked: true,
+                name: "诶，诶？",
+                text: "…实不相瞒，在之前的一次荒兽狩猎行动中，<br>家族遭到不明来由的偷袭，损失惨重。<br>"+
+                "偷袭者实力非常强大，<br>他利用自己诡异的身法和速度，<br>几乎是以摧枯拉朽般的姿态杀掉了那些族人。<br>"+
+                "家主大怒，派出族中最为优秀的精英前去搜寻，<br>并最终——发现了这座藏有宝藏的地宫，<br>将消息散布出去！<br>"+
+                "现在，方圆千里的大地级修行者，<br>已经陆续接到消息赶来。<br>可地宫的主人却没有什么动静。",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米", lines: ["4"]}],
+                },
+                locks_lines: ["3"],
+            }),
+            "4": new Textline({ 
+                is_unlocked: true,
+                name: "原来是这样吗？有点吓人的感觉。那姐姐，你为什么会……",
+                text: "嗯……这一次的对手非常狡猾。<br>如果家族中贸然派出天空级强者，<br>只会引起对方的警觉。<br>"+
+                "所以，才会悄悄把我这个不起眼的小辈派来<br>，伪装成冒失的寻常冒险者。<br>并且，现在我的手上，有足以击杀对方的底牌。<br>"+
+                "但是下面的荒兽实在太多了。<br>我这边最多只能应付几头，<br>那张底牌又无法暴露，所以才被困在这里。",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米", lines: ["5"]}],
+                },
+                locks_lines: ["4"],
+            }),
+            "5": new Textline({ 
+                is_unlocked: true,
+                name: "交给我吧，姐姐。我们就一起，把它们通通干掉！",
+                text: "不行不行，太危险了。<br>……等等，可可，你是怎么来到这里的？<br>难道上面的那头荒兽精英，被你解决了？<br>",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米", lines: ["6"]}],
+                },
+                locks_lines: ["5"],
+            }),
+            "6": new Textline({ 
+                is_unlocked: true,
+                name: "都说过了，不要小看我啊。而且，如果连这点小问题都帮不了姐姐，那还要我做什么呢。",
+                text: "……<br>原来如此，小丫头不知不觉已经长大了吗……<br>好，我知道了。",
+
+                unlocks: {
+                    items: [{item_name: "纳娜米"}],
+                },
+                locks_lines: ["6"],
             }),
         }
     });
