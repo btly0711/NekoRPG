@@ -2236,10 +2236,13 @@ function update_recipe_tooltip({category, subcategory, recipe_id, components}) {
         const material_selections_div = crafting_pages[category][subcategory].querySelector(`[data-recipe_id='${recipe_id}']`).children[1];
         for(let i = 0; i < material_selections_div.children.length; i++) {
             const material_key = material_selections_div.children[i].dataset.item_key;
+            console.log(material_key);
+            if(material_key == undefined) continue;
             const {id} = JSON.parse(material_key);
             const material_recipe = recipe.materials.filter(material => material.material_id === id);
             
             material_selections_div.children[i].children[1].innerHTML = create_recipe_tooltip_content({category, subcategory, recipe_id, material: material_recipe[0]});
+            
         }
     } else if(subcategory === "equipment") {
         tooltip.innerHTML = create_recipe_tooltip_content({category, subcategory, recipe_id, components});

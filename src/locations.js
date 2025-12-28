@@ -1330,6 +1330,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["燕岗近郊"], custom_text: "回到藏宝图的路线上"}], 
         description: "敞亮的小河，可以用于练习游泳技术！",
         
+        bgm: 3,
         is_unlocked: false,
         name: "郊区河流", 
     });
