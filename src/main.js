@@ -850,6 +850,7 @@ function set_new_combat({enemies} = {}) {
         return;
     }
     current_enemies = enemies || current_location.get_next_enemies();
+    console.log(current_enemies);
     clear_all_enemy_attack_loops();
 
     let character_attack_cooldown = 1/(character.stats.full.attack_speed);
@@ -878,14 +879,18 @@ function set_new_combat({enemies} = {}) {
 
     //attach loops
     //console.log(current_enemies);
-    for(let i = 0; i < current_enemies.length; i++) {
+    //console.log(current_enemies.length)
+    // 安全使用
+    for(let i = 0; i < (current_enemies?.length || 0); i++) {
         do_enemy_attack_loop(i, 0, 1,true);
     }
-
+    if((current_enemies?.length || 0)!=0)
+    {
     set_character_attack_loop({base_cooldown: character_attack_cooldown});
     
     update_displayed_enemies();
     update_displayed_health_of_enemies();
+    }
 }
 
 /**
@@ -955,81 +960,83 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
 
     clearTimeout(enemy_attack_loops[enemy_id]);
     enemy_attack_loops[enemy_id] = setTimeout(() => {
-        enemy_timers[enemy_id][0] = Date.now(); 
-        enemy_timer_variance_accumulator[enemy_id] += ((enemy_timers[enemy_id][0] - enemy_timers[enemy_id][1]) - enemy_attack_cooldowns[enemy_id]*1000/(40*tickrate));
+        if(current_enemies != null)
+        {
+            enemy_timers[enemy_id][0] = Date.now(); 
+            enemy_timer_variance_accumulator[enemy_id] += ((enemy_timers[enemy_id][0] - enemy_timers[enemy_id][1]) - enemy_attack_cooldowns[enemy_id]*1000/(40*tickrate));
 
-        enemy_timers[enemy_id][1] = Date.now();
-        update_enemy_attack_bar(enemy_id, count);
-        count++;
-        let atk_sign = 0;
-        if(count >= 40) {
-            count = 0;
-            if(current_enemies[enemy_id].spec.includes(10))
-            {
-                do_enemy_combat_action(enemy_id,Spec_S,0.8);
-                do_enemy_combat_action(enemy_id,Spec_S,1.2);//回风
-            }
-            else  if(current_enemies[enemy_id].spec.includes(12))
-            {
-                do_enemy_combat_action(enemy_id,"[时封]"+Spec_S,1,E_round);//时封
-                //console.log(E_round);
-            }
-            else  if(current_enemies[enemy_id].spec.includes(15))
-            {
-                do_enemy_combat_action(enemy_id,"[异界之门]"+Spec_S,1,E_round * 2 - 1);//异界
-                //console.log(E_round);
-            }
-            else do_enemy_combat_action(enemy_id,Spec_S,1);
-
-            if(current_enemies[enemy_id].spec.includes(13))//惑幻
-            {
-                do_enemy_combat_action(enemy_id,"[惑幻]"+Spec_S,0);
-            }
-            if(current_enemies[enemy_id].spec.includes(14))//斩阵
-            {
-                if(E_round == 2)
+            enemy_timers[enemy_id][1] = Date.now();
+            update_enemy_attack_bar(enemy_id, count);
+            count++;
+            let atk_sign = 0;
+            if(count >= 40) {
+                count = 0;
+                if(current_enemies[enemy_id].spec.includes(10))
                 {
-                    do_enemy_combat_action(enemy_id,"[斩阵·起]"+Spec_S,2);
+                    do_enemy_combat_action(enemy_id,Spec_S,0.8);
+                    if(current_enemies != null) do_enemy_combat_action(enemy_id,Spec_S,1.2);//回风
                 }
-                else if(E_round == 4)
+                else  if(current_enemies[enemy_id].spec.includes(12))
                 {
-                    do_enemy_combat_action(enemy_id,"[斩阵·承]"+Spec_S,3);
+                    do_enemy_combat_action(enemy_id,"[时封]"+Spec_S,1,E_round);//时封
+                    //console.log(E_round);
                 }
-                else if(E_round == 6)
+                else  if(current_enemies[enemy_id].spec.includes(15))
                 {
-                    do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
+                    do_enemy_combat_action(enemy_id,"[异界之门]"+Spec_S,1,E_round * 2 - 1);//异界
+                    //console.log(E_round);
+                }
+                else do_enemy_combat_action(enemy_id,Spec_S,1);//普攻
+
+                if(current_enemies[enemy_id].spec.includes(13) && current_enemies != null)//惑幻
+                {
+                    do_enemy_combat_action(enemy_id,"[惑幻]"+Spec_S,0);
+                }
+                if(current_enemies[enemy_id].spec.includes(14) && current_enemies != null)//斩阵
+                {
+                    if(E_round == 2)
+                    {
+                        do_enemy_combat_action(enemy_id,"[斩阵·起]"+Spec_S,2);
+                    }
+                    else if(E_round == 4)
+                    {
+                        do_enemy_combat_action(enemy_id,"[斩阵·承]"+Spec_S,3);
+                    }
+                    else if(E_round == 6)
+                    {
+                        do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
+                    }
+                }
+                
+                atk_sign += 1;
+                if(current_enemies != null)
+                {
+                    if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S,1);//2连击
+
+                    if(current_enemies[enemy_id].spec.includes(6))
+                    {
+                        do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
+                        if(current_enemies != null) do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
+                    }//3连击
+
                 }
             }
-            
-            atk_sign += 1;
-            if(current_enemies != null)
-            {
-                if(current_enemies[enemy_id].spec.includes(3)) do_enemy_combat_action(enemy_id,"[2连击]"+Spec_S,1);//2连击
+            do_enemy_attack_loop(enemy_id, count,E_round + atk_sign,false);
 
-                if(current_enemies[enemy_id].spec.includes(6))
-                {
-                    do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
-                    if(current_enemies != null) do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
-                }//3连击
-
-            }
-        }
-        do_enemy_attack_loop(enemy_id, count,E_round + atk_sign,false);
-
-        if(enemy_timer_variance_accumulator[enemy_id] <= 5/tickrate && enemy_timer_variance_accumulator[enemy_id] >= -5/tickrate) {
-            enemy_timer_adjustment[enemy_id] = time_variance_accumulator;
-        }
-        else {
-            if(enemy_timer_variance_accumulator[enemy_id] > 5/tickrate) {
-                enemy_timer_adjustment[enemy_id] = 5/tickrate;
+            if(enemy_timer_variance_accumulator[enemy_id] <= 5/tickrate && enemy_timer_variance_accumulator[enemy_id] >= -5/tickrate) {
+                enemy_timer_adjustment[enemy_id] = time_variance_accumulator;
             }
             else {
-                if(enemy_timer_variance_accumulator[enemy_id] < -5/tickrate) {
-                    enemy_timer_adjustment[enemy_id] = -5/tickrate;
+                if(enemy_timer_variance_accumulator[enemy_id] > 5/tickrate) {
+                    enemy_timer_adjustment[enemy_id] = 5/tickrate;
                 }
-            }
-        } //limits the maximum correction to +/- 5ms, just to be safe
-
+                else {
+                    if(enemy_timer_variance_accumulator[enemy_id] < -5/tickrate) {
+                        enemy_timer_adjustment[enemy_id] = -5/tickrate;
+                    }
+                }
+            } //limits the maximum correction to +/- 5ms, just to be safe
+        }
     }, enemy_attack_cooldowns[enemy_id]*1000/(40*tickrate) - enemy_timer_adjustment[enemy_id]);
 }
 
