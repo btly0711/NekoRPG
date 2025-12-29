@@ -937,6 +937,8 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(10)) Spec_S += "[回风]";
     if(current_enemies[enemy_id].spec.includes(17)) Spec_S += "[执着]";
     if(current_enemies[enemy_id].spec.includes(18)) Spec_S += "[贪婪]";
+    if(current_enemies[enemy_id].spec.includes(26)) Spec_S += "[分裂]";
+    if(current_enemies[enemy_id].spec.includes(27)) Spec_S += "[柔骨]";
     //console.log(current_enemies[enemy_id]);
     
     if(isnew) {
@@ -945,15 +947,20 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
         if(current_enemies[enemy_id].spec.includes(2)) do_enemy_combat_action(enemy_id,"[迅捷]"+Spec_S);//迅捷(开局攻击)
         if(current_enemies[enemy_id].spec.includes(4))
         {
-            do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);
-            do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);
-            do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);//疾走(开局3连击)
+            for(let cb=1;cb<=3;cb++) if(current_enemies != null){
+                do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);//疾走(开局3连击)
+            }
         }
         if(current_enemies[enemy_id].spec.includes(16))//飓风(开局4x5连击)
         {
-            for(let cb=1;cb<=4;cb++)
-            {
+            for(let cb=1;cb<=4;cb++) if(current_enemies != null){
                 do_enemy_combat_action(enemy_id,"[飓风]"+Spec_S,1,5);
+            }
+        }
+        if(current_enemies[enemy_id].spec.includes(22))
+        {
+            for(let cb=1;cb<=5;cb++) if(current_enemies != null){
+            do_enemy_combat_action(enemy_id,"[绝世]"+Spec_S,0.9,1);//疾走(开局3连击)
             }
         }
     }
@@ -1006,6 +1013,10 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                     {
                         do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
                     }
+                }
+                if(current_enemies[enemy_id].spec.includes(20) && current_enemies != null)//天剑
+                {
+                    do_enemy_combat_action(enemy_id,"[天剑]"+Spec_S,1.5,2);
                 }
                 
                 atk_sign += 1;
@@ -1241,7 +1252,20 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         //console.log(character.stats);
         E_atk_mul_f += character.stats.full.health / attacker.stats.attack / 200;//执着
     }
-
+    if(attacker.spec.includes(21))//灵体
+    {
+        if(character.stats.full.agility >= attacker.spec_value[21]){
+            spec_hint += "[灵体·免疫]";
+        }
+        else{
+            spec_hint += "[灵体]";
+            E_atk_mul_f += (attacker.spec_value[21] - character.stats.full.agility)*5/attacker.stats.attack;  
+        }
+    }
+    if(attacker.spec.includes(26))//分裂
+    {
+        E_atk_mul_f *= 2;
+    }
 
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
@@ -1282,7 +1306,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为最终增伤
     if(attacker.spec.includes(8)) sdef_mul *= 0.9;//衰弱
     if(attacker.spec.includes(9)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense;//反转
-
+    if(attacker.spec.includes(27)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense * 0.1 + 1;//柔骨
 
     let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt},sdef_mul);
 
@@ -1331,6 +1355,9 @@ function get_enemy_realm(enemy){
         case "大":
             realm_e += 9;
             break;  
+        case "天":
+            realm_e += 18;
+            break;  
     }
     switch (realm_l){
         case "初":
@@ -1354,6 +1381,9 @@ function get_enemy_realm(enemy){
         case "三":
             realm_e += 2;
             break;  
+        case "四":
+            realm_e += 3;
+            break;  
     }
     if(realm_l == "高" && realm_e == 1) realm_e += 1;//微尘高级 特判
     if(realm_l == "巅" && realm_e >= 11) realm_e += 6;//大地级以上巅峰指九阶而不是三阶
@@ -1363,8 +1393,22 @@ function get_enemy_realm(enemy){
 function do_character_combat_action({target, attack_power}) {
 
     let satk_mul = 1;//角色攻击乘数
+    let sdmg_mul = 1;//角色伤害乘数
+    let Spec_E = "";
     if(target.spec.includes(8)) satk_mul *= 0.9;//衰弱
     if(target.spec.includes(9)) satk_mul *= character.stats.full.defense / character.stats.full.attack_power;//反转
+    if(target.spec.includes(27)) satk_mul *= 0.9;//柔骨
+    
+    if(target.spec.includes(23))
+    {
+        if(character.stats.full.attack_power > target.stats.attack){
+            Spec_E += "[灵闪·免疫]";
+        }
+        else{
+            Spec_E += "[灵闪]";
+            sdmg_mul = 1 - (target.stats.defense / character.stats.full.defense / 2);
+        }
+    }
 
     const hero_base_damage = attack_power * satk_mul;
 
@@ -1409,22 +1453,32 @@ function do_character_combat_action({target, attack_power}) {
         damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense, damage_dealt*0.001, 0))/10;
         //强制伤害0.1%
 
-        let Spec_E = "";
 
         if(target.spec.includes(1))
         {
-            damage_dealt=Math.min(damage_dealt,1.0);//坚固
-            Spec_E += "[坚固]"
+            console.log(character.equipment);
+            if(character.equipment.special.name == "纳娜米"){
+                damage_dealt*=3/13;//姐姐
+                Spec_E += "[坚固·削弱]"
+            }
+            else{
+                damage_dealt=Math.min(damage_dealt,1.0);//坚固
+                Spec_E += "[坚固]"
+            }
         }
         if(target.spec.includes(8)) Spec_E += "[衰弱]";
         if(target.spec.includes(9)) Spec_E += "[反转]";
-        
+        if(sdmg_mul != 1)
+        {
+            Spec_E += `[DMG${format_number(sdmg_mul * 100)}%]`;
+            damage_dealt *= sdmg_mul;
+        }
         target.stats.health -= damage_dealt;
         if(critted) {
-            log_message(target.name + " 受到了 " + damage_dealt + " 伤害[暴击]" + Spec_E, "enemy_attacked_critically");
+            log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害[暴击]" + Spec_E, "enemy_attacked_critically");
         }
         else {
-            log_message(target.name + " 受到了 " + damage_dealt + " 伤害" + Spec_E, "enemy_attacked");
+            log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害" + Spec_E, "enemy_attacked");
         }
 
         if(target.stats.health <= 0) {
@@ -1482,6 +1536,7 @@ function kill_enemy(target) {
             else if(target.name == "纳家待从") add_bestiary_lines(12);
             else if(target.name == "腐蚀质石精") add_bestiary_lines(13);
             else if(target.name == "夜行幽灵") add_bestiary_lines(14);
+            else if(target.name == "行走树妖") add_bestiary_lines(15);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -1798,7 +1853,7 @@ function use_recipe(target,stated = false) {
                     remove_from_character_inventory([{item_key: key, item_count: selected_recipe.materials[i].count}]);
                 } 
                 const exp_value = get_recipe_xp_value({category, subcategory, recipe_id});
-                if(Math.random() < success_chance) {
+                if(success_chance == 1 ? true : (Math.random() < success_chance)) {
                     total_crafting_successes++;
                     add_to_character_inventory([{item: item_templates[result_id], count: count}]);
                     
@@ -2967,6 +3022,7 @@ function load(save_data) {
             if(enemy_name == "纳家待从") add_bestiary_lines(12);
             if(enemy_name == "腐蚀质石精") add_bestiary_lines(13);
             if(enemy_name == "夜行幽灵") add_bestiary_lines(14);
+            if(enemy_name == "行走树妖") add_bestiary_lines(15);
 
         });
     }

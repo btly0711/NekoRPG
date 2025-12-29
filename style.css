@@ -145,6 +145,11 @@ body {
 	 color: lightblue;
  }
 
+ .message_enemy_enhanced {
+	 color: lightpink;
+	 font-weight: bold;
+ }
+
  .message_enemy_attacked_critically {
 	color: rgb(90, 151, 221);
  }

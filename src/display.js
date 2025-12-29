@@ -505,6 +505,11 @@ function end_activity_animation() {
             group_to_add = "message_combat";
             message_count.message_combat += 1;
             break;
+        case "enemy_enhanced":
+            class_to_add = "message_enemy_enhanced";
+            group_to_add = "message_combat";
+            message_count.message_combat += 1;
+            break;
         case "enemy_attacked_critically":
             class_to_add = "message_enemy_attacked_critically";
             group_to_add = "message_combat";
@@ -3399,8 +3404,29 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [15, "异界之门", "#808080","时元素领悟。触及了一丝命运规律的领悟，张开的黑暗之门似通向另一个世界。<br>每一回合战斗伤害变为<span style='color:#87CEFA'>2*回合数-1</span>倍。"],
 [16, "飓风", "#337d3d","这个敌人迅疾如风，引动了天地间的风元素异象。<br>敌人首先发动4段<span style='color:#87CEFA'>5倍伤害</span>的攻击。"],
 [17, "执着", "#cbb2d9","铁杵磨成针。<br>敌人的攻击额外增加角色生命的0.5%。"],
-[18, "贪婪", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>角色每拥有${format_money(enemy.spec_value[18])},该敌人伤害减少<span style='color:#87CEFA'>1%</span>.`}]
+[18, "贪婪", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>角色每拥有${format_money(enemy.spec_value[18])},该敌人伤害减少<span style='color:#87CEFA'>1%</span>.`}],
+[19, "同调", "#FF6A6A","玄妙且具备威胁的领悟，可以共享属性。<br>敌人会随着角色的变强而变强，其攻防附加<span style='color:#87CEFA'>10%</span>角色的攻防。"],
+[20, "天剑", "#9B8AFC","可将天地能量汇聚于自身的攻势进行战斗。<br>敌人每回合额外造成自身攻击<span style='color:#87CEFA'>3倍</span>与角色防御<span style='color:#87CEFA'>2倍</span>差值的伤害。"],
+[21, "灵体", "#ff9977",function(enemy){return "以特殊的生命形式而存在。<br>敌人对角色每回合造成<span style='color:#87CEFA'>" + (enemy.spec_value[21]) + "与角色敏捷之差</span>点伤害。<br>此额外伤害下限为0."}],
+[22, "绝世", "#DEF27B","五连绝世。<br>战斗前，敌人以0.9倍的攻击力发动一次<span style='color:#87CEFA'>5连击</span>。"],
+[23, "灵闪", "#F2EC41","光元素领悟。以快而强大的进攻压制对手。<br>当<span style='color:#FFFF00'>角色的攻击（计算加成）少于敌人</span>时，敌人受到的伤害比例减少<span style='color:#87CEFA'>（敌人防御/角色防御）的二分之一</span>。"],
+[24, "饮剑", "#F0A078","将炽烈的进攻元素吸收并化为自身的能力。<br>敌人的生命增加角色攻击的<span style='color:#87CEFA'>0.5倍</span>。"],
+[25, "饮盾", "#3C6794","将刚猛的防守元素吸收并化为自身的能力。<br>敌人的生命增加角色防御的<span style='color:#87CEFA'>0.5倍</span>。"],
+[26, "分裂", "#8EA5D1","拥有两种能力的战斗法师。敌人每回合的攻击<span style='color:#87CEFA'>翻倍</span>"],
+[27, "柔骨", "#2CBA3A","接下攻击，并化为另一种劲力发回。<br>战斗时，角色的攻击效力转移<span style='color:#87CEFA'>10%</span>到防御上。"],
 ];
+/*
+【同调】敌人攻防加角色攻防10%
+【天剑】敌人每回合发动一次3倍伤害(防御2倍减免)的攻击。
+【灵体】*每回合伤害加上5*[10000-角色AGI]
+【绝世】5连击
+【灵闪】我攻少于敌，敌人吃敌防/2我防伤害减免
+【饮剑】敌人的生命增加角色攻击5倍
+【饮盾】敌人的生命增加角色防御5倍
+【分裂】敌人的攻击被视为2倍ATK
+【柔骨】角色的攻击转移10%到防御上
+
+*/
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
 //命名空间：[i][0]序号，[i][1]名称,[i][2]颜色,[i][3]描述
 function create_new_bestiary_entry(enemy_name) {
@@ -3845,6 +3871,7 @@ export {
     create_item_tooltip,
     update_displayed_money,
     log_message,
+    format_number,
     clear_action_div,
     update_displayed_enemies,
     update_displayed_health_of_enemies,

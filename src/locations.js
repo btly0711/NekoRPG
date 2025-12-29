@@ -7,6 +7,8 @@ import { current_game_time } from "./game_time.js";
 import { activities } from "./activities.js";
 
 import { get_total_skill_level } from "./character.js";
+import { character } from "./character.js";
+import { log_message , format_number} from "./display.js";
 const locations = {};
 const location_types = {};
 //contains all the created locations
@@ -248,6 +250,20 @@ class Combat_zone {
                     size: enemy.size
                 });
             //}
+            if(newEnemy.spec.includes(19))
+            {
+                newEnemy.stats.attack += character.stats.full.attack_power * 0.1;
+                newEnemy.stats.defense += character.stats.full.defense * 0.1;
+                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.1)} 攻击，${format_number(character.stats.full.defense * 0.1)}防御 [同调]`,"enemy_enhanced");
+            }//同调
+            if(newEnemy.spec.includes(24)){
+                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.5)} 生命 [饮剑]`,"enemy_enhanced");
+                newEnemy.stats.health += character.stats.full.attack_power * 0.5;//饮剑
+            }
+            if(newEnemy.spec.includes(25)){ 
+                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.defense * 0.5)} 生命 [饮盾]`,"enemy_enhanced");
+                newEnemy.stats.health += character.stats.full.defense * 0.5;//饮盾
+            }
             newEnemy.is_alive = true;
             enemies.push(newEnemy); 
         }
@@ -1539,8 +1555,29 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 5,
         unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//1-5
+    locations["地宫核心 - 1"] = new Combat_zone({
+        description: "[V0.42版本终点]区域划分还没做...怪物都在这里了啦。", 
+        enemy_count: 20, 
+        enemies_list: ["地宫看门人","行走树妖","深邃之影","抽丝鬼","燕岗堕落狩士","二极蝠","凶戾骨将","武装绿毛茸茸","二阶荒兽","地下岩火","初级魔法师","喵咕哩","颂歌符文","地宫执法者","出芽绿茸茸","巨型蜘蛛","地穴飞鸟","小势力探险者","踏地荒兽","扭曲菇菇","温热飞蛾","苍白之触","燕岗城守卫"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        name: "地宫核心 - 1",
+        
+        rank:41, 
+        bgm:5,
+        parent_location: locations["地宫深层"],
+        first_reward: {
+            xp: 1200,
+        },
+        repeatable_reward: {
+            xp: 400,
+            //locations: [{location: "地宫 - 2"}],
+        },
+    });
 
     locations["地宫浅层"].connected_locations.push({location: locations["地宫深层"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 1"]});
 
     
     locations["Nearby cave"] = new Location({ 

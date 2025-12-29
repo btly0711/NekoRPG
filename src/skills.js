@@ -1602,7 +1602,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     skills["Iron skin"] = new Skill({
         skill_id: "Iron skin",
         category: "Combat",
-        names: {0: "坚韧皮肤", 5: "木质皮肤", 10: "铁制皮肤"},
+        names: {0: "坚韧皮肤", 5: "铁制皮肤", 10: "精钢皮肤",15:"紫铜皮肤",20:"地宫皮肤"},
         description: "杀不死我的，都将使我更强大",
         base_xp_cost: 100,
         xp_scaling: 2.0,

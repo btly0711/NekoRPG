@@ -673,7 +673,7 @@ class Textline {
                 locks_lines: ["1"],
             }),
             "2": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "不。如果是听话的孩子，这种时候不可能丢下姐姐不管的。",
                 text: "……怪姐姐没有说清楚。<br>其实这次探险，是纳布家主默许的。<br>或者说，是他有意安排我来的。",
 
@@ -683,7 +683,7 @@ class Textline {
                 locks_lines: ["2"],
             }),
             "3": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "诶，诶？",
                 text: "…实不相瞒，在之前的一次荒兽狩猎行动中，<br>家族遭到不明来由的偷袭，损失惨重。<br>"+
                 "偷袭者实力非常强大，<br>他利用自己诡异的身法和速度，<br>几乎是以摧枯拉朽般的姿态杀掉了那些族人。<br>"+
@@ -696,7 +696,7 @@ class Textline {
                 locks_lines: ["3"],
             }),
             "4": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "原来是这样吗？有点吓人的感觉。那姐姐，你为什么会……",
                 text: "嗯……这一次的对手非常狡猾。<br>如果家族中贸然派出天空级强者，<br>只会引起对方的警觉。<br>"+
                 "所以，才会悄悄把我这个不起眼的小辈派来<br>，伪装成冒失的寻常冒险者。<br>并且，现在我的手上，有足以击杀对方的底牌。<br>"+
@@ -708,7 +708,7 @@ class Textline {
                 locks_lines: ["4"],
             }),
             "5": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "交给我吧，姐姐。我们就一起，把它们通通干掉！",
                 text: "不行不行，太危险了。<br>……等等，可可，你是怎么来到这里的？<br>难道上面的那头荒兽精英，被你解决了？<br>",
 
@@ -718,7 +718,7 @@ class Textline {
                 locks_lines: ["5"],
             }),
             "6": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "都说过了，不要小看我啊。而且，如果连这点小问题都帮不了姐姐，那还要我做什么呢。",
                 text: "……<br>原来如此，小丫头不知不觉已经长大了吗……<br>好，我知道了。",
 
