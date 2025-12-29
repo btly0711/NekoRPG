@@ -1458,7 +1458,7 @@ function do_character_combat_action({target, attack_power}) {
         {
             console.log(character.equipment);
             if(character.equipment.special.name == "纳娜米"){
-                damage_dealt*=3/13;//姐姐
+                damage_dealt=Math.min(damage_dealt,4.0);//坚固
                 Spec_E += "[坚固·削弱]"
             }
             else{
