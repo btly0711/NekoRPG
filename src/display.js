@@ -1376,7 +1376,7 @@ function update_displayed_health_of_enemies() {
 
         //update size of health bar
         enemies_div.children[i].children[0].children[2].children[0].children[0].style.width = 
-            Math.max(0, 100*current_enemies[i].stats.health/current_enemies[i].stats.max_health) + "%";
+            Math.min(100,Math.max(0, 100*current_enemies[i].stats.health/current_enemies[i].stats.max_health)) + "%";
 
             enemies_div.children[i].children[0].children[2].children[1].innerText = `${format_number(current_enemies[i].stats.health)}/${format_number(current_enemies[i].stats.max_health)} hp`;
 

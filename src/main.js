@@ -1457,7 +1457,7 @@ function do_character_combat_action({target, attack_power}) {
         if(target.spec.includes(1))
         {
             console.log(character.equipment);
-            if(character.equipment.special.name == "纳娜米"){
+            if(character.equipment.special?.name == "纳娜米"){
                 damage_dealt=Math.min(damage_dealt,4.0);//坚固
                 Spec_E += "[坚固·削弱]"
             }
@@ -1698,8 +1698,8 @@ function add_xp_to_character(xp_to_add, should_info = true, use_bonus) {
         if(should_info) {
             log_message(level_up, "level_up");
         }
-        
-        character.stats.full.health = character.stats.full.max_health; //free healing on level up, because it's a nice thing to have
+        console.log(level_up);
+        if(!level_up.includes("大地级瓶颈")) character.stats.full.health = character.stats.full.max_health; //free healing on level up, because it's a nice thing to have
         update_character_stats();
     }
 

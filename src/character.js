@@ -147,6 +147,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
                         return `<b>被<span class="realm_terra">大地级瓶颈</span>限制 - 经验已锁定</b>`
                 }
                 character.xp.current_level += 1;
+                console.log("大地级瓶颈 Error");
 
                 let this_realm = window.REALMS[character.xp.current_level];
                 let realm_spd_gain = 0;
@@ -156,7 +157,6 @@ character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
 
                 character.xp.current_xp -= this_realm[4];
                 //真实-提高属性
-                
                 character.stats.flat.level.max_health = (character.stats.flat.level.max_health || 0) + this_realm[3];
                 character.stats.flat.level.health = character.stats.flat.level.max_health;
                 character.stats.flat.level.agility = (character.stats.flat.level.agility || 0) + this_realm[2];
@@ -168,7 +168,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
                 if(this_realm[0]>=3) total_skill_xp_multiplier += 0.05;
                 if(this_realm[0]>=6) total_skill_xp_multiplier += 0.05;
                 //升级之后技能领悟力变强，境界越高越明显
-                //if(this_realm[0]>=9) total_skill_xp_multiplier += 0.05;
+                if(this_realm[0]>=9) total_skill_xp_multiplier += 0.05;
                 character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
 
                 //显示-提高属性
