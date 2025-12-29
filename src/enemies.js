@@ -2169,7 +2169,7 @@ class Enemy {
         image: "image/boss/B1402.png",
         realm: "<span class=realm_terra><b>大地级二阶</b></span>",
         size: "small",
-        spec: [16,1],
+        spec: [16],
         tags: [],
         stats: {health: 135000, attack: 2900, agility: 2000, attack_speed: 1.2, defense: 1800}, 
         loot_list: [
