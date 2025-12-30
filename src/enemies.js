@@ -1957,7 +1957,7 @@ class Enemy {
         stats: {health: 1, attack:15000, agility: 7800, attack_speed: 1.2, defense: 6500}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
-            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "高级绿宝石", chance:0.01},
             //应为89X
         ],
     });
@@ -1974,7 +1974,7 @@ class Enemy {
         stats: {health: 25000, attack:9000, agility: 8400, attack_speed: 1.2, defense: 5000}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
-            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "高级绿宝石", chance:0.01},
             //应为89X
         ],
     });
@@ -1991,7 +1991,7 @@ class Enemy {
         stats: {health: 14000, attack:5500, agility: 8000, attack_speed: 1.2, defense: 6500}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
-            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "高级绿宝石", chance:0.01},
             //应为89X
         ],
     });
@@ -2008,7 +2008,7 @@ class Enemy {
         stats: {health: 14000, attack:5500, agility: 8000, attack_speed: 1.2, defense: 6500}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
-            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "高级绿宝石", chance:0.01},
             //应为89X
         ],
     });
@@ -2025,7 +2025,7 @@ class Enemy {
         stats: {health: 6000, attack:13000, agility: 9000, attack_speed: 1.2, defense: 7200}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
-            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "高级绿宝石", chance:0.01},
             //应为89X
         ],
     });
@@ -2041,7 +2041,7 @@ class Enemy {
         tags: [],
         stats: {health: 32, attack:11111, agility: 10081, attack_speed: 1.2, defense: 0}, 
         loot_list: [
-            {item_name: "高级绿宝石", chance:0.04},
+            {item_name: "高级绿宝石", chance:0.015},
             //应为160X
         ],
     });
