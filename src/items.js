@@ -2342,10 +2342,10 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 16,
         stats: {
             crit_rate: {
-                flat: 0.06,
+                flat: 0.01,
             },
             attack_speed: {
-                multiplier: 1.05,
+                multiplier: 1.02,
             }
         }
     });
@@ -2359,10 +2359,10 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 48,
         stats: {
             crit_rate: {
-                flat: 0.08,
+                flat: 0.02,
             },
             attack_speed: {
-                multiplier: 1.06,
+                multiplier: 1.04,
             }
         }
     });
@@ -2376,10 +2376,10 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 200,
         stats: {
             crit_rate: {
-                flat: 0.10,
+                flat: 0.03,
             },
             attack_speed: {
-                multiplier: 1.08,
+                multiplier: 1.06,
             }
         }
     });
@@ -2392,10 +2392,10 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 640,
         stats: {
             crit_rate: {
-                flat: 0.12,
+                flat: 0.04,
             },
             attack_speed: {
-                multiplier: 1.09,
+                multiplier: 1.08,
             }
         }
     });
@@ -2408,10 +2408,10 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 640,
         stats: {
             crit_rate: {
-                flat: 0.10,
+                flat: 0.04,
             },
             attack_speed: {
-                multiplier: 1.09,
+                multiplier: 1.08,
             },
             agility: {
                 flat:80,
@@ -2453,7 +2453,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 40.00,
             },
             crit_multiplier: {
-                flat: 0.3,
+                flat: 0.1,
             },
         }
     });

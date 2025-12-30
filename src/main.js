@@ -77,12 +77,12 @@ window.REALMS=[
 
 [6,"潮汐级初等",40,10000,36000],//0.1spd
 [7,"潮汐级高等",100,20000,120000],
-[8,"潮汐级巅峰",150,40000,2400000],//计划:最早1-5开放
+[8,"潮汐级巅峰",250,40000,2400000],//计划:最早1-5开放
 
 
-[9,"大地级一阶",200,120000,80000000],//以下未平衡(需要加入微火)
-[10,"大地级二阶",300,250000,6e7],
-[11,"大地级三阶",500,550000,1.2e8],
+[9,"大地级一阶",400,120000,80000000],//以下未平衡(需要加入微火)
+[10,"大地级二阶",600,250000,1.8e8],
+[11,"大地级三阶",1000,550000,4.0e8],
 
 ];
 //境界，X级存储了该等级的数据
@@ -198,21 +198,6 @@ time_field.innerHTML = current_game_time.toString();
     });
 })();
 
-function option_uniform_textsize(option) {
-    //doesn't really force same textsize, just changes some variables so they match
-    const checkbox = document.getElementById("options_textsize");
-    if(checkbox.checked || option) {
-        options.uniform_text_size_in_action = true;    
-        document.documentElement.style.setProperty('--options_action_textsize', '20px');
-    } else {
-        options.uniform_text_size_in_action = false;
-        document.documentElement.style.setProperty('--options_action_textsize', '16px');
-    }
-
-    if(option) {
-        checkbox.checked = option;
-    }
-}
 
 function option_bed_return(option) {
     const checkbox = document.getElementById("options_bed_return");
@@ -306,9 +291,10 @@ const musicList = {
 };
 
 let hasPlayed = false;  // 确保只触发一次
+let enableBGM = true;
 
 function switchBGM(key) {
-    
+    if(!enableBGM) return;
     if (!hasPlayed) {
         hasPlayed = true;
         bgm.play().catch(error => {
@@ -323,6 +309,28 @@ function switchBGM(key) {
   bgm.volume = 0.5;
   bgm.play();
 }
+
+
+function option_uniform_textsize(option) {
+    //doesn't really force same textsize, just changes some variables so they match
+    const checkbox = document.getElementById("options_textsize");
+    if(checkbox.checked || option) {
+        options.uniform_text_size_in_action = true;    
+        //document.documentElement.style.setProperty('--options_action_textsize', '20px');
+        bgm.volume = 0;
+        enableBGM = false;
+    } else {
+        options.uniform_text_size_in_action = false;
+        document.documentElement.style.setProperty('--options_action_textsize', '16px');
+        enableBGM = true;
+        bgm.volume = 0.5;
+    }
+
+    if(option) {
+        checkbox.checked = option;
+    }
+}
+
 
 function change_location(location_name) {
     let location = locations[location_name];
@@ -731,7 +739,7 @@ function start_textline(textline_key){
             log_message(`${flag_unlock_texts[textline.unlocks.flags[i]]}`, "activity_unlocked");
         }
     }
-    console.log(textline.unlocks.items);
+    //console.log(textline.unlocks.items);
     for(let i = 0; i < textline.unlocks.items.length; i++) {
         log_message(`${character.name} 获取了 "${textline.unlocks.items[i].item_name}"`);
         add_to_character_inventory([{item: item_templates[textline.unlocks.items[i].item_name]}]);
@@ -850,7 +858,7 @@ function set_new_combat({enemies} = {}) {
         return;
     }
     current_enemies = enemies || current_location.get_next_enemies();
-    console.log(current_enemies);
+    //console.log(current_enemies);
     clear_all_enemy_attack_loops();
 
     let character_attack_cooldown = 1/(character.stats.full.attack_speed);
@@ -1456,7 +1464,7 @@ function do_character_combat_action({target, attack_power}) {
 
         if(target.spec.includes(1))
         {
-            console.log(character.equipment);
+            //console.log(character.equipment);
             if(character.equipment.special?.name == "纳娜米"){
                 damage_dealt=Math.min(damage_dealt,4.0);//坚固
                 Spec_E += "[坚固·削弱]"
@@ -1698,7 +1706,7 @@ function add_xp_to_character(xp_to_add, should_info = true, use_bonus) {
         if(should_info) {
             log_message(level_up, "level_up");
         }
-        console.log(level_up);
+        //console.log(level_up);
         if(!level_up.includes("大地级瓶颈")) character.stats.full.health = character.stats.full.max_health; //free healing on level up, because it's a nice thing to have
         update_character_stats();
     }

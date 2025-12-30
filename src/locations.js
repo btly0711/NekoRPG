@@ -1556,9 +1556,9 @@ function get_location_type_penalty(type, stage, stat) {
         unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//1-5
     locations["地宫核心 - 1"] = new Combat_zone({
-        description: "[V0.42版本终点]区域划分还没做...怪物都在这里了啦。", 
+        description: "杂乱不堪的廊道，刺鼻的腥味。环境比地宫浅层更恶劣一层。", 
         enemy_count: 20, 
-        enemies_list: ["地宫看门人","行走树妖","深邃之影","抽丝鬼","燕岗堕落狩士","二极蝠","凶戾骨将","武装绿毛茸茸","二阶荒兽","地下岩火","初级魔法师","喵咕哩","颂歌符文","地宫执法者","出芽绿茸茸","巨型蜘蛛","地穴飞鸟","小势力探险者","踏地荒兽","扭曲菇菇","温热飞蛾","苍白之触","燕岗城守卫"],
+        enemies_list: ["行走树妖","深邃之影","抽丝鬼","燕岗堕落狩士","二极蝠"],
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: true, 
@@ -1572,12 +1572,117 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 400,
-            //locations: [{location: "地宫 - 2"}],
+            locations: [{location: "地宫核心 - 2"}],
+        },
+    });
+    locations["地宫核心 - 2"] = new Combat_zone({
+        description: "地宫的更深处，远处似乎有青紫二色的光幕浮现。", 
+        enemy_count: 20, 
+        enemies_list: ["二极蝠","武装绿毛茸茸","二阶荒兽","地下岩火","初级魔法师","颂歌符文"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        name: "地宫核心 - 2",
+        
+        rank:42, 
+        bgm:5,
+        parent_location: locations["地宫深层"],
+        first_reward: {
+            xp: 1500,
+        },
+        repeatable_reward: {
+            xp: 500,
+            locations: [{location: "地宫核心 - 3"}],
+        },
+    });
+    locations["地宫核心 - 3"] = new Combat_zone({
+        description: "靠近青紫二色光幕的区域，前方存在一些悬空平台。", 
+        enemy_count: 20, 
+        enemies_list: ["二阶荒兽","地下岩火","初级魔法师","地宫执法者","地宫看门人","凶戾骨将"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        name: "地宫核心 - 3",
+        
+        rank:43, 
+        bgm:5,
+        parent_location: locations["地宫深层"],
+        first_reward: {
+            xp: 1800,
+        },
+        repeatable_reward: {
+            xp: 600,
+            locations: [{location: "地宫核心 - 4"}],
+        },
+    });
+    locations["地宫核心 - 4"] = new Combat_zone({
+        description: "悬空平台之后的深处区域。这里的荒兽已经普遍达到大地级三阶。", 
+        enemy_count: 20, 
+        enemies_list: ["地宫执法者","地宫看门人","凶戾骨将","巨型蜘蛛","出芽绿茸茸","地穴飞鸟"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        name: "地宫核心 - 4",
+        
+        rank:44, 
+        bgm:5,
+        parent_location: locations["地宫深层"],
+        first_reward: {
+            xp: 2100,
+        },
+        repeatable_reward: {
+            xp: 700,
+            locations: [{location: "地宫核心 - 5"}],
+        },
+    });
+    locations["地宫核心 - 5"] = new Combat_zone({
+        description: "荒兽已经拥挤到成双成对的深处区域。暴戾气息的源头已经不远了...", 
+        enemy_count: 20, 
+        enemies_list: ["出芽绿茸茸","地穴飞鸟","小势力探险者","踏地荒兽","扭曲菇菇","喵咕哩"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: true, 
+        name: "地宫核心 - 5",
+        
+        rank:45, 
+        bgm:5,
+        parent_location: locations["地宫深层"],
+        first_reward: {
+            xp: 2400,
+        },
+        repeatable_reward: {
+            xp: 800,
+            locations: [{location: "地宫核心 - 6"}],
+        },
+    });
+    locations["地宫核心 - 6"] = new Combat_zone({
+        description: "就是它！三阶荒兽海的彼岸，一切的罪魁祸首...", 
+        enemy_count: 20, 
+        enemies_list: ["踏地荒兽","扭曲菇菇","喵咕哩","温热飞蛾","苍白之触","燕岗城守卫"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: true, 
+        name: "地宫核心 - 6",
+        
+        rank:46, 
+        bgm:5,
+        parent_location: locations["地宫深层"],
+        first_reward: {
+            xp: 3000,
+        },
+        repeatable_reward: {
+            xp: 1000,
+            //locations: [{location: "地宫核心 - X"}],
         },
     });
 
     locations["地宫浅层"].connected_locations.push({location: locations["地宫深层"]});
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 1"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 2"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 3"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 4"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 5"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 6"]});
 
     
     locations["Nearby cave"] = new Location({ 

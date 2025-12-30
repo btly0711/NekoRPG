@@ -823,7 +823,7 @@ function format_skill_rewards(milestone){
                                         
                                         1: {
                                             stats: {
-                                                "crit_multiplier": {flat: 0.1},
+                                                "crit_multiplier": {flat: 0.01},
                                             }
                                             
                                         },
@@ -849,7 +849,7 @@ function format_skill_rewards(milestone){
                                         },
                                         10: {
                                             stats: {
-                                                "crit_multiplier": {flat: 0.1},
+                                                "crit_multiplier": {flat: 0.01},
                                                 "crit_rate":{flat:0.01},
                                             },
                                             
@@ -948,7 +948,7 @@ Multiplies AP with spears by ${Math.round((skills["Spears"].get_coefficient("mul
                                         10: {
                                             stats: {
                                                 "strength": {flat: 1},
-                                                "crit_multiplier": {flat: 0.1}, 
+                                                "crit_multiplier": {flat: 0.01}, 
                                             },
                                         },
                                         12: {
@@ -1030,7 +1030,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
                                         },
                                         5: {
                                             stats: {
-                                                "crit_multiplier": {flat: 0.1},
+                                                "crit_multiplier": {flat: 0.01},
                                                 "crit_rate": {flat: 0.01},
                                             },
                                         },
@@ -1042,7 +1042,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
                                         10: {
                                             stats: {
                                                 "crit_rate": {flat: 0.02},
-                                                "crit_multiplier": {flat: 0.1}, 
+                                                "crit_multiplier": {flat: 0.01}, 
                                             },
                                         },
                                         12: {

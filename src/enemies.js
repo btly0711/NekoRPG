@@ -1664,7 +1664,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 27000, attack: 7500, agility: 5000, attack_speed: 1.2, defense: 3750}, 
+        stats: {health: 27000, attack: 7500, agility: 6000, attack_speed: 1.2, defense: 3750}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
@@ -1681,7 +1681,7 @@ class Enemy {
         size: "small",
         spec: [16],
         tags: [],
-        stats: {health: 13500, attack:2900, agility: 2000, attack_speed: 1.2, defense: 1800}, 
+        stats: {health: 13500, attack:2900, agility: 3000, attack_speed: 1.2, defense: 1800}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
@@ -1698,7 +1698,7 @@ class Enemy {
         size: "small",
         spec: [17],
         tags: [],
-        stats: {health: 8100, attack:4800, agility: 2000, attack_speed: 1.2, defense: 2000}, 
+        stats: {health: 8100, attack:4800, agility: 3000, attack_speed: 1.2, defense: 2000}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
@@ -1715,7 +1715,7 @@ class Enemy {
         size: "small",
         spec: [6,7],
         tags: [],
-        stats: {health: 3750, attack:5000, agility: 2400, attack_speed: 1.2, defense: 900}, 
+        stats: {health: 3750, attack:5000, agility: 3600, attack_speed: 1.2, defense: 900}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
@@ -1732,7 +1732,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 3000, attack:5500, agility: 2800, attack_speed: 1.2, defense: 3000}, 
+        stats: {health: 3000, attack:5500, agility: 4200, attack_speed: 1.2, defense: 3000}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
@@ -1749,7 +1749,7 @@ class Enemy {
         size: "small",
         spec: [19],
         tags: [],
-        stats: {health: 22200, attack:4800, agility: 2700, attack_speed: 1.2, defense: 1000}, 
+        stats: {health: 22200, attack:4800, agility: 4050, attack_speed: 1.2, defense: 1000}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
@@ -1766,7 +1766,7 @@ class Enemy {
         size: "small",
         spec: [12],
         tags: [],
-        stats: {health: 8450, attack:8880, agility: 4000, attack_speed: 1.2, defense: 4440}, 
+        stats: {health: 8450, attack:8880, agility: 6000, attack_speed: 1.2, defense: 4440}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
@@ -1783,7 +1783,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 8900, attack:6000, agility: 3200, attack_speed: 1.2, defense: 2400}, 
+        stats: {health: 8900, attack:6000, agility: 4800, attack_speed: 1.2, defense: 2400}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
@@ -1800,7 +1800,7 @@ class Enemy {
         size: "small",
         spec: [20],
         tags: [],
-        stats: {health: 10500, attack:3400, agility: 3200, attack_speed: 1.2, defense: 2600}, 
+        stats: {health: 10500, attack:3400, agility: 4800, attack_speed: 1.2, defense: 2600}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
@@ -1817,7 +1817,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 1080, attack:16000, agility: 3600, attack_speed: 1.2, defense: 4000}, 
+        stats: {health: 1080, attack:16000, agility: 5400, attack_speed: 1.2, defense: 4000}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
@@ -1834,7 +1834,7 @@ class Enemy {
         size: "small",
         spec: [0,5],
         tags: [],
-        stats: {health: 7500, attack:3000, agility: 3750, attack_speed: 1.2, defense: 3000}, 
+        stats: {health: 7500, attack:3000, agility: 5500, attack_speed: 1.2, defense: 3000}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
@@ -1852,7 +1852,7 @@ class Enemy {
         spec: [21],
         spec_value:{21:10000},
         tags: [],
-        stats: {health: 36500, attack:10040, agility: 6000, attack_speed: 1.2, defense: 2333}, 
+        stats: {health: 36500, attack:10040, agility: 8000, attack_speed: 1.2, defense: 2333}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.02},
@@ -1869,7 +1869,7 @@ class Enemy {
         size: "small",
         spec: [22],
         tags: [],
-        stats: {health: 16900, attack:5750, agility: 3750, attack_speed: 1.2, defense: 1800}, 
+        stats: {health: 16900, attack:5750, agility: 5750, attack_speed: 1.2, defense: 1800}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
@@ -1886,7 +1886,7 @@ class Enemy {
         size: "small",
         spec: [0,23],
         tags: [],
-        stats: {health: 9999, attack:6999, agility: 4000, attack_speed: 1.2, defense: 3499}, 
+        stats: {health: 9999, attack:6999, agility: 6000, attack_speed: 1.2, defense: 3499}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
@@ -1903,7 +1903,7 @@ class Enemy {
         size: "small",
         spec: [6],
         tags: [],
-        stats: {health: 5000, attack:7600, agility: 4400, attack_speed: 1.2, defense: 3800}, 
+        stats: {health: 5000, attack:7600, agility: 4800, attack_speed: 1.2, defense: 3800}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
@@ -1920,7 +1920,7 @@ class Enemy {
         size: "small",
         spec: [3],
         tags: [],
-        stats: {health: 8000, attack:9500, agility: 5200, attack_speed: 1.2, defense: 4000}, 
+        stats: {health: 8000, attack:9500, agility: 7800, attack_speed: 1.2, defense: 4000}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
@@ -1937,7 +1937,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 17500, attack:8000, agility: 4800, attack_speed: 1.2, defense: 3500}, 
+        stats: {health: 17500, attack:8000, agility: 7200, attack_speed: 1.2, defense: 3500}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
@@ -1954,7 +1954,7 @@ class Enemy {
         size: "small",
         spec: [24,25],
         tags: [],
-        stats: {health: 1, attack:15000, agility: 5200, attack_speed: 1.2, defense: 6500}, 
+        stats: {health: 1, attack:15000, agility: 7800, attack_speed: 1.2, defense: 6500}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.02},
@@ -1971,7 +1971,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 25000, attack:9000, agility: 5600, attack_speed: 1.2, defense: 5000}, 
+        stats: {health: 25000, attack:9000, agility: 8400, attack_speed: 1.2, defense: 5000}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.02},
@@ -1988,7 +1988,7 @@ class Enemy {
         size: "small",
         spec: [26],
         tags: [],
-        stats: {health: 14000, attack:5500, agility: 6000, attack_speed: 1.2, defense: 6500}, 
+        stats: {health: 14000, attack:5500, agility: 8000, attack_speed: 1.2, defense: 6500}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.02},
@@ -2005,7 +2005,7 @@ class Enemy {
         size: "small",
         spec: [22,27],
         tags: [],
-        stats: {health: 14000, attack:5500, agility: 6000, attack_speed: 1.2, defense: 6500}, 
+        stats: {health: 14000, attack:5500, agility: 8000, attack_speed: 1.2, defense: 6500}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.02},
@@ -2022,7 +2022,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 6000, attack:13000, agility: 6500, attack_speed: 1.2, defense: 7200}, 
+        stats: {health: 6000, attack:13000, agility: 9000, attack_speed: 1.2, defense: 7200}, 
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.02},
@@ -2039,7 +2039,7 @@ class Enemy {
         size: "small",
         spec: [1],
         tags: [],
-        stats: {health: 32, attack:11111, agility: 7000, attack_speed: 1.2, defense: 0}, 
+        stats: {health: 32, attack:11111, agility: 10081, attack_speed: 1.2, defense: 0}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.04},
             //应为160X

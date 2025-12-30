@@ -1865,7 +1865,7 @@ function create_location_types_display(current_location){
         type_div.innerHTML = LocationTypesMap[current_location.types[i].type] + (current_location.types[i].stage>1?` ${"I".repeat(current_location.types[i].stage)}`:"");
         type_div.classList.add("location_type_div");
 
-        console.log(current_location);
+        //console.log(current_location);
 
         const type_tooltip = document.createElement("div");
         type_tooltip.innerHTML = location_types[current_location.types[i].type].stages[current_location.types[i].stage].description;
@@ -2241,7 +2241,7 @@ function update_recipe_tooltip({category, subcategory, recipe_id, components}) {
         const material_selections_div = crafting_pages[category][subcategory].querySelector(`[data-recipe_id='${recipe_id}']`).children[1];
         for(let i = 0; i < material_selections_div.children.length; i++) {
             const material_key = material_selections_div.children[i].dataset.item_key;
-            console.log(material_key);
+            //console.log(material_key);
             if(material_key == undefined) continue;
             const {id} = JSON.parse(material_key);
             const material_recipe = recipe.materials.filter(material => material.material_id === id);

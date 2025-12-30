@@ -33,7 +33,7 @@ character.base_stats = {
         agility: 1, 
         attack_speed: 1, 
         crit_rate: 0.01, 
-        crit_multiplier: 1.5,
+        crit_multiplier: 1.2,
 
 
         block_strength: 0,
