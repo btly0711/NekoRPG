@@ -1668,6 +1668,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
+            {item_name: "A1·能量核心", chance:0.2},
+            {item_name: "黑色刀币", chance:0.05},
             //应为50X
         ],
     });
@@ -1685,6 +1687,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
+            {item_name: "A1·能量核心", chance:0.12},
             //应为16X
         ],
     });
@@ -1702,6 +1705,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
+            {item_name: "流动凝胶", chance:0.03},
             //应为16X
         ],
     });
@@ -1719,6 +1723,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
+            {item_name: "大地级魂魄", chance:0.20},
             //应为16X
         ],
     });
@@ -1736,6 +1741,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.04},
             {item_name: "高级红宝石", chance:0.005},
+            {item_name: "断剑", chance:0.25},
             //应为16X
         ],
     });
@@ -1753,6 +1759,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
+            {item_name: "霜炙皮草", chance:0.05},
+            {item_name: "大地级魂魄", chance:0.10},
             //应为28X
         ],
     });
@@ -1770,6 +1778,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
+            {item_name: "A1·能量核心", chance:0.2},
+            {item_name: "大地级魂魄", chance:0.3},
             //应为50X
         ],
     });
@@ -1787,6 +1797,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
+            {item_name: "流动凝胶", chance:0.04},
+            {item_name: "地宫金属锭", chance:0.04},
             //应为28X
         ],
     });
@@ -1804,6 +1816,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
+            {item_name: "地宫·荒兽肉块", chance:0.09},
             //应为28X
         ],
     });
@@ -1821,6 +1834,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
+            {item_name: "大地级魂魄", chance:0.45},
             //应为28X
         ],
     });
@@ -1838,6 +1852,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
+            {item_name: "霜炙皮草", chance:0.07},
             //应为28X
         ],
     });
@@ -1856,6 +1871,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "流动凝胶", chance:0.18},
             //应为89X
         ],
     });
@@ -1873,6 +1889,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
+            {item_name: "A1·能量核心", chance:0.25},
             //应为28X
         ],
     });
@@ -1890,6 +1907,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
+            {item_name: "黑色刀币", chance:0.05},
             //应为50X
         ],
     });
@@ -1907,12 +1925,14 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
+            {item_name: "A1·能量核心", chance:0.2},
+            {item_name: "流动凝胶", chance:0.05},
             //应为50X
         ],
     });
     enemy_templates["巨型蜘蛛"] = new Enemy({
         name: "巨型蜘蛛", 
-        description: "十分敏捷的巨型蜘蛛。只有两条腿的力量较大，因此只能进行二连击。", 
+        description: "只有两条腿的力量较大，因此只能进行二连击。掉落的凝胶是蜘蛛丝制成的。", 
         xp_value: 987, 
         rank: 1516,
         image: "image/enemy/E1516.png",
@@ -1924,6 +1944,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
+            {item_name: "流动凝胶", chance:0.10},
             //应为50X
         ],
     });
@@ -1941,6 +1962,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
+            {item_name: "地宫·荒兽肉块", chance:0.075},
+            {item_name: "霜炙皮草", chance:0.10},
             //应为50X
         ],
     });
@@ -1958,6 +1981,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.01},
+            {item_name: "大地级魂魄", chance:1.00},
             //应为89X
         ],
     });
@@ -1975,6 +1999,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.01},
+            {item_name: "地宫·荒兽肉块", chance:0.29},
             //应为89X
         ],
     });
@@ -1992,6 +2017,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.01},
+            {item_name: "流动凝胶", chance:0.10},
+            {item_name: "霜炙皮草", chance:0.10},
             //应为89X
         ],
     });
@@ -2009,12 +2036,13 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.01},
+            {item_name: "霜炙皮草", chance:0.22},
             //应为89X
         ],
     });
     enemy_templates["苍白之触"] = new Enemy({
         name: "苍白之触", 
-        description: "它吸收了许多荒兽的精华..结果所有的属性都冲突了，技能全没了。", 
+        description: "它吸收了许多荒兽和冒险者的精华..结果所有的属性都冲突了，技能全没了。", 
         xp_value: 1597, 
         rank: 1522,
         image: "image/enemy/E1522.png",
@@ -2026,12 +2054,14 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.01},
+            {item_name: "流动凝胶", chance:0.12},
+            {item_name: "黑色刀币", chance:0.06},
             //应为89X
         ],
     });
     enemy_templates["燕岗城守卫"] = new Enemy({
         name: "燕岗城守卫", 
-        description: "坚固，还血厚。看起来好像无解..但是坚固怕姐姐！", 
+        description: "坚固，还血厚。看起来好像很强..但是坚固怕姐姐！", 
         xp_value: 2584, 
         rank: 1523,
         image: "image/enemy/E1523.png",
@@ -2042,6 +2072,7 @@ class Enemy {
         stats: {health: 32, attack:11111, agility: 10081, attack_speed: 1.2, defense: 0}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "黑色刀币", chance:0.16},
             //应为160X
         ],
     });
@@ -2157,6 +2188,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:1},
             {item_name: "高级红宝石", chance:1},
+            {item_name: "黑色刀币", chance:1},
         ],
     });
     

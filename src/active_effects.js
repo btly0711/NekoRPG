@@ -110,4 +110,16 @@ effect_templates["虚弱"] = new ActiveEffect({
     }
 });
 
+effect_templates["饱食 IV"] = new ActiveEffect({
+    name: "饱食 IV",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 1600},
+            attack_power:{flat:320},
+            defense:{flat:320},
+            agility:{flat:320},
+        }
+    }
+});
+
 export {effect_templates, ActiveEffect};

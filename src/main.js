@@ -182,7 +182,7 @@ let message_log_filters = {
 
 //enemy crit stats
 const enemy_crit_chance = 0.1;
-const enemy_crit_damage = 2; //multiplier, not a flat bonus
+const enemy_crit_damage = 2; 
 
 //character name
 const name_field = document.getElementById("character_name_field");
@@ -1226,7 +1226,9 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     let partially_blocked = false; //only used for combat info in message log
 
-    damage_dealt = enemy_base_damage * (1.2 - Math.random() * 0.4); //basic 20% deviation for damage
+    damage_dealt = enemy_base_damage
+    let vibra_d = 1;
+    vibra_d =  (1.2 - Math.random() * 0.4); //basic 20% deviation for damage
     
     
     if(spec_hint == undefined) spec_hint = "";
@@ -1285,7 +1287,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     if(enemy_crit_chance > Math.random())
     {
-        damage_dealt *= enemy_crit_damage;
+        vibra_d *= enemy_crit_damage;
         critted = true;
     }
 
@@ -1315,7 +1317,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(attacker.spec.includes(8)) sdef_mul *= 0.9;//衰弱
     if(attacker.spec.includes(9)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense;//反转
     if(attacker.spec.includes(27)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense * 0.1 + 1;//柔骨
-
+    damage_dealt *= vibra_d;
     let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt},sdef_mul);
 
     if(critted)
@@ -1435,7 +1437,8 @@ function do_character_combat_action({target, attack_power}) {
 
     if(hit_chance > Math.random()) {//hero's attack hits
 
-        damage_dealt = Math.round(100 * hero_base_damage * (1.2 - Math.random() * 0.4) )/100;
+        damage_dealt = hero_base_damage
+        let vibra_damage = (1.2 - Math.random() * 0.4);
         //0.8-1.2倍率浮动
         if(character.equipment.weapon != null) {
 
@@ -1451,7 +1454,7 @@ function do_character_combat_action({target, attack_power}) {
         }
         
         if(character.stats.full.crit_rate > Math.random()) {
-            damage_dealt = Math.round(10*damage_dealt * character.stats.full.crit_multiplier)/10;
+            vibra_damage *= character.stats.full.crit_multiplier;
             critted = true;
         }
         else {
@@ -1481,6 +1484,7 @@ function do_character_combat_action({target, attack_power}) {
             Spec_E += `[DMG${format_number(sdmg_mul * 100)}%]`;
             damage_dealt *= sdmg_mul;
         }
+        damage_dealt *= vibra_damage;
         target.stats.health -= damage_dealt;
         if(critted) {
             log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害[暴击]" + Spec_E, "enemy_attacked_critically");

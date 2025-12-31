@@ -2271,6 +2271,55 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["生命之眼"] = new Props({
+        name: "生命之眼",
+        id: "生命之眼",
+        description: "永远寻求着蓬勃生机的生命源泉，过于强盛的生机却削弱了灵活性。", 
+        value: 4444444,
+        stats: {
+            max_health: {
+                flat: 200000,
+            },
+            defense: {
+                flat: -1000,
+            },
+            agility: {
+                flat: -1000,
+            }
+        }
+    });
+    item_templates["人造茸茸"] = new Props({
+        name: "人造茸茸",
+        id: "人造茸茸",
+        description: "使用尚存活性的凝胶，导入核心与魂魄复活的傀儡茸茸。可以预报危险，但带着难免束手束脚。", 
+        value: 7777777,
+        stats: {
+            attack_power: {
+                flat: -1000,
+            },
+            defense: {
+                flat: -1000,
+            },
+            agility: {
+                flat: 4000,
+            }
+        }
+    });
+    item_templates["巨剑徽章"] = new Props({
+        name: "巨剑徽章",
+        id: "巨剑徽章",
+        description: "很少有人会发现，血洛大陆的刀币中蕴藏着不凡的力量。但是，其中的反噬之力不可小觑。", 
+        value: 23456789,
+        stats: {
+            attack_power: {
+                flat: 4000,
+            },
+            health_regeneration_percent: {
+                flat: -2,
+            }
+        }
+    });
+
 
 })();
 
@@ -2342,7 +2391,7 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 16,
         stats: {
             crit_rate: {
-                flat: 0.01,
+                flat: 0.05,
             },
             attack_speed: {
                 multiplier: 1.02,
@@ -2359,7 +2408,7 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 48,
         stats: {
             crit_rate: {
-                flat: 0.02,
+                flat: 0.06,
             },
             attack_speed: {
                 multiplier: 1.04,
@@ -2376,7 +2425,7 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 200,
         stats: {
             crit_rate: {
-                flat: 0.03,
+                flat: 0.07,
             },
             attack_speed: {
                 multiplier: 1.06,
@@ -2392,7 +2441,7 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 640,
         stats: {
             crit_rate: {
-                flat: 0.04,
+                flat: 0.08,
             },
             attack_speed: {
                 multiplier: 1.08,
@@ -2408,13 +2457,32 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 640,
         stats: {
             crit_rate: {
-                flat: 0.04,
+                flat: 0.08,
             },
             attack_speed: {
                 multiplier: 1.08,
             },
             agility: {
                 flat:80,
+            }
+        }
+    });
+    item_templates["暗影剑刃"] = new WeaponComponent({
+        name: "暗影剑刃", description: "暗影钢锭制造的剑刃。力大势沉，不过略显笨重。",
+        component_type: "long blade",
+        value: 2.8e6,
+        component_tier: 4,
+        name_prefix: "地宫",
+        attack_value: 1440,
+        stats: {
+            crit_rate: {
+                flat: 0.09,
+            },
+            attack_speed: {
+                multiplier: 1.10,
+            },
+            agility: {
+                flat:-320,
             }
         }
     });
@@ -2544,6 +2612,57 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "shoes interior",
         base_defense: 8,
         component_tier: 1,
+    });item_templates["活性帽子"] = new Armor({
+        name: "活性帽子", 
+        description: "由活性材料塑造成的头部内甲", 
+        value: 3.3e6,
+        component_type: "helmet interior",
+        base_defense: 360,
+        component_tier: 4,
+        stats: {
+            health_regeneration_flat: {
+                flat: 30.00,
+            },
+        },
+    });
+    item_templates["活性背心"] = new Armor({
+        name: "活性背心", 
+        description: "由活性材料塑造成的胸部内甲", 
+        value: 4.4e6,
+        component_type: "chestplate interior",
+        base_defense: 480,
+        component_tier: 4,
+        stats: {
+            health_regeneration_flat: {
+                flat: 40.00,
+            },
+        },
+    });
+    item_templates["活性裤子"] = new Armor({
+        name: "活性裤子", 
+        description: "由活性材料塑造成的腿部内甲", 
+        value: 4.4e6,
+        component_type: "leg armor interior",
+        base_defense: 480,
+        component_tier: 4,
+        stats: {
+            health_regeneration_flat: {
+                flat: 40.00,
+            },
+        },
+    });
+    item_templates["活性袜子"] = new Armor({
+        name: "活性袜子", 
+        description: "由活性材料塑造成的脚部内甲", 
+        value: 2.2e6,
+        component_type: "shoes interior",
+        base_defense: 240,
+        component_tier: 4,
+        stats: {
+            health_regeneration_flat: {
+                flat: 20.00,
+            },
+        },
     });
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
@@ -2739,6 +2858,14 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/TPmetal_ingot.png",
     });
+    item_templates["暗影钢锭"] = new Material({
+        id: "暗影钢锭",
+        name: "暗影钢锭", 
+        description: "由黑色刀币与魂魄重铸而成的金属。强度高达A4级——在血洛大陆，无用的物品不可能成为货币。", 
+        value: 1.3e6,
+        material_type: "metal",
+        image: "image/item/darksteel_ingot.png",
+    });
 })();
 
 //矿石
@@ -2815,6 +2942,13 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [{effect: "强化 A1", duration: 30},{effect: "虚弱", duration: 90}],
         image: "image/item/A1_booster.png",
     });
+    item_templates["地宫·荒兽肉排"] = new UsableItem({
+        name: "地宫·荒兽肉排", 
+        description: "大地级荒兽的肉。谢天谢地，地宫深处终于有有能吃的东西了。", 
+        value: 500e3,
+        effects: [{effect: "饱食 IV", duration: 90}],
+        image: "image/item/A2_cooked_meat.png",
+    });
 })();
 //炼金
 (function(){
@@ -2829,6 +2963,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "用灵液将铜骨和天蚕丝融合的产物", 
         value: 10000,
         image: "image/item/aura_bone.png",
+    });
+    item_templates["活性织料"] = new OtherItem({
+        name: "活性织料", 
+        description: "有一定生命活性的耐极端环境混合物。其类似物曾被用于制造【黑神】套装。",
+        value: 1.10e6,
+        image: "image/item/mixed_comp02.png",
     });
 })();
 
@@ -3036,6 +3176,31 @@ item_templates["Twist liek a snek"] = new Book({
         description: "魔物使用的土制低劣武器。虽然本身易于断裂，但是它的潜力不止于此", 
         value: 80e3,
         image: "image/item/A1_sword.png",
+    });
+    //1-5
+    item_templates["地宫·荒兽肉块"] = new Loot({
+        name: "地宫·荒兽肉块", 
+        description: "地宫核心可以吃的凶兽肉！原来是能吃的荒兽都跑到核心去了嘛？", 
+        value: 300e3,
+        image: "image/item/A2_meat.png",
+    });
+    item_templates["霜炙皮草"] = new Loot({
+        name: "霜炙皮草", 
+        description: "可以耐受极寒与炙热的皮草，只能从大地级荒兽中获取", 
+        value: 400e3,
+        image: "image/item/temp_leather.png",
+    });
+    item_templates["流动凝胶"] = new Loot({
+        name: "流动凝胶", 
+        description: "大地级流动怪物死后留下的凝胶。比起潮汐级以下的死物，它们仍然保有一定的活性。", 
+        value: 500e3,
+        image: "image/item/living_rubber.png",
+    });
+    item_templates["黑色刀币"] = new Loot({
+        name: "黑色刀币", 
+        description: "血洛大陆的通用钱币。1Z=1000X=1'000'000C.", 
+        value: 1e6,
+        image: "image/item/1Z.png",
     });
 
 
