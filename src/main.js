@@ -1218,7 +1218,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     //it will be changed with environment or spec stat.
 
-    const enemy_base_damage = attacker.stats.attack * E_atk_mul;
+    const enemy_base_damage = attacker.stats.attack;
 
     let damage_dealt;
 
@@ -1312,13 +1312,13 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         else spec_hint += "[DMG " + format_number(spec_mul) + "x]";
         //最终增伤
     }
+    spec_mul *= vibra_d;
     let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为最终增伤
     spec_mul *= E_atk_mul_f;//绕开防御乘数
     damage_dealt *= spec_mul;
     if(attacker.spec.includes(8)) sdef_mul *= 0.9;//衰弱
     if(attacker.spec.includes(9)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense;//反转
     if(attacker.spec.includes(27)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense * 0.1 + 1;//柔骨
-    damage_dealt *= vibra_d;
     let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt},sdef_mul);
 
     if(critted)
