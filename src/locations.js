@@ -1692,9 +1692,9 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["地宫核心 - 光幕"] = new Challenge_zone({
         description: "绿紫二色光幕近在眼前。直觉告诉纳可，这样的地方后面一定藏着好东西。",
-        enemy_count: 1, 
+        enemy_count: 2, 
         enemies_list: ["喵咕哩[BOSS]"],
-        enemy_group_size: [2,2],
+        enemy_group_size: [1,1],
         is_unlocked: false, 
         is_challenge: true,
         name: "地宫核心 - 光幕", 

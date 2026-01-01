@@ -1866,7 +1866,7 @@ class Enemy {
         realm: "<span class=realm_terra><b>大地级三阶 +</b></span>",
         size: "small",
         spec: [21],
-        spec_value:{21:10000},
+        spec_value:{21:8000},
         tags: [],
         stats: {health: 36500, attack:10040, agility: 8000, attack_speed: 1.2, defense: 2333}, 
         loot_list: [
@@ -2255,7 +2255,7 @@ class Enemy {
         realm: "<span class=realm_terra><b>大地级三阶 +</b></span>",
         size: "small",
         spec: [21],
-        spec_value:{21:10000},
+        spec_value:{21:8000},
         tags: [],
         stats: {health: 365000, attack:10040, agility: 8000, attack_speed: 1.2, defense: 2333}, 
         loot_list: [

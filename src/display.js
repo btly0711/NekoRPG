@@ -2657,6 +2657,11 @@ function update_stat_description(stat) {
     }
 
     let BreakDownMap = {"level":"境界","skills":"技能","skill_milestones":"技能里程碑","equipment":"装备","environment":"环境","light_level":"光照","gems":"宝石","stance":"秘法","active_effect":"效果"};
+    
+    if(stat === "attack_power" && character.equipment.weapon != undefined) {
+        target.innerHTML += 
+        `<br>武器: +${Math.round(100* character.equipment.weapon.attack_power)/100}`;
+    } 
     Object.keys(character.stats.flat).forEach(stat_type => {
         if(character.stats.flat[stat_type][stat] && character.stats.flat[stat_type][stat] !== 0) {
             target.innerHTML += `<br>${BreakDownMap[stat_type]}: +${Math.round(100*character.stats.flat[stat_type][stat])/100}`;
@@ -2669,10 +2674,6 @@ function update_stat_description(stat) {
     });
     
     //console.log(character.equipment);
-    if(stat === "attack_power" && character.equipment.weapon != undefined) {
-        target.innerHTML += 
-        `<br>武器: +${Math.round(100* character.equipment.weapon.attack_power)/100}`;
-    } 
 
     return;
 }

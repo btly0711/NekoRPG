@@ -1308,12 +1308,13 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     spec_mul *= E_dmg_mul;//计算在loop函数中的增伤
     if(spec_mul != 1)
     {
-        damage_dealt *= spec_mul;
         if(spec_mul < 10) spec_hint += "[DMG " + format_number(spec_mul * 100) + "%]";
         else spec_hint += "[DMG " + format_number(spec_mul) + "x]";
         //最终增伤
     }
     let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为最终增伤
+    spec_mul *= E_atk_mul_f;//绕开防御乘数
+    damage_dealt *= spec_mul;
     if(attacker.spec.includes(8)) sdef_mul *= 0.9;//衰弱
     if(attacker.spec.includes(9)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense;//反转
     if(attacker.spec.includes(27)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense * 0.1 + 1;//柔骨
