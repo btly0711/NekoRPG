@@ -1359,7 +1359,7 @@ function get_location_type_penalty(type, stage, stat) {
         is_unlocked: false,
         sleeping: {
             text: "闭好门窗，睡一会",
-            xp: 1
+            xp: 2
         },
         crafting: {
            is_unlocked: true, 
@@ -1381,7 +1381,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["地宫入口"] = new Location({ 
         connected_locations: [{location: locations["燕岗近郊"], custom_text: "离开地宫"}], 
-        description: "地宫的入口处。宝石的气息浓郁，但有大地级三阶的魔物把守。",
+        description: "地宫的入口处。宝石的气息浓郁，但有大地级三阶的敌人把守。",
         
         dialogues: ["地宫老人"],
         is_unlocked: false,
@@ -1407,7 +1407,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["地宫浅层"] = new Location({ 
         connected_locations: [{location: locations["地宫入口"], custom_text: "回到入口处"}], 
-        description: "地宫的浅层。盘踞着大量魔物，也潜藏着许多宝藏。",
+        description: "地宫的浅层。盘踞着大量荒兽，也潜藏着许多宝藏。",
         traders: ["金属批发商"],
         
         is_unlocked: true,
@@ -1417,7 +1417,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["燕岗近郊"].connected_locations.push({location: locations["地宫入口"]});
     locations["地宫入口"].connected_locations.push({location: locations["地宫浅层"]});
-    locations["地宫入口"].connected_locations.push({location: locations["地宫 - 看门人"], custom_text: "与大地级三阶魔物抢夺宝石"});
+    locations["地宫入口"].connected_locations.push({location: locations["地宫 - 看门人"], custom_text: "与大地级三阶敌人抢夺宝石"});
     locations["地宫 - 1"] = new Combat_zone({
         description: "遍地都是大地级强者的空旷“藏宝地”。", 
         enemy_count: 20, 
@@ -1572,8 +1572,8 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 400,
-            locations: [{location: "地宫核心 - 2"}],
-        },
+            locations: [{location: "地宫核心 - 2"},{location:"地宫核心 - 悬空平台"}],
+        }, 
     });
     locations["地宫核心 - 2"] = new Combat_zone({
         description: "地宫的更深处，远处似乎有青紫二色的光幕浮现。", 
@@ -1581,7 +1581,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["二极蝠","武装绿毛茸茸","二阶荒兽","地下岩火","初级魔法师","颂歌符文"],
         enemy_group_size: [1,1],
         types: [],
-        is_unlocked: true, 
+        is_unlocked: false, 
         name: "地宫核心 - 2",
         
         rank:42, 
@@ -1601,7 +1601,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["二阶荒兽","地下岩火","初级魔法师","地宫执法者","地宫看门人","凶戾骨将"],
         enemy_group_size: [1,1],
         types: [],
-        is_unlocked: true, 
+        is_unlocked: false, 
         name: "地宫核心 - 3",
         
         rank:43, 
@@ -1612,7 +1612,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 600,
-            locations: [{location: "地宫核心 - 4"}],
+            locations: [{location: "地宫核心 - 4"},{location:"地宫核心 - 光幕"}],
         },
     });
     locations["地宫核心 - 4"] = new Combat_zone({
@@ -1621,7 +1621,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["地宫执法者","地宫看门人","凶戾骨将","巨型蜘蛛","出芽绿茸茸","地穴飞鸟"],
         enemy_group_size: [1,1],
         types: [],
-        is_unlocked: true, 
+        is_unlocked: false, 
         name: "地宫核心 - 4",
         
         rank:44, 
@@ -1641,7 +1641,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["出芽绿茸茸","地穴飞鸟","小势力探险者","踏地荒兽","扭曲菇菇","喵咕哩"],
         enemy_group_size: [2,2],
         types: [],
-        is_unlocked: true, 
+        is_unlocked: false, 
         name: "地宫核心 - 5",
         
         rank:45, 
@@ -1661,7 +1661,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["踏地荒兽","扭曲菇菇","喵咕哩","温热飞蛾","苍白之触","燕岗城守卫"],
         enemy_group_size: [2,2],
         types: [],
-        is_unlocked: true, 
+        is_unlocked: false, 
         name: "地宫核心 - 6",
         
         rank:46, 
@@ -1675,6 +1675,60 @@ function get_location_type_penalty(type, stage, stat) {
             //locations: [{location: "地宫核心 - X"}],
         },
     });
+    
+    locations["地宫核心 - 悬空平台"] = new Challenge_zone({
+        description: "熊熊岩火的背后藏着一颗极品黄宝石。它虽然极其凶猛，但生命力如风中残烛，一触即灭。",
+        enemy_count: 2, 
+        enemies_list: ["地下岩火[BOSS]"],
+        enemy_group_size: [1,1],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "地宫核心 - 悬空平台", 
+        bgm:5,
+        leave_text: "退避三舍",
+        parent_location: locations["地宫深层"],
+        repeatable_reward: {        },
+        unlock_text: "[纳可]一定要拿到它。诶嘿，肯定很值钱的，不知道能卖到多少钱呢……[纳娜米]明明一个红色刀币都卖不到吧！",
+    });
+    locations["地宫核心 - 光幕"] = new Challenge_zone({
+        description: "绿紫二色光幕近在眼前。直觉告诉纳可，这样的地方后面一定藏着好东西。",
+        enemy_count: 1, 
+        enemies_list: ["喵咕哩[BOSS]"],
+        enemy_group_size: [2,2],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "地宫核心 - 光幕", 
+        bgm:5,
+        leave_text: "回去练练再来挑战",
+        parent_location: locations["地宫深层"],
+        repeatable_reward: {locations: [{location: "光幕空间"}]},
+        //unlock_text: "[纳可]一定要拿到它。诶嘿，肯定很值钱的，不知道能卖到多少钱呢……[纳娜米]明明一个红色刀币都卖不到吧！",
+    });
+    
+    locations["光幕空间"] = new Location({ 
+        connected_locations: [{location: locations["地宫深层"], custom_text: "回到地宫的荒兽海中"}], 
+        description: "青紫光幕背后的安全区域。光幕本身有“炼化”能力，也可以用作工作台来使用。",
+        //traders: ["矿井集市"],
+        
+        bgm: 5,
+        is_unlocked: false,
+        sleeping: {
+            text: "就地修整",
+            xp: 4
+        },
+        crafting: {
+           is_unlocked: true, 
+            use_text: "使用光幕加工物品[Tier+4]", 
+            tiers: {
+                   crafting: 4,
+                forging: 4,
+                smelting: 4,
+                cooking: 4,
+                alchemy: 4,
+            }
+            },
+        name: "光幕空间", 
+    });
 
     locations["地宫浅层"].connected_locations.push({location: locations["地宫深层"]});
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 1"]});
@@ -1683,6 +1737,9 @@ function get_location_type_penalty(type, stage, stat) {
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 4"]});
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 5"]});
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 6"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 悬空平台"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 光幕"]});
+    locations["地宫深层"].connected_locations.push({location: locations["光幕空间"]});
 
     
     locations["Nearby cave"] = new Location({ 

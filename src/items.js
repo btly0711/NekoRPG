@@ -41,10 +41,10 @@ const rarity_multipliers = {
     trash: 1, //low quality alone makes these so bad that no additional nerf should be needed
     common: 1,
     uncommon: 1.1,
-    rare: 1.3,
-    epic: 1.6,
-    legendary: 2,
-    mythical: 2.5
+    rare: 1.25,
+    epic: 1.4,
+    legendary: 1.6,
+    mythical: 2.0,
 };
 
 const item_templates = {};
@@ -2274,18 +2274,12 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["生命之眼"] = new Props({
         name: "生命之眼",
         id: "生命之眼",
-        description: "永远寻求着蓬勃生机的生命源泉，过于强盛的生机却削弱了灵活性。", 
+        description: "永远寻求着蓬勃生机的生命源泉。", 
         value: 4444444,
         stats: {
             max_health: {
                 flat: 200000,
             },
-            defense: {
-                flat: -1000,
-            },
-            agility: {
-                flat: -1000,
-            }
         }
     });
     item_templates["人造茸茸"] = new Props({
@@ -2315,7 +2309,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 4000,
             },
             health_regeneration_percent: {
-                flat: -2,
+                flat: -1,
             }
         }
     });
@@ -2472,7 +2466,7 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "long blade",
         value: 2.8e6,
         component_tier: 4,
-        name_prefix: "地宫",
+        name_prefix: "暗影",
         attack_value: 1440,
         stats: {
             crit_rate: {
@@ -3008,7 +3002,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["高级黄宝石"] = new UsableItem({
         name: "高级黄宝石", 
-        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷20点或生命1000点", 
+        description: "高阶的晶体，使用时随机增加攻击/防御/敏捷20点或生命1000点", 
         value: 20,
         image: "image/item/gem21_20.png",
         effects: [],
@@ -3016,7 +3010,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["高级蓝宝石"] = new UsableItem({
         name: "高级蓝宝石", 
-        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷50点或生命2500点",
+        description: "高阶的晶体，使用时随机增加攻击/防御/敏捷50点或生命2500点",
         value: 50,
         image: "image/item/gem22_50.png",
         effects: [],
@@ -3024,7 +3018,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["高级红宝石"] = new UsableItem({
         name: "高级红宝石", 
-        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷100点或生命5000点",
+        description: "高阶的晶体，使用时随机增加攻击/防御/敏捷100点或生命5000点",
         value: 100,
         image: "image/item/gem23_100.png",
         effects: [],
@@ -3032,11 +3026,43 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["高级绿宝石"] = new UsableItem({
         name: "高级绿宝石", 
-        description: "可以强化力量的晶体，使用时随机增加攻击/防御/敏捷200点或生命1万点", 
+        description: "高阶的晶体，使用时随机增加攻击/防御/敏捷200点或生命1万点", 
         value: 200,
         image: "image/item/gem24_200.png",
         effects: [],
         gem_value: 200,
+    });
+    item_templates["极品黄宝石"] = new UsableItem({
+        name: "极品黄宝石", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷500点或生命2.5万点", 
+        value: 500,
+        image: "image/item/gem31_500.png",
+        effects: [],
+        gem_value: 500,
+    });
+    item_templates["极品蓝宝石"] = new UsableItem({
+        name: "极品黄宝石", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷1000点或生命5万点", 
+        value: 1000,
+        image: "image/item/gem32_1k.png",
+        effects: [],
+        gem_value: 1000,
+    });
+    item_templates["极品红宝石"] = new UsableItem({
+        name: "极品黄宝石", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷2000点或生命10万点", 
+        value: 2000,
+        image: "image/item/gem33_2k.png",
+        effects: [],
+        gem_value: 2000,
+    });
+    item_templates["极品绿宝石"] = new UsableItem({
+        name: "极品黄宝石", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷5000点或生命25万点", 
+        value: 5000,
+        image: "image/item/gem34_5k.png",
+        effects: [],
+        gem_value: 5000,
     });
 })();
 
@@ -3155,32 +3181,32 @@ item_templates["Twist liek a snek"] = new Book({
     //1-4
     item_templates["大地级魂魄"] = new Loot({
         name: "大地级魂魄", 
-        description: "纯灵体怪物体内的魂魄。经处理后可以成为纯净的能量。", 
+        description: "纯灵体荒兽体内的魂魄。经处理后可以成为纯净的能量。", 
         value: 80e3,
         image: "image/item/A1_soul.png",
     });
     item_templates["巨型眼球"] = new Loot({
         name: "巨型眼球", 
-        description: "大地级魔物的眼球，可以作为生命恢复药剂的素材", 
+        description: "大地级荒兽的眼球，可以作为生命恢复药剂的素材", 
         value: 100e3,
         image: "image/item/A1_eye.png",
     });
     item_templates["A1·能量核心"] = new Loot({
         name: "A1·能量核心", 
-        description: "部分“内丹”修炼体系魔物体内的核心。可以在短时间内诱导出巨大的力量。", 
+        description: "部分“内丹”修炼体系荒兽体内的核心。可以在短时间内诱导出巨大的力量。", 
         value: 120e3,
         image: "image/item/A1_crystal.png",
     });
     item_templates["断剑"] = new Loot({
         name: "断剑", 
-        description: "魔物使用的土制低劣武器。虽然本身易于断裂，但是它的潜力不止于此", 
+        description: "荒兽使用的土制低劣武器。虽然本身易于断裂，但是它的潜力不止于此", 
         value: 80e3,
         image: "image/item/A1_sword.png",
     });
     //1-5
     item_templates["地宫·荒兽肉块"] = new Loot({
         name: "地宫·荒兽肉块", 
-        description: "地宫核心可以吃的凶兽肉！原来是能吃的荒兽都跑到核心去了嘛？", 
+        description: "地宫核心可以吃的荒兽肉！原来是能吃的荒兽都跑到核心去了嘛？", 
         value: 300e3,
         image: "image/item/A2_meat.png",
     });

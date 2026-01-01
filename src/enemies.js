@@ -1306,7 +1306,7 @@ class Enemy {
     });
     enemy_templates["燕岗领佣兵"] = new Enemy({
         name: "燕岗领佣兵", 
-        description: "第一只大地级魔物。温馨提醒：大地级以上经验增长速率会翻倍！", 
+        description: "第一只大地级敌人。温馨提醒：大地级以上经验增长速率会翻倍！", 
         xp_value: 144, 
         rank: 1316,
         image: "image/enemy/E1316.png",
@@ -1366,7 +1366,7 @@ class Enemy {
     
     enemy_templates["灵蔓茸茸"] = new Enemy({
         name: "灵蔓茸茸", 
-        description: "蕴含着狂暴力量的茸茸，周围的魔物都会被其影响，变得暴戾", 
+        description: "蕴含着狂暴力量的茸茸，周围的荒兽都会被其影响，变得暴戾", 
         xp_value: 55, 
         rank: 1319,
         image: "image/enemy/E1319.png",
@@ -1817,6 +1817,7 @@ class Enemy {
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
             {item_name: "地宫·荒兽肉块", chance:0.09},
+            {item_name: "巨型眼球", chance:0.10},
             //应为28X
         ],
     });
@@ -1925,8 +1926,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
-            {item_name: "A1·能量核心", chance:0.2},
-            {item_name: "流动凝胶", chance:0.05},
+            {item_name: "A1·能量核心", chance:0.1},
+            {item_name: "流动凝胶", chance:0.08},
             //应为50X
         ],
     });
@@ -1963,6 +1964,7 @@ class Enemy {
             {item_name: "高级红宝石", chance:0.04},
             {item_name: "高级绿宝石", chance:0.005},
             {item_name: "地宫·荒兽肉块", chance:0.075},
+            {item_name: "巨型眼球", chance:0.15},
             {item_name: "霜炙皮草", chance:0.10},
             //应为50X
         ],
@@ -1999,7 +2001,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级红宝石", chance:0.03},
             {item_name: "高级绿宝石", chance:0.01},
-            {item_name: "地宫·荒兽肉块", chance:0.29},
+            {item_name: "地宫·荒兽肉块", chance:0.30},
+            {item_name: "巨型眼球", chance:0.25},
             //应为89X
         ],
     });
@@ -2226,6 +2229,39 @@ class Enemy {
             {item_name: "高级蓝宝石", chance:1},
         ],
     });
+    
+    enemy_templates["地下岩火[BOSS]"] = new Enemy({
+        name: "地下岩火[BOSS]", 
+        description: "这只屑BOSS的皮怎么那么脆啊！好像一下子就可以打死的样子。", 
+        xp_value: 610, 
+        rank: 1597,
+        image: "image/boss/B1501.png",
+        realm: "<span class=realm_terra><b>大地级二阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 10800, attack:16000, agility: 5400, attack_speed: 1.2, defense: 4000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:1.00},
+            //应为28X
+        ],
+    });
+    enemy_templates["喵咕哩[BOSS]"] = new Enemy({
+        name: "喵咕哩[BOSS]", 
+        description: "~满·血·版·真·神·降·临~ 强大，无需多言！", 
+        xp_value: 1587, 
+        rank: 1598,
+        image: "image/boss/B1502.png",
+        realm: "<span class=realm_terra><b>大地级三阶 +</b></span>",
+        size: "small",
+        spec: [21],
+        spec_value:{21:10000},
+        tags: [],
+        stats: {health: 365000, attack:10040, agility: 8000, attack_speed: 1.2, defense: 2333}, 
+        loot_list: [
+        ],
+    });
+
     enemy_templates["Village guard (heavy)"] = new Enemy({
         name: "Village guard (heavy)", 
         description: "", 
