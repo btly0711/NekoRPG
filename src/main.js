@@ -1312,7 +1312,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         else spec_hint += "[DMG " + format_number(spec_mul) + "x]";
         //最终增伤
     }
-    spec_mul *= vibra_d;
+    spec_mul *= vibra_d;//正常波动和暴击，与DMG增幅走一套算法（不过不显示）
     let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为最终增伤
     spec_mul *= E_atk_mul_f;//绕开防御乘数
     damage_dealt *= spec_mul;
@@ -3390,6 +3390,19 @@ function update() {
         }
         if(character.stats.full.health > character.stats.full.max_health) {
             character.stats.full.health = character.stats.full.max_health
+        }
+        
+        if(character.stats.full.health <= 0) {
+            total_deaths++;
+            log_message(character.name + " 失血过多而昏迷", "hero_defeat");
+
+            update_displayed_health();
+            if(options.auto_return_to_bed && last_location_with_bed) {
+                change_location(last_location_with_bed);
+                start_sleeping();
+            } else {
+                change_location(current_location.parent_location.name);
+            }
         }
 
 

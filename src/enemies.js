@@ -2209,6 +2209,7 @@ class Enemy {
         stats: {health: 135000, attack: 2900, agility: 2000, attack_speed: 1.2, defense: 1800}, 
         loot_list: [
             {item_name: "三月断宵", chance:1},
+            {item_name: "巨剑徽章", chance:1},
         ],
     });
     enemy_templates["深邃之影[BOSS]"] = new Enemy({

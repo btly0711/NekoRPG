@@ -1713,7 +1713,7 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 5,
         is_unlocked: false,
         sleeping: {
-            text: "就地修整",
+            text: "就地休整",
             xp: 4
         },
         crafting: {
