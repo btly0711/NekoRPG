@@ -2278,7 +2278,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 4444444,
         stats: {
             max_health: {
-                flat: 200000,
+                flat: 300000,
             },
         }
     });
@@ -2349,6 +2349,9 @@ item_templates["Twist liek a snek"] = new Book({
             agility: {
                 multiplier: 1.3,
             },
+            max_health: {
+                multiplier: 1.3,
+            }
         }
     });
 

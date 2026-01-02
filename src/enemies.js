@@ -2262,6 +2262,20 @@ class Enemy {
         loot_list: [
         ],
     });
+    enemy_templates["地宫养殖者[BOSS]"] = new Enemy({
+        name: "地宫养殖者[BOSS]", 
+        description: "第一幕的最终BOSS。本来2-5也不一定打得过，幸好有镭射枪...", 
+        xp_value: 1346269, 
+        rank: 1599,
+        image: "image/boss/B1503.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 120000000, attack:4000000, agility: 800000, attack_speed: 1.0, defense: 600000}, 
+        loot_list: [],
+    });
 
     enemy_templates["Village guard (heavy)"] = new Enemy({
         name: "Village guard (heavy)", 

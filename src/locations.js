@@ -6,9 +6,11 @@ import { skills } from "./skills.js";
 import { current_game_time } from "./game_time.js";
 import { activities } from "./activities.js";
 
-import { get_total_skill_level } from "./character.js";
+import { book_stats, item_templates, Weapon, Armor, Shield } from "./items.js";
+import { get_total_skill_level,add_to_character_inventory, remove_from_character_inventory } from "./character.js";
 import { character } from "./character.js";
 import { log_message , format_number} from "./display.js";
+import { enemy_killcount } from "./enemies.js";
 const locations = {};
 const location_types = {};
 //contains all the created locations
@@ -263,6 +265,42 @@ class Combat_zone {
             if(newEnemy.spec.includes(25)){ 
                 log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.defense * 0.5)} 生命 [饮盾]`,"enemy_enhanced");
                 newEnemy.stats.health += character.stats.full.defense * 0.5;//饮盾
+            }
+            if(newEnemy.name == "地宫养殖者[BOSS]")//特判地宫养殖者
+            {
+                if(enemy_killcount["地宫养殖者[BOSS]"]) console.log("试图再次击杀");
+                else{
+                    if(character.equipment.special?.name == "纳娜米")//姐姐在！
+                    {
+                        log_message(`[地宫养殖者]嚯，有人闯到这里来了？`,"hero_attacked_critically");
+                        log_message(`[纳娜米]我不会和你废话。说，你为什么要害我纳家！`,"enemy_defeated");
+                        log_message(`[纱雪]此处省略22句关于血杀殿，地宫养殖者的广为人知的剧情。`,"sayuki");
+                        log_message(`[纳娜米]既然如此，时间也差不多了……可可！`,"enemy_defeated");
+                        log_message(`少女手上突然出现了一把奇异的武器。武器一米见长，前端有着深黑色的空洞。通体的质感，带来的威慑力令人窒息。`,"enemy_enhanced");
+                        log_message(`几乎零点一秒之内，纳娜米手中的武器，绽放出耀眼的银白色光芒。只听轰隆一声巨响，整座地宫都似乎为之震颤！`,"enemy_enhanced");
+                        log_message(`遭到反震力冲击的纳娜米吐出鲜血。反应过来的纳可，第一时间抱住了姐姐，一同抵挡着这武器带来的惊人的后坐力。`,"enemy_enhanced");
+                        log_message(`[纳可]没事吧，姐姐——`,"enemy_defeated");
+                        log_message(`[纳娜米]咳……还没有结束，可可。接下来，就交给你了！`,"enemy_defeated");
+                        log_message(`正面被武器击中的地宫养殖者，几乎瞬间失去了半边身体，发出了怨毒的咆哮声。`,"enemy_enhanced");
+                        log_message(`[地宫养殖者]啊，什么东西，不可能！！该死，中计了，我要杀了你，杀了你们，杀光你们燕岗领的人——`,"hero_attacked_critically");
+                        log_message(`[纳娜米]可可，不要大意！这是天空级强者的回光返照，只要撑过这一会就足够了！`,"enemy_enhanced");
+                        log_message(`[纳可]明白！`,"enemy_defeated");
+                        //sleep(1000);
+                        newEnemy.stats.attack *= 0.01;
+                        newEnemy.stats.defense *= 0.01;
+                        newEnemy.stats.agility *= 0.01;
+                        newEnemy.stats.health *= 0.01;
+                        log_message(`地宫养殖者已经奄奄一息！攻防敏血削弱为之前的百分之一！`,"enemy_enhanced");
+                    }
+                    else
+                    {
+                        log_message(`[地宫养殖者]嚯，有人闯到这里来了？`,"hero_attacked_critically");
+                        log_message(`[???]...`,"enemy_defeated");
+                        log_message(`[纱雪]高能反应！检测到纳娜米未在队伍中！`,"sayuki");
+                        log_message(`地宫养殖者现在活力满满！攻防敏血都保持着之前的状态！`,"enemy_enhanced");
+                    
+                    }
+                }
             }
             newEnemy.is_alive = true;
             enemies.push(newEnemy); 
@@ -717,8 +755,8 @@ function get_location_type_penalty(type, stage, stat) {
 
     //NekoRPG noncombat locations below
     locations["纳家大厅"] = new Location({ 
-        connected_locations: [], 
         bgm: 1,
+        connected_locations:[],
         
         description: "一处明亮整洁的大厅，纳可平时活动的地方。",
         traders: ["自动售货机"],
@@ -1672,7 +1710,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 1000,
-            //locations: [{location: "地宫核心 - X"}],
+            locations: [{location: "地宫核心 - X"}],
         },
     });
     
@@ -1730,6 +1768,25 @@ function get_location_type_penalty(type, stage, stat) {
         name: "光幕空间", 
     });
 
+
+    locations["地宫核心 - X"] = new Challenge_zone({
+        description: "地宫的最深处。【地宫养殖者】就在这间地下35层石室的正中央。",
+        enemy_count: 1, 
+        enemies_list: ["地宫养殖者[BOSS]"],
+        enemy_group_size: [1,1],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "地宫核心 - X", 
+        enemy_stat_halo: 0.2,
+        bgm:5,
+        leave_text: "迅速逃离",
+        parent_location: locations["地宫深层"],
+        repeatable_reward: {
+            locations: [{location: "荒兽森林营地"}],
+        },
+        unlock_text: "[纳娜米] 还有可怕强者的气息。可可，待会我们可能需要面对无法战胜的对手。在我拿出底牌之前，一定不要轻举妄动。"
+    });
+
     locations["地宫浅层"].connected_locations.push({location: locations["地宫深层"]});
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 1"]});
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 2"]});
@@ -1740,6 +1797,22 @@ function get_location_type_penalty(type, stage, stat) {
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 悬空平台"]});
     locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - 光幕"]});
     locations["地宫深层"].connected_locations.push({location: locations["光幕空间"]});
+    locations["地宫深层"].connected_locations.push({location: locations["地宫核心 - X"], custom_text: "向地宫养殖者发起挑战"});
+
+    
+    
+    locations["荒兽森林营地"] = new Location({ 
+        connected_locations: [{location: locations["地宫深层"], custom_text: "回到地宫"},{location: locations["纳可的房间"], custom_text: "快速旅行 - 第一幕"}], 
+        description: "从地宫离开之后，纳可下一个历练地点的安全区。[V1.00版本终点]",
+        
+        is_unlocked: false,
+        name: "荒兽森林营地", 
+        dialogues: ["纳布"],
+        bgm: 6,
+        //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
+    });//2-1
+    locations["地宫深层"].connected_locations.push({location: locations["荒兽森林营地"]});
+    locations["纳可的房间"].connected_locations.push({location: locations["荒兽森林营地"],custom_text:"快速旅行 - 第二幕"});
 
     
     locations["Nearby cave"] = new Location({ 

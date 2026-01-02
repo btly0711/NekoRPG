@@ -135,7 +135,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
         if(use_bonus) {
                 xp_to_add *= (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1);
         }
-        character.xp.total_xp += xp_to_add;
+        //character.xp.total_xp += xp_to_add;
 
         character.xp.current_xp += xp_to_add;//获取经验值
         //levelup
@@ -143,7 +143,8 @@ character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
         while(character.xp.current_xp >= window.REALMS[character.xp.current_level+1][4])
         {
                 if(character.xp.current_level == 8 && !ignore_cap){
-                        character.xp.current_xp = 79999999;
+                        //character.xp.total_xp -= character.xp.current_xp - 99999999 ;
+                        character.xp.current_xp = 99999999;
                         return `<b>被<span class="realm_terra">大地级瓶颈</span>限制 - 经验已锁定</b>`
                 }
                 character.xp.current_level += 1;
@@ -190,68 +191,6 @@ character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
                 return levelupresult;
         }
         
-                /*
-                
-                while(character.xp.total_xp >= character.xp.total_xp_to_next_lvl) {
-                        level_after_xp += 1;
-                        
-                        character.xp.total_xp_to_next_lvl = Math.round(character.xp.base_xp_cost * (1 - character.xp.xp_scaling ** (level_after_xp + 1))/(1 - character.xp.xp_scaling));
-                } //calculates lvl reached after adding xp
-
-                let total_xp_to_previous_lvl = Math.round(character.xp.base_xp_cost * (1 - character.xp.xp_scaling ** level_after_xp)/(1 - character.xp.xp_scaling));
-                //xp needed for current lvl, same formula but for n-1
-
-                const gains = character.get_level_bonus(level_after_xp);
-
-                character.xp.xp_to_next_lvl = character.xp.total_xp_to_next_lvl - total_xp_to_previous_lvl;
-                character.xp.current_level = level_after_xp;
-                character.xp.current_xp = character.xp.total_xp - total_xp_to_previous_lvl;		
-                
-                return `${character.name} is getting stronger. Reached level ${character.xp.current_level} ${gains}`;
-                下面是旧的升级代码
-                character.get_level_bonus = function (level) {
-
-        let gained_hp = 0;
-        let gained_atk = 0;
-        let gained_def = 0;
-        let gained_agi = 0;
-
-        const gained_skill_xp_multiplier = 1.03;
-        let total_skill_xp_multiplier = 1;
-
-        for(let i = character.xp.current_level + 1; i <= level; i++) {
-                gained_atk += Math.ceil(i/2);
-                gained_def += Math.ceil(i/5);
-                gained_agi += Math.ceil(i/3);
-
-                gained_hp += 10 * Math.ceil(i/4);
-                total_skill_xp_multiplier = total_skill_xp_multiplier * gained_skill_xp_multiplier;
-        }
-
-        character.stats.flat.level.max_health = (character.stats.flat.level.max_health || 0) + gained_hp;
-        character.stats.flat.level.health = character.stats.flat.level.max_health;//full recovery
-        character.stats.flat.level.agility = (character.stats.flat.level.agility || 0) + gained_agi;
-        character.stats.flat.level.defense = (character.stats.flat.level.defense || 0) + gained_def;
-        character.stats.flat.level.attack_power = ( character.stats.flat.level.attack_power || 0) + gained_atk; 
-
-        character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
-
-        let gains = `<br>生命上限提高了${gained_hp}`;
-        if(gained_atk > 0) {
-                gains += `<br>攻击提高了${gained_atk}`;
-        }
-        if(gained_def > 0) {
-                gains += `<br>防御提高了${gained_def}`;
-        }
-        if(gained_agi > 0) {
-                gains += `<br>敏捷提高了${gained_agi}`;
-        }
-
-        gains += `<br>技能经验倍率提高了${Math.round((gained_skill_xp_multiplier-1)*100)}%`;
-        
-        return gains;
-}
-                */
 }
 
 /**

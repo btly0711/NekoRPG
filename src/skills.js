@@ -527,7 +527,7 @@ function format_skill_rewards(milestone){
                                     description: "如何在战斗中灵活使用各种秘法的知识",
                                     base_xp_cost: 60,
                                     category: "Stance",
-                                    max_level: 30,
+                                    max_level: 300,
                                     get_effect_description: ()=> {
                                         return `增加所有低于此技能等级的秘法技能经验获取，每相差一级*1.1`;
                                     },

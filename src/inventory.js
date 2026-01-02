@@ -63,6 +63,12 @@ class InventoryHaver {
     {
         return item in this.inventory;
     }
+    is_in_inventory_nanami(item)
+    {
+        console.log(this.inventory);
+        console.log(item);
+        return this.inventory.hasOwnProperty(item);
+    }
 }
 
 export {InventoryHaver};

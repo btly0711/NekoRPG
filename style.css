@@ -149,6 +149,10 @@ body {
 	 color: lightpink;
 	 font-weight: bold;
  }
+ .message_sayuki {
+	 color: rgb(217,171,255);
+	 font-weight: bold;
+ }
 
  .message_enemy_attacked_critically {
 	color: rgb(90, 151, 221);
@@ -1305,6 +1309,8 @@ i {
 	width: 400px;
 	top: 32px;
 	text-align: center;
+	height: 26px;  
+	line-height: 26px !important;
 }
 
 #character_equipment_div { 

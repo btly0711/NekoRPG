@@ -510,6 +510,11 @@ function end_activity_animation() {
             group_to_add = "message_combat";
             message_count.message_combat += 1;
             break;
+        case "sayuki":
+            class_to_add = "message_sayuki";
+            group_to_add = "message_combat";
+            message_count.message_combat += 1;
+            break;
         case "enemy_attacked_critically":
             class_to_add = "message_enemy_attacked_critically";
             group_to_add = "message_combat";

@@ -729,6 +729,78 @@ class Textline {
             }),
         }
     });
+    
+    dialogues["纳布"] = new Dialogue({
+        name: "纳布",
+        textlines: {
+            "1": new Textline({ 
+                is_unlocked: true,
+                name: "父亲大人，姐姐。",
+                text: "[纳布]都来了啊。可可，娜娜，这次辛苦你们了。<br>[纳娜米]可可，这次我们可是立了大功的呀！<br>城主府居然给了那么多的奖赏。",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳布", lines: ["2"]}],
+                },
+                locks_lines: ["1"],
+            }),
+            "2": new Textline({ 
+                is_unlocked: false,
+                name: "是呀……比想象中的奖励还要丰厚很多。",
+                text: "[纳布]可可，你是有什么心事吗？<br>[纳娜米]家主前辈，可可她想说的话，自己会说的。<br>不要再问了……<br>[纳布]也罢。毕竟小丫头，今年也十一岁了啊。<br>感觉怎么样？快要突破大地级了吧？",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳布", lines: ["3"]}],
+                },
+                locks_lines: ["2"],
+            }),
+            "3": new Textline({ 
+                is_unlocked: false,
+                name: "是的……自地宫一行之后，感触很深，已经隐约触摸到了那道门槛。",
+                text: "达到大地级有两种办法呢，<br>第一种是慢慢积累领悟，最终水到渠成。<br>第二种——在历练中快速突破。",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳布", lines: ["4"]}],
+                },
+                locks_lines: ["3"],
+            }),
+            "4": new Textline({ 
+                is_unlocked: false,
+                name: "……我不想再等待了。父亲大人，姐姐，我想前往荒兽森林，找寻突破的契机。",
+                text: "[纳娜米]可可……<br>[纳布]荒兽森林十分凶险，<br>但你有这份冒险的心，那为父必定支持。<br>"+
+                "你在练兵场中捡破烂造的剑和盔甲，<br>从此以后就是你的了。<br>"+
+                "还有一张隐藏着传送术式的护身符咒。<br>如果你遇到危险，就使用它。<br>"+
+                "[纳娜米]家主前辈，荒兽森林太危险了，<br>把我之前使用的那把镭射枪交给可可吧？<br>"+
+                "不行。这虽然能让可可轻松应对困境，<br>但也会少了突破所应有的压力。<br>",
+
+                unlocks: {
+                    textlines: [{dialogue: "纳布", lines: ["5"]}],
+                },
+                locks_lines: ["4"],
+            }),
+            "5": new Textline({ 
+                is_unlocked: false,
+                name: "父亲大人，镭射枪是什么？",
+                text: "也是时候告诉你这些了。<br>这些东西，牵涉到一个传说。<br>" +
+                `<span style="color:lightblue">【天外族群】</span>的传说。<br>待可可你突破到大地级，我会告诉你更多的。`,
+
+                unlocks: {
+                    textlines: [{dialogue: "纳布", lines: ["6"]}],
+                },
+                locks_lines: ["5"],
+            }),
+            "6": new Textline({ 
+                is_unlocked: false,
+                name: "这样吗……我明白了。那么，等着我的好消息吧。",
+                text: "哼，不让姐姐省心。<br>要加油啊，小丫头。<br>……就像之前一样，一定要安然无恙回来。",
+
+                unlocks: {
+                    //items: [{item_name: "纳娜米"}],
+                    //2-1初区
+                },
+                //locks_lines: ["6"],
+            }),
+        }
+    });
 })();
 
 export {dialogues};

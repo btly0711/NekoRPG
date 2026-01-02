@@ -80,9 +80,9 @@ window.REALMS=[
 [8,"潮汐级巅峰",250,40000,2400000],//计划:最早1-5开放
 
 
-[9,"大地级一阶",400,120000,80000000],//以下未平衡(需要加入微火)
-[10,"大地级二阶",600,250000,1.8e8],
-[11,"大地级三阶",1000,550000,4.0e8],
+[9,"大地级一阶",400,120000,1.0e8],//以下未平衡(需要加入微火)
+[10,"大地级二阶",600,250000,2.4e8],
+[11,"大地级三阶",1000,550000,4.8e8],
 
 ];
 //境界，X级存储了该等级的数据
@@ -288,6 +288,7 @@ const musicList = {
   3: 'bgms/3.mp3',
   4: 'bgms/4.mp3',
   5: 'bgms/5.mp3',
+  6: 'bgms/6.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -865,7 +866,6 @@ function set_new_combat({enemies} = {}) {
     enemy_attack_cooldowns = [...current_enemies.map(x => 1/x.stats.attack_speed)];
 
     let fastest_cooldown = [character_attack_cooldown, ...enemy_attack_cooldowns].sort((a,b) => a - b)[0];
-
     //scale all attacks to be not faster than 10 per second
     if(fastest_cooldown < 0.1) {
         const cooldown_multiplier = 0.1/fastest_cooldown;
@@ -1523,6 +1523,36 @@ function do_character_combat_action({target, attack_power}) {
             }
             
             kill_enemy(target);
+            if(target.name == "地宫养殖者[BOSS]")//没收姐姐
+            {
+                if(character.equipment.special?.name == "纳娜米")
+                {
+                    character.equipment.special = null;
+                    log_message(`装备槽里的姐姐回家了！`,"enemy_enhanced");
+                    
+                    update_displayed_equipment(); 
+                    character.stats.add_all_equipment_bonus();
+                    update_displayed_stats();
+                }
+                else if(character.is_in_inventory_nanami("{\"id\":\"纳娜米\",\"quality\":100}"))
+                {
+                    remove_from_character_inventory([{item_key:"{\"id\":\"纳娜米\",\"quality\":100}"}]);
+                    log_message(`物品栏里的姐姐回家了！`,"enemy_enhanced");
+                }
+                else if(enemy_killcount["地宫养殖者[BOSS]"] <= 1)
+                {
+                    log_message(`[纱雪]诶诶，怎么哪里都找不到姐姐啊。`,"sayuki");
+                    log_message(`[纱雪]真的打掉了那只100倍属性的地宫耶！好厉害！`,"sayuki");
+                    log_message(`[纱雪]那么，作为给胜利者的小奖励，`,"sayuki");
+                    log_message(`[纱雪]这-9999极的经验就送你啦。`,"sayuki");
+                    //character.xp.total_xp = -9.999e51;
+                    character.xp.current_xp = -9.999e51;
+                    character.xp.xp_level = 0;
+                    update_displayed_character_xp(true);
+                }
+                
+                update_displayed_character_inventory({was_anything_new_added});
+            }
         }
 
         update_displayed_health_of_enemies();
@@ -2057,7 +2087,7 @@ function use_item(item_key) {
     const item_effects = item_templates[id].effects;
     const G_value = item_templates[id].gem_value;
     //console.log(G_value);
-
+    //console.log(item_key);
     if(!character.is_in_inventory(item_key))
     {
         
@@ -2235,7 +2265,9 @@ function create_save() {
                                 money: character.money, 
                                 C_scaling: character.C_scaling,
                                 xp: {
-                                total_xp: character.xp.total_xp,
+                                total_xp: 0,
+                                current_xp: character.xp.current_xp,
+                                current_level: character.xp.current_level,
                                 },
                                 hp_to_full: character.stats.full.max_health - character.stats.full.health,
                             };
@@ -2483,7 +2515,35 @@ function load(save_data) {
     if(save_data.character.C_scaling != undefined) character.C_scaling = save_data.character.C_scaling;
     else character.C_scaling = {};
 
-    add_xp_to_character(save_data.character.xp.total_xp, false);
+    character.xp.current_level = save_data.character.xp.current_level || 0;
+    add_xp_to_character(save_data.character.xp.current_xp || 0, false);
+    console.log( character.xp.current_level);
+    for(let realm = 1;realm <= character.xp.current_level || 0;realm ++)
+    {
+        let this_realm = window.REALMS[realm];
+        let realm_spd_gain = 0;
+        if(this_realm[0]==3) realm_spd_gain = 0.1;
+        if(this_realm[0]==6) realm_spd_gain = 0.15;
+        character.stats.flat.level.max_health = (character.stats.flat.level.max_health || 0) + this_realm[3];
+        character.stats.flat.level.health = character.stats.flat.level.max_health;
+        character.stats.flat.level.agility = (character.stats.flat.level.agility || 0) + this_realm[2];
+        character.stats.flat.level.defense = (character.stats.flat.level.defense || 0) + this_realm[2];
+        character.stats.flat.level.attack_power = ( character.stats.flat.level.attack_power || 0) + this_realm[2] * 2; 
+        character.stats.flat.level.attack_speed = ( character.stats.flat.level.attack_speed || 0) + realm_spd_gain;
+        
+        let total_skill_xp_multiplier = 1.1;
+        if(this_realm[0]>=3) total_skill_xp_multiplier += 0.05;
+        if(this_realm[0]>=6) total_skill_xp_multiplier += 0.05;
+        if(this_realm[0]>=9) total_skill_xp_multiplier += 0.05;
+        character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
+        //复制粘贴的升级代码，只不过没有提示
+        //注：以后升级代码需要在这里多写一份。
+        //console.log("属性已添加");
+        //console.log(character.stats.flat.level.max_health);
+    }
+    
+    update_displayed_character_xp(true);
+    if(save_data.character.xp.total_xp != 0) add_xp_to_character(save_data.character.xp.total_xp, false);
 
     Object.keys(save_data.skills).forEach(function(key){ 
         if(key === "Literacy") {
