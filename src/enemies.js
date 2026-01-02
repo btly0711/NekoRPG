@@ -2185,7 +2185,7 @@ class Enemy {
         image: "image/boss/B1401.png",
         realm: "<span class=realm_terra><b>大地级三阶</b></span>",
         size: "small",
-        spec: [],
+        spec: [28],
         tags: [],
         stats: {health: 270000, attack: 7500, agility: 5000, attack_speed: 1.2, defense: 3750}, 
         loot_list: [
@@ -2270,7 +2270,7 @@ class Enemy {
         image: "image/boss/B1503.png",
         realm: "<span class=realm_sky><b>天空级一阶</b></span>",
         size: "small",
-        spec: [],
+        spec: [28],
         spec_value:{},
         tags: [],
         stats: {health: 120000000, attack:4000000, agility: 800000, attack_speed: 1.0, defense: 600000}, 

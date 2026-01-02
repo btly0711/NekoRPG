@@ -1329,7 +1329,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     }
 
     
-    add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
+    if(!attacker.spec.includes(28)) add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
     
 
     if(fainted) {
