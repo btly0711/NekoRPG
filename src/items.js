@@ -146,6 +146,8 @@ class Item {
                 description,
                 value = 0, 
                 gem_value = 0,
+                E_value = 0,
+                C_value = 0,
                 tags = {},
                 id = null,
                 image = "",
@@ -161,6 +163,8 @@ class Item {
          */
         this.value = value;
         this.gem_value = gem_value;
+        this.E_value = E_value;//experience
+        this.C_value = C_value;//cap ingoring
         this.tags = tags;
         this.tags["item"] = true;
     }
@@ -561,6 +565,27 @@ class Special extends Equippable {
         return this.stats;
     }
 }
+class Realm extends Equippable {
+    constructor(item_data) {
+        super(item_data);
+        this.components = undefined;
+        this.equip_slot = "realm";
+        this.stats = item_data.stats;
+
+        this.tags["realm"] = true;
+        if(!this.id) {
+            this.id = this.getName();
+        }
+    }
+
+    getValue() {
+        return this.value;
+    } 
+
+    getStats(){
+        return this.stats;
+    }
+}
 
 class Tool extends Equippable {
     constructor(item_data) {
@@ -703,9 +728,11 @@ class Armor extends Equippable {
             } else if(item_data.component_type === "shoes interior") {
                 this.equip_slot = "feet";
             } else if(this.tags.method){
-                this.equip_slot = "method"
+                this.equip_slot = "method";
+            } else if(this.tags.realm){
+                this.equip_slot = "realm";
             } else if(this.tags.special){
-                this.equip_slot = "special"
+                this.equip_slot = "special";
             }
             else {
                 this.equip_slot = "props";
@@ -2330,7 +2357,27 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+})();
 
+
+(function(){
+    item_templates["微火"] = new Realm({
+        name: "微火",
+        id: "微火",
+        description: "利用简单的精神念力点燃火焰的领悟。可以加深敌人受到的伤害！", 
+        value: 90909090,
+        stats: {
+            attack_power: {
+                flat: 1000,
+            },
+            defense: {
+                flat: 1000,
+            },
+            attack_mul: {
+                flat: 0.5,
+            },
+        }
+    });
 })();
 
 (function(){
@@ -3230,6 +3277,23 @@ item_templates["Twist liek a snek"] = new Book({
         description: "血洛大陆的通用钱币。1Z=1000X=1'000'000C.", 
         value: 1e6,
         image: "image/item/1Z.png",
+    });
+
+    //1-5
+    item_templates["一丝荒兽森林感悟"] = new Loot({
+        name: "一丝荒兽森林感悟", 
+        description: "在荒兽森林的战斗中，积累的战斗经验和突破感悟。", 
+        value: 0,
+        image: "image/item/A1_break_trance.png",
+    });
+    item_templates["凝实荒兽森林感悟"] = new  UsableItem({
+        name: "凝实荒兽森林感悟", 
+        description: "对细碎战斗感悟整理而成的完整感悟，可以用于突破大地级或积累经验值。", 
+        value: 0,
+        E_value: 1000000,
+        effects:[],
+        C_value: 1,
+        image: "image/item/A1_break_clump.png",
     });
 
 

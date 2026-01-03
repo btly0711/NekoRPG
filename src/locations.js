@@ -1807,7 +1807,7 @@ function get_location_type_penalty(type, stage, stat) {
         
         is_unlocked: false,
         name: "荒兽森林营地", 
-        dialogues: ["纳布"],
+        dialogues: ["纳布","心之石像"],
         bgm: 6,
         //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//2-1
@@ -2383,6 +2383,21 @@ function get_location_type_penalty(type, stage, stat) {
                 resources: [{name: "高级蓝宝石", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
                 time_period: [10, 2],
                 skill_required: [0, 10],
+                scales_with_skill: true,
+            },
+        }),
+    }
+    locations["荒兽森林营地"].activities = {
+        "miningThought": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "挖出感悟?![将在下个版本移除]",
+            skill_xp_per_tick: 10,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "一丝荒兽森林感悟", ammount: [[1,1], [1,5]], chance: [1.0, 1.0]}], 
+                time_period: [20, 20],
+                skill_required: [10, 25],
                 scales_with_skill: true,
             },
         }),

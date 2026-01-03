@@ -30,9 +30,9 @@
             无效果            
         </div>
 
+        <div id="screen_effect"></div>
 
         <div id = "main_content">
-            
 
             <div id = "global_content"> <!-- stuff that needs to be available in both area page and character page-->
                 <!-- basic character info (name, title, hp)-->
@@ -778,10 +778,10 @@
                         </div>
                         <div class = "grid_container">
                             <div class = "stat_slot_div"> 
-                                <div class = "stat_name"> Locked </div>
+                                <div class = "stat_name" id="A_mul_slot"> Locked </div>
                                 <div class = "stat_value" id = "dexterity_slot"></div> 
                                 <div class = "stat_tooltip"> 
-                                    <div>Not aviliable</div>
+                                    <div id="A_mul_tooltip">Not aviliable</div>
                                     <div class="stat_breakdown"></div>
                                 </div>
                             </div>
@@ -1287,7 +1287,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.00a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.01";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1779,5 +1779,6 @@
                 });
             }
         </script> 
+        
     </body>
 </HTML>

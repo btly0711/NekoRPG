@@ -9,7 +9,7 @@ class Dialogue {
                   is_unlocked = true, 
                   is_finished = false, 
                   textlines = {}, 
-                  location_name
+                  location_name,
     }) 
     {
         this.name = name; //displayed name, e.g. "Village elder"
@@ -36,6 +36,7 @@ class Textline {
                             stances: [],
                             flags: [],
                             items: [],
+                            spec: [],
                             },
                 locks_lines = {},
                 otherUnlocks,
@@ -49,6 +50,7 @@ class Textline {
         this.is_unlocked = is_unlocked;
         this.is_finished = is_finished;
         this.unlocks = unlocks || {};
+        //this.spec = spec;
         
         this.unlocks.textlines = unlocks.textlines || [];
         this.unlocks.locations = unlocks.locations || [];
@@ -798,6 +800,22 @@ class Textline {
                     //2-1初区
                 },
                 //locks_lines: ["6"],
+            }),
+        }
+    });
+    dialogues["心之石像"] = new Dialogue({
+        name: "心之石像",
+        starting_text: "凝聚战斗中积累的感悟",
+        textlines: {
+            "clumbs": new Textline({ 
+                is_unlocked: true,
+                name: "凝聚荒兽森林感悟(50:1/成功率20%)",
+                text: "...",
+                unlocks: {
+                    spec:"A1-fusion",
+                }
+                
+                //locks_lines: ["dig"],
             }),
         }
     });

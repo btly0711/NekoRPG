@@ -107,7 +107,10 @@ const stats_divs = {agility: document.getElementById("agility_slot"),
                     defense: document.getElementById("defense_slot"), crit_rate: document.getElementById("crit_rate_slot"), 
                     crit_multiplier: document.getElementById("crit_multiplier_slot"),
                     max_health: document.getElementById("strength_slot"),
-                    health_regeneration_flat: document.getElementById("intuition_slot")
+                    health_regeneration_flat: document.getElementById("intuition_slot"),
+                    attack_mul: document.getElementById("dexterity_slot"),
+                    //A_mul_slot: document.getElementById("A_mul_slot"),
+                    //A_mul_tooltip: document.getElementById("A_mul_tooltip"),
                     };
 
 
@@ -266,7 +269,7 @@ function create_item_tooltip_content({item, options={}}) {
             });
         }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具","method":"秘法","special":"特殊"}
+        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具","method":"秘法","special":"特殊","realm":"领域"}
         if(item.equip_slot === "weapon") {
             item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
@@ -325,7 +328,7 @@ function create_item_tooltip_content({item, options={}}) {
             if(item.getAttack) {
                 item_tooltip += 
                     `<br><br>攻击: ${Math.round(10*item.getAttack())/10}`;
-            } else if(item.getDefense && item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special") { 
+            } else if(item.getDefense && item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special" && item.equip_slot != "realm") { 
             //console.log(item);
                 item_tooltip += 
                 `<br><br>防御: ${Math.round(10*item.getDefense())/10}`;
@@ -414,7 +417,7 @@ function create_item_tooltip_content({item, options={}}) {
     } else {
         item_tooltip += "<br>";
     }
-    item_tooltip += `<br>价值: ${format_money(round_item_price(item.getValue(quality) * ((options && options.trader) ? traders[current_trader].getProfitMargin() : 1) || 1))}`;
+    item_tooltip += `<br>价值: ${format_money(round_item_price(item.getValue(quality) * ((options && options.trader) ? traders[current_trader].getProfitMargin() : 1) || 0))}`;
 
     // if(item.saturates_market) {
     //     item_tooltip += ` [初始 ${format_money(round_item_price(item.getBaseValue(quality) * ((options && options.trader) ? traders[current_trader].getProfitMargin() : 1) || 1))}]`
@@ -1144,7 +1147,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     if("quality" in target_item) {
         item_control_div.dataset.item_quality = target_item.quality;
     }
-    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法","special":"特殊"};
+    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法","special":"特殊","realm":"领域"};
     if(target_item.tags?.equippable) {
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;
@@ -2576,21 +2579,38 @@ function update_displayed_health() { //call it when using healing items, resting
 }
 
 function update_displayed_stats() { //updates displayed stats
+    const A_mul = document.getElementById("A_mul_slot");
+    A_mul.innerHTML = character.xp.current_level<=8?"Locked":"A.mul:";
+    const A_mul_tt = document.getElementById("A_mul_tooltip");
+    A_mul_tt.innerHTML = character.xp.current_level<=8?"Not aviliable":"普通攻击的伤害倍率";
 
     Object.keys(stats_divs).forEach(function(key){
         if(key === "crit_rate" || key === "crit_multiplier") {
             stats_divs[key].innerHTML = `${(character.stats.full[key]*100).toFixed(1)}%`;
+            update_stat_description(key);
         } 
         else if(key === "attack_speed") {
             stats_divs[key].innerHTML = `${format_number(character.get_attack_speed())}`;
+            update_stat_description(key);
         }
         else if(key === "attack_power") {
             stats_divs[key].innerHTML = `${format_number(character.get_attack_power())}`;
+            update_stat_description(key);
         }
-        else {
+        else if(key === "attack_mul"){
+            if(character.xp.current_level <= 8){
+                stats_divs[key].innerHTML = ``;
+            }
+            else{
+                stats_divs[key].innerHTML = `${(character.stats.full[key]*100).toFixed(1)}%`;
+                update_stat_description(key);
+            }
+        }
+        else{
             stats_divs[key].innerHTML = `${format_number(character.stats.full[key])}`;
+            update_stat_description(key);
         }
-        update_stat_description(key);
+        
     });
     //calculating ranks
 

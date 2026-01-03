@@ -10,6 +10,7 @@ import { update_displayed_character_inventory, update_displayed_equipment,
 import { active_effects, current_location, current_stance } from "./main.js";
 import { current_game_time } from "./game_time.js";
 import { stances } from "./combat_stances.js";
+import {item_templates} from "./items.js";
 
 class Hero extends InventoryHaver {
         constructor() {
@@ -43,6 +44,7 @@ character.base_stats = {
         strength: 10, 
         dexterity: 10, 
         intuition: 10,
+        attack_mul: 1,
 };
 
 
@@ -116,6 +118,7 @@ character.money = 0;
 
 character.C_scaling = {
         "40G":0,
+        "THU":0,
 };
 
 const base_xp_cost = 10;
@@ -131,24 +134,38 @@ character.get_hero_realm = function(){
         return character.xp.current_level;
 }
 
-character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
+character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
         if(use_bonus) {
                 xp_to_add *= (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1);
         }
         //character.xp.total_xp += xp_to_add;
+        ignore_cap = ignore_cap || 0;
 
+        //console.log(ignore_cap);
+    
         character.xp.current_xp += xp_to_add;//获取经验值
         //levelup
         let levelupresult = "";
         while(character.xp.current_xp >= window.REALMS[character.xp.current_level+1][4])
         {
-                if(character.xp.current_level == 8 && !ignore_cap){
+                //console.log(ignore_cap);
+                let gains = "";
+                if(character.xp.current_level == 8){
                         //character.xp.total_xp -= character.xp.current_xp - 99999999 ;
-                        character.xp.current_xp = 99999999;
-                        return `<b>被<span class="realm_terra">大地级瓶颈</span>限制 - 经验已锁定</b>`
+                        if(ignore_cap <= 0){
+                                character.xp.current_xp = 99999999;
+                                return `<b>被<span class="realm_terra">大地级瓶颈</span>限制 - 经验已锁定</b>`
+                        }
+                        else{
+                            const effect = document.getElementById('screen_effect');
+                            effect.classList.add('active');
+                            effect.addEventListener('animationend', () => {
+                                    effect.classList.remove('active');
+                            }, { once: true });
+                        }
                 }
                 character.xp.current_level += 1;
-                console.log("大地级瓶颈 Error");
+                //console.log("大地级瓶颈 Error");
 
                 let this_realm = window.REALMS[character.xp.current_level];
                 let realm_spd_gain = 0;
@@ -173,16 +190,24 @@ character.add_xp = function ({xp_to_add, use_bonus = true,ignore_cap = false}) {
                 character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
 
                 //显示-提高属性
-                let gains = "";
                 gains += `攻击提高了${this_realm[2] * 2}<br>`;
                 gains += `防御,敏捷提高了${this_realm[2]}<br>`;
                 gains += `生命上限提高了${this_realm[3]}<br>`;
                 if(realm_spd_gain != 0) gains += `小阶段突破，攻击速度额外增加${realm_spd_gain}<br>`;
-                
+                if(this_realm[0]==9)
+                {
+                        //add_to_character_inventory([{item: item_templates["微火"], count: 1}]);
+                        gains += `大境界突破，获取特殊能力<span style="color:#ff8080">【微火】</span>！<br>`;
+                        gains += `角色属性<span style="color:#66ccff">【普攻倍率】</span>现已解锁！<br>`;
+                        add_to_character_inventory([{item: item_templates["微火"], count: 1}]);
+                }
                 gains += `技能经验倍率提高了${Math.round(total_skill_xp_multiplier*100-100)}%<br>`;
                 gains += `生命值完全恢复了<br>`;
+                let lvl_display = this_realm[1];
+                if(this_realm[0]<=8) lvl_display=`<span class="realm_basic">${this_realm[1]}</span>`;
+                if(this_realm[0]>=9) lvl_display=`<span class="realm_terra">${this_realm[1]}</span>`;
                 
-                levelupresult += `${character.name} 境界突破，达到 <b>${this_realm[1]}</b> <br>${gains}`;
+                levelupresult += `${character.name} 境界突破，达到 ${lvl_display} <br>${gains}`;
         }
         //console.log(levelupresult);
         if(levelupresult != ""){

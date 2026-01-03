@@ -80,9 +80,12 @@ window.REALMS=[
 [8,"潮汐级巅峰",250,40000,2400000],//计划:最早1-5开放
 
 
-[9,"大地级一阶",400,120000,1.0e8],//以下未平衡(需要加入微火)
-[10,"大地级二阶",600,250000,2.4e8],
-[11,"大地级三阶",1000,550000,4.8e8],
+[9,"大地级一阶",600,120000,1.0e8],
+[10,"大地级二阶",1000,250000,3.6e8],
+[11,"大地级三阶",2000,550000,1.08e9],
+[12,"大地级四阶",3000,1000000,9.2233e18],//2.4e9/以下未平衡(需要加入微火)
+[13,"大地级五阶",5000,1500000,6.0e9],
+[14,"大地级六阶",9000,2500000,1.35e10],
 
 ];
 //境界，X级存储了该等级的数据
@@ -796,9 +799,33 @@ function start_textline(textline_key){
     if(textline.otherUnlocks) {
         textline.otherUnlocks();
     }
+    let displayed_text = textline.text;
+    if(textline.unlocks.spec != "")
+    {
+        if(textline.unlocks.spec == "A1-fusion")
+        {   
+            
+            const trances = item_templates["一丝荒兽森林感悟"].getInventoryKey();
+            if(character.inventory[trances]?.count >= 50) {
+                remove_from_character_inventory([{item_key: trances, item_count: 50}]);
+                if(Math.random() < 0.2){   
+                    add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
+                    displayed_text = "[心之石像]融合成功！";
+                    log_message(`获取 凝实荒兽森林感悟 x1 ！ `, "crafting");
+                }
+                else{   
+                    displayed_text = "[心之石像]很遗憾，融合失败...";
+                }
+            }
+            else{
+                displayed_text = "[心之石像]你的感悟，不足以融合...";
+                //add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
+            }
+        }
+    }
 
     start_dialogue(current_dialogue);
-    update_displayed_textline_answer(textline.text);
+    update_displayed_textline_answer(displayed_text);
 }
 
 function unlock_combat_stance(stance_id) {
@@ -1486,6 +1513,13 @@ function do_character_combat_action({target, attack_power}) {
             damage_dealt *= sdmg_mul;
         }
         damage_dealt *= vibra_damage;
+        let A_mul = (character.stats.full.attack_mul || 1)
+        if(A_mul > 1)
+        {
+            damage_dealt *= A_mul;
+            Spec_E += `[x${format_number(A_mul)}]`;
+        }
+        
         target.stats.health -= damage_dealt;
         if(critted) {
             log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害[暴击]" + Spec_E, "enemy_attacked_critically");
@@ -1734,8 +1768,11 @@ function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = 
  * @param {Number} xp_to_add 
  * @param {Boolean} should_info 
  */
-function add_xp_to_character(xp_to_add, should_info = true, use_bonus) {
-    const level_up = character.add_xp({xp_to_add, use_bonus});
+function add_xp_to_character(xp_to_add, should_info = true, use_bonus,ingore_cap) {
+        //console.log(ingore_cap);
+    
+    const level_up = character.add_xp({xp_to_add, use_bonus}, ingore_cap);
+        //console.log(ingore_cap);
     
     if(level_up) {
         if(should_info) {
@@ -2086,6 +2123,9 @@ function use_item(item_key) {
     const {id} = JSON.parse(item_key);
     const item_effects = item_templates[id].effects;
     const G_value = item_templates[id].gem_value;
+    let C_value = item_templates[id].C_value;
+    let E_value = item_templates[id].E_value;
+
     //console.log(G_value);
     //console.log(item_key);
     if(!character.is_in_inventory(item_key))
@@ -2194,6 +2234,12 @@ function use_item(item_key) {
         }
         message += ".";
         log_message(message, `gather_loot`);
+    }
+
+    if(E_value != 0)
+    {
+        //console.log(C_value);
+        add_xp_to_character(E_value,true,false,C_value);
     }
 
     if(used) {
