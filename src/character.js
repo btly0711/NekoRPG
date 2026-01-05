@@ -133,6 +133,29 @@ character.get_xp_bonus = function(){
 character.get_hero_realm = function(){
         return character.xp.current_level;
 }
+character.upgrade_effects = function(lvl){
+        if(lvl == 9){
+                const effect = document.getElementById('screen_effect');
+                effect.classList.add('active');
+                effect.addEventListener('animationend', () => {
+                       effect.classList.remove('active');
+                }, { once: true });
+                const E_body = document.body;
+                E_body.classList.add('terra_root');
+        }//大地1
+        else if(lvl==10){
+                const effect = document.getElementById('screen_effect');
+                effect.classList.add('orbit-single');
+                effect.addEventListener('animationend', () => {
+                effect.classList.remove('orbit-single');}, { once: true });
+        }//大地2
+        else if(lvl==11){
+                const effect = document.getElementById('screen_effect');
+                effect.classList.add('orbit-double');
+                effect.addEventListener('animationend', () => {
+                effect.classList.remove('orbit-double');}, { once: true });
+        }
+}
 
 character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
         if(use_bonus) {
@@ -156,17 +179,11 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                                 character.xp.current_xp = 99999999;
                                 return `<b>被<span class="realm_terra">大地级瓶颈</span>限制 - 经验已锁定</b>`
                         }
-                        else{
-                            const effect = document.getElementById('screen_effect');
-                            effect.classList.add('active');
-                            effect.addEventListener('animationend', () => {
-                                    effect.classList.remove('active');
-                            }, { once: true });
-                        }
+                        else character.upgrade_effects(9);
                 }
                 character.xp.current_level += 1;
                 //console.log("大地级瓶颈 Error");
-
+                if(character.xp.current_level>9) character.upgrade_effects(character.xp.current_level);
                 let this_realm = window.REALMS[character.xp.current_level];
                 let realm_spd_gain = 0;
                 if(this_realm[0]==3) realm_spd_gain = 0.1;

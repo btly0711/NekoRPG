@@ -636,7 +636,6 @@ function end_activity_animation() {
     message.classList.add(class_to_add, group_to_add);
 
     message.innerHTML = message_to_add + "<div class='message_border'> </>";
-console.log(message_log.scrollTop,message_log.scrollHeight)
     let down_max = (message_log.scrollHeight - message_log.scrollTop) < 1000;
     message_log.appendChild(message);
     if(down_max) message_log.scrollTop = message_log.scrollHeight;

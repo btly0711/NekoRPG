@@ -1,7 +1,8 @@
 
 :root {
 	--background_gradient: linear-gradient(to bottom right, #232f47, #15152d);
-	--options_gradient: linear-gradient(to bottom right, #637088f7, #353572f7);
+	--options_gradient: linear-gradient(to bottom right, #465e8d80, #6a6ac480);
+	--active_background: #2c3953;
 	--options_display: none;
 
 	--equipment_display: inline-block;
@@ -68,6 +69,18 @@
 
 	--active_button_color: #435270;
 	--tooltip_background_color: rgba(92, 92, 92, 0.97);
+}
+
+
+.terra_root {
+    --active_background: #4caf76;  /* 清新中绿 */
+	--background_gradient: linear-gradient(to bottom right, #1e3a2f, #142a1f);
+
+    /* 选项/面板半透明叠加层：降低透明度、调亮一点，层次更清楚，不脏 */
+    --options_gradient: linear-gradient(to bottom right, rgba(40, 80, 55, 0.65), rgba(30, 60, 45, 0.65));
+
+    /* 激活按钮/高亮色：清新的森林绿，饱和但不刺眼 */
+    --active_button_color: #3d8b57;
 }
 
 
@@ -264,7 +277,7 @@ body {
 	margin-right: auto;
 	padding: 10px 10px;
 	height: 20px;
-	background-image: linear-gradient(to left, #232f47, #15152d);
+	background-image: var(--background_gradient);
 	color: white;
 	cursor: pointer;
 	text-align: center;
@@ -273,7 +286,7 @@ body {
 }
 
  .options_button:hover {
-	background-image: linear-gradient(to right, #232f47, #15152d);
+	background-image: var(--background_gradient);
  }
 
  .fas, .far {
@@ -287,7 +300,7 @@ body {
 
 .action_travel:hover, .start_dialogue:hover, .start_trade:hover, .start_activity:hover, .location_choices:hover,
 .dialogue_textline:hover, .end_dialogue_button:hover, .dialogue_trade:hover, .choices_return_button:hover {
-	background-color: #2c3953;
+	background-color: var(--active_background);
 }
 .dialogue_textline {
 	text-align: center;
@@ -301,7 +314,7 @@ body {
 		border-bottom: 1px solid white;
 		font-style: italic;
 		text-align: center;
-		background-color: #15152d;
+		background-color: var(--background_gradien);
 		font-size: var(--options_action_textsize);
 		/*
 			padding set to 5 through code
@@ -935,7 +948,7 @@ body {
 	width: fit-content;
 	padding: 10px 10px;
 	height: 20px;
-	background-image: linear-gradient(to left, #232f47, #15152d);
+	background-image: var(--background_gradient);
 	color: white;
 	cursor: pointer;
 	text-align: center;
@@ -944,14 +957,14 @@ body {
 
 .sl_button:hover {
 	background-image: none;
-	background-color: #2c3953;
+	background-color: var(--active_background);
 }
 
 .game_info a, .game_info span {
 	width: fit-content;
 	padding: 10px 10px;
 	height: 20px;
-	background-image: linear-gradient(to left, #232f47, #15152d);
+	background-image: var(--background_gradient);
 	color: white;
 	cursor: pointer;
 	text-align: center;
@@ -961,7 +974,7 @@ body {
 
 .game_info a:hover, .game_info span:hover {
 	background-image: none;
-	background-color: #2c3953;
+	background-color: var(--active_background);
 }
 
 i {
@@ -1196,7 +1209,7 @@ i {
 	position: fixed;
 	width: 100%;
 	height: 40px;
-	background-image: linear-gradient(to right, #232f47, #15152d);
+	background-image: var(--background_gradient);
 	border-top: 2px solid gray;
 	bottom: 0px;
 	left: 0px;
@@ -1226,8 +1239,8 @@ i {
 	text-align: center;
 	width: 120px;
 	margin: auto;
-	border: 0px;
-	background-color: #3a4e75;
+	background-color: var(--background_gradient);
+	border: 2px solid gray;
 	color: white;
 	position: absolute;
 	top: 10px;
@@ -1342,7 +1355,7 @@ i {
 	padding-bottom: 2px;
 	padding-left: 4px;
 	width: 200px;
-	background-color: #232f47;
+	background-color: var(--background_gradient);
 }
 		#character_effects{
 			position: absolute;
@@ -1411,6 +1424,7 @@ i {
 			height: 66px;
 			outline: 2px solid silver;
 			width: 100%;
+	position: relative;
 		}
 				
 				.enemy_stats, #attack_stats  {
@@ -1490,7 +1504,7 @@ i {
 				height: fit-content;
 				outline: 2px solid gray;
 				top: 45px;
-				background-color:#232f47;
+				background-color:var(--background_gradient);
 				text-align: left;
 			}
 			#character_stance_name:hover #character_stance_selection, #character_stance_selection:hover {
@@ -1841,6 +1855,33 @@ i {
 	width: 1241px;
 	height: 766px;
 }
+.enemy_effect {
+    position: absolute;
+    width: 400px;
+    height: 64px;
+	top:0px;
+    pointer-events: none; /* 不阻挡鼠标事件，让游戏正常交互 */
+    transform: scale(1);   /* 初始正常大小 */
+    opacity: 0;            /* 初始隐藏 */
+	z-index: 9999;
+	background: red;
+		
+}
+@keyframes enemy-hit {
+    0%   { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0; }
+}
+.enemy_effect.active {
+    animation: enemy-hit 0.3s ease-in-out forwards;
+}
+@keyframes enemy-evade {
+    0%   { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 0; }
+}
+.enemy_effect.evade {
+	background: lightblue;
+    animation: enemy-hit 0.3s ease-in-out forwards;
+}
 #screen_effect {
     position: fixed;
     top: 0;
@@ -1869,6 +1910,105 @@ i {
 
 #screen_effect.active {
     animation: full-effect 8s ease-in-out forwards;
+}
+
+
+/* ==================== 新特效2：中心光斑 + 2个小光球对称环绕旋转 ==================== */
+@keyframes orbit-single {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg) scale(1);
+    }
+    12.5% {
+        opacity: 1;
+    }
+    87.5% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(90deg) scale(1);
+    }
+}
+
+#screen_effect.orbit-single {
+    animation: orbit-single 6s ease-in-out forwards;
+    /* 添加伪元素：环绕的小光球 */
+    background: 
+        /* 中心光斑 */
+        radial-gradient(circle at center, 
+             rgba(116,233,125,1) 0%, rgba(116,233,125,0.6) 7.5%, transparent 15%);
+}
+
+#screen_effect.orbit-single::before {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(116,233,125,1) 0%, rgba(116,233,125,0.5) 20%,rgba(116,233,125,0.2) 35%, transparent 50%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    animation: orbit-rotate 6s linear infinite;
+}
+
+@keyframes orbit-rotate {
+    from { transform: translate(-50%, -50%) rotate(0deg) translateX(300px) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg) translateX(300px) rotate(-360deg); }
+}
+
+@keyframes orbit-double {
+    0% {
+        opacity: 0;
+        transform: rotate(0deg) scale(1);
+    }
+    12.5% {
+        opacity: 1;
+    }
+    87.5% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: rotate(90deg) scale(1);
+    }
+}
+
+#screen_effect.orbit-double {
+    animation: orbit-double 7s ease-in-out forwards;
+    background: 
+        radial-gradient(circle at center, 
+             rgba(116,233,125,1) 0%, rgba(116,233,125,0.6) 7.5%, transparent 15%);
+}
+
+#screen_effect.orbit-double::before,
+#screen_effect.orbit-double::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(116,233,125,1) 0%, rgba(116,233,125,0.5) 20%,rgba(116,233,125,0.2) 35%, transparent 50%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#screen_effect.orbit-double::before {
+    animation: orbit-rotate-double1 7s linear infinite;
+}
+
+#screen_effect.orbit-double::after {
+    animation: orbit-rotate-double2 7s linear infinite;
+}
+
+@keyframes orbit-rotate-double1 {
+    from { transform: translate(-50%, -50%) rotate(0deg) translateX(300px) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(360deg) translateX(300px) rotate(-360deg); }
+}
+
+@keyframes orbit-rotate-double2 {
+    from { transform: translate(-50%, -50%) rotate(180deg) translateX(300px) rotate(0deg); }
+    to   { transform: translate(-50%, -50%) rotate(540deg) translateX(300px) rotate(-360deg); }
 }
 
 
@@ -1943,7 +2083,7 @@ i {
 }
 
 #start_sleeping_div:hover, #action_end_div:hover, #end_sleeping_div:hover {
-	background-color: #2c3953;
+	background-color: var(--active_background);
 }
 
 #trade_div {
@@ -2009,7 +2149,7 @@ i {
   }
 
 ::-webkit-scrollbar-track {
-	background: #191928; 
+	background: var(--background_gradient); 
   }
    
 ::-webkit-scrollbar-thumb {

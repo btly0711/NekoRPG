@@ -81,8 +81,8 @@ window.REALMS=[
 
 
 [9,"大地级一阶",600,120000,1.0e8],
-[10,"大地级二阶",1000,250000,3.6e8],
-[11,"大地级三阶",2000,550000,1.08e9],
+[10,"大地级二阶",1000,250000,80000000],
+[11,"大地级三阶",2000,550000,3.2e8],
 [12,"大地级四阶",3000,1000000,9.2233e18],//2.4e9/以下未平衡(需要加入微火)
 [13,"大地级五阶",5000,1500000,6.0e9],
 [14,"大地级六阶",9000,2500000,1.35e10],
@@ -808,7 +808,7 @@ function start_textline(textline_key){
             const trances = item_templates["一丝荒兽森林感悟"].getInventoryKey();
             if(character.inventory[trances]?.count >= 50) {
                 remove_from_character_inventory([{item_key: trances, item_count: 50}]);
-                if(Math.random() < 0.2){   
+                if(Math.random() < 2){   
                     add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
                     displayed_text = "[心之石像]融合成功！";
                     log_message(`获取 凝实荒兽森林感悟 x1 ！ `, "crafting");
@@ -1150,7 +1150,10 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
             let leveled = false;
 
             for(let i = 0; i < targets.length; i++) {
-                do_character_combat_action({target: targets[i], attack_power});
+                const alive_targets = current_enemies.filter(enemy => enemy.is_alive);
+                //console.log(i);
+                //console.log(alive_targets.length);
+                do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1);
             }
             //console.log(current_stance);
             if(stances[current_stance].related_skill) {
@@ -1350,9 +1353,9 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     if(critted)
     {
-        log_message(character.name + " 受到了" + Math.ceil(10*damage_taken)/10 + " 伤害[暴击]" + spec_hint, "hero_attacked_critically");
+        log_message(character.name + " 受到了 " + Math.ceil(10*damage_taken)/10 + " 伤害[暴击]" + spec_hint, "hero_attacked_critically");
     } else {
-        log_message(character.name + " 受到了" + Math.ceil(10*damage_taken)/10 + "  伤害" + spec_hint, "hero_attacked");
+        log_message(character.name + " 受到了 " + Math.ceil(10*damage_taken)/10 + "  伤害" + spec_hint, "hero_attacked");
     }
 
     
@@ -1443,7 +1446,7 @@ function get_enemy_realm(enemy){
     return realm_e;
 }
 
-function do_character_combat_action({target, attack_power}) {
+function do_character_combat_action({target, attack_power}, target_num) {
 
     let satk_mul = 1;//角色攻击乘数
     let sdmg_mul = 1;//角色伤害乘数
@@ -1541,7 +1544,16 @@ function do_character_combat_action({target, attack_power}) {
         }
         else {
             log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害" + Spec_E, "enemy_attacked");
+            //console.log(target_num);
+            
+            
         }
+        const effect = document.getElementById(`E${target_num}_effect`);
+            effect.classList.add('active');
+                effect.addEventListener('animationend', () => {
+                       effect.classList.remove('active');
+                }, { once: true });
+                //受击动画
 
         if(target.stats.health <= 0) {
             total_kills++;
@@ -1606,6 +1618,13 @@ function do_character_combat_action({target, attack_power}) {
 
         update_displayed_health_of_enemies();
     } else {
+        const effect = document.getElementById(`E${target_num}_effect`);
+            effect.classList.add('evade');
+                effect.addEventListener('animationend', () => {
+                       effect.classList.remove('evade');
+                }, { once: true });
+
+        //闪避
         if(target.spec.includes(29)){
             let {damage_taken, fainted} = character.take_damage([],{damage_value: target.spec_value[29]},0);
             
@@ -2624,6 +2643,12 @@ function load(save_data) {
     
     update_displayed_character_xp(true);
     if(save_data.character.xp.total_xp != 0) add_xp_to_character(save_data.character.xp.total_xp, false);
+    if(character.xp.current_level >= 9)
+    {
+        const E_body = document.body;
+        E_body.classList.add('terra_root');
+    }
+
 
     Object.keys(save_data.skills).forEach(function(key){ 
         if(key === "Literacy") {
