@@ -797,7 +797,7 @@ class Textline {
 
                 unlocks: {
                     //items: [{item_name: "纳娜米"}],
-                    //2-1初区
+                    locations: ["荒兽森林"],
                 },
                 //locks_lines: ["6"],
             }),

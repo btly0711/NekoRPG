@@ -1384,7 +1384,6 @@ class Enemy {
             //应为900C
         ],
     });
-    //以下为1-4的怪物[掉落物WIP]
     enemy_templates["夜行幽灵"] = new Enemy({
         name: "夜行幽灵", 
         description: "地宫里唯一的潮汐级魔物。靠着灯光的方便存活了下来。", 
@@ -2080,7 +2079,343 @@ class Enemy {
         ],
     });
 
-
+    // 第二幕！！！
+    enemy_templates["灵能菇菇"] = new Enemy({
+        name: "灵能菇菇", 
+        description: "惯用衰弱伎俩的蘑菇系荒兽。效果还不错！", 
+        xp_value: 2584, 
+        rank: 2101,
+        image: "image/enemy/E2101.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [8],
+        tags: [],
+        stats: {health: 36000, attack:13600, agility: 8000, attack_speed: 1.0, defense: 6400}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["妖灵飞蛾"] = new Enemy({
+        name: "妖灵飞蛾", 
+        description: "荒兽森林的浅绿色飞蛾。与普遍的看法相反，绿色不代表有毒。", 
+        xp_value: 2584, 
+        rank: 2102,
+        image: "image/enemy/E2102.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 16000, attack:14000, agility: 8400, attack_speed: 1.3, defense: 7000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["飞叶级魔法师"] = new Enemy({
+        name: "飞叶级魔法师", 
+        description: "挣脱了牵制的束缚，强大了一倍有余的初级魔法师。", 
+        xp_value: 2584, 
+        rank: 2103,
+        image: "image/enemy/E2103.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [0],
+        tags: [],
+        stats: {health: 23000, attack:8000, agility: 8000, attack_speed: 1.3, defense: 8000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["血洛箭手"] = new Enemy({
+        name: "血洛箭手", 
+        description: "虽然箭的伤害有点不够看，但它的近战也太强了啦...", 
+        xp_value: 2584, 
+        rank: 2104,
+        image: "image/enemy/E2104.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [29],
+        spec_value:{29:1000},
+        tags: [],
+        stats: {health: 9900, attack:70000, agility: 9000, attack_speed: 1.0, defense: 7000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["有角一族"] = new Enemy({
+        name: "有角一族", 
+        description: "似乎比附近其他荒兽强大许多的荒兽。撞角让它可以打出两段伤害！", 
+        xp_value: 4181, 
+        rank: 2105,
+        image: "image/enemy/E2105.png",
+        realm: "<span class=realm_terra><b>大地级四阶 +</b></span>",
+        size: "small",
+        spec: [10],
+        tags: [],
+        stats: {health: 105000, attack:25000, agility: 12800, attack_speed: 1.1, defense: 10000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.05},
+            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为280X
+        ],
+    });
+    enemy_templates["噬血术傀儡"] = new Enemy({
+        name: "噬血术傀儡", 
+        description: "还在蒸！地宫养殖者他还在蒸！(注:普攻倍率会对坚固敌人造成额外伤害)", 
+        xp_value: 2584, 
+        rank: 2106,
+        image: "image/enemy/E2106.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [1],
+        tags: [],
+        stats: {health: 15, attack:16000, agility: 10000, attack_speed: 1.1, defense: 0}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["司雍世界行者"] = new Enemy({
+        name: "司雍世界行者", 
+        description: "出乎意料地，其他领的人都跑来荒兽森林历练了。真是受欢迎的地方呢。", 
+        xp_value: 2584, 
+        rank: 2107,
+        image: "image/enemy/E2107.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 55000, attack:14000, agility: 10500, attack_speed: 1.2, defense: 9000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["密林大鸟"] = new Enemy({
+        name: "密林大鸟", 
+        description: "从地宫钻出来之后，又有进化的地穴飞鸟。寻路系统已经被修好了！", 
+        xp_value: 2584, 
+        rank: 2108,
+        image: "image/enemy/E2108.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [6],
+        tags: [],
+        stats: {health: 72000, attack:17000, agility: 11000, attack_speed: 1.3, defense: 3000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["地龙幼崽"] = new Enemy({
+        name: "地龙幼崽", 
+        description: "血脉纯度较高的地龙幼崽。燕岗城里面那一只和它比最多算一条大蛇！", 
+        xp_value: 2584, 
+        rank: 2109,
+        image: "image/enemy/E2109.png",
+        realm: "<span class=realm_terra><b>大地级四阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 45000, attack:19000, agility: 11000, attack_speed: 1.1, defense: 11000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.015},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为160X
+        ],
+    });
+    enemy_templates["人立茸茸"] = new Enemy({
+        name: "人立茸茸", 
+        description: "出芽绿茸茸的进化路线止步于大地级三阶。于是，它毅然决定长出手脚...", 
+        xp_value: 4181, 
+        rank: 2110,
+        image: "image/enemy/E2110.png",
+        realm: "<span class=realm_terra><b>大地级四阶 +</b></span>",
+        size: "small",
+        spec: [26],
+        tags: [],
+        stats: {health: 37000, attack:9100, agility: 11500, attack_speed: 1.2, defense: 10900}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.05},
+            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为280X
+        ],
+    });
+    enemy_templates["草木蜘蛛"] = new Enemy({
+        name: "草木蜘蛛", 
+        description: "可以在战斗中恢复体力的蜘蛛。去除了回合数翻倍的限制之后，更加难缠。", 
+        xp_value: 4181, 
+        rank: 2111,
+        image: "image/enemy/E2111.png",
+        realm: "<span class=realm_terra><b>大地级四阶 +</b></span>",
+        size: "small",
+        spec: [30,31],
+        spec_value: {30:0.5},
+        tags: [],
+        stats: {health: 120000, attack:18500, agility: 12000, attack_speed: 0.9, defense: 3300}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.05},
+            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为280X
+        ],
+    });
+    enemy_templates["持盾荒兽"] = new Enemy({
+        name: "持盾荒兽", 
+        description: "血洛大陆的荒兽不比地球的怪兽，往往要到天空级才有完整的智慧。这只..或许是变异了？", 
+        xp_value: 4181, 
+        rank: 2112,
+        image: "image/enemy/E2112.png",
+        realm: "<span class=realm_terra><b>大地级四阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 15000, attack:28000, agility: 12500, attack_speed: 1.2, defense: 14000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.05},
+            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为280X
+        ],
+    });
+    enemy_templates["芊叶蝠"] = new Enemy({
+        name: "芊叶蝠", 
+        description: "芊叶-夜芊-千夜...谐音梗已经退环境了！", 
+        xp_value: 4181, 
+        rank: 2113,
+        image: "image/enemy/E2113.png",
+        realm: "<span class=realm_terra><b>大地级四阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 60000, attack:33000, agility: 13500, attack_speed: 1.2, defense: 11000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.05},
+            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为280X
+        ],
+    });
+    enemy_templates["深林妖偶"] = new Enemy({
+        name: "深林妖偶", 
+        description: "和地穴飞鸟，初级魔法师同批逃出地宫的妖偶。可悲的是，它仍然抱着牵制不放。", 
+        xp_value: 4181, 
+        rank: 2114,
+        image: "image/enemy/E2114.png",
+        realm: "<span class=realm_terra><b>大地级四阶 +</b></span>",
+        size: "small",
+        spec: [5],
+        tags: [],
+        stats: {health: 80000, attack:30000, agility: 12500, attack_speed: 1.2, defense: 9000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.05},
+            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为280X
+        ],
+    });
+    enemy_templates["银杖茸茸"] = new Enemy({
+        name: "银杖茸茸", 
+        description: "面对四阶瓶颈，选择修习魔法的茸茸。不过魔法也太弱了！", 
+        xp_value: 4181, 
+        rank: 2115,
+        image: "image/enemy/E2115.png",
+        realm: "<span class=realm_terra><b>大地级四阶 +</b></span>",
+        size: "small",
+        spec: [0],
+        tags: [],
+        stats: {health: 25000, attack:4000, agility: 13500, attack_speed: 1.2, defense: 16000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.05},
+            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为280X
+        ],
+    });
+    enemy_templates["小门派执事"] = new Enemy({
+        name: "小门派执事", 
+        description: "血杀殿的余孽真的清光了吗...这个执事怎么看起来像一只荒兽啊。", 
+        xp_value: 7575, 
+        rank: 2116,
+        image: "image/enemy/E2116.png",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [5,7],
+        tags: [],
+        stats: {health: 135000, attack:49000, agility: 14500, attack_speed: 1.2, defense: 7500}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为500X
+        ],
+    });
+    enemy_templates["哥布林战士"] = new Enemy({
+        name: "哥布林战士", 
+        description: "堪称皮糙肉厚的哥布林。如果它不那么容易被打中就更好了。", 
+        xp_value: 7575, 
+        rank: 2117,
+        image: "image/enemy/E2117.png",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 180000, attack:32000, agility: 10500, attack_speed: 1.2, defense: 10000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为500X
+        ],
+    });
+    enemy_templates["刺猬精"] = new Enemy({
+        name: "刺猬精", 
+        description: "至少它没有反伤。光是看着都感觉扎手哇。", 
+        xp_value: 7575, 
+        rank: 2118,
+        image: "image/enemy/E2118.png",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [20],
+        tags: [],
+        stats: {health: 72000, attack:20000, agility: 15000, attack_speed: 1.2, defense: 16000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为500X
+        ],
+    });
+    enemy_templates["毒枭蝎"] = new Enemy({
+        name: "毒枭蝎", 
+        description: "一般的玩法应该是用一个镐子绕过它啦...可惜，RPG里镐子不能破坏森林的地形。", 
+        xp_value: 7575, 
+        rank: 2119,
+        image: "image/enemy/E2119.png",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [16,22],
+        tags: [],
+        stats: {health: 216000, attack:36000, agility: 15000, attack_speed: 1.2, defense: 15000}, 
+        loot_list: [
+            {item_name: "高级绿宝石", chance:0.02},
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "一丝荒兽森林感悟", chance:1},
+            //应为500X
+        ],
+    });
 })();
 
 

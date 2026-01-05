@@ -266,6 +266,10 @@ class Combat_zone {
                 log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.defense * 0.5)} 生命 [饮盾]`,"enemy_enhanced");
                 newEnemy.stats.health += character.stats.full.defense * 0.5;//饮盾
             }
+            if(newEnemy.spec.includes(30)){ 
+                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.agility * newEnemy.spec_value[30])} 攻击 [净化]`,"enemy_enhanced");
+                newEnemy.stats.attack += character.stats.full.agility * newEnemy.spec_value[30];//净化
+            }
             if(newEnemy.name == "地宫养殖者[BOSS]")//特判地宫养殖者
             {
                 if(enemy_killcount["地宫养殖者[BOSS]"]) console.log("试图再次击杀");
@@ -1803,18 +1807,133 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["荒兽森林营地"] = new Location({ 
         connected_locations: [{location: locations["地宫深层"], custom_text: "回到地宫"},{location: locations["纳可的房间"], custom_text: "快速旅行 - 第一幕"}], 
-        description: "从地宫离开之后，纳可下一个历练地点的安全区。[V1.00版本终点]",
+        description: "从地宫离开之后，纳可下一个历练地点的安全区。",
         
         is_unlocked: false,
         name: "荒兽森林营地", 
         dialogues: ["纳布","心之石像"],
         bgm: 6,
         //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
-    });//2-1
+    });//2-1安全区
     locations["地宫深层"].connected_locations.push({location: locations["荒兽森林营地"]});
     locations["纳可的房间"].connected_locations.push({location: locations["荒兽森林营地"],custom_text:"快速旅行 - 第二幕"});
 
+    locations["荒兽森林"] = new Location({ 
+        connected_locations: [{location: locations["荒兽森林营地"], custom_text: "回到营地"}], 
+        description: "荒兽森林的内部。茂密的树木挡住了大部分阳光，黑暗中潜伏着许多荒兽。",
+        
+        name: "荒兽森林", 
+        is_unlocked: false,
+        bgm: 6,
+        //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
+    });//2-1
+    locations["荒兽森林营地"].connected_locations.push({location: locations["荒兽森林"]});
+
+
+    locations["荒兽森林 - 1"] = new Combat_zone({
+        description: "荒兽横行的森林区域，也有许多前来历练的大地级修者。", 
+        enemy_count: 20, 
+        enemies_list: ["灵能菇菇","妖灵飞蛾","飞叶级魔法师","血洛箭手"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        name: "荒兽森林 - 1",
+        
+        rank:101, 
+        bgm:6,
+        parent_location: locations["荒兽森林"],
+        first_reward: {
+            xp: 3600,
+        },
+        repeatable_reward: {
+            xp: 1200,
+            locations: [{location: "荒兽森林 - 2"}],
+        },
+    });
+    locations["荒兽森林 - 2"] = new Combat_zone({
+        description: "荒兽横行的森林区域，出现了一些从宝物尽失的地宫迁徙来的荒兽。", 
+        enemy_count: 20, 
+        enemies_list: ["血洛箭手","有角一族","噬血术傀儡","司雍世界行者","密林大鸟","地龙幼崽"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "荒兽森林 - 2",
+        
+        rank:102, 
+        bgm:6,
+        parent_location: locations["荒兽森林"],
+        first_reward: {
+            xp: 4200,
+        },
+        repeatable_reward: {
+            xp: 1400,
+            locations: [{location: "荒兽森林 - 3"}],
+        },
+    });
+    locations["荒兽森林 - 3"] = new Combat_zone({
+        description: "荒兽横行的森林区域，出现了一些拥有强大恢复能力的荒兽。", 
+        enemy_count: 20, 
+        enemies_list: ["地龙幼崽","人立茸茸","草木蜘蛛","持盾荒兽","芊叶蝠","深林妖偶"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "荒兽森林 - 3",
+        
+        rank:103, 
+        bgm:6,
+        parent_location: locations["荒兽森林"],
+        first_reward: {
+            xp: 4800,
+        },
+        repeatable_reward: {
+            xp: 1600,
+            locations: [{location: "荒兽森林 - 4"}],
+        },
+    });
+    locations["荒兽森林 - 4"] = new Combat_zone({
+        description: "荒兽横行的森林区域，出现了一些抵达大地级五阶的荒兽和人类。", 
+        enemy_count: 20, 
+        enemies_list: ["深林妖偶","银杖茸茸","小门派执事","哥布林战士","刺猬精","毒枭蝎"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "荒兽森林 - 4",
+        
+        rank:104, 
+        bgm:6,
+        parent_location: locations["荒兽森林"],
+        first_reward: {
+            xp: 6000,
+        },
+        repeatable_reward: {
+            xp: 2000,
+            //locations: [{location: "荒兽森林 - X"}],
+        },
+    });
+
     
+    locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - 1"]});
+    locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - 2"]});
+    locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - 3"]});
+    locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - 4"]});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 
         getDescription: function() {
@@ -2383,21 +2502,6 @@ function get_location_type_penalty(type, stage, stat) {
                 resources: [{name: "高级蓝宝石", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
                 time_period: [10, 2],
                 skill_required: [0, 10],
-                scales_with_skill: true,
-            },
-        }),
-    }
-    locations["荒兽森林营地"].activities = {
-        "miningThought": new LocationActivity({
-            activity_name: "mining",
-            infinite: true,
-            starting_text: "挖出感悟?![将在下个版本移除]",
-            skill_xp_per_tick: 10,
-            is_unlocked: true,
-            gained_resources: {
-                resources: [{name: "一丝荒兽森林感悟", ammount: [[1,1], [1,5]], chance: [1.0, 1.0]}], 
-                time_period: [20, 20],
-                skill_required: [10, 25],
                 scales_with_skill: true,
             },
         }),

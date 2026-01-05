@@ -995,7 +995,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
         if(current_enemies[enemy_id].spec.includes(22))
         {
             for(let cb=1;cb<=5;cb++) if(current_enemies != null){
-            do_enemy_combat_action(enemy_id,"[绝世]"+Spec_S,0.9,1);//疾走(开局3连击)
+            do_enemy_combat_action(enemy_id,"[绝世]"+Spec_S,0.9,1);//绝世(5连击)
             }
         }
     }
@@ -1357,7 +1357,10 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     
     if(!attacker.spec.includes(28)) add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
-    
+    if(attacker.spec.includes(31)){
+        attacker.stats.health += attacker.stats.max_health * 0.15;
+        log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health) * 0.15 + " 点血量","enemy_enhanced");
+    }//回春
 
     if(fainted) {
         total_deaths++;
@@ -1421,6 +1424,18 @@ function get_enemy_realm(enemy){
             break;  
         case "四":
             realm_e += 3;
+            break;  
+        case "五":
+            realm_e += 4;
+            break;  
+        case "六":
+            realm_e += 5;
+            break;  
+        case "七":
+            realm_e += 6;
+            break;  
+        case "八":
+            realm_e += 7;
             break;  
     }
     if(realm_l == "高" && realm_e == 1) realm_e += 1;//微尘高级 特判
@@ -1591,7 +1606,25 @@ function do_character_combat_action({target, attack_power}) {
 
         update_displayed_health_of_enemies();
     } else {
-        log_message(character.name + " 未命中", "hero_missed");
+        if(target.spec.includes(29)){
+            let {damage_taken, fainted} = character.take_damage([],{damage_value: target.spec_value[29]},0);
+            
+            log_message(character.name + " 未命中,并受到了" + format_number(damage_taken) + "点伤害[阻击]", "hero_missed");
+            if(fainted) {
+                total_deaths++;
+                log_message(character.name + " 被阻击击败", "hero_defeat");
+
+                update_displayed_health();
+                if(options.auto_return_to_bed && last_location_with_bed) {
+                    change_location(last_location_with_bed);
+                    start_sleeping();
+                } else {
+                    change_location(current_location.parent_location.name);
+                }
+                return;
+            }
+        }
+        else log_message(character.name + " 未命中", "hero_missed");
     }
 }
 
@@ -1614,6 +1647,7 @@ function kill_enemy(target) {
             else if(target.name == "腐蚀质石精") add_bestiary_lines(13);
             else if(target.name == "夜行幽灵") add_bestiary_lines(14);
             else if(target.name == "行走树妖") add_bestiary_lines(15);
+            else if(target.name == "妖灵飞蛾") add_bestiary_lines(21);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -3142,6 +3176,7 @@ function load(save_data) {
             if(enemy_name == "腐蚀质石精") add_bestiary_lines(13);
             if(enemy_name == "夜行幽灵") add_bestiary_lines(14);
             if(enemy_name == "行走树妖") add_bestiary_lines(15);
+            if(enemy_name == "妖灵飞蛾") add_bestiary_lines(21);
 
         });
     }

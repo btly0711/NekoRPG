@@ -463,7 +463,6 @@ function create_effect_tooltip(effect_name, duration) {
         } else {
 
             tooltip.innerHTML += `${EffectToolTipMap[key]} : ${sign}${stat_value.flat}`;
-            //百分比的WIP
         }
     }
 
@@ -3441,19 +3440,11 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [26, "分裂", "#8EA5D1","拥有两种能力的战斗法师。敌人每回合的攻击<span style='color:#87CEFA'>翻倍</span>"],
 [27, "柔骨", "#2CBA3A","接下攻击，并化为另一种劲力发回。<br>战斗时，角色的攻击效力转移<span style='color:#87CEFA'>10%</span>到防御上。"],
 [28, "肤·免疫", "#808080","别想用它刷坚韧皮肤！"],
+[29, "阻击", "#8888e6",function(enemy){return "这个敌人似乎懂得且战且退的道理。<br>如果敌人闪避了攻击，则额外对角色造成<span style='color:#87CEFA'>" + (enemy.spec_value[29]) + "</span>点魔法伤害。"}],
+[30, "净化", "#80eed6",function(enemy){return "战斗前，敌人将角色敏捷的<span style='color:#87CEFA'>" + enemy.spec_value[30] + "倍</span>加到自己的攻击上。"}],
+[31, "回春", "#ccff99","木元素领悟。修习了战复魔法的冒险者钟爱的属性。<br>敌人每次命中恢复自身生命上限<span style='color:#87CEFA'>15%</span>的生命"]
 ];
-/*
-【同调】敌人攻防加角色攻防10%
-【天剑】敌人每回合发动一次3倍伤害(防御2倍减免)的攻击。
-【灵体】*每回合伤害加上5*[10000-角色AGI]
-【绝世】5连击
-【灵闪】我攻少于敌，敌人吃敌防/2我防伤害减免
-【饮剑】敌人的生命增加角色攻击5倍
-【饮盾】敌人的生命增加角色防御5倍
-【分裂】敌人的攻击被视为2倍ATK
-【柔骨】角色的攻击转移10%到防御上
 
-*/
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
 //命名空间：[i][0]序号，[i][1]名称,[i][2]颜色,[i][3]描述
 function create_new_bestiary_entry(enemy_name) {
@@ -3670,7 +3661,7 @@ function add_bestiary_lines(zone)
     //zone 11-> 1-1，rank作为1200处理
     //sorts bestiary_list div by enemy rank
     bestiary_entry_divs[zone] = document.createElement("div");
-    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心"}
+    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林"}
     const name_div = document.createElement("div");
     name_div.innerHTML = `<b>【${ZoneNameMap[zone]}】</b>`;
     name_div.classList.add("bestiary_entry_name");
@@ -3720,7 +3711,7 @@ function create_new_levelary_entry(level_name) {
     name_div.innerHTML = level_name;
     name_div.classList.add("bestiary_entry_name");
     const kill_counter = document.createElement("div");
-    kill_counter.innerHTML = `${Math.floor(level.rank/10)+1} - ${level.rank%10}`;
+    kill_counter.innerHTML = `${Math.floor(level.rank/100)+1} - ${Math.floor((level.rank%100)/10)+1} - ${level.rank%10}`;
     kill_counter.classList.add("bestiary_entry_kill_count");
 
     
