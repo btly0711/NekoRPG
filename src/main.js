@@ -808,7 +808,7 @@ function start_textline(textline_key){
             const trances = item_templates["一丝荒兽森林感悟"].getInventoryKey();
             if(character.inventory[trances]?.count >= 50) {
                 remove_from_character_inventory([{item_key: trances, item_count: 50}]);
-                if(Math.random() < 2){   
+                if(Math.random() < 0.2){   
                     add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
                     displayed_text = "[心之石像]融合成功！";
                     log_message(`获取 凝实荒兽森林感悟 x1 ！ `, "crafting");
