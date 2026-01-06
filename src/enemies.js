@@ -2093,7 +2093,8 @@ class Enemy {
         stats: {health: 36000, attack:13600, agility: 8000, attack_speed: 1.0, defense: 6400}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "大地级魂魄", chance:0.5},
+            {item_name: "流动凝胶", chance:0.24},
             //应为160X
         ],
     });
@@ -2110,7 +2111,9 @@ class Enemy {
         stats: {health: 16000, attack:14000, agility: 8400, attack_speed: 1.3, defense: 7000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "荒兽精华", chance:0.08},
+            
+            {item_name: "大地级魂魄", chance:0.5},
             //应为160X
         ],
     });
@@ -2127,7 +2130,8 @@ class Enemy {
         stats: {health: 23000, attack:8000, agility: 8000, attack_speed: 1.3, defense: 8000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "黑色刀币", chance:0.08},
+            {item_name: "A4·能量核心", chance:0.08},
             //应为160X
         ],
     });
@@ -2145,7 +2149,8 @@ class Enemy {
         stats: {health: 9900, attack:70000, agility: 9000, attack_speed: 1.0, defense: 7000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "黑色刀币", chance:0.03},
+            {item_name: "甲壳碎片", chance:0.10},
             //应为160X
         ],
     });
@@ -2163,7 +2168,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "甲壳碎片", chance:0.10},
+            {item_name: "荒兽精华", chance:0.10},
             //应为280X
         ],
     });
@@ -2180,7 +2186,7 @@ class Enemy {
         stats: {health: 15, attack:16000, agility: 10000, attack_speed: 1.1, defense: 0}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "A4·能量核心", chance:0.18},
             //应为160X
         ],
     });
@@ -2197,7 +2203,9 @@ class Enemy {
         stats: {health: 55000, attack:14000, agility: 10500, attack_speed: 1.2, defense: 9000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "黑色刀币", chance:0.04},
+            {item_name: "甲壳碎片", chance:0.08},
+            
             //应为160X
         ],
     });
@@ -2214,7 +2222,9 @@ class Enemy {
         stats: {health: 72000, attack:17000, agility: 11000, attack_speed: 1.3, defense: 3000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "森林·荒兽肉块", chance:0.10},
+            {item_name: "大地级魂魄", chance:0.5},
+            
             //应为160X
         ],
     });
@@ -2231,7 +2241,8 @@ class Enemy {
         stats: {health: 45000, attack:19000, agility: 11000, attack_speed: 1.1, defense: 11000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.015},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "森林·荒兽肉块", chance:0.06},
+            {item_name: "荒兽精华", chance:0.06},
             //应为160X
         ],
     });
@@ -2249,7 +2260,9 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "流动凝胶", chance:0.20},
+            {item_name: "A4·能量核心", chance:0.20},
+            
             //应为280X
         ],
     });
@@ -2268,7 +2281,9 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "荒兽精华", chance:0.15},
+            {item_name: "大地级魂魄", chance:0.50},
+            
             //应为280X
         ],
     });
@@ -2286,7 +2301,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "甲壳碎片", chance:0.20},
             //应为280X
         ],
     });
@@ -2304,7 +2319,9 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "荒兽精华", chance:0.10},
+            {item_name: "A4·能量核心", chance:0.15},
+            
             //应为280X
         ],
     });
@@ -2322,7 +2339,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "流动凝胶", chance:0.50},
             //应为280X
         ],
     });
@@ -2340,7 +2357,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "A4·能量核心", chance:0.30},
             //应为280X
         ],
     });
@@ -2358,7 +2375,9 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
             {item_name: "极品黄宝石", chance:0.03},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "黑色刀币", chance:0.40},
+            {item_name: "大地级魂魄", chance:1.0},
+            
             //应为500X
         ],
     });
@@ -2376,7 +2395,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
             {item_name: "极品黄宝石", chance:0.03},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "森林·荒兽肉块", chance:0.40},
+            {item_name: "甲壳碎片", chance:0.10},
             //应为500X
         ],
     });
@@ -2394,7 +2414,7 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
             {item_name: "极品黄宝石", chance:0.03},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "甲壳碎片", chance:0.40},
             //应为500X
         ],
     });
@@ -2412,7 +2432,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
             {item_name: "极品黄宝石", chance:0.03},
-            {item_name: "一丝荒兽森林感悟", chance:1},
+            {item_name: "甲壳碎片", chance:0.20},
+            {item_name: "荒兽精华", chance:0.20},
             //应为500X
         ],
     });

@@ -254,7 +254,7 @@ function create_item_tooltip_content({item, options={}}) {
                 item_tooltip += `<br><br><b style="color: ${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
             }
         }
-        let SkillLevelMap = {"Mining":"挖掘"};
+        let SkillLevelMap = {"Mining":"挖掘","Woodcutting":"砍伐"};
         if(item.bonus_skill_levels != {})
         {
             let S_levels = item.bonus_skill_levels;
@@ -269,7 +269,7 @@ function create_item_tooltip_content({item, options={}}) {
             });
         }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","props":"道具","method":"秘法","special":"特殊","realm":"领域"}
+        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","axe":"斧子","props":"道具","method":"秘法","special":"特殊","realm":"领域"}
         if(item.equip_slot === "weapon") {
             item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
@@ -1281,7 +1281,7 @@ function update_displayed_equipment() {
         if(character.equipment[key] == null) { //no item in slot
             eq_tooltip = document.createElement("span");
             eq_tooltip.classList.add("item_tooltip");
-            let mapp={"head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","method":"秘法","realm":"领域","law":"法则","props":"道具","special":"特殊","pickaxe":"镐子","method":"秘法"};
+            let mapp={"head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","method":"秘法","realm":"领域","law":"法则","props":"道具","special":"特殊","pickaxe":"镐子","axe":"斧子","method":"秘法"};
             equipment_slots_divs[key].innerHTML = `${mapp[key]} 槽位`;
             equipment_slots_divs[key].classList.add("equipment_slot_empty");
             eq_tooltip.innerHTML = `你的 ${mapp[key]} 槽位`;
@@ -2082,7 +2082,7 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
         }
         
         recipe_div.children[0].innerHTML = '<i class="material-icons icon crafting_dropdown_icon"> keyboard_double_arrow_down </i>' +  recipe_div.children[0].innerHTML;
-        let ComponentNameMap = {"long blade":"剑刃","short handle":"剑柄","helmet exterior":"头部外甲","chestplate exterior":"胸部外甲","leg armor exterior":"腿部外甲","shoes exterior":"脚部外甲","helmet interior":"头部内甲","chestplate interior":"胸部内甲","leg armor interior":"腿部内甲","shoes interior":"脚部内甲",}
+        let ComponentNameMap = {"long blade":"剑刃","triple blade":"三叉戟头","short handle":"剑柄","helmet exterior":"头部外甲","chestplate exterior":"胸部外甲","leg armor exterior":"腿部外甲","shoes exterior":"脚部外甲","helmet interior":"头部内甲","chestplate interior":"胸部内甲","leg armor interior":"腿部内甲","shoes interior":"脚部内甲",}
         const component_selection_1 = document.createElement("div"); //weapon head or internal armor
         component_selection_1.innerHTML = `<span class="crafting_selection"><i class="material-icons icon subcrafting_dropdown_icon"> keyboard_double_arrow_down </i>选择一个[${ComponentNameMap[recipe.components[0]]}]</span>`;
         
@@ -2604,7 +2604,13 @@ function update_displayed_stats() { //updates displayed stats
                 update_stat_description(key);
             }
         }
-        else{
+        else if(key =="health_regeneration_flat"){
+            let perc = character.stats.full.health_regeneration_percent;
+            stats_divs[key].innerHTML = `${format_number(character.stats.full[key])}` + ((perc==0)?"":`/${Math.floor(perc*10)/10}%`);
+            update_stat_description(key);
+        }
+        else
+        {
             stats_divs[key].innerHTML = `${format_number(character.stats.full[key])}`;
             update_stat_description(key);
         }
@@ -2888,7 +2894,7 @@ function start_activity_display(current_activity) {
 
 
     const action_end_text = document.createElement("div");
-    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳","mining":"挖掘"};
+    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳","mining":"挖掘","woodcutting":"砍伐"};
     const dev_ACNMap = false;
     action_end_text.innerText = `结束 ${dev_ACNMap?current_activity.activity_name:ActivityNameMap[current_activity.activity_name]}`;
     action_end_text.id = "action_end_text";

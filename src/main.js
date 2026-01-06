@@ -502,7 +502,7 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿"}
+    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿","Woodcutting":"砍伐"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     if(current_activity.exp_scaling)
     {
@@ -805,22 +805,22 @@ function start_textline(textline_key){
         if(textline.unlocks.spec == "A1-fusion")
         {   
             
-            const trances = item_templates["一丝荒兽森林感悟"].getInventoryKey();
-            if(character.inventory[trances]?.count >= 50) {
-                remove_from_character_inventory([{item_key: trances, item_count: 50}]);
-                if(Math.random() < 0.2){   
-                    add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
+            // const trances = item_templates["一丝荒兽森林感悟"].getInventoryKey();
+            // if(character.inventory[trances]?.count >= 50) {
+            //     remove_from_character_inventory([{item_key: trances, item_count: 50}]);
+            //     if(Math.random() < 0.2){   
+                     add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
                     displayed_text = "[心之石像]融合成功！";
                     log_message(`获取 凝实荒兽森林感悟 x1 ！ `, "crafting");
-                }
-                else{   
-                    displayed_text = "[心之石像]很遗憾，融合失败...";
-                }
-            }
-            else{
-                displayed_text = "[心之石像]你的感悟，不足以融合...";
-                //add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
-            }
+            //     }
+            //     else{   
+            //         displayed_text = "[心之石像]很遗憾，融合失败...";
+            //     }
+            // }
+            // else{
+            //     displayed_text = "[心之石像]你的感悟，不足以融合...";
+            //     //add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
+            // }
         }
     }
 
@@ -1859,10 +1859,15 @@ function get_location_rewards(location) {
             create_new_levelary_entry(location.name);
             log_message(`首次通过 ${location.name} ，获取 ${location.first_reward.xp} 经验 `, "location_reward");
             add_xp_to_character(location.first_reward.xp);
+            if(location.name == "荒兽森林 - 1"){
+                log_message(`在战斗中，${character.name} 获取了突破大地级的感悟。`, "enemy_enhanced");
+                add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
+            }
         }
     } else if(location.repeatable_reward.xp && typeof location.repeatable_reward.xp === "number") {
         log_message(`通过 ${location.name} ，获取额外 ${location.repeatable_reward.xp} 经验 `, "location_reward");
         add_xp_to_character(location.repeatable_reward.xp);
+        
     }
 
 

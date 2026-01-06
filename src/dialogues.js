@@ -809,13 +809,13 @@ class Textline {
         textlines: {
             "clumbs": new Textline({ 
                 is_unlocked: true,
-                name: "凝聚荒兽森林感悟(50:1/成功率20%)",
+                name: "荒兽森林感悟/点击就送！！(在1.10将被移除)",//WIP
                 text: "...",
                 unlocks: {
                     spec:"A1-fusion",
-                }
+                },
                 
-                //locks_lines: ["dig"],
+                locks_lines: ["clumbs"],
             }),
         }
     });

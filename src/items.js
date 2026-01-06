@@ -302,7 +302,7 @@ class WeaponComponent extends ItemComponent {
         if(item_data.component_type !== "axe head" && item_data.component_type !== "hammer head"
         && item_data.component_type !== "short blade" && item_data.component_type !== "long blade"
         && item_data.component_type !== "short handle" && item_data.component_type !== "long handle"
-        && item_data.component_type !== "medium handle") {
+        && item_data.component_type !== "medium handle" && item_data.component_type !== "triple blade") {
             throw new Error(`No such weapon component type as ${item_data.component_type}`);
         }
         this.component_type = item_data.component_type;
@@ -837,6 +837,10 @@ class Weapon extends Equippable {
         && item_templates[this.components.head].component_type === "long blade") {
             //short handle + long blade = sword
             this.weapon_type = "sword";
+        } else if(item_templates[this.components.handle].component_type === "short handle" 
+        && item_templates[this.components.head].component_type === "triple blade") {
+            //short handle + triple blade = trident
+            this.weapon_type = "trident";
         } else {
             throw new Error(`Combination of elements of types ${item_templates[this.components.handle].component_type} and ${item_templates[this.components.head].component_type} does not exist!`);
         }
@@ -877,7 +881,7 @@ class Weapon extends Equippable {
     } 
 
     getName() {
-        let WTM = {"sword":"剑","21":"22","31":"32"}
+        let WTM = {"sword":"剑","trident":"三叉戟","21":"22","31":"32"}
         return `${item_templates[this.components.head].name_prefix} ${this.weapon_type === "hammer" ? "战锤" : WTM[this.weapon_type]}`;
     }
 }
@@ -2283,6 +2287,24 @@ item_templates["Twist liek a snek"] = new Book({
             "Mining": 4,
         }
     });
+    item_templates["暗影斧"] = new Tool({
+        name: "暗影斧",
+        description: "相当锋利的斧头。不过面对百年柳木，依然需要较长的时间来砍伐。",
+        value: 3.6e6,
+        equip_slot: "axe",
+        bonus_skill_levels: {
+            "Woodcutting": 6,
+        }
+    });
+    item_templates["充能斧"] = new Tool({
+        name: "充能斧",
+        description: "愈加锋利的斧头。砍伐百年柳木如吃饭一样简单了！",
+        value: 2.0e7,
+        equip_slot: "axe",
+        bonus_skill_levels: {
+            "Woodcutting": 10,
+        }
+    });
 
 })();
 
@@ -2530,6 +2552,41 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["充能剑刃"] = new WeaponComponent({
+        name: "充能剑刃", description: "充能合金锭制造的剑刃。没有任何负面属性，只有纯粹的锋利。",
+        component_type: "long blade",
+        value: 1.8e7,
+        component_tier: 5,
+        name_prefix: "充能",
+        attack_value: 3240,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_speed: {
+                multiplier: 1.11,
+            },
+        }
+    });
+    item_templates["充能戟头"] = new WeaponComponent({
+        name: "充能戟头", description: "充能合金锭制造的三叉戟头。一次可以戳出三个洞，但有些难以拔出来...",
+        component_type: "triple blade",
+        value: 3.6e7,
+        component_tier: 5,
+        name_prefix: "充能",
+        attack_value: 4320,
+        stats: {
+            crit_rate: {
+                flat: 0.15,
+            },
+            attack_mul: {
+                multiplier: 3.00,
+            },
+            attack_speed: {
+                multiplier: 0.50,
+            },
+        }
+    });
     item_templates["骨剑柄"] = new WeaponComponent({
         name: "骨剑柄", description: "由白骨制成的剑柄。易碎，所以使用时会影响自身",
         component_type: "short handle",
@@ -2566,6 +2623,20 @@ item_templates["Twist liek a snek"] = new Book({
             },
             crit_multiplier: {
                 flat: 0.1,
+            },
+        }
+    });
+    item_templates["柳木剑柄"] = new WeaponComponent({
+        name: "柳木剑柄", description: "活化柳木制造的剑柄。基因原能传导从未如此顺畅！",
+        component_type: "short handle",
+        value: 5.0e6,
+        component_tier: 4,
+        stats: {
+            attack_mul: {
+                flat: 0.1,
+            },
+            crit_multiplier: {
+                flat: 0.2,
             },
         }
     });
@@ -2856,6 +2927,62 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["充能头盔"] = new ArmorComponent({
+        name: "充能头盔",
+        description: "A6级盔甲，和活性内甲一样可以完美贴合身体。",
+        component_type: "helmet exterior",
+        value: 2.1e7,
+        component_tier: 5,
+        full_armor_name: "充能头盔",
+        defense_value: 450,
+        stats: {
+            agility: {
+                flat: 225.00,
+            },
+        }
+    });
+    item_templates["充能胸甲"] = new ArmorComponent({
+        name: "充能胸甲",
+        description: "A6级盔甲，和活性内甲一样可以完美贴合身体。",
+        component_type: "chestplate exterior",
+        value: 2.8e7,
+        component_tier: 5,
+        full_armor_name: "充能胸甲",
+        defense_value: 600,
+        stats: {
+            agility: {
+                flat: 300.00,
+            },
+        }
+    });
+    item_templates["充能腿甲"] = new ArmorComponent({
+        name: "充能腿甲",
+        description: "A6级盔甲，和活性内甲一样可以完美贴合身体。",
+        component_type: "leg armor exterior",
+        value: 2.8e7,
+        component_tier: 5,
+        full_armor_name: "充能腿甲",
+        defense_value: 600,
+        stats: {
+            agility: {
+                flat: 300.00,
+            },
+        }
+    });
+    item_templates["充能战靴"] = new ArmorComponent({
+        name: "充能战靴",
+        description: "A6级盔甲，和活性内甲一样可以完美贴合身体。",
+        component_type: "shoes exterior",
+        value: 1.4e7,
+        component_tier: 5,
+        full_armor_name: "充能战靴",
+        defense_value: 300,
+        stats: {
+            agility: {
+                flat: 150.00,
+            },
+        }
+    });
 })();
 //盔甲
 
@@ -2910,6 +3037,24 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/darksteel_ingot.png",
     });
+
+    
+    item_templates["活化柳木"] = new Material({
+        id: "活化柳木",
+        name: "活化柳木", 
+        description: "注入了荒兽的活性成分之后，导能更加强大的柳木", 
+        value: 2.333e6,
+        material_type: "wood",
+        image: "image/item/active_salix.png",
+    });
+    item_templates["充能合金锭"] = new Material({
+        id: "充能合金锭",
+        name: "充能合金锭", 
+        description: "可以通过多种手段熔炼的A6级合金。在清野江畔一带也很难找到更好的金属了。", 
+        value: 6.666e6,
+        material_type: "metal",
+        image: "image/item/chargealloy_ingot.png",
+    });
 })();
 
 //矿石
@@ -2927,6 +3072,13 @@ item_templates["Twist liek a snek"] = new Book({
         description: "真正的煤炭！吸收了部分能量的它，可以提供比魔力碎晶高得多的温度。", 
         value: 999,
         image: "image/item/coal.png",
+    });
+    item_templates["百年柳木"] = new OtherItem({
+        id: "百年柳木",
+        name: "百年柳木", 
+        description: "荒兽森林中常见的大树木材。材质相当好，适合传导力量。", 
+        value: 320000,
+        image: "image/item/salix_wood.png",
     });
 })();
 
@@ -2992,6 +3144,13 @@ item_templates["Twist liek a snek"] = new Book({
         value: 500e3,
         effects: [{effect: "饱食 IV", duration: 90}],
         image: "image/item/A2_cooked_meat.png",
+    });
+    item_templates["森林·荒兽肉排"] = new UsableItem({
+        name: "森林·荒兽肉排", 
+        description: "大地级中期荒兽的肉。出了地宫之后，外面的荒兽好吃了不少。", 
+        value: 1.8e6,
+        effects: [{effect: "饱食 V", duration: 90}],
+        image: "image/item/A4_cooked_meat.png",
     });
 })();
 //炼金
@@ -3280,9 +3439,10 @@ item_templates["Twist liek a snek"] = new Book({
     });
 
     //1-5
+    //2-1
     item_templates["一丝荒兽森林感悟"] = new Loot({
         name: "一丝荒兽森林感悟", 
-        description: "在荒兽森林的战斗中，积累的战斗经验和突破感悟。", 
+        description: "在荒兽森林的战斗中，积累的战斗经验和突破感悟。(已弃用/现版本无法获取/请去找心之石像白嫖一颗突破)", 
         value: 0,
         image: "image/item/A1_break_trance.png",
     });
@@ -3295,7 +3455,30 @@ item_templates["Twist liek a snek"] = new Book({
         C_value: 1,
         image: "image/item/A1_break_clump.png",
     });
-
+    item_templates["A4·能量核心"] = new Loot({
+        name: "A4·能量核心", 
+        description: "部分“内丹”修炼体系荒兽体内的核心。可以在短时间内诱导出巨大的力量。", 
+        value: 960e3,
+        image: "image/item/A4_crystal.png",
+    });
+    item_templates["森林·荒兽肉块"] = new Loot({
+        name: "森林·荒兽肉块", 
+        description: "作为以荒兽闻名的森林，这里的肉比地宫多多了...", 
+        value: 1.2e6,
+        image: "image/item/A4_meat.png",
+    });
+    item_templates["甲壳碎片"] = new Loot({
+        name: "甲壳碎片", 
+        description: "有坚硬外骨骼荒兽的甲壳碎片。用于熔炼A6级充能合金。", 
+        value: 1.35e6,
+        image: "image/item/A4_fragment.png",
+    });
+    item_templates["荒兽精华"] = new Loot({
+        name: "荒兽精华", 
+        description: "虽然它既不好吃还没有壳，但是它的心头血还是能量充沛的。", 
+        value: 1.5e6,
+        image: "image/item/beast_essence.png",
+    });
 
 
     //以下为打钱的东西

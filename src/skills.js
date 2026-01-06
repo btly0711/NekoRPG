@@ -17,6 +17,7 @@ TODO:
 const weapon_type_to_skill = {
     "axe": "Axes",
     "dagger": "Daggers",
+    "trident": "Tridents",
     "hammer": "Hammers",
     "sword": "Swords",
     "spear": "Spears",
@@ -199,7 +200,6 @@ class Skill {
 
                 if (Object.keys(gains.stats).length > 0 || Object.keys(gains.xp_multipliers).length > 0) { 
                     message += `<br><br> 因为 ${this.name()} 达到新的里程碑, ${character.name} 获取了: `;
-
                     if (gains.stats) {
                         Object.keys(gains.stats).forEach(stat => {
                             if(gains.stats[stat].flat) {
@@ -865,6 +865,39 @@ function format_skill_rewards(milestone){
                                   
                                   max_level_coefficient: 2
                             });
+    skills["Tridents"] = new Skill({skill_id: "Tridents", 
+                                  parent_skill: "Weapon mastery",
+                                  names: {0: "戟术"}, 
+                                  category: "Weapon",
+                                  description: "不传统，也不怎么高贵，但好用的三叉戟技能", rewards: {
+                                    milestones: {
+                                        
+                                        20: {
+                                            stats: {
+                                                "crit_multiplier": {flat: 0.05
+                                                },
+                                            },
+                                            
+                                        },
+                                        25: {
+                                            stats: {
+                                                "crit_multiplier": {flat: 0.05},
+                                            },
+                                            
+                                        },
+                                        30: {
+                                            stats: {
+                                                "crit_multiplier": {flat: 0.10},
+                                            },
+                                        },
+                                    }
+                                 },
+                                  get_effect_description: ()=> {
+                                      return `增加持三叉戟时暴击率 ${Math.round(skills["Tridents"].get_coefficient()*1000- 1000)/10 }%`;
+                                  },
+                                  
+                                  max_level_coefficient: 2
+                            });
 
     skills["Axes"] = new Skill({skill_id: "Axes", 
                                 parent_skill: "Weapon mastery",
@@ -1511,8 +1544,8 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
 //resource gathering related
 (function(){
     skills["Woodcutting"] = new Skill({skill_id: "Woodcutting", 
-        names: {0: "Woodcutting"}, 
-        description: "Get better with chopping the wood",
+        names: {0: "砍伐"}, 
+        description: "提升砍伐树木的技能",
         category: "Activity",
         base_xp_cost: 10,
         visibility_treshold: 4,

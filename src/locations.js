@@ -1868,6 +1868,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 1400,
             locations: [{location: "荒兽森林 - 3"}],
+            activities: [{location:"荒兽森林营地", activity: "woodcutting100"}],
         },
     });
     locations["荒兽森林 - 3"] = new Combat_zone({
@@ -1889,6 +1890,7 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 1600,
             locations: [{location: "荒兽森林 - 4"}],
         },
+        unlock_text: "解锁了 荒兽森林 - 3.除此之外，营地的柳树砍伐也已解锁。"
     });
     locations["荒兽森林 - 4"] = new Combat_zone({
         description: "荒兽横行的森林区域，出现了一些抵达大地级五阶的荒兽和人类。", 
@@ -2502,6 +2504,21 @@ function get_location_type_penalty(type, stage, stat) {
                 resources: [{name: "高级蓝宝石", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
                 time_period: [10, 2],
                 skill_required: [0, 10],
+                scales_with_skill: true,
+            },
+        }),
+    }
+    locations["荒兽森林营地"].activities = {
+        "woodcutting100": new LocationActivity({
+            activity_name: "woodcutting",
+            infinite: true,
+            starting_text: "在荒兽森林中砍伐柳木",
+            skill_xp_per_tick: 20,
+            is_unlocked: false,
+            gained_resources: {
+                resources: [{name: "百年柳木", ammount: [[1,1], [1,3]], chance: [1, 1]}],
+                time_period: [30, 6],
+                skill_required: [8, 30],
                 scales_with_skill: true,
             },
         }),
