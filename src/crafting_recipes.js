@@ -790,7 +790,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     smelting_recipes.items["充能合金·粗制"] = new ItemRecipe({
         name: "充能合金·粗制",
         recipe_type: "material",
-        materials: [{material_id: "黑色刀币", count: 1},{material_id: "甲壳碎片", count: 4},{material_id:"A1·能量核心", count: 2}], 
+        materials: [{material_id: "黑色刀币", count: 1},{material_id: "甲壳碎片", count: 4},{material_id:"A4·能量核心", count: 2}], 
         result: {result_id: "充能合金锭", count: 1},
         success_chance: [0.5,1],
         recipe_level: [14,20],

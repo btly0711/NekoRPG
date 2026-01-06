@@ -3762,11 +3762,13 @@ function create_new_levelary_entry(level_name) {
         //console.log(C_enemy);
         for(let k=0;k<C_enemy.loot_list.length;k++)
         {
-            if(lootlist[C_enemy.loot_list[k].item_name] == undefined)
+            let I_name = `<${C_enemy.loot_list[k].item_name}> `;
+            if(lootlist[I_name] == undefined)
             {
-                lootlist[C_enemy.loot_list[k].item_name] = 0;
+                lootlist[I_name] = 0;
                 
-                tooltip_enemies.innerHTML += `<${C_enemy.loot_list[k].item_name}> `;
+                tooltip_enemies.innerText += I_name;
+                //tooltip_enemies.innerHTML += "\<A4·能量核心\> ";
             }
         }
         //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
