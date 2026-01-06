@@ -269,7 +269,7 @@ function create_item_tooltip_content({item, options={}}) {
             });
         }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","axe":"斧子","props":"道具","method":"秘法","special":"特殊","realm":"领域"}
+        let EquipSlotMap = {"sword":"剑","head":"头部","trident":"三叉戟","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","axe":"斧子","props":"道具","method":"秘法","special":"特殊","realm":"领域"}
         if(item.equip_slot === "weapon") {
             item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
@@ -1145,7 +1145,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     if("quality" in target_item) {
         item_control_div.dataset.item_quality = target_item.quality;
     }
-    let EquipSlotMap = {"sword":"剑","head":"头部","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法","special":"特殊","realm":"领域"};
+    let EquipSlotMap = {"sword":"剑","head":"头部","trident":"三叉戟","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法","special":"特殊","realm":"领域"};
     if(target_item.tags?.equippable) {
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;
@@ -2618,7 +2618,7 @@ function update_displayed_stats() { //updates displayed stats
     });
     //calculating ranks
 
-    const chara_rank = (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility) * character.stats.full.attack_speed  * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)
+    const chara_rank = (character.stats.full.attack_mul || 1) * (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility) * character.stats.full.attack_speed  * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)
     //攻防敏*攻速*（暴击率*暴击额外伤害+1）
     //character_rank_div.innerText = `战力: ${chara_rank}`;//看战力以拟合后续【排位】曲线
 
@@ -3753,7 +3753,9 @@ function create_new_levelary_entry(level_name) {
     {
         tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
      }
-     tooltip_enemies.innerHTML += `<br>此处战利品：<br>`;
+     
+    const tooltip_loots = document.createElement("div");
+     tooltip_loots.innerHTML += `<br>此处战利品：<br>`;
     let lootlist = {0:0};
      for(let j=0;j<level.enemies_list.length;j++)
     {
@@ -3767,7 +3769,7 @@ function create_new_levelary_entry(level_name) {
             {
                 lootlist[I_name] = 0;
                 
-                tooltip_enemies.innerText += I_name;
+                tooltip_loots.innerText += I_name;
                 //tooltip_enemies.innerHTML += "\<A4·能量核心\> ";
             }
         }
@@ -3778,6 +3780,7 @@ function create_new_levelary_entry(level_name) {
     levelary_tooltip.appendChild(tooltip_xp);
     levelary_tooltip.appendChild(tooltip_tags);
     levelary_tooltip.appendChild(tooltip_enemies);
+    levelary_tooltip.appendChild(tooltip_loots);
 
     levelary_entry_divs[level_name].appendChild(name_div);
     levelary_entry_divs[level_name].appendChild(kill_counter);

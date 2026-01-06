@@ -179,6 +179,13 @@ class TradeItem {
         location_name: "地宫浅层",
         profit_margin: 1.5,
     });
+    traders["营地商铺"] = new Trader({
+        name: "营地商铺",
+        inventory_template: "Terra II",
+        is_unlocked: true,
+        location_name: "荒兽森林营地",
+        profit_margin: 3.6,
+    });
 })();
 
 //create inventory templates
@@ -343,6 +350,30 @@ class TradeItem {
     inventory_templates["Terra Palace"] = 
     [
             new TradeItem({item_name: "地宫金属锭", count: [999,999]}),
+    ];
+    
+    inventory_templates["Terra II"] = 
+    [
+            new TradeItem({item_name: "A1·能量核心", count: [100,250]}),
+            new TradeItem({item_name: "黑色刀币", count: [100,250]}),
+            new TradeItem({item_name: "霜炙皮草", count: [100,250]}),
+            new TradeItem({item_name: "地宫·荒兽肉排", count: [100,250]}),
+            
+            
+            new TradeItem({item_name: "荒兽精华", count: [3,5]}),
+            new TradeItem({item_name: "A4·能量核心", count: [5,10], chance: 0.8}),
+            new TradeItem({item_name: "甲壳碎片", count: [5,10], chance: 0.8}),
+
+            new TradeItem({item_name: "森林·荒兽肉块", count: [2,5], chance: 0.8}),
+            new TradeItem({item_name: "活化柳木", count: [5,10], chance: 0.8}),
+            
+            new TradeItem({item_name: "充能剑", count: [1], quality: [81, 120], chance: 0.5}),
+            new TradeItem({item_name: "充能戟", count: [1], quality: [71, 110], chance: 0.2}),
+
+            new TradeItem({item_name: "活性帽子", count: [1], quality: [91, 120], chance: 0.8}),
+            new TradeItem({item_name: "活性背心", count: [1], quality: [91, 120], chance: 0.8}),
+            new TradeItem({item_name: "活性裤子", count: [1], quality: [91, 120], chance: 0.8}),
+            new TradeItem({item_name: "活性袜子", count: [1], quality: [91, 110], chance: 0.8}),
     ];
 
 

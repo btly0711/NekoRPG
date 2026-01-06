@@ -1589,7 +1589,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["地宫深层"] = new Location({ 
         connected_locations: [{location: locations["地宫浅层"], custom_text: "回到浅层处"}], 
-        description: "荒兽海之后的区域。纳娜米被困在此处。[V0.40前版本终点]",
+        description: "荒兽海之后的区域。纳娜米被困在此处。",
         
         is_unlocked: false,
         name: "地宫深层", 
@@ -1812,6 +1812,7 @@ function get_location_type_penalty(type, stage, stat) {
         is_unlocked: false,
         name: "荒兽森林营地", 
         dialogues: ["纳布","心之石像"],
+        traders: ["营地商铺"],
         bgm: 6,
         //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//2-1安全区
@@ -1890,7 +1891,7 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 1600,
             locations: [{location: "荒兽森林 - 4"}],
         },
-        unlock_text: "解锁了 荒兽森林 - 3.除此之外，营地的柳树砍伐也已解锁。"
+        unlock_text: "解锁了 荒兽森林 - 3.除此之外，营地的柳树砍伐也已解锁。",
     });
     locations["荒兽森林 - 4"] = new Combat_zone({
         description: "荒兽横行的森林区域，出现了一些抵达大地级五阶的荒兽和人类。", 
@@ -1909,8 +1910,39 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 2000,
-            //locations: [{location: "荒兽森林 - X"}],
+            locations: [{location: "荒兽森林 - X"}],
         },
+    });
+    locations["荒兽森林 - X"] = new Challenge_zone({
+        description: "与百家近卫的战斗。击败他们后即可逃遁。", 
+        enemy_count: 2, 
+        enemies_list: ["百家近卫[BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "荒兽森林 - X",
+        bgm:6,
+        parent_location: locations["荒兽森林"],
+        repeatable_reward: {
+            locations: [{location: "荒兽森林 - XL"},{location: "清野江畔"}],
+        },
+        unlock_text: "[纳可]你说得对，但是你哥哥连大地级都没到，你是怎么修炼到大地级七阶的呀？",
+    });
+    locations["荒兽森林 - XL"] = new Challenge_zone({
+        description: "与百方的战斗。可以稍后再回来击败他！。", 
+        enemy_count: 1, 
+        enemies_list: ["百方[荒兽森林 ver.][BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "荒兽森林 - XL",
+        bgm:6,
+        parent_location: locations["荒兽森林"],
+        repeatable_reward: {
+        },
+        unlock_text: "[百方]跑了？这下不好办了。再想下手，可没有那么好的机会了啊。",
     });
 
     
@@ -1918,8 +1950,19 @@ function get_location_type_penalty(type, stage, stat) {
     locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - 2"]});
     locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - 3"]});
     locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - 4"]});
+    locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - X"], custom_text: "与百家近卫战斗"});
+    locations["荒兽森林"].connected_locations.push({location: locations["荒兽森林 - XL"], custom_text: "与百方战斗"});
 
-
+    locations["清野江畔"] = new Location({ 
+        connected_locations: [{location: locations["荒兽森林营地"], custom_text: "走小路，回到营地"}], 
+        description: "顺着这条江往回走就可以回到家族..快点和父亲大人汇报此事！[V1.10前版本终点]",
+        
+        name: "清野江畔", 
+        is_unlocked: false,
+        bgm: 7,
+        //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
+    });//2-2
+    locations["清野江畔"].connected_locations.push({location: locations["荒兽森林营地"]});
 
 
 

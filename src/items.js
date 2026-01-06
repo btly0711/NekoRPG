@@ -2362,6 +2362,20 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["玻璃小炮"] = new Props({
+        name: "玻璃小炮",
+        id: "玻璃小炮",
+        description: "没有进化完全体状态的玻璃大炮。但是，大炮没有了，玻璃还在...", 
+        value: 67108864,
+        stats: {
+            attack_power: {
+                flat: 5000,
+            },
+            defense: {
+                flat: -5000,
+            }
+        }
+    });
 
 
 })();
@@ -2558,7 +2572,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1.8e7,
         component_tier: 5,
         name_prefix: "充能",
-        attack_value: 3240,
+        attack_value: 4320,
         stats: {
             crit_rate: {
                 flat: 0.10,
@@ -2574,13 +2588,13 @@ item_templates["Twist liek a snek"] = new Book({
         value: 3.6e7,
         component_tier: 5,
         name_prefix: "充能",
-        attack_value: 4320,
+        attack_value: 6000,
         stats: {
             crit_rate: {
                 flat: 0.15,
             },
             attack_mul: {
-                multiplier: 3.00,
+                multiplier: 2.50,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -2638,6 +2652,9 @@ item_templates["Twist liek a snek"] = new Book({
             crit_multiplier: {
                 flat: 0.2,
             },
+            agility: {
+                flat: 2000.00,
+            },
         }
     });
 })();
@@ -2659,6 +2676,19 @@ item_templates["Twist liek a snek"] = new Book({
         components: {
             head: "精钢剑刃",
             handle: "铜骨剑柄",
+        }
+    });
+    
+    item_templates["充能剑"] = new Weapon({
+        components: {
+            head: "充能剑刃",
+            handle: "柳木剑柄",
+        }
+    });
+    item_templates["充能戟"] = new Weapon({
+        components: {
+            head: "充能戟头",
+            handle: "柳木剑柄",
         }
     });
 })();
@@ -2934,9 +2964,9 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.1e7,
         component_tier: 5,
         full_armor_name: "充能头盔",
-        defense_value: 450,
+        defense_value: 900,
         stats: {
-            agility: {
+            attack_power: {
                 flat: 225.00,
             },
         }
@@ -2948,9 +2978,9 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.8e7,
         component_tier: 5,
         full_armor_name: "充能胸甲",
-        defense_value: 600,
+        defense_value: 1200,
         stats: {
-            agility: {
+            attack_power: {
                 flat: 300.00,
             },
         }
@@ -2962,9 +2992,9 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.8e7,
         component_tier: 5,
         full_armor_name: "充能腿甲",
-        defense_value: 600,
+        defense_value: 1200,
         stats: {
-            agility: {
+            attack_power: {
                 flat: 300.00,
             },
         }
@@ -2976,9 +3006,9 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1.4e7,
         component_tier: 5,
         full_armor_name: "充能战靴",
-        defense_value: 300,
+        defense_value: 600,
         stats: {
-            agility: {
+            attack_power: {
                 flat: 150.00,
             },
         }
@@ -3149,7 +3179,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "森林·荒兽肉排", 
         description: "大地级中期荒兽的肉。出了地宫之后，外面的荒兽好吃了不少。", 
         value: 1.8e6,
-        effects: [{effect: "饱食 V", duration: 90}],
+        effects: [{effect: "饱食 V", duration: 60}],
         image: "image/item/A4_cooked_meat.png",
     });
 })();

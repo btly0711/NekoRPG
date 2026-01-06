@@ -2340,6 +2340,7 @@ class Enemy {
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
             {item_name: "流动凝胶", chance:0.50},
+            {item_name: "甲壳碎片", chance:0.20},
             //应为280X
         ],
     });
@@ -2357,7 +2358,8 @@ class Enemy {
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
             {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "A4·能量核心", chance:0.30},
+            {item_name: "A4·能量核心", chance:0.10},
+            {item_name: "甲壳碎片", chance:0.15},
             //应为280X
         ],
     });
@@ -2630,6 +2632,34 @@ class Enemy {
         tags: [],
         stats: {health: 120000000, attack:4000000, agility: 800000, attack_speed: 1.0, defense: 600000}, 
         loot_list: [],
+    });
+    enemy_templates["百家近卫[BOSS]"] = new Enemy({
+        name: "百家近卫[BOSS]", 
+        description: "百方携带的护卫。为什么少爷会带比自己还弱的护卫呢...", 
+        xp_value: 7575, 
+        rank: 2198,
+        image: "image/boss/B2101.png",
+        realm: "<span class=realm_sky><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [3],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2000000, attack:44000, agility: 24000, attack_speed: 1.2, defense: 22000}, 
+        loot_list: [{item_name:"极品蓝宝石",chance:1.00}],
+    });
+    enemy_templates["百方[荒兽森林 ver.][BOSS]"] = new Enemy({
+        name: "百方[荒兽森林 ver.][BOSS]", 
+        description: "和飞船里的百方比起来只低了两阶，属性却少了20余倍。大地级后期的跨度也太大了叭。", 
+        xp_value: 46368, 
+        rank: 2199,
+        image: "image/boss/B2102.png",
+        realm: "<span class=realm_sky><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [],//百方的属性：WIP
+        spec_value:{},
+        tags: [],
+        stats: {health: 38400000, attack:192000, agility: 96000, attack_speed: 1.2, defense: 63000}, 
+        loot_list: [{item_name:"玻璃小炮",chance:1.00}],
     });
 
     enemy_templates["Village guard (heavy)"] = new Enemy({

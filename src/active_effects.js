@@ -126,7 +126,7 @@ effect_templates["饱食 V"] = new ActiveEffect({
     name: "饱食 V",
     effects: {
         stats: {
-            health_regeneration_flat: {flat: 6000},
+            health_regeneration_flat: {flat: 12000},
             attack_power:{flat:800},
             defense:{flat:800},
             agility:{flat:800},
