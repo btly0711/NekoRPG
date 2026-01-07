@@ -1811,7 +1811,7 @@ function get_location_type_penalty(type, stage, stat) {
         
         is_unlocked: false,
         name: "荒兽森林营地", 
-        dialogues: ["纳布","心之石像"],
+        dialogues: ["纳布"],
         traders: ["营地商铺"],
         bgm: 6,
         //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"

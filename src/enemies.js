@@ -2630,7 +2630,7 @@ class Enemy {
         spec: [28],
         spec_value:{},
         tags: [],
-        stats: {health: 12000000, attack:4000000, agility: 800000, attack_speed: 1.0, defense: 600000}, 
+        stats: {health: 120000000, attack:4000000, agility: 800000, attack_speed: 1.0, defense: 600000}, 
         loot_list: [],
     });
     enemy_templates["百家近卫[BOSS]"] = new Enemy({
