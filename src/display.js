@@ -1189,11 +1189,15 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
         item_name_div.innerHTML += `<span class = "item_category"></span> <span class = "item_name">${target_item.getName()}</span>`;
     }
     
-    if(item_count > 1) {
+    if(item_count != 1) {
         item_name_div.innerHTML += `<span class="item_count"> x${item_count}</span>`;
-    } else {
+    } else if(item_count) {
         item_name_div.innerHTML += `<span class="item_count"></span>`;
     }
+    // if(item_count < 0 || isNaN(item_count)) {
+    //     console.log(`Item count for key "" reached an illegal value`);
+    //     //throw new Error(`Item count for key "${items[i].item_key}" reached an illegal value`);
+    // }
 
     item_name_div.classList.add(`${item_class}_name`);
     item_div.appendChild(item_name_div);
@@ -1356,11 +1360,11 @@ function update_displayed_enemies() {
             }
 
             //enemies_div.children[i].children[0].children[1].innerHTML = `AP : ${Math.round(ap)} | EP : ${Math.round(ep)}`;
-            enemies_div.children[i].children[0].children[1].children[0].innerHTML = `| 伤害: ${format_number(current_enemies[i].stats.attack)}`;
-            enemies_div.children[i].children[0].children[1].children[1].innerHTML = `防御: ${format_number(current_enemies[i].stats.defense)}`;
-            enemies_div.children[i].children[0].children[1].children[2].innerHTML = `攻速: ${format_number(disp_speed)}`;
-            enemies_div.children[i].children[0].children[1].children[3].innerHTML = `命中: ${Math.floor(100*hit_chance)}%`; //100% if shield!
-            enemies_div.children[i].children[0].children[1].children[4].innerHTML = `闪避: ${Math.floor(100*evasion_chance)}%`;
+            enemies_div.children[i].children[0].children[1].children[0].innerHTML = `| 伤害:${format_number(current_enemies[i].stats.attack)}`;
+            enemies_div.children[i].children[0].children[1].children[1].innerHTML = `防御:${format_number(current_enemies[i].stats.defense)}`;
+            enemies_div.children[i].children[0].children[1].children[2].innerHTML = `攻速:${format_number(disp_speed)}`;
+            enemies_div.children[i].children[0].children[1].children[3].innerHTML = `命中:${Math.floor(100*hit_chance)}%`; //100% if shield!
+            enemies_div.children[i].children[0].children[1].children[4].innerHTML = `闪避:${Math.floor(100*evasion_chance)}%`;
             
         } else {
             enemies_div.children[i].children[0].style.display = "none"; //just hide it
@@ -3491,7 +3495,7 @@ function create_new_bestiary_entry(enemy_name) {
     stat_0_value.classList.add("stat_value");
 
     stat_0_name.innerHTML = "HP:";
-    stat_0_value.innerHTML = `${enemy.stats.health}`;
+    stat_0_value.innerHTML = `${format_number(enemy.stats.health)}`;
     stat_0.append(stat_0_name, stat_0_value);
 
     const stat_1 = document.createElement("div");
@@ -3503,7 +3507,7 @@ function create_new_bestiary_entry(enemy_name) {
     stat_1_value.classList.add("stat_value");
 
     stat_1_name.innerHTML = `ATK:`;
-    stat_1_value.innerHTML = `${enemy.stats.attack}`;
+    stat_1_value.innerHTML = `${format_number(enemy.stats.attack)}`;
     stat_1.append(stat_1_name, stat_1_value);
 
     stat_line_0.append(stat_0, stat_1);
@@ -3521,7 +3525,7 @@ function create_new_bestiary_entry(enemy_name) {
     stat_2_value.classList.add("stat_value");
 
     stat_2_name.innerHTML = "DEF:";
-    stat_2_value.innerHTML = `${enemy.stats.defense}`;
+    stat_2_value.innerHTML = `${format_number(enemy.stats.defense)}`;
     stat_2.append(stat_2_name, stat_2_value);
 
     const stat_3 = document.createElement("div");
@@ -3533,7 +3537,7 @@ function create_new_bestiary_entry(enemy_name) {
     stat_3_value.classList.add("stat_value");
 
     stat_3_name.innerHTML = `SPD:`;
-    stat_3_value.innerHTML = `${enemy.stats.attack_speed}`;
+    stat_3_value.innerHTML = `${format_number(enemy.stats.attack_speed)}`;
     stat_3.append(stat_3_name, stat_3_value);
 
     stat_line_2.append(stat_2, stat_3);
@@ -3550,7 +3554,7 @@ function create_new_bestiary_entry(enemy_name) {
     stat_4_value.classList.add("stat_value");
 
     stat_4_name.innerHTML = "AGI:";
-    stat_4_value.innerHTML = `${Math.round(enemy.stats.agility)}`;
+    stat_4_value.innerHTML = `${format_number(Math.round(enemy.stats.agility))}`;
     stat_4.append(stat_4_name, stat_4_value);
 
     const stat_5 = document.createElement("div");
@@ -3562,7 +3566,7 @@ function create_new_bestiary_entry(enemy_name) {
     stat_5_value.classList.add("stat_value");
 
     stat_5_name.innerHTML = "Base XP:";
-    stat_5_value.innerHTML = `${Math.round(enemy.xp_value)}`;
+    stat_5_value.innerHTML = `${format_number(Math.round(enemy.xp_value))}`;
 
     // Object.keys(enemy.tags).forEach(tags => {
     //     stat_5_value.innerHTML += `[${tags}] `

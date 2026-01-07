@@ -2410,7 +2410,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 1000,
             },
             attack_mul: {
-                flat: 0.5,
+                multiplier: 1.5,
             },
         }
     });
@@ -2598,6 +2598,9 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_speed: {
                 multiplier: 0.50,
+            },
+            agility: {
+                multiplier: 0.75,
             },
         }
     });
@@ -3280,7 +3283,7 @@ item_templates["Twist liek a snek"] = new Book({
         gem_value: 500,
     });
     item_templates["极品蓝宝石"] = new UsableItem({
-        name: "极品黄宝石", 
+        name: "极品蓝宝石", 
         description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷1000点或生命5万点", 
         value: 1000,
         image: "image/item/gem32_1k.png",
@@ -3288,7 +3291,7 @@ item_templates["Twist liek a snek"] = new Book({
         gem_value: 1000,
     });
     item_templates["极品红宝石"] = new UsableItem({
-        name: "极品黄宝石", 
+        name: "极品红宝石", 
         description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷2000点或生命10万点", 
         value: 2000,
         image: "image/item/gem33_2k.png",
@@ -3296,7 +3299,7 @@ item_templates["Twist liek a snek"] = new Book({
         gem_value: 2000,
     });
     item_templates["极品绿宝石"] = new UsableItem({
-        name: "极品黄宝石", 
+        name: "极品绿宝石", 
         description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷5000点或生命25万点", 
         value: 5000,
         image: "image/item/gem34_5k.png",

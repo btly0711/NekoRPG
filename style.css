@@ -1443,10 +1443,10 @@ i {
 						font-size: 12px;
 					}
 					.enemy_stat_short, .attack_stat_short {
-						width: 55px;
+						width: 52px;
 					}
 					.enemy_stat_long, .attack_stat_long {
-						width: 75px;
+						width: 80px;
 					}
 
 				.enemy_health_div {

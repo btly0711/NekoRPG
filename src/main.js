@@ -1232,6 +1232,19 @@ function format_number(some_number)
  * 
  * @param {String} attacker id of enemy
 */ 
+function faint(c_log)
+{
+    total_deaths++;
+    log_message(character.name + c_log, "hero_defeat");
+     update_displayed_health();
+    if(options.auto_return_to_bed && last_location_with_bed) {
+        change_location(last_location_with_bed);
+        start_sleeping();
+    } else {
+        change_location(current_location.parent_location.name);
+    }
+    return;
+}
 function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) {
     
     /*
@@ -1366,19 +1379,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health) * 0.15 + " 点血量","enemy_enhanced");
     }//回春
 
-    if(fainted) {
-        total_deaths++;
-        log_message(character.name + " 失败了", "hero_defeat");
-
-        update_displayed_health();
-        if(options.auto_return_to_bed && last_location_with_bed) {
-            change_location(last_location_with_bed);
-            start_sleeping();
-        } else {
-            change_location(current_location.parent_location.name);
-        }
-        return;
-    }
+    if(fainted) faint(" 失败了");
 
     update_displayed_health();
 }
@@ -1630,19 +1631,7 @@ function do_character_combat_action({target, attack_power}, target_num) {
             let {damage_taken, fainted} = character.take_damage([],{damage_value: target.spec_value[29]},0);
             
             log_message(character.name + " 未命中,并受到了" + format_number(damage_taken) + "点伤害[阻击]", "hero_missed");
-            if(fainted) {
-                total_deaths++;
-                log_message(character.name + " 被阻击击败", "hero_defeat");
-
-                update_displayed_health();
-                if(options.auto_return_to_bed && last_location_with_bed) {
-                    change_location(last_location_with_bed);
-                    start_sleeping();
-                } else {
-                    change_location(current_location.parent_location.name);
-                }
-                return;
-            }
+            if(fainted) faint(" 被阻击击败")
         }
         else log_message(character.name + " 未命中", "hero_missed");
     }
@@ -2074,10 +2063,26 @@ function use_recipe(target,stated = false) {
         } else if(subcategory === "equipment") {
             //read the selected components, pass them as params
             
-            const component_1_key = recipe_div.children[1].children[0].children[1].querySelector(".selected_component")?.dataset.item_key;
+            let component_1_key = recipe_div.children[1].children[0].children[1].querySelector(".selected_component")?.dataset.item_key;
             
-            const component_2_key = recipe_div.children[1].children[1].children[1].querySelector(".selected_component")?.dataset.item_key;
-
+            let component_2_key = recipe_div.children[1].children[1].children[1].querySelector(".selected_component")?.dataset.item_key;
+            // console.log(recipe_div.children[1].children[0].children[1]);
+            // console.log(recipe_div.children[1].children[0].children[1].length);
+            // console.log(recipe_div.children[1].children[0].children[1].children[0]);
+            if(!component_1_key && (recipe_div.children[1].children[0].children[1].children[0] !== undefined))
+            {
+                
+                recipe_div.children[1].children[0].children[1].children[0].classList.add('selected_component');
+                component_1_key = recipe_div.children[1].children[0].children[1].querySelector(".selected_component")?.dataset.item_key;
+                log_message(`自动切换材料: ${component_1_key}`, "crafting");
+            }
+            if(!component_2_key && (recipe_div.children[1].children[1].children[1].children[0] !== undefined))
+            {
+                
+                recipe_div.children[1].children[1].children[1].children[0].classList.add('selected_component');
+                component_2_key = recipe_div.children[1].children[1].children[1].querySelector(".selected_component")?.dataset.item_key;
+                log_message(`自动切换材料: ${component_2_key}`, "crafting");
+            }
             if(!component_1_key || !component_2_key) {
                 return;
             } else {
@@ -2102,6 +2107,8 @@ function use_recipe(target,stated = false) {
                     const component_keys = {};
                     component_keys[component_1_key] = true;
                     component_keys[component_2_key] = true;
+                    
+
                     update_displayed_component_choice({category, recipe_id, component_keys});
                 }
             }
@@ -2200,11 +2207,15 @@ function use_item(item_key) {
     let used = false;
     for(let i = 0; i < item_effects.length; i++) {
         const duration = item_templates[id].effects[i].duration;
-        if(!active_effects[item_effects[i].effect] || active_effects[item_effects[i].effect].duration < duration) {
-
-            active_effects[item_effects[i].effect] = new ActiveEffect({...effect_templates[item_effects[i].effect], duration});
-            used = true;
-        }
+        let s_dur = duration;
+        //console.log(s_dur);
+        //if(!active_effects[item_effects[i].effect] || active_effects[item_effects[i].effect].duration < duration) {
+        if(active_effects[item_effects[i].effect]) s_dur += (active_effects[item_effects[i].effect].duration || 0)
+        //console.log(s_dur);
+        active_effects[item_effects[i].effect] = new ActiveEffect({...effect_templates[item_effects[i].effect], duration:s_dur});
+        //console.log(new ActiveEffect({...effect_templates[item_effects[i].effect], duration:s_dur}));
+        used = true;
+        //}
     }
 
 
@@ -2223,10 +2234,26 @@ function use_item(item_key) {
         P3=Math.pow(((character.stats.flat.gems.agility||0)/G_value +1),-1.5);
         if(character.stats.flat.gems.agility >= SCGV*G_value) P3*=0.5;
         P4=Math.pow(((character.stats.flat.gems.max_health||0)/G_value/HPMV +1),-1.5);
-        if(character.stats.flat.gems.agility >= SCGV*HPMV*G_value) P4*=0.5;
-        
-        
-        let pa = Math.random()*(P1+P2+P3+P4);
+        if(character.stats.flat.gems.max_health >= SCGV*HPMV*G_value) P4*=0.5;
+        let pa = 0;
+        if(character.stats.flat.gems.attack_power >= SCGV*G_value*3)
+        {
+            console.log(P1,P2,P3,P4);
+            if(P1>P2&&P1>P3&&P1>P4){
+                pa=0.5;
+            }
+            else if(P2>P1&&P2>P3&&P2>P4)
+            {
+                pa=1.5;
+            }
+            else if(P3>P1&&P3>P2&&P3>P4)
+            {
+                pa=2.5;
+            }
+            else pa=3.5;
+            P1 = P2 = P3 = P4 =1;
+        }//3倍软上限/抛弃RNG
+        else pa = Math.random()*(P1+P2+P3+P4);
         if(pa<P1)//STR
         {
             message += `攻击上升了 `;
@@ -2807,8 +2834,8 @@ function load(save_data) {
                 //if it's present, item is "simple" (no components)
                 //and if it has no quality, it's something non-equippable
                 if(item_templates[id]) {
-                    item_list.push({item: getItem(item_templates[id]), count: save_data.character.inventory[key].count});
-                    
+                    if(save_data.character.inventory[key].count >= 1) item_list.push({item: getItem(item_templates[id]), count: save_data.character.inventory[key].count});
+                    else console.warn(`Illegal value of ${key} x ${save_data.character.inventory[key].count} in inventory, item was deleted`);
                 } else {
                     console.warn(`Inventory item "${key}" from save on version "${save_data["game version"]} couldn't be found!`);
                     return;
@@ -2988,7 +3015,8 @@ function load(save_data) {
                             //if it's present, item is "simple" (no components)
                             //and if it has no quality, it's something non-equippable
                             if(item_templates[id]) {
-                                trader_item_list.push({item: getItem(item_templates[id]), count: save_data.traders[trader].inventory[key].count});
+                                if(save_data.traders[trader].inventory[key].count >= 1) trader_item_list.push({item: getItem(item_templates[id]), count: save_data.traders[trader].inventory[key].count});
+                                else console.warn(`Illegal value of ${id} x ${save_data.character.inventory[key].count} in traders , item was deleted`);
                             } else {
                                 console.warn(`Inventory item "${key}" from save on version "${save_data["game version"]} couldn't be found!`);
                                 return;
@@ -3564,18 +3592,7 @@ function update() {
             character.stats.full.health = character.stats.full.max_health
         }
         
-        if(character.stats.full.health <= 0) {
-            total_deaths++;
-            log_message(character.name + " 失血过多而昏迷", "hero_defeat");
-
-            update_displayed_health();
-            if(options.auto_return_to_bed && last_location_with_bed) {
-                change_location(last_location_with_bed);
-                start_sleeping();
-            } else {
-                change_location(current_location.parent_location.name);
-            }
-        }
+        if(character.stats.full.health <= 0) faint(" 失血过多而昏迷");
 
 
         if(character.stats.full.health_regeneration_flat || character.stats.full.health_regeneration_percent) {

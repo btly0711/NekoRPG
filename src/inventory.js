@@ -50,6 +50,7 @@ class InventoryHaver {
                     delete this.inventory[items[i].item_key]; 
                     //removes item from inventory if it's county is less than 1
                 } else if(this.inventory[items[i].item_key].count < 0 || isNaN(this.inventory[items[i].item_key].count)) {
+                    delete this.inventory[items[i].item_key]; 
                     throw new Error(`Item count for key "${items[i].item_key}" reached an illegal value`);
                 }
                 

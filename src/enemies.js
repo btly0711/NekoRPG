@@ -2639,7 +2639,7 @@ class Enemy {
         xp_value: 7575, 
         rank: 2198,
         image: "image/boss/B2101.png",
-        realm: "<span class=realm_sky><b>大地级五阶</b></span>",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
         size: "small",
         spec: [3],
         spec_value:{},
@@ -2653,7 +2653,7 @@ class Enemy {
         xp_value: 46368, 
         rank: 2199,
         image: "image/boss/B2102.png",
-        realm: "<span class=realm_sky><b>大地级七阶</b></span>",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
         size: "small",
         spec: [],//百方的属性：WIP
         spec_value:{},
