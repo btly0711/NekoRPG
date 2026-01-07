@@ -2167,7 +2167,7 @@ class Enemy {
         stats: {health: 105000, attack:25000, agility: 12800, attack_speed: 1.1, defense: 10000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
-            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "极品黄宝石", chance:0.02},
             {item_name: "甲壳碎片", chance:0.10},
             {item_name: "荒兽精华", chance:0.10},
             //应为280X
@@ -2259,7 +2259,7 @@ class Enemy {
         stats: {health: 37000, attack:9100, agility: 11500, attack_speed: 1.2, defense: 10900}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
-            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "极品黄宝石", chance:0.02},
             {item_name: "流动凝胶", chance:0.20},
             {item_name: "A4·能量核心", chance:0.20},
             
@@ -2280,7 +2280,7 @@ class Enemy {
         stats: {health: 120000, attack:18500, agility: 12000, attack_speed: 0.9, defense: 3300}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
-            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "极品黄宝石", chance:0.02},
             {item_name: "荒兽精华", chance:0.15},
             {item_name: "大地级魂魄", chance:0.50},
             
@@ -2300,7 +2300,7 @@ class Enemy {
         stats: {health: 15000, attack:28000, agility: 12500, attack_speed: 1.2, defense: 14000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
-            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "极品黄宝石", chance:0.02},
             {item_name: "甲壳碎片", chance:0.20},
             //应为280X
         ],
@@ -2318,7 +2318,7 @@ class Enemy {
         stats: {health: 60000, attack:33000, agility: 13500, attack_speed: 1.2, defense: 11000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
-            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "极品黄宝石", chance:0.02},
             {item_name: "荒兽精华", chance:0.10},
             {item_name: "A4·能量核心", chance:0.15},
             
@@ -2338,7 +2338,7 @@ class Enemy {
         stats: {health: 80000, attack:30000, agility: 12500, attack_speed: 1.2, defense: 9000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
-            {item_name: "极品黄宝石", chance:0.01},
+            {item_name: "极品黄宝石", chance:0.02},
             {item_name: "流动凝胶", chance:0.50},
             {item_name: "甲壳碎片", chance:0.20},
             //应为280X
@@ -2357,9 +2357,9 @@ class Enemy {
         stats: {health: 25000, attack:4000, agility: 13500, attack_speed: 1.2, defense: 16000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.05},
-            {item_name: "极品黄宝石", chance:0.01},
-            {item_name: "A4·能量核心", chance:0.10},
-            {item_name: "甲壳碎片", chance:0.15},
+            {item_name: "极品黄宝石", chance:0.02},
+            {item_name: "A4·能量核心", chance:0.30},
+            {item_name: "甲壳碎片", chance:0.05},
             //应为280X
         ],
     });
@@ -2376,7 +2376,7 @@ class Enemy {
         stats: {health: 135000, attack:49000, agility: 14500, attack_speed: 1.2, defense: 7500}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
-            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品黄宝石", chance:0.05},
             {item_name: "黑色刀币", chance:0.40},
             {item_name: "大地级魂魄", chance:1.0},
             
@@ -2396,7 +2396,7 @@ class Enemy {
         stats: {health: 180000, attack:32000, agility: 10500, attack_speed: 1.2, defense: 10000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
-            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品黄宝石", chance:0.05},
             {item_name: "森林·荒兽肉块", chance:0.40},
             {item_name: "甲壳碎片", chance:0.10},
             //应为500X
@@ -2415,7 +2415,7 @@ class Enemy {
         stats: {health: 72000, attack:20000, agility: 15000, attack_speed: 1.2, defense: 16000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
-            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品黄宝石", chance:0.05},
             {item_name: "甲壳碎片", chance:0.40},
             //应为500X
         ],
@@ -2433,7 +2433,7 @@ class Enemy {
         stats: {health: 216000, attack:36000, agility: 15000, attack_speed: 1.2, defense: 15000}, 
         loot_list: [
             {item_name: "高级绿宝石", chance:0.02},
-            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品黄宝石", chance:0.05},
             {item_name: "甲壳碎片", chance:0.20},
             {item_name: "荒兽精华", chance:0.20},
             //应为500X
@@ -2630,7 +2630,7 @@ class Enemy {
         spec: [28],
         spec_value:{},
         tags: [],
-        stats: {health: 120000000, attack:4000000, agility: 800000, attack_speed: 1.0, defense: 600000}, 
+        stats: {health: 12000000, attack:4000000, agility: 800000, attack_speed: 1.0, defense: 600000}, 
         loot_list: [],
     });
     enemy_templates["百家近卫[BOSS]"] = new Enemy({

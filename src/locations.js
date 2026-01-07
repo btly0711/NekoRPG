@@ -1962,7 +1962,7 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 7,
         //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//2-2
-    locations["清野江畔"].connected_locations.push({location: locations["荒兽森林营地"]});
+    locations["荒兽森林"].connected_locations.push({location: locations["清野江畔"]});
 
 
 

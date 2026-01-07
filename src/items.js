@@ -2599,9 +2599,6 @@ item_templates["Twist liek a snek"] = new Book({
             attack_speed: {
                 multiplier: 0.50,
             },
-            agility: {
-                multiplier: 0.75,
-            },
         }
     });
     item_templates["骨剑柄"] = new WeaponComponent({

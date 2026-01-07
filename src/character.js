@@ -218,6 +218,12 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                         gains += `角色属性<span style="color:#66ccff">【普攻倍率】</span>现已解锁！<br>`;
                         add_to_character_inventory([{item: item_templates["微火"], count: 1}]);
                 }
+                if(this.realm[0]>=9)
+                {
+                        let A_mul_gain = (this.realm[0]-7)*0.05;
+                        character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;
+                        gains += gains += `普攻倍率增加了${A_mul_gain}<br>`;
+                }
 
                 gains += `技能经验倍率提高了${Math.round(total_skill_xp_multiplier*100-100)}%<br>`;
                 gains += `生命值完全恢复了<br>`;

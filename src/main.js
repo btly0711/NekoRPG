@@ -22,6 +22,7 @@ import { end_activity_animation,
          update_displayed_combat_location, update_displayed_normal_location,
          log_loot, update_displayed_equipment,
          update_displayed_health, 
+         update_displayed_stats,
          format_money,
          update_displayed_effects, update_displayed_effect_durations,
          update_displayed_time, update_displayed_character_xp, 
@@ -1585,7 +1586,6 @@ function do_character_combat_action({target, attack_power}, target_num) {
                 add_to_character_inventory(loot);
             }
             
-            kill_enemy(target);
             if(target.name == "地宫养殖者[BOSS]")//没收姐姐
             {
                 if(character.equipment.special?.name == "纳娜米")
@@ -1614,8 +1614,11 @@ function do_character_combat_action({target, attack_power}, target_num) {
                     update_displayed_character_xp(true);
                 }
                 
-                update_displayed_character_inventory({was_anything_new_added});
+                update_displayed_character_inventory({was_anything_new_added:true});
+                //unlock_location("荒兽森林营地");
+
             }
+            kill_enemy(target);
         }
 
         update_displayed_health_of_enemies();
@@ -2662,7 +2665,9 @@ function load(save_data) {
         character.stats.flat.level.defense = (character.stats.flat.level.defense || 0) + this_realm[2];
         character.stats.flat.level.attack_power = ( character.stats.flat.level.attack_power || 0) + this_realm[2] * 2; 
         character.stats.flat.level.attack_speed = ( character.stats.flat.level.attack_speed || 0) + realm_spd_gain;
-        
+        if(this_realm[0]>=9){
+            let A_mul_gain = (this_realm[0]-7)*0.05;
+            character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;}
         let total_skill_xp_multiplier = 1.1;
         if(this_realm[0]>=3) total_skill_xp_multiplier += 0.05;
         if(this_realm[0]>=6) total_skill_xp_multiplier += 0.05;
