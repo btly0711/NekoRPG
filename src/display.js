@@ -3453,7 +3453,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [30, "净化", "#80eed6",function(enemy){return "战斗前，敌人将角色敏捷的<span style='color:#87CEFA'>" + enemy.spec_value[30] + "倍</span>加到自己的攻击上。"}],
 [31, "回春", "#ccff99","木元素领悟。修习了战复魔法的冒险者钟爱的属性。<br>敌人每次命中恢复自身生命上限<span style='color:#87CEFA'>15%</span>的生命。"],
 [32, "反戈", "#d3a547","反戈一击。<br>敌人将角色伤害的<span style='color:#87CEFA'>20%</span>反弹给角色。"],
-[33, function(enemy){return enemy.spec_value[33] + "连击"}, "#ffee77",function(enemy){return "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>" + enemy.spec_value[33] + "次</span>"}],
+[33, function(enemy){return enemy.spec_value[33] + "连击"}, "#ffee77",function(enemy){return "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>" + enemy.spec_value[33] + "次</span>。"}],
 [34, "凌弱","#109996","欺凌弱小的敌人容易被防杀。<br>当角色<span style='color:#FFFF00'>防御小于敌人</span>时，其<span style='color:#FFFF00'>与敌人防御的差值</span>将拉大<span style='color:#87CEFA'>一倍</span>。"],
 [35, "领域", "#c677dd",function(enemy){return "这个敌人似乎懂得力量外放的道理。<br>敌人每次被攻击，则额外对角色造成<span style='color:#87CEFA'>" + (enemy.spec_value[35]) + "</span>点魔法伤害。"}],
 [36, "自爆", "#597a80","强者在绝望之下最后的尊严。<br>第20回合触发，血量下降到1，对角色造成<span style='color:#87CEFA'>自身剩余生命*4</span>的伤害。"],
@@ -3593,7 +3593,7 @@ function create_new_bestiary_entry(enemy_name) {
     for(let ine=0;ine<enemy.spec.length;ine++){
         //console.log(spec_stat[enemy.spec[ine]][3]);
         let S_STS = spec_stat[enemy.spec[ine]];
-        spec_stats.innerHTML += `<br><b><font color="${S_STS[2]}">${S_STS[1]} </font></b> ：${S_STS[3][0]==undefined?S_STS[3](enemy):S_STS[3]} `;
+        spec_stats.innerHTML += `<br><b><font color="${S_STS[2]}">${S_STS[1][0]==undefined?S_STS[1](enemy):S_STS[1]} </font></b> ：${S_STS[3][0]==undefined?S_STS[3](enemy):S_STS[3]} `;
     }
     
     stat_line_5.appendChild(spec_stats);

@@ -201,6 +201,9 @@ class Combat_zone {
  
         for(let i = 0; i < enemy_group.length; i++) {
             const enemy = enemy_templates[enemy_group[i]];
+            if(enemy.name == undefined){
+                console.error("试图在 " + this.name + " 中生成未定义的敌人 [" + enemy_group[i].name + "]");
+            }
             let newEnemy;
             // if(this.enemy_stat_variation != 0) {
 
@@ -2027,7 +2030,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["清野江畔 - 4"] = new Combat_zone({
         description: "沿着清野江，回家的路。荒兽实力有了巨大的跃升，但家族已经不再遥远，无需恋战。", 
         enemy_count: 20, 
-        enemies_list: ["清野江盗匪","极冰火","清野江盗贼","礁石灵","火烧云","行脚商人"],
+        enemies_list: ["清野江盗匪","极冰火","清野江窃贼","礁石灵","火烧云","行脚商人"],
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: false, 
