@@ -2698,7 +2698,7 @@ function load(save_data) {
 
     if(save_data.character.C_scaling != undefined) character.C_scaling = save_data.character.C_scaling;
     else character.C_scaling = {};
-
+    //WIP
     character.xp.current_level = save_data.character.xp.current_level || 0;
     add_xp_to_character(save_data.character.xp.current_xp || 0, false);
     console.log( character.xp.current_level);
