@@ -1074,6 +1074,7 @@ class Enemy {
         realm: "<span class=realm_basic><b>潮汐级初等 +</b></span>",
         size: "small",
         spec: [8],
+        spec_value:{8:10},
         tags: [],
         stats: {health: 850, attack: 360, agility: 180, attack_speed: 1.2, defense: 90},
         loot_list: [
@@ -1372,8 +1373,8 @@ class Enemy {
         image: "image/enemy/E1319.png",
         realm: "<span class=realm_basic><b>潮汐级巅峰 +</b></span>",
         size: "small",
-        spec: [],
-        tags: [11],
+        spec: [11],
+        tags: [],
         stats: {health: 3430, attack: 720, agility: 400, attack_speed: 1.2, defense: 0}, 
         loot_list: [
             {item_name: "初始红宝石", chance:0.02},
@@ -1584,6 +1585,7 @@ class Enemy {
         realm: "<span class=realm_terra><b>大地级一阶 +</b></span>",
         size: "small",
         spec: [8],
+        spec_value:{8:10},
         tags: [],
         stats: {health: 7000, attack: 2250, agility: 1400, attack_speed: 1.2, defense: 400}, 
         loot_list: [
@@ -2089,6 +2091,7 @@ class Enemy {
         realm: "<span class=realm_terra><b>大地级四阶</b></span>",
         size: "small",
         spec: [8],
+        spec_value:{8:10},
         tags: [],
         stats: {health: 36000, attack:13600, agility: 8000, attack_speed: 1.0, defense: 6400}, 
         loot_list: [
@@ -2439,6 +2442,306 @@ class Enemy {
             //应为500X
         ],
     });
+//2-2
+    enemy_templates["百家近卫"] = new Enemy({
+        name: "百家近卫", 
+        description: "不死心的百方在江畔留下了大量百家的探子。不过他们无心战斗，月入3000X拼什么命啊。", 
+        xp_value: 7575, 
+        rank: 2201,
+        image: "image/enemy/E2201.png",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [3],
+        tags: [],
+        stats: {health: 200000, attack:44000, agility: 24000, attack_speed: 1.2, defense: 22000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.05},
+            {item_name: "极品蓝宝石", chance:0.01},
+            //应为500X
+        ],
+    });
+    enemy_templates["怨灵船夫"] = new Enemy({
+        name: "怨灵船夫", 
+        description: "别的先不提，你长这样，谁敢来坐你的船啊！", 
+        xp_value: 7575, 
+        rank: 2202,
+        image: "image/enemy/E2202.png",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [19],
+        tags: [],
+        stats: {health: 250000, attack:40000, agility: 24000, attack_speed: 1.2, defense: 16000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.05},
+            {item_name: "极品蓝宝石", chance:0.01},
+            //应为500X
+        ],
+    });
+    enemy_templates["旱魃龟"] = new Enemy({
+        name: "旱魃龟", 
+        description: "某一条世界线中，它钻进了地宫浅层，和微花灵阵狼狈为奸，让喵可苦不堪言。幸好，在这里它只是老老实实地待在江边。", 
+        xp_value: 7575, 
+        rank: 2203,
+        image: "image/enemy/E2203.png",
+        realm: "<span class=realm_terra><b>大地级五阶</b></span>",
+        size: "small",
+        spec: [1],
+        tags: [],
+        stats: {health: 10, attack:45000, agility: 20000, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.05},
+            {item_name: "极品蓝宝石", chance:0.01},
+            //应为500X
+        ],
+    });
+    enemy_templates["复苏骸骨"] = new Enemy({
+        name: "复苏骸骨", 
+        description: "聚灵~聚魂~缠绕~复苏。血洛大陆的能量过于充沛，连骨头都能成为强者了！", 
+        xp_value: 10496, 
+        rank: 2204,
+        image: "image/enemy/E2204.png",
+        realm: "<span class=realm_terra><b>大地级五阶 +</b></span>",
+        size: "small",
+        spec: [24,25],
+        tags: [],
+        stats: {health: 100000, attack:61000, agility: 32000, attack_speed: 1.2, defense: 19000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品蓝宝石", chance:0.03},
+            //应为900X
+        ],
+    });
+    enemy_templates["旅行魔术师"] = new Enemy({
+        name: "旅行魔术师", 
+        description: "四处卖艺可比在地宫除草赚钱多了！有天剑用，谁还要斩阵这种屑技能啊。", 
+        xp_value: 10496, 
+        rank: 2205,
+        image: "image/enemy/E2205.png",
+        realm: "<span class=realm_terra><b>大地级五阶 +</b></span>",
+        size: "small",
+        spec: [20],
+        tags: [],
+        stats: {health: 100000, attack:33000, agility: 32000, attack_speed: 1.0, defense: 12000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品蓝宝石", chance:0.03},
+            //应为900X
+        ],
+    });
+    enemy_templates["水溶茸茸"] = new Enemy({
+        name: "水溶茸茸", 
+        description: "似乎走错了路的光环系茸茸。增幅效果只有灵蔓茸茸的一半，唯一的特点在于可以潜伏在水中，难以抓到。", 
+        xp_value: 10496, 
+        rank: 2206,
+        image: "image/enemy/E2206.png",
+        realm: "<span class=realm_terra><b>大地级五阶 +</b></span>",
+        size: "small",
+        spec: [11],
+        tags: [],
+        stats: {health: 150000, attack:45000, agility: 36000, attack_speed: 1.2, defense: 30000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品蓝宝石", chance:0.03},
+            //应为900X
+        ],
+    });
+    enemy_templates["飞龙幼崽"] = new Enemy({
+        name: "飞龙幼崽", 
+        description: "和地龙幼崽相比多出了在空中吐火的能力。天空级之前，飞行就是绝对实力的象征！", 
+        xp_value: 10496, 
+        rank: 2207,
+        image: "image/enemy/E2207.png",
+        realm: "<span class=realm_terra><b>大地级五阶 +</b></span>",
+        size: "small",
+        spec: [22],
+        tags: [],
+        stats: {health: 90000, attack:70000, agility: 36000, attack_speed: 1.2, defense: 25000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品蓝宝石", chance:0.03},
+            //应为900X
+        ],
+    });
+    enemy_templates["鲜红八爪鱼"] = new Enemy({
+        name: "鲜红八爪鱼", 
+        description: "为什么陆地上会有八爪鱼...爬上来之后行动笨拙，无法连击，速度也不快。还是老老实实回江里叭。", 
+        xp_value: 10496, 
+        rank: 2208,
+        image: "image/enemy/E2208.png",
+        realm: "<span class=realm_terra><b>大地级五阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 81000, attack:80000, agility: 24000, attack_speed: 0.9, defense: 22500}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品蓝宝石", chance:0.03},
+            //应为900X
+        ],
+    });
+    enemy_templates["商船水手"] = new Enemy({
+        name: "商船水手", 
+        description: "江边的老水手都拥有一些底牌。诸葛连弩，出来...虽然只有三发就是了啦。", 
+        xp_value: 10496, 
+        rank: 2209,
+        image: "image/enemy/E2209.png",
+        realm: "<span class=realm_terra><b>大地级五阶 +</b></span>",
+        size: "small",
+        spec: [4],
+        tags: [],
+        stats: {health: 120000, attack:81000, agility: 36000, attack_speed: 1.2, defense: 27000}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品蓝宝石", chance:0.03},
+            //应为900X
+        ],
+    });
+    enemy_templates["深水恐怖"] = new Enemy({
+        name: "深水恐怖", 
+        description: "不好！是大惑幻！快吃水心盾！...哦，不是那一只啊。区区10000领域~", 
+        xp_value: 10496, 
+        rank: 2210,
+        image: "image/enemy/E2210.png",
+        realm: "<span class=realm_terra><b>大地级五阶 +</b></span>",
+        size: "small",
+        spec: [35],
+        spec_value:{35:10000},
+        tags: [],
+        stats: {health: 140000, attack:66500, agility: 40000, attack_speed: 1.2, defense: 33500}, 
+        loot_list: [
+            {item_name: "极品黄宝石", chance:0.03},
+            {item_name: "极品蓝宝石", chance:0.03},
+            //应为900X
+        ],
+    });
+    enemy_templates["礁石灵"] = new Enemy({
+        name: "礁石灵", 
+        description: "太邪恶了，坚固敌人居然有基础防御...为此，0.1%魔攻被移除了！", 
+        xp_value: 17711, 
+        rank: 2211,
+        image: "image/enemy/E2211.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [1],
+        tags: [],
+        stats: {health: 20, attack:88000, agility: 54000, attack_speed: 1.0, defense: 55000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+            //应为1.6Z
+        ],
+    });
+    enemy_templates["火烧云"] = new Enemy({
+        name: "火烧云", 
+        description: "不怀好意笑着的云朵魔物。它的攻击能力令人震惊。", 
+        xp_value: 17711, 
+        rank: 2212,
+        image: "image/enemy/E2212.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [33],
+        spec_value:{33:6},
+        tags: [],
+        stats: {health: 220000, attack:94000, agility: 50000, attack_speed: 0.8, defense: 45000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+            //应为1.6Z
+        ],
+    });
+    enemy_templates["行脚商人"] = new Enemy({
+        name: "行脚商人", 
+        description: "似乎是之前那些水手的头头。没有技巧，全是数值。", 
+        xp_value: 17711, 
+        rank: 2213,
+        image: "image/enemy/E2213.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 440000, attack:110000, agility: 54000, attack_speed: 1.2, defense: 45000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+            //应为1.6Z
+        ],
+    });
+    enemy_templates["马里奥菇菇"] = new Enemy({
+        name: "马里奥菇菇", 
+        description: "看起来没有前面几只强嘛...等会？夺少衰弱？", 
+        xp_value: 17711, 
+        rank: 2214,
+        image: "image/enemy/E2214.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [8],
+        spec_value:{8:50},
+        tags: [],
+        stats: {health: 240000, attack:135000, agility: 36000, attack_speed: 1.2, defense: 20000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+            //应为1.6Z
+        ],
+    });
+    enemy_templates["清野江盗匪"] = new Enemy({
+        name: "清野江盗匪", 
+        description: "在长期的欺凌弱小之下，它的实力变得远不如同级的荒兽,魔物或人类。但是，欺负欺负五阶水手还是可以的。", 
+        xp_value: 17711, 
+        rank: 2215,
+        image: "image/enemy/E2215.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [26],
+        tags: [],
+        stats: {health: 88000, attack:90000, agility: 48000, attack_speed: 1.2, defense: 30000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+            //应为1.6Z
+        ],
+    });
+    enemy_templates["极冰火"] = new Enemy({
+        name: "极冰火", 
+        description: "似乎逆用了自爆魔法的魔物。如果血量交换比甚至超过4:1，自爆后留下的一滴血不失为搜刮战利品的方法。", 
+        xp_value: 17711, 
+        rank: 2216,
+        image: "image/enemy/E2216.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [36],
+        tags: [],
+        stats: {health: 810000, attack:108000, agility: 48000, attack_speed: 1.2, defense: 360000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+            //应为1.6Z
+        ],
+    });
+    enemy_templates["清野江窃贼"] = new Enemy({
+        name: "清野江窃贼", 
+        description: "他偷的船可比盗匪抢的船贵多了。在长期的努力下，他练就了一身敏捷的身法！", 
+        xp_value: 17711, 
+        rank: 2216,
+        image: "image/enemy/E2216.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 250000, attack:105000, agility: 72000, attack_speed: 1.3, defense: 21000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+            //应为1.6Z
+        ],
+    });
+    /*
+      黄 蓝 红  
+五阶   5%/1%    7575     500X
+五阶+  3%/3%    10946    900X
+六阶   1%/5%/2% 17711    1.6Z
+复苏骸骨开始算五阶+
+*/    
 })();
 
 
@@ -2562,7 +2865,7 @@ class Enemy {
         image: "image/boss/B1402.png",
         realm: "<span class=realm_terra><b>大地级二阶</b></span>",
         size: "small",
-        spec: [16],
+        spec: [16,36],
         tags: [],
         stats: {health: 135000, attack: 2900, agility: 2000, attack_speed: 1.2, defense: 1800}, 
         loot_list: [
@@ -2655,11 +2958,53 @@ class Enemy {
         image: "image/boss/B2102.png",
         realm: "<span class=realm_terra><b>大地级七阶</b></span>",
         size: "small",
-        spec: [],//百方的属性：WIP
+        spec: [32,34],
         spec_value:{},
         tags: [],
         stats: {health: 38400000, attack:192000, agility: 96000, attack_speed: 1.2, defense: 63000}, 
         loot_list: [{item_name:"玻璃小炮",chance:1.00}],
+    });
+    enemy_templates["威武武士[BOSS]"] = new Enemy({
+        name: "威武武士[BOSS]", 
+        description: "呐，这就叫做误闯天家...2-4的武士怎么跑来这里了！", 
+        xp_value: 46368, 
+        rank: 2297,
+        image: "image/boss/B2201.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 7500000, attack:370000, agility: 120000, attack_speed: 1.2, defense: 30000}, 
+        loot_list: [{item_name:"极品绿宝石",chance:1.00},{item_name:"极品绿宝石",chance:1.00}],
+    });
+    enemy_templates["礁石灵[BOSS]"] = new Enemy({
+        name: "礁石灵[BOSS]", 
+        description: "拦着前往清野瀑布的路的坚硬石头。温馨提醒：普攻倍率在坚固之后判定！", 
+        xp_value: 17711, 
+        rank: 2298,
+        image: "image/boss/B2202.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 200, attack:88000, agility: 54000, attack_speed: 1.0, defense: 55000}, 
+        loot_list: [],
+    });
+    enemy_templates["大门派杂役[BOSS]"] = new Enemy({
+        name: "大门派杂役[BOSS]", 
+        description: "不愧是大门派，连杂役都这么强...之前的小势力探险者都快穷死了！", 
+        xp_value: 17711, 
+        rank: 2299,
+        image: "image/boss/B2203.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [32,6],
+        spec_value:{},
+        tags: [],
+        stats: {health: 3900000, attack:125000, agility: 60000, attack_speed: 1.2, defense: 15000}, 
+        loot_list: [],
     });
 
     enemy_templates["Village guard (heavy)"] = new Enemy({

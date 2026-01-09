@@ -3428,7 +3428,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [5, "牵制", "#25c1d9", "牵制对手的招式可能成为窍门或是负累。<br>敌人每回合伤害*<span style='color:#87CEFA'>（敌人防御力/角色防御力）</span>。"],
 [6, "3连击", "#ffee77", "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>3次</span>。"],
 [7, "撕裂", "#a52a2a", "这个敌人攻击非常凶猛，造成了撕裂效果。<br>敌人的战斗伤害增加<span style='color:#87CEFA'>一半</span>。"],
-[8, "衰弱", "#f2a4e8", "用毒魔法弱化对手的能力。<br>与该敌人战斗时，角色的攻防效力削弱<span style='color:#87CEFA'>10%</span>。"],
+[8, "衰弱", "#f2a4e8", function(enemy){return "用毒魔法弱化对手的能力。<br>与该敌人战斗时，角色的攻防效力削弱<span style='color:#87CEFA'>"+enemy.spec_value[8]+"%</span>。"}],
 [9, "反转", "#FFC0CB", "微妙的战斗领悟，使用诡异的战法，为攻守双方带来全新的策略维度。<br>战斗中，角色<span style='color:yellow'>攻击与防御效力交换</span>。"],
 [10, "回风", "#8ED1A6","借助风元素的势进行的二段不对等打击。<br>敌人每回合以<span style='color:#87CEFA'>0.8、1.2倍</span>攻击<span style='color:yellow'>各攻击一次</span>。"],
 [11, "光环", "#E6E099","光环异兽的身周总是围着一群异兽，并且个个都看起来很亢奋。(效果整合在楼层属性中)"],
@@ -3451,7 +3451,12 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [28, "肤·免疫", "#808080","别想用它刷坚韧皮肤！"],
 [29, "阻击", "#8888e6",function(enemy){return "这个敌人似乎懂得且战且退的道理。<br>如果敌人闪避了攻击，则额外对角色造成<span style='color:#87CEFA'>" + (enemy.spec_value[29]) + "</span>点魔法伤害。"}],
 [30, "净化", "#80eed6",function(enemy){return "战斗前，敌人将角色敏捷的<span style='color:#87CEFA'>" + enemy.spec_value[30] + "倍</span>加到自己的攻击上。"}],
-[31, "回春", "#ccff99","木元素领悟。修习了战复魔法的冒险者钟爱的属性。<br>敌人每次命中恢复自身生命上限<span style='color:#87CEFA'>15%</span>的生命"]
+[31, "回春", "#ccff99","木元素领悟。修习了战复魔法的冒险者钟爱的属性。<br>敌人每次命中恢复自身生命上限<span style='color:#87CEFA'>15%</span>的生命。"],
+[32, "反戈", "#d3a547","反戈一击。<br>敌人将角色伤害的<span style='color:#87CEFA'>20%</span>反弹给角色。"],
+[33, function(enemy){return enemy.spec_value[33] + "连击"}, "#ffee77",function(enemy){return "敌人进攻速度很快，拥有更加恐怖的杀伤力，但同时也意味着生命力会较为脆弱。<br>敌人每回合攻击<span style='color:#87CEFA'>" + enemy.spec_value[33] + "次</span>"}],
+[34, "凌弱","#109996","欺凌弱小的敌人容易被防杀。<br>当角色<span style='color:#FFFF00'>防御小于敌人</span>时，其<span style='color:#FFFF00'>与敌人防御的差值</span>将拉大<span style='color:#87CEFA'>一倍</span>。"],
+[35, "领域", "#c677dd",function(enemy){return "这个敌人似乎懂得力量外放的道理。<br>敌人每次被攻击，则额外对角色造成<span style='color:#87CEFA'>" + (enemy.spec_value[35]) + "</span>点魔法伤害。"}],
+[36, "自爆", "#597a80","强者在绝望之下最后的尊严。<br>第20回合触发，血量下降到1，对角色造成<span style='color:#87CEFA'>自身剩余生命*4</span>的伤害。"],
 ];
 
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],

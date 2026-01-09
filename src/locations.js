@@ -1962,7 +1962,109 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 7,
         //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//2-2
+    locations["清野江畔 - 1"] = new Combat_zone({
+        description: "沿着清野江，回家的路。百方仍然在此区域有所布置。", 
+        enemy_count: 20, 
+        enemies_list: ["小门派执事","毒枭蝎","百家近卫","怨灵船夫","旱魃龟","复苏骸骨"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        name: "清野江畔 - 1",
+        
+        rank:111, 
+        bgm:7,
+        parent_location: locations["清野江畔"],
+        first_reward: {
+            xp: 9600,
+        },
+        repeatable_reward: {
+            xp: 3200,
+            locations: [{location: "清野江畔 - 2"},{location: "清野江畔 - 歧路"}],
+        },
+    });
+    locations["清野江畔 - 2"] = new Combat_zone({
+        description: "沿着清野江，回家的路。荒兽成群——为了避开百方，这种程度的危险区域是必要的。", 
+        enemy_count: 20, 
+        enemies_list: ["旱魃龟","复苏骸骨","旅行魔术师","水溶茸茸","飞龙幼崽","鲜红八爪鱼"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "清野江畔 - 2",
+        
+        rank:112, 
+        enemy_stat_halo: 0.05,
+        bgm:7,
+        parent_location: locations["清野江畔"],
+        first_reward: {
+            xp: 14400,
+        },
+        repeatable_reward: {
+            xp: 4800,
+            locations: [{location: "清野江畔 - 3"}],
+        },
+    });
+    locations["清野江畔 - 3"] = new Combat_zone({
+        description: "沿着清野江，回家的路。不仅荒兽成群，还有微妙的狂暴气息的区域。", 
+        enemy_count: 20, 
+        enemies_list: ["水溶茸茸","飞龙幼崽","鲜红八爪鱼","商船水手","深水恐怖","清野江盗匪"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "清野江畔 - 3",
+        
+        rank:113, 
+        bgm:7,
+        enemy_stat_halo: 0.1,
+        parent_location: locations["清野江畔"],
+        first_reward: {
+            xp: 19200,
+        },
+        repeatable_reward: {
+            xp: 6400,
+            locations: [{location: "清野江畔 - 4"}],
+        },
+    });
+    locations["清野江畔 - 4"] = new Combat_zone({
+        description: "沿着清野江，回家的路。荒兽实力有了巨大的跃升，但家族已经不再遥远，无需恋战。", 
+        enemy_count: 20, 
+        enemies_list: ["清野江盗匪","极冰火","清野江盗贼","礁石灵","火烧云","行脚商人"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        name: "清野江畔 - 4",
+        
+        rank:114, 
+        bgm:7,
+        parent_location: locations["清野江畔"],
+        first_reward: {
+            xp: 24000,
+        },
+        repeatable_reward: {
+            xp: 8000,
+            //locations: [{location: "清野江畔 - X"}],
+        },
+    });
+    
+    locations["清野江畔 - 歧路"] = new Challenge_zone({
+        description: "偶遇七阶武士，拼尽全力无法战胜...以后不要忘了这个飞啊(x", 
+        enemy_count: 1, 
+        enemies_list: ["威武武士[BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "清野江畔 - 歧路",
+        bgm:7,
+        parent_location: locations["清野江畔"],
+        repeatable_reward: {
+        },
+    });
     locations["荒兽森林"].connected_locations.push({location: locations["清野江畔"]});
+    locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 1"]});
+    locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 2"]});
+    locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 3"]});
+    locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 4"]});
+    locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 歧路"]});
 
 
 

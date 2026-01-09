@@ -75,17 +75,15 @@ window.REALMS=[
 [3,"万物级初等",6,700,1200],//0.1spd 
 [4,"万物级高等",12,3000,4800],
 [5,"万物级巅峰",25,6000,16000],
-
 [6,"潮汐级初等",40,10000,36000],//0.1spd
 [7,"潮汐级高等",100,20000,120000],
-[8,"潮汐级巅峰",250,40000,2400000],//计划:最早1-5开放
-
+[8,"潮汐级巅峰",250,40000,2400000],
 
 [9,"大地级一阶",600,120000,60000000],
 [10,"大地级二阶",1000,250000,80000000],
 [11,"大地级三阶",2000,550000,2.4e8],
-[12,"大地级四阶",3000,1000000,9.2233e18],//2.4e9/以下未平衡(需要加入微火)
-[13,"大地级五阶",5000,1500000,6.0e9],
+[12,"大地级四阶",3000,1000000,7.2e8],
+[13,"大地级五阶",5000,1500000,9.2233e18],//以下未平衡
 [14,"大地级六阶",9000,2500000,1.35e10],
 
 ];
@@ -1055,6 +1053,11 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 {
                     do_enemy_combat_action(enemy_id,"[天剑]"+Spec_S,1.5,2);
                 }
+                console.log(E_round);
+                if(current_enemies[enemy_id].spec.includes(36) && E_round == 20)//自爆
+                {
+                    do_enemy_combat_action(enemy_id,"[自爆]"+Spec_S,0);
+                }
                 
                 atk_sign += 1;
                 if(current_enemies != null)
@@ -1066,6 +1069,15 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                         do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
                         if(current_enemies != null) do_enemy_combat_action(enemy_id,"[3连击]"+Spec_S,1);
                     }//3连击
+                    if(current_enemies[enemy_id].spec.includes(33))
+                    {
+                        let cnt = current_enemies[enemy_id].spec_value[33];
+                        for(let cnts = 1;cnts < cnt;cnts += 1)
+                        {
+                            if(current_enemies == null) break;
+                            do_enemy_combat_action(enemy_id,`[${cnt}连击]`+Spec_S,1);
+                        }
+                    }//任意连击
 
                 }
             }
@@ -1321,6 +1333,16 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     {
         E_atk_mul_f *= 2;
     }
+    if(attacker.spec.includes(36) && E_atk_mul == 0)//标记
+    {
+        let {damage_taken, fainted} = character.take_damage([],{damage_value: attacker.stats.health * 4},0);
+        log_message(attacker.name + "在剩余 " + format_number(attacker.stats.health) + " 血量时自爆。","hero_attacked_critically")
+        log_message("造成了 "+format_number(attacker.stats.health * 4)+" 点伤害。", "hero_attacked_critically");
+        attacker.stats.health = 1;
+        update_displayed_health_of_enemies();
+        if(fainted) faint(" 被炸晕了");
+        return;
+    }//自爆/残余血量都爆了
 
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
@@ -1361,9 +1383,21 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     let sdef_mul = spec_mul;//防御乘数,在后续计算伤害时使用，默认为最终增伤
     spec_mul *= E_atk_mul_f;//绕开防御乘数
     damage_dealt *= spec_mul;
-    if(attacker.spec.includes(8)) sdef_mul *= 0.9;//衰弱
+    //下面是专属防御乘数计算区
+    if(attacker.spec.includes(8)) sdef_mul *= (1 - 0.01*attacker.spec_value[8]);//衰弱
     if(attacker.spec.includes(9)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense;//反转
     if(attacker.spec.includes(27)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense * 0.1 + 1;//柔骨
+    
+    if(attacker.spec.includes(34)){
+        if(attacker.defense < character.stats.full.defense){
+            spec_hint += "[凌弱·免疫]";
+        }
+        else{
+            sdef_mul *= (2- attacker.defense/character.stats.full.defense);
+            sdef_mul = sdef_mul || 0;
+            spec_hint += "[凌弱]";
+        }
+    }//凌弱
     let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt},sdef_mul);
 
     if(critted)
@@ -1378,6 +1412,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(attacker.spec.includes(31)){
         attacker.stats.health += attacker.stats.max_health * 0.15;
         log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health) * 0.15 + " 点血量","enemy_enhanced");
+        update_displayed_health_of_enemies();
     }//回春
 
     if(fainted) faint(" 失败了");
@@ -1454,7 +1489,7 @@ function do_character_combat_action({target, attack_power}, target_num) {
     let satk_mul = 1;//角色攻击乘数
     let sdmg_mul = 1;//角色伤害乘数
     let Spec_E = "";
-    if(target.spec.includes(8)) satk_mul *= 0.9;//衰弱
+    if(target.spec.includes(8)) satk_mul *= (1 - 0.01*target.spec_value[8]);//衰弱
     if(target.spec.includes(9)) satk_mul *= character.stats.full.defense / character.stats.full.attack_power;//反转
     if(target.spec.includes(27)) satk_mul *= 0.9;//柔骨
     
@@ -1483,7 +1518,7 @@ function do_character_combat_action({target, attack_power}, target_num) {
 
     
     const hit_chance = get_hit_chance(character.stats.full.agility * hit_agi_modifier, target.stats.agility );
-
+    
     if(hit_chance > Math.random()) {//hero's attack hits
 
         damage_dealt = hero_base_damage
@@ -1510,8 +1545,7 @@ function do_character_combat_action({target, attack_power}, target_num) {
             critted = false;
         }
         
-        damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense, damage_dealt*0.001, 0))/10;
-        //强制伤害0.1%
+        damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense,0))/10;
 
 
         if(target.spec.includes(1))
@@ -1548,9 +1582,8 @@ function do_character_combat_action({target, attack_power}, target_num) {
         else {
             log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害" + Spec_E, "enemy_attacked");
             //console.log(target_num);
-            
-            
         }
+        
         const effect = document.getElementById(`E${target_num}_effect`);
             effect.classList.add('active');
                 effect.addEventListener('animationend', () => {
@@ -1622,6 +1655,16 @@ function do_character_combat_action({target, attack_power}, target_num) {
         }
 
         update_displayed_health_of_enemies();
+        
+        if(target.spec.includes(32)){
+            let {damage_taken, fainted} = character.take_damage([],{damage_value: damage_dealt*0.2},0);
+            
+            log_message(character.name + "受到了" + format_number(damage_taken) + "点伤害[反戈]", "hero_attacked");
+            if(fainted)
+            {
+                faint(" 被反伤击败");
+            }
+        }//反戈
     } else {
         const effect = document.getElementById(`E${target_num}_effect`);
             effect.classList.add('evade');
@@ -1638,6 +1681,12 @@ function do_character_combat_action({target, attack_power}, target_num) {
         }
         else log_message(character.name + " 未命中", "hero_missed");
     }
+    if(target.spec.includes(35)){
+        let {damage_taken, fainted} = character.take_damage([],{damage_value: target.spec_value[35]},0);
+        
+        log_message(character.name + "受到了" + format_number(damage_taken) + "点伤害[领域]", "hero_attacked");
+        if(fainted) faint(" 被领域击败")
+    }//领域
 }
 
 /**

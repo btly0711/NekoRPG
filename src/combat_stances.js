@@ -7,6 +7,7 @@ class Stance {
             {
                 name,
                 id,
+                max_bonus = 2,
                 related_skill,
                 target_count = 1,
                 randomize_target_count = false,
@@ -21,6 +22,7 @@ class Stance {
         }
 
         this.name = name;
+        this.max_bonus = max_bonus;
         this.id = id;
         this.related_skill = related_skill;
         this.description = description;
@@ -54,7 +56,7 @@ class Stance {
                     //什么鬼？满级了惩罚归零简直天经地义...
                 }
                 else {
-                    multipliers[stat] =  this.stat_multipliers[stat] + (this.stat_multipliers[stat]-1) * skills[this.related_skill].current_level/skills[this.related_skill].max_level;
+                    multipliers[stat] =  this.stat_multipliers[stat] + (this.stat_multipliers[stat]-1) * skills[this.related_skill].current_level/skills[this.related_skill].max_level * (this.max_bonus - 1);
                 }
             });
             return multipliers;
@@ -147,10 +149,10 @@ stances["MB_Speed"] = new Stance({
     related_skill: "MergeBlood",
     stat_multipliers: {
         attack_speed: 1.1,
-        agility: 1.1,
         max_health: 0.75,
     },
     target_count: 1,
+    max_bonus: 2,
 });
 
 stances["MB_Power"] = new Stance({

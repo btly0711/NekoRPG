@@ -523,9 +523,10 @@ function format_skill_rewards(milestone){
 //combat stances
 (function(){
     skills["Stance mastery"] = new Skill({skill_id: "Stance mastery", 
-                                    names: {0: "秘法入门", 10: "秘法精通"}, 
+                                    names: {0: "秘法入门", 30: "秘法精通"}, 
                                     description: "如何在战斗中灵活使用各种秘法的知识",
                                     base_xp_cost: 60,
+                                    xp_scaling:2.5,
                                     category: "Stance",
                                     max_level: 300,
                                     get_effect_description: ()=> {
