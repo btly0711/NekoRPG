@@ -803,13 +803,76 @@ class Textline {
             }),
         }
     });
+    
+    dialogues["清野瀑布"] = new Dialogue({
+        name: "清野瀑布",
+        starting_text: "注视着清野瀑布",
+        textlines: {
+            "wf1": new Textline({
+                is_unlocked: false,
+                name: "...",
+                text: "父亲大人曾说，外面的世界危险而且残酷。<br>……可我不相信，我想去更远的地方看一看。",
+                locks_lines: ["wf1"],
+                unlocks: {
+                    textlines: [{dialogue: "清野瀑布", lines: ["wf2"]}],
+                },
+            }), 
+            "wf2": new Textline({
+                is_unlocked: false,
+                name: "...",
+                text: "如今也算是历经了一次生死呢，<br>也知道了父亲大人的话是什么意思。",
+                locks_lines: ["wf2"],
+                unlocks: {
+                    spec:"DeathCount-1",
+                    textlines: [{dialogue: "清野瀑布", lines: ["wf3"]}],
+                },
+            }), 
+            "wf3": new Textline({
+                is_unlocked: false,
+                name: "...",
+                text: "也许，等真正成为强者的那一天，<br>这个愿望能够实现吧。",
+                locks_lines: ["wf3"],
+                unlocks: {
+                    textlines: [{dialogue: "清野瀑布", lines: ["wf4"]}],
+                },
+            }), 
+            "wf4": new Textline({
+                is_unlocked: false,
+                name: "瀑布外面是山，山外面是什么？",
+                text: "[奇怪的声音]你在害怕什么？<br>你要成为强者！去探索外面的世界！<br>生死的历练，杀不死你，只会让你失败了回到床上！",
+                locks_lines: ["wf4"],
+                unlocks: {
+                    textlines: [{dialogue: "清野瀑布", lines: ["wf5"]}],
+                },
+            }), 
+            "wf5": new Textline({
+                is_unlocked: false,
+                name: "*不自觉地挥剑*",
+                text: "身体渐渐变得越发灵活，敏捷。<br>这些日子以来，所积累下来的沉淀，<br>终于在这一刻被全部激发。！",
+                locks_lines: ["wf5"],
+                unlocks: {
+                    textlines: [{dialogue: "清野瀑布", lines: ["wf6"]}],
+                },
+            }), 
+            "wf6": new Textline({
+                is_unlocked: false,
+                name: "……发生了什么，我刚才都做了什么。",
+                text: "水无心·洪水，水无心·流水，水无心·雨水 已加入可选秘法！",
+
+                locks_lines: ["wf6"],
+                unlocks: {
+                    stances: ["WH_Power","WH_Speed","WH_Multi"],
+                },
+            }), 
+        }
+    });
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",
         textlines: {
             "clumbs": new Textline({ 
                 is_unlocked: true,
-                name: "荒兽森林感悟/点击就送！！(在1.10将被移除)",//WIP
+                name: "荒兽森林感悟/点击就送！！(在1.10将被移除)",
                 text: "...",
                 unlocks: {
                     spec:"A1-fusion",

@@ -3332,7 +3332,7 @@ function create_stance_tooltip(stance_id) {
 
     if(target_count > 1) {
         tooltip_div.innerHTML += `
-        <br><div class='stance_tooltip_hitcount'>${stances[stance_id].randomize_target_count?"Randomly hits up to":"Hits up to"} ${target_count} enemies</div>`;
+        <br><div class='stance_tooltip_hitcount'>${stances[stance_id].randomize_target_count?"Randomly hits up to":"同时攻击最多 "} ${target_count} 个敌人</div>`;
     }
 
     return tooltip_div;
@@ -3356,7 +3356,7 @@ function update_stance_tooltip(stance_id) {
         if(stances[stance_id].related_skill) {
             target_count = target_count + Math.round(target_count * skills[stances[stance_id].related_skill].current_level/skills[stances[stance_id].related_skill].max_level);
         }
-        stance_bar_divs[stance_id].querySelector(".stance_tooltip_hitcount").innerHTML = `${stances[stance_id].randomize_target_count?"Randomly hits up to":"Hits up to"} ${target_count} enemies</div>`;
+        stance_bar_divs[stance_id].querySelector(".stance_tooltip_hitcount").innerHTML = `${stances[stance_id].randomize_target_count?"Randomly hits up to":"同时攻击"} ${target_count} 个敌人</div>`;
     } 
 }
 

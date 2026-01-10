@@ -167,4 +167,46 @@ stances["MB_Power"] = new Stance({
     target_count: 1,
 });
 
+stances["WH_Speed"] = new Stance({
+    name: "水无心·流水",
+    id: "水无心·流水",
+    description: "加快攻击速度，并稍微加强攻击力。",
+    related_skill: "WaterHeartless",
+    stat_multipliers: {
+        attack_speed: 1.15,
+        attack_power: 1.05,
+        attack_mul  : 1.5,
+    },
+    target_count: 1,
+    max_bonus: 3,
+});
+
+stances["WH_Power"] = new Stance({
+    name: "水无心·洪水",
+    id: "水无心·洪水",
+    description: "加强攻击力，并稍微加快攻击速度。",
+    related_skill: "WaterHeartless",
+    stat_multipliers: {
+        attack_speed: 1.05,
+        attack_power: 1.15,
+        attack_mul  : 1.5,
+    },
+    target_count: 1,
+    max_bonus: 3,
+});
+
+stances["WH_Multi"] = new Stance({
+    name: "水无心·雨水",
+    id: "水无心·雨水",
+    description: "稍微增幅攻击力和攻击速度，但一次可以攻击多个目标。",
+    related_skill: "WaterHeartless",
+    stat_multipliers: {
+        attack_speed: 1.05,
+        attack_power: 1.05,
+        attack_mul  : 1.5,
+    },
+    target_count: 2,
+    max_bonus: 3,
+});
+
 export {stances};

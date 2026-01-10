@@ -143,18 +143,18 @@ character.upgrade_effects = function(lvl){
                 const E_body = document.body;
                 E_body.classList.add('terra_root');
         }//大地1
-        else if(lvl==10){
+        else if(lvl==12){
                 const effect = document.getElementById('screen_effect');
                 effect.classList.add('orbit-single');
                 effect.addEventListener('animationend', () => {
                 effect.classList.remove('orbit-single');}, { once: true });
-        }//大地2
-        else if(lvl==11){
+        }//大地4
+        else if(lvl==15){
                 const effect = document.getElementById('screen_effect');
                 effect.classList.add('orbit-double');
                 effect.addEventListener('animationend', () => {
                 effect.classList.remove('orbit-double');}, { once: true });
-        }
+        }//大地7
 }
 
 character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
@@ -222,7 +222,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 {
                         let A_mul_gain = (this_realm[0]-7)*0.05;
                         character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;
-                        gains += gains += `普攻倍率增加了${A_mul_gain}<br>`;
+                        gains += `普攻倍率增加了${A_mul_gain}<br>`;
                 }
 
                 gains += `技能经验倍率提高了${Math.round(total_skill_xp_multiplier*100-100)}%<br>`;

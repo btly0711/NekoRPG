@@ -802,25 +802,9 @@ function start_textline(textline_key){
     let displayed_text = textline.text;
     if(textline.unlocks.spec != "")
     {
-        if(textline.unlocks.spec == "A1-fusion")
+        if(textline.unlocks.spec == "DeathCount-1")
         {   
-            
-            // const trances = item_templates["一丝荒兽森林感悟"].getInventoryKey();
-            // if(character.inventory[trances]?.count >= 50) {
-            //     remove_from_character_inventory([{item_key: trances, item_count: 50}]);
-            //     if(Math.random() < 0.2){   
-                     add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
-                    displayed_text = "[心之石像]融合成功！";
-                    log_message(`获取 凝实荒兽森林感悟 x1 ！ `, "crafting");
-            //     }
-            //     else{   
-            //         displayed_text = "[心之石像]很遗憾，融合失败...";
-            //     }
-            // }
-            // else{
-            //     displayed_text = "[心之石像]你的感悟，不足以融合...";
-            //     //add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
-            // }
+            displayed_text = "如今也算是历经了" + format_number(total_deaths)  + "次生死呢，<br>也知道了父亲大人的话是什么意思。";
         }
     }
 
@@ -1836,7 +1820,7 @@ function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = 
                 }
 
                 if(!was_hidden && (typeof should_info === "undefined" || should_info)) {
-                    log_message(`Skill ${prev_name} upgraded to ${new_name}`, "skill_raised");
+                    log_message(`技能 ${prev_name} 升级为 ${new_name}`, "skill_raised");
                 }
 
                 if(current_location?.connected_locations) {

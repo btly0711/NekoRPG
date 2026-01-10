@@ -1960,6 +1960,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["荒兽森林营地"], custom_text: "走小路，回到营地"}], 
         description: "顺着这条江往回走就可以回到家族..快点和父亲大人汇报此事！[V1.10前版本终点]",
         
+        dialogues: ["清野瀑布"],
         name: "清野江畔", 
         is_unlocked: false,
         bgm: 7,
@@ -2003,14 +2004,14 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 4800,
-            locations: [{location: "清野江畔 - 3"}],
+            locations: [{location: "清野江畔 - 3"},{location: "清野江畔 - 瀑布"}],
         },
     });
     locations["清野江畔 - 3"] = new Combat_zone({
         description: "沿着清野江，回家的路。不仅荒兽成群，还有微妙的狂暴气息的区域。", 
         enemy_count: 20, 
         enemies_list: ["水溶茸茸","飞龙幼崽","鲜红八爪鱼","商船水手","深水恐怖","清野江盗匪"],
-        enemy_group_size: [1,1],
+        enemy_group_size: [1,2],
         types: [],
         is_unlocked: false, 
         name: "清野江畔 - 3",
@@ -2031,7 +2032,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "沿着清野江，回家的路。荒兽实力有了巨大的跃升，但家族已经不再遥远，无需恋战。", 
         enemy_count: 20, 
         enemies_list: ["清野江盗匪","极冰火","清野江窃贼","礁石灵","火烧云","行脚商人"],
-        enemy_group_size: [1,1],
+        enemy_group_size: [1,2],
         types: [],
         is_unlocked: false, 
         name: "清野江畔 - 4",
@@ -2062,12 +2063,28 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
         },
     });
+    locations["清野江畔 - 瀑布"] = new Challenge_zone({
+        description: "纳可小时候曾经来过的瀑布附近。其中似乎蕴含着某种领悟。", 
+        enemy_count: 1, 
+        enemies_list: ["礁石灵[BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "清野江畔 - 瀑布",
+        bgm:7,
+        parent_location: locations["清野江畔"],
+        repeatable_reward: {
+            textlines: [{dialogue: "清野瀑布", lines: ["wf1"]}],
+        },
+    });
     locations["荒兽森林"].connected_locations.push({location: locations["清野江畔"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 1"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 2"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 3"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 4"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 歧路"]});
+    locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 瀑布"]});
 
 
 

@@ -642,6 +642,18 @@ function format_skill_rewards(milestone){
                                         }
                                     }
                                 });
+    
+    skills["WaterHeartless"] = new Skill({skill_id: "WaterHeartless", 
+                                    names: {0: "水无心",5:"水无心·小成",15:"水无心·精通",25:"水无心·大成",30:"水无心·圆满"}, 
+                                    parent_skill: "Stance mastery",
+                                    description: "纳可在清野瀑布前领悟的剑法。拥有3种使用方式。", 
+                                    max_level_coefficient: 1.25,
+                                    base_xp_cost: 30000000,
+                                    category: "Stance",
+                                    max_level: 30,
+                                    get_effect_description: ()=> {
+                                        return `增加[水无心]秘法的使用效果`;
+                                    }});          
                                     
                                     
                                
