@@ -1301,7 +1301,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.12";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.13";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1334,14 +1334,14 @@
                         {
                             for(let i=1;i<=10;i++)
                             {
-                                use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"));
-                                update_displayed_character_inventory(character_sorting);
+                                use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"),true);
                             }
+                            update_displayed_character_inventory(character_sorting);
                         }
                         else if(clicked_element.parentNode.parentNode.classList.contains("character_item_book")) {
                             start_reading(clicked_element.parentNode.parentNode.getAttribute("data-character_item"));
                         } else {
-                            use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"));
+                            use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"),false);
                             update_displayed_character_inventory(character_sorting);
                         }
                     }

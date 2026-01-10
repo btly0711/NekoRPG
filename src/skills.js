@@ -71,6 +71,7 @@ class Skill {
                   rewards, 
                   xp_scaling = 1.8,
                   is_unlocked = true,
+                  related_stances = [],
                   category,
                 }) 
     {
@@ -82,6 +83,7 @@ class Skill {
         this.skill_id = skill_id;
         this.names = names; // put only {0: name} to have skill always named the same, no matter the level
         this.description = description;
+        this.related_stances = related_stances;
         this.current_level = 0; //initial lvl
         this.max_level = max_level; //max possible lvl, dont make it too high
         this.max_level_coefficient = max_level_coefficient; //multiplicative bonus for levels
@@ -526,7 +528,7 @@ function format_skill_rewards(milestone){
                                     names: {0: "秘法入门", 30: "秘法精通"}, 
                                     description: "如何在战斗中灵活使用各种秘法的知识",
                                     base_xp_cost: 60,
-                                    xp_scaling:2.5,
+                                    xp_scaling:1.8,
                                     category: "Stance",
                                     max_level: 300,
                                     get_effect_description: ()=> {
@@ -607,6 +609,7 @@ function format_skill_rewards(milestone){
                                     base_xp_cost: 60,
                                     category: "Stance",
                                     max_level: 30,
+                                    related_stances: ["MB_Power","MB_Speed"],
                                     get_effect_description: ()=> {
                                         return `增加[融血术]秘法的使用效果`;
                                     }});            
@@ -648,9 +651,10 @@ function format_skill_rewards(milestone){
                                     parent_skill: "Stance mastery",
                                     description: "纳可在清野瀑布前领悟的剑法。拥有3种使用方式。", 
                                     max_level_coefficient: 1.25,
-                                    base_xp_cost: 30000000,
+                                    base_xp_cost: 120000000,
                                     category: "Stance",
                                     max_level: 30,
+                                    related_stances: ["WH_Power","WH_Speed","WH_Multi"],
                                     get_effect_description: ()=> {
                                         return `增加[水无心]秘法的使用效果`;
                                     }});          

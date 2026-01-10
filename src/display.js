@@ -765,14 +765,14 @@ function create_trade_buttons() {
 
     const trade_button_5 = document.createElement("div");
     trade_button_5.classList.add("trade_ammount_button");
-    trade_button_5.innerText = "5";
-    trade_button_5.setAttribute("data-trade_ammount", 5);
+    trade_button_5.innerText = "10";
+    trade_button_5.setAttribute("data-trade_ammount", 10);
     trade_buttons.appendChild(trade_button_5);
 
     const trade_button_10 = document.createElement("div");
     trade_button_10.classList.add("trade_ammount_button");
-    trade_button_10.innerText = "10";
-    trade_button_10.setAttribute("data-trade_ammount", 10);
+    trade_button_10.innerText = "100";
+    trade_button_10.setAttribute("data-trade_ammount", 100);
     trade_buttons.appendChild(trade_button_10);
 
     const trade_button_max = document.createElement("div");
@@ -1214,7 +1214,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
 
     if(target === "character") {
         if(target_item.item_type === "USABLE") {
-            if(target_item.gem_value != 0) {
+            //if(target_item.gem_value != 0) {
                 
                 const item_use_max = document.createElement("div");
                 item_use_max.classList.add("item_use_button");
@@ -1230,7 +1230,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
                 item_use_10.innerText = "[x10]";
                 item_additional.appendChild(item_use_10);
                 //console.log(item_count);
-            }
+            //}
             const item_use_button = document.createElement("div");
             item_use_button.classList.add("item_use_button");
             item_use_button.innerText = "[使用]";

@@ -881,6 +881,7 @@ class Enemy {
         realm: "<span class=realm_basic><b>潮汐级初等</b></span>",
         size: "small",
         spec: [8],
+        spec_value:{8:10},
         tags: [],
         stats: {health: 700, attack: 151, agility: 120, attack_speed: 1.2, defense: 70} , 
         loot_list: [

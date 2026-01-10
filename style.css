@@ -1025,7 +1025,7 @@ i {
 }
 .trade_ammount_buttons {
 	display: var(--trade_ammount_button_display);
-	width: 55px;
+	width: 75px;
 	vertical-align: bottom;
 	text-align: right;
 }

@@ -193,7 +193,7 @@ class Combat_zone {
 
         } else {  // PREDEFINED GROUPS DON'T EXIST
 
-            const group_size = this.enemy_group_size[0] + Math.floor(Math.random() * (this.enemy_group_size[1] - this.enemy_group_size[0]));
+            const group_size =  + Math.floor(this.enemy_group_size[0] + Math.random() * (this.enemy_group_size[1] - this.enemy_group_size[0]));
             for(let i = 0; i < group_size; i++) {
                 enemy_group.push(this.enemies_list[Math.floor(Math.random() * this.enemies_list.length)]);
             }
@@ -2011,7 +2011,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "沿着清野江，回家的路。不仅荒兽成群，还有微妙的狂暴气息的区域。", 
         enemy_count: 20, 
         enemies_list: ["水溶茸茸","飞龙幼崽","鲜红八爪鱼","商船水手","深水恐怖","清野江盗匪"],
-        enemy_group_size: [1,2],
+        enemy_group_size: [1.5,2.5],
         types: [],
         is_unlocked: false, 
         name: "清野江畔 - 3",
@@ -2032,7 +2032,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "沿着清野江，回家的路。荒兽实力有了巨大的跃升，但家族已经不再遥远，无需恋战。", 
         enemy_count: 20, 
         enemies_list: ["清野江盗匪","极冰火","清野江窃贼","礁石灵","火烧云","行脚商人"],
-        enemy_group_size: [1,2],
+        enemy_group_size: [1.5,2.5],
         types: [],
         is_unlocked: false, 
         name: "清野江畔 - 4",

@@ -1005,12 +1005,10 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 else  if(current_enemies[enemy_id].spec.includes(12))
                 {
                     do_enemy_combat_action(enemy_id,"[时封]"+Spec_S,1,E_round);//时封
-                    //console.log(E_round);
                 }
                 else  if(current_enemies[enemy_id].spec.includes(15))
                 {
                     do_enemy_combat_action(enemy_id,"[异界之门]"+Spec_S,1,E_round * 2 - 1);//异界
-                    //console.log(E_round);
                 }
                 else do_enemy_combat_action(enemy_id,Spec_S,1);//普攻
 
@@ -1037,7 +1035,6 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 {
                     do_enemy_combat_action(enemy_id,"[天剑]"+Spec_S,1.5,2);
                 }
-                console.log(E_round);
                 if(current_enemies[enemy_id].spec.includes(36) && E_round == 20)//自爆
                 {
                     do_enemy_combat_action(enemy_id,"[自爆]"+Spec_S,0);
@@ -1158,7 +1155,13 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
                 leveled = add_xp_to_skill({skill: skills[stances[current_stance].related_skill], xp_to_add: targets.reduce((sum,enemy)=>sum+enemy.xp_value,0)/targets.length});
                 
                 if(leveled) {
-                    update_stance_tooltip(current_stance);
+                    let R_skill =  skills[stances[current_stance].related_skill];
+                    //console.log(R_skill);
+                    for(let j=0;j < R_skill.related_stances.length; j+=1){
+                        
+                        // console.log(stances[R_skill.related_stances[j]].name);
+                        update_stance_tooltip(stances[R_skill.related_stances[j]].name);
+                    }
                     update_character_stats();
                 }
             }
@@ -2221,7 +2224,7 @@ function character_unequip_item(item_slot) {
 }
 
 
-function use_item(item_key) { 
+function use_item(item_key,stated = false) { 
     const {id} = JSON.parse(item_key);
     const item_effects = item_templates[id].effects;
     const G_value = item_templates[id].gem_value;
@@ -2355,7 +2358,7 @@ function use_item(item_key) {
             }
         }
         message += ".";
-        log_message(message, `gather_loot`);
+        if(!stated) log_message(message, `gather_loot`);
     }
 
     if(E_value != 0)
@@ -2365,7 +2368,7 @@ function use_item(item_key) {
     }
 
     if(used) {
-        update_displayed_effects();
+        if(!stated) update_displayed_effects();
         character.stats.add_active_effect_bonus();
         update_character_stats();
     }
@@ -2374,11 +2377,19 @@ function use_item(item_key) {
 
 function use_item_max(item_key)
 {
+    let {id} = JSON.parse(item_key);
+    let cnt=0;
+    let A0,D0,G0,H0,A1,D1,G1,H1;
+    A0=character.stats.flat.gems.attack_power,D0=character.stats.flat.gems.defense,G0=character.stats.flat.gems.agility,H0=character.stats.flat.gems.max_health;
     while(character.is_in_inventory(item_key))
     {
-        use_item(item_key);
-        update_displayed_character_inventory(character_sorting);
+        use_item(item_key,true);
+        cnt++;
     }
+    update_displayed_character_inventory(character_sorting);
+    A1=character.stats.flat.gems.attack_power,D1=character.stats.flat.gems.defense,G1=character.stats.flat.gems.agility,H1=character.stats.flat.gems.max_health;
+    log_message(`批量使用了 ${cnt} 个 ${id}.`, `gather_loot`);
+    if(A1!=A0||D1!=D0||G1!=G0||H1!=H0) log_message(`获取了${format_number(A1-A0)}点攻击，${format_number(D1-D0)}点防御，${format_number(G1-G0)}点敏捷，${format_number(H1-H0)}点生命。`, `gather_loot`);
     return;
 }
 
