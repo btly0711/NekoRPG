@@ -1156,11 +1156,11 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
                 
                 if(leveled) {
                     let R_skill =  skills[stances[current_stance].related_skill];
-                    //console.log(R_skill);
+                    console.log(R_skill);
                     for(let j=0;j < R_skill.related_stances.length; j+=1){
                         
-                        // console.log(stances[R_skill.related_stances[j]].name);
-                        update_stance_tooltip(stances[R_skill.related_stances[j]].name);
+                        console.log(stances[R_skill.related_stances[j]].name);
+                        update_stance_tooltip(R_skill.related_stances[j]);
                     }
                     update_character_stats();
                 }
@@ -2693,10 +2693,9 @@ function load(save_data) {
 
     if(save_data.character.C_scaling != undefined) character.C_scaling = save_data.character.C_scaling;
     else character.C_scaling = {};
-    //WIP
     character.xp.current_level = save_data.character.xp.current_level || 0;
     add_xp_to_character(save_data.character.xp.current_xp || 0, false);
-    console.log( character.xp.current_level);
+    //console.log( character.xp.current_level);
     for(let realm = 1;realm <= character.xp.current_level || 0;realm ++)
     {
         let this_realm = window.REALMS[realm];
@@ -3880,7 +3879,7 @@ if(is_on_dev()) {
     if(localStorage[dev_save_key]) {
         update_other_save_load_button(JSON.parse(localStorage[dev_save_key]).saved_at || "");
     } else {
-        update_other_save_load_button();
+        //update_other_save_load_button();
     }
 }
 

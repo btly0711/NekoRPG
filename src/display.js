@@ -3833,7 +3833,7 @@ function update_character_attack_bar(num) {
 
 function update_backup_load_button(date_string){
     if(date_string) {
-        backup_load_button.innerText = `Load the backup autosave [${date_string.replaceAll("_",":")}]`;
+        backup_load_button.innerText = `加载自动存档 [${date_string.replaceAll("_",":")}]`;
         backup_load_button.style["background-image"] = `var(--options_gradient);`;
         backup_load_button.style["background-color"] = "transparent";
         backup_load_button.style.color = "white";
