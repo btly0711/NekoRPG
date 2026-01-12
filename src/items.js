@@ -3193,7 +3193,7 @@ item_templates["Twist liek a snek"] = new Book({
     
     item_templates["A9·魔攻药剂"] = new UsableItem({
         name: "A9·魔攻药剂", 
-        description: "提供10%魔攻，代价是普攻倍率-10%。大地级巅峰以下有效。", 
+        description: "提供10%魔攻，代价是普攻倍率-10%。", 
         value: 240e6,
         realmcap:17,
         effects: [{effect: "魔攻 A9", duration: 120}],
@@ -3201,7 +3201,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["A9·牵制药剂"] = new UsableItem({
         name: "A9·牵制药剂", 
-        description: "提供60%效果的牵制，上限为3倍增伤。大地级巅峰以下有效。", 
+        description: "提供60%效果的牵制，上限为3倍增伤。", 
         value: 240e6,
         realmcap:17,
         effects: [{effect: "牵制 A9", duration: 120}],
@@ -3209,7 +3209,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["A9·回风药剂"] = new UsableItem({
         name: "A9·回风药剂", 
-        description: "可以进行0.8,1.2两段不对等打击，代价是1%流血效果。大地级巅峰以下有效。", 
+        description: "可以进行0.8,1.2两段不对等打击，代价是1%流血效果。", 
         value: 240e6,
         realmcap:17,
         effects: [{effect: "回风 A9", duration: 120}],
@@ -3217,7 +3217,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["A9·坚固药剂"] = new UsableItem({
         name: "A9·坚固药剂", 
-        description: "将每回合受到伤害限制在生命上限的5%，代价是1%流血效果。大地级巅峰以下有效。", 
+        description: "将每回合受到伤害限制在生命上限的5%，代价是1%流血效果。", 
         value: 240e6,
         realmcap:17,
         effects: [{effect: "坚固 A9", duration: 120}],

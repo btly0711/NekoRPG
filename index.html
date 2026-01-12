@@ -1301,7 +1301,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.14";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.14a";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1334,7 +1334,7 @@
                         {
                             for(let i=1;i<=10;i++)
                             {
-                                use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"),true);
+                                use_item(clicked_element.parentNode.parentNode.getAttribute("data-character_item"),false);
                             }
                             update_displayed_character_inventory(character_sorting);
                         }

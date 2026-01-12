@@ -819,6 +819,8 @@ body {
 	width:100%;
 	top: 60px;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: auto;
+	overscroll-behavior-y: none;
 }
 		
 .recipe_div {
@@ -882,6 +884,8 @@ body {
 	display: none;
 	position: absolute;
 	font-size: 14px;
+  overflow-y: auto;             
+  overscroll-behavior-y: none;
 }
 .recipe_result {
 	border: 1px solid white;

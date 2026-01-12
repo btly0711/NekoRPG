@@ -2274,6 +2274,8 @@ function use_item(item_key,stated = false) {
         if(item_templates[id].realmcap<character.xp.current_level)
         {
             log_message(`你的境界是 <span class=realm_${window.REALMS[character.xp.current_level][5]}>${window.REALMS[character.xp.current_level][1]}</span> ,超过了 <span class=realm_${window.REALMS[item_templates[id].realmcap][5]}>${window.REALMS[item_templates[id].realmcap][1]}</span> ,因此无法使用 ${item_templates[id].name}`, `gather_loot`);
+            
+            remove_from_character_inventory([{item_key}]);
             return;
         }
     }
