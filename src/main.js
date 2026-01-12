@@ -69,26 +69,31 @@ const backup_key = "backup save";
 const dev_backup_key = "dev backup save";
 
 window.REALMS=[
-[0,"微尘级初级",0,0,0],
-[1,"微尘级中级",1,50,5],
-[2,"微尘级高级",3,200,100],
-[3,"万物级初等",6,700,1200],//0.1spd 
-[4,"万物级高等",12,3000,4800],
-[5,"万物级巅峰",25,6000,16000],
-[6,"潮汐级初等",40,10000,36000],//0.1spd
-[7,"潮汐级高等",100,20000,120000],
-[8,"潮汐级巅峰",250,40000,2400000],
+[0,"微尘级初级",0,0,0,"basic"],
+[1,"微尘级中级",1,50,5,"basic"],
+[2,"微尘级高级",3,200,100,"basic"],
+[3,"万物级初等",6,700,1200,"basic"],//0.1spd 
+[4,"万物级高等",12,3000,4800,"basic"],
+[5,"万物级巅峰",25,6000,16000,"basic"],
+[6,"潮汐级初等",40,10000,36000,"basic"],//0.1spd
+[7,"潮汐级高等",100,20000,120000,"basic"],
+[8,"潮汐级巅峰",250,40000,2400000,"basic"],
 
-[9,"大地级一阶",600,120000,60000000],
-[10,"大地级二阶",1000,250000,80000000],
-[11,"大地级三阶",2000,550000,2.4e8],
-[12,"大地级四阶",3000,1000000,7.2e8],
-[13,"大地级五阶",5000,1500000,9.2233e18],//以下未平衡
-[14,"大地级六阶",9000,2500000,1.35e10],
+[9,"大地级一阶",600,120000,60000000,"terra"],
+[10,"大地级二阶",1000,250000,80000000,"terra"],
+[11,"大地级三阶",2000,550000,2.4e8,"terra"],
+[12,"大地级四阶",3000,1000000,7.2e8,"terra"],
+[13,"大地级五阶",5000,1500000,9.2233e18,"terra"],//以下未平衡
+[14,"大地级六阶",9000,2500000,1.35e10,"terra"],
+[15,"大地级七阶",16000,7000000,4.05e10,"terra"],
+[16,"大地级八阶",32000,13000000,1.2e11,"terra"],
+[17,"大地级巅峰",60000,25000000,3.333e11,"terra"],
+
+[18,"天空级一阶",150000,50000000,9.999e11,"sky"],
 
 ];
 //境界，X级存储了该等级的数据
-//命名空间：0为境界编号，1为境界名（含颜色），2为提升属性，3为增加血量，4为需要经验值
+//命名空间：0为境界编号，1为境界名（含颜色），2为提升属性，3为增加血量，4为需要经验值，5为display时使用realm_xxx类
 
 const global_flags = {
     is_gathering_unlocked: false,
@@ -1145,10 +1150,16 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
             let leveled = false;
 
             for(let i = 0; i < targets.length; i++) {
-                const alive_targets = current_enemies.filter(enemy => enemy.is_alive);
+                let alive_targets = current_enemies.filter(enemy => enemy.is_alive);
                 //console.log(i);
                 //console.log(alive_targets.length);
-                do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1);
+                if(active_effects["回风 A9"]!=undefined)
+                {
+                    do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,0.8,"[回风-弱]");
+                    alive_targets = current_enemies.filter(enemy => enemy.is_alive);
+                    if(current_enemies.filter(enemy => enemy.is_alive).length != 0) do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,1.2,"[回风-强]");
+                }
+                else do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,1,"");
             }
             //console.log(current_stance);
             if(stances[current_stance].related_skill) {
@@ -1385,6 +1396,8 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
             spec_hint += "[凌弱]";
         }
     }//凌弱
+    
+    
     let {damage_taken, fainted} = character.take_damage(attacker.spec,{damage_value: damage_dealt},sdef_mul);
 
     if(critted)
@@ -1471,11 +1484,11 @@ function get_enemy_realm(enemy){
     return realm_e;
 }
 
-function do_character_combat_action({target, attack_power}, target_num) {
+function do_character_combat_action({target, attack_power}, target_num,c_atk_mul,c_hint) {
 
     let satk_mul = 1;//角色攻击乘数
     let sdmg_mul = 1;//角色伤害乘数
-    let Spec_E = "";
+    let Spec_E = c_hint;
     if(target.spec.includes(8)) satk_mul *= (1 - 0.01*target.spec_value[8]);//衰弱
     if(target.spec.includes(9)) satk_mul *= character.stats.full.defense / character.stats.full.attack_power;//反转
     if(target.spec.includes(27)) satk_mul *= 0.9;//柔骨
@@ -1491,7 +1504,7 @@ function do_character_combat_action({target, attack_power}, target_num) {
         }
     }
 
-    const hero_base_damage = attack_power * satk_mul;
+    const hero_base_damage = attack_power * satk_mul * c_atk_mul;
 
     let damage_dealt;
     
@@ -1531,8 +1544,19 @@ function do_character_combat_action({target, attack_power}, target_num) {
         else {
             critted = false;
         }
-        
+        let proto_d = damage_dealt;
         damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense,0))/10;
+
+        if(active_effects["魔攻 A9"]!=undefined && damage_dealt < proto_d * 0.1)
+        {
+            damage_dealt = proto_d * 0.1;
+            Spec_E += "[魔攻]";
+        }
+        if(active_effects["牵制 A9"]!=undefined)
+        {
+            sdmg_mul *= Math.min(character.stats.full.defense / (target.stats.defense + 0.0001) * 0.6,3);
+            Spec_E += "[牵制]";
+        }
 
 
         if(target.spec.includes(1))
@@ -2244,6 +2268,15 @@ function use_item(item_key,stated = false) {
     }
 
     let used = false;
+    //console.log(item_templates[id])
+    if(item_templates[id].realmcap!=-1)
+    {
+        if(item_templates[id].realmcap<character.xp.current_level)
+        {
+            log_message(`你的境界是 <span class=realm_${window.REALMS[character.xp.current_level][5]}>${window.REALMS[character.xp.current_level][1]}</span> ,超过了 <span class=realm_${window.REALMS[item_templates[id].realmcap][5]}>${window.REALMS[item_templates[id].realmcap][1]}</span> ,因此无法使用 ${item_templates[id].name}`, `gather_loot`);
+            return;
+        }
+    }
     for(let i = 0; i < item_effects.length; i++) {
         const duration = item_templates[id].effects[i].duration;
         let s_dur = duration;

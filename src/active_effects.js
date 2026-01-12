@@ -134,4 +134,40 @@ effect_templates["饱食 V"] = new ActiveEffect({
     }
 });
 
+effect_templates["魔攻 A9"] = new ActiveEffect({
+    name: "魔攻 A9",
+    effects: {
+        stats: {
+            attack_mul: {multiplier: 0.9},
+        }
+    }
+});
+
+effect_templates["牵制 A9"] = new ActiveEffect({
+    name: "牵制 A9",
+    effects: {
+        stats: {
+        }
+    }
+});
+
+effect_templates["回风 A9"] = new ActiveEffect({
+    name: "回风 A9",
+    effects: {
+        stats: {
+            health_regeneration_percent: {flat: -1},
+        }
+    }
+});
+
+effect_templates["坚固 A9"] = new ActiveEffect({
+    name: "坚固 A9",
+    effects: {
+        stats: {
+            health_regeneration_percent: {flat: -1},
+        }
+    }
+});
+
+
 export {effect_templates, ActiveEffect};

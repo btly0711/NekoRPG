@@ -1094,26 +1094,32 @@ i {
 
 .realm_basic{
 	color:white;
+	font-weight: bold;
 }
 
 .realm_terra{
 	color:#75E97E;
+	font-weight: bold;
 }
 
 .realm_sky{
 	color:#6FAEE4;
+	font-weight: bold;
 }
 
 .realm_cloudy{
 	color:#C76EE7;
+	font-weight: bold;
 }
 
 .realm_realm{
 	color:#E06BBB;
+	font-weight: bold;
 }
 
 .realm_world{
 	color:#F0EA28;
+	font-weight: bold;
 }
 
 .skill_sorting_button {

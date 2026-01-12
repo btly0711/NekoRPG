@@ -149,6 +149,7 @@ class Item {
                 E_value = 0,
                 C_value = 0,
                 tags = {},
+                realmcap = -1,
                 id = null,
                 image = "",
                 })
@@ -158,6 +159,7 @@ class Item {
         this.saturates_market = false;
         this.id = id;
         this.image = image;
+        this.realmcap = realmcap;
         /**
          * Use .getValue() instead of this
          */
@@ -382,7 +384,6 @@ class UsableItem extends Item {
         this.item_type = "USABLE";
         this.stackable = true;
         this.effects = item_data.effects || {};
-
         this.tags["usable"] = true;
     }
 }
@@ -3137,6 +3138,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "微尘·凶兽肉排", 
         description: "煮熟的年幼凶兽肉排。食用后每秒回复40点血量，持续60秒",//血药模版 
         value: 20,
+        realmcap:5,
         effects: [{effect: "饱食", duration: 60}],
         image: "image/item/O1_cooked_meat.png",
     });
@@ -3144,6 +3146,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "万物·凶兽肉排", 
         description: "虽然颜色很奇怪但是真的能吃！食用后每秒回复80点血量，持续60秒",
         value: 240,
+        realmcap:7,
         effects: [{effect: "饱食 II", duration: 60}],
         image: "image/item/O5_cooked_meat.png",
     });
@@ -3152,6 +3155,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "潮汐级凶兽的肉。不仅可以回血，还可以增加少许领悟！", 
         value: 6000,
         effects: [{effect: "饱食 III", duration: 60}],
+        realmcap:8,
         image: "image/item/O8_cooked_meat.png",
     });
     item_templates["地宫恢复药水"] = new UsableItem({
@@ -3159,12 +3163,14 @@ item_templates["Twist liek a snek"] = new Book({
         description: "它并不十分好喝。悲哀的是，地宫怪物的肉口感更糟...", 
         value: 210e3,
         effects: [{effect: "恢复 A1", duration: 60}],
+        realmcap:11,
         image: "image/item/A1_medicine.png",
     });
     item_templates["地宫狂暴药水"] = new UsableItem({
         name: "地宫狂暴药水", 
         description: "可以短时间内大幅增强你的力量。嘛，就是有一点副作用...", 
         value: 420e3,
+        realmcap:11,
         effects: [{effect: "强化 A1", duration: 30},{effect: "虚弱", duration: 90}],
         image: "image/item/A1_booster.png",
     });
@@ -3173,6 +3179,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "大地级荒兽的肉。谢天谢地，地宫深处终于有有能吃的东西了。", 
         value: 500e3,
         effects: [{effect: "饱食 IV", duration: 90}],
+        realmcap:11,
         image: "image/item/A2_cooked_meat.png",
     });
     item_templates["森林·荒兽肉排"] = new UsableItem({
@@ -3180,8 +3187,44 @@ item_templates["Twist liek a snek"] = new Book({
         description: "大地级中期荒兽的肉。出了地宫之后，外面的荒兽好吃了不少。", 
         value: 1.8e6,
         effects: [{effect: "饱食 V", duration: 60}],
+        realmcap:14,
         image: "image/item/A4_cooked_meat.png",
+    });//
+    
+    item_templates["A9·魔攻药剂"] = new UsableItem({
+        name: "A9·魔攻药剂", 
+        description: "提供10%魔攻，代价是普攻倍率-10%。大地级巅峰以下有效。", 
+        value: 240e6,
+        realmcap:17,
+        effects: [{effect: "魔攻 A9", duration: 120}],
+        image: "image/item/A9_magic.png",
     });
+    item_templates["A9·牵制药剂"] = new UsableItem({
+        name: "A9·牵制药剂", 
+        description: "提供60%效果的牵制，上限为3倍增伤。大地级巅峰以下有效。", 
+        value: 240e6,
+        realmcap:17,
+        effects: [{effect: "牵制 A9", duration: 120}],
+        image: "image/item/A9_contain.png",
+    });
+    item_templates["A9·回风药剂"] = new UsableItem({
+        name: "A9·回风药剂", 
+        description: "可以进行0.8,1.2两段不对等打击，代价是1%流血效果。大地级巅峰以下有效。", 
+        value: 240e6,
+        realmcap:17,
+        effects: [{effect: "回风 A9", duration: 120}],
+        image: "image/item/A9_rewind.png",
+    });
+    item_templates["A9·坚固药剂"] = new UsableItem({
+        name: "A9·坚固药剂", 
+        description: "将每回合受到伤害限制在生命上限的5%，代价是1%流血效果。大地级巅峰以下有效。", 
+        value: 240e6,
+        realmcap:17,
+        effects: [{effect: "坚固 A9", duration: 120}],
+        image: "image/item/A9_hard.png",
+    });
+    
+    
 })();
 //炼金
 (function(){
@@ -3357,18 +3400,6 @@ item_templates["Twist liek a snek"] = new Book({
         value: 20,
         image: "image/item/copper_bone.png",
     });
-    item_templates["铜板"] = new Loot({
-        name: "铜板", 
-        description: "燕岗领铸造的通用钱币", 
-        value: 1,
-        image: "image/item/1C.png",
-    });
-    item_templates["大铜板"] = new Loot({
-        name: "大铜板", 
-        description: "燕岗领铸造的通用钱币，面值5C", 
-        value: 5,
-        image: "image/item/5C.png",
-    });
 
 
     //1-2
@@ -3461,12 +3492,6 @@ item_templates["Twist liek a snek"] = new Book({
         value: 500e3,
         image: "image/item/living_rubber.png",
     });
-    item_templates["黑色刀币"] = new Loot({
-        name: "黑色刀币", 
-        description: "血洛大陆的通用钱币。1Z=1000X=1'000'000C.", 
-        value: 1e6,
-        image: "image/item/1Z.png",
-    });
 
     //1-5
     //2-1
@@ -3509,9 +3534,27 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1.5e6,
         image: "image/item/beast_essence.png",
     });
+    item_templates["水溶精华"] = new Loot({
+        name: "水溶精华", 
+        description: "江边水生系荒兽的精华。可以用作魔法药剂的材料。", 
+        value: 4.5e6,
+        image: "image/item/aq_essence.png",
+    });
 
 
     //以下为打钱的东西
+    item_templates["铜板"] = new Loot({
+        name: "铜板", 
+        description: "燕岗领铸造的通用钱币", 
+        value: 1,
+        image: "image/item/1C.png",
+    });
+    item_templates["大铜板"] = new Loot({
+        name: "大铜板", 
+        description: "燕岗领铸造的通用钱币，面值5C", 
+        value: 5,
+        image: "image/item/5C.png",
+    });
     item_templates["五彩凝胶"] = new Loot({
         name: "五彩凝胶", 
         description: "完整，色彩鲜艳的凝胶。能卖个好价钱！", 
@@ -3529,6 +3572,18 @@ item_templates["Twist liek a snek"] = new Book({
         description: "血洛大陆的通用钱币，面值1X=1000C", 
         value: 1e3,
         image: "image/item/1X.png",
+    });
+    item_templates["黑色刀币"] = new Loot({
+        name: "黑色刀币", 
+        description: "血洛大陆的通用钱币。1Z=1000X=1'000'000C.", 
+        value: 1e6,
+        image: "image/item/1Z.png",
+    });
+    item_templates["一捆黑币"] = new Loot({
+        name: "一捆黑币", 
+        description: "包装起来的血洛大陆通用钱币。总面值10Z。", 
+        value: 10e6,
+        image: "image/item/10Z.png",
     });
 })();
 

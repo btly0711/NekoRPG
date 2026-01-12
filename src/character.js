@@ -4,6 +4,7 @@ import { InventoryHaver } from "./inventory.js";
 import { skills, weapon_type_to_skill } from "./skills.js";
 import { update_displayed_character_inventory, update_displayed_equipment, 
          update_displayed_stats,
+         format_number,log_message , 
          update_displayed_health, 
          update_displayed_skill_xp_gain, update_all_displayed_skills_xp_gain,
          update_displayed_xp_bonuses } from "./display.js";
@@ -576,6 +577,12 @@ character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = tr
         else{
                 damage_taken = Math.ceil(10*Math.max(damage_value - character.stats.full.defense * def_mul,0))/10;
                 
+        }
+
+        if(active_effects["坚固 A9"]!=undefined && damage_taken > character.stats.full.max_health * 0.05)
+        {
+                log_message(`坚固药剂抵挡了溢出的 ${format_number(damage_taken - character.stats.full.max_health * 0.05)} 伤害！`,"enemy_enhanced")
+                damage_taken = character.stats.full.max_health * 0.0500001;
         }
 
         character.stats.full.health -= damage_taken;

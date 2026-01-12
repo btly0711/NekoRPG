@@ -800,6 +800,15 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [14,20],
         recipe_skill: "Smelting",
     });
+    smelting_recipes.items["充能合金·精制(x4)"] = new ItemRecipe({
+        name: "充能合金·精制",
+        recipe_type: "material",
+        materials: [{material_id: "水溶精华", count: 1},{material_id: "甲壳碎片", count: 4},{material_id:"A4·能量核心", count: 1}], 
+        result: {result_id: "充能合金锭", count: 4},
+        success_chance: [0.5,1],
+        recipe_level: [19,23],
+        recipe_skill: "Smelting",
+    });
 })();
 
 (function(){
@@ -969,6 +978,47 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [20,20],
         recipe_skill: "Alchemy",
     });
+
+    
+    alchemy_recipes.items["炼金药剂-魔攻"] = new ItemRecipe({
+        name: "炼金药剂-魔攻",
+        recipe_type: "material",
+        materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
+        result: {result_id: "A9·魔攻药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [30,33],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items["炼金药剂-回风"] = new ItemRecipe({
+        name: "炼金药剂-回风",
+        recipe_type: "material",
+        materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
+        result: {result_id: "A9·回风药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [30,33],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items["炼金药剂-牵制"] = new ItemRecipe({
+        name: "炼金药剂-牵制",
+        recipe_type: "material",
+        materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
+        result: {result_id: "A9·牵制药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [30,33],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items["炼金药剂-坚固"] = new ItemRecipe({
+        name: "炼金药剂-坚固",
+        recipe_type: "material",
+        materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
+        result: {result_id: "A9·坚固药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [30,33],
+        recipe_skill: "Alchemy",
+    });
+
+
+    
 })();
 
 const recipes = {

@@ -2458,6 +2458,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.05},
             {item_name: "极品蓝宝石", chance:0.01},
+            {item_name: "甲壳碎片", chance:0.40},
             //应为500X
         ],
     });
@@ -2475,6 +2476,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.05},
             {item_name: "极品蓝宝石", chance:0.01},
+            {item_name: "A4·能量核心", chance:0.50},
             //应为500X
         ],
     });
@@ -2492,6 +2494,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.05},
             {item_name: "极品蓝宝石", chance:0.01},
+            {item_name: "甲壳碎片", chance:0.20},
+            {item_name: "水溶精华", chance:0.05},
             //应为500X
         ],
     });
@@ -2509,6 +2513,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.03},
             {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "水溶精华", chance:0.10},
+            {item_name: "荒兽精华", chance:0.30},
             //应为900X
         ],
     });
@@ -2526,6 +2532,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.03},
             {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "A4·能量核心", chance:0.50},
+            {item_name: "活化柳木", chance:0.20},
             //应为900X
         ],
     });
@@ -2543,6 +2551,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.03},
             {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "水溶精华", chance:0.20},
             //应为900X
         ],
     });
@@ -2560,6 +2569,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.03},
             {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "森林·荒兽肉块", chance:0.50},
+            {item_name: "A4·能量核心", chance:0.50},
             //应为900X
         ],
     });
@@ -2577,6 +2588,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.03},
             {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "荒兽精华", chance:0.30},
+            {item_name: "水溶精华", chance:0.10},
             //应为900X
         ],
     });
@@ -2594,6 +2607,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.03},
             {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "活化柳木", chance:0.20},
+            {item_name: "一捆黑币", chance:0.04},
             //应为900X
         ],
     });
@@ -2612,6 +2627,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品黄宝石", chance:0.03},
             {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "A4·能量核心", chance:0.50},
+            {item_name: "水溶精华", chance:0.10},
             //应为900X
         ],
     });
@@ -2629,6 +2646,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "水溶精华", chance:0.15},
+            {item_name: "甲壳碎片", chance:1.00},
             //应为1.6Z
         ],
     });
@@ -2647,6 +2666,9 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "荒兽精华", chance:0.50},
+            {item_name: "A4·能量核心", chance:0.75},
+            
             //应为1.6Z
         ],
     });
@@ -2664,6 +2686,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "活化柳木", chance:0.30},
+            {item_name: "一捆刀币", chance:0.09},
             //应为1.6Z
         ],
     });
@@ -2682,6 +2706,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "水溶精华", chance:0.32},
             //应为1.6Z
         ],
     });
@@ -2699,6 +2724,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "甲壳碎片", chance:0.80},
+            {item_name: "黑色刀币", chance:0.60},
             //应为1.6Z
         ],
     });
@@ -2716,6 +2743,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "水溶精华", chance:0.20},
+            {item_name: "荒兽精华", chance:0.30},
             //应为1.6Z
         ],
     });
@@ -2733,6 +2762,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "活化柳木", chance:0.30},
+            {item_name: "A4·能量核心", chance:0.75},
             //应为1.6Z
         ],
     });

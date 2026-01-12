@@ -357,9 +357,12 @@ function create_item_tooltip_content({item, options={}}) {
     } 
     else if (item.item_type === "USABLE") {
         item_tooltip += `<br>`;
+        if(item.realmcap != -1){
+            item_tooltip += `<br>限制境界: <span class=realm_${window.REALMS[item.realmcap][5]}>${window.REALMS[item.realmcap][1]}</span> 及以下<br>`
+        }
 
         if(item.effects.length > 0) {
-            item_tooltip += "<br>Effects: "
+            item_tooltip += "<br>效果: "
         }
         for(let i = 0; i < item.effects.length; i++) {
             item_tooltip += create_effect_tooltip(item.effects[i].effect, item.effects[i].duration).outerHTML;
@@ -451,21 +454,14 @@ function create_effect_tooltip(effect_name, duration) {
         tooltip.innerHTML += `<br> `;
         //for regeneration bonuses, it is assumed they are only flat and not multiplicative
         //${capitalize_first_letter(key.replaceAll("_", " ").replace("flat","").replace("percent",""))}
-            let sign = stat_value.flat > 0? "+":"-";
-            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤"}
-        if(key === "health_regeneration_flat") 
-        {   
-            let sign = stat_value.flat > 0? "+":"-";
-            tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}`;
-        } else if(key === "health_regeneration_percent") {
-            const sign = stat_value.flat > 0? "+":"";
-            tooltip.innerHTML += `生命恢复 : ${sign}${stat_value.flat}%`;
-        } else {
-
-            tooltip.innerHTML += `${EffectToolTipMap[key]} : ${sign}${stat_value.flat}`;
-        }
+            let sign = stat_value.flat > 0? "+":"";
+            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复(比例)"}
+            if(stat_value.flat == undefined){
+                let sign = "";
+                tooltip.innerHTML += `${EffectToolTipMap[key]} : x${sign}${stat_value.multiplier}`;
+            }
+            else tooltip.innerHTML += `${EffectToolTipMap[key]} : ${sign}${stat_value.flat}`;
     }
-
     tooltip.appendChild(effects_div);
     return tooltip;
 }
