@@ -186,6 +186,13 @@ class TradeItem {
         location_name: "荒兽森林营地",
         profit_margin: 3.6,
     });
+    traders["行脚商人"] = new Trader({
+        name: "行脚商人",
+        inventory_template: "Terra III",
+        is_unlocked: false,
+        location_name: "清野江畔",
+        profit_margin: 3.8,
+    });
 })();
 
 //create inventory templates
@@ -374,6 +381,26 @@ class TradeItem {
             new TradeItem({item_name: "活性背心", count: [1], quality: [91, 120], chance: 0.8}),
             new TradeItem({item_name: "活性裤子", count: [1], quality: [91, 120], chance: 0.8}),
             new TradeItem({item_name: "活性袜子", count: [1], quality: [91, 110], chance: 0.8}),
+    ];
+
+    inventory_templates["Terra III"] = 
+    [
+            new TradeItem({item_name: "活性织料", count: [100,250]}),
+            new TradeItem({item_name: "甲壳碎片", count: [100,250]}),
+            new TradeItem({item_name: "流动凝胶", count: [100,250]}),
+            new TradeItem({item_name: "A4·能量核心", count: [50,150]}),
+            new TradeItem({item_name: "森林·荒兽肉块", count: [20,50], chance: 0.8}),
+
+            
+            new TradeItem({item_name: "A9·牵制药剂", count: [10,20]}),
+            new TradeItem({item_name: "A9·魔攻药剂", count: [10,20]}),
+            new TradeItem({item_name: "A9·坚固药剂", count: [10,20]}),
+            new TradeItem({item_name: "A9·回风药剂", count: [10,20]}),
+
+            
+            new TradeItem({item_name: "充能剑", count: [1], quality: [111, 140], chance: 0.8}),
+            new TradeItem({item_name: "充能戟", count: [1], quality: [111, 140], chance: 0.8}),
+
     ];
 
 

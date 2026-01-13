@@ -882,10 +882,9 @@ body {
 }
 .recipe_tooltip {
 	display: none;
-	position: absolute;
+	position: fixed;
 	font-size: 14px;
-  overflow-y: auto;             
-  overscroll-behavior-y: none;
+	transform: none;    
 }
 .recipe_result {
 	border: 1px solid white;

@@ -92,22 +92,22 @@ function format_time(data) { //{time, long_names?}
         data.time.months = data.time.months % 30;
     }
 
-    let formatted_time = '';
-    if(data.time.years > 0) {
-        formatted_time += data.long_names? `${data.time.year} years ` : `${data.time.year}Y`;
-    }
-    if(data.time.months > 0) {
-        formatted_time += data.long_names? `${data.time.months} months ` : `${data.time.months}M`;
-    }
-    if(data.time.days > 0) {
-        formatted_time += data.long_names? `${data.time.days} days ` : `${data.time.days}D`;
-    }
-    if(data.time.hours > 0) {
-        formatted_time += data.long_names? `${data.time.hours} hours ` : `${data.time.hours}h`;
-    }
-    if(data.time.minutes > 0) {
-        formatted_time += data.long_names? `${data.time.minutes} minutes ` : `${data.time.minutes}m`;
-    }
+    let formatted_time = `${(data.time.minutes||0)*1+(data.time.hours||0)*60+(data.time.days||0)*1440+(data.time.months||0)*43200+(data.time.years||0)*518400}s`;
+    // if(data.time.years > 0) {
+    //     formatted_time += data.long_names? `${data.time.year} years ` : `${data.time.year}Y`;
+    // }
+    // if(data.time.months > 0) {
+    //     formatted_time += data.long_names? `${data.time.months} months ` : `${data.time.months}M`;
+    // }
+    // if(data.time.days > 0) {
+    //     formatted_time += data.long_names? `${data.time.days} days ` : `${data.time.days}D`;
+    // }
+    // if(data.time.hours > 0) {
+    //     formatted_time += data.long_names? `${data.time.hours} hours ` : `${data.time.hours}h`;
+    // }
+    // if(data.time.minutes > 0) {
+    //     formatted_time += data.long_names? `${data.time.minutes} minutes ` : `${data.time.minutes}m`;
+    // }
 
     return formatted_time;
 }

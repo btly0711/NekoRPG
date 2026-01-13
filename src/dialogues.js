@@ -627,7 +627,8 @@ class Textline {
                 text: "……也罢。<br>（唉，这次居然栽在一个小丫头手上，<br>运气是真的差，回头要如何和家族交待……）",
 
                 unlocks: {
-                    items: ["地图-藏宝地"],
+                    items: [{item_name:"地图-藏宝地"}],
+                    //items: ["地图-藏宝地"],
                     locations: ["燕岗近郊 - 1"],
                 },
                 locks_lines: ["defeat3"],

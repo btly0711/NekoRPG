@@ -1301,7 +1301,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.14a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.15";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1461,7 +1461,7 @@
                         }
                         
                         //set horizontal position
-                        document.documentElement.style.setProperty('--recipe_tooltip_left', `${event.pageX - 400}px`);
+                        document.documentElement.style.setProperty('--recipe_tooltip_left', `${event.pageX - 0}px`);
                         
                         let tooltip_height;
                         if(hovered_element.querySelector(".recipe_creation_button") && !hovered_element.classList.contains("selectable_component")) {
@@ -1478,9 +1478,9 @@
                         const bottom_edge_position = 
                             window.innerHeight - tooltip_height + window.scrollY - 230 - (scrollbar_X_visible?10:0);
                         if(event.pageY > bottom_edge_position) {
-                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${bottom_edge_position - 400}px`);
+                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${bottom_edge_position - 125}px`);
                         } else {
-                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${event.pageY - 400}px`);
+                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${event.pageY - 120}px`);
                         }
                         
                         tooltip_wait = Date.now() + 1000 / tooltip_move_ticks;

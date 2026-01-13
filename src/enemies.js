@@ -2674,7 +2674,7 @@ class Enemy {
     });
     enemy_templates["行脚商人"] = new Enemy({
         name: "行脚商人", 
-        description: "似乎是之前那些水手的头头。没有技巧，全是数值。", 
+        description: "似乎是之前那些水手的头头。他在这附近还开了一家店...可以去看看~", 
         xp_value: 17711, 
         rank: 2213,
         image: "image/enemy/E2213.png",

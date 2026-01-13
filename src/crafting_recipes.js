@@ -728,6 +728,17 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [20,21],
         recipe_skill: "Crafting",
     });
+    crafting_recipes.items["水火徽章"] = new ItemRecipe({
+        name: "水火徽章",
+        id: "水火徽章",
+        recipe_type: "items",
+        materials: [{material_id: "水溶精华", count: 99},{material_id:"荒兽精华",count:99},{material_id:"充能合金锭",count:29}],
+        result: {result_id: "水火徽章", count: 1},
+        success_chance: [0.5,1],
+        Q_able: true,
+        recipe_level: [1,25],
+        recipe_skill: "Crafting",
+    });
 })();
 //熔炼配方
 

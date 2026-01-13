@@ -2377,6 +2377,20 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["水火徽章"] = new Props({
+        name: "水火徽章",
+        id: "水火徽章",
+        description: "由两种属性的荒兽精华，构建能量循环的徽章。大大增加恢复的速度，也增加少许生命力。", 
+        value: 720000000,
+        stats: {
+            health_regeneration_flat: {
+                flat: 18888,
+            },
+            max_health: {
+                flat: 500000,
+            },
+        }
+    });
 
 
 })();

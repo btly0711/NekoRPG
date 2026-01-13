@@ -2753,13 +2753,13 @@ function format_money(num) {
 
     if(num > 0) {
         let cC=Math.floor(num%1000);
-        if(cC!=0) value = (`${cC}<span class="coin coin_copper">C</span> `);
+        if(cC!=0 && num<1e9) value = (`${cC}<span class="coin coin_copper">C</span> `);
         let cX=Math.floor(((num-cC+500)/1000)%1000);
-        if(cX!=0) value = (`${cX}<span class="coin coin_moneyK">X</span> `) + value;
+        if(cX!=0 && num<1e12) value = (`${cX}<span class="coin coin_moneyK">X</span> `) + value;
         let cZ=Math.floor(((num-cX*1e3+500e3)/1e6)%1000);
-        if(cZ!=0) value = (`${cZ}<span class="coin coin_moneyM">Z</span> `) + value;
+        if(cZ!=0 && num<1e15) value = (`${cZ}<span class="coin coin_moneyM">Z</span> `) + value;
         let cD=Math.floor(((num-cZ*1e6+500e6)/1e9)%1000);
-        if(cD!=0) value = (`${cD}<span class="coin coin_moneyB">D</span> `) + value;
+        if(cD!=0 && num<1e18) value = (`${cD}<span class="coin coin_moneyB">D</span> `) + value;
         let cB=Math.floor(((num-cD*1e9+500e9)/1e12));
         if(cB!=0) value = (`${cB}<span class="coin coin_moneyT">D</span> `) + value;
         return sign + value;
