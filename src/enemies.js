@@ -2687,7 +2687,7 @@ class Enemy {
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
             {item_name: "活化柳木", chance:0.30},
-            {item_name: "一捆刀币", chance:0.09},
+            {item_name: "一捆黑币", chance:0.09},
             //应为1.6Z
         ],
     });
