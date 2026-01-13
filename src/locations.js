@@ -1960,7 +1960,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["荒兽森林营地"], custom_text: "走小路，回到营地"}], 
         description: "顺着这条江往回走就可以回到家族..快点和父亲大人汇报此事！[V1.10前版本终点]",
         
-        traders: ["金属批发商"],
+        traders: ["行脚商人"],
         dialogues: ["清野瀑布"],
         name: "清野江畔", 
         is_unlocked: false,
