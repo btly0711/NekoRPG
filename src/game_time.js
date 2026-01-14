@@ -15,26 +15,26 @@ function Game_time(new_time) {
 
     this.go_up = function(how_much) {
         this.minute += how_much || 1;
-        if(this.minute >= 60) 
+        while(this.minute >= 60) 
         {
             this.minute = this.minute - 60;
             this.hour += 1;
         }
     
-        if(this.hour >= 180) 
+        while(this.hour >= 180) 
         {
             this.hour = this.hour - 180;
             this.day += 1; 
             this.day_count += 1;
         }
     
-        if(this.day >= 50) 
+        while(this.day > 50) 
         {
             this.day = this.day - 50;
             this.year += 1;
         }
 
-        if(this.year >= 9999)
+        while(this.year > 9999)
         {
             this.year = this.year - 10000;
             this.era += 1;

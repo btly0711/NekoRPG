@@ -1516,7 +1516,7 @@ function update_displayed_normal_location(location) {
     if(location.sleeping) { 
         const start_sleeping_div = document.createElement("div");
         
-        start_sleeping_div.innerHTML = '<i class="material-icons">bed</i>  ' + location.sleeping.text;
+        start_sleeping_div.innerHTML = '<span style = "color:#cce0ff"><i class="material-icons">bed</i>  ' + location.sleeping.text + '</span>';
         start_sleeping_div.id = "start_sleeping_div";
         start_sleeping_div.setAttribute('onclick', 'start_sleeping()');
 
@@ -1612,7 +1612,7 @@ function create_location_choices({location, category, add_icons = true, is_comba
             
             const trader_div = document.createElement("div");  
 
-            trader_div.innerHTML = add_icons ? `<span style="color:#ffffd0"><i class="material-icons">storefront</i>   ` : "";
+            trader_div.innerHTML = add_icons ? `   ` : "";
             trader_div.innerHTML += traders[location.traders[i]].trade_text + `</span>`;
             trader_div.classList.add("start_trade");
             trader_div.setAttribute("data-trader", location.traders[i]);
@@ -2843,7 +2843,7 @@ function update_displayed_dialogue(dialogue_key) {
 
     if(dialogue.trader) {
         const trade_div = document.createElement("div");
-        trade_div.innerHTML = `<i class="material-icons">storefront</i>  ` + traders[dialogue.trader].trade_text;
+        trade_div.innerHTML = `` + traders[dialogue.trader].trade_text;
         trade_div.classList.add("dialogue_trade")
         trade_div.setAttribute("data-trader", dialogue.trader);
         trade_div.setAttribute("onclick", "startTrade(this.getAttribute('data-trader'))")

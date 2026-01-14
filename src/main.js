@@ -297,6 +297,7 @@ const musicList = {
   5: 'bgms/5.mp3',
   6: 'bgms/6.mp3',
   7: 'bgms/7.mp3',
+  7: 'bgms/8.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -810,6 +811,29 @@ function start_textline(textline_key){
         if(textline.unlocks.spec == "DeathCount-1")
         {   
             displayed_text = "如今也算是历经了" + format_number(total_deaths)  + "次生死呢，<br>也知道了父亲大人的话是什么意思。";
+        }
+        if(textline.unlocks.spec == "Realm-A3")
+        {   
+            displayed_text = `……<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>？！` ;
+        }
+        if(textline.unlocks.spec == "Realm-A4")
+        {   
+            let a4_realm = character.xp.current_level;
+            if(a4_realm >= 12) displayed_text = `都到大地级四阶了还不去？<br>再这样出去别说你是我女儿！<br>` ;
+            else displayed_text = `你的自创剑法，<br>足以令你发挥出超过大地级五阶的实力。<br>` ;
+
+            if(enemy_killcount["百方[荒兽森林 ver.][BOSS]"]) displayed_text += "...等会，百方已经被你揍哭了???<br>";
+            else displayed_text += "待你历练有成，那区区百方，自是不足为惧！<br>";
+
+            displayed_text += "家族秘境，每半年开启一次。<br>这段时间，你就留在家族，<br>巩固你当前的境界实力吧。";
+            let T=(current_game_time.day-1)*10800+current_game_time.hour*60+current_game_time.minute;
+            T=T%270000;
+            T=270000-T;
+            current_game_time.go_up(T)
+            displayed_text += `<br><br>跳过了${Math.floor(T/10800)}血洛日,${Math.floor((T%10800)/60)}时,${T%60}分钟游戏内时间。`;
+            displayed_text += `<br><br>在这段时间内， ${character.name} 修炼获取了 ${format_number(Math.sqrt(T*1e10))} 经验！`;
+            add_xp_to_character(Math.sqrt(T*1e10),false);
+            update_displayed_time();
         }
     }
 
@@ -3538,6 +3562,9 @@ function update() {
             if(is_sleeping) {
                 do_sleeping();
                 add_xp_to_skill({skill: skills["Sleeping"], xp_to_add: current_location.sleeping?.xp});
+                if(current_location.sleeping?.xp >= 10){
+                    add_xp_to_character(Math.pow(current_location.sleeping?.xp,2),false);
+                }
             }
             else {
                 if(is_resting) {

@@ -867,6 +867,74 @@ class Textline {
             }), 
         }
     });
+    dialogues["纳布(江畔)"] = new Dialogue({
+        name: "纳布(江畔)",
+        starting_text: "与父亲纳布对话",
+        textlines: {
+            "jp1": new Textline({ 
+                is_unlocked: false,
+                name: "...",
+                text: "可可！你没事吧，这身伤是怎么回事？",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(江畔)", lines: ["jp2"]}],
+                },
+                
+                locks_lines: ["jp1"],
+            }),
+            "jp2": new Textline({ 
+                is_unlocked: false,
+                name: "说来话长……和百家的人在外面打了一架。还好有那张符咒在呢。",
+                text: "纳可将之前的事情告诉了纳布，<br>也包括自己受伤后，<br>观想清野瀑布的意外收获。<br><br>[纳布]岂有此理，百家那群混蛋！他们真是该死！<br>不过是眼红我纳家此次所得，便做出此等勾当。<br>那个百兰连大地级都不是，<br>在百家根本没什么地位，说帮他出气只不过是个可耻的借口罢了！",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(江畔)", lines: ["jp3"]}],
+                },
+                
+                locks_lines: ["jp2"],
+            }),
+            "jp3": new Textline({ 
+                is_unlocked: false,
+                name: "这件事……我也有一部分责任。我不该去招惹强大的百家，给家族添麻烦。",
+                text: "可可，这不是你的错。<br>最近一段时间不要单独出去了，我会派人保护你。[纳可]我没关系的。父亲大人，您说过的，只有危险的地方才有机遇。",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(江畔)", lines: ["jp4"]}],
+                },
+                
+                locks_lines: ["jp3"],
+            }),
+            "jp4": new Textline({ 
+                is_unlocked: false,
+                name: "我能有现在的实力，也正是拜这次生死危机所赐。",
+                text: "",
+                unlocks: {
+                    spec:"Realm-A3",
+                    textlines: [{dialogue: "纳布(江畔)", lines: ["jp5"]}],
+                },
+                
+                locks_lines: ["jp4"],
+            }),
+            "jp5": new Textline({ 
+                is_unlocked: false,
+                name: "(省略天外族群的设定)真是令人神往的世界—",
+                text: "……也是时候，送你进入家族秘境磨炼了。要知道，进入纳家秘境的标准，就是实力达到大地级中期。",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(江畔)", lines: ["jp6"]}],
+                },
+                
+                locks_lines: ["jp5"],
+            }),
+            "jp6": new Textline({ 
+                is_unlocked: false,
+                name: "诶，家族秘境吗？",
+                text: "",
+                unlocks: {
+                    spec:"Realm-A4",
+                    locations: ["纳家秘境"],
+                },
+                
+                locks_lines: ["jp6"],
+            }),
+        }
+    });
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

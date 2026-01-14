@@ -11,7 +11,7 @@ var inventory_templates = {};
 
 class Trader extends InventoryHaver {
     constructor({name,
-                 trade_text = `<span style="color:#ffffd0">与 ${name} 交易</span>`,
+                 trade_text = `<span style="color:#ffffd0"> <i class="material-icons">storefront</i> 与 ${name} 交易</span>`,
                  location_name,
                  refresh_time = 1,
                  refresh_shift = 0,
@@ -106,7 +106,7 @@ class Trader extends InventoryHaver {
      * @returns {Number} trader's profit margin multiplied by bonus from the haggling skill
      */
     getProfitMargin() {
-        return Math.max(1.1,this.profit_margin * (1 - skills["Haggling"].get_level_bonus()));
+        return Math.max(Math.min(1.1,this.profit_margin),this.profit_margin * (1 - skills["Haggling"].get_level_bonus()));
     }
 
     getItemPrice(value) {
@@ -192,6 +192,15 @@ class TradeItem {
         is_unlocked: false,
         location_name: "清野江畔",
         profit_margin: 3.8,
+    });
+    traders["物品存储箱"] = new Trader({
+        name: "物品存储箱",
+        trade_text: `<span style="color:#c0ffe0"> <i class="material-icons">work_outline</i> 向箱子里存取物品</span>`,
+        inventory_template: "Box",
+        is_unlocked: true,
+        location_name: "纳家秘境",
+        profit_margin: 1.0,
+        refresh_time: 9e15,
     });
 })();
 
@@ -401,6 +410,9 @@ class TradeItem {
             new TradeItem({item_name: "充能剑", count: [1], quality: [111, 140], chance: 0.8}),
             new TradeItem({item_name: "充能戟", count: [1], quality: [111, 140], chance: 0.8}),
 
+    ];
+    inventory_templates["Box"] = 
+    [
     ];
 
 

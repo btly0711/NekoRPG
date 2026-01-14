@@ -1958,10 +1958,10 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["清野江畔"] = new Location({ 
         connected_locations: [{location: locations["荒兽森林营地"], custom_text: "走小路，回到营地"}], 
-        description: "顺着这条江往回走就可以回到家族..快点和父亲大人汇报此事！[V1.10前版本终点]",
+        description: "顺着这条江往回走就可以回到家族..快点和父亲大人汇报此事！",
         
         traders: ["行脚商人"],
-        dialogues: ["清野瀑布"],
+        dialogues: ["清野瀑布","纳布(江畔)"],
         name: "清野江畔", 
         is_unlocked: false,
         bgm: 7,
@@ -2047,7 +2047,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 8000,
-            //locations: [{location: "清野江畔 - X"}],
+            locations: [{location: "清野江畔 - X"}],
         },
     });
     
@@ -2080,6 +2080,21 @@ function get_location_type_penalty(type, stage, stat) {
             textlines: [{dialogue: "清野瀑布", lines: ["wf1"]}],
         },
     });
+    locations["清野江畔 - X"] = new Challenge_zone({
+        description: "父亲大人就在不远处。只要击败了这只杂役，就安全了！", 
+        enemy_count: 1, 
+        enemies_list: ["大门派杂役[BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "清野江畔 - X",
+        bgm:7,
+        parent_location: locations["清野江畔"],
+        repeatable_reward: {
+            textlines: [{dialogue: "纳布(江畔)", lines: ["jp1"]}],
+        },
+    });
     locations["荒兽森林"].connected_locations.push({location: locations["清野江畔"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 1"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 2"]});
@@ -2087,11 +2102,38 @@ function get_location_type_penalty(type, stage, stat) {
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 4"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 歧路"]});
     locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - 瀑布"]});
+    locations["清野江畔"].connected_locations.push({location: locations["清野江畔 - X"], custom_text: "与挡路的大门派杂役战斗"});
 
 
+    
+    locations["纳家秘境"] = new Location({ 
+        connected_locations: [{location: locations["清野江畔"], custom_text: "回到江畔区域历练"}], 
+        description: "纳家打造的历练秘境。包含进阶工作台，休息区，和一处储存室。[V1.20前版本终点]",
+        
+        traders: ["物品存储箱"],
+        sleeping: {
+            text: "调息，冥想[+100XP/s]",
+            xp: 10
+        },
+        crafting: {
+           is_unlocked: true, 
+            use_text: "使用进阶工作台[Tier+6]", 
+            tiers: {
+                crafting: 6,
+                forging: 6,
+                smelting: 6,
+                cooking: 6,
+                alchemy: 6,
+            }
+            },
+        name: "纳家秘境", 
+        is_unlocked: false,
+        bgm: 8,
+        //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
+    });//2-3
 
 
-
+    locations["清野江畔"].connected_locations.push({location: locations["纳家秘境"]});
 
 
 
