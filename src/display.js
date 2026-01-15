@@ -136,7 +136,7 @@ const rarity_colors = {
     common: "white",
     uncommon: "lightgreen",
     rare: "lightblue",
-    epic: "lightpurple",
+    epic: "plum",
     legendary: "pink",
     mythical: "orange",
     transdental: "cyan",
