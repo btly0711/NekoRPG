@@ -236,7 +236,7 @@ class Combat_zone {
             const halo = this.enemy_stat_halo + 1;
                 newEnemy = new Enemy({name: enemy.name, 
                     description: enemy.description, 
-                    xp_value: enemy.xp_value,
+                    xp_value: enemy.xp_value * Math.pow(halo,1.5),
                     spec: enemy.spec,
                     spec_value:enemy.spec_value,
                     realm: enemy.realm,
@@ -251,6 +251,7 @@ class Combat_zone {
                     },
                     loot_list: enemy.loot_list,
                     image: enemy.image,
+                    loot_multi: Math.pow(halo,2),
                     add_to_bestiary: enemy.add_to_bestiary,
                     size: enemy.size
                 });
@@ -2131,9 +2132,126 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 8,
         //unlock_text: "好阴森的气息。这里不像是一个强者留下的遗迹，因为强者在创造遗迹时，一般都会留下引导。"
     });//2-3
-
-
+    
+    locations["纳家秘境 - 战斗区"] = new Location({ 
+        connected_locations: [{location: locations["纳家秘境"], custom_text: "回到休息区修整"}], 
+        description: "纳家打造的历练秘境。共有五层，每层都有更多更强的荒兽与魔物，同时光环效果更强。",
+        
+        name: "纳家秘境 - 战斗区", 
+        types: [],
+        is_unlocked: true,
+        bgm: 8,
+        
+    });
+    
+    locations["纳家秘境 - 1"] = new Combat_zone({
+        description: "纳家打造的历练秘境。这是最外围的区域。", 
+        enemy_count: 20, 
+        enemies_list: ["极冰火","清野江窃贼","火烧云","行脚商人","大门派杂役"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: true, 
+        is_challenge: false,
+        name: "纳家秘境 - 1",
+        enemy_stat_halo: 0.08,
+        rank:121, 
+        bgm:8,
+        parent_location: locations["纳家秘境 - 战斗区"],
+        first_reward: {
+            xp: 3e4,
+        },
+        repeatable_reward: {
+            xp: 1e4,
+            locations: [{location: "纳家秘境 - 2"}],
+        },
+    });
+    locations["纳家秘境 - 2"] = new Combat_zone({
+        description: "纳家打造的历练秘境。这是较外围的区域。", 
+        enemy_count: 20, 
+        enemies_list: ["火烧云","行脚商人","大门派杂役","高歌骸骨","燕岗高等散修"],
+        enemy_group_size: [1.5,2.5],
+        types: [],
+        is_unlocked: false, 
+        name: "纳家秘境 - 2",
+        enemy_stat_halo: 0.16,
+        rank:122, 
+        bgm:8,
+        parent_location: locations["纳家秘境 - 战斗区"],
+        first_reward: {
+            xp: 6e4,
+        },
+        repeatable_reward: {
+            xp: 2e4,
+            locations: [{location: "纳家秘境 - 3"}],
+        },
+    });
+    locations["纳家秘境 - 3"] = new Combat_zone({
+        description: "纳家打造的历练秘境。这是介于内外之间的区域。", 
+        enemy_count: 20, 
+        enemies_list: ["大门派杂役","高歌骸骨","燕岗高等散修","微花灵阵","灵慧石人"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: false, 
+        name: "纳家秘境 - 3",
+        enemy_stat_halo: 0.24,
+        rank:123, 
+        bgm:8,
+        parent_location: locations["纳家秘境 - 战斗区"],
+        first_reward: {
+            xp: 9e4,
+        },
+        repeatable_reward: {
+            xp: 3e4,
+            locations: [{location: "纳家秘境 - 4"}],
+        },
+    });
+    locations["纳家秘境 - 4"] = new Combat_zone({
+        description: "纳家打造的历练秘境。这是较为靠近核心的区域。", 
+        enemy_count: 20, 
+        enemies_list: ["燕岗高等散修","微花灵阵","灵慧石人","纳家探宝者","秘境蝎龙"],
+        enemy_group_size: [2.5,3.5],
+        types: [],
+        is_unlocked: false, 
+        name: "纳家秘境 - 4",
+        enemy_stat_halo: 0.32,
+        rank:124, 
+        bgm:8,
+        parent_location: locations["纳家秘境 - 战斗区"],
+        first_reward: {
+            xp: 12e4,
+        },
+        repeatable_reward: {
+            xp: 4e4,
+            locations: [{location: "纳家秘境 - 5"}],
+        },
+    });
+    locations["纳家秘境 - 5"] = new Combat_zone({
+        description: "纳家打造的历练秘境。这是核心区域。", 
+        enemy_count: 20, 
+        enemies_list: ["微花灵阵","灵慧石人","纳家探宝者","秘境蝎龙","荒兽法兵","巨人先锋"],
+        enemy_group_size: [3,3],
+        types: [],
+        is_unlocked: false, 
+        name: "纳家秘境 - 5",
+        enemy_stat_halo: 0.40,
+        rank:125, 
+        bgm:8,
+        parent_location: locations["纳家秘境 - 战斗区"],
+        first_reward: {
+            xp: 15e4,
+        },
+        repeatable_reward: {
+            xp: 5e4,
+            //locations: [{location: "纳家秘境 - 5"}],
+        },
+    });
     locations["清野江畔"].connected_locations.push({location: locations["纳家秘境"]});
+    locations["纳家秘境"].connected_locations.push({location: locations["纳家秘境 - 战斗区"]});
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 1"]});
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 2"]});
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 3"]});
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 4"]});
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 5"]});
 
 
 

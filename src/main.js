@@ -81,11 +81,11 @@ window.REALMS=[
 
 [9,"大地级一阶",600,120000,60000000,"terra"],
 [10,"大地级二阶",1000,250000,80000000,"terra"],
-[11,"大地级三阶",2000,550000,2.4e8,"terra"],
-[12,"大地级四阶",3000,1000000,7.2e8,"terra"],
-[13,"大地级五阶",5000,1500000,9.2233e18,"terra"],//以下未平衡
-[14,"大地级六阶",9000,2500000,1.35e10,"terra"],
-[15,"大地级七阶",16000,7000000,4.05e10,"terra"],
+[11,"大地级三阶",2000,550000,1.8e8,"terra"],
+[12,"大地级四阶",3000,1000000,4.8e8,"terra"],
+[13,"大地级五阶",5000,1500000,1.2e9,"terra"],
+[14,"大地级六阶",9000,2500000,3.2e9,"terra"],
+[15,"大地级七阶",16000,7000000,9.2233e18,"terra"],//以下未平衡
 [16,"大地级八阶",32000,13000000,1.2e11,"terra"],
 [17,"大地级巅峰",60000,25000000,3.333e11,"terra"],
 
@@ -297,7 +297,7 @@ const musicList = {
   5: 'bgms/5.mp3',
   6: 'bgms/6.mp3',
   7: 'bgms/7.mp3',
-  7: 'bgms/8.mp3',
+  8: 'bgms/8.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -819,7 +819,7 @@ function start_textline(textline_key){
         if(textline.unlocks.spec == "Realm-A4")
         {   
             let a4_realm = character.xp.current_level;
-            if(a4_realm >= 12) displayed_text = `都到大地级四阶了还不去？<br>再这样出去别说你是我女儿！<br>` ;
+            if(a4_realm >= 12) displayed_text = `都到大地级中期了还不去？<br>再这样出去别说你是我女儿！<br>` ;
             else displayed_text = `你的自创剑法，<br>足以令你发挥出超过大地级五阶的实力。<br>` ;
 
             if(enemy_killcount["百方[荒兽森林 ver.][BOSS]"]) displayed_text += "...等会，百方已经被你揍哭了???<br>";
@@ -1366,6 +1366,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         return;
     }//自爆/残余血量都爆了
 
+
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
 
@@ -1526,7 +1527,13 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             Spec_E += "[灵闪]";
             sdmg_mul = 1 - (target.stats.defense / character.stats.full.defense / 2);
         }
-    }
+    }//灵闪
+
+    if(target.spec.includes(37))
+    {
+        Spec_E += "[散华]";
+        satk_mul *= 1 - target.stats.health / character.stats.full.health;
+    }//散华
 
     const hero_base_damage = attack_power * satk_mul * c_atk_mul;
 
@@ -1744,6 +1751,8 @@ function kill_enemy(target) {
             else if(target.name == "夜行幽灵") add_bestiary_lines(14);
             else if(target.name == "行走树妖") add_bestiary_lines(15);
             else if(target.name == "妖灵飞蛾") add_bestiary_lines(21);
+            else if(target.name == "百家近卫") add_bestiary_lines(22);
+            else if(target.name == "大门派杂役") add_bestiary_lines(23);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -3343,6 +3352,8 @@ function load(save_data) {
             if(enemy_name == "夜行幽灵") add_bestiary_lines(14);
             if(enemy_name == "行走树妖") add_bestiary_lines(15);
             if(enemy_name == "妖灵飞蛾") add_bestiary_lines(21);
+            if(enemy_name == "百家近卫") add_bestiary_lines(22);
+            if(enemy_name == "大门派杂役") add_bestiary_lines(23);
 
         });
     }

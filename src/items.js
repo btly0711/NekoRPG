@@ -40,11 +40,15 @@ import { round_item_price } from "./misc.js";
 const rarity_multipliers = {
     trash: 1, //low quality alone makes these so bad that no additional nerf should be needed
     common: 1,
-    uncommon: 1.1,
-    rare: 1.25,
-    epic: 1.4,
-    legendary: 1.6,
-    mythical: 2.0,
+    uncommon: 1.1,//+10%
+    rare: 1.25,//+15%
+    epic: 1.45,//+20%
+    legendary: 1.7,//+25%
+    mythical: 2.0,//+30%
+    transdental: 2.4,//+40%
+    celestial: 3.0,//+60%
+    antique: 3.6,//+60%
+    flawless: 4.5,//+90%
 };
 
 const item_templates = {};
@@ -127,8 +131,12 @@ function getItemRarity(quality) {
     else if(quality < 130) rarity = "uncommon";
     else if(quality < 160) rarity = "rare";
     else if(quality < 200) rarity = "epic";
-    else if(quality < 246) rarity = "legendary";
-    else rarity = "mythical";
+    else if(quality < 240) rarity = "legendary";
+    else if(quality < 300) rarity = "mythical";
+    else if(quality < 400) rarity = "transdental";
+    else if(quality < 500) rarity = "celestial";
+    else if(quality < 700) rarity = "antique";
+    else if(quality < 1000) rarity = "flawless";
     
     return rarity;
 }
@@ -284,7 +292,11 @@ class ItemComponent extends Item {
         else if(quality < 160) rarity = "rare";
         else if(quality < 200) rarity = "epic";
         else if(quality < 246) rarity = "legendary";
-        else rarity = "mythical";
+        else if(quality < 300) rarity = "mythical";
+        else if(quality < 400) rarity = "transdental";
+        else if(quality < 500) rarity = "celestial";
+        else if(quality < 700) rarity = "antique";
+        else if(quality < 1000) rarity = "flawless";
         
         return rarity;
     }

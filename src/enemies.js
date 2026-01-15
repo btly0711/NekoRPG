@@ -18,6 +18,7 @@ class Enemy {
                  tags = [],
                  realm = 1,
                  spec = [],
+                 loot_multi = 1,
                  spec_value = {},
                  image = "",
                 }) {
@@ -27,6 +28,7 @@ class Enemy {
         this.description = description; //try to keep it short
         this.xp_value = xp_value;
         this.stats = stats;
+        this.loot_multi = loot_multi;
         this.spec = spec;
         this.spec_value = spec_value;
         //console.log(spec);
@@ -82,7 +84,7 @@ class Enemy {
     }
 
     get_droprate_modifier() {
-        let droprate_modifier = 1;
+        let droprate_modifier = this.loot_multi;
         /*
         if(enemy_killcount[this.name] >= 999) {
             droprate_modifier = 0.1;
@@ -2767,12 +2769,167 @@ class Enemy {
             //应为1.6Z
         ],
     });
+
+    //2-3
+    
+    enemy_templates["大门派杂役"] = new Enemy({
+        name: "大门派杂役", 
+        description: "纳家秘境怎么会对其他的门派开放啊...或许纳家子弟不够探索这么大的秘境？", 
+        xp_value: 17711, 
+        rank: 2301,
+        image: "image/enemy/E2301.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [32,6],
+        spec_value:{},
+        tags: [],
+        stats: {health: 390000, attack:125000, agility: 60000, attack_speed: 1.2, defense: 15000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+        ],
+    });
+    enemy_templates["燕岗高等散修"] = new Enemy({
+        name: "燕岗高等散修", 
+        description: "连散修都来了！看来秘境开放是某种半年一遇的盛事...", 
+        xp_value: 17711, 
+        rank: 2302,
+        image: "image/enemy/E2302.png",
+        realm: "<span class=realm_terra><b>大地级六阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 370000, attack:124000, agility: 64000, attack_speed: 1.2, defense: 54000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.05},
+            {item_name: "极品红宝石", chance:0.02},
+        ],
+    });
+    enemy_templates["高歌骸骨"] = new Enemy({
+        name: "高歌骸骨", 
+        description: "复苏之后的下一个骸骨进化阶段。比起双持的莽夫行为，它选择了装备盾牌与盔甲。", 
+        xp_value: 28657, 
+        rank: 2303,
+        image: "image/enemy/E2303.png",
+        realm: "<span class=realm_terra><b>大地级六阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 225000, attack:155000, agility: 72000, attack_speed: 1.2, defense: 60000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "极品红宝石", chance:0.05},
+        ],
+    });
+    enemy_templates["微花灵阵"] = new Enemy({
+        name: "微花灵阵", 
+        description: "秘境内增强荒兽与魔物力量的机关。没有攻击能力，但只有力量达到一定的阈值才能击碎。(或者魔攻)", 
+        xp_value: 28657, 
+        rank: 2304,
+        image: "image/enemy/E2304.png",
+        realm: "<span class=realm_terra><b>大地级六阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1, attack:1, agility: 1, attack_speed: 0.1, defense: 100000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "极品红宝石", chance:0.05},
+        ],
+    });
+     enemy_templates["灵慧石人"] = new Enemy({
+        name: "灵慧石人", 
+        description: "红眼的魔物，拥有反转的能力。血量有点脆，但高防御又弥补了这一点。", 
+        xp_value: 28657, 
+        rank: 2305,
+        image: "image/enemy/E2305.png",
+        realm: "<span class=realm_terra><b>大地级六阶 +</b></span>",
+        size: "small",
+        spec: [9],
+        spec_value:{},
+        tags: [],
+        stats: {health: 75000, attack:150000, agility: 80000, attack_speed: 1.3, defense: 88000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "极品红宝石", chance:0.05},
+        ],
+    });
+    enemy_templates["纳家探宝者"] = new Enemy({
+        name: "纳家探宝者", 
+        description: "可恶，是竞争对手！凭什么别人都是卡着等级的上沿进来的耶...", 
+        xp_value: 28657, 
+        rank: 2306,
+        image: "image/enemy/E2306.png",
+        realm: "<span class=realm_terra><b>大地级六阶 +</b></span>",
+        size: "small",
+        spec: [3],
+        spec_value:{},
+        tags: [],
+        stats: {health: 150000, attack:141000, agility: 88000, attack_speed: 1.2, defense: 66000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "极品红宝石", chance:0.05},
+        ],
+    });
+    enemy_templates["秘境蝎龙"] = new Enemy({
+        name: "秘境蝎龙", 
+        description: "似乎是毒枭蝎和地龙的杂交产物。那一晚，它们没有喝醉，但等秘境半年开一次再出去实在太难熬了。", 
+        xp_value: 28657, 
+        rank: 2307,
+        image: "image/enemy/E2307.png",
+        realm: "<span class=realm_terra><b>大地级六阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 64000, attack:480000, agility: 96000, attack_speed: 1.5, defense: 80000}, 
+        loot_list: [
+            {item_name: "极品蓝宝石", chance:0.03},
+            {item_name: "极品红宝石", chance:0.05},
+        ],
+    });
+    enemy_templates["荒兽法兵"] = new Enemy({
+        name: "荒兽法兵", 
+        description: "强大的魔法荒兽。源源不断的生命力搭配散华领悟，使它显得分外难缠。", 
+        xp_value: 28657, 
+        rank: 2308,
+        image: "image/enemy/E2308.png",
+        realm: "<span class=realm_terra><b>大地级六阶 +</b></span>",
+        size: "small",
+        spec: [19,37],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1090000, attack:160000, agility: 102000, attack_speed: 1.2, defense: 50000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.01},
+        ],
+    });
+    enemy_templates["巨人先锋"] = new Enemy({
+        name: "巨人先锋", 
+        description: "18.5w攻击，20段连击，40%光环...秘境深处注定将会困难重重。", 
+        xp_value: 28657, 
+        rank: 2309,
+        image: "image/enemy/E2309.png",
+        realm: "<span class=realm_terra><b>大地级六阶 +</b></span>",
+        size: "small",
+        spec: [16],
+        spec_value:{},
+        tags: [],
+        stats: {health: 327000, attack:185000, agility: 108000, attack_speed: 0.8, defense: 77000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.01},
+        ],
+    });
     /*
       黄 蓝 红  
-五阶   5%/1%    7575     500X
-五阶+  3%/3%    10946    900X
 六阶   1%/5%/2% 17711    1.6Z
-复苏骸骨开始算五阶+
+六阶+     3%/5% 28657    5.0Z
+微花灵阵开始算六阶+
 */    
 })();
 

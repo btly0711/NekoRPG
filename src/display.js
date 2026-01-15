@@ -136,9 +136,14 @@ const rarity_colors = {
     common: "white",
     uncommon: "lightgreen",
     rare: "lightblue",
-    epic: "purple",
+    epic: "lightpurple",
     legendary: "pink",
-    mythical: "orange"
+    mythical: "orange",
+    transdental: "cyan",
+    celestial: "blue",
+    antique: "lime",
+    flawless: "red",
+
 }
 
 const crafting_pages = {
@@ -1862,7 +1867,8 @@ function create_location_types_display(current_location){
     if(current_location.enemy_stat_halo != 0)
     {
         const type_div = document.createElement("div");
-        type_div.innerHTML += `光环 ${format_number(current_location.enemy_stat_halo*100.0)} %`;
+        let c_halo = current_location.enemy_stat_halo;
+        type_div.innerHTML += `光环 ${format_number(c_halo*100.0)} %`;
         location_types_div.appendChild(type_div);
     }
     for(let i = 0; i < current_location.types?.length; i++) {
@@ -3453,6 +3459,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [34, "凌弱","#109996","欺凌弱小的敌人容易被防杀。<br>当角色<span style='color:#FFFF00'>防御小于敌人</span>时，其<span style='color:#FFFF00'>与敌人防御的差值</span>将拉大<span style='color:#87CEFA'>一倍</span>。"],
 [35, "领域", "#c677dd",function(enemy){return "这个敌人似乎懂得力量外放的道理。<br>敌人每次被攻击，则额外对角色造成<span style='color:#87CEFA'>" + (enemy.spec_value[35]) + "</span>点魔法伤害。"}],
 [36, "自爆", "#597a80","强者在绝望之下最后的尊严。<br>第20回合触发，血量下降到1，对角色造成<span style='color:#87CEFA'>自身剩余生命*4</span>的伤害。"],
+[37, "散华", "#d08e53","奇妙的能力，感应血气并作用于攻击。<br>角色攻击的效力削弱（敌人生命/角色生命）的<span style='color:#87CEFA'>[#87CEFA]一倍</span><br>。"],
 ];
 
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],
@@ -3671,7 +3678,7 @@ function add_bestiary_lines(zone)
     //zone 11-> 1-1，rank作为1200处理
     //sorts bestiary_list div by enemy rank
     bestiary_entry_divs[zone] = document.createElement("div");
-    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林"}
+    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城郊",27:"B9飞船",28:"飞船核心"}
     const name_div = document.createElement("div");
     name_div.innerHTML = `<b>【${ZoneNameMap[zone]}】</b>`;
     name_div.classList.add("bestiary_entry_name");
@@ -3751,7 +3758,8 @@ function create_new_levelary_entry(level_name) {
     }
     if(level.enemy_stat_halo != 0)
     {
-        tooltip_tags.innerHTML += `<br>光环 ${format_number(level.enemy_stat_halo * 100.0)} %`;
+        let c_halo = level.enemy_stat_halo;
+        tooltip_tags.innerHTML += `<br>光环 ${format_number(c_halo * 100.0)} %(掉落 + ${format_number((Math.pow(c_halo+1,2)-1)*100.0)}%,经验 + ${format_number((Math.pow(c_halo+1,1.5)-1)*100.0)}%)`;
     }
     tooltip_enemies.innerHTML = `<br><br>此处敌人：<br>`;
     for(let j=0;j<level.enemies_list.length;j++)
