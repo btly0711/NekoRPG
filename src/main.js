@@ -1616,7 +1616,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             damage_dealt *= A_mul;
             Spec_E += `[x${format_number(A_mul)}]`;
         }
-        
+        let b_health = target.stats.health;
         target.stats.health -= damage_dealt;
         if(critted) {
             log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害[暴击]" + Spec_E, "enemy_attacked_critically");
@@ -1634,6 +1634,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
                 //受击动画
 
         if(target.stats.health <= 0) {
+            damage_dealt = b_health;
             total_kills++;
             target.stats.health = 0; //to not go negative on displayed value
 

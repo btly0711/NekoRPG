@@ -203,7 +203,7 @@ stances["WH_Multi"] = new Stance({
     stat_multipliers: {
         attack_speed: 1.05,
         attack_power: 1.05,
-        attack_mul  : 1.5,
+        attack_mul  : 1.2,
     },
     target_count: 2,
     max_bonus: 3,
