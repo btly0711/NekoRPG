@@ -2787,6 +2787,9 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "A4·能量核心", chance:0.40},
+            {item_name: "秘境芦苇", chance:0.05},
+            //1.6Z
         ],
     });
     enemy_templates["燕岗高等散修"] = new Enemy({
@@ -2804,6 +2807,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.05},
             {item_name: "极品红宝石", chance:0.02},
+            {item_name: "秘境芦苇", chance:0.07},
+            //1.6Z
         ],
     });
     enemy_templates["高歌骸骨"] = new Enemy({
@@ -2821,6 +2826,9 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.03},
             {item_name: "极品红宝石", chance:0.05},
+            {item_name: "甲壳碎片", chance:0.80},
+            {item_name: "浅蓝晶粉", chance:0.04},
+            //2.8Z
         ],
     });
     enemy_templates["微花灵阵"] = new Enemy({
@@ -2838,6 +2846,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.03},
             {item_name: "极品红宝石", chance:0.05},
+            {item_name: "浅蓝晶粉", chance:0.09},
+            //2.8Z
         ],
     });
      enemy_templates["灵慧石人"] = new Enemy({
@@ -2855,6 +2865,9 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.03},
             {item_name: "极品红宝石", chance:0.05},
+            {item_name: "水溶精华", chance:0.3},
+            {item_name: "秘境芦苇", chance:0.05},
+            //2.8Z
         ],
     });
     enemy_templates["纳家探宝者"] = new Enemy({
@@ -2872,6 +2885,9 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.03},
             {item_name: "极品红宝石", chance:0.05},
+            {item_name: "秘境芦苇", chance:0.05},
+            {item_name: "浅蓝晶粉", chance:0.05},
+            //2.8Z
         ],
     });
     enemy_templates["秘境蝎龙"] = new Enemy({
@@ -2889,6 +2905,10 @@ class Enemy {
         loot_list: [
             {item_name: "极品蓝宝石", chance:0.03},
             {item_name: "极品红宝石", chance:0.05},
+            {item_name: "甲壳碎片", chance:0.5},
+            {item_name: "A4·能量核心", chance:0.5},
+            {item_name: "浅蓝晶粉", chance:0.05},
+            //2.8Z
         ],
     });
     enemy_templates["荒兽法兵"] = new Enemy({
@@ -2906,6 +2926,9 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.01},
+            {item_name: "水溶精华", chance:0.2},
+            {item_name: "浅蓝晶粉", chance:0.06},
+            //2.8Z
         ],
     });
     enemy_templates["巨人先锋"] = new Enemy({
@@ -2923,6 +2946,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.01},
+            {item_name: "秘境芦苇", chance:0.12},
+            //2.8Z
         ],
     });
     /*

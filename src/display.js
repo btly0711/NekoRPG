@@ -1968,6 +1968,7 @@ function switch_crafting_recipes_page(category) {
 function switch_crafting_recipes_subpage(category, subcategory) {
     const elements = document.querySelectorAll(`[data-crafting_category='${category}'], [data-crafting_subcategory]`);
     for(let i = 0; i < elements.length; i++) {
+        console.log(elements[i].dataset);
         if(elements[i].dataset.crafting_subcategory) {
             if(elements[i].dataset.crafting_category === category) {
                 if(elements[i].dataset.crafting_subcategory !== subcategory) {

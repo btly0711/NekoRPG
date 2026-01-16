@@ -2596,7 +2596,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["充能剑刃"] = new WeaponComponent({
         name: "充能剑刃", description: "充能合金锭制造的剑刃。没有任何负面属性，只有纯粹的锋利。",
         component_type: "long blade",
-        value: 1.8e7,
+        value: 1.5e7,
         component_tier: 5,
         name_prefix: "充能",
         attack_value: 4320,
@@ -2612,16 +2612,52 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["充能戟头"] = new WeaponComponent({
         name: "充能戟头", description: "充能合金锭制造的三叉戟头。一次可以戳出三个洞，但有些难以拔出来...",
         component_type: "triple blade",
-        value: 3.6e7,
+        value: 4.5e7,
         component_tier: 5,
         name_prefix: "充能",
         attack_value: 6000,
         stats: {
             crit_rate: {
-                flat: 0.15,
+                flat: 0.10,
             },
             attack_mul: {
                 multiplier: 2.50,
+            },
+            attack_speed: {
+                multiplier: 0.50,
+            },
+        }
+    });
+    
+    item_templates["脉冲剑刃"] = new WeaponComponent({
+        name: "脉冲剑刃", description: "脉冲合金锭制造的剑刃。剑刃系列后续主要增长暴击和攻速。",
+        component_type: "long blade",
+        value: 2.7e8,
+        component_tier: 6,
+        name_prefix: "脉冲",
+        attack_value: 17280,
+        stats: {
+            crit_rate: {
+                flat: 0.11,
+            },
+            attack_speed: {
+                multiplier: 1.12,
+            },
+        }
+    });
+    item_templates["脉冲戟头"] = new WeaponComponent({
+        name: "脉冲戟头", description: "脉冲合金锭制造的三叉戟头。普攻倍率比充能戟头强一线？",
+        component_type: "triple blade",
+        value: 3.6e8,
+        component_tier: 6,
+        name_prefix: "脉冲",
+        attack_value: 24000,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_mul: {
+                multiplier: 2.65,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -2836,6 +2872,58 @@ item_templates["Twist liek a snek"] = new Book({
             },
         },
     });
+    item_templates["苇编帽子"] = new Armor({
+        name: "苇编帽子", 
+        description: "湛蓝芦苇编织成的内甲，通过传导能量削弱一部分敌方的攻击。", 
+        value: 105e6,
+        component_type: "helmet interior",
+        base_defense: 2400,
+        component_tier: 6,
+        stats: {
+            health_regeneration_flat: {
+                flat: 3000,
+            },
+        },
+    });
+    item_templates["苇编背心"] = new Armor({
+        name: "苇编背心", 
+        description: "湛蓝芦苇编织成的内甲，通过传导能量削弱一部分敌方的攻击。", 
+        value: 140e6,
+        component_type: "chestplate interior",
+        base_defense: 3200,
+        component_tier: 6,
+        stats: {
+            health_regeneration_flat: {
+                flat: 4000,
+            },
+        },
+    });
+    item_templates["苇编裤子"] = new Armor({
+        name: "苇编裤子", 
+        description: "湛蓝芦苇编织成的内甲，通过传导能量削弱一部分敌方的攻击。", 
+        value: 140e6,
+        component_type: "leg armor interior",
+        base_defense: 3200,
+        component_tier: 6,
+        stats: {
+            health_regeneration_flat: {
+                flat: 4000,
+            },
+        },
+    });
+    item_templates["苇编袜子"] = new Armor({
+        name: "苇编袜子", 
+        description: "湛蓝芦苇编织成的内甲，通过传导能量削弱一部分敌方的攻击。", 
+        value: 70e6,
+        component_type: "shoes interior",
+        base_defense: 3200,
+        component_tier: 6,
+        stats: {
+            health_regeneration_flat: {
+                flat: 2000,
+            },
+        },
+    });
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
         description: "制式的铁制头盔外壳，因阻挡视野会略微影响攻击速度",
@@ -3040,6 +3128,63 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    
+    item_templates["脉冲头盔"] = new ArmorComponent({
+        name: "脉冲头盔",
+        description: "A8级盔甲，可以对能量起到缓冲作用。",
+        component_type: "helmet exterior",
+        value: 2.4e8,
+        component_tier: 6,
+        full_armor_name: "脉冲头盔",
+        defense_value: 3600,
+        stats: {
+            attack_mul: {
+                flat: 0.01,
+            },
+        }
+    });
+    item_templates["脉冲胸甲"] = new ArmorComponent({
+        name: "脉冲胸甲",
+        description: "A8级盔甲，可以对能量起到缓冲作用。",
+        component_type: "chestplate exterior",
+        value: 3.2e8,
+        component_tier: 6,
+        full_armor_name: "脉冲胸甲",
+        defense_value: 4800,
+        stats: {
+            attack_mul: {
+                flat: 0.01,
+            },
+        }
+    });
+    item_templates["脉冲腿甲"] = new ArmorComponent({
+        name: "脉冲腿甲",
+        description: "A8级盔甲，可以对能量起到缓冲作用。",
+        component_type: "leg armor exterior",
+        value: 3.2e8,
+        component_tier: 6,
+        full_armor_name: "脉冲腿甲",
+        defense_value: 4800,
+        stats: {
+            attack_mul: {
+                flat: 0.01,
+            },
+        }
+    });
+    item_templates["脉冲战靴"] = new ArmorComponent({
+        name: "脉冲战靴",
+        description: "A8级盔甲，可以对能量起到缓冲作用。",
+        component_type: "shoes exterior",
+        value: 1.6e8,
+        component_tier: 6,
+        full_armor_name: "脉冲战靴",
+        defense_value: 2400,
+        stats: {
+            attack_mul: {
+                flat: 0.01,
+            },
+        }
+    });
 })();
 //盔甲
 
@@ -3111,6 +3256,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 6.666e6,
         material_type: "metal",
         image: "image/item/chargealloy_ingot.png",
+    });
+    item_templates["脉冲合金锭"] = new Material({
+        id: "脉冲合金锭",
+        name: "脉冲合金锭", 
+        description: "脉冲合金与浅蓝晶粉组成的A8级合金。拥有蓄能的特性。", 
+        value: 7.777e7,
+        material_type: "metal",
+        image: "image/item/pulsealloy_ingot.png",
     });
 })();
 
@@ -3271,6 +3424,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "有一定生命活性的耐极端环境混合物。其类似物曾被用于制造【黑神】套装。",
         value: 1.10e6,
         image: "image/item/mixed_comp02.png",
+    });
+    item_templates["湛蓝芦苇"] = new OtherItem({
+        name: "湛蓝芦苇", 
+        description: "秘境芦苇的纤维被水溶精华分散，填充。传导能量，抵消攻击的能力有了巨大的提高。",
+        value: 30e6,
+        image: "image/item/blue_reed.png",
     });
 })();
 
@@ -3565,6 +3724,18 @@ item_templates["Twist liek a snek"] = new Book({
         description: "江边水生系荒兽的精华。可以用作魔法药剂的材料。", 
         value: 4.5e6,
         image: "image/item/aq_essence.png",
+    });
+    item_templates["秘境芦苇"] = new Loot({
+        name: "秘境芦苇", 
+        description: "纳家秘境里的一种柔性材料，可以吸收能量攻击，许多修行者和荒兽都会携带。", 
+        value: 2.4e7,
+        image: "image/item/A6_reed.png",
+    });
+    item_templates["浅蓝晶粉"] = new Loot({
+        name: "浅蓝晶粉", 
+        description: "某种更蓝一些的末影珍珠同位体。很遗憾，血洛大陆的传送没那么容易。", 
+        value: 3.2e7,
+        image: "image/item/lightblue_powder.png",
     });
 
 
