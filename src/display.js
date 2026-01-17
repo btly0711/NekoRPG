@@ -1151,7 +1151,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;
         } else {
-            item_name_div.innerHTML = `<span class = "item_slot" >[${EquipSlotMap[target_item.equip_slot]}]</span> <span>${target_item.getName()}</span>`;
+            item_name_div.innerHTML = `<span class = "item_slot" >[${EquipSlotMap[target_item.equip_slot]}]</span> <span style="color: ${rarity_colors[target_item.getRarity()]}">${target_item.getName()}</span>`;
         }
         item_name_div.classList.add(`${item_class}_name`);
         item_div.appendChild(item_name_div);
@@ -1166,7 +1166,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
         }
         item_control_div.dataset.item_slot = target_item.equip_slot;
     } else if(target_item.tags.component) {
-        item_name_div.innerHTML = `<span class = "item_category">[部件]</span> <span class="item_name">${target_item.getName()}</span>`;
+        item_name_div.innerHTML = `<span class = "item_category">[部件]</span> <span class="item_name"><span style="color: ${rarity_colors[target_item.getRarity()]}">${target_item.getName()}</span></span>`;
         item_name_div.classList.add(`${item_class}_name`);
         item_div.appendChild(item_name_div);
 
@@ -1968,7 +1968,7 @@ function switch_crafting_recipes_page(category) {
 function switch_crafting_recipes_subpage(category, subcategory) {
     const elements = document.querySelectorAll(`[data-crafting_category='${category}'], [data-crafting_subcategory]`);
     for(let i = 0; i < elements.length; i++) {
-        console.log(elements[i].dataset);
+        //console.log(elements[i].dataset);
         if(elements[i].dataset.crafting_subcategory) {
             if(elements[i].dataset.crafting_category === category) {
                 if(elements[i].dataset.crafting_subcategory !== subcategory) {
@@ -2768,7 +2768,7 @@ function format_money(num) {
         let cD=Math.floor(((num-cZ*1e6+500e6)/1e9)%1000);
         if(cD!=0 && num<1e18) value = (`${cD}<span class="coin coin_moneyB">D</span> `) + value;
         let cB=Math.floor(((num-cD*1e9+500e9)/1e12));
-        if(cB!=0) value = (`${cB}<span class="coin coin_moneyT">D</span> `) + value;
+        if(cB!=0) value = (`${cB}<span class="coin coin_moneyT">B</span> `) + value;
         return sign + value;
 
     } else {
@@ -3641,7 +3641,7 @@ function create_new_bestiary_entry(enemy_name) {
         loot_chance_current.classList.add("loot_chance_current");
 
         loot_name.innerHTML = `${enemy.loot_list[i].item_name}`;
-        loot_chance_base.innerHTML = `[${enemy.loot_list[i].chance*100}%]`;
+        loot_chance_base.innerHTML = `[${Math.round(enemy.loot_list[i].chance*10000)/100}%]`;
         loot_chance_current.innerHTML = `${Math.round(10000*enemy.loot_list[i].chance*enemy.get_droprate_modifier())/100}%`;
         loot_chance.append(loot_chance_current, loot_chance_base);
         loot_line.append(loot_name, loot_chance);

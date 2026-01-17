@@ -800,7 +800,7 @@ class Textline {
                     //items: [{item_name: "纳娜米"}],
                     locations: ["荒兽森林"],
                 },
-                //locks_lines: ["6"],
+                locks_lines: ["6"],
             }),
         }
     });
@@ -932,6 +932,31 @@ class Textline {
                 },
                 
                 locks_lines: ["jp6"],
+            }),
+        }
+    });
+    dialogues["秘境心火精灵"] = new Dialogue({
+        name: "秘境心火精灵",
+        textlines: {
+            "xh1": new Textline({ 
+                is_unlocked: true,
+                name: "哼~知道我的厉害了吗？",
+                text: "饶命，饶命——<br>小的只是秘境诞生的“灵”，<br>根本没有家底或者资源哇...",
+                unlocks: {
+                    textlines: [{dialogue: "秘境心火精灵", lines: ["xh2"]}],
+                },
+                
+                locks_lines: ["xh1"],
+            }),
+            "xh2": new Textline({ 
+                is_unlocked: false,
+                name: "诶，在这样的核心区域，你应该也有秘境的一些权限吧",
+                text: "啊对的对的！<br>我可以帮您调节秘境的灵阵功率！<br>这样您就可以得到更多的战斗领悟了！<br>WIP:将在V1.24正式完工",
+                unlocks: {
+                    //textlines: [{dialogue: "秘境心火精灵", lines: ["check"]},{dialogue: "秘境心火精灵", lines: ["check"]},{dialogue: "秘境心火精灵", lines: ["check"]}],
+                },
+                
+                //locks_lines: ["xh1"],
             }),
         }
     });

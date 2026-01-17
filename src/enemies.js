@@ -3220,6 +3220,20 @@ class Enemy {
         stats: {health: 3900000, attack:125000, agility: 60000, attack_speed: 1.2, defense: 15000}, 
         loot_list: [],
     });
+    enemy_templates["秘境心火精灵[BOSS]"] = new Enemy({
+        name: "秘境心火精灵[BOSS]", 
+        description: "本来就够强了，还有光环用耶...幸好可以挖光环！", 
+        xp_value: 46368, 
+        rank: 2399,
+        image: "image/boss/B2301.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [27,13],
+        spec_value:{},
+        tags: [],
+        stats: {health: 3200000, attack:280000, agility: 150000, attack_speed: 1.2, defense: 120000}, 
+        loot_list: [],
+    });
 
     enemy_templates["Village guard (heavy)"] = new Enemy({
         name: "Village guard (heavy)", 

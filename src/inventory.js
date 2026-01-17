@@ -60,6 +60,11 @@ class InventoryHaver {
         }
     }
 
+    item_inventory_cnt(item)
+    {
+        if(item in this.inventory) return this.inventory[item].count;
+        else return 0;
+    }
     is_in_inventory(item)
     {
         return item in this.inventory;

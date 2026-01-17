@@ -3292,7 +3292,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
 })();
 
-//任务物品
+//特殊
 (function(){
     item_templates["地图-藏宝地"] = new OtherItem({
         id: "地图-藏宝地",
@@ -3308,6 +3308,14 @@ item_templates["Twist liek a snek"] = new Book({
         description: "被完全涂黑了，只留下一句血洛大陆通用语的血书：牵制毁一生,匙弱穷三代。", 
         value: 11037,
         image: "image/item/BurnBlood.png",
+    });
+
+    
+    item_templates["微花残片"] = new OtherItem({
+        name: "微花残片", 
+        description: "没事...父亲大人进不去秘境。他肯定不知道是我偷偷把光环弄坏的！(秘境心火精灵 光环-8%)",
+        value: 99e6,
+        image: "image/item/MF_fragment.png",
     });
 })();
 
@@ -3735,7 +3743,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "浅蓝晶粉", 
         description: "某种更蓝一些的末影珍珠同位体。很遗憾，血洛大陆的传送没那么容易。", 
         value: 3.2e7,
-        image: "image/item/lightblue_powder.png",
+        image: "image/item/LB_powder.png",
     });
 
 

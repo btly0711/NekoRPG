@@ -81,10 +81,10 @@ window.REALMS=[
 
 [9,"大地级一阶",600,120000,60000000,"terra"],
 [10,"大地级二阶",1000,250000,80000000,"terra"],
-[11,"大地级三阶",2000,550000,1.8e8,"terra"],
+[11,"大地级三阶",2000,550000,1.6e8,"terra"],
 [12,"大地级四阶",3000,1000000,4.8e8,"terra"],
-[13,"大地级五阶",5000,1500000,1.2e9,"terra"],
-[14,"大地级六阶",9000,2500000,3.2e9,"terra"],
+[13,"大地级五阶",5000,1500000,1.8e9,"terra"],
+[14,"大地级六阶",9000,2500000,5.4e9,"terra"],
 [15,"大地级七阶",16000,7000000,9.2233e18,"terra"],//以下未平衡
 [16,"大地级八阶",32000,13000000,1.2e11,"terra"],
 [17,"大地级巅峰",60000,25000000,3.333e11,"terra"],
@@ -298,6 +298,7 @@ const musicList = {
   6: 'bgms/6.mp3',
   7: 'bgms/7.mp3',
   8: 'bgms/8.mp3',
+  9: 'bgms/9.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -1041,7 +1042,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 }
                 else do_enemy_combat_action(enemy_id,Spec_S,1);//普攻
 
-                if(current_enemies[enemy_id].spec.includes(13) && current_enemies != null)//惑幻
+                if(current_enemies[enemy_id].spec.includes(13) && current_enemies != null && E_round <= 3)//惑幻
                 {
                     do_enemy_combat_action(enemy_id,"[惑幻]"+Spec_S,0);
                 }
@@ -1604,6 +1605,8 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         }
         if(target.spec.includes(8)) Spec_E += "[衰弱]";
         if(target.spec.includes(9)) Spec_E += "[反转]";
+        if(target.spec.includes(27)) Spec_E += "[柔骨]";
+        if(satk_mul != 1) Spec_E += `[ATK${format_number(satk_mul * 100)}%]`;
         if(sdmg_mul != 1)
         {
             Spec_E += `[DMG${format_number(sdmg_mul * 100)}%]`;
@@ -2259,7 +2262,7 @@ function use_recipe_max(target) {
                 //console.log(cnt_f);
                 //console.log(cnt_b);
             }
-            log_message(`批量制造了 ${latest_comp} * ${cnt} ,其中最高品质为 ${cnt_b} %`, "crafting");
+            log_message(`批量制造了 ${latest_comp} * ${cnt - 1} ,其中最高品质为 ${cnt_b} %`, "crafting");
 
         } else if(subcategory === "equipment") {
 

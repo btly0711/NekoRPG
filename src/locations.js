@@ -232,8 +232,22 @@ class Combat_zone {
             //                         });
 
             // } else {
+            let halo_fix = 0;
+            if(enemy.name == "秘境心火精灵[BOSS]")//特判秘境心火
+            {
+                const key_id = item_templates["微花残片"].getInventoryKey();
+                let key_cnt = character.inventory[key_id]?character.inventory[key_id].count:0;
+                if(key_cnt != 0)
+                {
+                    log_message(`由于持有 ${key_cnt} 个微花残片，光环削弱：140% -> ${140-key_cnt*8}%！`,"enemy_enhanced");
+                    halo_fix -= 0.08*key_cnt;
+                }
+            }
                 
-            const halo = this.enemy_stat_halo + 1;
+            const halo = this.enemy_stat_halo + 1 + halo_fix;
+            console.log(halo);
+            console.log(this);
+
                 newEnemy = new Enemy({name: enemy.name, 
                     description: enemy.description, 
                     xp_value: enemy.xp_value * Math.pow(halo,1.5),
@@ -362,6 +376,7 @@ class Challenge_zone extends Combat_zone {
         repeatable_reward = {},
         otherUnlocks,
         is_finished,
+        enemy_stat_halo,
         unlock_text,
        }) 
     {
@@ -377,6 +392,7 @@ class Challenge_zone extends Combat_zone {
                 enemy_group_size, 
                 enemy_count, 
                 enemy_stat_variation: 0, 
+                enemy_stat_halo,
                 parent_location,
                 leave_text,
                 first_reward,
@@ -2034,7 +2050,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["清野江畔 - 4"] = new Combat_zone({
         description: "沿着清野江，回家的路。荒兽实力有了巨大的跃升，但家族已经不再遥远，无需恋战。", 
         enemy_count: 20, 
-        enemies_list: ["清野江盗匪","极冰火","清野江窃贼","礁石灵","火烧云","行脚商人"],
+        enemies_list: ["马里奥菇菇","极冰火","清野江窃贼","礁石灵","火烧云","行脚商人"],
         enemy_group_size: [1.5,2.5],
         types: [],
         is_unlocked: false, 
@@ -2109,7 +2125,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["纳家秘境"] = new Location({ 
         connected_locations: [{location: locations["清野江畔"], custom_text: "回到江畔区域历练"}], 
-        description: "纳家打造的历练秘境。包含进阶工作台，休息区，和一处储存室。[V1.20前版本终点]",
+        description: "纳家打造的历练秘境。包含进阶工作台，休息区，和一处储存室。",
         
         traders: ["物品存储箱"],
         sleeping: {
@@ -2137,6 +2153,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纳家秘境"], custom_text: "回到休息区修整"}], 
         description: "纳家打造的历练秘境。共有五层，每层都有更多更强的荒兽与魔物，同时光环效果更强。",
         
+        dialogues: ["秘境心火精灵"],
         name: "纳家秘境 - 战斗区", 
         types: [],
         is_unlocked: true,
@@ -2147,7 +2164,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纳家秘境 - 1"] = new Combat_zone({
         description: "纳家打造的历练秘境。这是最外围的区域。", 
         enemy_count: 20, 
-        enemies_list: ["极冰火","清野江窃贼","火烧云","行脚商人","大门派杂役"],
+        enemies_list: ["极冰火","清野江窃贼","火烧云","马里奥菇菇","大门派杂役"],
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: true, 
@@ -2242,7 +2259,26 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 5e4,
-            //locations: [{location: "纳家秘境 - 5"}],
+            locations: [{location: "纳家秘境 - X"}],
+            activities: [{location:"纳家秘境", activity:"microflower"}],
+        },
+    });
+    
+    locations["纳家秘境 - X"] = new Challenge_zone({
+        description: "秘境最核心的精灵就在此处。击败它就可以控制整个秘境！", 
+        enemy_count: 1, 
+        enemies_list: ["秘境心火精灵[BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "纳家秘境 - X",
+        enemy_stat_halo: 0.40,
+        bgm:8,
+        parent_location: locations["纳家秘境 - 战斗区"],
+        repeatable_reward: {
+            textlines: [{dialogue: "秘境心火精灵", lines: ["xh1"]}],
+            locations: [{location: "结界湖" }],
         },
     });
     locations["清野江畔"].connected_locations.push({location: locations["纳家秘境"]});
@@ -2252,6 +2288,22 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 3"]});
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 4"]});
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 5"]});
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - X"], custom_text:"挑战秘境的守护灵"});
+
+    
+    
+    locations["结界湖"] = new Location({ 
+        connected_locations: [{location: locations["纳家秘境"], custom_text: "回到家族秘境里"}], 
+        description: "被老祖纳鹰指引而来，封印着“灵”的结界湖。[V1.30前版本终点]",
+        
+        name: "结界湖", 
+        is_unlocked: false,
+        bgm: 9,
+    });//2-4
+    
+
+
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["结界湖"]});
 
 
 
@@ -2846,6 +2898,25 @@ function get_location_type_penalty(type, stage, stat) {
                 resources: [{name: "百年柳木", ammount: [[1,1], [1,3]], chance: [1, 1]}],
                 time_period: [30, 6],
                 skill_required: [8, 30],
+                scales_with_skill: true,
+            },
+        }),
+    }
+    
+    locations["纳家秘境"].activities = {
+        "microflower": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "用镐子破坏光环",
+            skill_xp_per_tick: 50,
+            is_unlocked: false,
+            exp_scaling: true,
+            scaling_id: "microflower",
+            exp_o:2,//每完成一次需要的时间指数提升
+            gained_resources: {
+                resources: [{name: "微花残片", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
+                time_period: [30, 10],
+                skill_required: [0, 10],
                 scales_with_skill: true,
             },
         }),
