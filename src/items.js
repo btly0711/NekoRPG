@@ -3314,7 +3314,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["微花残片"] = new OtherItem({
         name: "微花残片", 
         description: "没事...父亲大人进不去秘境。他肯定不知道是我偷偷把光环弄坏的！(秘境心火精灵 光环-8%)",
-        value: 99e6,
+        value: 999999e6,
         image: "image/item/MF_fragment.png",
     });
 })();

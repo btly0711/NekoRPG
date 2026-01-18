@@ -1454,9 +1454,9 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     if(critted)
     {
-        log_message(character.name + " 受到了 " + Math.ceil(10*damage_taken)/10 + " 伤害[暴击]" + spec_hint, "hero_attacked_critically");
+        log_message(character.name + " 受到了 " + format_number(damage_taken) + " 伤害[暴击]" + spec_hint, "hero_attacked_critically");
     } else {
-        log_message(character.name + " 受到了 " + Math.ceil(10*damage_taken)/10 + "  伤害" + spec_hint, "hero_attacked");
+        log_message(character.name + " 受到了 " + format_number(damage_taken) + "  伤害" + spec_hint, "hero_attacked");
     }
 
     
@@ -2382,7 +2382,7 @@ function use_item(item_key,stated = false) {
         let pa = 0;
         if(character.stats.flat.gems.attack_power >= SCGV*G_value*3)
         {
-            console.log(P1,P2,P3,P4);
+            //console.log(P1,P2,P3,P4);
             if(P1>P2&&P1>P3&&P1>P4){
                 pa=0.5;
             }
