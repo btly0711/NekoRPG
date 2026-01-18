@@ -951,12 +951,37 @@ class Textline {
             "xh2": new Textline({ 
                 is_unlocked: false,
                 name: "诶，在这样的核心区域，你应该也有秘境的一些权限吧",
-                text: "啊对的对的！<br>我可以帮您调节秘境的灵阵功率！<br>这样您就可以得到更多的战斗领悟了！<br>WIP:将在V1.24正式完工",
+                text: "啊对的对的！<br>我可以帮您调节秘境的灵阵功率！<br>这样您就可以得到更多的战斗领悟了！",
                 unlocks: {
-                    //textlines: [{dialogue: "秘境心火精灵", lines: ["check"]},{dialogue: "秘境心火精灵", lines: ["check"]},{dialogue: "秘境心火精灵", lines: ["check"]}],
+                    textlines: [{dialogue: "秘境心火精灵", lines: ["check"]},{dialogue: "秘境心火精灵", lines: ["powerup"]},{dialogue: "秘境心火精灵", lines: ["powerdown"]}],
+                    locations: ["纳家秘境 - ∞"],
                 },
                 
-                //locks_lines: ["xh1"],
+                locks_lines: ["xh2"],
+            }),
+            "check": new Textline({ 
+                is_unlocked: false,
+                name: "现在灵阵功率开了多少哇？",
+                text: "",
+                unlocks: {
+                    spec: "A6-check"
+                },
+            }),
+            "powerup": new Textline({ 
+                is_unlocked: false,
+                name: "提高一层灵阵功率\\o/",
+                text: "",
+                unlocks: {
+                    spec: "A6-up"
+                },
+            }),
+            "powerdown": new Textline({ 
+                is_unlocked: false,
+                name: "降低一层灵阵功率T_T",
+                text: "",
+                unlocks: {
+                    spec: "A6-down"
+                },
             }),
         }
     });

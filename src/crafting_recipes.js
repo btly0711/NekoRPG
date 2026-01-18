@@ -4,11 +4,11 @@ import { character } from "./character.js";
 import { Armor, ArmorComponent, Shield, ShieldComponent, Weapon, WeaponComponent, item_templates } from "./items.js";
 import { skills } from "./skills.js";
 
-const crafting_recipes = {items: {}, components: {}, equipment: {}};
-const cooking_recipes = {items: {}};
-const smelting_recipes = {items: {}};
-const forging_recipes = {items: {}, components: {}};
-const alchemy_recipes = {items: {}};
+const crafting_recipes = {items: {}, items2: {}, components: {}, equipment: {}};
+const cooking_recipes = {items: {}, items2: {}};
+const smelting_recipes = {items: {}, items2: {}};
+const forging_recipes = {items: {}, items2: {} , components: {}};
+const alchemy_recipes = {items: {}, items2: {}};
 
 /*
     recipes can be treated differently for display based on if they are in items/components/equipment category
@@ -242,7 +242,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     if(!selected_recipe) {
         throw new Error(`Tried to use a recipe that doesn't exist: ${category} -> ${subcategory} -> ${recipe_id}`);
     }
-    if(subcategory === "items") {
+    if(subcategory === "items" || recipe_subcategory === "items2") {
         exp_value = Math.max(exp_value,1.4*selected_recipe.recipe_level[1] * 2);
         //maybe scale with materials needed?
         
@@ -812,7 +812,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Smelting",
     });
     
-    smelting_recipes.items["充能合金·粗制"] = new ItemRecipe({
+    smelting_recipes.items2["充能合金·粗制"] = new ItemRecipe({
         name: "充能合金·粗制",
         recipe_type: "material",
         materials: [{material_id: "黑色刀币", count: 1},{material_id: "甲壳碎片", count: 4},{material_id:"A4·能量核心", count: 2}], 
@@ -821,7 +821,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [14,20],
         recipe_skill: "Smelting",
     });
-    smelting_recipes.items["充能合金·精制(x4)"] = new ItemRecipe({
+    smelting_recipes.items2["充能合金·精制(x4)"] = new ItemRecipe({
         name: "充能合金·精制",
         recipe_type: "material",
         materials: [{material_id: "水溶精华", count: 1},{material_id: "甲壳碎片", count: 4},{material_id:"A4·能量核心", count: 1}], 
@@ -830,7 +830,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [19,23],
         recipe_skill: "Smelting",
     });
-    smelting_recipes.items["脉冲合金"] = new ItemRecipe({
+    smelting_recipes.items2["脉冲合金"] = new ItemRecipe({
         name: "脉冲合金",
         recipe_type: "material",
         materials: [{material_id: "充能合金锭", count: 1},{material_id: "A4·能量核心", count: 2},{material_id:"浅蓝晶粉", count: 2}], 
@@ -1010,7 +1010,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     });
 
     
-    alchemy_recipes.items["炼金药剂-魔攻"] = new ItemRecipe({
+    alchemy_recipes.items2["炼金药剂-魔攻"] = new ItemRecipe({
         name: "炼金药剂-魔攻",
         recipe_type: "material",
         materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
@@ -1019,7 +1019,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [30,33],
         recipe_skill: "Alchemy",
     });
-    alchemy_recipes.items["炼金药剂-回风"] = new ItemRecipe({
+    alchemy_recipes.items2["炼金药剂-回风"] = new ItemRecipe({
         name: "炼金药剂-回风",
         recipe_type: "material",
         materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
@@ -1028,7 +1028,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [30,33],
         recipe_skill: "Alchemy",
     });
-    alchemy_recipes.items["炼金药剂-牵制"] = new ItemRecipe({
+    alchemy_recipes.items2["炼金药剂-牵制"] = new ItemRecipe({
         name: "炼金药剂-牵制",
         recipe_type: "material",
         materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
@@ -1037,7 +1037,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [30,33],
         recipe_skill: "Alchemy",
     });
-    alchemy_recipes.items["炼金药剂-坚固"] = new ItemRecipe({
+    alchemy_recipes.items2["炼金药剂-坚固"] = new ItemRecipe({
         name: "炼金药剂-坚固",
         recipe_type: "material",
         materials: [{material_id: "荒兽精华", count: 20},{material_id: "水溶精华", count: 20},{material_id: "A4·能量核心",count:40}], 
@@ -1047,7 +1047,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Alchemy",
     });
     
-    alchemy_recipes.items["湛蓝芦苇"] = new ItemRecipe({
+    alchemy_recipes.items2["湛蓝芦苇"] = new ItemRecipe({
         name: "湛蓝芦苇",
         recipe_type: "material",
         materials: [{material_id: "水溶精华", count: 1},{material_id: "秘境芦苇", count: 1}],

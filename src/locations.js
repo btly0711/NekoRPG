@@ -5,6 +5,7 @@ import { dialogues as dialoguesList} from "./dialogues.js";
 import { skills } from "./skills.js";
 import { current_game_time } from "./game_time.js";
 import { activities } from "./activities.js";
+import { inf_combat } from "./main.js";
 
 import { book_stats, item_templates, Weapon, Armor, Shield } from "./items.js";
 import { get_total_skill_level,add_to_character_inventory, remove_from_character_inventory } from "./character.js";
@@ -243,10 +244,11 @@ class Combat_zone {
                     halo_fix -= 0.08*key_cnt;
                 }
             }
+            if(this.name == "纳家秘境 - ∞"){
+                halo_fix = (inf_combat.A6.cur - 6) * 0.08;
+            }
                 
             const halo = this.enemy_stat_halo + 1 + halo_fix;
-            console.log(halo);
-            console.log(this);
 
                 newEnemy = new Enemy({name: enemy.name, 
                     description: enemy.description, 
@@ -2264,6 +2266,24 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     
+    locations["纳家秘境 - ∞"] = new Combat_zone({
+        description: "纳家打造的历练秘境最核心的区域。灵阵强度可以自由调节。(楼层手册更新可能不及时,属性请以心火精灵为准)", 
+        enemy_count: 20, 
+        enemies_list: ["微花灵阵","灵慧石人","纳家探宝者","秘境蝎龙","荒兽法兵","巨人先锋"],
+        enemy_group_size: [6,6],
+        types: [],
+        is_unlocked: false, 
+        name: "纳家秘境 - ∞",
+        enemy_stat_halo: 0.48,
+        rank:126, 
+        bgm:8,
+        parent_location: locations["纳家秘境 - 战斗区"],
+        first_reward: {
+        },
+        repeatable_reward: {
+        },
+    });
+    
     locations["纳家秘境 - X"] = new Challenge_zone({
         description: "秘境最核心的精灵就在此处。击败它就可以控制整个秘境！", 
         enemy_count: 1, 
@@ -2288,6 +2308,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 3"]});
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 4"]});
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - 5"]});
+    locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - ∞"]});
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["纳家秘境 - X"], custom_text:"挑战秘境的守护灵"});
 
     
@@ -2838,6 +2859,16 @@ function get_location_type_penalty(type, stage, stat) {
             is_unlocked: true,
         }),
     }
+    locations["清野江畔"].activities = {
+        
+        "Swimming": new LocationActivity({
+            activity_name: "Swimming",
+            infinite: true,
+            starting_text: "在清野瀑布中抗衡急流[EXPx32]",
+            skill_xp_per_tick: 32,
+            is_unlocked: true,
+        }),
+    }
     
     locations["燕岗矿井"].activities = {
         
@@ -2904,6 +2935,13 @@ function get_location_type_penalty(type, stage, stat) {
     }
     
     locations["纳家秘境"].activities = {
+        "Running": new LocationActivity({
+            activity_name: "Running",
+            infinite: true,
+            starting_text: "在秘境中绕圈跑[EXPx32]",
+            skill_xp_per_tick: 32,
+            is_unlocked: true,
+        }),
         "microflower": new LocationActivity({
             activity_name: "mining",
             infinite: true,

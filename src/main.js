@@ -106,6 +106,9 @@ const flag_unlock_texts = {
 }
 
 // special stats
+//infinity combat
+let inf_combat = {"A6":{cur:6,cap:8}};
+
 
 //in seconds
 let total_playtime = 0;
@@ -813,12 +816,10 @@ function start_textline(textline_key){
         {   
             displayed_text = "如今也算是历经了" + format_number(total_deaths)  + "次生死呢，<br>也知道了父亲大人的话是什么意思。";
         }
-        if(textline.unlocks.spec == "Realm-A3")
-        {   
+        if(textline.unlocks.spec == "Realm-A3"){   
             displayed_text = `……<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>？！` ;
         }
-        if(textline.unlocks.spec == "Realm-A4")
-        {   
+        if(textline.unlocks.spec == "Realm-A4"){   
             let a4_realm = character.xp.current_level;
             if(a4_realm >= 12) displayed_text = `都到大地级中期了还不去？<br>再这样出去别说你是我女儿！<br>` ;
             else displayed_text = `你的自创剑法，<br>足以令你发挥出超过大地级五阶的实力。<br>` ;
@@ -836,6 +837,31 @@ function start_textline(textline_key){
             add_xp_to_character(Math.sqrt(T*1e10),false);
             update_displayed_time();
         }
+        
+        if(textline.unlocks.spec == "A6-check"){
+            displayed_text += `当前的灵阵强度是 ${inf_combat.A6.cur}层 , <br>上限是 ${inf_combat.A6.cap}层！`;
+            displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,2)*100-100).toFixed(2)}%`;
+        }   
+        if(textline.unlocks.spec == "A6-up"){
+            if(inf_combat.A6.cur < inf_combat.A6.cap){
+                inf_combat.A6.cur++;
+                displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
+                //TODO:更改实际战斗信息
+            }
+            else{
+                displayed_text += `灵阵功率已达当前上限...<br>想要继续提高的话，先重新清理敌人吧。`;
+            }
+        }   
+        if(textline.unlocks.spec == "A6-down"){
+            if(inf_combat.A6.cur > 6){
+                inf_combat.A6.cur--;
+                displayed_text += `功率降低！当前强度：${inf_combat.A6.cur+1} -> ${inf_combat.A6.cur}`;
+                //TODO:更改实际战斗信息
+            }
+            else{
+                displayed_text += `如果想要少于五层的灵阵，直接去前面的区域就好了...`;
+            }
+        }   
     }
 
     start_dialogue(current_dialogue);
@@ -2020,6 +2046,11 @@ function get_location_rewards(location) {
                             activity: locations[location.repeatable_reward.activities[i].location].activities[location.repeatable_reward.activities[i].activity]});
     }
 
+    if(location.name == "纳家秘境 - ∞" && Math.floor(inf_combat.A6.cur * 1.25) > inf_combat.A6.cap){
+        inf_combat.A6.cap = Math.floor(inf_combat.A6.cur * 1.25);
+        log_message(`灵阵强度上限解放： ${inf_combat.A6.cur} -> ${inf_combat.A6.cap} ！`, "dialogue_unlocked");
+    }
+
     if(should_return) {
         change_location(current_location.parent_location.name); //go back to parent location, only on first clear
     }
@@ -2069,7 +2100,7 @@ function use_recipe(target,stated = false) {
         const recipe_div = document.querySelector(`[data-crafting_category="${category}"] [data-crafting_subcategory="${subcategory}"] [data-recipe_id="${recipe_id}"]`);
         let leveled = false;
         let result;
-        if(subcategory === "items") {
+        if(subcategory === "items" || subcategory === "items2") {
             if(selected_recipe.get_availability()) {
                 total_crafting_attempts++;
                 const success_chance = selected_recipe.get_success_chance(station_tier);
@@ -2237,7 +2268,7 @@ function use_recipe_max(target) {
         const recipe_div = document.querySelector(`[data-crafting_category="${category}"] [data-crafting_subcategory="${subcategory}"] [data-recipe_id="${recipe_id}"]`);
         let leveled = false;
         let result;
-        if(subcategory === "items") {
+        if(subcategory === "items" || subcategory === "items2") {
             let cnt = 0;
             let cnt_s = 0;
             while(selected_recipe.get_availability()) {
@@ -2508,6 +2539,7 @@ function create_save() {
         save_data.total_kills = total_kills;
         save_data.global_flags = global_flags;
         save_data.gem_stats = character.stats.flat.gems;//存储宝石属性
+        save_data.inf_combat = inf_combat;//无限秘境
         
         save_data["character"] = {
                                 name: character.name, titles: character.titles, 
@@ -2729,7 +2761,7 @@ function load(save_data) {
     total_deaths = save_data.total_deaths || 0;
     total_crafting_attempts = save_data.total_crafting_attempts || 0;
     total_crafting_successes = save_data.total_crafting_successes || 0;
-    total_deaths = save_data.total_deaths || 0;
+    inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8}};//无限秘境
 
     name_field.value = save_data.character.name;
     character.name = save_data.character.name;
@@ -3966,6 +3998,7 @@ export { current_enemies, can_work,
         get_current_book, 
         last_location_with_bed, 
         last_combat_location, 
+        inf_combat,
         current_stance, selected_stance,
         faved_stances, options,
         global_flags,
