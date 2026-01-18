@@ -133,7 +133,7 @@ class Gathering extends Training {
     });//每个矿区需要加一个
     activities["woodcutting"] = new Gathering({
         name: "woodcutting",
-        action_text: "Gathering wood",
+        action_text: "收集木头",
         description: "Chop chop",
         base_skills_names: ["Woodcutting"],
         is_unlocked: true,

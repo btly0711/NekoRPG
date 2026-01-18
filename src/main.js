@@ -512,7 +512,7 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿","Woodcutting":"砍伐"}
+    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿","woodcutting":"砍伐"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     if(current_activity.exp_scaling)
     {
