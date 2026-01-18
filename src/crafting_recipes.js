@@ -242,7 +242,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     if(!selected_recipe) {
         throw new Error(`Tried to use a recipe that doesn't exist: ${category} -> ${subcategory} -> ${recipe_id}`);
     }
-    if(subcategory === "items" || recipe_subcategory === "items2") {
+    if(subcategory === "items" || subcategory === "items2") {
         exp_value = Math.max(exp_value,1.4*selected_recipe.recipe_level[1] * 2);
         //maybe scale with materials needed?
         

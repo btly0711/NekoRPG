@@ -1367,7 +1367,7 @@ function update_displayed_enemies() {
             }
 
             //enemies_div.children[i].children[0].children[1].innerHTML = `AP : ${Math.round(ap)} | EP : ${Math.round(ep)}`;
-            enemies_div.children[i].children[0].children[1].children[0].innerHTML = `| 伤害:${format_number(current_enemies[i].stats.attack)}`;
+            enemies_div.children[i].children[0].children[1].children[0].innerHTML = `伤害:${format_number(current_enemies[i].stats.attack)}`;
             enemies_div.children[i].children[0].children[1].children[1].innerHTML = `防御:${format_number(current_enemies[i].stats.defense)}`;
             enemies_div.children[i].children[0].children[1].children[2].innerHTML = `攻速:${format_number(disp_speed)}`;
             enemies_div.children[i].children[0].children[1].children[3].innerHTML = `命中:${Math.floor(100*hit_chance)}%`; //100% if shield!
@@ -1928,7 +1928,7 @@ function open_crafting_window() {
     
     let elements = document.querySelectorAll(`[data-crafting_subcategory]`);
     for(let i = 0; i < elements.length; i++) {
-        if(elements[i].dataset.crafting_subcategory !== "items") {
+        if(elements[i].dataset.crafting_subcategory !== "items" && elements[i].dataset.crafting_subcategory !== "items2") {
             elements[i].style.display = "none";
         } else {
             elements[i].style.display = "";
@@ -2197,7 +2197,6 @@ function update_displayed_crafting_recipes() {
 function update_displayed_crafting_recipe({category, subcategory, recipe_id}) {
     const recipe_div = crafting_pages[category][subcategory].querySelector(`[data-recipe_id="${recipe_id}"]`);
     const recipe = recipes[category][subcategory][recipe_id];
-
     if(subcategory === "items" || subcategory === "items2") {
         if(recipe.get_availability()) {
             recipe_div.classList.remove("recipe_unavailable");
@@ -2253,10 +2252,13 @@ function update_item_recipe_tooltips() {
                     }
                 });
             }
+                    console.log("reached");
             if(recipe_subcategory === "items2"  ) {
+                    console.log("reached2");
                 Object.keys(recipes[recipe_category][recipe_subcategory]).forEach(recipe => {
                     if(recipes[recipe_category][recipe_subcategory][recipe].is_unlocked){
                         update_recipe_tooltip({category: recipe_category, subcategory: "items2", recipe_id: recipe});
+                    console.log("reached3");
                     }
                 });
             }
@@ -2512,7 +2514,7 @@ function update_displayed_material_choice({category, subcategory, recipe_id, ref
 function update_item_recipe_visibility() {
     Object.keys(recipes).forEach(recipe_category => {
         Object.keys(recipes[recipe_category]).forEach(recipe_subcategory => {
-            if(recipe_subcategory !== "items") {
+            if(recipe_subcategory !== "items" && recipe_subcategory !== "items2") {
                 //no need to deal with other recipe types as they would be folded and will be reloaded on unfolding
                 return;
             }

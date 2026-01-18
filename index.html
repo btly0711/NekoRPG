@@ -1312,7 +1312,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.24a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.24b";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1467,6 +1467,7 @@
                             ["recipe_div", "selectable_component"], 
                             ["crafting_subpage_button", "crafting_subpage_buttons", "crafting_category", "crafting_mainpage_buttons", "crafting_mainpage_button", "crafting_window"]
                         );
+                        //console.log(hovered_element);
                         if(!hovered_element) {
                             return;
                         }

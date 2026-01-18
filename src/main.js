@@ -840,7 +840,7 @@ function start_textline(textline_key){
         
         if(textline.unlocks.spec == "A6-check"){
             displayed_text += `当前的灵阵强度是 ${inf_combat.A6.cur}层 , <br>上限是 ${inf_combat.A6.cap}层！`;
-            displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,2)*100-100).toFixed(2)}%`;
+            displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,2)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%`;
         }   
         if(textline.unlocks.spec == "A6-up"){
             if(inf_combat.A6.cur < inf_combat.A6.cap){
@@ -1560,6 +1560,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
     {
         Spec_E += "[散华]";
         satk_mul *= 1 - target.stats.health / character.stats.full.health;
+        satk_mul = Math.max(satk_mul,0);
     }//散华
 
     const hero_base_damage = attack_power * satk_mul * c_atk_mul;
@@ -1632,6 +1633,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         if(target.spec.includes(8)) Spec_E += "[衰弱]";
         if(target.spec.includes(9)) Spec_E += "[反转]";
         if(target.spec.includes(27)) Spec_E += "[柔骨]";
+        console.log(satk_mul);
         if(satk_mul != 1) Spec_E += `[ATK${format_number(satk_mul * 100)}%]`;
         if(sdmg_mul != 1)
         {
