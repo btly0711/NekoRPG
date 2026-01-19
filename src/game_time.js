@@ -34,9 +34,9 @@ function Game_time(new_time) {
             this.year += 1;
         }
 
-        while(this.year > 9999)
+        while(this.year > 10081)
         {
-            this.year = this.year - 10000;
+            this.year = this.year - 10081;
             this.era += 1;
         }
     

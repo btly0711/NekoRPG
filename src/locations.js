@@ -2317,14 +2317,121 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纳家秘境"], custom_text: "回到家族秘境里"}], 
         description: "被老祖纳鹰指引而来，封印着“灵”的结界湖。[V1.30前版本终点]",
         
+        dialogues: ["纳鹰"],
         name: "结界湖", 
         is_unlocked: false,
         bgm: 9,
     });//2-4
+    locations["结界湖 - 1"] = new Combat_zone({
+        description: "秘境核心的湖泊。新生的“灵”与荒兽在此徘徊。", 
+        enemy_count: 20, 
+        enemies_list: ["微花灵阵","威武武士","七阶卫戍","秘境帕芙之灵","秘境猬精","秘境心火精灵"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: false, 
+        name: "结界湖 - 1",
+        enemy_stat_halo: 0.08,
+        rank:131, 
+        bgm:9,
+        parent_location: locations["结界湖"],
+        first_reward: {
+            xp: 30e4,
+        },
+        repeatable_reward: {
+            xp: 10e4,
+            locations: [{location: "结界湖 - 2"}],
+            //钓鱼区域！
+        },
+    });
+    locations["结界湖 - 2"] = new Combat_zone({
+        description: "秘境核心的湖泊。新生的“灵”，人类和秘境守护者同时存在。", 
+        enemy_count: 20, 
+        enemies_list: ["微花灵阵","秘境猬精","秘境心火精灵","纳家冰雪亲卫","有甲有角族","水晶傀儡"],
+        enemy_group_size: [2.25,3.25],
+        types: [],
+        is_unlocked: false, 
+        name: "结界湖 - 2",
+        enemy_stat_halo: 0.08,
+        rank:132, 
+        bgm:9,
+        parent_location: locations["结界湖"],
+        first_reward: {
+            xp: 45e4,
+        },
+        repeatable_reward: {
+            xp: 15e4,
+            locations: [{location: "结界湖 - 3"}],
+        },
+    });
+    locations["结界湖 - 3"] = new Combat_zone({
+        description: "秘境核心的湖泊。出现了颇具危险性，不慎落入就难以摆脱的地缚“灵”。", 
+        enemy_count: 20, 
+        enemies_list: ["微花灵阵","水晶傀儡","原力刀客","秘境胖胖鸟","人立金茸茸","喵咕咕哩"],
+        enemy_group_size: [2.5,3.5],
+        types: [],
+        is_unlocked: false, 
+        name: "结界湖 - 3",
+        enemy_stat_halo: 0.08,
+        rank:133, 
+        bgm:9,
+        parent_location: locations["结界湖"],
+        first_reward: {
+            xp: 60e4,
+        },
+        repeatable_reward: {
+            xp: 20e4,
+            locations: [{location: "结界湖 - 4"}],
+        },
+    });
+    locations["结界湖 - 4"] = new Combat_zone({
+        description: "秘境核心的湖泊。出现了更多被“灵”占据的人类身体。", 
+        enemy_count: 20, 
+        enemies_list: ["微花灵阵","喵咕咕哩","秘境滋生魔","蓝帽行者","流云级魔法师","威武异衣士"],
+        enemy_group_size: [2.75,3.75],
+        types: [],
+        is_unlocked: false, 
+        name: "结界湖 - 4",
+        enemy_stat_halo: 0.08,
+        rank:134, 
+        bgm:9,
+        parent_location: locations["结界湖"],
+        first_reward: {
+            xp: 75e4,
+        },
+        repeatable_reward: {
+            xp: 25e4,
+            locations: [{location: "结界湖 - 5"}],
+        },
+    });
+    locations["结界湖 - 5"] = new Combat_zone({
+        description: "秘境核心的湖泊。出现了更多被“灵”占据的人类身体。", 
+        enemy_count: 20, 
+        enemies_list: ["微花灵阵","喵咕咕哩","流云级魔法师","威武异衣士","雪魅蝠","大眼八爪鱼"],
+        enemy_group_size: [3,3],
+        types: [],
+        is_unlocked: false, 
+        name: "结界湖 - 5",
+        enemy_stat_halo: 0.08,
+        rank:135, 
+        bgm:9,
+        parent_location: locations["结界湖"],
+        first_reward: {
+            xp: 90e4,
+        },
+        repeatable_reward: {
+            xp: 30e4,
+            //locations: [{location: "结界湖 - X"}],
+        },
+    });
     
-
+    //1-5 4-8 8-12 11-15 14-18.
 
     locations["纳家秘境 - 战斗区"].connected_locations.push({location: locations["结界湖"]});
+    locations["结界湖"].connected_locations.push({location: locations["结界湖 - 1"]});
+    locations["结界湖"].connected_locations.push({location: locations["结界湖 - 2"]});
+    locations["结界湖"].connected_locations.push({location: locations["结界湖 - 3"]});
+    locations["结界湖"].connected_locations.push({location: locations["结界湖 - 4"]});
+    locations["结界湖"].connected_locations.push({location: locations["结界湖 - 5"]});
 
 
 

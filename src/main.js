@@ -85,8 +85,8 @@ window.REALMS=[
 [12,"大地级四阶",3000,1000000,4.8e8,"terra"],
 [13,"大地级五阶",5000,1500000,1.8e9,"terra"],
 [14,"大地级六阶",9000,2500000,5.4e9,"terra"],
-[15,"大地级七阶",16000,7000000,9.2233e18,"terra"],//以下未平衡
-[16,"大地级八阶",32000,13000000,1.2e11,"terra"],
+[15,"大地级七阶",16000,7000000,1.28e10,"terra"],
+[16,"大地级八阶",32000,13000000,9.2233e18,"terra"],//以下未平衡
 [17,"大地级巅峰",60000,25000000,3.333e11,"terra"],
 
 [18,"天空级一阶",150000,50000000,9.999e11,"sky"],
@@ -861,7 +861,24 @@ function start_textline(textline_key){
             else{
                 displayed_text += `如果想要少于五层的灵阵，直接去前面的区域就好了...`;
             }
-        }   
+        }  
+        if(textline.unlocks.spec == "A7-begin"){
+            let age=Math.round(current_game_time.year - 1359 + (current_game_time.era-31698)*10081);
+            displayed_text += `能在<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>的境界 , <br>${age}岁的年龄，<br>走到结界湖这里，你已经是非常优秀的纳家后人。`;
+
+            displayed_text += `<br>  若我纳家诞生一位天才，<br>或许能重新兴盛，替我报了未尽的仇怨。<br>`;
+
+            if(character.xp.current_level >= 15) displayed_text += `结界已经松动到这种程度了吗...<br>之前，这里还只能容纳大地级中期以下的修者进入的。<br>`;
+            if(age <= 12) displayed_text += `哇！！！居然如此年轻，我纳家振兴在即！<br>`;
+            if(age >= 50) displayed_text += `诶，多少岁...算了啦。<br>有领悟在，什么时候开始都不迟！<br>`;
+            if(age >= 500) displayed_text += `喂喂，这里不是给纳家年轻人用的秘境吗...<br>`;
+            if(age >= 1000) displayed_text += `我寻思...在这里沉睡了一个纪元不到，<br>外面的宇宙规则都改了？<br>，大地级不应该只有0.1纪元的寿命的嘛...<br>`;
+
+        }
+        if(textline.unlocks.spec == "A7-exp"){
+            add_xp_to_skill({skill: skills["Stance mastery"], xp_to_add: 9.999e11});
+            displayed_text += `<br><br> 获取了9999亿【秘法精通】经验值。`;
+        }
     }
 
     start_dialogue(current_dialogue);
@@ -1087,13 +1104,15 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                         do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
                     }
                 }
-                if(current_enemies[enemy_id].spec.includes(20) && current_enemies != null)//天剑
-                {
+                if(current_enemies[enemy_id].spec.includes(20) && current_enemies != null){//天剑
                     do_enemy_combat_action(enemy_id,"[天剑]"+Spec_S,1.5,2);
                 }
-                if(current_enemies[enemy_id].spec.includes(36) && E_round == 20)//自爆
-                {
+                if(current_enemies[enemy_id].spec.includes(36) && E_round == 20){//自爆
                     do_enemy_combat_action(enemy_id,"[自爆]"+Spec_S,0);
+                }
+                if(current_enemies[enemy_id].spec.includes(38) && E_round == 9)//冰符咒
+                {
+                    do_enemy_combat_action(enemy_id,"[冰符咒]"+Spec_S,20);
                 }
                 
                 atk_sign += 1;
@@ -1462,8 +1481,8 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     
     if(!attacker.spec.includes(28)) add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
     if(attacker.spec.includes(31)){
-        attacker.stats.health += attacker.stats.max_health * 0.15;
-        log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health) * 0.15 + " 点血量","enemy_enhanced");
+        attacker.stats.health += attacker.stats.max_health * 0.30;
+        log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health) * 0.30 + " 点血量","enemy_enhanced");
         update_displayed_health_of_enemies();
     }//回春
 
@@ -1785,6 +1804,7 @@ function kill_enemy(target) {
             else if(target.name == "妖灵飞蛾") add_bestiary_lines(21);
             else if(target.name == "百家近卫") add_bestiary_lines(22);
             else if(target.name == "大门派杂役") add_bestiary_lines(23);
+            else if(target.name == "威武武士") add_bestiary_lines(24);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -2558,6 +2578,7 @@ function create_save() {
                             };
                             
         //no need to save all stats; on loading, base stats will be taken from code and then additional stuff will be calculated again (in case anything changed)
+        console.log(character.inventory);
         Object.keys(character.inventory).forEach(key =>{
             save_data["character"].inventory[key] = {count: character.inventory[key].count};
         });
@@ -3005,7 +3026,7 @@ function load(save_data) {
                         return;
                     } else {
                         const item = getItem({components, quality, equip_slot: "weapon", item_type: "EQUIPPABLE"});
-                        item_list.push({item, count: 1});
+                        item_list.push({item, count: save_data.character.inventory[key].count});
                     }
                 } else if(shield_base){ //shield
                     if(!item_templates[shield_base]){
@@ -3016,7 +3037,7 @@ function load(save_data) {
                         return;
                     } else {
                         const item = getItem({components, quality, equip_slot: "off-hand", item_type: "EQUIPPABLE"});
-                        item_list.push({item, count: 1});
+                        item_list.push({item, count: save_data.character.inventory[key].count});
                     }
                 } else if(internal) { //armor
                     if(!item_templates[internal]){
@@ -3031,7 +3052,7 @@ function load(save_data) {
                             return;
                         }
                         const item = getItem({components, quality, equip_slot, item_type: "EQUIPPABLE"});
-                        item_list.push({item, count: 1});
+                        item_list.push({item, count: save_data.character.inventory[key].count});
                     }
                 } else {
                     console.error(`Intentory key "${key}" from save on version "${save_data["game version"]} seems to refer to non-existing item type!`);
@@ -3392,6 +3413,7 @@ function load(save_data) {
             if(enemy_name == "妖灵飞蛾") add_bestiary_lines(21);
             if(enemy_name == "百家近卫") add_bestiary_lines(22);
             if(enemy_name == "大门派杂役") add_bestiary_lines(23);
+            if(enemy_name == "威武武士") add_bestiary_lines(24);
 
         });
     }

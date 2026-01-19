@@ -985,6 +985,94 @@ class Textline {
             }),
         }
     });
+    dialogues["纳鹰"] = new Dialogue({
+        name: "纳鹰",
+        starting_text: "和结界湖的神秘强者对话",
+        textlines: {
+            "nb1": new Textline({ 
+                is_unlocked: true,
+                name: "……这位前辈，您是？",
+                text: "呵呵，你还不认识我吗？<br>确实，距我陨落，也已经过去数千年之久了吧。<br>想当初，我追随燕岗城主创下战功，<br>在燕岗城中建立起纳家，<br>也没有想到家族能走到如今这一步。",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰", lines: ["nb2"]}],
+                },
+                
+                locks_lines: ["nb1"],
+            }),
+            "nb2": new Textline({ 
+                is_unlocked: false,
+                name: "……您是纳家的先祖！这……怎么可能，长老和父亲都说您……",
+                text: "不必惊讶，我确实是纳家的先祖，名为纳鹰。<br>如今纳家的后人，也无人知晓我这道意念，<br>隐藏在秘境之中。<br> 若是为人知晓，只怕这秘境，<br>就要被那群探险者掀个天翻地覆吧。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰", lines: ["nb3"]}],
+                },
+                
+                locks_lines: ["nb2"],
+            }),
+            "nb3": new Textline({ 
+                is_unlocked: false,
+                name: "这是怎么回事，当年您遭遇了什么变故，才变成这个样子？",
+                text: "呵呵，小丫头，别急。<br>这也不过是一段无聊的往事罢了。<br>当年，我为了筹集一笔交易的材料，<br>铤而走险，深入危险的血魔海，<br>猎取强大的荒兽。<br>在血魔海，我不慎中了圈套，<br>沦为一位<span style='color:pink'>领域级</span>强者的灵魂奴仆。<br>那强者……恐怕与燕岗城主实力相差无几。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰", lines: ["nb4"]}],
+                },
+                
+                locks_lines: ["nb3"],
+            }),
+            "nb4": new Textline({ 
+                is_unlocked: false,
+                name: "...",
+                text: "这些强者缔结灵魂奴仆，<br>无非就是想要获得一个强大的“炮灰”罢了。<br>当时的我，根本就无法逃脱。<br>那些灵魂奴仆，终生服从于主人，没有自由，<br>死亡随时会降临到头顶。<br>大多数都在没日没夜经受各种危险之后，悲惨死去！<br>为了摆脱这种宿命，我选择自毁灵魂！<br>并且将意识转移到这一缕念头上。<br>这道念头，原本是寄存在家族秘境之中，<br>以备与家族传讯，此时却是派上了用场。",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰", lines: ["nb5"]}],
+                },
+                
+                locks_lines: ["nb4"],
+            }),
+            "nb5": new Textline({ 
+                is_unlocked: false,
+                name: "啊...",
+                text: "",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰", lines: ["nb6"]}],
+                    spec: "A7-begin",
+                },
+                
+                locks_lines: ["nb5"],
+            }),
+            "nb6": new Textline({ 
+                is_unlocked: false,
+                name: "我……可以吗？<br>有什么我能帮到前辈的，请尽管说吧。",
+                text: "你的火元素领悟已有小成，<br>但提升空间仍然很大。<br>那领域境界的强者，<br>能够张开蕴含法则感悟的【领域】对敌，<br>我也曾见识他施展过几次。<br>数千年过去，我对这领域也有了自己的几分见解。<br>现在，我便将自己对这等秘法的领悟，<br>传授于你。你仔细听好。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰", lines: ["nb7"]}],
+                },
+                
+                locks_lines: ["nb6"],
+            }),
+            "nb7": new Textline({ 
+                is_unlocked: false,
+                name: "是，晚辈遵命。",
+                text: "纳鹰伸出手指，点在了纳可眉心处，<br>顿时，庞杂的信息涌入了她的脑海中，<br>令她一时间沉浸在种种玄妙的领悟意境之内。<br>过了片刻后，纳可睁开眼睛，<br>眼底闪烁着兴奋的光芒。<br>她能感受到这些领悟对她的帮助有多大。<br>  [纳可]前辈，谢谢您。<br>我对之后的路，已经有了清晰的认知。<br>[纳鹰]谢就不必了。<br>我想，我的传承到这里也差不多快结束了。<br>接下来，你要做的是好好努力提升自己，<br>等我再次苏醒之后，希望看见你更上一层楼。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰", lines: ["nb8"]}],
+                    spec: "A7-exp",
+                },
+                
+                locks_lines: ["nb7"],
+            }),
+            "nb8": new Textline({ 
+                is_unlocked: false,
+                name: "前辈您……要沉睡了？",
+                text: "  呵呵，一缕念头自是无法长期维持。<br>下一次，就不知道什么时候才能醒了。<br>如果你希望检验自己——<br>去这片结界湖的深处。<br>那里有一些结界里自然滋生的“灵”，<br>诞生了意识，想要反抗和挣脱结界。<br>为了秘境的稳固，这个任务便交予你。<br>去吧，我就不打扰了。",
+                unlocks: {
+                    locations: ["结界湖 - 1"],
+                },
+                
+                locks_lines: ["nb8"],
+            }),
+        }
+    });
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

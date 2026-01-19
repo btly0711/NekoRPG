@@ -2925,9 +2925,8 @@ class Enemy {
         stats: {health: 1090000, attack:160000, agility: 102000, attack_speed: 1.2, defense: 50000}, 
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
-            {item_name: "极品绿宝石", chance:0.01},
             {item_name: "水溶精华", chance:0.2},
-            {item_name: "浅蓝晶粉", chance:0.06},
+            {item_name: "浅蓝晶粉", chance:0.09},
             //2.8Z
         ],
     });
@@ -2945,16 +2944,344 @@ class Enemy {
         stats: {health: 327000, attack:185000, agility: 108000, attack_speed: 0.8, defense: 77000}, 
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
-            {item_name: "极品绿宝石", chance:0.01},
-            {item_name: "秘境芦苇", chance:0.12},
+            {item_name: "秘境芦苇", chance:0.15},
             //2.8Z
         ],
     });
+    //2-4
+    
+    enemy_templates["威武武士"] = new Enemy({
+        name: "威武武士", 
+        description: "吃了防御低的亏而被流放到2-2的悲惨敌人。记得回去拿飞...极品绿宝石！", 
+        xp_value: 46368,  
+        rank: 2401,
+        image: "image/enemy/E2401.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 750000, attack:370000, agility: 150000, attack_speed: 1.2, defense: 30000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["七阶卫戍"] = new Enemy({
+        name: "七阶卫戍", 
+        description: "结界湖的守护者。然而，正如老祖所担心的，探险者们已经一拥而入了。", 
+        xp_value: 46368, 
+        rank: 2402,
+        image: "image/enemy/E2402.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 390000, attack:260000, agility: 160000, attack_speed: 1.2, defense: 130000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["秘境帕芙之灵"] = new Enemy({
+        name: "秘境帕芙之灵", 
+        description: "结界湖中自然滋生的“灵”。常年积累能量下已经抵达大地级七阶。", 
+        xp_value: 46368, 
+        rank: 2403,
+        image: "image/enemy/E2403.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [0],
+        spec_value:{},
+        tags: [],
+        stats: {health: 280000, attack:140000, agility: 168000, attack_speed: 1.2, defense: 140000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["秘境猬精"] = new Enemy({
+        name: "秘境猬精", 
+        description: "捕食“灵”变得晶莹剔透的刺猬精。一路从荒兽森林跑过来真是辛苦它了。", 
+        xp_value: 46368, 
+        rank: 2404,
+        image: "image/enemy/E2404.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [20],
+        spec_value:{},
+        tags: [],
+        stats: {health: 600000, attack:200000, agility: 152000, attack_speed: 1.2, defense: 90000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    }); 
+    enemy_templates["秘境心火精灵"] = new Enemy({
+        name: "秘境心火精灵", 
+        description: "其实之前那一只是这个族群的最强者。其他都被它丢到结界湖里面流放了...", 
+        xp_value: 46368, 
+        rank: 2405,
+        image: "image/enemy/E2405.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [27,13],
+        spec_value:{},
+        tags: [],
+        stats: {health: 320000, attack:280000, agility: 144000, attack_speed: 1.2, defense: 120000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["纳家冰雪亲卫"] = new Enemy({
+        name: "纳家冰雪亲卫", 
+        description: "获取[9]之力量的妖精亲卫。不快点解决的话会有大麻烦。", 
+        xp_value: 46368, 
+        rank: 2406,
+        image: "image/enemy/E2406.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [38],
+        spec_value:{},
+        tags: [],
+        stats: {health: 990000, attack:350000, agility: 180000, attack_speed: 1.6, defense: 75000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["有甲有角族"] = new Enemy({
+        name: "有甲有角族", 
+        description: "为什么有角一族和百家护卫也喝醉了...人不能，至少不应该！", 
+        xp_value: 46368, 
+        rank: 2407,
+        image: "image/enemy/E2407.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [38],
+        spec_value:{},
+        tags: [],
+        stats: {health: 520000, attack:280000, agility: 180000, attack_speed: 1.2, defense: 150000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["水晶傀儡"] = new Enemy({
+        name: "水晶傀儡", 
+        description: "秘境的“灵”附身在岩石上的形态。比礁石更坚硬些许。", 
+        xp_value: 46368, 
+        rank: 2408,
+        image: "image/enemy/E2408.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [1],
+        spec_value:{},
+        tags: [],
+        stats: {health: 30, attack:250000, agility: 160000, attack_speed: 1.2, defense: 180000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["原力刀客"] = new Enemy({
+        name: "原力刀客", 
+        description: "把普通武器当念力兵器耍绝活的刀客，江湖人称13斧的第14名预备成员。", 
+        xp_value: 46368, 
+        rank: 2409,
+        image: "image/enemy/E2409.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [10],
+        spec_value:{},
+        tags: [],
+        stats: {health: 270000, attack:1350000, agility: 200000, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+     enemy_templates["秘境胖胖鸟"] = new Enemy({
+        name: "秘境胖胖鸟", 
+        description: "学会了牵制真的不能怪它。在附近都是爆攻人的时候，这简直太赚了...", 
+        xp_value: 46368, 
+        rank: 2410,
+        image: "image/enemy/E2410.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [5],
+        spec_value:{},
+        tags: [],
+        stats: {health: 720000, attack:360000, agility: 210000, attack_speed: 1.2, defense: 180000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["人立金茸茸"] = new Enemy({
+        name: "人立金茸茸", 
+        description: "半途转换进化方向的茸茸。这条路的终点是天空级二阶，但秘境的能量已经捉襟见肘了。", 
+        xp_value: 46368, 
+        rank: 2411,
+        image: "image/enemy/E2411.png",
+        realm: "<span class=realm_terra><b>大地级七阶</b></span>",
+        size: "small",
+        spec: [26],
+        spec_value:{},
+        tags: [],
+        stats: {health: 700000, attack:220000, agility: 220000, attack_speed: 1.2, defense: 120000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.02},
+            //5.0Z
+        ],
+    });
+    enemy_templates["喵咕咕哩"] = new Enemy({
+        name: "喵咕咕哩", 
+        description: "缺乏基础属性，但可以依靠灵体造成成吨伤害的史莱姆变种。", 
+        xp_value: 75025, 
+        rank: 2412,
+        image: "image/enemy/E2412.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [21],
+        spec_value:{21:4000000},
+        tags: [],
+        stats: {health: 2400000, attack:1, agility: 240000, attack_speed: 1.2, defense: 1}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["秘境滋生魔"] = new Enemy({
+        name: "秘境滋生魔", 
+        description: "时封它来了...皮好脆！普攻倍率真是个好东西。", 
+        xp_value: 75025, 
+        rank: 2413,
+        image: "image/enemy/E2413.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [12],
+        spec_value:{},
+        tags: [],
+        stats: {health: 300000, attack:300000, agility: 240000, attack_speed: 1.2, defense: 200000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["蓝帽行者"] = new Enemy({
+        name: "蓝帽行者", 
+        description: "超级大血牛。即使有牵制也无法限制它逆天的战损。", 
+        xp_value: 75025, 
+        rank: 2414,
+        image: "image/enemy/E2414.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [3,5],
+        spec_value:{},
+        tags: [],
+        stats: {health: 15000000, attack:400000, agility: 250000, attack_speed: 1.2, defense: 40000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["流云级魔法师"] = new Enemy({
+        name: "流云级魔法师", 
+        description: "秘境中的法师。不仅没有学牵制还学了连击，真是到点子上了...", 
+        xp_value: 75025, 
+        rank: 2415,
+        image: "image/enemy/E2415.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [0,6],
+        spec_value:{},
+        tags: [],
+        stats: {health: 256000, attack:80000, agility: 260000, attack_speed: 1.2, defense: 240000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["威武异衣士"] = new Enemy({
+        name: "威武异衣士", 
+        description: "换了一件衣服就这么强了！之前的绿色衣服和黑红盾牌原来这么没用吗...", 
+        xp_value: 75025, 
+        rank: 2416,
+        image: "image/enemy/E2416.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2200000, attack:560000, agility: 270000, attack_speed: 1.2, defense: 90000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["雪魅蝠"] = new Enemy({
+        name: "雪魅蝠", 
+        description: "虽然看起来像是毒属性荒兽，却反直觉地有治愈自己的功能。", 
+        xp_value: 75025, 
+        rank: 2417,
+        image: "image/enemy/E2417.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [31],
+        spec_value:{},
+        tags: [],
+        stats: {health: 650000, attack:420000, agility: 280000, attack_speed: 1.5, defense: 260000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["大眼八爪鱼"] = new Enemy({
+        name: "大眼八爪鱼", 
+        description: "防御极高的荒兽。至今为止似乎还没有一只八爪鱼是8连击...或许同时强化八条肢体需要的能量太多了。", 
+        xp_value: 75025, 
+        rank: 2418,
+        image: "image/enemy/E2418.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [10],
+        spec_value:{},
+        tags: [],
+        stats: {health: 950000, attack:480000, agility: 300000, attack_speed: 1.2, defense: 300000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+
     /*
-      黄 蓝 红  
-六阶   1%/5%/2% 17711    1.6Z
-六阶+     3%/5% 28657    5.0Z
-微花灵阵开始算六阶+
+       红 绿
+七阶   5%/2% 46368    5.0Z
+七阶+  3%/5% 75025    9.0Z
+喵咕咕哩 开始算七阶+
+
+【废墟猎兵】是2501
 */    
 })();
 

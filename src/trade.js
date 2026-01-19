@@ -285,7 +285,7 @@ function get_item_value(selected_item) {
     if(id) {
         return round_item_price(profit_margin * item_templates[id].getValue(quality)) * selected_item.count;
     } else {
-        return round_item_price(profit_margin * getEquipmentValue(components, quality));
+        return round_item_price(profit_margin * getEquipmentValue(components, quality)) * selected_item.count;
     }
 }
 

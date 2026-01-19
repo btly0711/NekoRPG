@@ -1032,7 +1032,7 @@ i {
 }
 .trade_ammount_buttons {
 	display: var(--trade_ammount_button_display);
-	width: 75px;
+	width: 95px;
 	vertical-align: bottom;
 	text-align: right;
 }
