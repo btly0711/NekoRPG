@@ -3150,14 +3150,14 @@ class Enemy {
     });
     enemy_templates["喵咕咕哩"] = new Enemy({
         name: "喵咕咕哩", 
-        description: "缺乏基础属性，但可以依靠灵体造成成吨伤害的史莱姆变种。", 
+        description: "缺乏基础属性，但可以依靠灵体造成成吨伤害的史莱姆变种(也没有那么多吨)", 
         xp_value: 75025, 
         rank: 2412,
         image: "image/enemy/E2412.png",
         realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
         size: "small",
         spec: [21],
-        spec_value:{21:4000000},
+        spec_value:{21:360000},
         tags: [],
         stats: {health: 2400000, attack:1, agility: 240000, attack_speed: 1.2, defense: 1}, 
         loot_list: [
