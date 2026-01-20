@@ -2965,6 +2965,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "蓝金碎片", chance:0.05},
+            {item_name: "秘境芦苇", chance:0.05},
             //5.0Z
         ],
     });
@@ -2983,6 +2985,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "A7·能量核心", chance:0.08},
             //5.0Z
         ],
     });
@@ -3001,6 +3004,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "A7·能量核心", chance:0.08},
             //5.0Z
         ],
     });
@@ -3019,6 +3023,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "浅蓝晶粉", chance:0.07},
+            {item_name: "透明水晶", chance:0.03},
             //5.0Z
         ],
     }); 
@@ -3037,6 +3043,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "秘境芦苇", chance:0.10},
+            {item_name: "透明水晶", chance:0.03},
             //5.0Z
         ],
     });
@@ -3055,6 +3063,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "蓝金碎片", chance:0.05},
+            {item_name: "A7·能量核心", chance:0.03},
             //5.0Z
         ],
     });
@@ -3073,6 +3083,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "蓝晶碎片", chance:0.07},
             //5.0Z
         ],
     });
@@ -3091,6 +3102,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "透明水晶", chance:0.06},
             //5.0Z
         ],
     });
@@ -3109,6 +3121,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "蓝金碎片", chance:0.07},
             //5.0Z
         ],
     });
@@ -3127,6 +3140,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "结界湖血肉", chance:0.05},
             //5.0Z
         ],
     });
@@ -3145,6 +3159,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
+            {item_name: "A7·能量核心", chance:0.08},
             //5.0Z
         ],
     });
@@ -3163,6 +3178,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "A7·能量核心", chance:0.08},
+            {item_name: "结界湖血肉", chance:0.04},
             //9.0Z
         ],
     });
@@ -3181,6 +3198,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "A7·能量核心", chance:0.08},
+            {item_name: "蓝金碎片", chance:0.06},
             //9.0Z
         ],
     });
@@ -3199,6 +3218,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "A7·能量核心", chance:0.13},
             //9.0Z
         ],
     });
@@ -3217,6 +3237,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "透明水晶", chance:0.12},
             //9.0Z
         ],
     });
@@ -3235,6 +3256,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "蓝金碎片", chance:0.05},
+            {item_name: "蓝金锭", chance:0.015},
             //9.0Z
         ],
     });
@@ -3253,6 +3276,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "结界湖血肉", chance:0.02},
+            {item_name: "A7·能量核心", chance:0.10},
             //9.0Z
         ],
     });
@@ -3271,6 +3296,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "结界湖血肉", chance:0.06},
+            {item_name: "A7·能量核心", chance:0.04},
             //9.0Z
         ],
     });

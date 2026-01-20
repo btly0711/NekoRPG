@@ -870,10 +870,10 @@ function start_textline(textline_key){
 
             if(character.xp.current_level >= 15) displayed_text += `结界已经松动到这种程度了吗...<br>之前，这里还只能容纳大地级中期以下的修者进入的。<br>`;
             if(age <= 12) displayed_text += `哇！！！居然如此年轻，我纳家振兴在即！<br>`;
-            if(age >= 50) displayed_text += `诶，多少岁...算了啦。<br>有领悟在，什么时候开始都不迟！<br>`;
-            if(age >= 500) displayed_text += `喂喂，这里不是给纳家年轻人用的秘境吗...<br>`;
             if(age >= 1000) displayed_text += `我寻思...在这里沉睡了一个纪元不到，<br>外面的宇宙规则都改了？<br>，大地级不应该只有0.1纪元的寿命的嘛...<br>`;
-
+            else if(age >= 500) displayed_text += `喂喂，这里不是给纳家年轻人用的秘境吗...<br>`;
+            else if(age >= 50) displayed_text += `诶，多少岁...算了啦。<br>有领悟在，什么时候开始都不迟！<br>`;
+            
         }
         if(textline.unlocks.spec == "A7-exp"){
             add_xp_to_skill({skill: skills["Stance mastery"], xp_to_add: 9.999e11});
@@ -2429,7 +2429,8 @@ function use_item(item_key,stated = false) {
             }
             else
             {
-                let R_value = G_value * Math.atan(1/(0.4*(character.stats.flat.gems.attack_power/G_value)-0.4*SCGV+0.001)) * 0.637;//[Softcapped]
+                let X_value = character.stats.flat.gems.attack_power/G_value/SCGV;
+                let R_value = G_value * Math.exp(-5 * (X_value + 1 - 2 * Math.sqrt(X_value)));//[Softcapped]
                 character.stats.flat.gems.attack_power = character.stats.flat.gems.attack_power + R_value;
                 message += `${format_number(R_value)}[软上限]`;
             }
@@ -2445,7 +2446,8 @@ function use_item(item_key,stated = false) {
             }
             else
             {
-                let R_value = G_value * Math.atan(1/(0.4*(character.stats.flat.gems.defense/G_value)-0.4*SCGV+0.001)) * 0.637;//[Softcapped]
+                let X_value = character.stats.flat.gems.defense/G_value/SCGV;
+                let R_value = G_value * Math.exp(-5 * (X_value + 1 - 2 * Math.sqrt(X_value)));//[Softcapped]
                 character.stats.flat.gems.defense = character.stats.flat.gems.defense + R_value;
                 message += `${format_number(R_value)}[软上限]`;
             }
@@ -2461,7 +2463,8 @@ function use_item(item_key,stated = false) {
             }
             else
             {
-                let R_value = G_value * Math.atan(1/(0.4*(character.stats.flat.gems.agility/G_value)-0.4*SCGV+0.001)) * 0.637;//[Softcapped]
+                let X_value = character.stats.flat.gems.agility/G_value/SCGV;
+                let R_value = G_value * Math.exp(-5 * (X_value + 1 - 2 * Math.sqrt(X_value)));//[Softcapped]
                 character.stats.flat.gems.agility = character.stats.flat.gems.agility+ R_value;
                 message += `${format_number(R_value)}[软上限]`;
             }
@@ -2477,7 +2480,8 @@ function use_item(item_key,stated = false) {
             }
             else
             {
-                let R_value = G_value * Math.atan(1/(0.4*(character.stats.flat.gems.max_health/G_value / HPMV)-0.4*SCGV+0.001)) * 0.637 * HPMV;//[Softcapped]
+                let X_value = character.stats.flat.gems.max_health/G_value/SCGV/HPMV;
+                let R_value = G_value * Math.exp(-5 * (X_value + 1 - 2 * Math.sqrt(X_value)));//[Softcapped]
                 character.stats.flat.gems.max_health = character.stats.flat.gems.max_health+ R_value;
                 message += `${format_number(R_value)}[软上限]`;
             }

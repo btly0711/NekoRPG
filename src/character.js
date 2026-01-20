@@ -223,7 +223,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 {
                         let A_mul_gain = (this_realm[0]-7)*0.05;
                         character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;
-                        gains += `普攻倍率增加了${A_mul_gain}<br>`;
+                        gains += `普攻倍率增加了${A_mul_gain.toFixed(2)}<br>`;
                 }
 
                 gains += `技能经验倍率提高了${Math.round(total_skill_xp_multiplier*100-100)}%<br>`;

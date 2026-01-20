@@ -2638,7 +2638,7 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 17280,
         stats: {
             crit_rate: {
-                flat: 0.11,
+                flat: 0.12,
             },
             attack_speed: {
                 multiplier: 1.12,
@@ -2657,7 +2657,43 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 0.10,
             },
             attack_mul: {
-                multiplier: 2.65,
+                multiplier: 2.60,
+            },
+            attack_speed: {
+                multiplier: 0.50,
+            },
+        }
+    });
+    
+    item_templates["蓝金剑刃"] = new WeaponComponent({
+        name: "蓝金剑刃", description: "蓝金锭制造的剑刃。攻速和爆率又强了一线",
+        component_type: "long blade",
+        value: 1.35e9,
+        component_tier: 7,
+        name_prefix: "蓝金",
+        attack_value: 43200,
+        stats: {
+            crit_rate: {
+                flat: 0.14,
+            },
+            attack_speed: {
+                multiplier: 1.13,
+            },
+        }
+    });
+    item_templates["蓝金戟头"] = new WeaponComponent({
+        name: "蓝金戟头", description: "蓝锭制造的三叉戟头。普攻倍率又强了一线。",
+        component_type: "triple blade",
+        value: 4.05e9,
+        component_tier: 7,
+        name_prefix: "蓝金",
+        attack_value: 60000,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_mul: {
+                multiplier: 2.70,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -2717,6 +2753,23 @@ item_templates["Twist liek a snek"] = new Book({
             },
             agility: {
                 flat: 2000.00,
+            },
+        }
+    });
+    item_templates["水晶剑柄"] = new WeaponComponent({
+        name: "水晶剑柄", description: "缠绕水晶制造的剑柄。透明的外观有助于分析原能流动，优化发力方式。！",
+        component_type: "short handle",
+        value: 475e6,
+        component_tier: 6,
+        stats: {
+            attack_mul: {
+                flat: 0.2,
+            },
+            crit_multiplier: {
+                flat: 0.3,
+            },
+            health_regeneration_flat: {
+                flat: 4000.00,
             },
         }
     });
@@ -3261,9 +3314,26 @@ item_templates["Twist liek a snek"] = new Book({
         id: "脉冲合金锭",
         name: "脉冲合金锭", 
         description: "脉冲合金与浅蓝晶粉组成的A8级合金。拥有蓄能的特性。", 
-        value: 7.777e7,
+        value: 77.777e6,
         material_type: "metal",
         image: "image/item/pulsealloy_ingot.png",
+    });
+    
+    item_templates["缠绕水晶"] = new Material({
+        id: "缠绕水晶",
+        name: "缠绕水晶", 
+        description: "模拟【缠绕骸骨】做成的剑柄部件。", 
+        value: 222.222e6,
+        material_type: "metal",
+        image: "image/item/reedy_transparent.png",
+    });
+    item_templates["蓝金锭"] = new Material({
+        id: "蓝金锭",
+        name: "蓝金锭", 
+        description: "结界湖中储量较大的A9级金属。因为生物富集作用，荒兽血肉中也含有大量这样的金属。", 
+        value: 333.333e6,
+        material_type: "metal",
+        image: "image/item/bluegold_ingot.png",
     });
 })();
 
@@ -3744,6 +3814,32 @@ item_templates["Twist liek a snek"] = new Book({
         description: "某种更蓝一些的末影珍珠同位体。很遗憾，血洛大陆的传送没那么容易。", 
         value: 3.2e7,
         image: "image/item/LB_powder.png",
+    });
+
+    
+    item_templates["A7·能量核心"] = new Loot({
+        name: "A7·能量核心", 
+        description: "部分“灵”体内的能量结晶。可以在短时间内诱导出巨大的力量。", 
+        value: 64e6,
+        image: "image/item/A7_crystal.png",
+    });
+    item_templates["蓝金碎片"] = new Loot({
+        name: "蓝金碎片", 
+        description: "威武武士就是靠这个变成威武异衣士的。出乎意料的，秘境里居然有高强金属！", 
+        value: 72e6,
+        image: "image/item/bluegold_fragment.png",
+    });
+    item_templates["透明水晶"] = new Loot({
+        name: "透明水晶", 
+        description: "比柳木更好一线的剑柄能量传导材料。唯一的缺点是过于坚硬，难以直接握住。", 
+        value: 80e6,
+        image: "image/item/transparent_crystal.png",
+    });
+    item_templates["结界湖血肉"] = new Loot({
+        name: "结界湖血肉", 
+        description: "死水旁边的荒兽不能直接吃！但是可以用来铸造蓝金...", 
+        value: 96e6,
+        image: "image/item/transparent_crystal.png",
     });
 
 
