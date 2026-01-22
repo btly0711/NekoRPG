@@ -1597,6 +1597,21 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         xp_scaling: 1.6,
     });
 
+    skills["Fishing"] = new Skill({skill_id: "Fishing", 
+        names: {0: "钓鱼"}, 
+        description: "增加钓鱼的熟练度,提高大鱼上钩的概率[3级出现青花鱼/10级出现冰柱鱼]",
+        category: "Activity",
+        base_xp_cost: 80,
+        visibility_treshold: 4,
+        xp_scaling: 1.6,
+        max_level: 50,
+        max_level_coefficient: 200,
+        get_effect_description: ()=> {
+        let value = skills["Fishing"].current_level * 4;
+        return `“钓鱼条” 长度： 40px ->  ${format_number(40+value)}px.`;
+        },
+    });
+
     skills["Mining"] = new Skill({skill_id: "Mining",
         names: {0: "挖掘"}, 
         description: "提升挖掘矿石的技能",

@@ -12,7 +12,7 @@ import { is_in_trade, start_trade, cancel_trade, accept_trade, exit_trade, add_t
 import { character, 
          add_to_character_inventory, remove_from_character_inventory,
          equip_item_from_inventory, unequip_item, equip_item,
-         update_character_stats,
+         update_character_stats, get_total_skill_level,
          get_skill_xp_gain } from "./character.js";
 import { activities } from "./activities.js";
 import { end_activity_animation, 
@@ -61,7 +61,6 @@ import { stances } from "./combat_stances.js";
 import { get_recipe_xp_value, recipes } from "./crafting_recipes.js";
 import { game_version, get_game_version } from "./game_version.js";
 import { ActiveEffect, effect_templates } from "./active_effects.js";
-import { Verify_Game_Objects } from "./verifier.js";
 
 const save_key = "save data";
 const dev_save_key = "dev save data";
@@ -82,14 +81,16 @@ window.REALMS=[
 [9,"大地级一阶",600,120000,60000000,"terra"],
 [10,"大地级二阶",1000,250000,80000000,"terra"],
 [11,"大地级三阶",2000,550000,1.6e8,"terra"],
-[12,"大地级四阶",3000,1000000,4.8e8,"terra"],
-[13,"大地级五阶",5000,1500000,1.8e9,"terra"],
-[14,"大地级六阶",9000,2500000,5.4e9,"terra"],
-[15,"大地级七阶",16000,7000000,1.28e10,"terra"],
-[16,"大地级八阶",32000,13000000,9.2233e18,"terra"],//以下未平衡
-[17,"大地级巅峰",60000,25000000,3.333e11,"terra"],
+[12,"大地级四阶",3000,1000000,4.8e8,"terra"],//200w
+[13,"大地级五阶",5000,1500000,18e8,"terra"],//350w
+[14,"大地级六阶",9000,2500000,54e8,"terra"],//600w
+[15,"大地级七阶",16000,6500000,128e8,"terra"],//1250w
+[16,"大地级八阶",32000,17500000,9.2233e18,"terra"],//3000w以下未平衡
+[17,"大地级巅峰",60000,50000000,3333e8,"terra"],
 
-[18,"天空级一阶",150000,50000000,9.999e11,"sky"],
+[18,"天空级一阶",150000,1.2e8,9999e8,"sky"],//2e
+[19,"天空级二阶",500000,3e8,4.5e12,"sky"],//5e
+[20,"天空级三阶",1500000,15e8,18e12,"sky"],//20e
 
 ];
 //境界，X级存储了该等级的数据
@@ -512,7 +513,7 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿","woodcutting":"砍伐"}
+    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿","woodcutting":"砍伐","fishing":"钓鱼"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     if(current_activity.exp_scaling)
     {
@@ -2134,10 +2135,15 @@ function use_recipe(target,stated = false) {
                     remove_from_character_inventory([{item_key: key, item_count: selected_recipe.materials[i].count}]);
                 } 
                 const exp_value = get_recipe_xp_value({category, subcategory, recipe_id});
-                if(success_chance == 1 ? true : (Math.random() < success_chance)) {
+                let success;
+                if(success_chance>=0.999) success=true;
+                else success = (Math.random() < success_chance)
+                if(success) {
                     total_crafting_successes++;
-                    add_to_character_inventory([{item: item_templates[result_id], count: count}]);
-                    
+                    if(selected_recipe.Q_able != undefined) add_to_character_inventory([{item: getItem({...item_templates[result_id], quality: selected_recipe.Q_able}), count: count}]);
+                    else add_to_character_inventory([{item: item_templates[result_id], count: count}]);
+                    //带品质的物品(标准方案)
+                    //燃灼术/星解之术/2-4后道具均为蓝色130%
                     if(!stated) log_message(`制造了 ${item_templates[result_id].getName()} x${count}`, "crafting");
                     else stated_f +=1;
                     leveled = add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value});
@@ -2390,6 +2396,7 @@ function use_item(item_key,stated = false) {
         let message = `使用 ${item_templates[id].name} , `
         let SCGV = 30;//SoftCappedGemValue
         let HPMV = 50;//HealthPointMultiplierValue
+        if(G_value > 1e4) HPMV *= 2;//殿堂级修正
         let P1,P2,P3,P4;//相对概率(修正后)
         P1=Math.pow(((character.stats.flat.gems.attack_power||0)/G_value +1),-1.5);
         if(character.stats.flat.gems.attack_power >= SCGV*G_value) P1*=0.5;
@@ -2481,7 +2488,7 @@ function use_item(item_key,stated = false) {
             else
             {
                 let X_value = character.stats.flat.gems.max_health/G_value/SCGV/HPMV;
-                let R_value = G_value * Math.exp(-5 * (X_value + 1 - 2 * Math.sqrt(X_value)));//[Softcapped]
+                let R_value = G_value * HPMV * Math.exp(-5 * (X_value + 1 - 2 * Math.sqrt(X_value)));//[Softcapped]
                 character.stats.flat.gems.max_health = character.stats.flat.gems.max_health+ R_value;
                 message += `${format_number(R_value)}[软上限]`;
             }
@@ -3604,6 +3611,121 @@ function update_timer() {
     update_character_stats(); //done every second, mostly because of daynight cycle; gotta optimize it at some point
     update_displayed_time();
 }
+let MouseDown = false;
+function setupMouseControl() {
+    document.addEventListener('pointerdown', () => {
+        MouseDown = true;
+    });
+
+    document.addEventListener('pointerup', () => {
+        MouseDown = false;
+    });
+
+    document.addEventListener('pointercancel', () => {
+        MouseDown = false;
+    });
+
+    document.addEventListener('pointerleave', () => {
+        MouseDown = false;
+    });
+    window.addEventListener('blur', () => {
+        MouseDown = false;
+    });
+}
+setupMouseControl();
+
+const action_div = document.getElementById("location_actions_div");
+const fish_div = document.getElementById("fish_div");
+const fish_progress_bar = document.getElementById("fish_progress_bar");
+const fish_game_div = document.getElementById("fish_game_div");
+const fish_rod_div = document.getElementById("fish_rod_div");
+let fish_v = 0,fish_x = 100;
+let rod_v = 0,rod_x = 100;
+let bar_health = 25;
+let rod_length = 40;
+let fishs = {1:{name:"湖鲤鱼",str:40},2:{name:"青花鱼",str:100},3:{name:"冰柱鱼",str:180}}
+function update_displayed_fish()
+{
+    fish_progress_bar.style.height = bar_health.toFixed(0) + "%";
+    fish_progress_bar.style.top = (100-bar_health).toFixed(0) + "%";
+    fish_progress_bar.style.background = `rgb(${Math.min((100 - bar_health)*5.1,255)},${Math.min((bar_health)*5.1,255)},0)`
+
+    fish_game_div.style.bottom = fish_x + "px";
+    fish_rod_div.style.bottom = rod_x + "px";
+}
+
+
+
+function start_fishing_minigame()
+{
+    fish_div.style.display ="inherit";
+    action_div.style.display = "none";
+    console.log("start")
+    let FishRNG = (get_total_skill_level("Fishing") * 0.2) * Math.random();
+    let cur_fish = fishs[1];
+    if(FishRNG > 0.5) cur_fish = fishs[2];
+    if(FishRNG > 1.8) cur_fish = fishs[3];
+    bar_health = 25;
+    rod_length = 40 + get_total_skill_level("Fishing") * 4;
+    fish_rod_div.style.height = rod_length + "px";
+    fish_v = 0,fish_x = 40;
+    rod_v = 0,rod_x = 30;
+    let movinginterval = Math.round(3000 / cur_fish.str);
+    let remaininterval = 1;
+    let frametime = 0.03;
+
+
+    //游戏初始化
+    const fishId = setInterval(() => {
+        
+        if(fish_x + 12 < rod_x + rod_length && rod_x < fish_x + 12) bar_health += 0.4;//鱼，上钩
+        else bar_health -= 0.3;//鱼，脱钩
+        remaininterval -= 1;
+        if(remaininterval <= 0){
+            remaininterval = movinginterval;
+            fish_v += (Math.random()*2-0.9)*cur_fish.str;
+        }//鱼，扑腾
+        fish_x += fish_v * frametime;//鱼，移动
+        fish_v -= 3 * frametime;//感受到了重力
+        //console.log(fish_v.toFixed(2),fish_x.toFixed(1));
+        if((fish_x <= 0 && fish_v < 0)||(fish_x >= 290 && fish_v > 0)){
+            fish_v = fish_v * -0.7;
+        }//鱼，反弹
+        fish_v = fish_v * 0.99;//鱼，受阻。
+
+        if(MouseDown) rod_v += 250 * frametime;
+        else rod_v -= 120 * frametime;
+        rod_x += rod_v * frametime;
+        rod_v *= 0.99;
+        //条，移动
+        if((rod_x + rod_length >= 318 && rod_v > 0)){
+            rod_v = rod_v * -0.4;
+        }//条，反弹(上)
+        if((rod_x <= 0 && rod_v < 0)){
+            rod_v = rod_v * -0.8;
+        }//条，反弹(下)
+        //console.log(rod_x.toFixed(2),rod_v.toFixed(2));
+
+        update_displayed_fish();
+        if (bar_health >= 100) {
+            log_message(cur_fish.name + " 上钩了！","enemy_defeated");
+            action_div.style.display = "inherit";
+            fish_div.style.display = "none";
+            add_xp_to_skill({skill: skills["Fishing"], xp_to_add: cur_fish.str / 20});
+            add_to_character_inventory([{item: item_templates[cur_fish.name], count: 1}]);
+            clearInterval(fishId);
+        }
+        if (bar_health <= 0) {
+            log_message(cur_fish.name + " 逃跑了！","enemy_enhanced");
+            action_div.style.display = "inherit";
+            fish_div.style.display = "none";
+            clearInterval(fishId);
+        }
+        current_activity.gathering_time = 0;
+        //不准继续！
+
+    },frametime * 1000)
+}//完整钓鱼小游戏
 
 function update() {
     setTimeout(function()
@@ -3667,29 +3789,35 @@ function update() {
                 if(current_activity.gained_resources)
                 {
                     if(current_activity.gathering_time >= current_activity.gathering_time_needed) { 
+                        
                         if(current_activity.exp_scaling)
                         {
                             current_activity.done_actions += 1;
                             character.C_scaling[current_activity.scaling_id] = current_activity.done_actions;
                             activities[current_activity.activity_name].done_actions += 1;
                         }
-                        
                         const {gathering_time_needed, gained_resources} = current_activity.getActivityEfficiency();
-
                         current_activity.gathering_time_needed = gathering_time_needed;
 
                         const items = [];
-
-                        for(let i = 0; i < gained_resources.length; i++) {
-                            if(Math.random() > (1-gained_resources[i].chance)) {
-                                const count = Math.floor(Math.random()*(gained_resources[i].count[1]-gained_resources[i].count[0]+1))+gained_resources[i].count[0];
-                                items.push({item: item_templates[gained_resources[i].name], count: count});
-                            }
+                        if(current_activity.activity_name == "fishing")
+                        {
+                            start_fishing_minigame();
+                            //把鱼丢到物品栏里
+                            //log_loot
                         }
+                        else
+                        {
+
+                            for(let i = 0; i < gained_resources.length; i++) {
+                                if(Math.random() > (1-gained_resources[i].chance)) {
+                                    const count = Math.floor(Math.random()*(gained_resources[i].count[1]-gained_resources[i].count[0]+1))+gained_resources[i].count[0];
+                                    items.push({item: item_templates[gained_resources[i].name], count: count});
+                                }
+                            }
+                        }//常规loot
 
                         if(items.length > 0) {
-                            
-                            console.log(current_activity);
                             
                             log_loot(items, false);
                             add_to_character_inventory(items);
@@ -3990,7 +4118,7 @@ sort_displayed_inventory({sort_by: "name", target: "character"});
 run();
 
 //Verify_Game_Objects();
-window.Verify_Game_Objects = Verify_Game_Objects;
+//window.Verify_Game_Objects = Verify_Game_Objects;
 
 if(is_on_dev()) {
     log_message("It looks like you are playing on the dev release. It is recommended to keep the developer console open (in Chrome/Firefox/Edge it's at F12 => 'Console' tab) in case of any errors/warnings appearing in there.", "notification");

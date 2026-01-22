@@ -139,6 +139,13 @@ class Gathering extends Training {
         is_unlocked: true,
         required_tool_type: "axe",
     });
+    activities["fishing"] = new Gathering({
+        name: "fishing",
+        action_text: "钓鱼",
+        description: "hey ya",
+        base_skills_names: ["Fishing"],
+        is_unlocked: true,
+    });
 
     activities["herbalism"] = new Gathering({
         name: "herbalism",

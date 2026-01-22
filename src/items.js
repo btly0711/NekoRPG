@@ -2405,6 +2405,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
 
 
+
 })();
 
 
@@ -2461,6 +2462,27 @@ item_templates["Twist liek a snek"] = new Book({
             },
             max_health: {
                 multiplier: 1.3,
+            }
+        }
+    });
+    
+    item_templates["结界湖之心"] = new Special({
+        name: "结界湖之心",
+        id: "结界湖之心",
+        description: "对敢于挑战复数冰柱鱼的勇士的证明。还只是初级形态，或许有朝一日可以超越姐姐？", 
+        value: 2.4e9,
+        stats: {
+            attack_power: {
+                multiplier: 1.01,
+            },
+            defense: {
+                multiplier: 1.01,
+            },
+            agility: {
+                multiplier: 1.01,
+            },
+            max_health: {
+                multiplier: 1.01,
             }
         }
     });
@@ -3360,6 +3382,32 @@ item_templates["Twist liek a snek"] = new Book({
         value: 320000,
         image: "image/item/salix_wood.png",
     });
+    
+    item_templates["湖鲤鱼"] = new OtherItem({
+        id: "湖鲤鱼",
+        name: "湖鲤鱼", 
+        description: "结界湖的能量也无法改变鲤鱼不好动的天性。作为大地级六阶的鱼类，连潮汐级初等的修者都有机会把它拽上来。", 
+        value: 28e6,
+        image: "image/item/lake_carp.png",
+    });
+    item_templates["青花鱼"] = new UsableItem({
+        id: "青花鱼",
+        name: "青花鱼", 
+        description: "另一种结界湖鱼类。因为贪吃的食性而较为灵活，同等境界下需要费一番功夫才能捕捉。", 
+        value: 84e6,
+        effects: [{effect: "饱食 VI", duration: 90}],
+        realmcap:17,
+        image: "image/item/cyan_fish.png",
+    });
+    item_templates["冰柱鱼"] = new UsableItem({
+        id: "冰柱鱼",
+        name: "冰柱鱼", 
+        description: "结界湖中鱼王一般的存在。体型不大却极为难缠，传说曾经有过天空级冰柱鱼飞出水面的记录。", 
+        value: 216e6,
+        effects: [{effect: "饱食 VI", duration: 540}],
+        realmcap:20,
+        image: "image/item/ice_fish.png",
+    });
 })();
 
 //特殊
@@ -3839,7 +3887,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "结界湖血肉", 
         description: "死水旁边的荒兽不能直接吃！但是可以用来铸造蓝金...", 
         value: 96e6,
-        image: "image/item/transparent_crystal.png",
+        image: "image/item/A7-flesh.png",
     });
 
 

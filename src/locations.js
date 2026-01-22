@@ -3066,6 +3066,22 @@ function get_location_type_penalty(type, stage, stat) {
             },
         }),
     }
+
+    locations["结界湖"].activities = {
+        "fishing": new LocationActivity({
+            activity_name: "fishing",
+            infinite: true,
+            starting_text: "在结界湖中垂钓",
+            skill_xp_per_tick: 1,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "湖鲤鱼", ammount: [[1,1], [1,1]], chance: [0, 0]}],
+                time_period: [15, 3],
+                skill_required: [0, 20],
+                scales_with_skill: true,
+            },
+        }),
+    }
 })();
 
 //add actions

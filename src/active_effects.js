@@ -133,6 +133,17 @@ effect_templates["饱食 V"] = new ActiveEffect({
         }
     }
 });
+effect_templates["饱食 VI"] = new ActiveEffect({
+    name: "饱食 VI",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 180000},
+            attack_power:{flat:12000},
+            defense:{flat:12000},
+            agility:{flat:12000},
+        }
+    }
+});
 
 effect_templates["魔攻 A9"] = new ActiveEffect({
     name: "魔攻 A9",

@@ -257,7 +257,7 @@ function create_item_tooltip_content({item, options={}}) {
         if(options?.quality && options.quality[0]) {
             quality = options.quality[0];
         }
-        if(item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special")//disable quality
+        if(item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special" && item.equip_slot != "realm")//disable quality
         {
             if(!options.skip_quality && options?.quality?.length == 2) {
                 item_tooltip += `<br><br><b>品质: <span style="color: ${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span style="color: ${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
@@ -265,7 +265,7 @@ function create_item_tooltip_content({item, options={}}) {
                 item_tooltip += `<br><br><b style="color: ${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
             }
         }
-        let SkillLevelMap = {"Mining":"挖掘","Woodcutting":"砍伐"};
+        let SkillLevelMap = {"Mining":"挖掘","Woodcutting":"砍伐","Fishing":"钓鱼"};
         if(item.bonus_skill_levels != {})
         {
             let S_levels = item.bonus_skill_levels;
@@ -2924,7 +2924,7 @@ function start_activity_display(current_activity) {
 
 
     const action_end_text = document.createElement("div");
-    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳","mining":"挖掘","woodcutting":"砍伐"};
+    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳","mining":"挖掘","woodcutting":"砍伐","fishing":"钓鱼"};
     const dev_ACNMap = false;
     action_end_text.innerText = `结束 ${dev_ACNMap?current_activity.activity_name:ActivityNameMap[current_activity.activity_name]}`;
     action_end_text.id = "action_end_text";

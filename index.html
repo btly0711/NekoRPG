@@ -519,9 +519,42 @@
                 
                 <!-- actions and stuff-->
                 <div id = "location_related_div" class = "box_div">
+                    <div id = "fish_div">
+                        <div id = "fish_background_div">
+                            <div id = "neko_fish_div">
+                                <img src="image/spec/neko.png">
+                                <div id = "fish_progress_div">
+                                    <div id = "fish_progress_bar">
+                                    </div>
+                                </div>
+                                
+                                <div id = "fish_mark_div">
+                                    <img src="image/spec/fishmark.png">
+                                </div>
+
+                            </div>
+                            <div id = "fish_minigame_div">
+                                <div id = "fish_rod_div">
+                                </div>
+                                
+                                <div id = "fish_game_div">
+                                    <img src="image/spec/fishmark.png">
+                                </div>
+                            </div>
+                        </div>
+                        <div id = "fish_font_div">
+                            少<br><br>
+                            &emsp; 女<br><br>
+                            &emsp; &emsp; 钓<br><br>
+                            &emsp; &emsp; &emsp; 鱼<br><br>
+                            &emsp; &emsp; &emsp; &emsp; 中<br><br>
+                            &emsp; &emsp; &emsp; &emsp; &emsp; ...
+                        </div>
+                    </div>
                     <div id = "location_actions_div">	
                         
                     </div>
+
 
                     <div id = "trade_div">
                         <div id = "trader_sorting_buttons" class="activable_buttons"> 
@@ -1312,7 +1345,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.32";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.33";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

@@ -2103,6 +2103,83 @@ i {
     display: none;
 }
 
+#fish_div {
+    display: none;
+    height: 411px;
+	width: 100%;
+	flex-direction:row;
+}
+#fish_progress_div{
+    height: 321px;
+	width: 12px;
+	background: black;
+	position:relative;
+	left: 6px;
+	outline: 2px solid gray; 
+	display: flex; 
+    flex-direction: column-reverse;
+}
+#fish_progress_bar{
+	z-index: 99;
+	vertical-align: bottom;
+}
+#neko_fish_div{
+	width:50px;
+}
+#fish_mark_div{
+	position:relative;
+	left:2px;
+	top:3px;
+}
+#fish_minigame_div{
+    height: 321px;
+	width: 28px;
+	top:52px;
+	background: linear-gradient(to bottom ,#DDDDFF,#80D0FF,#20A0FF);
+	position:relative;
+	left: 6px;
+	outline: 2px solid gray; 
+	display: flex; 
+    flex-direction: column-reverse;
+}
+
+#fish_rod_div{
+	
+	position:absolute;
+	left:1px;
+    height: 40px;
+	width: 26px;
+	outline: 2px solid darkgreen; 
+	background:linear-gradient(to bottom right,#00D000,#00FF00,#00D000);
+	z-index:1;
+}
+
+#fish_game_div{
+	position:absolute;
+	left:2px;
+	z-index:2;
+}
+#fish_font_div{
+	position:absolute;
+	width:250px;
+	left:140px;
+	top:0px;
+	font-size:30px;
+	font-weight:bold;
+	background: linear-gradient(to bottom right,white,red,yellow,lime,cyan,blue,white);
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+}
+
+#fish_background_div{
+  flex-direction: row;
+  display: flex;
+    height: 411px;
+	width: 120px;
+	background: linear-gradient(to bottom right,orange,yellow,orange);
+	outline: 2px solid gray;
+}
+
 #trader_inventory_div {
     height: 311px;
 	width: 100%;
