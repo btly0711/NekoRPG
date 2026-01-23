@@ -84,7 +84,7 @@ window.REALMS=[
 [12,"大地级四阶",3000,1000000,4.8e8,"terra"],//200w
 [13,"大地级五阶",5000,1500000,18e8,"terra"],//350w
 [14,"大地级六阶",9000,2500000,54e8,"terra"],//600w
-[15,"大地级七阶",16000,6500000,128e8,"terra"],//1250w
+[15,"大地级七阶",16000,6500000,168e8,"terra"],//1250w
 [16,"大地级八阶",32000,17500000,9.2233e18,"terra"],//3000w以下未平衡
 [17,"大地级巅峰",60000,50000000,3333e8,"terra"],
 
@@ -108,7 +108,7 @@ const flag_unlock_texts = {
 
 // special stats
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8}};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}};
 
 
 //in seconds
@@ -303,6 +303,7 @@ const musicList = {
   7: 'bgms/7.mp3',
   8: 'bgms/8.mp3',
   9: 'bgms/9.mp3',
+  10: 'bgms/10.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -543,7 +544,7 @@ function end_activity() {
         if(locations[activity_data.location].activities[activity_data.activity.activity_name].unlock_text) {
            message = locations[activity_data.location].activities[activity_data.activity.activity_name].unlock_text+":<br>";
         }
-        log_message(message + `Unlocked activity "${activity_data.activity.activity_name}" in location "${activity_data.location}"`, "activity_unlocked");
+        log_message(message + `解锁行动 "${activity_data.activity.activity_name}" - "${activity_data.location}"`, "activity_unlocked");
     }
 }
 
@@ -1238,10 +1239,8 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
                 
                 if(leveled) {
                     let R_skill =  skills[stances[current_stance].related_skill];
-                    console.log(R_skill);
                     for(let j=0;j < R_skill.related_stances.length; j+=1){
                         
-                        console.log(stances[R_skill.related_stances[j]].name);
                         update_stance_tooltip(R_skill.related_stances[j]);
                     }
                     update_character_stats();
@@ -1653,7 +1652,6 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         if(target.spec.includes(8)) Spec_E += "[衰弱]";
         if(target.spec.includes(9)) Spec_E += "[反转]";
         if(target.spec.includes(27)) Spec_E += "[柔骨]";
-        console.log(satk_mul);
         if(satk_mul != 1) Spec_E += `[ATK${format_number(satk_mul * 100)}%]`;
         if(sdmg_mul != 1)
         {
@@ -2083,14 +2081,14 @@ function get_location_rewards(location) {
  * 
  * @param location game location object 
  */
-function unlock_location(location) {
+function unlock_location(location,skip_chance = false) {
     if(!location.is_unlocked){
         location.is_unlocked = true;
         const message = location.unlock_text || `解锁地点 ${location.name}`;
         log_message(message, "location_unlocked") 
 
         //reloads the location (assumption is that a new one was unlocked by clearing a zone)
-        if(!current_dialogue) {
+        if(!current_dialogue && !skip_chance) {
             change_location(current_location.name);
         }
     }
@@ -2589,7 +2587,6 @@ function create_save() {
                             };
                             
         //no need to save all stats; on loading, base stats will be taken from code and then additional stuff will be calculated again (in case anything changed)
-        console.log(character.inventory);
         Object.keys(character.inventory).forEach(key =>{
             save_data["character"].inventory[key] = {count: character.inventory[key].count};
         });
@@ -2795,7 +2792,7 @@ function load(save_data) {
     total_deaths = save_data.total_deaths || 0;
     total_crafting_attempts = save_data.total_crafting_attempts || 0;
     total_crafting_successes = save_data.total_crafting_successes || 0;
-    inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8}};//无限秘境
+    inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8},"A7":{cur:0}};//无限秘境
 
     name_field.value = save_data.character.name;
     character.name = save_data.character.name;
@@ -2847,7 +2844,7 @@ function load(save_data) {
         character.stats.flat.level.attack_power = ( character.stats.flat.level.attack_power || 0) + this_realm[2] * 2; 
         character.stats.flat.level.attack_speed = ( character.stats.flat.level.attack_speed || 0) + realm_spd_gain;
         if(this_realm[0]>=9){
-            let A_mul_gain = (this_realm[0]-7)*0.05;
+            let A_mul_gain = (this_realm[0]==9?0.2:0.1);
             character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;}
         let total_skill_xp_multiplier = 1.1;
         if(this_realm[0]>=3) total_skill_xp_multiplier += 0.05;
@@ -4151,7 +4148,7 @@ if(is_on_dev()) {
 export { current_enemies, can_work, 
         current_location, active_effects, 
         enough_time_for_earnings, add_xp_to_skill, 
-        get_current_book, 
+        get_current_book, unlock_location,
         last_location_with_bed, 
         last_combat_location, 
         inf_combat,

@@ -3588,6 +3588,52 @@ class Enemy {
         stats: {health: 3200000, attack:280000, agility: 150000, attack_speed: 1.2, defense: 120000}, 
         loot_list: [],
     });
+    
+    enemy_templates["蓝帽行者[BOSS]"] = new Enemy({
+        name: "蓝帽行者[BOSS]", 
+        description: "等会？夺少血？？", 
+        xp_value: 75025, 
+        rank: 2499,
+        image: "image/boss/B2403.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [3,5],
+        spec_value:{},
+        tags: [],
+        stats: {health: 150000000, attack:400000, agility: 250000, attack_speed: 1.2, defense: 40000}, 
+        loot_list: [
+        ],
+    });
+    enemy_templates["流云级魔法师[BOSS]"] = new Enemy({
+        name: "流云级魔法师[BOSS]", 
+        description: "前面有承伤的，嘻嘻嘻嘻嘻", 
+        xp_value: 75025, 
+        rank: 2497,
+        image: "image/boss/B2401.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [0,6],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2560000, attack:80000, agility: 260000, attack_speed: 1.2, defense: 240000}, 
+        loot_list: [
+        ],
+    });
+    enemy_templates["威武异衣士[BOSS]"] = new Enemy({
+        name: "威武异衣士[BOSS]", 
+        description: "可以造成一定的伤害也有承伤能力。在4重攻击下似乎相当重要呢。", 
+        xp_value: 75025, 
+        rank: 2498,
+        image: "image/boss/B2402.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 22000000, attack:560000, agility: 270000, attack_speed: 1.2, defense: 90000}, 
+        loot_list: [
+        ],
+    });
 
     enemy_templates["Village guard (heavy)"] = new Enemy({
         name: "Village guard (heavy)", 

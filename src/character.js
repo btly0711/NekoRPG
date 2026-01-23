@@ -221,7 +221,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 }
                 if(this_realm[0]>=9)
                 {
-                        let A_mul_gain = (this_realm[0]-7)*0.05;
+                        let A_mul_gain = (this_realm[0]==9?0.2:0.1);
                         character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;
                         gains += `普攻倍率增加了${A_mul_gain.toFixed(2)}<br>`;
                 }

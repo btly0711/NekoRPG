@@ -238,13 +238,24 @@ class Combat_zone {
             {
                 const key_id = item_templates["微花残片"].getInventoryKey();
                 let key_cnt = character.inventory[key_id]?character.inventory[key_id].count:0;
+                key_cnt = Math.min(key_cnt,5);
                 if(key_cnt != 0)
                 {
                     log_message(`由于持有 ${key_cnt} 个微花残片，光环削弱：140% -> ${140-key_cnt*8}%！`,"enemy_enhanced");
                     halo_fix -= 0.08*key_cnt;
                 }
             }
-            if(this.name == "纳家秘境 - ∞"){
+            else if(this.name == "结界湖 - X"){
+                const key_id = item_templates["微花残片"].getInventoryKey();
+                let key_cnt = character.inventory[key_id]?character.inventory[key_id].count:0;
+                key_cnt = Math.min(key_cnt,4);
+                if(key_cnt != 0)
+                {
+                    log_message(`由于持有 ${key_cnt} 个微花残片，光环削弱：132% -> ${132-key_cnt*8}%！`,"enemy_enhanced");
+                    halo_fix -= 0.08*key_cnt;
+                }
+            }
+            else if(this.name == "纳家秘境 - ∞"){
                 halo_fix = (inf_combat.A6.cur - 6) * 0.08;
             }
                 
@@ -416,6 +427,7 @@ class LocationActivity{
                  working_period = 60,
                  infinite = false,
                  availability_time,
+                 spec = "",
                  skill_xp_per_tick = 1,
                  unlock_text,
                  gained_resources,
@@ -431,6 +443,7 @@ class LocationActivity{
 
         this.get_payment = get_payment;
         this.is_unlocked = is_unlocked;
+        this.spec = spec;
         this.unlock_text = unlock_text;
         this.exp_scaling = exp_scaling;
         this.scaling_id = scaling_id;
@@ -2315,7 +2328,7 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["结界湖"] = new Location({ 
         connected_locations: [{location: locations["纳家秘境"], custom_text: "回到家族秘境里"}], 
-        description: "被老祖纳鹰指引而来，封印着“灵”的结界湖。[V1.30前版本终点]",
+        description: "被老祖纳鹰指引而来，封印着“灵”的结界湖。",
         
         dialogues: ["纳鹰"],
         name: "结界湖", 
@@ -2420,8 +2433,26 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 30e4,
-            //locations: [{location: "结界湖 - X"}],
+            locations: [{location: "结界湖 - X"}],
         },
+    });
+    locations["结界湖 - X"] = new Challenge_zone({
+        description: "呜呜...好强！希望你没把微花残片丢了。", 
+        enemy_count: 1, 
+        enemy_groups_list : [["流云级魔法师[BOSS]","流云级魔法师[BOSS]","威武异衣士[BOSS]","威武异衣士[BOSS]","蓝帽行者[BOSS]","蓝帽行者[BOSS]","蓝帽行者[BOSS]"]],
+        enemy_group_size: [7,7],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "结界湖 - X",
+        enemy_stat_halo: 0.32,
+        bgm:9,
+        parent_location: locations["结界湖"],
+        repeatable_reward: {
+            activities: [{location:"结界湖", activity:"Running"}]
+            //locations: [{location: "结界湖" }],
+        },
+        unlock_text: "不知不觉……居然走到了核心区域。生活在这里的“灵”也是一等一的强大。",
     });
     
     //1-5 4-8 8-12 11-15 14-18.
@@ -2432,10 +2463,21 @@ function get_location_type_penalty(type, stage, stat) {
     locations["结界湖"].connected_locations.push({location: locations["结界湖 - 3"]});
     locations["结界湖"].connected_locations.push({location: locations["结界湖 - 4"]});
     locations["结界湖"].connected_locations.push({location: locations["结界湖 - 5"]});
+    locations["结界湖"].connected_locations.push({location: locations["结界湖 - X"], custom_text:"挑战结界湖最深处的“灵”"});
 
 
 
+    locations["声律城废墟"] = new Location({ 
+        connected_locations: [{location: locations["纳家秘境"], custom_text: "赶路回到家族秘境"}], 
+        description: "被D9级飞船炸为废墟的声律领主城。在混乱中蕴藏着许多有用的财宝。[V1.40前版本终点]",
+        
+        //dialogues: ["纳娜米(废墟)"],
+        name: "声律城废墟", 
+        is_unlocked: false,
+        bgm: 10,
+    });//2-5
 
+    locations["纳家秘境"].connected_locations.push({location: locations["声律城废墟"]});
 
 
 
@@ -3075,11 +3117,19 @@ function get_location_type_penalty(type, stage, stat) {
             skill_xp_per_tick: 1,
             is_unlocked: true,
             gained_resources: {
-                resources: [{name: "湖鲤鱼", ammount: [[1,1], [1,1]], chance: [0, 0]}],
+                resources: [{name: "湖鲤鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "青花鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "冰柱鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]}],
                 time_period: [15, 3],
                 skill_required: [0, 20],
                 scales_with_skill: true,
             },
+        }),
+        "Running": new LocationActivity({
+            activity_name: "Running",
+            infinite: true,
+            starting_text: "赶往声律城[EXPx64]",
+            skill_xp_per_tick: 64,
+            spec: "goto2-5",
+            is_unlocked: false,
         }),
     }
 })();

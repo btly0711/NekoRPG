@@ -9,7 +9,7 @@ import { current_enemies, options,
     active_effects, enough_time_for_earnings, 
     get_current_book, last_location_with_bed, 
     last_combat_location, faved_stances, 
-    selected_stance, 
+    selected_stance, unlock_location,
     global_flags,
     inf_combat} from "./main.js";
 import { dialogues } from "./dialogues.js";
@@ -2558,7 +2558,8 @@ function create_gathering_tooltip(location_activity) {
     gathering_tooltip.innerHTML += `每 ${format_reading_time(gathering_time_needed)}, 发现的机会:`;
     
     for(let i = 0; i < gained_resources.length; i++) {
-        gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" (${Math.round(100*gained_resources[i].chance)}%)`;
+        let chance = gained_resources[i].chance>0.01?Math.round(100*gained_resources[i].chance):"???";
+        gathering_tooltip.innerHTML += `<br>x${gained_resources[i].count[0]===gained_resources[i].count[1]?gained_resources[i].count[0]:`${gained_resources[i].count[0]}-${gained_resources[i].count[1]}`} "${gained_resources[i].name}" (${chance}%)`;
     }
     
     if(location_activity.exp_scaling && location_activity.done_actions != 0 )
@@ -2656,28 +2657,8 @@ function update_displayed_stats() { //updates displayed stats
     let chara_result = Math.ceil(4e11 * Math.pow(chara_rank,-0.655));//拟合结果(潮汐级以及之前，没有A_mul)
     if(chara_rank >= 2137) chara_result = Math.ceil(1.6e11 * Math.pow(chara_rank,-0.535));//拟合结果（大地级之后，存在A_mul）
     
-    character_rank_div.innerText = `燕岗领排名: `;
-    let C_re = Math.floor(chara_result / 1e8);
+    character_rank_div.innerText = `燕岗领排名: ` + chara_result.toLocaleString('en-US');
     
-    let C_rw = Math.floor(Math.floor(chara_result - C_re * 1e8) / 1e4);
-    let C_r = Math.round(chara_result - C_re * 1e8 - C_rw * 1e4);
-    if(C_re >= 1)
-    {
-        character_rank_div.innerText += `${C_re},`
-        if(C_rw < 1000) character_rank_div.innerText += `0`
-        if(C_rw < 100) character_rank_div.innerText += `0`
-        if(C_rw < 10) character_rank_div.innerText += `0`
-        if(C_rw < 1) character_rank_div.innerText += `0,`
-    }
-    if(C_rw >= 1)
-    {
-        character_rank_div.innerText += `${C_rw},`
-        if(C_r < 1000) character_rank_div.innerText += `0`
-        if(C_r < 100) character_rank_div.innerText += `0`
-        if(C_r < 10) character_rank_div.innerText += `0`
-        if(C_r < 1) character_rank_div.innerText += `0`
-    }
-    if(C_r >= 1) character_rank_div.innerText += `${C_r}`;
 
 
 
@@ -2905,6 +2886,8 @@ function start_activity_display(current_activity) {
     action_status_div.innerText = activities[current_activity.activity_name].action_text;
     action_status_div.id = "action_status_div";
     const action_xp_div = document.createElement("div");
+
+    console.log(current_activity);
     if(activities[current_activity.activity_name].base_skills_names) {
         const needed_xp = skills[activities[current_activity.activity_name].base_skills_names].current_level == skills[activities[current_activity.activity_name].base_skills_names].max_level? "Max": `${Math.round(10000*skills[activities[current_activity.activity_name].base_skills_names].current_xp/skills[activities[current_activity.activity_name].base_skills_names].xp_to_next_lvl)/100}%`
         if(activities[current_activity.activity_name].type !== "GATHERING") {
@@ -2916,6 +2899,8 @@ function start_activity_display(current_activity) {
     else {
         console.warn(`Activity "${current_activity.activity_name}" has no skills assigned!`);
     }
+
+
     action_xp_div.id = "action_xp_div";
 
     const action_end_div = document.createElement("div");
@@ -2991,6 +2976,30 @@ function update_displayed_ongoing_activity(current_activity, is_job){
         action_xp_div.innerText = `每秒获取 ${format_number(current_activity.skill_xp_per_tick*get_skills_overall_xp_gain())}  ${skills[activities[current_activity.activity_name].base_skills_names].name()} 经验值 (${needed_xp})`;
     } else {
         action_xp_div.innerText = `得到 ${current_activity.skill_xp_per_tick} 基本经验 每个采集循环 对于 ${skills[activities[current_activity.activity_name].base_skills_names].name()} (${needed_xp})`;
+    }
+    if(current_activity.spec != ""){
+        if(current_activity.spec == "goto2-5")
+        {
+            if(inf_combat.A7.cur >= 3.2e6){
+                unlock_location(locations["声律城废墟"],true);
+                action_xp_div.innerHTML += "<br>目的地 已抵达.(从[纳家秘境]出发)"   
+            }
+            else{
+                action_xp_div.innerHTML += "<br>前往声律城..."   
+                let speed = Math.pow(character.stats.full.agility,0.5)/10;
+                action_xp_div.innerHTML += `<br>基础速度: ${format_number(speed)} m / s.`   
+                speed *= Math.pow(1.1,skills["Running"].current_level);
+                action_xp_div.innerHTML += `<br>速度: ${format_number(speed)} m / s. <br>(跑步 lv.${skills["Running"].current_level}, + ${format_number(Math.pow(1.1,skills["Running"].current_level)*100-100)}%)`;  
+                
+                action_xp_div.innerHTML += `<br>时间流速: 36000 s / s.`   
+                action_xp_div.innerHTML += `<br>最终速度: ${format_number(speed*36)} km / s.`
+                inf_combat.A7 = inf_combat.A7 || {cur:0}; 
+                action_xp_div.innerHTML += `<br>剩余距离：${Math.round(3.2e6 - inf_combat.A7.cur).toLocaleString('en-US')} / 3,200,000 km.`; 
+                inf_combat.A7.cur += speed*36;
+                current_game_time.go_up(594);
+            }
+            
+        }
     }
     if(current_activity.gained_resources) {
         document.getElementById("gathering_progress_bar").style.width = 385*current_activity.gathering_time/current_activity.gathering_time_needed+"px";
