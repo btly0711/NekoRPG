@@ -2980,6 +2980,7 @@ function update_displayed_ongoing_activity(current_activity, is_job){
     if(current_activity.spec != ""){
         if(current_activity.spec == "goto2-5")
         {
+            inf_combat.A7 = inf_combat.A7 || {cur:0}; 
             if(inf_combat.A7.cur >= 3.2e6){
                 unlock_location(locations["声律城废墟"],true);
                 action_xp_div.innerHTML += "<br>目的地 已抵达.(从[纳家秘境]出发)"   
@@ -2993,7 +2994,6 @@ function update_displayed_ongoing_activity(current_activity, is_job){
                 
                 action_xp_div.innerHTML += `<br>时间流速: 36000 s / s.`   
                 action_xp_div.innerHTML += `<br>最终速度: ${format_number(speed*36)} km / s.`
-                inf_combat.A7 = inf_combat.A7 || {cur:0}; 
                 action_xp_div.innerHTML += `<br>剩余距离：${Math.round(3.2e6 - inf_combat.A7.cur).toLocaleString('en-US')} / 3,200,000 km.`; 
                 inf_combat.A7.cur += speed*36;
                 current_game_time.go_up(594);
