@@ -186,6 +186,7 @@ function format_number(some_number)
         f_result+='-';
         some_number*=-1;
     }
+    if(some_number == 0) return '0';
     let len=Math.floor(Math.log10(some_number)) + 1;//位数！
     if(some_number<1e-4) f_result += '0';
     else if(len<=4||len==6)

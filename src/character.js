@@ -625,6 +625,7 @@ function add_to_character_inventory(items) {
         update_displayed_character_inventory({was_anything_new_added});
 }
 
+
 /**
  * Removes items from character's inventory
  * Takes an array in form of [{item_key, item_count}]

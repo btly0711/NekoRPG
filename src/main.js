@@ -55,6 +55,7 @@ import { end_activity_animation,
          update_displayed_book,
          update_backup_load_button,
          update_other_save_load_button,
+         format_number,
         } from "./display.js";
 import { compare_game_version, get_hit_chance } from "./misc.js";
 import { stances } from "./combat_stances.js";
@@ -1278,34 +1279,6 @@ function start_combat() {
         set_new_combat();
     }
 }
-const units=['','万','亿','兆','京','垓','秭','穣','沟','涧','正','载','极'];
-
-function format_number(some_number)
-{
-    let f_result = "";
-    let len=Math.floor(Math.log10(some_number)) + 1;//位数！
-    if(some_number<0)
-    {
-        f_result+='-';
-        some_number*=-1;
-    }
-    if(some_number<1e-4) f_result += '0';
-    else if(len<=4||len==6)
-    {
-        f_result += String(some_number).substring(0,6);
-    }
-    else if(len==5)
-    {
-        f_result += String(some_number).substring(0,5);
-    }
-    else
-    {
-        let unitid = Math.floor((len-2)/4);
-        f_result += String(some_number/(Math.pow(10000,unitid))).substring(0,((len - unitid*4==5)?5:6));
-        f_result += units[unitid];
-    }
-    return f_result;
-}
 
 /**
  * performs a single combat action (that is attack, as there isn't really any other kind for now),
@@ -2130,7 +2103,8 @@ function use_recipe(target,stated = false) {
                 
                 for(let i = 0; i < selected_recipe.materials.length; i++) {
                     const key = item_templates[selected_recipe.materials[i].material_id].getInventoryKey();
-                    remove_from_character_inventory([{item_key: key, item_count: selected_recipe.materials[i].count}]);
+                    if(!stated) remove_from_character_inventory([{item_key: key, item_count: selected_recipe.materials[i].count}]);
+                    else character.remove_from_inventory([{item_key: key, item_count: selected_recipe.materials[i].count}]);
                 } 
                 const exp_value = get_recipe_xp_value({category, subcategory, recipe_id});
                 let success;
@@ -2138,8 +2112,14 @@ function use_recipe(target,stated = false) {
                 else success = (Math.random() < success_chance)
                 if(success) {
                     total_crafting_successes++;
-                    if(selected_recipe.Q_able != undefined) add_to_character_inventory([{item: getItem({...item_templates[result_id], quality: selected_recipe.Q_able}), count: count}]);
-                    else add_to_character_inventory([{item: item_templates[result_id], count: count}]);
+                    if(selected_recipe.Q_able != undefined){
+                        if(!stated) add_to_character_inventory([{item: getItem({...item_templates[result_id], quality: selected_recipe.Q_able}), count: count}]);
+                        else character.add_to_inventory([{item: getItem({...item_templates[result_id], quality: selected_recipe.Q_able}), count: count}]);
+                    }
+                    else{
+                        if(!stated) add_to_character_inventory([{item: item_templates[result_id], count: count}]);
+                        else character.add_to_inventory([{item: item_templates[result_id], count: count}]);
+                    }//批量制作不要特喵刷新物品栏！！
                     //带品质的物品(标准方案)
                     //燃灼术/星解之术/2-4后道具均为蓝色130%
                     if(!stated) log_message(`制造了 ${item_templates[result_id].getName()} x${count}`, "crafting");
@@ -2150,9 +2130,10 @@ function use_recipe(target,stated = false) {
 
                     leveled = add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value/2});
                 }
-
-                update_item_recipe_visibility();
-                update_item_recipe_tooltips();
+                if(!stated){
+                    update_item_recipe_visibility();
+                    update_item_recipe_tooltips();
+                }
                 //do those two wheter success or fail since materials get used either way
 
                 if(leveled) {
@@ -2184,8 +2165,14 @@ function use_recipe(target,stated = false) {
                     total_crafting_attempts++;
                     total_crafting_successes++;
                     result = selected_recipe.getResult(character.inventory[material_1_key].item, station_tier);
-                    add_to_character_inventory([{item: result, count: 1}]);
-                    remove_from_character_inventory([{item_key: material_1_key, item_count: recipe_material.count}]);
+                    if(!stated){
+                        add_to_character_inventory([{item: result, count: 1}]);
+                        remove_from_character_inventory([{item_key: material_1_key, item_count: recipe_material.count}]);
+                    }
+                    else{
+                        character.add_to_inventory([{item: result, count: 1}]);
+                        character.remove_from_inventory([{item_key: material_1_key, item_count: recipe_material.count}]);
+                    }
                     if(!stated) log_message(`制造了 ${result.getName()} [品质 ${result.quality}%]`, "crafting");
                     else H_q = result.quality;
                     latest_comp = result.getName();
@@ -2303,6 +2290,9 @@ function use_recipe_max(target) {
             }
             result = selected_recipe.getResult();
             const {result_id, count} = result;
+            update_displayed_character_inventory();
+            update_item_recipe_visibility();
+            update_item_recipe_tooltips();
             log_message(`批量制造了 ${item_templates[result_id].getName()} ,其中 ${cnt_s}/${cnt} 成功`, "crafting");
 
         } else if(subcategory === "components" || selected_recipe.recipe_type === "component" ) {
@@ -2319,6 +2309,8 @@ function use_recipe_max(target) {
                 //console.log(cnt_f);
                 //console.log(cnt_b);
             }
+            
+            update_displayed_character_inventory();
             log_message(`批量制造了 ${latest_comp} * ${cnt - 1} ,其中最高品质为 ${cnt_b} %`, "crafting");
 
         } else if(subcategory === "equipment") {
@@ -2501,12 +2493,13 @@ function use_item(item_key,stated = false) {
         add_xp_to_character(E_value,true,false,C_value);
     }
 
-    if(used) {
-        if(!stated) update_displayed_effects();
+    if(used && !stated) {
+        update_displayed_effects();
         character.stats.add_active_effect_bonus();
         update_character_stats();
     }
-    remove_from_character_inventory([{item_key}]);
+    if(!stated) remove_from_character_inventory([{item_key}]);
+    else character.remove_from_inventory([{item_key}]);//批量情况下延迟更新，不使用打包完毕的函数
 }
 
 function use_item_max(item_key)
@@ -2521,9 +2514,12 @@ function use_item_max(item_key)
         cnt++;
     }
     update_displayed_character_inventory(character_sorting);
+    character.stats.add_active_effect_bonus();
+    update_character_stats();
     A1=character.stats.flat.gems.attack_power,D1=character.stats.flat.gems.defense,G1=character.stats.flat.gems.agility,H1=character.stats.flat.gems.max_health;
     log_message(`批量使用了 ${cnt} 个 ${id}.`, `gather_loot`);
-    if(A1!=A0||D1!=D0||G1!=G0||H1!=H0) log_message(`获取了${format_number(A1-A0)}点攻击，${format_number(D1-D0)}点防御，${format_number(G1-G0)}点敏捷，${format_number(H1-H0)}点生命。`, `gather_loot`);
+    A0=A0||0,A1=A1||0,D0=D0||0,D1=D1||0,G0=G0||0,G1=G1||0,H0=H0||0,H1=H1||0;
+    if(A1!=A0||D1!=D0||G1!=G0||H1!=H0) log_message(`获取了${format_number((A1-A0)||0)}点攻击，${format_number((D1-D0)||0)}点防御，${format_number((G1-G0)||0)}点敏捷，${format_number((H1-H0)||0)}点生命。`, `gather_loot`);
     return;
 }
 
