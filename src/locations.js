@@ -3075,8 +3075,8 @@ function get_location_type_penalty(type, stage, stat) {
             skill_xp_per_tick: 20,
             is_unlocked: false,
             gained_resources: {
-                resources: [{name: "水溶精华", ammount: [[10000,30000], [10000,30000]], chance: [1, 1]},{name: "秘境芦苇", ammount: [[10000,30000], [10000,30000]], chance: [1, 1]}],
-                time_period: [10, 6],
+                resources: [{name: "百年柳木", ammount: [[1,1], [1,3]], chance: [1, 1]}],
+                time_period: [30, 6],
                 skill_required: [8, 30],
                 scales_with_skill: true,
             },
