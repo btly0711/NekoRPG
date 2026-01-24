@@ -1002,6 +1002,18 @@ i {
 	cursor: pointer;
 }
 
+.gem_consume_button {
+	float:left;
+	padding: 3px 0px 3px 0px;
+	width: 98px;
+	background:linear-gradient(to bottom right,yellow,lime,cyan,blue,#ff00ff,red);
+	text-align: center;
+	outline: 1px solid white;
+	font-weight:bold;
+	margin: 2px 1px;
+	cursor: pointer;
+}
+
 .character_sorting_button {
     float: left;
 	width: 198px;
@@ -1083,16 +1095,28 @@ i {
 }
 
 .coin_moneyM{
-	color: rgb(31,30,51);
-	-webkit-text-stroke: 0.5px white;
+	color: white;
+	-webkit-text-stroke: 0.5px rgb(31,30,51);
 }
 
 .coin_moneyB{
 	color: rgb(185,235,135);
+	-webkit-text-stroke: 0.5px rgb(81,150,51);
 }
 
 .coin_moneyT{
-	color: rgb(103,40,200);
+	color: rgb(107, 43, 202);
+	-webkit-text-stroke: 0.5px rgb(64,25,122);
+}
+.coin_moneyQa{
+	color: rgb(255, 253, 119);
+	-webkit-text-stroke: 0.5px plum;
+}
+.coin_moneySp{
+	background: linear-gradient(to bottom right,red,white,red);
+	background-clip:text;
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
 }
 
 .realm{
@@ -2167,6 +2191,7 @@ i {
 	font-size:30px;
 	font-weight:bold;
 	background: linear-gradient(to bottom right,white,red,yellow,lime,cyan,blue,white);
+	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
 }

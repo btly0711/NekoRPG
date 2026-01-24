@@ -8,7 +8,7 @@ import { update_displayed_character_inventory, update_displayed_equipment,
          update_displayed_health, 
          update_displayed_skill_xp_gain, update_all_displayed_skills_xp_gain,
          update_displayed_xp_bonuses } from "./display.js";
-import { active_effects, current_location, current_stance } from "./main.js";
+import { active_effects, current_location, current_stance, update_quests, inf_combat} from "./main.js";
 import { current_game_time } from "./game_time.js";
 import { stances } from "./combat_stances.js";
 import {item_templates} from "./items.js";
@@ -101,7 +101,8 @@ character.xp_bonuses.multiplier = {
         skills: {},
         skill_milestones: {},
         equipment: {},
-        books: {}
+        books: {},
+        gems: {},
 };
 
 character.equipment = {
@@ -233,6 +234,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 if(this_realm[0]>=9) lvl_display=`<span class="realm_terra">${this_realm[1]}</span>`;
                 
                 levelupresult += `${character.name} 境界突破，达到 ${lvl_display} <br>${gains}`;
+                update_quests();
         }
         //console.log(levelupresult);
         if(levelupresult != ""){
@@ -324,6 +326,11 @@ character.stats.add_active_effect_bonus = function() {
                         }
                 }
         });
+}
+
+character.stats.add_gem_bonus = function(){
+        inf_combat.VP =inf_combat.VP || {num:0};
+        character.xp_bonuses.multiplier.gems.all_skill = Math.pow(inf_combat.VP.num+1,0.07) || 1;
 }
 
 /**
@@ -509,8 +516,8 @@ character.update_stats = function () {
     
     character.stats.total_flat.attack_power = character.stats.full.attack_power/character.stats.total_multiplier.attack_power;
     Object.keys(character.xp_bonuses.total_multiplier).forEach(bonus_target => {
-        character.xp_bonuses.total_multiplier[bonus_target] = (character.xp_bonuses.multiplier.levels[bonus_target] || 1) * (character.xp_bonuses.multiplier.skills[bonus_target] || 1) * (character.xp_bonuses.multiplier.books[bonus_target] || 1); 
-        //only this two sources as of now
+        character.xp_bonuses.total_multiplier[bonus_target] = (character.xp_bonuses.multiplier.levels[bonus_target] || 1) * (character.xp_bonuses.multiplier.skills[bonus_target] || 1) * (character.xp_bonuses.multiplier.books[bonus_target] || 1) * (character.xp_bonuses.multiplier.gems[bonus_target] || 1); 
+        //only this 4 sources as of now
 
         const bonus = character.xp_bonuses.total_multiplier[bonus_target];
 

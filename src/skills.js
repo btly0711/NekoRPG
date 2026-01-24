@@ -1763,14 +1763,14 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
 (function(){
     skills["Haggling"] = new Skill({
         skill_id: "Haggling",
-        names: {0: "讨价还价",15:"精通·讨价还价",35:"大师·讨价还价"},
+        names: {0: "讨价还价",15:"精通·讨价还价",35:"大师·讨价还价",50:"传奇·讨价还价",75:"超凡·讨价还价"},
         description: "交易的艺术",
         category: "Character",
         base_xp_cost: 100,
-        max_level: 50,
+        max_level: 999,
         xp_scaling: 2,
         get_effect_description: ()=> {
-            return `将购买价格降低到原价的 ${Math.round((1 - skills["Haggling"].get_level_bonus())*100)}%(不低于100%)`;
+            return `将购买价格降低到原价的 ${Math.round((Math.pow(0.98,skills["Haggling"].current_level))*10000)/100}%(不低于110%)`;
         },
         max_level_bonus: 0.8
     });

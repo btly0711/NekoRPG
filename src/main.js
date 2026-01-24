@@ -54,7 +54,7 @@ import { end_activity_animation,
          update_item_recipe_tooltips,
          update_displayed_book,
          update_backup_load_button,
-         update_other_save_load_button
+         update_other_save_load_button,
         } from "./display.js";
 import { compare_game_version, get_hit_chance } from "./misc.js";
 import { stances } from "./combat_stances.js";
@@ -108,7 +108,7 @@ const flag_unlock_texts = {
 
 // special stats
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}};
 
 
 //in seconds
@@ -2792,7 +2792,7 @@ function load(save_data) {
     total_deaths = save_data.total_deaths || 0;
     total_crafting_attempts = save_data.total_crafting_attempts || 0;
     total_crafting_successes = save_data.total_crafting_successes || 0;
-    inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8},"A7":{cur:0}};//无限秘境
+    inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8},"A7":{cur:0},"VP":{num:0}};//无限秘境
 
     name_field.value = save_data.character.name;
     character.name = save_data.character.name;
@@ -3439,6 +3439,7 @@ function load(save_data) {
             create_new_levelary_entry(level_name);
         } 
     });
+    character.stats.add_gem_bonus();
 
     update_character_stats();
     update_displayed_character_inventory();
@@ -3480,6 +3481,7 @@ function load(save_data) {
     if(save_data.is_reading) {
         start_reading(save_data.is_reading);
     }
+    update_quests();
 
     update_displayed_time();
 } //core function for loading
@@ -3697,9 +3699,11 @@ function start_fishing_minigame()
         //条，移动
         if((rod_x + rod_length >= 318 && rod_v > 0)){
             rod_v = rod_v * -0.4;
+            rod_x = 318 - rod_length;
         }//条，反弹(上)
         if((rod_x <= 0 && rod_v < 0)){
             rod_v = rod_v * -0.8;
+            rod_x = 0;
         }//条，反弹(下)
         //console.log(rod_x.toFixed(2),rod_v.toFixed(2));
 
@@ -3987,6 +3991,61 @@ function run() {
     update();   
 }
 
+function update_quests(){
+    const quests = document.getElementById("quest_list");
+    if(character.xp.current_level < 9){
+        quests.innerHTML = "<span class='realm_terra'>大地级一阶</span>解锁心之境界 - 一重！"
+    }
+    else{
+        let R=255,G=255,B=255;
+        inf_combat.VP = inf_combat.VP || {num:0};
+        let lgVP = Math.log10(inf_combat.VP.num+1);
+        //lgVP = 3;
+        if(lgVP <= 10){
+            R = B = Math.round(255-lgVP*25.5)
+        }
+        else if(lgVP <= 20){
+            R = Math.round((lgVP - 10) * 12.75);
+            G = Math.round((20 - lgVP ) * 12.75 + 127.5);
+            B = Math.round((lgVP - 10) * 25.5);
+        }
+        let s_color = `<span style="color:rgb(${R},${G},${B})">`
+
+
+        quests.innerHTML = `<b>${s_color}宝石吞噬者</span> </b> - 吞噬宝石，提供全局技能经验加成<br>`;
+        
+        quests.innerHTML += "<div id = 'gem_consumer' class = 'gem_consume_button' onclick='gem_consume()'>吞噬物品栏中全部宝石</div>"
+        quests.innerHTML += `当前吞噬价值点:${s_color}${format_number(inf_combat.VP.num)}</span> <br>(加成:${s_color}${format_number(Math.pow(inf_combat.VP.num+1,0.07)*100-100)}%</span>)<br><br><br><br>`;
+        if(character.xp.current_level < 17){
+            quests.innerHTML += "<span class='realm_sky'>天空级一阶</span>解锁心之境界 - 二重！"
+        }
+        else{
+
+        }
+    }
+}
+
+function gem_consume(){
+    inf_combat.VP = inf_combat.VP || {num:0};
+    Object.keys(character.inventory).forEach(key =>{
+        if(character.inventory[key].item.gem_value != 0)
+        {
+            inf_combat.VP.num += Math.pow(character.inventory[key].item.gem_value,2) * character.inventory[key].count / 10000;
+            remove_from_character_inventory([{ 
+                item_key: key,           
+                item_count: character.inventory[key].count,
+            }
+        ]);
+        }
+    });
+    update_quests();
+    update_displayed_character_inventory();
+    character.stats.add_gem_bonus();
+    update_character_stats();
+}
+
+window.gem_consume = gem_consume;
+
 window.equip_item = character_equip_item;
 window.unequip_item = character_unequip_item;
 
@@ -4154,5 +4213,6 @@ export { current_enemies, can_work,
         inf_combat,
         current_stance, selected_stance,
         faved_stances, options,
+        update_quests,
         global_flags,
         character_equip_item };

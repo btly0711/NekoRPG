@@ -715,14 +715,14 @@
 
                 <div id = "journal_div" class = "box_div">
                     <div id = "journal_control_div" class="activable_buttons">
-                        <div id = "journal_show_quests" class = "journal_control_button" onclick = "showQuests()"> 任务 </div>
+                        <div id = "journal_show_quests" class = "journal_control_button" onclick = "showQuests()"> 心之境界 </div>
                         <div id = "journal_show_bestiary" class = "journal_control_button active_selection_button" onclick = "showBestiary()"> 怪物手册 </div>
                         <div id = "journal_show_levelary" class = "journal_control_button" onclick = "showLevelary()"> 楼层手册 </div>
                         <div id = "journal_show_data" class = "journal_control_button" onclick = "showData()"> 统计 </div>
                     </div>
                     <div id = "quests_box_div">
                         <div id = "quests_header">
-                            = 任务 =
+                            <b>= 心之境界 =</b>
                         </div>
                         <div id = "quest_list">
 
@@ -1345,7 +1345,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.34";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.40";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
