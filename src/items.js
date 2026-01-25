@@ -468,7 +468,7 @@ class Equippable extends Item {
             //iterate over stats and apply rarity bonus if possible
             Object.keys(stats).forEach(stat => {
                 if(stats[stat].multiplier){
-                    if(stats[stat].multiplier >= 1) {
+                    if(stats[stat].multiplier >= 1 && stat != "attack_mul") {
                         stats[stat].multiplier = Math.round(100 * (1 + (stats[stat].multiplier - 1) * rarity_multipliers[this.getRarity(quality)]))/100;
                     } else {
                         stats[stat].multiplier = Math.round(100 * stats[stat].multiplier)/100;
@@ -2643,7 +2643,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 0.10,
             },
             attack_mul: {
-                multiplier: 2.50,
+                multiplier: 3.00,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -2679,7 +2679,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 0.10,
             },
             attack_mul: {
-                multiplier: 2.60,
+                multiplier: 3.10,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -2715,7 +2715,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 0.10,
             },
             attack_mul: {
-                multiplier: 2.70,
+                multiplier: 3.20,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -3656,6 +3656,38 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/gem34_5k.png",
         effects: [],
         gem_value: 5000,
+    });
+    item_templates["殿堂黄宝石"] = new UsableItem({
+        name: "殿堂黄宝石", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷1万点或生命100万点", 
+        value: 10000,
+        image: "image/item/gem41_10k.png",
+        effects: [],
+        gem_value: 10000,
+    });
+    item_templates["殿堂蓝宝石"] = new UsableItem({
+        name: "殿堂蓝宝石", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷2万点或生命200万点", 
+        value: 20000,
+        image: "image/item/gem42_20k.png",
+        effects: [],
+        gem_value: 20000,
+    });
+    item_templates["殿堂红宝石"] = new UsableItem({
+        name: "殿堂红宝石", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷5万点或生命500万点", 
+        value: 50000,
+        image: "image/item/gem43_50k.png",
+        effects: [],
+        gem_value: 50000,
+    });
+    item_templates["殿堂绿宝石"] = new UsableItem({
+        name: "殿堂绿宝石", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷10万点或生命1000万点", 
+        value: 100000,
+        image: "image/item/gem44_100k.png",
+        effects: [],
+        gem_value: 100000,
     });
 })();
 

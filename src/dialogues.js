@@ -1073,6 +1073,108 @@ class Textline {
             }),
         }
     });
+    
+    dialogues["纳娜米(废墟)"] = new Dialogue({
+        name: "纳娜米(废墟)",
+        textlines: {
+            "fx1": new Textline({ 
+                is_unlocked: true,
+                name: "姐姐，这片庞大的废墟……就是曾经的声律城所在地吗？",
+                text: "是的。据传那位天外来客，<br>操纵着一艘庞大的飞行物，<br>被称之为“D9级飞船”的宫殿类奇宝。<br>那奇宝将整座城池炸成了废墟，<br>令我血洛大陆一方死伤惨重。<br>最终——靠着几百位城主级别强者的合力围攻，<br>甚至还有一位通天彻地的存在出手，<br>才终于将那奇宝击落！",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米(废墟)", lines: ["fx2"]}],
+                },
+                
+                locks_lines: ["fx1"],
+            }),
+            "fx2": new Textline({ 
+                is_unlocked: false,
+                name: "……几百位城主级！临近十几座领的强者，已经齐聚在此了吗？",
+                text: "至少来了一多半呢。<br>可当强者们攻入“D9飞船”之内，<br>才发现那天外来客根本就不在里面。<br>我们低估了天外来客，<br>他早就已经悄悄放出上百艘小型的，<br>被称为“B9飞船”的飞行物，欲要逃跑。",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米(废墟)", lines: ["fx3"]}],
+                },
+                
+                locks_lines: ["fx2"],
+            }),
+            "fx3": new Textline({ 
+                is_unlocked: false,
+                name: "D9，B9。感觉上，像是某种划分一样，是什么呢……",
+                text: "谁知道呢。<br>的确，这种小型飞行物，材质仅仅是珍宝级，<br>可体型小，速度快，一时间无人能够发现它的踪迹。<br>还是那位大人物亲自出手，<br>在他的灵魂探测范围内，<br>一切都无所遁形。<br>最终，强者们在接近第十八层云层之下，<br>拦截了他搭乘的那艘珍宝飞船，<br>并将所有的飞船尽数击毁。",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米(废墟)", lines: ["fx4"]}],
+                },
+                
+                locks_lines: ["fx3"],
+            }),
+            "fx4": new Textline({ 
+                is_unlocked: false,
+                name: "呼……跌宕起伏呢。我们的目的，就是去寻找那些掉落的“飞船”，搜寻所需的宝物吧？",
+                text: "正是。那座主战的飞船奇宝，<br>之中的宝藏，此刻正在被云霄级之上的强者抢夺。<br>而我们的目标，却是那些小型的飞船。<br>不过——还有一个目标，<br>可可，就在你的眼前。<br>声律城的废墟。",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米(废墟)", lines: ["fx5"]}],
+                },
+                
+                locks_lines: ["fx4"],
+            }),
+            "fx5": new Textline({ 
+                is_unlocked: false,
+                name: "声律城的……废墟？",
+                text: "嗯，没错。曾经繁荣昌盛的声律城，<br>化作废墟之后，众多原住民死去，<br>遗落下不少东西。家主大人已经下令，<br>纳家全体分开搜寻，<br>找到有用的财物、宝物之后——",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米(废墟)", lines: ["fx6"]}],
+                },
+                
+                locks_lines: ["fx5"],
+            }),
+            "fx6": new Textline({ 
+                is_unlocked: false,
+                name: "等一下，姐姐，这种做法……不好吧。这座城池的人，难道不会无法安息吗？",
+                text: "可可，姐姐只知道，<br>只要能够让纳家更快发展起来，<br>这些事情都是值得的。<br>如今，临近城池所有大小势力，都在做同样的事情。<br>我们想要争取到更多，并非容易，<br>更没有时间为那些难民感到悲痛。",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米(废墟)", lines: ["fx7"]}],
+                },
+                
+                locks_lines: ["fx6"],
+            }),
+            "fx7": new Textline({ 
+                is_unlocked: false,
+                name: "……我，我听姐姐的。",
+                text: "（如果燕岗城发生了同样的事情，大家……也会这样对待我们吗？）",
+                unlocks: {
+                    textlines: [{dialogue: "声律城难民", lines: ["fx8"]}],
+                    
+                    locations: ["声律城废墟 - 1"],
+                },
+                
+                locks_lines: ["fx7"],
+            }),
+        }
+    });
+    dialogues["声律城难民"] = new Dialogue({
+        name: "声律城难民",
+        textlines: {
+            "fx8": new Textline({ 
+                is_unlocked: false,
+                name: "……你渴了吗？我去帮你找水。",
+                text: "谢谢你，小姑娘，但是没有必要。<br>多亏了这次遭难，我欠城主府的债务就不需要还了。<br>过一会，我还会去城里，<br>这城里天空乃至云霄级的身家，<br>可有不少留在了里面。<br>哪怕只是一位强者的部分家当，<br>也足以令我后半生无忧，哈哈哈——",
+                unlocks: {
+                    textlines: [{dialogue: "声律城难民", lines: ["fx9"]}],
+                },
+                
+                locks_lines: ["fx8"],
+            }),
+            "fx9": new Textline({ 
+                is_unlocked: false,
+                name: "……那，那打扰了。",
+                text: "(说起来...回燕岗城之后要不要找城主府,<br>借个<span class='coin coin_moneyT'>10B,8B</span>的呢?)<br>如果燕岗城发生了同样的事情，<br>至少有了重新开始的资源。",
+                unlocks: {
+                },
+                
+                locks_lines: ["fx9"],
+            }),
+        }
+    });
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

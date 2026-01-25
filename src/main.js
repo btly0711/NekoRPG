@@ -1034,6 +1034,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(18)) Spec_S += "[贪婪]";
     if(current_enemies[enemy_id].spec.includes(26)) Spec_S += "[分裂]";
     if(current_enemies[enemy_id].spec.includes(27)) Spec_S += "[柔骨]";
+    if(current_enemies[enemy_id].spec.includes(39)) Spec_S += "[贪婪·宝石]";
     //console.log(current_enemies[enemy_id]);
     
     if(isnew) {
@@ -1043,10 +1044,10 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
         if(current_enemies[enemy_id].spec.includes(4))
         {
             for(let cb=1;cb<=3;cb++) if(current_enemies != null){
-                do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);//疾走(开局3连击)
+                do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);//疾走(3连击)
             }
         }
-        if(current_enemies[enemy_id].spec.includes(16))//飓风(开局4x5连击)
+        if(current_enemies[enemy_id].spec.includes(16))//飓风(4x5连击)
         {
             for(let cb=1;cb<=4;cb++) if(current_enemies != null){
                 do_enemy_combat_action(enemy_id,"[飓风]"+Spec_S,1,5);
@@ -1055,7 +1056,13 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
         if(current_enemies[enemy_id].spec.includes(22))
         {
             for(let cb=1;cb<=5;cb++) if(current_enemies != null){
-            do_enemy_combat_action(enemy_id,"[绝世]"+Spec_S,0.9,1);//绝世(5连击)
+            do_enemy_combat_action(enemy_id,"[绝世]"+Spec_S,0.9,1);//绝世(0.9x5连击)
+            }
+        }
+        if(current_enemies[enemy_id].spec.includes(40))//追光(25x6连击)
+        {
+            for(let cb=1;cb<=6;cb++) if(current_enemies != null){
+                do_enemy_combat_action(enemy_id,"[追光]"+Spec_S,1,25);
             }
         }
     }
@@ -1337,17 +1344,17 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         spec_mul *= attacker.stats.defense/character.stats.full.defense;
         if(spec_mul == Infinity) spec_mul = 9999.99;//防止除以0
     }
-    if(attacker.spec.includes(18))//贪婪
-    {
+    if(attacker.spec.includes(18)){//贪婪
         spec_mul *= (1 - 0.01*(character.money/attacker.spec_value[18]));
         spec_mul = Math.max(spec_mul,0);
     }
-    // HAS NO SHIELD
-
-    if(attacker.spec.includes(7))//撕裂
-    {
-        spec_mul *= 1.5;
+    if(attacker.spec.includes(39)){//贪婪·宝石
+        inf_combat.VP = inf_combat.VP || {num:0};
+        spec_mul *= (1 - 0.01*(inf_combat.VP.num/attacker.spec_value[39]));
+        spec_mul = Math.max(spec_mul,0);
     }
+
+    if(attacker.spec.includes(7)) spec_mul *= 1.5;//撕裂
 
     let E_atk_mul_f = E_atk_mul;
     if(attacker.spec.includes(13) && E_atk_mul == 0)//标记
@@ -1355,25 +1362,16 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         //console.log(attacker.stats);
         E_atk_mul_f = character.stats.full.attack_power / attacker.stats.attack;//惑幻
     }
-    if(attacker.spec.includes(17))
-    {
-        //console.log(character.stats);
-        E_atk_mul_f += character.stats.full.health / attacker.stats.attack / 200;//执着
-    }
+    if(attacker.spec.includes(17)) E_atk_mul_f += character.stats.full.health / attacker.stats.attack / 200;//执着
     if(attacker.spec.includes(21))//灵体
     {
-        if(character.stats.full.agility >= attacker.spec_value[21]){
-            spec_hint += "[灵体·免疫]";
-        }
+        if(character.stats.full.agility >= attacker.spec_value[21]) spec_hint += "[灵体·免疫]";
         else{
             spec_hint += "[灵体]";
             E_atk_mul_f += (attacker.spec_value[21] - character.stats.full.agility)*5/attacker.stats.attack;  
         }
     }
-    if(attacker.spec.includes(26))//分裂
-    {
-        E_atk_mul_f *= 2;
-    }
+    if(attacker.spec.includes(26)) E_atk_mul_f *= 2;//分裂
     if(attacker.spec.includes(36) && E_atk_mul == 0)//标记
     {
         let {damage_taken, fainted} = character.take_damage([],{damage_value: attacker.stats.health * 4},0);
@@ -2386,7 +2384,7 @@ function use_item(item_key,stated = false) {
         let message = `使用 ${item_templates[id].name} , `
         let SCGV = 30;//SoftCappedGemValue
         let HPMV = 50;//HealthPointMultiplierValue
-        if(G_value > 1e4) HPMV *= 2;//殿堂级修正
+        if(G_value > 7500) HPMV *= 2;//殿堂级修正
         let P1,P2,P3,P4;//相对概率(修正后)
         P1=Math.pow(((character.stats.flat.gems.attack_power||0)/G_value +1),-1.5);
         if(character.stats.flat.gems.attack_power >= SCGV*G_value) P1*=0.5;

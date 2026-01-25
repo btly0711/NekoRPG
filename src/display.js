@@ -2773,11 +2773,11 @@ function format_money(num) {
         let cD=Math.floor(((num-cZ*1e6+500e6)/1e9)%1000);
         if(cD!=0 && num<1e18) value = (`<span class="coin coin_moneyB">${cD}D</span> `) + value;
         let cB=Math.floor(((num-cD*1e9+500e9)/1e12)%1000);
-        if(cB!=0 && num<1e21) value = (`${cB}<span class="coin coin_moneyT">B</span> `) + value;
+        if(cB!=0 && num<1e21) value = (`<span class="coin coin_moneyT">${cB}B</span> `) + value;
         let cU=Math.floor(((num-cB*1e12+500e12)/1e15)%1000000000);
-        if(cU!=0 && num<1e24) value = (`${cU}<span class="coin coin_moneyQa">U</span> `) + value;
+        if(cU!=0 && num<1e24) value = (`<span class="coin coin_moneyQa">${cU}U</span> `) + value;
         let cJ=Math.floor(((num)/1e24));
-        if(cJ!=0) value = (`${cJ}<span class="coin coin_moneySp">Δ</span> `) + value;
+        if(cJ!=0) value = (`<span class="coin coin_moneySp">${cJ}Δ</span> `) + value;
         return sign + value;
 
 
@@ -3499,7 +3499,10 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [35, "领域", "#c677dd",function(enemy){return "这个敌人似乎懂得力量外放的道理。<br>敌人每次被攻击，则额外对角色造成<span style='color:#87CEFA'>" + (enemy.spec_value[35]) + "</span>点魔法伤害。"}],
 [36, "自爆", "#597a80","强者在绝望之下最后的尊严。<br>第20回合触发，血量下降到1，对角色造成<span style='color:#87CEFA'>自身剩余生命*4</span>的伤害。"],
 [37, "散华", "#d08e53","奇妙的能力，感应血气并作用于攻击。<br>角色攻击的效力削弱（敌人生命/角色生命）的<span style='color:#87CEFA'>一倍</span><br>。"],
-[38, "冰符咒", "#6699FF", "由传说中的最强妖精创造的符咒，虽然她的生命力并不如何高。<br>在<span style='color:#FFFF00'>第9回合</span>施展冰符咒，额外造成<span style='color:#87CEFA'>20倍攻击力</span>的魔法伤害。"]
+[38, "冰符咒", "#6699FF", "由传说中的最强妖精创造的符咒，虽然她的生命力并不如何高。<br>在<span style='color:#FFFF00'>第9回合</span>施展冰符咒，额外造成<span style='color:#87CEFA'>20倍攻击力</span>的魔法伤害。"],
+[39, "贪婪·宝石", "#50dfe6",function(enemy){return `这个敌人似乎对宝石十分敏感。<br>角色每在[心之境界-一重]拥有${format_number(enemy.spec_value[39])}价值点<br>,该敌人伤害减少<span style='color:#87CEFA'>1%</span>.`}],
+[40, "追光", "#ecff17", "光元素领悟。这个敌人快得恍若一道照亮世界的光。<br>敌人首先发动一次敌人首先发动6段<span style='color:#87CEFA'>25倍伤害</span>的攻击。"],
+[41, "召唤", "#f5deb3", "群居生物同心协力的体现。敌人刷新时，额外刷新3只【紫锈胎人】。"],
 ];
 
 //"牵制", "牵制对手的招式可能成为窍门或是负累。\n敌人每回合伤害*\r[#87CEFA]（敌人防御力/角色防御力）\r。", "#25c1d9"],

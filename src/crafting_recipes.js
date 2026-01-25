@@ -236,28 +236,22 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         //shouldn't be possible to reach this
         throw new Error(`Tried to use a recipe but either category, subcategory, or recipe id was not passed: ${category} - ${subcategory} - ${recipe_id}`);
     }
-    let exp_value = 8;
+    let exp_value = 2;
     const selected_recipe = recipes[category][subcategory][recipe_id];
     const skill_level = skills[selected_recipe.recipe_skill].current_level;
     if(!selected_recipe) {
         throw new Error(`Tried to use a recipe that doesn't exist: ${category} -> ${subcategory} -> ${recipe_id}`);
     }
     if(subcategory === "items" || subcategory === "items2") {
-        exp_value = Math.max(exp_value,1.4*selected_recipe.recipe_level[1] * 2);
+        exp_value = Math.max(exp_value,1.2 ** selected_recipe.recipe_level[1] * 1);
         //maybe scale with materials needed?
-        
-        if(selected_recipe.recipe_level[1] < skill_level) {
-            exp_value *= 0.8 ** (skill_level - selected_recipe.recipe_level[1]);
-        }
     } else if (subcategory === "components" || selected_recipe.recipe_type === "component") {
-        const result_level = 8*result_tier;
+        const result_level = 4*result_tier;
+        exp_value = Math.max(exp_value,1.2 ** result_level * 4);
 
-        exp_value = Math.max(exp_value,result_tier * 4 * material_count);
-        exp_value = Math.max(1,exp_value*(rarity_multiplier**0.5 - (skill_level/result_level))*rarity_multiplier);
     } else {
-        const result_level = 8*Math.max(selected_components[0].component_tier,selected_components[1].component_tier);
-        exp_value = Math.max(exp_value,(selected_components[0].component_tier+selected_components[1].component_tier) * 4);
-        exp_value = Math.max(1,exp_value*(rarity_multiplier**0.5 - (skill_level/result_level))*rarity_multiplier);
+        const result_level = 4*Math.max(selected_components[0].component_tier,selected_components[1].component_tier);
+        exp_value = Math.max(exp_value,1.2 ** result_level * 4);
     }
 
     return exp_value;

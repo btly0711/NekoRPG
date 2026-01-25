@@ -3301,14 +3301,336 @@ class Enemy {
             //9.0Z
         ],
     });
+    enemy_templates["废墟猎兵"] = new Enemy({
+        name: "废墟猎兵", 
+        description: "平平无奇的废墟探险者。这里已经卷到非大地级后期不可入内的程度了。", 
+        xp_value: 75025, 
+        rank: 2501,
+        image: "image/enemy/E2502.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [3],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1750000, attack:490000, agility: 330000, attack_speed: 1.4, defense: 290000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["废墟菇灵"] = new Enemy({
+        name: "废墟菇灵", 
+        description: "似乎是从圣荒城来的蘑菇。继承了蘑菇一贯的毒魔法的同时居然十分贪财？", 
+        xp_value: 75025, 
+        rank: 2502,
+        image: "image/enemy/E2502.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [8,18],
+        spec_value:{8:10,18:2e9},
+        tags: [],
+        stats: {health: 900000, attack:600000, agility: 360000, attack_speed: 1.2, defense: 333333}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["燕岗城探险者"] = new Enemy({
+        name: "燕岗城探险者", 
+        description: "呦，老乡啊~燕岗城人没有什么特别的弱点。不像圣荒城居民看到钱就走不动路，兰陵城居民痴迷于宝石。", 
+        xp_value: 75025, 
+        rank: 2503,
+        image: "image/enemy/E2503.png",
+        realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 3000000, attack:700000, agility: 360000, attack_speed: 1.2, defense: 140000}, 
+        loot_list: [
+            {item_name: "极品红宝石", chance:0.03},
+            {item_name: "极品绿宝石", chance:0.05},
+            //9.0Z
+        ],
+    });
+    enemy_templates["声律城骸骨"] = new Enemy({
+        name: "声律城骸骨", 
+        description: "它的骨头已经炼到[蓝玉]等级了。拿起来就能直接当缠绕水晶用！", 
+        xp_value: 121393, 
+        rank: 2504,
+        image: "image/enemy/E2504.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 6000000, attack:610000, agility: 400000, attack_speed: 1.2, defense: 265000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["声律城难民"] = new Enemy({
+        name: "声律城难民", 
+        description: "虽然有不错的机制，但是饿了好几天了，血量已经几乎见底。异界之门也无力发挥。", 
+        xp_value: 121393, 
+        rank: 2505,
+        image: "image/enemy/E2505.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [19,15],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1280000, attack:570000, agility: 440000, attack_speed: 1.6, defense: 34000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["锈胎人"] = new Enemy({
+        name: "锈胎人", 
+        description: "泪点解析：召唤物不会掉宝石和物品，只有经验。", 
+        xp_value: 121393, 
+        rank: 2506,
+        image: "image/enemy/E2506.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [41,33],
+        spec_value:{33:4},
+        tags: [],
+        stats: {health: 9000000, attack:540000, agility: 480000, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["紫锈胎人"] = new Enemy({
+        name: "紫锈胎人", 
+        description: "哎，召唤。怎么会有这种技能的啊...", 
+        xp_value: 121393, 
+        rank: 2506.5,
+        image: "image/enemy/E2506a.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [33],
+        spec_value:{33:4},
+        tags: [],
+        stats: {health: 9000000, attack:540000, agility: 480000, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            //16Z
+        ],
+    });
+    enemy_templates["双棱晶体"] = new Enemy({
+        name: "双棱晶体", 
+        description: "怎么看都是二极蝠的翻版。红+绿比红+蓝要更加鲜明呢。", 
+        xp_value: 121393, 
+        rank: 2507,
+        image: "image/enemy/E2507.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 750000, attack:2500000, agility: 520000, attack_speed: 1.2, defense: 480000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["废墟恐怖"] = new Enemy({
+        name: "废墟恐怖", 
+        description: "总算有个说得过去的领域了。如果攻击仅仅略微超过它的防御，会被反伤巨额伤害...", 
+        xp_value: 121393, 
+        rank: 2508,
+        image: "image/enemy/E2508.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [35],
+        spec_value:{35:1000000},
+        tags: [],
+        stats: {health: 2000000, attack:750000, agility: 560000, attack_speed: 1.2, defense: 500000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["兰陵城探险者"] = new Enemy({
+        name: "兰陵城探险者", 
+        description: "兰陵城，即蓝零城。鉴于喵可RPG没有蓝钥匙，这个属性被改为根据VP波动了！", 
+        xp_value: 121393, 
+        rank: 2509,
+        image: "image/enemy/E2509.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [39],
+        spec_value:{39:5000},
+        tags: [],
+        stats: {health: 3500000, attack:690000, agility: 520000, attack_speed: 1.2, defense: 410000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["兰陵城探险者"] = new Enemy({
+        name: "兰陵城探险者", 
+        description: "兰陵城，即蓝零城。鉴于喵可RPG没有蓝钥匙，这个属性被改为根据VP波动了！", 
+        xp_value: 121393, 
+        rank: 2509,
+        image: "image/enemy/E2509.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [39],
+        spec_value:{39:5000},
+        tags: [],
+        stats: {health: 3500000, attack:690000, agility: 520000, attack_speed: 1.2, defense: 410000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["猫茸茸"] = new Enemy({
+        name: "猫茸茸", 
+        description: "与普遍的看法不同，它并没有光环。肯定是灵蔓茸茸和水溶茸茸让人产生了“蓝色茸茸都是光环茸茸”的印象！", 
+        xp_value: 121393, 
+        rank: 2510,
+        image: "image/enemy/E2510.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [37],
+        spec_value:{},
+        tags: [],
+        stats: {health: 16000000, attack:720000, agility: 600000, attack_speed: 1.2, defense: 240000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["圣荒城探险者"] = new Enemy({
+        name: "圣荒城探险者", 
+        description: "圣荒城，即省黄城。传说中在那里，即使如昊荒那样的云霄级强者，面对足够的财富仍然毫无反抗之力。", 
+        xp_value: 121393, 
+        rank: 2511,
+        image: "image/enemy/E2511.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [18],
+        spec_value:{18:4e9},
+        tags: [],
+        stats: {health: 7200000, attack:880000, agility: 640000, attack_speed: 1.2, defense: 440000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["远古傀儡"] = new Enemy({
+        name: "远古傀儡", 
+        description: "D9飞船一砸，上个纪元的东西都跑出来了。它的巅峰远不止于此，但现在已经快没电了...只有防御力还较为强悍。", 
+        xp_value: 121393, 
+        rank: 2512,
+        image: "image/enemy/E2512.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2340000, attack:900000, agility: 680000, attack_speed: 1.2, defense: 600000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["血洛幽灵"] = new Enemy({
+        name: "血洛幽灵", 
+        description: "似乎是废墟追光者的初形态。在学会【追光】之前，它还只是一只平平无奇的影子荒兽。", 
+        xp_value: 121393, 
+        rank: 2513,
+        image: "image/enemy/E2513.png",
+        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1690000, attack:1270000, agility: 720000, attack_speed: 1.2, defense: 390000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "殿堂黄宝石", chance:0.02},
+            //16Z
+        ],
+    });
+    enemy_templates["废墟飞鸟"] = new Enemy({
+        name: "废墟飞鸟", 
+        description: "认真的嘛...连飞鸟都学会飓风了！特殊属性的数值膨胀可见一斑。", 
+        xp_value: 196418, 
+        rank: 2514,
+        image: "image/enemy/E2514.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [16],
+        spec_value:{},
+        tags: [],
+        stats: {health: 6000000, attack:1000000, agility: 760000, attack_speed: 1.2, defense: 500000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.03},
+            {item_name: "殿堂黄宝石", chance:0.05},
+            //16Z
+        ],
+    });
+    enemy_templates["兰陵城小队长"] = new Enemy({
+        name: "兰陵城小队长", 
+        description: "它可能因VP过多无法对你造成伤害，但如果你也打不动它，这份减伤就显得有点没用了。", 
+        xp_value: 196418, 
+        rank: 2515,
+        image: "image/enemy/E2515.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [39],
+        spec_value:{39:15000},
+        tags: [],
+        stats: {health: 6500000, attack:990000, agility: 800000, attack_speed: 1.2, defense: 710000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.03},
+            {item_name: "殿堂黄宝石", chance:0.05},
+            //16Z
+        ],
+    });
+    enemy_templates["伏地精"] = new Enemy({
+        name: "伏地精", 
+        description: "玻璃大炮型的荒兽。幸好血门不在它的后面...", 
+        xp_value: 196418, 
+        rank: 2516,
+        image: "image/enemy/E2516.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [7],
+        spec_value:{},
+        tags: [],
+        stats: {health: 4800000, attack:1200000, agility: 840000, attack_speed: 1.2, defense: 300000}, 
+        loot_list: [
+            {item_name: "极品绿宝石", chance:0.03},
+            {item_name: "殿堂黄宝石", chance:0.05},
+            //16Z
+        ],
+    });
+
 
     /*
        红 绿
-七阶   5%/2% 46368    5.0Z
-七阶+  3%/5% 75025    9.0Z
-喵咕咕哩 开始算七阶+
-
-【废墟猎兵】是2501
+八阶   5%/2%     16Z
+八阶+  3%/5%     28Z
+12'1393 / 19'6418      
+废墟飞鸟 开始算八阶+
 */    
 })();
 

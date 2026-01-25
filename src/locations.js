@@ -181,6 +181,88 @@ class Combat_zone {
         this.tags = tags;
         this.tags["Combat zone"] = true;
     }
+    get_enemy(f_halo,f_enemy){
+        
+            let newEnemy;
+                newEnemy = new Enemy({name: f_enemy.name, 
+                    description: f_enemy.description, 
+                    xp_value: f_enemy.xp_value * Math.pow(f_halo,1.5),
+                    spec: f_enemy.spec,
+                    spec_value:f_enemy.spec_value,
+                    realm: f_enemy.realm,
+                    stats: {
+                        health: f_enemy.stats.health * f_halo,
+                        attack: f_enemy.stats.attack * f_halo,
+                        agility: f_enemy.stats.agility * f_halo,
+                        dexterity: f_enemy.stats.dexterity,
+                        intuition: f_enemy.stats.intuition,
+                        attack_speed: f_enemy.stats.attack_speed,
+                        defense: f_enemy.stats.defense * f_halo
+                    },
+                    loot_list: f_enemy.loot_list,
+                    image: f_enemy.image,
+                    loot_multi: Math.pow(f_halo,2),
+                    add_to_bestiary: f_enemy.add_to_bestiary,
+                    size: f_enemy.size
+                });
+            //}
+            if(newEnemy.spec.includes(19))
+            {
+                newEnemy.stats.attack += character.stats.full.attack_power * 0.1;
+                newEnemy.stats.defense += character.stats.full.defense * 0.1;
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.1)} 攻击，${format_number(character.stats.full.defense * 0.1)}防御 [同调]`,"enemy_enhanced");
+            }//同调
+            if(newEnemy.spec.includes(24)){
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.5)} 生命 [饮剑]`,"enemy_enhanced");
+                newEnemy.stats.health += character.stats.full.attack_power * 0.5;//饮剑
+            }
+            if(newEnemy.spec.includes(25)){ 
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.defense * 0.5)} 生命 [饮盾]`,"enemy_enhanced");
+                newEnemy.stats.health += character.stats.full.defense * 0.5;//饮盾
+            }
+            if(newEnemy.spec.includes(30)){ 
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.agility * newEnemy.spec_value[30])} 攻击 [净化]`,"enemy_enhanced");
+                newEnemy.stats.attack += character.stats.full.agility * newEnemy.spec_value[30];//净化
+            }
+            if(newEnemy.name == "地宫养殖者[BOSS]")//特判地宫养殖者
+            {
+                if(enemy_killcount["地宫养殖者[BOSS]"]) console.log("试图再次击杀");
+                else{
+                    if(character.equipment.special?.name == "纳娜米")//姐姐在！
+                    {
+                        log_message(`[地宫养殖者]嚯，有人闯到这里来了？`,"hero_attacked_critically");
+                        log_message(`[纳娜米]我不会和你废话。说，你为什么要害我纳家！`,"enemy_defeated");
+                        log_message(`[纱雪]此处省略22句关于血杀殿，地宫养殖者的广为人知的剧情。`,"sayuki");
+                        log_message(`[纳娜米]既然如此，时间也差不多了……可可！`,"enemy_defeated");
+                        log_message(`少女手上突然出现了一把奇异的武器。武器一米见长，前端有着深黑色的空洞。通体的质感，带来的威慑力令人窒息。`,"enemy_enhanced");
+                        log_message(`几乎零点一秒之内，纳娜米手中的武器，绽放出耀眼的银白色光芒。只听轰隆一声巨响，整座地宫都似乎为之震颤！`,"enemy_enhanced");
+                        log_message(`遭到反震力冲击的纳娜米吐出鲜血。反应过来的纳可，第一时间抱住了姐姐，一同抵挡着这武器带来的惊人的后坐力。`,"enemy_enhanced");
+                        log_message(`[纳可]没事吧，姐姐——`,"enemy_defeated");
+                        log_message(`[纳娜米]咳……还没有结束，可可。接下来，就交给你了！`,"enemy_defeated");
+                        log_message(`正面被武器击中的地宫养殖者，几乎瞬间失去了半边身体，发出了怨毒的咆哮声。`,"enemy_enhanced");
+                        log_message(`[地宫养殖者]啊，什么东西，不可能！！该死，中计了，我要杀了你，杀了你们，杀光你们燕岗领的人——`,"hero_attacked_critically");
+                        log_message(`[纳娜米]可可，不要大意！这是天空级强者的回光返照，只要撑过这一会就足够了！`,"enemy_enhanced");
+                        log_message(`[纳可]明白！`,"enemy_defeated");
+                        //sleep(1000);
+                        newEnemy.stats.attack *= 0.01;
+                        newEnemy.stats.defense *= 0.01;
+                        newEnemy.stats.agility *= 0.01;
+                        newEnemy.stats.health *= 0.01;
+                        log_message(`地宫养殖者已经奄奄一息！攻防敏血削弱为之前的百分之一！`,"enemy_enhanced");
+                    }
+                    else
+                    {
+                        log_message(`[地宫养殖者]嚯，有人闯到这里来了？`,"hero_attacked_critically");
+                        log_message(`[???]...`,"enemy_defeated");
+                        log_message(`[纱雪]高能反应！检测到纳娜米未在队伍中！`,"sayuki");
+                        log_message(`地宫养殖者现在活力满满！攻防敏血都保持着之前的状态！`,"enemy_enhanced");
+                    
+                    }
+                }
+            }
+            newEnemy.is_alive = true;
+        return newEnemy;
+    }
 
     get_next_enemies() {
 
@@ -205,7 +287,6 @@ class Combat_zone {
             if(enemy.name == undefined){
                 console.error("试图在 " + this.name + " 中生成未定义的敌人 [" + enemy_group[i].name + "]");
             }
-            let newEnemy;
             // if(this.enemy_stat_variation != 0) {
 
             //     const variation = Math.random() * this.enemy_stat_variation;
@@ -261,84 +342,13 @@ class Combat_zone {
                 
             const halo = this.enemy_stat_halo + 1 + halo_fix;
 
-                newEnemy = new Enemy({name: enemy.name, 
-                    description: enemy.description, 
-                    xp_value: enemy.xp_value * Math.pow(halo,1.5),
-                    spec: enemy.spec,
-                    spec_value:enemy.spec_value,
-                    realm: enemy.realm,
-                    stats: {
-                        health: enemy.stats.health * halo,
-                        attack: enemy.stats.attack * halo,
-                        agility: enemy.stats.agility * halo,
-                        dexterity: enemy.stats.dexterity,
-                        intuition: enemy.stats.intuition,
-                        attack_speed: enemy.stats.attack_speed,
-                        defense: enemy.stats.defense * halo
-                    },
-                    loot_list: enemy.loot_list,
-                    image: enemy.image,
-                    loot_multi: Math.pow(halo,2),
-                    add_to_bestiary: enemy.add_to_bestiary,
-                    size: enemy.size
-                });
-            //}
-            if(newEnemy.spec.includes(19))
-            {
-                newEnemy.stats.attack += character.stats.full.attack_power * 0.1;
-                newEnemy.stats.defense += character.stats.full.defense * 0.1;
-                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.1)} 攻击，${format_number(character.stats.full.defense * 0.1)}防御 [同调]`,"enemy_enhanced");
-            }//同调
-            if(newEnemy.spec.includes(24)){
-                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.5)} 生命 [饮剑]`,"enemy_enhanced");
-                newEnemy.stats.health += character.stats.full.attack_power * 0.5;//饮剑
-            }
-            if(newEnemy.spec.includes(25)){ 
-                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.defense * 0.5)} 生命 [饮盾]`,"enemy_enhanced");
-                newEnemy.stats.health += character.stats.full.defense * 0.5;//饮盾
-            }
-            if(newEnemy.spec.includes(30)){ 
-                log_message(`${enemy.name} 吸取了 ${format_number(character.stats.full.agility * newEnemy.spec_value[30])} 攻击 [净化]`,"enemy_enhanced");
-                newEnemy.stats.attack += character.stats.full.agility * newEnemy.spec_value[30];//净化
-            }
-            if(newEnemy.name == "地宫养殖者[BOSS]")//特判地宫养殖者
-            {
-                if(enemy_killcount["地宫养殖者[BOSS]"]) console.log("试图再次击杀");
-                else{
-                    if(character.equipment.special?.name == "纳娜米")//姐姐在！
-                    {
-                        log_message(`[地宫养殖者]嚯，有人闯到这里来了？`,"hero_attacked_critically");
-                        log_message(`[纳娜米]我不会和你废话。说，你为什么要害我纳家！`,"enemy_defeated");
-                        log_message(`[纱雪]此处省略22句关于血杀殿，地宫养殖者的广为人知的剧情。`,"sayuki");
-                        log_message(`[纳娜米]既然如此，时间也差不多了……可可！`,"enemy_defeated");
-                        log_message(`少女手上突然出现了一把奇异的武器。武器一米见长，前端有着深黑色的空洞。通体的质感，带来的威慑力令人窒息。`,"enemy_enhanced");
-                        log_message(`几乎零点一秒之内，纳娜米手中的武器，绽放出耀眼的银白色光芒。只听轰隆一声巨响，整座地宫都似乎为之震颤！`,"enemy_enhanced");
-                        log_message(`遭到反震力冲击的纳娜米吐出鲜血。反应过来的纳可，第一时间抱住了姐姐，一同抵挡着这武器带来的惊人的后坐力。`,"enemy_enhanced");
-                        log_message(`[纳可]没事吧，姐姐——`,"enemy_defeated");
-                        log_message(`[纳娜米]咳……还没有结束，可可。接下来，就交给你了！`,"enemy_defeated");
-                        log_message(`正面被武器击中的地宫养殖者，几乎瞬间失去了半边身体，发出了怨毒的咆哮声。`,"enemy_enhanced");
-                        log_message(`[地宫养殖者]啊，什么东西，不可能！！该死，中计了，我要杀了你，杀了你们，杀光你们燕岗领的人——`,"hero_attacked_critically");
-                        log_message(`[纳娜米]可可，不要大意！这是天空级强者的回光返照，只要撑过这一会就足够了！`,"enemy_enhanced");
-                        log_message(`[纳可]明白！`,"enemy_defeated");
-                        //sleep(1000);
-                        newEnemy.stats.attack *= 0.01;
-                        newEnemy.stats.defense *= 0.01;
-                        newEnemy.stats.agility *= 0.01;
-                        newEnemy.stats.health *= 0.01;
-                        log_message(`地宫养殖者已经奄奄一息！攻防敏血削弱为之前的百分之一！`,"enemy_enhanced");
-                    }
-                    else
-                    {
-                        log_message(`[地宫养殖者]嚯，有人闯到这里来了？`,"hero_attacked_critically");
-                        log_message(`[???]...`,"enemy_defeated");
-                        log_message(`[纱雪]高能反应！检测到纳娜米未在队伍中！`,"sayuki");
-                        log_message(`地宫养殖者现在活力满满！攻防敏血都保持着之前的状态！`,"enemy_enhanced");
-                    
-                    }
-                }
-            }
-            newEnemy.is_alive = true;
-            enemies.push(newEnemy); 
+            enemies.push(this.get_enemy(halo,enemy)); 
+            if(enemy.spec.includes(41)) {
+                log_message(`召唤了 3x 紫锈胎人`,"enemy_enhanced");
+                enemies.push(this.get_enemy(halo,enemy_templates["紫锈胎人"])); 
+                enemies.push(this.get_enemy(halo,enemy_templates["紫锈胎人"])); 
+                enemies.push(this.get_enemy(halo,enemy_templates["紫锈胎人"])); 
+            }//召唤
         }
         return enemies;
     }
@@ -2471,15 +2481,113 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纳家秘境"], custom_text: "赶路回到家族秘境"}], 
         description: "被D9级飞船炸为废墟的声律领主城。在混乱中蕴藏着许多有用的财宝。[V1.40前版本终点]",
         
-        //dialogues: ["纳娜米(废墟)"],
+        dialogues: ["纳娜米(废墟)","声律城难民"],
         name: "声律城废墟", 
         is_unlocked: false,
         bgm: 10,
     });//2-5
 
+    locations["声律城废墟 - 1"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城。其中鱼龙混杂，适合浑水摸鱼。", 
+        enemy_count: 20, 
+        enemies_list: ["威武异衣士","大眼八爪鱼","原力刀客","废墟猎兵","废墟菇灵"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城废墟 - 1",
+        rank:141, 
+        bgm:10,
+        parent_location: locations["声律城废墟"],
+        first_reward: {
+            xp: 120e4,
+        },
+        repeatable_reward: {
+            xp: 40e4,
+            locations: [{location: "声律城废墟 - 2"}],
+        },
+    });
+    locations["声律城废墟 - 2"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城。其中鱼龙混杂，适合浑水摸鱼。", 
+        enemy_count: 20, 
+        enemies_list: ["废墟猎兵","废墟菇灵","燕岗城探险者","声律城难民","声律城骸骨"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城废墟 - 2",
+        rank:142, 
+        bgm:10,
+        parent_location: locations["声律城废墟"],
+        first_reward: {
+            xp: 150e4,
+        },
+        repeatable_reward: {
+            xp: 50e4,
+            locations: [{location: "声律城废墟 - 3"}],
+        },
+    }); 
+    locations["声律城废墟 - 3"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城。其中鱼龙混杂，适合浑水摸鱼。", 
+        enemy_count: 20, 
+        enemies_list: ["声律城难民","声律城骸骨","锈胎人","双棱晶体","废墟恐怖"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城废墟 - 3",
+        rank:143, 
+        bgm:10,
+        parent_location: locations["声律城废墟"],
+        first_reward: {
+            xp: 180e4,
+        },
+        repeatable_reward: {
+            xp: 60e4,
+            locations: [{location: "声律城废墟 - 4"}],
+        },
+    });
+    locations["声律城废墟 - 4"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城。其中鱼龙混杂，适合浑水摸鱼。", 
+        enemy_count: 20, 
+        enemies_list: ["双棱晶体","废墟恐怖","猫茸茸","兰陵城探险者","远古傀儡","血洛幽灵"],//兰陵城小队长，伏地精
+        enemy_group_size: [3,3],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城废墟 - 4",
+        rank:144, 
+        bgm:10,
+        parent_location: locations["声律城废墟"],
+        first_reward: {
+            xp: 180e4,
+        },
+        repeatable_reward: {
+            xp: 60e4,
+            locations: [{location: "声律城废墟 - 5"}],
+        },
+    });
+    locations["声律城废墟 - 5"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城。其中鱼龙混杂，适合浑水摸鱼。", 
+        enemy_count: 20, 
+        enemies_list: ["远古傀儡","血洛幽灵","废墟飞鸟","兰陵城小队长","伏地精"],
+        enemy_group_size: [3,3],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城废墟 - 5",
+        rank:145, 
+        bgm:10,
+        parent_location: locations["声律城废墟"],
+        first_reward: {
+            xp: 210e4,
+        },
+        repeatable_reward: {
+            xp: 70e4,
+            //locations: [{location: "声律城废墟 - X"}],
+        },
+    });
     locations["纳家秘境"].connected_locations.push({location: locations["声律城废墟"]});
-
-
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 1"]});
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 2"]});
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 3"]});
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 4"]});
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 5"]});
 
 
 
