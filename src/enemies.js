@@ -3306,7 +3306,7 @@ class Enemy {
         description: "平平无奇的废墟探险者。这里已经卷到非大地级后期不可入内的程度了。", 
         xp_value: 75025, 
         rank: 2501,
-        image: "image/enemy/E2502.png",
+        image: "image/enemy/E2501.png",
         realm: "<span class=realm_terra><b>大地级七阶 +</b></span>",
         size: "small",
         spec: [3],
