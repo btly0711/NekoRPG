@@ -3485,7 +3485,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
-            {item_name: "废墟恢复药剂", chance:0.01},
+            {item_name: "废墟恢复药水", chance:0.01},
             //16Z
         ],
     });
@@ -3595,7 +3595,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
-            {item_name: "废墟狂暴药剂", chance:0.05},
+            {item_name: "废墟狂暴药水", chance:0.05},
             //16Z
         ],
     });
@@ -3614,7 +3614,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
-            {item_name: "废墟符文", chance:0.05},
+            {item_name: "废墟符文", chance:0.14},
             //16Z
         ],
     });
