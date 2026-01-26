@@ -2396,10 +2396,24 @@ item_templates["Twist liek a snek"] = new Book({
         value: 720000000,
         stats: {
             health_regeneration_flat: {
-                flat: 18888,
+                flat: 28888,
             },
             max_health: {
                 flat: 500000,
+            },
+        }
+    });
+    item_templates["三相徽章"] = new Props({
+        name: "三相徽章",
+        id: "三相徽章",
+        description: "由三种属性的荒兽精华，构建能量循环的徽章。距离圆满还差些许风属性能量...", 
+        value: 9.9e9,
+        stats: {
+            health_regeneration_flat: {
+                flat: 288888,
+            },
+            max_health: {
+                flat: 5000000,
             },
         }
     });
@@ -2654,7 +2668,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["脉冲剑刃"] = new WeaponComponent({
         name: "脉冲剑刃", description: "脉冲合金锭制造的剑刃。剑刃系列后续主要增长暴击和攻速。",
         component_type: "long blade",
-        value: 2.7e8,
+        value: 60e6,
         component_tier: 6,
         name_prefix: "脉冲",
         attack_value: 17280,
@@ -2670,7 +2684,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["脉冲戟头"] = new WeaponComponent({
         name: "脉冲戟头", description: "脉冲合金锭制造的三叉戟头。普攻倍率比充能戟头强一线？",
         component_type: "triple blade",
-        value: 3.6e8,
+        value: 180e6,
         component_tier: 6,
         name_prefix: "脉冲",
         attack_value: 24000,
@@ -2690,7 +2704,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["蓝金剑刃"] = new WeaponComponent({
         name: "蓝金剑刃", description: "蓝金锭制造的剑刃。攻速和爆率又强了一线",
         component_type: "long blade",
-        value: 1.35e9,
+        value: 480e6,
         component_tier: 7,
         name_prefix: "蓝金",
         attack_value: 43200,
@@ -2704,9 +2718,9 @@ item_templates["Twist liek a snek"] = new Book({
         }
     });
     item_templates["蓝金戟头"] = new WeaponComponent({
-        name: "蓝金戟头", description: "蓝锭制造的三叉戟头。普攻倍率又强了一线。",
+        name: "蓝金戟头", description: "蓝金锭制造的三叉戟头。普攻倍率又强了一线。",
         component_type: "triple blade",
-        value: 4.05e9,
+        value: 1440e6,
         component_tier: 7,
         name_prefix: "蓝金",
         attack_value: 60000,
@@ -2716,6 +2730,42 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_mul: {
                 multiplier: 3.20,
+            },
+            attack_speed: {
+                multiplier: 0.50,
+            },
+        }
+    });
+    
+    item_templates["海绿剑刃"] = new WeaponComponent({
+        name: "海绿剑刃", description: "海绿锭制造的剑刃。",
+        component_type: "long blade",
+        value: 1200e6,
+        component_tier: 8,
+        name_prefix: "海绿",
+        attack_value: 129600,
+        stats: {
+            crit_rate: {
+                flat: 0.15,
+            },
+            attack_speed: {
+                multiplier: 1.14,
+            },
+        }
+    });
+    item_templates["海绿戟头"] = new WeaponComponent({
+        name: "海绿戟头", description: "海绿锭制造的三叉戟头。",
+        component_type: "triple blade",
+        value: 3600e6,
+        component_tier: 8,
+        name_prefix: "海绿",
+        attack_value: 180000,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_mul: {
+                multiplier: 3.30,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -3260,6 +3310,64 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+
+    
+    item_templates["海绿头盔"] = new ArmorComponent({
+        name: "海绿头盔",
+        description: "B1级盔甲，可以对能量起到缓冲作用。",
+        component_type: "helmet exterior",
+        value: 2.0e9,
+        component_tier: 8,
+        full_armor_name: "海绿头盔",
+        defense_value: 36000,
+        stats: {
+            attack_mul: {
+                flat: 0.02,
+            },
+        }
+    });
+    item_templates["海绿胸甲"] = new ArmorComponent({
+        name: "海绿胸甲",
+        description: "B1级盔甲，可以对能量起到缓冲作用。",
+        component_type: "chestplate exterior",
+        value: 2.7e9,
+        component_tier: 8,
+        full_armor_name: "海绿胸甲",
+        defense_value: 48000,
+        stats: {
+            attack_mul: {
+                flat: 0.02,
+            },
+        }
+    });
+    item_templates["海绿腿甲"] = new ArmorComponent({
+        name: "海绿腿甲",
+        description: "B1级盔甲，可以对能量起到缓冲作用。",
+        component_type: "leg armor exterior",
+        value: 2.7e9,
+        component_tier: 8,
+        full_armor_name: "海绿腿甲",
+        defense_value: 48000,
+        stats: {
+            attack_mul: {
+                flat: 0.02,
+            },
+        }
+    });
+    item_templates["海绿战靴"] = new ArmorComponent({
+        name: "海绿战靴",
+        description: "B1级盔甲，可以对能量起到缓冲作用。",
+        component_type: "shoes exterior",
+        value: 1.35e9,
+        component_tier: 8,
+        full_armor_name: "海绿战靴",
+        defense_value: 24000,
+        stats: {
+            attack_mul: {
+                flat: 0.02,
+            },
+        }
+    });
 })();
 //盔甲
 
@@ -3356,6 +3464,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 333.333e6,
         material_type: "metal",
         image: "image/item/bluegold_ingot.png",
+    });
+    item_templates["海绿锭"] = new Material({
+        id: "海绿锭",
+        name: "海绿锭", 
+        description: "利用绿色刀币铸成的B1级合金。或许是因为大人物偶尔也会用到，它基本无毒，可以用作盔甲。", 
+        value: 800e6,
+        material_type: "metal",
+        image: "image/item/seagreen_ingot.png",
     });
 })();
 
@@ -3529,6 +3645,22 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/A9_hard.png",
     });
     
+    item_templates["废墟恢复药水"] = new UsableItem({
+        name: "废墟恢复药水", 
+        description: "兰陵城探险者常备的药剂。", 
+        value: 180e6,
+        effects: [{effect: "恢复 A8", duration: 60}],
+        realmcap:18,
+        image: "image/item/A8_medicine.png",
+    });
+    item_templates["废墟狂暴药水"] = new UsableItem({
+        name: "废墟狂暴药水", 
+        description: "兰陵城探险者常备的药剂。为了抢两颗宝石，也太拼了...", 
+        value: 360e6,
+        realmcap:18,
+        effects: [{effect: "强化 A8", duration: 30},{effect: "虚弱", duration: 90}],
+        image: "image/item/A8_booster.png",
+    });
     
 })();
 //炼金
@@ -3921,6 +4053,18 @@ item_templates["Twist liek a snek"] = new Book({
         value: 96e6,
         image: "image/item/A7-flesh.png",
     });
+    item_templates["废墟符文"] = new Loot({
+        name: "废墟符文", 
+        description: "似乎蕴含着神奇的力量。积攒的足够多可以造出一台T8工作台...当然，直接买便宜多了。", 
+        value: 120e6,
+        image: "image/item/ruin_rune.png",
+    });
+    item_templates["废墟精华"] = new Loot({
+        name: "废墟精华", 
+        description: "从废墟中萌发的蓬勃生命力。可以与水火徽章形成共鸣，或者用于制造更多缠绕水晶。", 
+        value: 144e6,
+        image: "image/item/ruin_essence.png",
+    });
 
 
     //以下为打钱的东西
@@ -3965,6 +4109,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "包装起来的血洛大陆通用钱币。总面值10Z。", 
         value: 10e6,
         image: "image/item/10Z.png",
+    });
+    item_templates["绿色刀币"] = new Loot({
+        name: "绿色刀币", 
+        description: "血洛大陆的通用钱币。1D=1000Z。值得一提的是，它有两把剑，可以铸成两锭海绿。", 
+        value: 1e9,
+        image: "image/item/1D.png",
     });
 })();
 

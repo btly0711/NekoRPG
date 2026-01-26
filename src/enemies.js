@@ -3315,7 +3315,7 @@ class Enemy {
         stats: {health: 1750000, attack:490000, agility: 330000, attack_speed: 1.4, defense: 290000}, 
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
-            {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "极品绿宝石", chance:0.05},{item_name: "废墟精华", chance:0.07},
             //9.0Z
         ],
     });
@@ -3334,6 +3334,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "废墟精华", chance:0.07},
             //9.0Z
         ],
     });
@@ -3352,6 +3353,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.03},
             {item_name: "极品绿宝石", chance:0.05},
+            {item_name: "绿色刀币", chance:0.01},
             //9.0Z
         ],
     });
@@ -3370,6 +3372,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
+            {item_name: "透明水晶", chance:0.1},
+            {item_name: "A7·能量核心", chance:0.1},
             //16Z
         ],
     });
@@ -3386,8 +3390,8 @@ class Enemy {
         tags: [],
         stats: {health: 1280000, attack:570000, agility: 440000, attack_speed: 1.6, defense: 34000}, 
         loot_list: [
-            {item_name: "极品绿宝石", chance:0.05},
-            {item_name: "殿堂黄宝石", chance:0.02},
+            {item_name: "绿色刀币", chance:0.01},
+            {item_name: "废墟符文", chance:0.04},
             //16Z
         ],
     });
@@ -3406,6 +3410,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
+            {item_name: "废墟精华", chance:0.07},
+            {item_name: "A7·能量核心", chance:0.06},
             //16Z
         ],
     });
@@ -3440,6 +3446,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
+            {item_name: "绿色刀币", chance:0.016},
             //16Z
         ],
     });
@@ -3458,6 +3465,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
+            {item_name: "废墟符文", chance:0.06},
+            {item_name: "废墟精华", chance:0.07},
             //16Z
         ],
     });
@@ -3476,24 +3485,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
-            //16Z
-        ],
-    });
-    enemy_templates["兰陵城探险者"] = new Enemy({
-        name: "兰陵城探险者", 
-        description: "兰陵城，即蓝零城。鉴于喵可RPG没有蓝钥匙，这个属性被改为根据VP波动了！", 
-        xp_value: 121393, 
-        rank: 2509,
-        image: "image/enemy/E2509.png",
-        realm: "<span class=realm_terra><b>大地级八阶</b></span>",
-        size: "small",
-        spec: [39],
-        spec_value:{39:5000},
-        tags: [],
-        stats: {health: 3500000, attack:690000, agility: 520000, attack_speed: 1.2, defense: 410000}, 
-        loot_list: [
-            {item_name: "极品绿宝石", chance:0.05},
-            {item_name: "殿堂黄宝石", chance:0.02},
+            {item_name: "废墟恢复药剂", chance:0.01},
             //16Z
         ],
     });
@@ -3512,7 +3504,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
-            //16Z
+            {item_name: "废墟精华", chance:0.04},
+            {item_name: "A7·能量核心", chance:0.1},//16Z
         ],
     });
     enemy_templates["圣荒城探险者"] = new Enemy({
@@ -3530,7 +3523,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
-            //16Z
+            {item_name: "绿色刀币", chance:0.02},//16Z
         ],
     });
     enemy_templates["远古傀儡"] = new Enemy({
@@ -3548,7 +3541,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
-            //16Z
+            {item_name: "A7·能量核心", chance:0.17},//16Z
         ],
     });
     enemy_templates["血洛幽灵"] = new Enemy({
@@ -3566,7 +3559,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
-            //16Z
+            {item_name: "废墟精华", chance:0.11},//16Z
         ],
     });
     enemy_templates["废墟飞鸟"] = new Enemy({
@@ -3584,7 +3577,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
-            //16Z
+            {item_name: "废墟精华", chance:0.12},//16Z
         ],
     });
     enemy_templates["兰陵城小队长"] = new Enemy({
@@ -3602,6 +3595,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "废墟狂暴药剂", chance:0.05},
             //16Z
         ],
     });
@@ -3620,6 +3614,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "废墟符文", chance:0.05},
             //16Z
         ],
     });

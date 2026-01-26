@@ -100,6 +100,49 @@ effect_templates["强化 A1"] = new ActiveEffect({
     }
 });
 
+effect_templates["恢复 A1"] = new ActiveEffect({
+    name: "恢复 A1",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 1200},
+        }
+    }
+});
+
+
+effect_templates["强化 A1"] = new ActiveEffect({
+    name: "强化 A1",
+    effects: {
+        stats: {
+            health_regeneration_percent: {flat: 1},
+            attack_power:{flat:320},
+            defense:{flat:320},
+            agility:{flat:320},
+        }
+    }
+});
+effect_templates["恢复 A8"] = new ActiveEffect({
+    name: "恢复 A8",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 600000},
+        }
+    }
+});
+
+
+effect_templates["强化 A8"] = new ActiveEffect({
+    name: "强化 A8",
+    effects: {
+        stats: {
+            health_regeneration_percent: {flat: 1},
+            attack_power:{flat:32000},
+            defense:{flat:32000},
+            agility:{flat:32000},
+        }
+    }
+});
+
 
 effect_templates["虚弱"] = new ActiveEffect({
     name: "虚弱",

@@ -86,8 +86,8 @@ window.REALMS=[
 [13,"大地级五阶",5000,1500000,18e8,"terra"],//350w
 [14,"大地级六阶",9000,2500000,54e8,"terra"],//600w
 [15,"大地级七阶",16000,6500000,168e8,"terra"],//1250w
-[16,"大地级八阶",32000,17500000,9.2233e18,"terra"],//3000w以下未平衡
-[17,"大地级巅峰",60000,50000000,3333e8,"terra"],
+[16,"大地级八阶",32000,17500000,640e8,"terra"],//3000w以下未平衡
+[17,"大地级巅峰",60000,50000000,9.2233e18+3333e8,"terra"],
 
 [18,"天空级一阶",150000,1.2e8,9999e8,"sky"],//2e
 [19,"天空级二阶",500000,3e8,4.5e12,"sky"],//5e
@@ -1723,6 +1723,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             let {damage_taken, fainted} = character.take_damage([],{damage_value: damage_dealt*0.2},0);
             
             log_message(character.name + "受到了" + format_number(damage_taken) + "点伤害[反戈]", "hero_attacked");
+            update_displayed_health();
             if(fainted)
             {
                 faint(" 被反伤击败");
@@ -1738,15 +1739,15 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         //闪避
         if(target.spec.includes(29)){
             let {damage_taken, fainted} = character.take_damage([],{damage_value: target.spec_value[29]},0);
-            
+            update_displayed_health();
             log_message(character.name + " 未命中,并受到了" + format_number(damage_taken) + "点伤害[阻击]", "hero_missed");
             if(fainted) faint(" 被阻击击败")
         }
         else log_message(character.name + " 未命中", "hero_missed");
     }
     if(target.spec.includes(35)){
-        let {damage_taken, fainted} = character.take_damage([],{damage_value: target.spec_value[35]},0);
-        
+        let {damage_taken, fainted} = character.take_damage([],{damage_value: Math.max(target.spec_value[35]-character.stats.full.agility,0)},0);
+        update_displayed_health();
         log_message(character.name + "受到了" + format_number(damage_taken) + "点伤害[领域]", "hero_attacked");
         if(fainted) faint(" 被领域击败")
     }//领域
