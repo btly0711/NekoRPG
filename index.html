@@ -1345,7 +1345,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.42a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.42b";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1521,11 +1521,11 @@
                         const scrollbar_X_visible = (body.scrollWidth - body.clientWidth) > 0;
 
                         const bottom_edge_position = 
-                            window.innerHeight - tooltip_height + window.scrollY - 230 - (scrollbar_X_visible?10:0);
+                            window.innerHeight - tooltip_height + window.scrollY - 330 - (scrollbar_X_visible?10:0);
                         if(event.pageY > bottom_edge_position) {
-                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${bottom_edge_position - 125}px`);
+                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${bottom_edge_position - 225}px`);
                         } else {
-                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${event.pageY - 120}px`);
+                            document.documentElement.style.setProperty('--recipe_tooltip_top', `${event.pageY - 220}px`);
                         }
                         
                         tooltip_wait = Date.now() + 1000 / tooltip_move_ticks;
