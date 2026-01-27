@@ -156,6 +156,7 @@ class Item {
                 gem_value = 0,
                 E_value = 0,
                 C_value = 0,
+                spec = 0,
                 tags = {},
                 realmcap = -1,
                 id = null,
@@ -166,6 +167,7 @@ class Item {
         this.description = description;
         this.saturates_market = false;
         this.id = id;
+        this.spec = spec;
         this.image = image;
         this.realmcap = realmcap;
         /**
@@ -3550,6 +3552,15 @@ item_templates["Twist liek a snek"] = new Book({
         description: "没事...父亲大人进不去秘境。他肯定不知道是我偷偷把光环弄坏的！(持有时2-3与2-4 BOSS战光环-8%/个，不少于0%)",
         value: 99e6,
         image: "image/item/MF_fragment.png",
+    });
+    
+    item_templates["符文工作台套件"] = new UsableItem({
+        id: "符文工作台套件",
+        name: "符文工作台套件", 
+        description: "海量海绿锭和废墟符文雕刻成的工作台。[使用]此物品即可解锁T8工作台的使用！(对了，制作配方需要材料多的可怕，所以建议直接买)", 
+        value: 500e9,
+        spec:"T8-table",
+        image: "image/item/rune_workingtable.png",
     });
 })();
 

@@ -1776,6 +1776,7 @@ function kill_enemy(target) {
             else if(target.name == "百家近卫") add_bestiary_lines(22);
             else if(target.name == "大门派杂役") add_bestiary_lines(23);
             else if(target.name == "威武武士") add_bestiary_lines(24);
+            else if(target.name == "废墟猎兵") add_bestiary_lines(25);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -1948,6 +1949,27 @@ function add_xp_to_character(xp_to_add, should_info = true, use_bonus,ingore_cap
     update_displayed_character_xp(level_up);
 }
 
+
+function get_spec_rewards(money){
+    let RNG_M = Math.pow(Math.max(Math.random(),1e-6),-1.5)
+    log_message(`搜刮废墟，获取了 ${format_money(Math.floor(RNG_M * money))} .`, "location_reward");
+    
+    character.money += Math.floor(RNG_M * money);
+    console.log(3);
+    update_displayed_money();
+    const trader = traders["废墟商人"];
+    if(!trader.is_unlocked) {
+        if(Math.random() >= money * 2e-7) {//4% 8% 12% 16% 20%
+            trader.is_unlocked = true;
+            log_message(`解锁了 [废墟商人]`, "location_reward");
+        }
+        else if(Math.random() >= money * 5e-7){
+            log_message(`${character.name} 感到附近有财富与交易的气息 ....`, "location_reward");
+        }//6 12 18 24 30
+    }
+    //TODO:增加废墟商人的解锁，并且在已经解锁之后不再提示。
+
+}
 /**
  * @param {Location} location game Location object
  * @description handles all the rewards for clearing location (both first and subsequent clears), adding xp and unlocking stuff
@@ -1955,6 +1977,11 @@ function add_xp_to_character(xp_to_add, should_info = true, use_bonus,ingore_cap
 function get_location_rewards(location) {
 
     let should_return = false;
+    console.log(1);
+    if(location.repeatable_reward.money && typeof location.repeatable_reward.money === "number") {
+        get_spec_rewards(location.repeatable_reward.money);//2-5搜刮钱
+        console.log(2);
+    }
     if(location.enemy_groups_killed == location.enemy_count) { //first clear
 
         if(location.is_challenge) {
@@ -1978,7 +2005,6 @@ function get_location_rewards(location) {
         add_xp_to_character(location.repeatable_reward.xp);
         
     }
-
 
 
     //all below: on each clear, so that if something gets added after location was cleared, it will still be unlockable
@@ -2340,8 +2366,6 @@ function use_item(item_key,stated = false) {
     let C_value = item_templates[id].C_value;
     let E_value = item_templates[id].E_value;
 
-    //console.log(G_value);
-    //console.log(item_key);
     if(!character.is_in_inventory(item_key))
     {
         
@@ -2353,7 +2377,14 @@ function use_item(item_key,stated = false) {
     }
 
     let used = false;
-    //console.log(item_templates[id])
+    console.log(item_templates[id])
+    if(item_templates[id].spec != 0){
+        if(item_templates[id].spec == "A8-table"){
+            //unlock 符文之屋
+            unlock_location(locations["符文之屋"]);
+            log_message(`随着符文工作台套件被摆下，一座小屋拔地而起。在这片废墟中，${character.name} 得到了一片温暖的港湾。`,"gather_loot")
+        }
+    }
     if(item_templates[id].realmcap!=-1)
     {
         if(item_templates[id].realmcap<character.xp.current_level)
@@ -3417,6 +3448,7 @@ function load(save_data) {
             if(enemy_name == "百家近卫") add_bestiary_lines(22);
             if(enemy_name == "大门派杂役") add_bestiary_lines(23);
             if(enemy_name == "威武武士") add_bestiary_lines(24);
+            if(enemy_name == "废墟猎兵") add_bestiary_lines(25);
 
         });
     }

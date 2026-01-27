@@ -770,6 +770,16 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [1,30],
         recipe_skill: "Crafting",
     });
+    
+    crafting_recipes.items["符文工作台"] = new ItemRecipe({
+        name: "符文工作台",
+        recipe_type: "material",
+        materials: [{material_id: "海绿锭", count: 333},{material_id: "废墟符文", count: 333},{material_id:"A7·能量核心", count: 333}], 
+        result: {result_id: "符文工作台套件", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [27,45],
+        recipe_skill: "Crafting",
+    });
 })();
 //熔炼配方
 

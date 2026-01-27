@@ -191,7 +191,14 @@ class TradeItem {
         inventory_template: "Terra III",
         is_unlocked: false,
         location_name: "清野江畔",
-        profit_margin: 3.8,
+        profit_margin: 4.2,
+    });
+    traders["废墟商人"] = new Trader({
+        name: "废墟商人",
+        inventory_template: "Terra IV",
+        is_unlocked: false,
+        location_name: "声律城废墟",
+        profit_margin: 5.4,
     });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",
@@ -409,6 +416,31 @@ class TradeItem {
             
             new TradeItem({item_name: "充能剑", count: [1], quality: [111, 140], chance: 0.8}),
             new TradeItem({item_name: "充能戟", count: [1], quality: [111, 140], chance: 0.8}),
+
+    ];
+    inventory_templates["Terra IV"] = 
+    [
+            new TradeItem({item_name: "透明水晶", count: [100,250]}),
+            new TradeItem({item_name: "蓝金锭", count: [100,250]}),
+            new TradeItem({item_name: "湛蓝芦苇", count: [100,250]}),
+            new TradeItem({item_name: "A7·能量核心", count: [50,150]}),
+            new TradeItem({item_name: "水溶精华", count: [99,99]}),
+            new TradeItem({item_name: "荒兽精华", count: [99,99]}),
+            new TradeItem({item_name: "青花鱼", count: [20,50], chance: 0.8}),
+
+            
+            new TradeItem({item_name: "废墟恢复药水", count: [10,20]}),
+            new TradeItem({item_name: "废墟狂暴药水", count: [10,20]}),
+            new TradeItem({item_name: "冰柱鱼", count: [1,1],chance:0.3}),
+            new TradeItem({item_name: "废墟符文", count: [10,20],chance:0.6}),
+            new TradeItem({item_name: "绿色刀币", count: [10,20],chance:0.6}),
+
+
+
+            
+            new TradeItem({item_name: "符文工作台套件", count: [1,1]}),
+
+            
 
     ];
     inventory_templates["Box"] = 

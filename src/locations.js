@@ -2481,6 +2481,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纳家秘境"], custom_text: "赶路回到家族秘境"}], 
         description: "被D9级飞船炸为废墟的声律领主城。在混乱中蕴藏着许多有用的财宝。[V1.40前版本终点]",
         
+        traders: ["废墟商人"],
         dialogues: ["纳娜米(废墟)","声律城难民"],
         name: "声律城废墟", 
         is_unlocked: false,
@@ -2503,6 +2504,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 40e4,
+            money: 200e3,
             locations: [{location: "声律城废墟 - 2"}],
         },
     });
@@ -2522,6 +2524,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 50e4,
+            money: 400e3,
             locations: [{location: "声律城废墟 - 3"}],
         },
     }); 
@@ -2541,6 +2544,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 60e4,
+            money: 600e3,
             locations: [{location: "声律城废墟 - 4"}],
         },
     });
@@ -2560,6 +2564,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 60e4,
+            money: 800e3,
             locations: [{location: "声律城废墟 - 5"}],
         },
     });
@@ -2579,6 +2584,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 70e4,
+            money: 1e6,
             //locations: [{location: "声律城废墟 - X"}],
         },
     });
@@ -2588,6 +2594,34 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 3"]});
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 4"]});
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 5"]});
+
+    
+    locations["符文之屋"] = new Location({
+        connected_locations: [{location: locations["声律城废墟"], custom_text: "回到废墟中战斗"}],
+        description: "符文工作台套件居然还赠送箱子,床,聚能阵！真是物超所值...",
+        name: "符文之屋",
+        is_unlocked: false,
+        bgm: 10,
+        traders: ["物品存储箱"],
+        sleeping: {
+            text: "在符文之屋修炼[+1000XP/s]",
+            xp: 100
+        },
+            crafting: {
+                is_unlocked: true, 
+                use_text: "使用符文工作台[Tier+8]", 
+                tiers: {
+                    crafting: 8,
+                    forging: 8,
+                    smelting: 8,
+                    cooking: 8,
+                    alchemy: 8,
+                }
+            },
+        
+    })
+    
+    locations["声律城废墟"].connected_locations.push({location: locations["符文之屋"]});
 
 
 
