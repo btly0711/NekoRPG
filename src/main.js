@@ -2379,7 +2379,7 @@ function use_item(item_key,stated = false) {
     let used = false;
     console.log(item_templates[id])
     if(item_templates[id].spec != 0){
-        if(item_templates[id].spec == "A8-table"){
+        if(item_templates[id].spec == "T8-table"){
             //unlock 符文之屋
             unlock_location(locations["符文之屋"]);
             log_message(`随着符文工作台套件被摆下，一座小屋拔地而起。在这片废墟中，${character.name} 得到了一片温暖的港湾。`,"gather_loot")
