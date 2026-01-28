@@ -66,18 +66,19 @@ class Enemy {
             }
             
             //console.log("try to loot II");
-            if (item.chance * this.get_droprate_modifier() >= Math.random()) {
-                // checks if it should drop
-                let item_count = 1;
-                if ("count" in item) {
-                    item_count = Math.round(Math.random() * (item["count"]["max"] - item["count"]["min"]) + item["count"]["min"]);
-                    // calculates how much drops (from range min-max, both inclusive)
-                }
+            let raw_chance = item.chance * this.get_droprate_modifier() ;
+            let item_count = 0;
+            item_count = Math.floor(raw_chance);
+            let final_chance = raw_chance - item_count;
+            if (final_chance>= Math.random()) item_count ++;
+            // if ("count" in item) {
+            //     item_count = Math.round(Math.random() * (item["count"]["max"] - item["count"]["min"]) + item["count"]["min"]);
+            //     // calculates how much drops (from range min-max, both inclusive)
+            // }
                 
-                //console.log("Looted");
+            //console.log("Looted");
 
-                loot.push({ "item": getItem(item_templates[item.item_name]), "count": item_count });
-            }
+            if(item_count != 0) loot.push({ "item": getItem(item_templates[item.item_name]), "count": item_count });
         }
 
         return loot;
@@ -3479,7 +3480,7 @@ class Enemy {
         realm: "<span class=realm_terra><b>大地级八阶</b></span>",
         size: "small",
         spec: [39],
-        spec_value:{39:5000},
+        spec_value:{39:1500},
         tags: [],
         stats: {health: 3500000, attack:690000, agility: 520000, attack_speed: 1.2, defense: 410000}, 
         loot_list: [
@@ -3559,7 +3560,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.05},
             {item_name: "殿堂黄宝石", chance:0.02},
-            {item_name: "废墟精华", chance:0.11},//16Z
+            {item_name: "绿色刀币", chance:0.02},//16Z
         ],
     });
     enemy_templates["废墟飞鸟"] = new Enemy({
@@ -3589,13 +3590,14 @@ class Enemy {
         realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
         size: "small",
         spec: [39],
-        spec_value:{39:15000},
+        spec_value:{39:5000},
         tags: [],
         stats: {health: 6500000, attack:990000, agility: 800000, attack_speed: 1.2, defense: 710000}, 
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
-            {item_name: "废墟狂暴药水", chance:0.05},
+            {item_name: "废墟狂暴药水", chance:0.025},
+            {item_name: "绿色刀币", chance:0.01},
             //16Z
         ],
     });
@@ -3614,7 +3616,8 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
-            {item_name: "废墟符文", chance:0.14},
+            {item_name: "废墟符文", chance:0.06},
+            {item_name: "绿色刀币", chance:0.01},
             //16Z
         ],
     });
@@ -3950,6 +3953,22 @@ class Enemy {
         stats: {health: 22000000, attack:560000, agility: 270000, attack_speed: 1.2, defense: 90000}, 
         loot_list: [
         ],
+    });
+
+    
+    enemy_templates["废墟追光者[BOSS]"] = new Enemy({
+        name: "废墟追光者[BOSS]", 
+        description: "正面打大概是要被追光给暴揍的。但是，追光只有3段伤害~", 
+        xp_value: 46368, 
+        rank: 2599,
+        image: "image/boss/B2501.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [23,40],
+        spec_value:{},
+        tags: [],
+        stats: {health: 102000000, attack:1600000, agility: 800000, attack_speed: 1.0, defense: 520000}, 
+        loot_list: [],
     });
 
     enemy_templates["Village guard (heavy)"] = new Enemy({

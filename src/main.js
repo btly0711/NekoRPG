@@ -305,6 +305,7 @@ const musicList = {
   8: 'bgms/8.mp3',
   9: 'bgms/9.mp3',
   10: 'bgms/10.mp3',
+  11: 'bgms/11.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -843,7 +844,7 @@ function start_textline(textline_key){
         
         if(textline.unlocks.spec == "A6-check"){
             displayed_text += `当前的灵阵强度是 ${inf_combat.A6.cur}层 , <br>上限是 ${inf_combat.A6.cap}层！`;
-            displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,2)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%`;
+            displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,1)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%`;
         }   
         if(textline.unlocks.spec == "A6-up"){
             if(inf_combat.A6.cur < inf_combat.A6.cap){
@@ -1059,10 +1060,10 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
             do_enemy_combat_action(enemy_id,"[绝世]"+Spec_S,0.9,1);//绝世(0.9x5连击)
             }
         }
-        if(current_enemies[enemy_id].spec.includes(40))//追光(25x6连击)
+        if(current_enemies[enemy_id].spec.includes(40))//追光(50x3连击)
         {
-            for(let cb=1;cb<=6;cb++) if(current_enemies != null){
-                do_enemy_combat_action(enemy_id,"[追光]"+Spec_S,1,25);
+            for(let cb=1;cb<=3;cb++) if(current_enemies != null){
+                do_enemy_combat_action(enemy_id,"[追光]"+Spec_S,1,50);
             }
         }
     }
@@ -1387,10 +1388,11 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
 
-    if(hit_chance < Math.random()) { //EVADED ATTACK
+    if(hit_chance < Math.random() && spec_mul < 25) { //EVADED ATTACK
         log_message(character.name + " 闪避了一次攻击", "enemy_missed");
         return; //damage fully evaded, nothing more can happen
     }
+    //目前25倍以上攻击是必中状态。
 
     if(enemy_crit_chance > Math.random())
     {
@@ -4071,7 +4073,28 @@ function gem_consume(){
     update_character_stats();
 }
 
+function get_money(coin_type,coin_num)
+{
+    let value = 1000**coin_type * coin_num;
+    if(character.money < value)
+    {
+        log_message(`余额不足! (${format_money(character.money)} / ${format_money(value)})`,"activity_money");
+    }
+    else
+    {
+        log_message(`钱包: ${format_money(character.money)} -> ${format_money(character.money - value)} `,"activity_money");
+        character.money -= value;
+        let coin_map = {1:"红色刀币",2:"黑色刀币",3:"绿色刀币"}
+        let coin = coin_map[coin_type];
+        log_message(`获取了 ${coin} x ${coin_num} !`,"combat_loot");
+        add_to_character_inventory([{ "item": getItem(item_templates[coin]), "count": coin_num }]);
+        update_displayed_character_inventory();
+        update_displayed_money();
+    }
+}
+
 window.gem_consume = gem_consume;
+window.get_money = get_money;
 
 window.equip_item = character_equip_item;
 window.unequip_item = character_unequip_item;

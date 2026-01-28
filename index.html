@@ -718,7 +718,7 @@
                         <div id = "journal_show_quests" class = "journal_control_button" onclick = "showQuests()"> 心之境界 </div>
                         <div id = "journal_show_bestiary" class = "journal_control_button active_selection_button" onclick = "showBestiary()"> 怪物手册 </div>
                         <div id = "journal_show_levelary" class = "journal_control_button" onclick = "showLevelary()"> 楼层手册 </div>
-                        <div id = "journal_show_data" class = "journal_control_button" onclick = "showData()"> 统计 </div>
+                        <div id = "journal_show_data" class = "journal_control_button" onclick = "showData()"> 统计/银行 </div>
                     </div>
                     <div id = "quests_box_div">
                         <div id = "quests_header">
@@ -745,6 +745,27 @@
                                 <div id = "character_xp_multiplier" class="data_entry"></div>
                                 <div id = "skills_xp_multiplier" class="data_entry"></div>
                             </div>
+                            
+                            <div id = "data_bank">
+                                
+                                <br><b>燕岗银行 - 提现</b><br>
+                                <div id = "data_bankX" class="data_entry">
+                                        <span class="coin coin_moneyK money_button" onclick = "get_money(1,1)">[1  X]</span>
+                                        <span class="coin coin_moneyK money_button" onclick = "get_money(1,10)">[10 X]</span>
+                                        <span class="coin coin_moneyK money_button" onclick = "get_money(1,100)">[100X]</span>
+                                </div>
+                                <div id = "data_bankZ" class="data_entry">
+                                        <span class="coin coin_moneyM money_button" onclick = "get_money(2,1)">[1  Z]</span>
+                                        <span class="coin coin_moneyM money_button" onclick = "get_money(2,10)">[10 Z]</span>
+                                        <span class="coin coin_moneyM money_button" onclick = "get_money(2,100)">[100Z]</span>
+                                </div>
+                                <div id = "data_bankD" class="data_entry">
+                                        <span class="coin coin_moneyB money_button" onclick = "get_money(3,1)">[1  D]</span>
+                                        <span class="coin coin_moneyB money_button" onclick = "get_money(3,10)">[10 D]</span>
+                                        <span class="coin coin_moneyB money_button" onclick = "get_money(3,100)">[100D]</span>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -1345,7 +1366,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.43";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.50";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

@@ -234,6 +234,10 @@ body {
 	left: 300px;
  }
 
+ #data_bank {
+	height: 235px;
+ }
+
  @media only screen and (max-height: 857px) {
 	#options_panel {
 		position: absolute;
@@ -555,6 +559,17 @@ body {
 	position:relative;
 	text-align: right;
 	float: right;
+}
+.money_button {
+	display: inline-block;
+	width: 48px;
+	cursor: pointer;
+	font-size: 16px;
+	top:0px;
+	left:4px;
+	position:relative;
+	text-align: left;
+	float: left;
 }
 .recipe_10_button {
 	display: var(--item_use_button_display);
@@ -1505,6 +1520,8 @@ i {
 					.enemy_health_value {
 						position: relative;
 						top: -18px;
+						height:16px;
+						line-height: 16px !important;
 						width: 100%;
 						text-align: center;
 					}

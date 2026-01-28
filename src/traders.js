@@ -432,8 +432,7 @@ class TradeItem {
             new TradeItem({item_name: "废墟恢复药水", count: [10,20]}),
             new TradeItem({item_name: "废墟狂暴药水", count: [10,20]}),
             new TradeItem({item_name: "冰柱鱼", count: [1,1],chance:0.3}),
-            new TradeItem({item_name: "废墟符文", count: [10,20],chance:0.6}),
-            new TradeItem({item_name: "绿色刀币", count: [10,20],chance:0.6}),
+            new TradeItem({item_name: "废墟精华", count: [16,32]}),
 
 
 

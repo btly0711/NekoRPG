@@ -3321,7 +3321,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.0e9,
         component_tier: 8,
         full_armor_name: "海绿头盔",
-        defense_value: 36000,
+        defense_value: 18000,
         stats: {
             attack_mul: {
                 flat: 0.02,
@@ -3335,7 +3335,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.7e9,
         component_tier: 8,
         full_armor_name: "海绿胸甲",
-        defense_value: 48000,
+        defense_value: 24000,
         stats: {
             attack_mul: {
                 flat: 0.02,
@@ -3349,7 +3349,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.7e9,
         component_tier: 8,
         full_armor_name: "海绿腿甲",
-        defense_value: 48000,
+        defense_value: 24000,
         stats: {
             attack_mul: {
                 flat: 0.02,
@@ -3363,7 +3363,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1.35e9,
         component_tier: 8,
         full_armor_name: "海绿战靴",
-        defense_value: 24000,
+        defense_value: 12000,
         stats: {
             attack_mul: {
                 flat: 0.02,

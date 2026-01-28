@@ -201,7 +201,7 @@ class Combat_zone {
                     },
                     loot_list: f_enemy.loot_list,
                     image: f_enemy.image,
-                    loot_multi: Math.pow(f_halo,2),
+                    loot_multi: f_halo,
                     add_to_bestiary: f_enemy.add_to_bestiary,
                     size: f_enemy.size
                 });
@@ -2479,7 +2479,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["声律城废墟"] = new Location({ 
         connected_locations: [{location: locations["纳家秘境"], custom_text: "赶路回到家族秘境"}], 
-        description: "被D9级飞船炸为废墟的声律领主城。在混乱中蕴藏着许多有用的财宝。[V1.40前版本终点]",
+        description: "被D9级飞船炸为废墟的声律领主城。在混乱中蕴藏着许多有用的财宝。",
         
         traders: ["废墟商人"],
         dialogues: ["纳娜米(废墟)","声律城难民"],
@@ -2585,8 +2585,25 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 70e4,
             money: 1e6,
-            //locations: [{location: "声律城废墟 - X"}],
+            locations: [{location: "声律城废墟 - X"}],
         },
+    });
+    locations["声律城废墟 - X"] = new Challenge_zone({
+        description: "...露头就秒？！如果可以看到这段话，相信你已经找到破解的办法了。", 
+        enemy_count: 1, 
+        enemies_list : [["废墟追光者[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "声律城废墟 - X",
+        bgm:10,
+        parent_location: locations["声律城废墟"],
+        repeatable_reward: {
+            money: 1e9,
+            locations: [{location: "声律城战场" }],
+        },
+        unlock_text: "竟然有一只大地级巅峰的影子荒兽拦路……<br>那就用它，来检验我这段时间的进步吧。",
     });
     locations["纳家秘境"].connected_locations.push({location: locations["声律城废墟"]});
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 1"]});
@@ -2594,6 +2611,17 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 3"]});
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 4"]});
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 5"]});
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - X"]});
+    
+    locations["声律城战场"] = new Location({ 
+        connected_locations: [{location: locations["声律城废墟"], custom_text: "返回声律城中"}], 
+        description: "声律城郊外的混战战场。无需恋战，目标是B9飞船！[V1.50前版本终点]",
+        
+        name: "声律城战场", 
+        is_unlocked: false,
+        bgm: 11,
+    });//2-5
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城战场"]});
 
     
     locations["符文之屋"] = new Location({
