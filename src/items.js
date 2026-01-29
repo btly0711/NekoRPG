@@ -3514,7 +3514,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "另一种结界湖鱼类。因为贪吃的食性而较为灵活，同等境界下需要费一番功夫才能捕捉。", 
         value: 84e6,
         effects: [{effect: "饱食 VI", duration: 90}],
-        realmcap:17,
+        realmcap:18,
         image: "image/item/cyan_fish.png",
     });
     item_templates["冰柱鱼"] = new UsableItem({
@@ -3627,7 +3627,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "A9·魔攻药剂", 
         description: "提供10%魔攻，代价是普攻倍率-10%。", 
         value: 240e6,
-        realmcap:17,
+        realmcap:18,
         effects: [{effect: "魔攻 A9", duration: 120}],
         image: "image/item/A9_magic.png",
     });
@@ -3635,7 +3635,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "A9·牵制药剂", 
         description: "提供60%效果的牵制，上限为3倍增伤。", 
         value: 240e6,
-        realmcap:17,
+        realmcap:18,
         effects: [{effect: "牵制 A9", duration: 120}],
         image: "image/item/A9_contain.png",
     });
@@ -3643,7 +3643,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "A9·回风药剂", 
         description: "可以进行0.8,1.2两段不对等打击，代价是1%流血效果。", 
         value: 240e6,
-        realmcap:17,
+        realmcap:18,
         effects: [{effect: "回风 A9", duration: 120}],
         image: "image/item/A9_rewind.png",
     });
@@ -3651,7 +3651,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "A9·坚固药剂", 
         description: "将每回合受到伤害限制在生命上限的5%，代价是1%流血效果。", 
         value: 240e6,
-        realmcap:17,
+        realmcap:18,
         effects: [{effect: "坚固 A9", duration: 120}],
         image: "image/item/A9_hard.png",
     });
@@ -3661,14 +3661,14 @@ item_templates["Twist liek a snek"] = new Book({
         description: "兰陵城探险者常备的药剂。", 
         value: 180e6,
         effects: [{effect: "恢复 A8", duration: 60}],
-        realmcap:18,
+        realmcap:21,
         image: "image/item/A8_medicine.png",
     });
     item_templates["废墟狂暴药水"] = new UsableItem({
         name: "废墟狂暴药水", 
         description: "兰陵城探险者常备的药剂。为了抢两颗宝石，也太拼了...", 
         value: 360e6,
-        realmcap:18,
+        realmcap:21,
         effects: [{effect: "强化 A8", duration: 30},{effect: "虚弱", duration: 90}],
         image: "image/item/A8_booster.png",
     });

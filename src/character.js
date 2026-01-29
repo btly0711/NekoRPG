@@ -133,6 +133,7 @@ character.get_xp_bonus = function(){
         return (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1);
 }
 character.get_hero_realm = function(){
+        if(character.xp.current_level >= 18) return character.xp.current_level - 1;//大地级破限记为巅峰。
         return character.xp.current_level;
 }
 character.upgrade_effects = function(lvl){
@@ -182,6 +183,14 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                                 return `<b>被<span class="realm_terra">大地级瓶颈</span>限制 - 经验已锁定</b>`
                         }
                         else character.upgrade_effects(9);
+                }
+                if(character.xp.current_level == 18){
+                        //character.xp.total_xp -= character.xp.current_xp - 99999999 ;
+                        if(ignore_cap <= 1){
+                                character.xp.current_xp = 9999.9999e8;
+                                return `<b>被<span class="realm_sky">天空级瓶颈</span>限制 - 经验已锁定</b>`
+                        }
+                        //否则进入突破计划！
                 }
                 character.xp.current_level += 1;
                 //console.log("大地级瓶颈 Error");

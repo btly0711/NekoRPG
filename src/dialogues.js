@@ -1175,6 +1175,32 @@ class Textline {
             }),
         }
     });
+    
+    dialogues["心魔(战场)"] = new Dialogue({
+        name: "心魔(战场)",
+        starting_text: "停下来，稳定心神",
+        textlines: {
+            "zc1": new Textline({ 
+                is_unlocked: true,
+                name: "刚出城就有刺鼻的血腥味传来……好难受。",
+                text: "只这一个天外来客，<br>便造成这么多的强者陨落。<br>我必须保持清醒，不能制造无谓的杀戮。<br>不然……只会在这条路上越走越远。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "心魔(战场)", lines: ["zc2"]}],
+                    locations: ["声律城战场 - 1"],
+                },
+                
+                locks_lines: ["zc1"],
+            }),
+            "zc2": new Textline({ 
+                is_unlocked: false,
+                name: "……(检查过往的经历)",
+                text: "",
+                unlocks: {
+                    spec: "A8-killcount",
+                },
+            }),
+        }
+    });
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

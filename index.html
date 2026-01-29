@@ -84,8 +84,8 @@
                     <div id = "inventory_content_div"> </div>
 
                     <div id = "inventory_sorting_div" class="activable_buttons">
-                        <div id = "inventory_sort_by_name" class = "character_sorting_button active_selection_button" onclick='sortCharacterInventory("name")'> 名称排序 </div>
-                        <div id = "inventory_sort_by_price" class = "character_sorting_button" onclick='sortCharacterInventory("price")'> 价值排序 </div>
+                        <div id = "inventory_sort_by_price" class = "character_sorting_button active_selection_button" onclick='sortCharacterInventory("price")'> 价值排序 </div>
+                        <div id = "inventory_sort_by_name" class = "character_sorting_button " onclick='sortCharacterInventory("name")'> 名称排序 </div>
                     </div>
                     <div id = "inventory_control_div" class="activable_buttons">
                         <div id = "inventory_show_all" class = "inventory_control_button active_selection_button" onclick = "showAllItems()"> 全部 </div>
@@ -558,11 +558,11 @@
 
                     <div id = "trade_div">
                         <div id = "trader_sorting_buttons" class="activable_buttons"> 
-                            <div id = "trader_sort_by_name" class = "trader_sorting_button active_selection_button" onclick='sortTraderInventory("name")'>
-                                按名称排序
-                            </div>
-                            <div id = "trader_sort_by_price" class = "trader_sorting_button" onclick='sortTraderInventory("price")'>
+                            <div id = "trader_sort_by_price" class = "trader_sorting_button active_selection_button" onclick='sortTraderInventory("price")'>
                                 按价值排序
+                            </div>
+                            <div id = "trader_sort_by_name" class = "trader_sorting_button " onclick='sortTraderInventory("name")'>
+                                按名称排序
                             </div>
                         </div>
                         <div id = "trader_category_buttons" class="activable_buttons">
@@ -1366,7 +1366,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.50a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.51";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

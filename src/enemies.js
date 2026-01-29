@@ -3578,7 +3578,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
-            {item_name: "废墟精华", chance:0.12},//16Z
+            {item_name: "废墟精华", chance:0.20},//28Z
         ],
     });
     enemy_templates["兰陵城小队长"] = new Enemy({
@@ -3597,8 +3597,8 @@ class Enemy {
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "废墟狂暴药水", chance:0.025},
-            {item_name: "绿色刀币", chance:0.01},
-            //16Z
+            {item_name: "绿色刀币", chance:0.02},
+            //28Z
         ],
     });
     enemy_templates["伏地精"] = new Enemy({
@@ -3616,19 +3616,279 @@ class Enemy {
         loot_list: [
             {item_name: "极品绿宝石", chance:0.03},
             {item_name: "殿堂黄宝石", chance:0.05},
-            {item_name: "废墟符文", chance:0.06},
-            {item_name: "绿色刀币", chance:0.01},
-            //16Z
+            {item_name: "废墟符文", chance:0.08},
+            {item_name: "绿色刀币", chance:0.02},
+            //28Z
         ],
     });
 
+    //2-6
+
+
+    enemy_templates["废墟虫卒"] = new Enemy({
+        name: "废墟虫卒", 
+        description: "属(na)性(li)均(dou)衡(cai)的智慧荒兽，城郊战场的杂兵。", 
+        xp_value: 196418, 
+        rank: 2601,
+        image: "image/enemy/E2601.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2500000, attack:1080000, agility: 800000, attack_speed: 1.2, defense: 690000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+    enemy_templates["战场亡魂"] = new Enemy({
+        name: "战场亡魂", 
+        description: "似乎是13斧成员死后留下的亡魂。绝世已经退环境了...飓风和追光才是主流。", 
+        xp_value: 196418, 
+        rank: 2602,
+        image: "image/enemy/E2602.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [22],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1100000, attack:2100000, agility: 880000, attack_speed: 1.8, defense: 0}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+    enemy_templates["废墟追风者"] = new Enemy({
+        name: "废墟追风者", 
+        description: "光元素在城外的黑暗战场相当稀少。虽然风元素领悟的效力稍逊一筹，但也只能将就了。", 
+        xp_value: 196418, 
+        rank: 2603,
+        image: "image/enemy/E2603.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [16],
+        spec_value:{},
+        tags: [],
+        stats: {health: 10200000, attack:1600000, agility: 960000, attack_speed: 1.2, defense: 520000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+    
+    enemy_templates["古寒铁石精"] = new Enemy({
+        name: "古寒铁石精", 
+        description: "理论上带精的金属要高一个大等级...但考虑到铁本身不入流，铁精也不会超过A9级就是了。", 
+        xp_value: 196418, 
+        rank: 2604,
+        image: "image/enemy/E2604.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [1],
+        spec_value:{},
+        tags: [],
+        stats: {health: 10, attack:1500000, agility: 1040000, attack_speed: 1.2, defense: 1000000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+    
+    enemy_templates["暗茸茸战士"] = new Enemy({
+        name: "暗茸茸战士", 
+        description: "从血与火中杀出的阴暗茸茸。强大却后继乏力。", 
+        xp_value: 196418, 
+        rank: 2605,
+        image: "image/enemy/E2605.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 600000, attack:1440000, agility: 1040000, attack_speed: 1.2, defense: 960000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+
+    
+    enemy_templates["魔族潜行者"] = new Enemy({
+        name: "魔族潜行者", 
+        description: "抓到你喽~它出现的概率是其他敌人的两倍。", 
+        xp_value: 196418, 
+        rank: 2606,
+        image: "image/enemy/E2606.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 4480000, attack:1370000, agility: 1040000, attack_speed: 1.2, defense: 760000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+
+    enemy_templates["圣荒城骑士"] = new Enemy({
+        name: "圣荒城骑士", 
+        description: "圣荒城人永不臣服！除非包吃包住！", 
+        xp_value: 196418, 
+        rank: 2607,
+        image: "image/enemy/E2607.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [18],
+        spec_value:{18:8e9},
+        tags: [],
+        stats: {health: 3300000, attack:1360000, agility: 1100000, attack_speed: 1.2, defense: 1040000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+    enemy_templates["战场凶残暴徒"] = new Enemy({
+        name: "战场凶残暴徒", 
+        description: "与其说它凶残，不如说它靠着绝对防御的战术，抢到宝物之后就一直抓着不放了。", 
+        xp_value: 196418, 
+        rank: 2608,
+        image: "image/enemy/E2608.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1450000, attack:1530000, agility: 1200000, attack_speed: 1.2, defense: 1080000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+    enemy_templates["战场复苏骸骨"] = new Enemy({
+        name: "战场复苏骸骨", 
+        description: "和之前的骸骨不同，它仅剩下一颗头颅。虽然靠着与蠕虫的共生恢复了行动能力，但外泄的大量气息会引起周围荒兽的狂暴。", 
+        xp_value: 196418, 
+        rank: 2609,
+        image: "image/enemy/E2609.png",
+        realm: "<span class=realm_terra><b>大地级八阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1240000, attack:1700000, agility: 1200000, attack_speed: 1.2, defense: 800000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.05},
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            //28Z
+        ],
+    });
+    enemy_templates["探险者队长"] = new Enemy({
+        name: "探险者队长", 
+        description: "燕岗城的小队长。没有特殊弱点的同时，拥有强大的阵法领悟。", 
+        xp_value: 317811, 
+        rank: 2610,
+        image: "image/enemy/E2610.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [42],
+        spec_value:{},
+        tags: [],
+        stats: {health: 11250000, attack:1690000, agility: 1200000, attack_speed: 1.2, defense: 800000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.03},
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            //50Z
+        ],
+    });
+    enemy_templates["废墟荒兽"] = new Enemy({
+        name: "废墟荒兽", 
+        description: "大地级巅峰的强大荒兽。饿了几天的喵可终于有能吃的东西了——。", 
+        xp_value: 317811, 
+        rank: 2611,
+        image: "image/enemy/E2611.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [3],
+        spec_value:{},
+        tags: [],
+        stats: {health: 6250000, attack:1850000, agility: 1200000, attack_speed: 1.2, defense: 750000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.03},
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            //50Z
+        ],
+    });
+    enemy_templates["哥布林盾兵"] = new Enemy({
+        name: "哥布林盾兵", 
+        description: "你怎么长得和2-1那只那么像啊。是亲兄弟嘛...盾兵死亡率低一些，所以境界也可以累积的高一些。", 
+        xp_value: 317811, 
+        rank: 2612,
+        image: "image/enemy/E2612.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 3300000, attack:1750000, agility: 1280000, attack_speed: 1.2, defense: 1150000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.03},
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            //50Z
+        ],
+    });
+    enemy_templates["鎏银幽灵"] = new Enemy({
+        name: "鎏银幽灵", 
+        description: "流银护卫...是同种类型的存在呢。战至最后一刻——自刎归天！", 
+        xp_value: 317811, 
+        rank: 2613,
+        image: "image/enemy/E2613.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [16,36],
+        spec_value:{},
+        tags: [],
+        stats: {health: 4000000, attack:1900000, agility: 1360000, attack_speed: 1.2, defense: 1320000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.03},
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            //50Z
+        ],
+    });
+    enemy_templates["血洛老年修士"] = new Enemy({
+        name: "血洛老年修士", 
+        description: "词头是血洛耶。不会那么老的原因是花了几百年跑过了几个世界...", 
+        xp_value: 317811, 
+        rank: 2614,
+        image: "image/enemy/E2614.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 5600000, attack:1400000, agility: 1200000, attack_speed: 1.2, defense: 880000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.03},
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            //50Z
+        ],
+    });
 
     /*
-       红 绿
-八阶   5%/2%     16Z
-八阶+  3%/5%     28Z
-12'1393 / 19'6418      
-废墟飞鸟 开始算八阶+
+      黄 蓝
+八阶+ 5%/2%     28Z
+巅峰  3%/5%     50Z
+A9 31'7811   /51'4229  exp
+A9卫兵开始算巅峰+
 */    
 })();
 

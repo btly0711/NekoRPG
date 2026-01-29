@@ -85,13 +85,14 @@ window.REALMS=[
 [12,"大地级四阶",3000,1000000,4.8e8,"terra"],//200w
 [13,"大地级五阶",5000,1500000,18e8,"terra"],//350w
 [14,"大地级六阶",9000,2500000,54e8,"terra"],//600w
-[15,"大地级七阶",16000,6500000,168e8,"terra"],//1250w
-[16,"大地级八阶",32000,17500000,640e8,"terra"],//3000w以下未平衡
-[17,"大地级巅峰",60000,50000000,9.2233e18+3333e8,"terra"],
+[15,"大地级七阶",16000,6500000,120e8,"terra"],//1250w
+[16,"大地级八阶",32000,12500000,240e8,"terra"],//2500w
+[17,"大地级巅峰",60000,2250000,540e8,"terra"],
+[18,"大地级破限",150000,32500000,1080e8,"terra"],
 
-[18,"天空级一阶",150000,1.2e8,9999e8,"sky"],//2e
-[19,"天空级二阶",500000,3e8,4.5e12,"sky"],//5e
-[20,"天空级三阶",1500000,15e8,18e12,"sky"],//20e
+[19,"天空级一阶",150000,1.2e8,9999e8,"sky"],//2e
+[20,"天空级二阶",500000,3e8,4.5e12,"sky"],//5e
+[21,"天空级三阶",1500000,15e8,18e12,"sky"],//20e
 
 ];
 //境界，X级存储了该等级的数据
@@ -741,6 +742,20 @@ function end_dialogue() {
 function reload_normal_location() {
     update_displayed_normal_location(current_location);
 }
+function get_enemy_killcount(){
+    let bestiary_div =document.getElementById("bestiary_list");
+    let bestiary_childs = bestiary_div.querySelectorAll('.bestiary_entry_div');
+    let K_sum = 0;
+    let K_num;
+    bestiary_childs.forEach((div, index) => {
+        K_num = div.children[1].innerHTML;
+        if(K_num[0] != '<')
+        {
+            K_sum += Number(K_num);
+        }
+    });
+    return K_sum;
+}
 
 /**
  * 
@@ -820,10 +835,10 @@ function start_textline(textline_key){
         {   
             displayed_text = "如今也算是历经了" + format_number(total_deaths)  + "次生死呢，<br>也知道了父亲大人的话是什么意思。";
         }
-        if(textline.unlocks.spec == "Realm-A3"){   
+        else if(textline.unlocks.spec == "Realm-A3"){   
             displayed_text = `……<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>？！` ;
         }
-        if(textline.unlocks.spec == "Realm-A4"){   
+        else if(textline.unlocks.spec == "Realm-A4"){   
             let a4_realm = character.xp.current_level;
             if(a4_realm >= 12) displayed_text = `都到大地级中期了还不去？<br>再这样出去别说你是我女儿！<br>` ;
             else displayed_text = `你的自创剑法，<br>足以令你发挥出超过大地级五阶的实力。<br>` ;
@@ -841,32 +856,29 @@ function start_textline(textline_key){
             add_xp_to_character(Math.sqrt(T*1e10),false);
             update_displayed_time();
         }
-        
-        if(textline.unlocks.spec == "A6-check"){
+        else if(textline.unlocks.spec == "A6-check"){
             displayed_text += `当前的灵阵强度是 ${inf_combat.A6.cur}层 , <br>上限是 ${inf_combat.A6.cap}层！`;
             displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,1)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%`;
         }   
-        if(textline.unlocks.spec == "A6-up"){
+        else if(textline.unlocks.spec == "A6-up"){
             if(inf_combat.A6.cur < inf_combat.A6.cap){
                 inf_combat.A6.cur++;
                 displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
-                //TODO:更改实际战斗信息
             }
             else{
                 displayed_text += `灵阵功率已达当前上限...<br>想要继续提高的话，先重新清理敌人吧。`;
             }
         }   
-        if(textline.unlocks.spec == "A6-down"){
+        else if(textline.unlocks.spec == "A6-down"){
             if(inf_combat.A6.cur > 6){
                 inf_combat.A6.cur--;
                 displayed_text += `功率降低！当前强度：${inf_combat.A6.cur+1} -> ${inf_combat.A6.cur}`;
-                //TODO:更改实际战斗信息
             }
             else{
                 displayed_text += `如果想要少于五层的灵阵，直接去前面的区域就好了...`;
             }
         }  
-        if(textline.unlocks.spec == "A7-begin"){
+        else if(textline.unlocks.spec == "A7-begin"){
             let age=Math.round(current_game_time.year - 1359 + (current_game_time.era-31698)*10081);
             displayed_text += `能在<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>的境界 , <br>${age}岁的年龄，<br>走到结界湖这里，你已经是非常优秀的纳家后人。`;
 
@@ -879,9 +891,19 @@ function start_textline(textline_key){
             else if(age >= 50) displayed_text += `诶，多少岁...算了啦。<br>有领悟在，什么时候开始都不迟！<br>`;
             
         }
-        if(textline.unlocks.spec == "A7-exp"){
+        else if(textline.unlocks.spec == "A7-exp"){
             add_xp_to_skill({skill: skills["Stance mastery"], xp_to_add: 9.999e11});
             displayed_text += `<br><br> 获取了9999亿【秘法精通】经验值。`;
+        }
+        else if(textline.unlocks.spec == "A8-killcount"){
+            let killcount = get_enemy_killcount();
+            displayed_text += `目前为止，${character.name} <br>已经制造了 ${killcount} 份杀戮。<br><br>`;
+            if(killcount < 5e4) displayed_text += `可以在这样的世界中，<br>不造下无谓的杀戮，<br>${character.name} 即使在整个燕岗领中<br>，也是最无瑕的大地级后期强者之一了。`;
+            else if(killcount < 2e5) displayed_text += `在残酷的血洛大陆上，<br>弱肉强食无可厚非。<br>只要问心无愧，<br>敌人们就只是前进路上的踏板。`;
+            else if(killcount < 1e6) displayed_text += `每当冰冷的敌人化作温暖的<br><b>宝石，刀币与价值点，</b><br>${character.name}就感到一股暖流从心中升起。<br>多多杀戮或许在遥远的未来可以促进吸收血洛晶，<br>但更重要的还是不要因杀意失去了理智。`;
+            else{
+                displayed_text += `纯洁的${character.name}<br>善良的${character.name}<br>乖孩子${character.name}<br>这是一场游戏<br>让我看看你到底能够<br>堕落的多么肮脏呢`;
+            }
         }
     }
 
@@ -1113,6 +1135,21 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                     else if(E_round == 6)
                     {
                         do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
+                    }
+                }
+                if(current_enemies[enemy_id].spec.includes(142) && current_enemies != null)//斩阵
+                {
+                    if(E_round == 5)
+                    {
+                        do_enemy_combat_action(enemy_id,"[圣阵·一元]"+Spec_S,3);
+                    }
+                    else if(E_round == 10)
+                    {
+                        do_enemy_combat_action(enemy_id,"[圣阵·两仪]"+Spec_S,9);
+                    }
+                    else if(E_round == 20)
+                    {
+                        do_enemy_combat_action(enemy_id,"[圣阵·三相]"+Spec_S,27);
                     }
                 }
                 if(current_enemies[enemy_id].spec.includes(20) && current_enemies != null){//天剑
@@ -1356,8 +1393,13 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     }
 
     if(attacker.spec.includes(7)) spec_mul *= 1.5;//撕裂
+    
 
     let E_atk_mul_f = E_atk_mul;
+    if(attacker.spec.includes(42) && E_atk_mul != 1)
+    {
+        E_atk_mul_f *= (character.stats.full.attack_power + character.stats.full.defense + attacker.stats.defense + attacker.stats.defense) / attacker.stats.attack //圣阵
+    } 
     if(attacker.spec.includes(13) && E_atk_mul == 0)//标记
     {
         //console.log(attacker.stats);
@@ -1388,7 +1430,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
 
-    if(hit_chance < Math.random() && spec_mul < 25) { //EVADED ATTACK
+    if((hit_chance < Math.random()) && (spec_mul * E_atk_mul_f) < 25) { //EVADED ATTACK
         log_message(character.name + " 闪避了一次攻击", "enemy_missed");
         return; //damage fully evaded, nothing more can happen
     }
@@ -1779,6 +1821,7 @@ function kill_enemy(target) {
             else if(target.name == "大门派杂役") add_bestiary_lines(23);
             else if(target.name == "威武武士") add_bestiary_lines(24);
             else if(target.name == "废墟猎兵") add_bestiary_lines(25);
+            else if(target.name == "废墟虫卒") add_bestiary_lines(26);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -1944,7 +1987,7 @@ function add_xp_to_character(xp_to_add, should_info = true, use_bonus,ingore_cap
             log_message(level_up, "level_up");
         }
         //console.log(level_up);
-        if(!level_up.includes("大地级瓶颈")) character.stats.full.health = character.stats.full.max_health; //free healing on level up, because it's a nice thing to have
+        if(!level_up.includes("瓶颈")) character.stats.full.health = character.stats.full.max_health; //free healing on level up, because it's a nice thing to have
         update_character_stats();
     }
 
@@ -3451,6 +3494,7 @@ function load(save_data) {
             if(enemy_name == "大门派杂役") add_bestiary_lines(23);
             if(enemy_name == "威武武士") add_bestiary_lines(24);
             if(enemy_name == "废墟猎兵") add_bestiary_lines(25);
+            if(enemy_name == "废墟虫卒") add_bestiary_lines(26);
 
         });
     }
@@ -4219,7 +4263,7 @@ function add_all_stuff_to_inventory(){
 //add_all_stuff_to_inventory();
 
 update_displayed_equipment();
-sort_displayed_inventory({sort_by: "name", target: "character"});
+sort_displayed_inventory({sort_by: "price", target: "character"});
 
 run();
 

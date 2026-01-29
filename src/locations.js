@@ -2611,12 +2611,12 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 3"]});
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 4"]});
     locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - 5"]});
-    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - X"]});
+    locations["声律城废墟"].connected_locations.push({location: locations["声律城废墟 - X"], custom_text:"挑战拦路的[追光]影子荒兽"});
     
     locations["声律城战场"] = new Location({ 
         connected_locations: [{location: locations["声律城废墟"], custom_text: "返回声律城中"}], 
         description: "声律城郊外的混战战场。无需恋战，目标是B9飞船！[V1.50前版本终点]",
-        
+        dialogues: ["心魔(战场)"],
         name: "声律城战场", 
         is_unlocked: false,
         bgm: 11,
@@ -2651,6 +2651,110 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["声律城废墟"].connected_locations.push({location: locations["符文之屋"]});
 
+
+    locations["声律城战场 - 1"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城外战场，杀戮与抢夺屡见不鲜。", 
+        enemy_count: 20, 
+        enemies_list: ["废墟飞鸟","兰陵城小队长","伏地精","废墟虫卒","战场亡魂"],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城战场 - 1",
+        rank:151, 
+        bgm:11,
+        parent_location: locations["声律城战场"],
+        first_reward: {
+            xp: 240e4,
+        },
+        repeatable_reward: {
+            xp: 80e4,
+            locations: [{location: "声律城战场 - 2"}],
+        },
+    });
+    
+    locations["声律城战场 - 2"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城外战场，杀戮与抢夺屡见不鲜。", 
+        enemy_count: 20, 
+        enemies_list: ["废墟虫卒","战场亡魂","废墟追风者","古寒铁石精","暗茸茸战士"],
+        enemy_group_size: [2.25,3.25],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城战场 - 2",
+        rank:152, 
+        bgm:11,
+        parent_location: locations["声律城战场"],
+        first_reward: {
+            xp: 270e4,
+        },
+        repeatable_reward: {
+            xp: 90e4,
+            locations: [{location: "声律城战场 - 3"}],
+        },
+    });
+    locations["声律城战场 - 3"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城外战场，杀戮与抢夺屡见不鲜。", 
+        enemy_count: 20, 
+        enemies_list: ["古寒铁石精","暗茸茸战士","魔族潜行者","魔族潜行者","圣荒城骑士","战场凶残暴徒"],
+        enemy_group_size: [2.5,3.5],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城战场 - 3",
+        rank:153, 
+        bgm:11,
+        parent_location: locations["声律城战场"],
+        first_reward: {
+            xp: 300e4,
+        },
+        repeatable_reward: {
+            xp: 100e4,
+            locations: [{location: "声律城战场 - 4"}],
+        },
+    });
+    locations["声律城战场 - 4"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城外战场，杀戮与抢夺屡见不鲜。", 
+        enemy_count: 20, 
+        enemies_list: ["圣荒城骑士","战场凶残暴徒","探险者队长","废墟荒兽","哥布林盾兵"],
+        enemy_group_size: [2.75,3.75],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城战场 - 4",
+        rank:154, 
+        bgm:11,
+        parent_location: locations["声律城战场"],
+        first_reward: {
+            xp: 360e4,
+        },
+        repeatable_reward: {
+            xp: 120e4,
+            locations: [{location: "声律城战场 - 5"}],
+        },
+    });
+    locations["声律城战场 - 5"] = new Combat_zone({
+        description: "被D9飞船摧毁的声律城外战场，杀戮与抢夺屡见不鲜。", 
+        enemy_count: 20, 
+        enemies_list: ["战场复苏骸骨","探险者队长","哥布林盾兵","鎏银幽灵","血洛老年修士"],
+        enemy_group_size: [3,3],
+        types: [],
+        is_unlocked: false, 
+        name: "声律城战场 - 5",
+        rank:155, 
+        enemy_stat_halo:0.2,
+        bgm:11,
+        parent_location: locations["声律城战场"],
+        first_reward: {
+            xp: 450e4,
+        },
+        repeatable_reward: {
+            xp: 150e4,
+            //locations: [{location: "声律城战场 - X"}],
+        },
+    });
+
+    locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 1"]});
+    locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 2"]});
+    locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 3"]});
+    locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 4"]});
+    locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 5"]});
 
 
 

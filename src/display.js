@@ -810,7 +810,7 @@ function sort_displayed_inventory({sort_by = "name", target = "character", chang
                     trader_inventory_sorting_direction = "asc";
                 }
             } else {
-                if(sort_by === "price") {
+                if(sort_by === "name") {
                     trader_inventory_sorting_direction = "desc";
                 } else {
                     trader_inventory_sorting_direction = "asc";
@@ -819,8 +819,8 @@ function sort_displayed_inventory({sort_by = "name", target = "character", chang
         }
 
         target = trader_inventory_div;
-        plus = trader_inventory_sorting_direction==="asc"?1:-1;
-        minus = trader_inventory_sorting_direction==="asc"?-1:1;
+        plus = trader_inventory_sorting_direction==="asc"?-1:1;
+        minus = trader_inventory_sorting_direction==="asc"?1:-1;
         trader_inventory_sorting = sort_by || "name";
 
     } else if(target === "character") {
@@ -832,7 +832,7 @@ function sort_displayed_inventory({sort_by = "name", target = "character", chang
                     character_inventory_sorting_direction = "asc";
                 }
             } else {
-                if(sort_by === "price") {
+                if(sort_by === "name") {
                     character_inventory_sorting_direction = "desc";
                 } else {
                     character_inventory_sorting_direction = "asc";
@@ -841,8 +841,8 @@ function sort_displayed_inventory({sort_by = "name", target = "character", chang
         }
 
         target = inventory_div;
-        plus = character_inventory_sorting_direction==="asc"?1:-1;
-        minus = character_inventory_sorting_direction==="asc"?-1:1;
+        plus = character_inventory_sorting_direction==="asc"?-1:1;
+        minus = character_inventory_sorting_direction==="asc"?1:-1;
         character_inventory_sorting = sort_by || "name";
     }
     else {
@@ -966,7 +966,7 @@ function update_displayed_trader_inventory({trader_sorting} = {}) {
         trader_inventory_div.appendChild(create_inventory_item_div({target: "trader", trade_index: i}));
     }
 
-    sort_displayed_inventory({sort_by: trader_sorting || "name", target: "trader"});
+    sort_displayed_inventory({sort_by: trader_sorting || "price", target: "trader"});
 }
 
 /**
@@ -976,7 +976,7 @@ function update_displayed_trader_inventory({trader_sorting} = {}) {
  * 
  * currently item_key is only used for books
  */
- function update_displayed_character_inventory({item_key, character_sorting="name", sorting_direction="asc", was_anything_new_added=false} = {}) {    
+ function update_displayed_character_inventory({item_key, character_sorting="price", sorting_direction="asc", was_anything_new_added=false} = {}) {    
     
     //removal of unneeded divs
     if(!item_key){
@@ -1442,6 +1442,7 @@ function update_displayed_normal_location(location) {
             return lines_available;
         }
     });
+    console.log(available_dialogues);
 
     if(available_dialogues.length > 2) {
         //there's multiple -> add a choice to location actions that will show all available dialogues        
@@ -1594,21 +1595,34 @@ function create_location_choices({location, category, add_icons = true, is_comba
             if(!dialogues[location.dialogues[i]].is_unlocked || dialogues[location.dialogues[i]].is_finished) { //skip if dialogue is not available
                 continue;
             } 
+            let lines_available = false;
+            Object.keys(dialogues[location.dialogues[i]].textlines).forEach(line =>{
+                console.log(dialogues[location.dialogues[i]].textlines[line]);
+                if(lines_available) {
+                    return;
+                } else {
+                   lines_available = dialogues[location.dialogues[i]].textlines[line].is_unlocked && !dialogues[location.dialogues[i]].textlines[line].is_finished;
+                }
+            })
 
-            const lines_available = location.dialogues.filter(dialogue => {
-                    let lines_available = false;
-                    Object.keys(dialogues[dialogue].textlines).forEach(line => {
-                        if(lines_available) {
-                            return;
-                        } else {
-                            lines_available = dialogues[dialogue].textlines[line].is_unlocked && !dialogues[dialogue].textlines[line].is_finished;
-                        }
-                    });
-                    return lines_available;
-            }).length > 0;
+            // const lines_available = location.dialogues.filter(dialogue => {
+            //         let lines_available = false;
+            //         Object.keys(dialogues[dialogue].textlines).forEach(line => {
+            //             console.log(dialogues[dialogue].textlines[line]);
+            //             if(lines_available) {
+            //                 return;
+            //             } else {
+            //                 lines_available = dialogues[dialogue].textlines[line].is_unlocked && !dialogues[dialogue].textlines[line].is_finished;
+            //             }
+            //         });
+            //         return lines_available;
+            // }).length > 0;
             if(!lines_available) {
                 continue;
             }
+
+
+            console.log(lines_available)
             
             const dialogue_div = document.createElement("div");
     
@@ -3503,6 +3517,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [39, "贪婪·宝石", "#50dfe6",function(enemy){return `这个敌人似乎对宝石十分敏感。<br>角色每在[心之境界-一重]拥有${format_number(enemy.spec_value[39])}价值点<br>,该敌人伤害减少<span style='color:#87CEFA'>1%</span>.`}],
 [40, "追光", "#ecff17", "光元素领悟。这个敌人快得恍若一道照亮世界的光。<br>敌人首先发动一次敌人首先发动3段<span style='color:#87CEFA'>50倍伤害</span>的<span style='color:#FFFF00'>必中攻击</span>。"],
 [41, "召唤", "#f5deb3", "群居生物同心协力的体现。敌人刷新时，额外刷新3只【紫锈胎人】。"],
+[42, "圣阵", "#d9964a", "才德全尽谓之圣人，十圆无缺谓之圣阵。<br>敌人布下圣阵，在战斗进行到第<span style='color:#87CEFA'>五、十、二十</span>回合时，分别对角色造成<span style='color:#87CEFA'>3倍、9倍、27倍</span>角色与敌人攻防之和的穿透伤害。"],
 ];
 
 //超过25倍倍率的攻击暂时视为必中！
