@@ -133,18 +133,17 @@ const equipment_slots_divs = {head: document.getElementById("head_slot"), torso:
 };
 
 const rarity_colors = {
-    trash: "lightgray",
-    common: "white",
-    uncommon: "lightgreen",
-    rare: "lightblue",
-    epic: "plum",
-    legendary: "pink",
-    mythical: "orange",
-    transdental: "cyan",
-    celestial: "blue",
-    antique: "lime",
-    flawless: "red",
-
+    trash: "rarity_trash",
+    common: "rarity_common",
+    uncommon: "rarity_uncommon",
+    rare: "rarity_rare",
+    epic: "rarity_epic",
+    legendary: "rarity_legendary",
+    mythical: "rarity_mythical",
+    transdental: "rarity_transdental",
+    celestial: "rarity_celestial",
+    antique: "rarity_antique",
+    flawless: "rarity_flawless",
 }
 
 const crafting_pages = {
@@ -261,9 +260,9 @@ function create_item_tooltip_content({item, options={}}) {
         if(item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special" && item.equip_slot != "realm")//disable quality
         {
             if(!options.skip_quality && options?.quality?.length == 2) {
-                item_tooltip += `<br><br><b>品质: <span style="color: ${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span style="color: ${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
+                item_tooltip += `<br><br><b>品质: <span class="${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span class="${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
             } else {
-                item_tooltip += `<br><br><b style="color: ${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
+                item_tooltip += `<br><br><b><span class="${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </span></b>`;
             }
         }
         let SkillLevelMap = {"Mining":"挖掘","Woodcutting":"砍伐","Fishing":"钓鱼"};
@@ -394,9 +393,9 @@ function create_item_tooltip_content({item, options={}}) {
         }
 
         if(!options.skip_quality && options?.quality?.length == 2) {
-            item_tooltip += `<br><br><b>品质: <span style="color: ${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span style="color: ${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
+            item_tooltip += `<br><br><b>品质: <span class="${rarity_colors[item.getRarity(options.quality[0])]}"> ${options.quality[0]}% </span> - <span class="${rarity_colors[item.getRarity(options.quality[1])]}"> ${options.quality[1]}% </span></b>`;
         } else {
-            item_tooltip += `<br><br><b style="color: ${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
+            item_tooltip += `<br><br><b class="${rarity_colors[item.getRarity(quality)]}">品质: ${quality}% </b>`;
         }
         if(item.component_tier) {
             item_tooltip += `<br>部件等级: ${item.component_tier}`;
@@ -1164,7 +1163,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;
         } else {
-            item_name_div.innerHTML = `<span class = "item_slot" >[${EquipSlotMap[target_item.equip_slot]}]</span> <span style="color: ${rarity_colors[target_item.getRarity()]}">${target_item.getName()}</span>`;
+            item_name_div.innerHTML = `<span class = "item_slot" >[${EquipSlotMap[target_item.equip_slot]}]</span> <span class="${rarity_colors[target_item.getRarity()]}">${target_item.getName()}</span>`;
         }
         item_name_div.classList.add(`${item_class}_name`);
         item_div.appendChild(item_name_div);
@@ -1179,7 +1178,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
         }
         item_control_div.dataset.item_slot = target_item.equip_slot;
     } else if(target_item.tags.component) {
-        item_name_div.innerHTML = `<span class = "item_category">[部件]</span> <span class="item_name"><span style="color: ${rarity_colors[target_item.getRarity()]}">${target_item.getName()}</span></span>`;
+        item_name_div.innerHTML = `<span class = "item_category">[部件]</span> <span class="item_name"><span class="${rarity_colors[target_item.getRarity()]}">${target_item.getName()}</span></span>`;
         item_name_div.classList.add(`${item_class}_name`);
         item_div.appendChild(item_name_div);
 

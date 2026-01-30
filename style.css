@@ -720,13 +720,13 @@ body {
 	.stat_value {
 		text-align: right;
 		display: inline-block;
-		width: 65px;
+		width: 95px;
 		line-height: 20px !important;
 	}
 
 	.stat_name {
 		display: inline-block;
-		width: 98px;
+		width: 68px;
 		padding-left: 4px;
 	}
 	.loot_name {
@@ -1166,6 +1166,52 @@ i {
 	color:#F0EA28;
 	font-weight: bold;
 }
+
+.rarity_trash{
+	color:lightgray;
+}
+.rarity_common{
+	color:white;
+}
+.rarity_uncommon{
+	color:lightgreen;
+}
+.rarity_rare{
+	color:lightblue;
+}
+.rarity_epic{
+	color:plum;
+}
+.rarity_legendary{
+	color:pink;
+	-webkit-text-stroke: 0.1px orange;
+}
+.rarity_mythical{
+	color:lightyellow;
+	-webkit-text-stroke: 0.2px red;
+}
+.rarity_transdental{
+	color:cyan;
+	-webkit-text-stroke: 0.3px white;
+}
+.rarity_celestial{
+	color:blue;
+	-webkit-text-stroke: 0.4px cyan;
+}
+.rarity_antique{
+	background: linear-gradient(to bottom right,lime,white,lime);
+	background-clip:text;
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+}
+.rarity_flawless{
+	background: linear-gradient(to bottom right,red,white,red);
+	background-clip:text;
+	-webkit-background-clip:text;
+	-webkit-text-fill-color:transparent;
+}
+
+
 
 .skill_sorting_button {
 	float:left;

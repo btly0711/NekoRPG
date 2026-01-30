@@ -3640,6 +3640,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "战场·荒兽肉块", chance:0.07},
             //28Z
         ],
     });
@@ -3658,6 +3659,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "高能凝胶", chance:0.17},
             //28Z
         ],
     });
@@ -3676,6 +3678,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "废墟符文", chance:0.1},
+            {item_name: "废墟精华", chance:0.1},
             //28Z
         ],
     });
@@ -3695,6 +3699,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "铁锭", chance:20},
+            {item_name: "精钢锭", chance:10},
             //28Z
         ],
     });
@@ -3714,6 +3720,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "高能凝胶", chance:0.10},
+            {item_name: "废墟精华", chance:0.08},
             //28Z
         ],
     });
@@ -3734,6 +3742,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "高能凝胶", chance:0.10},
+            {item_name: "绿色刀币", chance:0.02},
             //28Z
         ],
     });
@@ -3753,6 +3763,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "绿色刀币", chance:0.03},
             //28Z
         ],
     });
@@ -3771,6 +3782,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "高能织料", chance:0.14},
             //28Z
         ],
     });
@@ -3789,6 +3801,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "微花残片", chance:0.15},
+            {item_name: "A7·能量核心", chance:0.2},
             //28Z
         ],
     });
@@ -3807,6 +3821,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.03},
             {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "海绿锭", chance:0.06},
             //50Z
         ],
     });
@@ -3825,6 +3840,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.03},
             {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "战场·荒兽肉块", chance:0.10},
             //50Z
         ],
     });
@@ -3843,6 +3859,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.03},
             {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "战场·荒兽肉块", chance:0.07},
+            {item_name: "废墟精华", chance:0.10},
             //50Z
         ],
     });
@@ -3861,6 +3879,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.03},
             {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "高能凝胶", chance:0.3},
             //50Z
         ],
     });
@@ -3879,6 +3898,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.03},
             {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "绿色刀币", chance:0.04},
+            {item_name: "A7·能量核心", chance:0.16},
             //50Z
         ],
     });

@@ -3043,11 +3043,64 @@ item_templates["Twist liek a snek"] = new Book({
         description: "湛蓝芦苇编织成的内甲，通过传导能量削弱一部分敌方的攻击。", 
         value: 70e6,
         component_type: "shoes interior",
-        base_defense: 3200,
+        base_defense: 1600,
         component_tier: 6,
         stats: {
             health_regeneration_flat: {
                 flat: 2000,
+            },
+        },
+    });
+    
+    item_templates["高能帽子"] = new Armor({
+        name: "高能帽子", 
+        description: "高能织料制成的内甲，内部能量可以部分用来补充体力。", 
+        value: 360e6,
+        component_type: "helmet interior",
+        base_defense: 24000,
+        component_tier: 8,
+        stats: {
+            health_regeneration_flat: {
+                flat: 30000,
+            },
+        },
+    });
+    item_templates["高能背心"] = new Armor({
+        name: "高能背心", 
+        description: "高能织料制成的内甲，内部能量可以部分用来补充体力。", 
+        value: 480e6,
+        component_type: "chestplate interior",
+        base_defense: 32000,
+        component_tier: 8,
+        stats: {
+            health_regeneration_flat: {
+                flat: 40000,
+            },
+        },
+    });
+    item_templates["高能裤子"] = new Armor({
+        name: "高能裤子", 
+        description: "高能织料制成的内甲，内部能量可以部分用来补充体力。", 
+        value: 480e6,
+        component_type: "leg armor interior",
+        base_defense: 32000,
+        component_tier: 8,
+        stats: {
+            health_regeneration_flat: {
+                flat: 40000,
+            },
+        },
+    });
+    item_templates["苇编袜子"] = new Armor({
+        name: "苇编袜子", 
+        description: "高能织料制成的内甲，内部能量可以部分用来补充体力。", 
+        value: 240e6,
+        component_type: "shoes interior",
+        base_defense: 32000,
+        component_tier: 8,
+        stats: {
+            health_regeneration_flat: {
+                flat: 20000,
             },
         },
     });
@@ -3321,7 +3374,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.0e9,
         component_tier: 8,
         full_armor_name: "海绿头盔",
-        defense_value: 18000,
+        defense_value: 36000,
         stats: {
             attack_mul: {
                 flat: 0.02,
@@ -3335,7 +3388,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.7e9,
         component_tier: 8,
         full_armor_name: "海绿胸甲",
-        defense_value: 24000,
+        defense_value: 48000,
         stats: {
             attack_mul: {
                 flat: 0.02,
@@ -3349,7 +3402,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2.7e9,
         component_tier: 8,
         full_armor_name: "海绿腿甲",
-        defense_value: 24000,
+        defense_value: 48000,
         stats: {
             attack_mul: {
                 flat: 0.02,
@@ -3363,7 +3416,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1.35e9,
         component_tier: 8,
         full_armor_name: "海绿战靴",
-        defense_value: 12000,
+        defense_value: 24000,
         stats: {
             attack_mul: {
                 flat: 0.02,
@@ -3455,10 +3508,11 @@ item_templates["Twist liek a snek"] = new Book({
         id: "缠绕水晶",
         name: "缠绕水晶", 
         description: "模拟【缠绕骸骨】做成的剑柄部件。", 
-        value: 222.222e6,
+        value: 111e6,
         material_type: "metal",
         image: "image/item/reedy_transparent.png",
     });
+    
     item_templates["蓝金锭"] = new Material({
         id: "蓝金锭",
         name: "蓝金锭", 
@@ -3658,7 +3712,7 @@ item_templates["Twist liek a snek"] = new Book({
     
     item_templates["废墟恢复药水"] = new UsableItem({
         name: "废墟恢复药水", 
-        description: "兰陵城探险者常备的药剂。", 
+        description: "兰陵城探险者常备的药剂。似乎是用大锅炖出来的。", 
         value: 180e6,
         effects: [{effect: "恢复 A8", duration: 60}],
         realmcap:21,
@@ -3666,12 +3720,22 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["废墟狂暴药水"] = new UsableItem({
         name: "废墟狂暴药水", 
-        description: "兰陵城探险者常备的药剂。为了抢两颗宝石，也太拼了...", 
+        description: "兰陵城探险者常备的药剂。为什么用大锅炖呢...因为高能凝胶会把脆弱的炼金设备弄坏啦。", 
         value: 360e6,
         realmcap:21,
         effects: [{effect: "强化 A8", duration: 30},{effect: "虚弱", duration: 90}],
         image: "image/item/A8_booster.png",
     });
+
+    
+    item_templates["战场·荒兽肉排"] = new UsableItem({
+        name: "战场·荒兽肉排", 
+        description: "大地级后期荒兽的肉。比起鱼类，更大的优点是可以批量生产...", 
+        value: 540e6,
+        effects: [{effect: "饱食 VII", duration: 60}],
+        realmcap:21,
+        image: "image/item/A8_cooked_meat.png",
+    });//
     
 })();
 //炼金
@@ -3699,6 +3763,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "秘境芦苇的纤维被水溶精华分散，填充。传导能量，抵消攻击的能力有了巨大的提高。",
         value: 30e6,
         image: "image/item/blue_reed.png",
+    });
+    item_templates["高能织料"] = new OtherItem({
+        name: "高能织料", 
+        description: "蕴含着大量待释放能量的粘性材料，在攻击袭来时首先可以抵消一部分。",
+        value: 240e6,
+        image: "image/item/mixed_comp03.png",
     });
 })();
 
@@ -4076,6 +4146,20 @@ item_templates["Twist liek a snek"] = new Book({
         value: 144e6,
         image: "image/item/ruin_essence.png",
     });
+    
+    item_templates["高能凝胶"] = new Loot({
+        name: "高能凝胶", 
+        description: "战场灵体生物体内的黑色凝胶。汇聚了能量，有多种用途。", 
+        value: 160e6,
+        image: "image/item/warfield_rubber.png",
+    });
+    item_templates["战场·荒兽肉块"] = new Loot({
+        name: "战场·荒兽肉块", 
+        description: "虽然环境混乱不堪，但是抵达大地级后期的荒兽都拥有自我净化能力。即使是哥布林也能吃...", 
+        value: 480e6,
+        image: "image/item/A8_meat.png",
+    });
+
 
 
     //以下为打钱的东西

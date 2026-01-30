@@ -93,31 +93,9 @@ effect_templates["强化 A1"] = new ActiveEffect({
     effects: {
         stats: {
             health_regeneration_percent: {flat: 1},
-            attack_power:{flat:320},
-            defense:{flat:320},
-            agility:{flat:320},
-        }
-    }
-});
-
-effect_templates["恢复 A1"] = new ActiveEffect({
-    name: "恢复 A1",
-    effects: {
-        stats: {
-            health_regeneration_flat: {flat: 1200},
-        }
-    }
-});
-
-
-effect_templates["强化 A1"] = new ActiveEffect({
-    name: "强化 A1",
-    effects: {
-        stats: {
-            health_regeneration_percent: {flat: 1},
-            attack_power:{flat:320},
-            defense:{flat:320},
-            agility:{flat:320},
+            attack_power:{flat:1280},
+            defense:{flat:1280},
+            agility:{flat:1280},
         }
     }
 });
@@ -136,9 +114,9 @@ effect_templates["强化 A8"] = new ActiveEffect({
     effects: {
         stats: {
             health_regeneration_percent: {flat: 1},
-            attack_power:{flat:32000},
-            defense:{flat:32000},
-            agility:{flat:32000},
+            attack_power:{flat:256000},
+            defense:{flat:256000},
+            agility:{flat:256000},
         }
     }
 });
@@ -187,6 +165,20 @@ effect_templates["饱食 VI"] = new ActiveEffect({
         }
     }
 });
+
+
+effect_templates["饱食 VII"] = new ActiveEffect({
+    name: "饱食 VII",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 1200000},
+            attack_power:{flat:32000},
+            defense:{flat:32000},
+            agility:{flat:32000},
+        }
+    }
+});
+
 
 effect_templates["魔攻 A9"] = new ActiveEffect({
     name: "魔攻 A9",

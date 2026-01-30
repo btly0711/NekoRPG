@@ -1650,7 +1650,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         category: "Crafting",
         base_xp_cost: 40,
         xp_scaling: 1.5,
-        max_level: 60,
+        max_level: 999,
         get_effect_description: ()=> {
             return `基准品质 ${Math.round(2*skills["Crafting"].current_level+90)} %`;
         },
@@ -1662,7 +1662,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         category: "Crafting",
         base_xp_cost: 40,
         xp_scaling: 1.5,
-        max_level: 60,
+        max_level: 999,
     });
     skills["Forging"] = new Skill({
         skill_id: "Forging", 
@@ -1671,7 +1671,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         category: "Crafting",
         base_xp_cost: 40,
         xp_scaling: 1.5,
-        max_level: 60,
+        max_level: 999,
         get_effect_description: ()=> {
             return `基准品质 ${Math.round(2*skills["Forging"].current_level+90)} %`;
         },
@@ -1683,7 +1683,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         category: "Crafting",
         base_xp_cost: 40,
         xp_scaling: 1.5,
-        max_level: 60,
+        max_level: 999,
     });
     skills["Alchemy"] = new Skill({
         skill_id: "Alchemy", 
@@ -1692,7 +1692,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         category: "Crafting",
         base_xp_cost: 40,
         xp_scaling: 1.5,
-        max_level: 60,
+        max_level: 999,
     });
 })();
 
