@@ -3091,8 +3091,8 @@ item_templates["Twist liek a snek"] = new Book({
             },
         },
     });
-    item_templates["苇编袜子"] = new Armor({
-        name: "苇编袜子", 
+    item_templates["高能袜子"] = new Armor({
+        name: "高能袜子", 
         description: "高能织料制成的内甲，内部能量可以部分用来补充体力。", 
         value: 240e6,
         component_type: "shoes interior",

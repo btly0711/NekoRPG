@@ -720,13 +720,13 @@ body {
 	.stat_value {
 		text-align: right;
 		display: inline-block;
-		width: 95px;
+		width: 105px;
 		line-height: 20px !important;
 	}
 
 	.stat_name {
 		display: inline-block;
-		width: 68px;
+		width: 58px;
 		padding-left: 4px;
 	}
 	.loot_name {
@@ -1183,12 +1183,12 @@ i {
 	color:plum;
 }
 .rarity_legendary{
-	color:pink;
-	-webkit-text-stroke: 0.1px orange;
+	color:orange;
+	-webkit-text-stroke: 0.1px pink;
 }
 .rarity_mythical{
-	color:lightyellow;
-	-webkit-text-stroke: 0.2px red;
+	color:red;
+	-webkit-text-stroke: 0.2px lightyellow;
 }
 .rarity_transdental{
 	color:cyan;

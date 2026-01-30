@@ -3743,7 +3743,7 @@ class Enemy {
             {item_name: "殿堂黄宝石", chance:0.05},
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "高能凝胶", chance:0.10},
-            {item_name: "绿色刀币", chance:0.02},
+            {item_name: "废墟精华", chance:0.20},
             //28Z
         ],
     });
@@ -3879,7 +3879,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.03},
             {item_name: "殿堂蓝宝石", chance:0.05},
-            {item_name: "高能凝胶", chance:0.3},
+            {item_name: "高能凝胶", chance:0.2},
+            {item_name: "废墟精华", chance:0.20},
             //50Z
         ],
     });
@@ -3898,7 +3899,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂黄宝石", chance:0.03},
             {item_name: "殿堂蓝宝石", chance:0.05},
-            {item_name: "绿色刀币", chance:0.04},
+            {item_name: "废墟精华", chance:0.30},
             {item_name: "A7·能量核心", chance:0.16},
             //50Z
         ],

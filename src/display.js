@@ -2651,7 +2651,7 @@ function update_displayed_stats() { //updates displayed stats
         }
         else if(key =="health_regeneration_flat"){
             let perc = character.stats.full.health_regeneration_percent;
-            stats_divs[key].innerHTML = `${format_number(character.stats.full[key])}` + ((perc==0)?"":`/${Math.floor(perc*10)/10}%`);
+            stats_divs[key].innerHTML = `${format_number(character.stats.full[key] + character.stats.full.max_health * perc * 0.01)}`;
             update_stat_description(key);
         }
         else
@@ -3827,8 +3827,9 @@ function create_new_levelary_entry(level_name) {
      }
      
     const tooltip_loots = document.createElement("div");
-     tooltip_loots.innerHTML += `<br>此处战利品：<br>`;
+     tooltip_loots.innerHTML += `<br>此处战利品(平均)：<br>`;
     let lootlist = {0:0};
+    let I_list = [];
      for(let j=0;j<level.enemies_list.length;j++)
     {
         let C_enemy = enemy_templates[level.enemies_list[j]];
@@ -3836,18 +3837,28 @@ function create_new_levelary_entry(level_name) {
         //console.log(C_enemy);
         for(let k=0;k<C_enemy.loot_list.length;k++)
         {
-            let I_name = `<${C_enemy.loot_list[k].item_name}> `;
-            if(lootlist[I_name] == undefined)
-            {
-                lootlist[I_name] = 0;
-                
-                tooltip_loots.innerText += I_name;
-                //tooltip_enemies.innerHTML += "\<A4·能量核心\> ";
-            }
+            let I_name = C_enemy.loot_list[k].item_name;
+            if(I_list[I_name] == undefined) I_list[I_name] = C_enemy.loot_list[k].chance;
+            else I_list[I_name] += C_enemy.loot_list[k].chance;
         }
         //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
     }
 
+    for(let j=0;j<level.enemies_list.length;j++)
+    {
+        let C_enemy = enemy_templates[level.enemies_list[j]];
+        for(let k=0;k<C_enemy.loot_list.length;k++)
+        {
+            let I_name = C_enemy.loot_list[k].item_name;
+            if(lootlist[I_name] == undefined)
+            {
+                lootlist[I_name] = 1;
+                tooltip_loots.innerHTML += `[ ${I_name} ] - ${format_number(I_list[I_name] * 100 / level.enemies_list.length)}% <br>`
+            }
+        }
+        //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
+    }
+    
 
     levelary_tooltip.appendChild(tooltip_xp);
     levelary_tooltip.appendChild(tooltip_tags);
