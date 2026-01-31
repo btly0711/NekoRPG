@@ -2616,7 +2616,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城战场"] = new Location({ 
         connected_locations: [{location: locations["声律城废墟"], custom_text: "返回声律城中"}], 
         description: "声律城郊外的混战战场。无需恋战，目标是B9飞船！[V1.50前版本终点]",
-        dialogues: ["心魔(战场)"],
+        dialogues: ["心魔(战场)","御兰"],
         name: "声律城战场", 
         is_unlocked: false,
         bgm: 11,
@@ -2689,6 +2689,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 90e4,
             locations: [{location: "声律城战场 - 3"}],
+            textlines: [{dialogue: "御兰", lines: ["yl1"]}],
         },
     });
     locations["声律城战场 - 3"] = new Combat_zone({

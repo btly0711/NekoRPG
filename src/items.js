@@ -2444,8 +2444,8 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["微火"] = new Realm({
         name: "微火",
         id: "微火",
-        description: "利用简单的精神念力点燃火焰的领悟。可以加深敌人受到的伤害！", 
-        value: 90909090,
+        description: "利用简单的精神念力点燃火焰的领悟。", 
+        value: 90909090,//100Z
         stats: {
             attack_power: {
                 flat: 1000,
@@ -2458,8 +2458,97 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["燃灼术"] = new Realm({
+        name: "燃灼术",
+        id: "燃灼术",
+        description: "念力火焰灼灼燃烧，仿佛要将这片空间点燃。", 
+        value: 61538461e3,//100D
+        stats: {
+            attack_power: {
+                multiplier: 1.05,
+            },
+            defense: {
+                multiplier: 1.05,
+            },
+            max_health: {
+                multiplier: 1.2,
+            },
+            attack_mul: {
+                multiplier: 1.75,
+            },
+        }
+    });
+    
+    item_templates["火灵幻海[领域一重]"] = new Realm({
+        name: "火灵幻海[领域一重]",
+        id: "火灵幻海[领域一重]",
+        description: "通体红色的火焰小兽在空中游曳，周身散发的火元素波动汇集成海。", 
+        value: 4310344e6,//10B
+        stats: {
+            attack_power: {
+                multiplier: 1.08,
+            },
+            defense: {
+                multiplier: 1.08,
+            },
+            max_health: {
+                multiplier: 1.3,
+            },
+            attack_mul: {
+                multiplier: 2.0,
+            },
+        }
+    });
+
+    item_templates["焰海霜天[领域二重]"] = new Realm({
+        name: "焰海霜天[领域二重]",
+        id: "焰海霜天[领域二重]",
+        description: "相互冲突的两种元素调和形成的奇异领域。冰火两重天之下，寒冷与炙热施以双重折磨，生灵勿近。", 
+        value: 285714e9,//1U
+        stats: {
+            attack_power: {
+                multiplier: 1.12,
+            },
+            defense: {
+                multiplier: 1.12,
+            },
+            max_health: {
+                multiplier: 1.3,
+            },
+            attack_mul: {
+                multiplier: 2.75,
+            },
+        }
+    });
+    item_templates["焰海霜天[领域三重]"] = new Realm({
+        name: "焰海霜天[领域三重]",
+        id: "焰海霜天[领域三重]",
+        description: "相互冲突的两种元素调和形成的奇异领域。冰火两重天之下，寒冷与炙热施以双重折磨，生灵勿近。", 
+        value: 2857142e9,//10U
+        stats: {
+            attack_power: {
+                multiplier: 1.20,
+            },
+            defense: {
+                multiplier: 1.20,
+            },
+            max_health: {
+                multiplier: 1.35,
+            },
+            attack_mul: {
+                multiplier: 3.00,
+            },
+        }
+    });
 })();
 
+        /*
+百分比：
+燃灼5%/20%
+火灵幻海8%/30%
+焰海霜天12%/30%
+领域三重20%/35%
+ */
 (function(){
     item_templates["纳娜米"] = new Special({
         name: "纳娜米",

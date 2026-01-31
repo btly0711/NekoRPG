@@ -421,6 +421,20 @@ character.stats.add_weapon_type_bonuses = function() {
  * called in update_stats()
  * only a few skills really matter here
  */
+
+character.stats.add_realm_bonus = function(){
+        
+        let R_value = 0;
+        let R_level = skills["Realm"].current_level;
+        if(R_level<10) R_value = 1000 * R_level;
+        else if(R_level<20) R_value = 1.5e4 * (R_level - 8);
+        else if(R_level<30) R_value = 15e4 * (R_level - 18);
+        else if(R_level<40) R_value = 121.5e4 * (R_level - 24);
+        else if(R_level<50) R_value = 486e4 * (R_level - 34);
+        return R_value;
+}
+
+
 character.stats.add_all_skill_level_bonus = function() {
         character.stats.multiplier.skills.defense = 1 + skills["Iron skin"].get_level_bonus();
         character.stats.multiplier.skills.attack_speed = skills["Running"].get_coefficient("multiplicative");
@@ -430,6 +444,8 @@ character.stats.add_all_skill_level_bonus = function() {
         
         character.stats.multiplier.skills.max_health = skills["Swimming"].get_coefficient("multiplicative");
         
+        character.stats.flat.skills.attack_power = character.stats.flat.skills.defense = character.stats.add_realm_bonus();
+
         character.stats.add_weapon_type_bonuses();
 }
 

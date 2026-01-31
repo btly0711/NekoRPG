@@ -2666,10 +2666,13 @@ function update_displayed_stats() { //updates displayed stats
     const chara_rank = (character.stats.full.attack_mul || 1) * (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility) * character.stats.full.attack_speed  * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)
     //攻防敏*攻速*（暴击率*暴击额外伤害+1）
     //character_rank_div.innerText = `战力: ${chara_rank}`;//看战力以拟合后续【排位】曲线
-
+    let lgrank = Math.log10(chara_rank);
+    let lgresult = 0;
+    if(lgrank < 3.84) lgresult = 14 - 0.11 * lgrank ** 2;
+    else if(lgrank < 7.903) lgresult = 15.352 - 0.77 * lgrank;
+    else lgresult = 18.352 - 1.3 * lgrank + 0.019 * lgrank ** 2;
     //
-    let chara_result = Math.ceil(4e11 * Math.pow(chara_rank,-0.655));//拟合结果(潮汐级以及之前，没有A_mul)
-    if(chara_rank >= 2137) chara_result = Math.ceil(1.6e11 * Math.pow(chara_rank,-0.535));//拟合结果（大地级之后，存在A_mul）
+    let chara_result = Math.round(Math.pow(10,lgresult));
     
     character_rank_div.innerText = `燕岗领排名: ` + chara_result.toLocaleString('en-US');
     
@@ -3629,7 +3632,7 @@ function create_new_bestiary_entry(enemy_name) {
     stat_5_name.classList.add("stat_name");
     stat_5_value.classList.add("stat_value");
 
-    stat_5_name.innerHTML = "Base XP:";
+    stat_5_name.innerHTML = "XP:";
     stat_5_value.innerHTML = `${format_number(Math.round(enemy.xp_value))}`;
 
     // Object.keys(enemy.tags).forEach(tags => {

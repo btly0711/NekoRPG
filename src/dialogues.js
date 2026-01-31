@@ -1201,6 +1201,53 @@ class Textline {
             }),
         }
     });
+    
+    dialogues["御兰"] = new Dialogue({
+        name: "御兰",
+        starting_text: "观赏御兰与昊荒的强者之战",
+        textlines: {
+            "yl1": new Textline({ 
+                is_unlocked: true,
+                name: "...",
+                text: "[昊荒]御兰！又是你，<br>这艘飞船是我圣荒城的人先发现的，<br>难不成你兰陵城，还要继续死皮赖脸相争？",
+                unlocks: {
+                    textlines: [{dialogue: "御兰", lines: ["yl2"]}],
+                },
+                
+                locks_lines: ["yl1"],
+            }), 
+            "yl2": new Textline({ 
+                is_unlocked: false,
+                name: "（飞船！有飞船的消息？）",
+                text: "[御兰]我的昊将军，您说什么呢？<br>这次，可是您圣荒城的人马故意挑衅，<br>兰陵城不过是正当防卫罢了。<br>[昊荒]既然你如此不识时务，那我也没有必要跟你多废话！<br>就凭你这点人，也想破我等的荒门大阵，<br>简直是痴心妄想！",
+                unlocks: {
+                    textlines: [{dialogue: "御兰", lines: ["yl3"]}],
+                },
+                
+                locks_lines: ["yl2"],
+            }),
+            "yl3": new Textline({ 
+                is_unlocked: false,
+                name: "诶，已经交上手了吗？战斗好精彩呀。",
+                text: "(激烈的巨剑特效)<br>(激烈的雷击特效)<br><br>[纳可]呼……隔着这么远的距离，<br>都能清晰感觉到那些骇人的能量余波。",
+                unlocks: {
+                    textlines: [{dialogue: "御兰", lines: ["yl4"]}],
+                },
+                
+                locks_lines: ["yl3"],
+            }),
+            "yl4": new Textline({ 
+                is_unlocked: false,
+                name: "...",
+                text: "但比起害怕，<br>能够亲眼得见这些强大精妙的秘法被施展出来，<br>真是令人兴奋。<br>感觉——脑海深处的那些领悟，<br>已经有一部分化为了自己的东西。",
+                unlocks: {
+                    flags: ["is_realm_enabled"],
+                },
+                
+                locks_lines: ["yl4"],
+            }),
+        }
+    });
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

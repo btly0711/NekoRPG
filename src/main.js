@@ -102,10 +102,12 @@ const global_flags = {
     is_gathering_unlocked: false,
     is_crafting_unlocked: false,
     is_deep_forest_beaten: false,
+    is_realm_enabled: false,
 };
 const flag_unlock_texts = {
     is_gathering_unlocked: "你获得了收集材料的能力！",
     is_crafting_unlocked: "你获得了合成物品和装备的能力！",
+    is_realm_enabled: "领悟【微火】的进化之路已经被打通！",
 }
 
 // special stats
@@ -1614,22 +1616,17 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
     
     if(hit_chance > Math.random()) {//hero's attack hits
 
-        damage_dealt = hero_base_damage
-        let vibra_damage = (1.2 - Math.random() * 0.4);
-        //0.8-1.2倍率浮动
+        damage_dealt = hero_base_damage;
+        let vibra_damage = (1.2 - Math.random() * 0.4);//0.8-1.2倍率浮动
         if(character.equipment.weapon != null) {
-
             add_xp_to_skill({skill: skills[weapon_type_to_skill[character.equipment.weapon.weapon_type]], xp_to_add: target.xp_value}); 
-
         } else {
             add_xp_to_skill({skill: skills['Unarmed'], xp_to_add: target.xp_value});
-        }
-        if(character.equipment.method != null)
-        {
+        }//武器技能+空手技能
+        if(character.equipment.method != null){
             //console.log(character.equipment.method);
             if(character.equipment.method.id=="三月断宵") add_xp_to_skill({skill: skills['3Moon/Night'], xp_to_add: target.xp_value});
         }
-        
         if(character.stats.full.crit_rate > Math.random()) {
             vibra_damage *= character.stats.full.crit_multiplier;
             critted = true;
@@ -1640,6 +1637,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         let proto_d = damage_dealt;
         damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense,0))/10;
 
+        if(global_flags.is_realm_enabled) add_xp_to_skill({skill: skills['Realm'], xp_to_add: damage_dealt});//战斗领悟(领域)
         if(active_effects["魔攻 A9"]!=undefined && damage_dealt < proto_d * 0.1)
         {
             damage_dealt = proto_d * 0.1;
@@ -1950,6 +1948,22 @@ function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = 
 
                 if(!was_hidden && (typeof should_info === "undefined" || should_info)) {
                     log_message(`技能 ${prev_name} 升级为 ${new_name}`, "skill_raised");
+                    if(new_name == "燃灼术")
+                    {
+                        add_to_character_inventory([{item: getItem({...item_templates[new_name], quality: 130}), count: 1}]);
+                        log_message(`获取新领悟 [燃灼术]！`, "combat_loot");
+                    }
+                    if(new_name == "火灵幻海[领域一重]" )
+                    {
+                        add_to_character_inventory([{item: getItem({...item_templates[new_name], quality: 160}), count: 1}]);
+                        log_message(`获取新领悟 [火灵幻海]！`, "combat_loot");
+                    }
+                    else if(new_name == "焰海霜天[领域二重]" || new_name == "焰海霜天[领域三重]")
+                    {
+                        add_to_character_inventory([{item: getItem({...item_templates[new_name], quality: 200}), count: 1}]);
+                        log_message(`获取新领悟 [焰海霜天]！`, "combat_loot");
+                    }
+
                 }
 
                 if(current_location?.connected_locations) {
