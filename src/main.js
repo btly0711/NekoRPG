@@ -913,7 +913,7 @@ function start_textline(textline_key){
                 displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.4))}<br>`;
                 let C_moon = current_game_time.moon();
                 let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
-                let MM2 = ["血量上限 x 1.5","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
+                let MM2 = ["生命恢复 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
                 displayed_text += `<br>目前的月相为 ${MM1[C_moon]}，<br>赐福内容为 ${MM2[C_moon]}.(1800s)`
                 
             }
@@ -1678,7 +1678,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         let proto_d = damage_dealt;
         damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense,0))/10;
 
-        if(global_flags.is_realm_enabled) add_xp_to_skill({skill: skills['Realm'], xp_to_add: damage_dealt});//战斗领悟(领域)
+        if(global_flags.is_realm_enabled) add_xp_to_skill({skill: skills['Neko_Realm'], xp_to_add: damage_dealt});//战斗领悟(领域)
         if(active_effects["魔攻 A9"]!=undefined && damage_dealt < proto_d * 0.1)
         {
             damage_dealt = proto_d * 0.1;
@@ -2001,7 +2001,6 @@ function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = 
                         add_to_character_inventory([{item: getItem({...item_templates[new_name], quality: 200}), count: 1}]);
                         log_message(`获取新领悟 [焰海霜天]！`, "combat_loot");
                     }
-
                 }
 
                 if(current_location?.connected_locations) {

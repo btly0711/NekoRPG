@@ -645,17 +645,18 @@ function format_skill_rewards(milestone){
                                         }
                                     }
                                 });
-    skills["Realm"] = new Skill({skill_id: "Realm", 
+    skills["Neko_Realm"] = new Skill({skill_id: "Neko_Realm", 
                                     names: {0: "微火",10:"燃灼术",20:"火灵幻海[领域一重]",30:"焰海霜天[领域二重]",40:"焰海霜天[领域三重]"}, 
                                     parent_skill: "Stance mastery",
                                     description: "纳可的领域(雏形).每升一级都能获取基础属性，每提高一个阶段都能获取全新的领悟！", 
                                     max_level_coefficient: 1.25,
                                     base_xp_cost: 5000000,
+                                    visibility_treshold: 1,
                                     max_level: 49,
                                     xp_scaling:3,
                                     get_effect_description: ()=> {
                                         let R_value = 0;
-                                        let R_level = skills["Realm"].current_level;
+                                        let R_level = skills["Neko_Realm"].current_level;
                                         if(R_level<10) R_value = 1000 * R_level;
                                         else if(R_level<20) R_value = 1.5e4 * (R_level - 8);
                                         else if(R_level<30) R_value = 15e4 * (R_level - 18);

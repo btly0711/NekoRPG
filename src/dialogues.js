@@ -1207,7 +1207,7 @@ class Textline {
         starting_text: "观赏御兰与昊荒的强者之战",
         textlines: {
             "yl1": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "...",
                 text: "[昊荒]御兰！又是你，<br>这艘飞船是我圣荒城的人先发现的，<br>难不成你兰陵城，还要继续死皮赖脸相争？",
                 unlocks: {
@@ -1254,7 +1254,7 @@ class Textline {
         starting_text: "参拜战场中的皎月之神像",
         textlines: {
             "jy1": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "(恭敬地拜三拜)",
                 text: "[皎月投影]<br>(这是一条自动回复)<br>都什么时代了，别整那老一套了，<br>整点刀币给咱上供就成。<br>作为回报，你可以得到皎月的祝福...<br><br>对了，生命力越雄厚的祝福消耗越大，<br>所以得加钱。<br><span class='realm_sky'>天空级四阶</span>以上的修者也算了，<br>这个小神像承载不了太强的力量投影。",
                 unlocks: {

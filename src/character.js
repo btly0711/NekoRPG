@@ -418,7 +418,7 @@ character.stats.add_weapon_type_bonuses = function() {
 character.stats.add_realm_bonus = function(){
         
         let R_value = 0;
-        let R_level = skills["Realm"].current_level;
+        let R_level = skills["Neko_Realm"].current_level;
         if(R_level<10) R_value = 1000 * R_level;
         else if(R_level<20) R_value = 1.5e4 * (R_level - 8);
         else if(R_level<30) R_value = 15e4 * (R_level - 18);
