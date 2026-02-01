@@ -1248,6 +1248,39 @@ class Textline {
             }),
         }
     });
+    
+    dialogues["皎月神像"] = new Dialogue({
+        name: "皎月神像",
+        starting_text: "参拜战场中的皎月之神像",
+        textlines: {
+            "jy1": new Textline({ 
+                is_unlocked: true,
+                name: "(恭敬地拜三拜)",
+                text: "[皎月投影]<br>(这是一条自动回复)<br>都什么时代了，别整那老一套了，<br>整点刀币给咱上供就成。<br>作为回报，你可以得到皎月的祝福...<br><br>对了，生命力越雄厚的祝福消耗越大，<br>所以得加钱。<br><span class='realm_sky'>天空级四阶</span>以上的修者也算了，<br>这个小神像承载不了太强的力量投影。",
+                unlocks: {
+                    textlines: [{dialogue: "皎月神像", lines: ["jy2"]},{dialogue: "皎月神像", lines: ["jy3"]}],
+                },
+                
+                locks_lines: ["jy1"],
+            }), 
+            "jy2": new Textline({ 
+                is_unlocked: false,
+                name: "(查询目前赐福与消耗信息)",
+                text: "",
+                unlocks: {
+                    spec: "JY-check",
+                },
+            }), 
+            "jy3": new Textline({ 
+                is_unlocked: false,
+                name: "(上供刀币获取赐福)",
+                text: "",
+                unlocks: {
+                    spec: "JY-sacrifice",
+                },
+            }), 
+        }
+    });
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

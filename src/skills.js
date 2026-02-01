@@ -650,9 +650,9 @@ function format_skill_rewards(milestone){
                                     parent_skill: "Stance mastery",
                                     description: "纳可的领域(雏形).每升一级都能获取基础属性，每提高一个阶段都能获取全新的领悟！", 
                                     max_level_coefficient: 1.25,
-                                    base_xp_cost: 1000000,
+                                    base_xp_cost: 5000000,
                                     max_level: 49,
-                                    xp_scaling:4,
+                                    xp_scaling:3,
                                     get_effect_description: ()=> {
                                         let R_value = 0;
                                         let R_level = skills["Realm"].current_level;

@@ -108,7 +108,6 @@ function accept_trade() {
             remove_from_character_inventory(to_remove);
         }
     }
-    console.log(current_trader);
     if(current_trader != "物品存储箱") add_xp_to_skill({skill: skills["Haggling"], xp_to_add: (to_buy.value)/5});
 
     to_buy.value = 0;

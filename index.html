@@ -1366,7 +1366,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.53";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.54";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1387,7 +1387,6 @@
                         if(clicked_element.classList.contains("item_use_max"))
                         {
                             let item_key = clicked_element.parentNode.parentNode.getAttribute("data-character_item");
-                            //console.log(item_key);
                             use_item_max(item_key);
                             // while(character.is_in_inventory(item_key))
                             // {
@@ -1521,7 +1520,6 @@
                             ["recipe_div", "selectable_component"], 
                             ["crafting_subpage_button", "crafting_subpage_buttons", "crafting_category", "crafting_mainpage_buttons", "crafting_mainpage_button", "crafting_window"]
                         );
-                        //console.log(hovered_element);
                         if(!hovered_element) {
                             return;
                         }

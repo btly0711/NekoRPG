@@ -731,7 +731,6 @@ class Armor extends Equippable {
             this.component_tier = item_data.component_tier || 0;
             this.base_defense = item_data.base_defense;
 
-            //console.log(this);
             if(item_data.component_type === "helmet interior") {
                 this.equip_slot = "head";
             } else if(item_data.component_type === "chestplate interior") {
@@ -2474,7 +2473,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.2,
             },
             attack_mul: {
-                multiplier: 1.75,
+                multiplier: 1.5,
             },
         }
     });
@@ -2516,7 +2515,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.3,
             },
             attack_mul: {
-                multiplier: 2.75,
+                multiplier: 2.25,
             },
         }
     });
@@ -2536,7 +2535,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.35,
             },
             attack_mul: {
-                multiplier: 3.00,
+                multiplier: 2.50,
             },
         }
     });
@@ -3149,7 +3148,7 @@ item_templates["Twist liek a snek"] = new Book({
         base_defense: 24000,
         component_tier: 8,
         stats: {
-            health_regeneration_flat: {
+            attack_power: {
                 flat: 30000,
             },
         },
@@ -3162,7 +3161,7 @@ item_templates["Twist liek a snek"] = new Book({
         base_defense: 32000,
         component_tier: 8,
         stats: {
-            health_regeneration_flat: {
+            attack_power: {
                 flat: 40000,
             },
         },
@@ -3175,7 +3174,7 @@ item_templates["Twist liek a snek"] = new Book({
         base_defense: 32000,
         component_tier: 8,
         stats: {
-            health_regeneration_flat: {
+            attack_power: {
                 flat: 40000,
             },
         },
@@ -3185,10 +3184,10 @@ item_templates["Twist liek a snek"] = new Book({
         description: "高能织料制成的内甲，内部能量可以部分用来补充体力。", 
         value: 240e6,
         component_type: "shoes interior",
-        base_defense: 32000,
+        base_defense: 16000,
         component_tier: 8,
         stats: {
-            health_regeneration_flat: {
+            attack_power: {
                 flat: 20000,
             },
         },

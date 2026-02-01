@@ -355,7 +355,6 @@ function option_uniform_textsize(option) {
 
 function change_location(location_name) {
     let location = locations[location_name];
-    //console.log(location.bgm);
     if(location.bgm != "") switchBGM(location.bgm);
 
     if(location_name !== current_location?.name && location.is_finished) {
@@ -774,7 +773,6 @@ function start_textline(textline_key){
             log_message(`${flag_unlock_texts[textline.unlocks.flags[i]]}`, "activity_unlocked");
         }
     }
-    //console.log(textline.unlocks.items);
     for(let i = 0; i < textline.unlocks.items.length; i++) {
         log_message(`${character.name} 获取了 "${textline.unlocks.items[i].item_name}"`);
         add_to_character_inventory([{item: item_templates[textline.unlocks.items[i].item_name]}]);
@@ -907,8 +905,61 @@ function start_textline(textline_key){
                 displayed_text += `纯洁的${character.name}<br>善良的${character.name}<br>乖孩子${character.name}<br>这是一场游戏<br>让我看看你到底能够<br>堕落的多么肮脏呢`;
             }
         }
-    }
+        else if(textline.unlocks.spec == "JY-check"){
+            let C_HP = character.stats.full.max_health;
+            let C_realm = character.xp.current_level;
+            if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
+            else{
+                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.4))}<br>`;
+                let C_moon = current_game_time.moon();
+                let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
+                let MM2 = ["血量上限 x 1.5","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
+                displayed_text += `<br>目前的月相为 ${MM1[C_moon]}，<br>赐福内容为 ${MM2[C_moon]}.(1800s)`
+                
+            }
+        }
+        else if(textline.unlocks.spec == "JY-sacrifice"){
+            let C_realm = character.xp.current_level;
+            if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
+            else{
+                let C_money = Math.round(character.stats.full.max_health ** 1.4);
+                if(character.money < C_money)
+                {
+                    displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
+                }
+                else
+                {
+                    displayed_text += `钱包: ${format_money(character.money)} ->`;
+                    character.money -= C_money;
+                    displayed_text += `${format_money(character.money)}.<br>`;
+                    update_displayed_money();
+                    displayed_text += `原有的状态效果全部被皎月净化了！`;
+                    
+                    Object.keys(active_effects).forEach(key => {
+                        delete active_effects[key];
+                    });
+                    let MM3 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
+                    let C_moon = current_game_time.moon();
+                    let moon_effect = "皎月祝福·"+MM3[C_moon];
+                    active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
+                    
+                    character.stats.add_active_effect_bonus();
+                    update_character_stats();
+                    update_displayed_effect_durations();
+                    update_displayed_effects();
 
+
+                }
+            }
+        }
+    }
+/*
+赐福消耗当前生命上限^1.40的钱币，
+获取延续游戏时间1days[即1800s]的一个buff。
+
+8种月相分别对应：
+血量上限-暴击概率-暴击伤害-普攻倍率-攻击力-防御-敏捷-速度。
+x1.5    x1.5     x1.6    x1.4    x1.2  x1.2 x1.2 x1.1 */
     start_dialogue(current_dialogue);
     update_displayed_textline_answer(displayed_text);
 }
@@ -939,7 +990,6 @@ function change_stance(stance_id, is_temporary = false) {
     }
     
     current_stance = stance_id;
-    //console.log(current_stance);
 
     update_character_stats();
     reset_combat_loops();
@@ -971,7 +1021,6 @@ function set_new_combat({enemies} = {}) {
         return;
     }
     current_enemies = enemies || current_location.get_next_enemies();
-    //console.log(current_enemies);
     clear_all_enemy_attack_loops();
 
     let character_attack_cooldown = 1/(character.stats.full.attack_speed);
@@ -998,8 +1047,6 @@ function set_new_combat({enemies} = {}) {
     }
 
     //attach loops
-    //console.log(current_enemies);
-    //console.log(current_enemies.length)
     // 安全使用
     for(let i = 0; i < (current_enemies?.length || 0); i++) {
         do_enemy_attack_loop(i, 0, 1,true);
@@ -1060,31 +1107,30 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(26)) Spec_S += "[分裂]";
     if(current_enemies[enemy_id].spec.includes(27)) Spec_S += "[柔骨]";
     if(current_enemies[enemy_id].spec.includes(39)) Spec_S += "[贪婪·宝石]";
-    //console.log(current_enemies[enemy_id]);
     
     if(isnew) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
         enemy_timer_adjustment[enemy_id] = 0;
         if(current_enemies[enemy_id].spec.includes(2)) do_enemy_combat_action(enemy_id,"[迅捷]"+Spec_S);//迅捷(开局攻击)
-        if(current_enemies[enemy_id].spec.includes(4))
+        if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(4))
         {
             for(let cb=1;cb<=3;cb++) if(current_enemies != null){
                 do_enemy_combat_action(enemy_id,"[疾走]"+Spec_S);//疾走(3连击)
             }
         }
-        if(current_enemies[enemy_id].spec.includes(16))//飓风(4x5连击)
+        if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(16))//飓风(4x5连击)
         {
             for(let cb=1;cb<=4;cb++) if(current_enemies != null){
                 do_enemy_combat_action(enemy_id,"[飓风]"+Spec_S,1,5);
             }
         }
-        if(current_enemies[enemy_id].spec.includes(22))
+        if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(22))
         {
             for(let cb=1;cb<=5;cb++) if(current_enemies != null){
             do_enemy_combat_action(enemy_id,"[绝世]"+Spec_S,0.9,1);//绝世(0.9x5连击)
             }
         }
-        if(current_enemies[enemy_id].spec.includes(40))//追光(50x3连击)
+        if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(40))//追光(50x3连击)
         {
             for(let cb=1;cb<=3;cb++) if(current_enemies != null){
                 do_enemy_combat_action(enemy_id,"[追光]"+Spec_S,1,50);
@@ -1139,7 +1185,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                         do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
                     }
                 }
-                if(current_enemies[enemy_id].spec.includes(142) && current_enemies != null)//斩阵
+                if(current_enemies[enemy_id].spec.includes(42) && current_enemies != null)//圣阵
                 {
                     if(E_round == 5)
                     {
@@ -1271,8 +1317,6 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
 
             for(let i = 0; i < targets.length; i++) {
                 let alive_targets = current_enemies.filter(enemy => enemy.is_alive);
-                //console.log(i);
-                //console.log(alive_targets.length);
                 if(active_effects["回风 A9"]!=undefined)
                 {
                     do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,0.8,"[回风-弱]");
@@ -1281,7 +1325,6 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
                 }
                 else do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,1,"");
             }
-            //console.log(current_stance);
             if(stances[current_stance].related_skill) {
                 leveled = add_xp_to_skill({skill: skills[stances[current_stance].related_skill], xp_to_add: targets.reduce((sum,enemy)=>sum+enemy.xp_value,0)/targets.length});
                 
@@ -1404,7 +1447,6 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     } 
     if(attacker.spec.includes(13) && E_atk_mul == 0)//标记
     {
-        //console.log(attacker.stats);
         E_atk_mul_f = character.stats.full.attack_power / attacker.stats.attack;//惑幻
     }
     if(attacker.spec.includes(17)) E_atk_mul_f += character.stats.full.health / attacker.stats.attack / 200;//执着
@@ -1624,7 +1666,6 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             add_xp_to_skill({skill: skills['Unarmed'], xp_to_add: target.xp_value});
         }//武器技能+空手技能
         if(character.equipment.method != null){
-            //console.log(character.equipment.method);
             if(character.equipment.method.id=="三月断宵") add_xp_to_skill({skill: skills['3Moon/Night'], xp_to_add: target.xp_value});
         }
         if(character.stats.full.crit_rate > Math.random()) {
@@ -1652,7 +1693,6 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
 
         if(target.spec.includes(1))
         {
-            //console.log(character.equipment);
             if(character.equipment.special?.name == "纳娜米"){
                 damage_dealt=Math.min(damage_dealt,4.0);//坚固
                 Spec_E += "[坚固·削弱]"
@@ -1685,7 +1725,6 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         }
         else {
             log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害" + Spec_E, "enemy_attacked");
-            //console.log(target_num);
         }
         
         const effect = document.getElementById(`E${target_num}_effect`);
@@ -1710,7 +1749,6 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
 
             let xp_display = xp_reward * character.get_xp_bonus();
             let tooltip_ex = "";
-            //console.log(realm_mul);
             if(realm_mul > 1) tooltip_ex = "(越级+" + format_number((realm_mul - 1)*100) + "%)";
             if(realm_mul < 1) tooltip_ex = "(压级-" + format_number((1 - realm_mul)*100) + "%)";
 
@@ -1991,16 +2029,13 @@ function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = 
  * @param {Boolean} should_info 
  */
 function add_xp_to_character(xp_to_add, should_info = true, use_bonus,ingore_cap) {
-        //console.log(ingore_cap);
     
     const level_up = character.add_xp({xp_to_add, use_bonus}, ingore_cap);
-        //console.log(ingore_cap);
     
     if(level_up) {
         if(should_info) {
             log_message(level_up, "level_up");
         }
-        //console.log(level_up);
         if(!level_up.includes("瓶颈")) character.stats.full.health = character.stats.full.max_health; //free healing on level up, because it's a nice thing to have
         update_character_stats();
     }
@@ -2014,7 +2049,6 @@ function get_spec_rewards(money){
     log_message(`搜刮废墟，获取了 ${format_money(Math.floor(RNG_M * money))} .`, "location_reward");
     
     character.money += Math.floor(RNG_M * money);
-    console.log(3);
     update_displayed_money();
     const trader = traders["废墟商人"];
     if(!trader.is_unlocked) {
@@ -2036,10 +2070,8 @@ function get_spec_rewards(money){
 function get_location_rewards(location) {
 
     let should_return = false;
-    console.log(1);
     if(location.repeatable_reward.money && typeof location.repeatable_reward.money === "number") {
         get_spec_rewards(location.repeatable_reward.money);//2-5搜刮钱
-        console.log(2);
     }
     if(location.enemy_groups_killed == location.enemy_count) { //first clear
 
@@ -2050,7 +2082,6 @@ function get_location_rewards(location) {
         
 
     if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
-        //console.log("1st/pass")
             create_new_levelary_entry(location.name);
             log_message(`首次通过 ${location.name} ，获取 ${location.first_reward.xp} 经验 `, "location_reward");
             add_xp_to_character(location.first_reward.xp);
@@ -2071,7 +2102,6 @@ function get_location_rewards(location) {
     location.otherUnlocks();
 
     for(let i = 0; i < location.repeatable_reward.locations?.length; i++) { //unlock locations
-        //console.log(location.repeatable_reward);
         if(!location.repeatable_reward.locations[i].required_clears || location.enemy_groups_killed/location.enemy_count >= location.repeatable_reward.locations[i].required_clears){
             unlock_location(locations[location.repeatable_reward.locations[i].location]);
         }
@@ -2079,8 +2109,6 @@ function get_location_rewards(location) {
 
     for(let i = 0; i < location.repeatable_reward.traders?.length; i++) { //unlock traders
         const trader = traders[location.repeatable_reward.traders[i].traders];
-       // console.log(trader);
-       // console.log(location.repeatable_reward.traders[i].traders);
         if(!trader.is_unlocked) {
             trader.is_unlocked = true;
             log_message(`解锁新商人: ${trader.name}`, "activity_unlocked");
@@ -2158,9 +2186,6 @@ function clear_enemies() {
 let latest_comp = "";
 
 function use_recipe(target,stated = false) {
-
-    //if(!stated) console.log("unfix",target);
-    //else console.log("fix",target);
     const category = target.parentNode.parentNode.dataset.crafting_category;
     const subcategory = target.parentNode.parentNode.dataset.crafting_subcategory;
     const recipe_id = target.parentNode.dataset.recipe_id;
@@ -2232,16 +2257,12 @@ function use_recipe(target,stated = false) {
             //read the selected material, pass it as param
 
             const material_div = recipe_div.children[1].querySelector(".selected_material");
-            //console.log(material_div);
-            //console.log(recipe_id);
             if(!material_div) {
                 console.log("div not found")
                 return -1;
             } else {
                 const material_1_key = material_div.dataset.item_key;
                 let H_q = 0;
-                //console.log(material_div);
-                //console.log(material_1_key);
                 const {id} = JSON.parse(material_1_key);
                 const recipe_material = selected_recipe.materials.filter(x=> x.material_id===id)[0];
 
@@ -2294,9 +2315,6 @@ function use_recipe(target,stated = false) {
             let component_1_key = recipe_div.children[1].children[0].children[1].querySelector(".selected_component")?.dataset.item_key;
             
             let component_2_key = recipe_div.children[1].children[1].children[1].querySelector(".selected_component")?.dataset.item_key;
-            // console.log(recipe_div.children[1].children[0].children[1]);
-            // console.log(recipe_div.children[1].children[0].children[1].length);
-            // console.log(recipe_div.children[1].children[0].children[1].children[0]);
             if(!component_1_key && (recipe_div.children[1].children[0].children[1].children[0] !== undefined))
             {
                 
@@ -2350,10 +2368,6 @@ function use_recipe_max(target) {
     const subcategory = target.parentNode.parentNode.dataset.crafting_subcategory;
     const recipe_id = target.parentNode.dataset.recipe_id;
     const station_tier = current_location.crafting.tiers[category];
-    // console.log(category);
-    // console.log(subcategory);
-    // console.log(recipe_id);
-    //console.log("max2")
     if(!category || !subcategory || !recipe_id) {
         //shouldn't be possible to reach this
         throw new Error(`Tried to use a recipe but either category, subcategory, or recipe id was not passed: ${category} - ${subcategory} - ${recipe_id}`);
@@ -2390,8 +2404,6 @@ function use_recipe_max(target) {
                 cnt++;
                 cnt_f = use_recipe(target,true)
                 cnt_b = Math.max(cnt_b,cnt_f);
-                //console.log(cnt_f);
-                //console.log(cnt_b);
             }
             
             update_displayed_character_inventory();
@@ -2431,12 +2443,10 @@ function use_item(item_key,stated = false) {
         update_displayed_effects();
         character.stats.add_active_effect_bonus();
         update_character_stats();
-        console.log("item can't found");
         return;
     }
 
     let used = false;
-    console.log(item_templates[id])
     if(item_templates[id].spec != 0){
         if(item_templates[id].spec == "T8-table"){
             //unlock 符文之屋
@@ -2457,12 +2467,9 @@ function use_item(item_key,stated = false) {
     for(let i = 0; i < item_effects.length; i++) {
         const duration = item_templates[id].effects[i].duration;
         let s_dur = duration;
-        //console.log(s_dur);
         //if(!active_effects[item_effects[i].effect] || active_effects[item_effects[i].effect].duration < duration) {
         if(active_effects[item_effects[i].effect]) s_dur += (active_effects[item_effects[i].effect].duration || 0)
-        //console.log(s_dur);
         active_effects[item_effects[i].effect] = new ActiveEffect({...effect_templates[item_effects[i].effect], duration:s_dur});
-        //console.log(new ActiveEffect({...effect_templates[item_effects[i].effect], duration:s_dur}));
         used = true;
         //}
     }
@@ -2470,7 +2477,6 @@ function use_item(item_key,stated = false) {
 
     if(G_value > 0)//using gems
     {
-        //console.log(item_templates[id]);
         used=true;
         let message = `使用 ${item_templates[id].name} , `
         let SCGV = 30;//SoftCappedGemValue
@@ -2488,7 +2494,6 @@ function use_item(item_key,stated = false) {
         let pa = 0;
         if(character.stats.flat.gems.attack_power >= SCGV*G_value*3)
         {
-            //console.log(P1,P2,P3,P4);
             if(P1>P2&&P1>P3&&P1>P4){
                 pa=0.5;
             }
@@ -2578,7 +2583,6 @@ function use_item(item_key,stated = false) {
 
     if(E_value != 0)
     {
-        //console.log(C_value);
         add_xp_to_character(E_value,true,false,C_value);
     }
 
@@ -2915,7 +2919,6 @@ function load(save_data) {
     else character.C_scaling = {};
     character.xp.current_level = save_data.character.xp.current_level || 0;
     add_xp_to_character(save_data.character.xp.current_xp || 0, false);
-    //console.log( character.xp.current_level);
     for(let realm = 1;realm <= character.xp.current_level || 0;realm ++)
     {
         let this_realm = window.REALMS[realm];
@@ -2928,7 +2931,7 @@ function load(save_data) {
         character.stats.flat.level.defense = (character.stats.flat.level.defense || 0) + this_realm[2];
         character.stats.flat.level.attack_power = ( character.stats.flat.level.attack_power || 0) + this_realm[2] * 2; 
         character.stats.flat.level.attack_speed = ( character.stats.flat.level.attack_speed || 0) + realm_spd_gain;
-        if(this_realm[0]>=9){
+        if(this_realm[0]>=9 && this_realm[0]<=17){
             let A_mul_gain = (this_realm[0]==9?0.2:0.1);
             character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;}
         let total_skill_xp_multiplier = 1.1;
@@ -2938,8 +2941,6 @@ function load(save_data) {
         character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
         //复制粘贴的升级代码，只不过没有提示
         //注：以后升级代码需要在这里多写一份。
-        //console.log("属性已添加");
-        //console.log(character.stats.flat.level.max_health);
     }
     
     update_displayed_character_xp(true);
@@ -3515,13 +3516,8 @@ function load(save_data) {
 
 
     Object.keys(save_data.locations).forEach(level_name => {
-        //console.log(level_name);
-        //console.log(save_data.locations[level_name]);
-
-        
         if(save_data.locations[level_name].enemy_groups_killed >= 2)
         {
-            //console.log(1);   
             document.getElementById("levelary_box_div").style.display = "none";
             create_new_levelary_entry(level_name);
         } 
@@ -3556,8 +3552,6 @@ function load(save_data) {
             current_activity.done_actions = save_data.current_activity.done_actions;
             
         } else {
-            console.log(activity_id);
-            console.log(activities[activity_id]);
             console.warn("Couldn't find saved activity! It might have been removed");
         }
     }
@@ -3773,7 +3767,6 @@ function start_fishing_minigame()
         }//鱼，扑腾
         fish_x += fish_v * frametime;//鱼，移动
         fish_v -= 3 * frametime;//感受到了重力
-        //console.log(fish_v.toFixed(2),fish_x.toFixed(1));
         if((fish_x <= 0 && fish_v < 0)||(fish_x >= 290 && fish_v > 0)){
             fish_v = fish_v * -0.7;
         }//鱼，反弹
@@ -3792,7 +3785,6 @@ function start_fishing_minigame()
             rod_v = rod_v * -0.8;
             rod_x = 0;
         }//条，反弹(下)
-        //console.log(rod_x.toFixed(2),rod_v.toFixed(2));
 
         update_displayed_fish();
         if (bar_health >= 100) {

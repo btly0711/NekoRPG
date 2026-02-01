@@ -71,8 +71,6 @@ class InventoryHaver {
     }
     is_in_inventory_nanami(item)
     {
-        console.log(this.inventory);
-        console.log(item);
         return this.inventory.hasOwnProperty(item);
     }
 }

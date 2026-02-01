@@ -51,6 +51,11 @@ function Game_time(new_time) {
         this.day_count = new_time.day_count;
     }
 
+
+    this.moon = function(){
+        return ((this.year%4) * 100 + this.day * 2 + Math.floor(this.hour / 90)) % 8;
+    }
+
     //没有季节/星期
 }
 

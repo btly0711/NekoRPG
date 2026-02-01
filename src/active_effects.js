@@ -214,6 +214,40 @@ effect_templates["坚固 A9"] = new ActiveEffect({
         }
     }
 });
+effect_templates["皎月祝福·新月"] = new ActiveEffect({
+    name: "皎月祝福·新月",
+    effects: {stats: {health_regeneration_percent: {flat: 1}}}
+});
+effect_templates["皎月祝福·蛾眉月"] = new ActiveEffect({
+    name: "皎月祝福·蛾眉月",
+    effects: {stats: {crit_rate: {multiplier: 1.5}}}
+});
+effect_templates["皎月祝福·上弦月"] = new ActiveEffect({
+    name: "皎月祝福·上弦月",
+    effects: {stats: {crit_multiplier: {multiplier: 1.6}}}
+});
+effect_templates["皎月祝福·盈凸月"] = new ActiveEffect({
+    name: "皎月祝福·盈凸月",
+    effects: {stats: {attack_mul: {multiplier: 1.4}}}
+});
+effect_templates["皎月祝福·满月"] = new ActiveEffect({
+    name: "皎月祝福·满月",
+    effects: {stats: {attack_power: {multiplier: 1.1}}}
+});
+effect_templates["皎月祝福·亏凸月"] = new ActiveEffect({
+    name: "皎月祝福·亏凸月",
+    effects: {stats: {defense: {multiplier: 1.2}}}
+});
+effect_templates["皎月祝福·下弦月"] = new ActiveEffect({
+    name: "皎月祝福·下弦月",
+    effects: {stats: {agility: {multiplier: 1.2}}}
+});
+effect_templates["皎月祝福·残月"] = new ActiveEffect({
+    name: "皎月祝福·残月",
+    effects: {stats: {attack_speed: {multiplier: 1.1}}}
+});
+/*  let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
+                let MM2 = ["生命恢复 + 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];*/
 
 
 export {effect_templates, ActiveEffect};

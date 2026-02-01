@@ -340,7 +340,6 @@ function create_item_tooltip_content({item, options={}}) {
                 item_tooltip += 
                     `<br><br>攻击: ${Math.round(10*item.getAttack())/10}`;
             } else if(item.getDefense && item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special" && item.equip_slot != "realm") { 
-            //console.log(item);
                 item_tooltip += 
                 `<br><br>防御: ${Math.round(10*item.getDefense())/10}`;
             } else if(item.offhand_type === "shield") {
@@ -466,7 +465,7 @@ function create_effect_tooltip(effect_name, duration) {
         //for regeneration bonuses, it is assumed they are only flat and not multiplicative
         //${capitalize_first_letter(key.replaceAll("_", " ").replace("flat","").replace("percent",""))}
             let sign = stat_value.flat > 0? "+":"";
-            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复(比例)"}
+            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复(比例)","crit_rate":"暴率","attack_speed":"攻速"}
             if(stat_value.flat == undefined){
                 let sign = "";
                 tooltip.innerHTML += `${EffectToolTipMap[key]} : x${sign}${stat_value.multiplier}`;
@@ -1198,7 +1197,6 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
         }
     } else {
         item_name_div.innerHTML = `<span class="item_image"><img src=${target_item.image}></span>`;
-        //console.log(target_item);
         item_name_div.innerHTML += `<span class = "item_category"></span> <span class = "item_name">${target_item.getName()}</span>`;
     }
     
@@ -1207,11 +1205,6 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     } else if(item_count) {
         item_name_div.innerHTML += `<span class="item_count"></span>`;
     }
-    // if(item_count < 0 || isNaN(item_count)) {
-    //     console.log(`Item count for key "" reached an illegal value`);
-    //     //throw new Error(`Item count for key "${items[i].item_key}" reached an illegal value`);
-    // }
-
     item_name_div.classList.add(`${item_class}_name`);
     item_div.appendChild(item_name_div);
 
@@ -1242,7 +1235,6 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
                 item_use_10.classList.add("item_use_10");
                 item_use_10.innerText = "[x10]";
                 item_additional.appendChild(item_use_10);
-                //console.log(item_count);
             //}
             const item_use_button = document.createElement("div");
             item_use_button.classList.add("item_use_button");
@@ -1342,10 +1334,6 @@ function update_displayed_enemies() {
             enemies_div.children[i].children[0].style.display = null;
             enemies_div.children[i].children[0].children[0].innerHTML = `<img src="${current_enemies[i].image}"><br>`/*current_enemies[i].image*/;
                     
-            // const enemy_img = enemies_div.children[i].children[0].children[0].createElement("div"); //enemy description
-            // enemy_img.innerHTML = `<img src="${current_enemies[i].image}"><br>`;
-            //console.log(current_enemies[i].image);
-
             let disp_speed;
 
             if(current_enemies[i].stats.attack_speed > 20) {
@@ -1441,7 +1429,6 @@ function update_displayed_normal_location(location) {
             return lines_available;
         }
     });
-    console.log(available_dialogues);
 
     if(available_dialogues.length > 2) {
         //there's multiple -> add a choice to location actions that will show all available dialogues        
@@ -1576,7 +1563,6 @@ function update_displayed_normal_location(location) {
     }
 
     location_name_span.innerText = current_location.name;
-    //console.log(current_location);
     document.getElementById("location_description_div").innerText = current_location.getDescription();
 }
 
@@ -1596,7 +1582,6 @@ function create_location_choices({location, category, add_icons = true, is_comba
             } 
             let lines_available = false;
             Object.keys(dialogues[location.dialogues[i]].textlines).forEach(line =>{
-                console.log(dialogues[location.dialogues[i]].textlines[line]);
                 if(lines_available) {
                     return;
                 } else {
@@ -1607,7 +1592,6 @@ function create_location_choices({location, category, add_icons = true, is_comba
             // const lines_available = location.dialogues.filter(dialogue => {
             //         let lines_available = false;
             //         Object.keys(dialogues[dialogue].textlines).forEach(line => {
-            //             console.log(dialogues[dialogue].textlines[line]);
             //             if(lines_available) {
             //                 return;
             //             } else {
@@ -1621,7 +1605,6 @@ function create_location_choices({location, category, add_icons = true, is_comba
             }
 
 
-            console.log(lines_available)
             
             const dialogue_div = document.createElement("div");
     
@@ -1906,7 +1889,6 @@ function create_location_types_display(current_location){
         type_div.innerHTML = LocationTypesMap[current_location.types[i].type] + (current_location.types[i].stage>1?` ${"I".repeat(current_location.types[i].stage)}`:"");
         type_div.classList.add("location_type_div");
 
-        //console.log(current_location);
 
         const type_tooltip = document.createElement("div");
         type_tooltip.innerHTML = location_types[current_location.types[i].type].stages[current_location.types[i].stage].description;
@@ -1997,7 +1979,6 @@ function switch_crafting_recipes_page(category) {
 function switch_crafting_recipes_subpage(category, subcategory) {
     const elements = document.querySelectorAll(`[data-crafting_category='${category}'], [data-crafting_subcategory]`);
     for(let i = 0; i < elements.length; i++) {
-        //console.log(elements[i].dataset);
         if(elements[i].dataset.crafting_subcategory) {
             if(elements[i].dataset.crafting_category === category) {
                 if(elements[i].dataset.crafting_subcategory !== subcategory) {
@@ -2067,7 +2048,6 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
         });
         recipe_max.addEventListener("click", (event)=>{
             window.useRecipemax(event.target);
-            //console.log("max1")
                 //normal items
         });
 
@@ -2291,7 +2271,6 @@ function update_recipe_tooltip({category, subcategory, recipe_id, components}) {
         const material_selections_div = crafting_pages[category][subcategory].querySelector(`[data-recipe_id='${recipe_id}']`).children[1];
         for(let i = 0; i < material_selections_div.children.length; i++) {
             const material_key = material_selections_div.children[i].dataset.item_key;
-            //console.log(material_key);
             if(material_key == undefined) continue;
             const {id} = JSON.parse(material_key);
             const material_recipe = recipe.materials.filter(material => material.material_id === id);
@@ -2498,20 +2477,16 @@ function update_displayed_material_choice({category, subcategory, recipe_id, ref
         recipe_max.innerText="[max]";
         if(material_recipe.count <= materials[i].count) {
             item_div.addEventListener("click", (event)=>{
-                //console.log(event.target.parentNode);
                 item_div.classList.add("selected_material");
                 window.useRecipe(event.target.parentNode);
-                //console.log("Used:Recipe 1");
                 item_div.classList.remove("selected_material"); //this is so stupid
 
                 //comps
             });
             recipe_max.addEventListener("click", (event)=>{
-                //console.log(event.target.parentNode.parentNode);
                 item_div.classList.add("selected_material");
                 window.useRecipemax(event.target.parentNode);
                 item_div.classList.remove("selected_material"); //this is so stupid
-                //console.log("Used:Recipe 1");
                 //comps
             });
         } else {
@@ -2730,7 +2705,6 @@ function update_stat_description(stat) {
         }
     });
     
-    //console.log(character.equipment);
 
     return;
 }
@@ -2763,10 +2737,13 @@ function update_displayed_effect_durations() {
 
 function update_displayed_time() {
     if(current_game_time.hour >= 150 || current_game_time.hour < 30) {
-        time_field.innerHTML = current_game_time.toString() + '<span class="material-icons icon icon_night">dark_mode</span>';
+        time_field.innerHTML = current_game_time.toString() + '✨';
     } else {
-        time_field.innerHTML = current_game_time.toString() + '<span class="material-icons icon icon_day">light_mode</span>';
+        time_field.innerHTML = current_game_time.toString() + '☀️';
     }
+    let cur_moon = current_game_time.moon();
+    let moons="🌑🌒🌓🌔🌕🌖🌗🌘";
+    time_field.innerHTML += (moons[cur_moon*2]+moons[cur_moon*2+1]);
 }
 
 /** 
@@ -2812,7 +2789,6 @@ function update_displayed_character_xp(did_level = false) {
     character_xp_div.children[0].children[0].style.width = `${100*character.xp.current_xp/window.REALMS[character.xp.current_level+1][4]}%`;
     character_xp_div.children[1].innerText = `Next : ${format_number(character.xp.current_xp)}/${format_number(window.REALMS[character.xp.current_level+1][4])}`;
 
-    //console.log(window.REALMS);
     if(did_level) {
         if(character.xp.current_level >= 9)
         {
@@ -2909,7 +2885,6 @@ function start_activity_display(current_activity) {
     action_status_div.id = "action_status_div";
     const action_xp_div = document.createElement("div");
 
-    console.log(current_activity);
     if(activities[current_activity.activity_name].base_skills_names) {
         const needed_xp = skills[activities[current_activity.activity_name].base_skills_names].current_level == skills[activities[current_activity.activity_name].base_skills_names].max_level? "Max": `${Math.round(10000*skills[activities[current_activity.activity_name].base_skills_names].current_xp/skills[activities[current_activity.activity_name].base_skills_names].xp_to_next_lvl)/100}%`
         if(activities[current_activity.activity_name].type !== "GATHERING") {
@@ -3653,7 +3628,6 @@ function create_new_bestiary_entry(enemy_name) {
     const spec_stats = document.createElement("div"); //enemy description
 
     for(let ine=0;ine<enemy.spec.length;ine++){
-        //console.log(spec_stat[enemy.spec[ine]][3]);
         let S_STS = spec_stat[enemy.spec[ine]];
         spec_stats.innerHTML += `<br><b><font color="${S_STS[2]}">${S_STS[1][0]==undefined?S_STS[1](enemy):S_STS[1]} </font></b> ：${S_STS[3][0]==undefined?S_STS[3](enemy):S_STS[3]} `;
     }
@@ -3733,7 +3707,6 @@ function create_new_bestiary_entry(enemy_name) {
 
 function add_bestiary_lines(zone)
 {
-    //console.log(zone);
     //zone 11-> 1-1，rank作为1200处理
     //sorts bestiary_list div by enemy rank
     bestiary_entry_divs[zone] = document.createElement("div");
@@ -3745,7 +3718,6 @@ function add_bestiary_lines(zone)
     const kill_counter = document.createElement("div");
     kill_counter.innerHTML = `<b>区域 ${Math.floor(zone/10)} - ${zone%10}</b>`;
 
-    //console.log(zone);
     //if(zone==0) return;
      
     kill_counter.classList.add("bestiary_entry_kill_count");
@@ -3780,8 +3752,6 @@ function create_new_levelary_entry(level_name) {
     
     const level = locations[level_name];
 
-    //console.log(locations);
-    //console.log(level_name);
 
     const name_div = document.createElement("div");
     name_div.innerHTML = level_name;
@@ -3791,7 +3761,6 @@ function create_new_levelary_entry(level_name) {
     kill_counter.classList.add("bestiary_entry_kill_count");
 
     
-    //console.log(level.rank);
     if(level.rank==0) return;
     
 
@@ -3837,7 +3806,6 @@ function create_new_levelary_entry(level_name) {
     {
         let C_enemy = enemy_templates[level.enemies_list[j]];
         
-        //console.log(C_enemy);
         for(let k=0;k<C_enemy.loot_list.length;k++)
         {
             let I_name = C_enemy.loot_list[k].item_name;

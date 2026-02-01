@@ -167,14 +167,12 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
         //character.xp.total_xp += xp_to_add;
         ignore_cap = ignore_cap || 0;
 
-        //console.log(ignore_cap);
     
         character.xp.current_xp += xp_to_add;//获取经验值
         //levelup
         let levelupresult = "";
         while(character.xp.current_xp >= window.REALMS[character.xp.current_level+1][4])
         {
-                //console.log(ignore_cap);
                 let gains = "";
                 if(character.xp.current_level == 8){
                         //character.xp.total_xp -= character.xp.current_xp - 99999999 ;
@@ -193,13 +191,11 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                         //否则进入突破计划！
                 }
                 character.xp.current_level += 1;
-                //console.log("大地级瓶颈 Error");
                 if(character.xp.current_level>9) character.upgrade_effects(character.xp.current_level);
                 let this_realm = window.REALMS[character.xp.current_level];
                 let realm_spd_gain = 0;
                 if(this_realm[0]==3) realm_spd_gain = 0.1;
                 if(this_realm[0]==6) realm_spd_gain = 0.15;//两个分境界的攻速提升
-                //console.log(realm_spd_gain);
 
                 character.xp.current_xp -= this_realm[4];
                 //真实-提高属性
@@ -229,7 +225,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                         gains += `角色属性<span style="color:#66ccff">【普攻倍率】</span>现已解锁！<br>`;
                         add_to_character_inventory([{item: item_templates["微火"], count: 1}]);
                 }
-                if(this_realm[0]>=9)
+                if(this_realm[0]>=9 && this_realm[0]<=17)
                 {
                         let A_mul_gain = (this_realm[0]==9?0.2:0.1);
                         character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;
@@ -245,10 +241,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 levelupresult += `${character.name} 境界突破，达到 ${lvl_display} <br>${gains}`;
                 update_quests();
         }
-        //console.log(levelupresult);
         if(levelupresult != ""){
-                //console.log("分支达到")
-                //console.log(levelupresult);
                 return levelupresult;
         }
         
@@ -505,11 +498,9 @@ character.update_stats = function () {
     character.stats.add_all_stance_bonus();
     //adding weapons and armors
     //character.stats.flat.equipment.attack_power = character.stats.flat.equipment.attack_power + character.equipment.weapon.getAttack();
-    //console.log(character.equipment.weapon.getAttack());
     Object.keys(character.stats.full).forEach(function(stat){
         let stat_sum = 0;
         let stat_mult = 1;
-        //console.log(stat);
         if(stat === "block_chance") {
                 stat_sum = base_block_chance + Math.round(skills["Shield blocking"].get_level_bonus() * 10000)/10000;
         }else {

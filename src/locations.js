@@ -484,7 +484,6 @@ class LocationActivity{
 
     getActivityEfficiency = function() {
         let skill_modifier = 1;
-        //console.log("1");
         if(this.gained_resources.scales_with_skill){
             let skill_level_sum = 0;
             for(let i = 0; i < activities[this.activity_name].base_skills_names?.length; i++) {
@@ -494,8 +493,6 @@ class LocationActivity{
                 skill_level_sum += Math.min(
                     S_max-S_min, Math.max(0,get_total_skill_level(S_id)-S_min)
                 )/(S_max-S_min);
-                //console.log(S_id);
-                //console.log(get_total_skill_level(S_id));
                 
             }
             skill_modifier = (skill_level_sum/activities[this.activity_name].base_skills_names?.length) ?? 1;
@@ -2616,7 +2613,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城战场"] = new Location({ 
         connected_locations: [{location: locations["声律城废墟"], custom_text: "返回声律城中"}], 
         description: "声律城郊外的混战战场。无需恋战，目标是B9飞船！[V1.50前版本终点]",
-        dialogues: ["心魔(战场)","御兰"],
+        dialogues: ["心魔(战场)","御兰","皎月神像"],
         name: "声律城战场", 
         is_unlocked: false,
         bgm: 11,
@@ -2709,6 +2706,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 100e4,
             locations: [{location: "声律城战场 - 4"}],
+            textlines: [{dialogue: "皎月神像", lines: ["jy1"]}],
         },
     });
     locations["声律城战场 - 4"] = new Combat_zone({
@@ -2727,6 +2725,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 120e4,
+            activities: [{location:"声律城战场", activity:"mining50kGem"}],
             locations: [{location: "声律城战场 - 5"}],
         },
     });
@@ -3405,6 +3404,25 @@ function get_location_type_penalty(type, stage, stat) {
             skill_xp_per_tick: 64,
             spec: "goto2-5",
             is_unlocked: false,
+        }),
+    }
+    
+    locations["声律城战场"].activities = {
+        "mining50kGem": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "偷偷用镐子挖出更大颗的宝石",
+            skill_xp_per_tick: 100,
+            is_unlocked: true,
+            exp_scaling: true,
+            scaling_id: "50K",
+            exp_o:1.33,//每完成一次需要的时间指数提升
+            gained_resources: {
+                resources: [{name: "殿堂红宝石", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]},{name: "殿堂绿宝石", ammount: [[1,1], [1,1]], chance: [0.01, 0.25]}], 
+                time_period: [12, 2],
+                skill_required: [10, 20],
+                scales_with_skill: true,
+            },
         }),
     }
 })();

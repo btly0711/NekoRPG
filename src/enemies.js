@@ -31,7 +31,6 @@ class Enemy {
         this.loot_multi = loot_multi;
         this.spec = spec;
         this.spec_value = spec_value;
-        //console.log(spec);
         this.image = image;//image
         //only ma.gic & defense can be 0 in stats, other things will cause issues
         this.stats.max_health = stats.health;
@@ -57,7 +56,6 @@ class Enemy {
         // result is in form [{item: Item, count: item_count}, {...}, {...}]
         let loot = [];
         let item;
-        //console.log("try to loot");
         for (let i = 0; i < this.loot_list.length; i++) {
             item = this.loot_list[i];
             if(!item_templates[item.item_name]) {
@@ -65,7 +63,6 @@ class Enemy {
                 continue;
             }
             
-            //console.log("try to loot II");
             let raw_chance = item.chance * this.get_droprate_modifier() ;
             let item_count = 0;
             item_count = Math.floor(raw_chance);
@@ -76,7 +73,6 @@ class Enemy {
             //     // calculates how much drops (from range min-max, both inclusive)
             // }
                 
-            //console.log("Looted");
 
             if(item_count != 0) loot.push({ "item": getItem(item_templates[item.item_name]), "count": item_count });
         }
