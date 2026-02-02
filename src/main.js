@@ -112,7 +112,7 @@ const flag_unlock_texts = {
 
 // special stats
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0};
 
 
 //in seconds
@@ -309,6 +309,7 @@ const musicList = {
   9: 'bgms/9.mp3',
   10: 'bgms/10.mp3',
   11: 'bgms/11.mp3',
+  12: 'bgms/12.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -910,10 +911,10 @@ function start_textline(textline_key){
             let C_realm = character.xp.current_level;
             if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
             else{
-                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.4))}<br>`;
+                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.35))}<br>`;
                 let C_moon = current_game_time.moon();
                 let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
-                let MM2 = ["生命恢复 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
+                let MM2 = ["生命恢复 1%","生命上限 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
                 displayed_text += `<br>目前的月相为 ${MM1[C_moon]}，<br>赐福内容为 ${MM2[C_moon]}.(1800s)`
                 
             }
@@ -922,7 +923,7 @@ function start_textline(textline_key){
             let C_realm = character.xp.current_level;
             if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
             else{
-                let C_money = Math.round(character.stats.full.max_health ** 1.4);
+                let C_money = Math.round(character.stats.full.max_health ** 1.35);
                 if(character.money < C_money)
                 {
                     displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
@@ -1613,6 +1614,39 @@ function get_enemy_realm(enemy){
     if(realm_l == "巅" && realm_e >= 11) realm_e += 6;//大地级以上巅峰指九阶而不是三阶
     return realm_e;
 }
+function update_neko_realm()
+{
+    inf_combat.RM = inf_combat.RM || 0;
+    let S_level = skills["Neko_Realm"].current_level;
+    if(S_level >= 10 && inf_combat.RM < 1)
+    {
+        add_to_character_inventory([{item: getItem({...item_templates["燃灼术"], quality: 130}), count: 1}]);
+        log_message(`获取新领悟 [燃灼术]！`, "location_unlocked");
+        inf_combat.RM = 1;
+    }
+    else if(S_level >= 20 && inf_combat.RM < 2)
+    {
+        add_to_character_inventory([{item: getItem({...item_templates["火灵幻海[领域一重]"], quality: 160}), count: 1}]);
+        
+        log_message(`火红色的六芒星缓缓升起，`, "gathered_loot");
+        log_message(`这片区域的温度急剧上升，`, "gathered_loot");
+        log_message(`连舰船的地面，都被高温烤得似乎扭曲了起来。`, "gathered_loot");
+        log_message(`获取新领悟 [火灵幻海]！`, "location_unlocked");
+        inf_combat.RM = 2;
+    }
+    else if(S_level >= 30 && inf_combat.RM < 3)
+    {
+        add_to_character_inventory([{item: getItem({...item_templates["焰海霜天[领域二重]"], quality: 200}), count: 1}]);
+        log_message(`领域二重剧情[WIP]！`, "location_unlocked");
+        inf_combat.RM = 3;
+    }
+    else if(S_level >= 40 && inf_combat.RM < 4)
+    {
+        add_to_character_inventory([{item: getItem({...item_templates["焰海霜天[领域三重]"], quality: 200}), count: 1}]);
+        log_message(`领域三重剧情[WIP]！`, "location_unlocked");
+        inf_combat.RM = 4;
+    }
+}
 
 function do_character_combat_action({target, attack_power}, target_num,c_atk_mul,c_hint) {
 
@@ -1678,7 +1712,11 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         let proto_d = damage_dealt;
         damage_dealt = Math.ceil(10*Math.max(damage_dealt - target.stats.defense,0))/10;
 
-        if(global_flags.is_realm_enabled) add_xp_to_skill({skill: skills['Neko_Realm'], xp_to_add: damage_dealt});//战斗领悟(领域)
+        if(global_flags.is_realm_enabled)
+        {
+            add_xp_to_skill({skill: skills['Neko_Realm'], xp_to_add: damage_dealt});//战斗领悟(领域)
+            update_neko_realm();
+        }
         if(active_effects["魔攻 A9"]!=undefined && damage_dealt < proto_d * 0.1)
         {
             damage_dealt = proto_d * 0.1;
@@ -1986,21 +2024,6 @@ function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = 
 
                 if(!was_hidden && (typeof should_info === "undefined" || should_info)) {
                     log_message(`技能 ${prev_name} 升级为 ${new_name}`, "skill_raised");
-                    if(new_name == "燃灼术")
-                    {
-                        add_to_character_inventory([{item: getItem({...item_templates[new_name], quality: 130}), count: 1}]);
-                        log_message(`获取新领悟 [燃灼术]！`, "combat_loot");
-                    }
-                    if(new_name == "火灵幻海[领域一重]" )
-                    {
-                        add_to_character_inventory([{item: getItem({...item_templates[new_name], quality: 160}), count: 1}]);
-                        log_message(`获取新领悟 [火灵幻海]！`, "combat_loot");
-                    }
-                    else if(new_name == "焰海霜天[领域二重]" || new_name == "焰海霜天[领域三重]")
-                    {
-                        add_to_character_inventory([{item: getItem({...item_templates[new_name], quality: 200}), count: 1}]);
-                        log_message(`获取新领悟 [焰海霜天]！`, "combat_loot");
-                    }
                 }
 
                 if(current_location?.connected_locations) {
@@ -2092,6 +2115,10 @@ function get_location_rewards(location) {
     } else if(location.repeatable_reward.xp && typeof location.repeatable_reward.xp === "number") {
         log_message(`通过 ${location.name} ，获取额外 ${location.repeatable_reward.xp} 经验 `, "location_reward");
         add_xp_to_character(location.repeatable_reward.xp);
+        if(location.name.includes("荒兽森林") && (Math.random()<0.1) && character.xp.current_level <= 8){
+            log_message(`在战斗中，${character.name} 再次随机地获取了突破大地级的感悟。`, "enemy_enhanced");
+            add_to_character_inventory([{item: item_templates["凝实荒兽森林感悟"], count: 1}]);
+        }
         
     }
 
@@ -2169,6 +2196,12 @@ function unlock_location(location,skip_chance = false) {
     if(!location.is_unlocked){
         location.is_unlocked = true;
         const message = location.unlock_text || `解锁地点 ${location.name}`;
+        console.log(location);
+        console.log(location.spec_hint);
+        if(location.spec_hint != undefined)
+        {
+            log_message(location.spec_hint, "sayuki")
+        }
         log_message(message, "location_unlocked") 
 
         //reloads the location (assumption is that a new one was unlocked by clearing a zone)

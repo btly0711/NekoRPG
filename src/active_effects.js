@@ -220,7 +220,7 @@ effect_templates["皎月祝福·新月"] = new ActiveEffect({
 });
 effect_templates["皎月祝福·蛾眉月"] = new ActiveEffect({
     name: "皎月祝福·蛾眉月",
-    effects: {stats: {crit_rate: {multiplier: 1.5}}}
+    effects: {stats: {max_health: {multiplier: 1.5}}}
 });
 effect_templates["皎月祝福·上弦月"] = new ActiveEffect({
     name: "皎月祝福·上弦月",

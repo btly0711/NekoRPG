@@ -98,6 +98,7 @@ class Combat_zone {
                  repeatable_reward = {},
                  otherUnlocks,
                  unlock_text,
+                 spec_hint,
                  is_challenge = false,
                  tags = {},
                  bgm = "",
@@ -107,6 +108,7 @@ class Combat_zone {
         this.bgm = bgm,
         this.id = id || name;
         this.unlock_text = unlock_text;
+        this.spec_hint = spec_hint;
         this.description = description;
         this.getDescription = getDescription || function(){return description;}
         this.otherUnlocks = otherUnlocks || function() {return;}
@@ -401,6 +403,7 @@ class Challenge_zone extends Combat_zone {
         is_finished,
         enemy_stat_halo,
         unlock_text,
+        spec_hint,
        }) 
     {
         super(
@@ -423,7 +426,8 @@ class Challenge_zone extends Combat_zone {
                 is_challenge: true,
                 otherUnlocks,
                 is_finished,
-                unlock_text
+                unlock_text,
+                spec_hint,
             }
         )
     }
@@ -2612,12 +2616,12 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["声律城战场"] = new Location({ 
         connected_locations: [{location: locations["声律城废墟"], custom_text: "返回声律城中"}], 
-        description: "声律城郊外的混战战场。无需恋战，目标是B9飞船！[V1.50前版本终点]",
+        description: "声律城郊外的混战战场。无需恋战，目标是B9飞船！",
         dialogues: ["心魔(战场)","御兰","皎月神像"],
         name: "声律城战场", 
         is_unlocked: false,
         bgm: 11,
-    });//2-5
+    });//2-6
     locations["声律城废墟"].connected_locations.push({location: locations["声律城战场"]});
 
     
@@ -2746,8 +2750,27 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 150e4,
-            //locations: [{location: "声律城战场 - X"}],
+            locations: [{location: "声律城战场 - X"}],
         },
+    });
+
+    
+    locations["声律城战场 - X"] = new Challenge_zone({
+        description: "前面就是此行的目标——[B9飞船].不过，还有个蓝色大型机器人挡路的说。", 
+        enemy_count: 1, 
+        enemies_list : [["初级卫兵A9[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "声律城战场 - X",
+        bgm:11,
+        parent_location: locations["声律城战场"],
+        repeatable_reward: {
+            locations: [{location: "天外飞船" }],
+        },
+        spec_hint: "[纱雪][散华]领悟的核心是根据生命之比削弱攻击。想要破解，无非提高生命上限，或者造成强制伤害。",
+        unlock_text: "这个蓝色的家伙，具备的力量和速度……已经堪比当日的地宫养殖者。一定要做好充分的准备，再过去。",
     });
 
     locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 1"]});
@@ -2755,6 +2778,15 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 3"]});
     locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 4"]});
     locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - 5"]});
+    locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - X"],custom_text:"挑战蓝色的庞然大物"});
+    locations["天外飞船"] = new Location({ 
+        connected_locations: [{location: locations["声律城战场"], custom_text: "暂且离开这艘飞船"}], 
+        description: "声律城之行的最终目标。可能蕴含着在血洛大陆堪称罕见的宝物！[V1.60前版本终点]",
+        name: "天外飞船", 
+        is_unlocked: false,
+        bgm: 12,
+    });//2-7
+    locations["声律城战场"].connected_locations.push({location: locations["天外飞船"]});
 
 
 

@@ -2553,7 +2553,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "纳娜米",
         id: "纳娜米",
         description: "别卖姐姐！你这个恶魔！<br>(Tips:没有姐姐的话地宫不会被削弱到1/100属性)", 
-        value: 861082712,//B1镭射枪的预估价格约为数百B。
+        value: 947190984,//B1镭射枪的预估价格约为数百B。
         stats: {
             attack_power: {
                 multiplier: 1.3,

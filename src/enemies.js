@@ -4237,7 +4237,7 @@ A9卫兵开始算巅峰+
     enemy_templates["废墟追光者[BOSS]"] = new Enemy({
         name: "废墟追光者[BOSS]", 
         description: "正面打大概是要被追光给暴揍的。但是，追光只有3段伤害~", 
-        xp_value: 46368, 
+        xp_value: 317811, 
         rank: 2599,
         image: "image/boss/B2501.png",
         realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
@@ -4246,6 +4246,21 @@ A9卫兵开始算巅峰+
         spec_value:{},
         tags: [],
         stats: {health: 102000000, attack:1600000, agility: 800000, attack_speed: 1.0, defense: 520000}, 
+        loot_list: [],
+    });
+    
+    enemy_templates["初级卫兵A9[BOSS]"] = new Enemy({
+        name: "初级卫兵A9[BOSS]", 
+        description: "散华真是麻烦的领悟呢...蛾眉月之祝福，魔攻药剂，你喜欢哪一种~", 
+        xp_value: 514229, 
+        rank: 2699,
+        image: "image/boss/B2601.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [37],
+        spec_value:{},
+        tags: [],
+        stats: {health: 144000000, attack:3200000, agility: 1600000, attack_speed: 1.4, defense: 1250000}, 
         loot_list: [],
     });
 
