@@ -306,7 +306,7 @@ function create_item_tooltip_content({item, options={}}) {
         }
 
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[比例]"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[%]"}
         if(!options.skip_quality && options?.quality?.length == 2) {
             if(item.getAttack) {
                 item_tooltip += 
@@ -414,7 +414,7 @@ function create_item_tooltip_content({item, options={}}) {
             item_tooltip += `<br>Size-specific attack power: x${item.attack_multiplier}`;
         }
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[比例]"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[%]"}
         Object.keys(item.stats).forEach(function(effect_key) {
 
             if(item.stats[effect_key].flat != null) {
@@ -465,7 +465,7 @@ function create_effect_tooltip(effect_name, duration) {
         //for regeneration bonuses, it is assumed they are only flat and not multiplicative
         //${capitalize_first_letter(key.replaceAll("_", " ").replace("flat","").replace("percent",""))}
             let sign = stat_value.flat > 0? "+":"";
-            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复(比例)","crit_rate":"暴率","attack_speed":"攻速","max_health":"生命上限"}
+            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复[%]","crit_rate":"暴率","attack_speed":"攻速","max_health":"生命上限"}
             if(stat_value.flat == undefined){
                 let sign = "";
                 tooltip.innerHTML += `${EffectToolTipMap[key]} : x${sign}${stat_value.multiplier}`;
@@ -1885,7 +1885,7 @@ function create_location_types_display(current_location){
     }
     for(let i = 0; i < current_location.types?.length; i++) {
         const type_div = document.createElement("div");
-        const LocationTypesMap = {"dark":"黑暗","aura":"光环"}
+        const LocationTypesMap = {"dark":"黑暗","aura":"光环","stress":"威压"}
         type_div.innerHTML = LocationTypesMap[current_location.types[i].type] + (current_location.types[i].stage>1?` ${"I".repeat(current_location.types[i].stage)}`:"");
         type_div.classList.add("location_type_div");
 
@@ -1905,8 +1905,7 @@ function create_location_types_display(current_location){
                 const base = effects.multipliers[stat];
                 //const actual = (effects.multipliers[stat] + (1 - effects.multipliers[stat])*(skill.current_level/skill.max_level)**1.7);
                 const actual = get_location_type_penalty(type, stage, stat);
-                const StatNameMap = {"agi":"敏捷","attack speed":"攻速"};
-                type_tooltip.innerHTML += `<br>${StatNameMap[stat_names[stat]]} x${Math.round(1000*actual)/1000}`;
+                type_tooltip.innerHTML += `<br>${stat_names[stat]} x${Math.round(1000*actual)/1000}`;
                 if(base != actual) {
                     type_tooltip.innerHTML += ` [基础值: x${effects.multipliers[stat]}]`
                 }
@@ -3473,7 +3472,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [18, "贪婪", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>角色每拥有${format_money(enemy.spec_value[18])},该敌人伤害减少<span style='color:#87CEFA'>1%</span>.`}],
 [19, "同调", "#FF6A6A","玄妙且具备威胁的领悟，可以共享属性。<br>敌人会随着角色的变强而变强，其攻防附加<span style='color:#87CEFA'>10%</span>角色的攻防。"],
 [20, "天剑", "#9B8AFC","可将天地能量汇聚于自身的攻势进行战斗。<br>敌人每回合额外造成自身攻击<span style='color:#87CEFA'>3倍</span>与角色防御<span style='color:#87CEFA'>2倍</span>差值的伤害。"],
-[21, "灵体", "#ff9977",function(enemy){return "以特殊的生命形式而存在。<br>敌人对角色每回合造成<span style='color:#87CEFA'>" + (enemy.spec_value[21]) + "与角色敏捷之差</span>点伤害。<br>此额外伤害下限为0."}],
+[21, "灵体", "#ff9977",function(enemy){return "以特殊的生命形式而存在。<br>敌人对角色每回合造成<span style='color:#87CEFA'>" + (enemy.spec_value[21]) + "与角色敏捷之差的五倍</span>点伤害。<br>此额外伤害下限为0."}],
 [22, "绝世", "#DEF27B","五连绝世。<br>战斗前，敌人以0.9倍的攻击力发动一次<span style='color:#87CEFA'>5连击</span>。"],
 [23, "灵闪", "#F2EC41","光元素领悟。以快而强大的进攻压制对手。<br>当<span style='color:#FFFF00'>角色的攻击（计算加成）少于敌人</span>时，敌人受到的伤害比例减少<span style='color:#87CEFA'>（敌人防御/角色防御）的二分之一</span>。"],
 [24, "饮剑", "#F0A078","将炽烈的进攻元素吸收并化为自身的能力。<br>敌人的生命增加角色攻击的<span style='color:#87CEFA'>0.5倍</span>。"],
@@ -3495,6 +3494,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [40, "追光", "#ecff17", "光元素领悟。这个敌人快得恍若一道照亮世界的光。<br>敌人首先发动一次敌人首先发动3段<span style='color:#87CEFA'>50倍伤害</span>的<span style='color:#FFFF00'>必中攻击</span>。"],
 [41, "召唤", "#f5deb3", "群居生物同心协力的体现。敌人刷新时，额外刷新3只【紫锈胎人】。"],
 [42, "圣阵", "#d9964a", "才德全尽谓之圣人，十圆无缺谓之圣阵。<br>敌人布下圣阵，在战斗进行到第<span style='color:#87CEFA'>五、十、二十</span>回合时，分别对角色造成<span style='color:#87CEFA'>3倍、9倍、27倍</span>角色与敌人攻防之和的穿透伤害。"],
+[43, "激光", "#dda0dd",function(enemy){return "攻击时，无论是否命中，都额外造成<span style='color:#87CEFA'>" + (enemy.spec_value[43]) + "</span>点魔法伤害。"}],
 ];
 
 //超过25倍倍率的攻击暂时视为必中！
@@ -3775,7 +3775,7 @@ function create_new_levelary_entry(level_name) {
     if(level.types.length > 0) {
         tooltip_tags.innerHTML = `<br><br>楼层属性：`;
         
-        const LocationTypesMap = {"dark":"黑暗","aura":"光环"}
+        const LocationTypesMap = {"dark":"黑暗","aura":"光环","stress":"威压"}
         const LocationStageMap = {1:"I",2:"II",3:"III"};
         for(let j=0;j<level.types.length;j++)
         {

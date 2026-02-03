@@ -428,6 +428,15 @@ class TradeItem {
             new TradeItem({item_name: "荒兽精华", count: [99,99]}),
             new TradeItem({item_name: "青花鱼", count: [20,50], chance: 0.8}),
 
+            new TradeItem({item_name: "海绿剑", count: [1], quality: [101, 140], chance: 0.8}),
+            new TradeItem({item_name: "海绿戟", count: [1], quality: [91, 130], chance: 0.5}),
+
+            
+            new TradeItem({item_name: "海绿头盔", count: [1], quality: [101, 130], chance: 0.8}),
+            new TradeItem({item_name: "海绿胸甲", count: [1], quality: [101, 130], chance: 0.8}),
+            new TradeItem({item_name: "海绿腿甲", count: [1], quality: [101, 130], chance: 0.8}),
+            new TradeItem({item_name: "海绿战靴", count: [1], quality: [101, 130], chance: 0.8}),
+
             
             new TradeItem({item_name: "废墟恢复药水", count: [10,20]}),
             new TradeItem({item_name: "废墟狂暴药水", count: [10,20]}),

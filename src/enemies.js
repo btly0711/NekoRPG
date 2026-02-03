@@ -3900,13 +3900,398 @@ class Enemy {
             //50Z
         ],
     });
+    enemy_templates["血洛老年修士"] = new Enemy({
+        name: "血洛老年修士", 
+        description: "词头是血洛耶。不会那么老的原因是花了几百年跑过了几个世界...", 
+        xp_value: 317811, 
+        rank: 2614,
+        image: "image/enemy/E2614.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 5600000, attack:1400000, agility: 1200000, attack_speed: 1.2, defense: 880000}, 
+        loot_list: [
+            {item_name: "殿堂黄宝石", chance:0.03},
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "废墟精华", chance:0.30},
+            {item_name: "A7·能量核心", chance:0.16},
+            //50Z
+        ],
+    });
+    enemy_templates["初级卫兵A9"] = new Enemy({
+        name: "初级卫兵A9", 
+        description: "或许境界更应该叫做行星级九阶?散华不满血，满血不可敌。", 
+        xp_value: 317811, 
+        rank: 2701,
+        image: "image/enemy/E2701.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [37],
+        spec_value:{},
+        tags: [],
+        stats: {health: 14400000, attack:3200000, agility: 1600000, attack_speed: 1.2, defense: 1250000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "殿堂红宝石", chance:0.005},
+            //50Z
+        ],
+    });
+    
+    enemy_templates["领域之械A9"] = new Enemy({
+        name: "领域之械A9", 
+        description: "相当令人讨厌的领域。数值和废墟恐怖一个量级，唯一的好事在于殿堂级宝石升高了血限。", 
+        xp_value: 317811, 
+        rank: 2702,
+        image: "image/enemy/E2702.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [35],
+        spec_value:{35:5000000},
+        tags: [],
+        stats: {health: 1840000, attack:2900000, agility: 1800000, attack_speed: 1.2, defense: 2000000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "殿堂红宝石", chance:0.005},
+            //50Z
+        ],
+    });
+
+    
+    enemy_templates["荒兽电法兵"] = new Enemy({
+        name: "荒兽电法兵", 
+        description: "至少它失去了散华。秘境的残血·收割机已经一去不复返了.....", 
+        xp_value: 317811, 
+        rank: 2703,
+        image: "image/enemy/E2703.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [0],
+        spec_value:{},
+        tags: [],
+        stats: {health: 3750000, attack:1000000, agility: 2000000, attack_speed: 1.2, defense: 1000000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "殿堂红宝石", chance:0.005},
+            //50Z
+        ],
+    });
+    
+    enemy_templates["黑桃重工A9"] = new Enemy({
+        name: "黑桃重工A9", 
+        description: "重工系列(1/4).拥有不错的输出和免伤，但生命力有限脆弱。", 
+        xp_value: 317811, 
+        rank: 2704,
+        image: "image/enemy/E2704.png",
+        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
+        size: "small",
+        spec: [0,23],
+        spec_value:{},
+        tags: [],
+        stats: {health: 5750000, attack:2250000, agility: 2200000, attack_speed: 1.2, defense: 1500000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.05},
+            {item_name: "殿堂红宝石", chance:0.005},
+            //50Z
+        ],
+    });
+
+    
+    enemy_templates["夹击之械A9"] = new Enemy({
+        name: "夹击之械A9", 
+        description: "鉴于Neko RPG中的攻击是以线列步兵形式进行的...夹击一点用处都没有了！", 
+        xp_value: 514229, 
+        rank: 2705,
+        image: "image/enemy/E2705.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2250000, attack:2800000, agility: 2300000, attack_speed: 1.2, defense: 1600000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+
+    
+    enemy_templates["神权十字A9"] = new Enemy({
+        name: "神权十字A9", 
+        description: "普普通通的重甲步兵。是怎么分裂出两份盔甲的呢？", 
+        xp_value: 514229, 
+        rank: 2706,
+        image: "image/enemy/E2706.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [26],
+        spec_value:{},
+        tags: [],
+        stats: {health: 4100000, attack:1500000, agility: 2400000, attack_speed: 1.2, defense: 1500000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+
+    
+    enemy_templates["梅花重工A9"] = new Enemy({
+        name: "梅花重工A9", 
+        description: "特长是反转和...牵制。这么点防御力，肯定会是累赘的吧...", 
+        xp_value: 514229, 
+        rank: 2707,
+        image: "image/enemy/E2707.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [9,5],
+        spec_value:{},
+        tags: [],
+        stats: {health: 28000000, attack:5400000, agility: 2500000, attack_speed: 1.2, defense: 1080000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+
+    enemy_templates["古老符文"] = new Enemy({
+        name: "古老符文", 
+        description: "诶？地宫那个是你的亲戚吗？长得一模一样哇。", 
+        xp_value: 514229, 
+        rank: 2708,
+        image: "image/enemy/E2708.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [9],
+        spec_value:{},
+        tags: [],
+        stats: {health: 3600000, attack:3500000, agility: 2600000, attack_speed: 1.2, defense: 1100000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+
+    enemy_templates["生命熔炉A9"] = new Enemy({
+        name: "生命熔炉A9", 
+        description: "内鬼来了。-20%区域光环改为-10%全局光环...毕竟区域太难搞了x", 
+        xp_value: 514229, 
+        rank: 2709,
+        image: "image/enemy/E2709.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [29],
+        spec_value:{29:4000000},
+        tags: [],
+        stats: {health: 8800000, attack: 4900000, agility: 2700000, attack_speed: 1.2, defense: 1440000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+
+    
+    enemy_templates["高级卫兵B1"] = new Enemy({
+        name: "高级卫兵B1", 
+        description: "飞船内A9和B1级生物整体呈现交错杂居...不好意思走错片场了", 
+        xp_value: 1346269, 
+        rank: 2710,
+        image: "image/enemy/E2710.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [37],
+        spec_value:{},
+        tags: [],
+        stats: {health: 52800000, attack: 4700000, agility: 3600000, attack_speed: 1.2, defense: 2750000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+    enemy_templates["白银之锋A9"] = new Enemy({
+        name: "白银之锋A9", 
+        description: "“普通”和“全点攻击”是什么呢？", 
+        xp_value: 514229, 
+        rank: 2711,
+        image: "image/enemy/E2711.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 700000, attack: 7500000, agility: 3000000, attack_speed: 1.2, defense: 2000000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+    enemy_templates["黑铁战士B1"] = new Enemy({
+        name: "高级卫兵B1", 
+        description: "416！416！416！我是超级防杀人！", 
+        xp_value: 1346269, 
+        rank: 2712,
+        image: "image/enemy/E2712.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 52800000, attack: 4160000, agility: 4160000, attack_speed: 1.2, defense: 4160000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+    enemy_templates["持盾战士A9"] = new Enemy({
+        name: "持盾战士A9", 
+        description: "再怎么拿盾你也没有那个天空级的家伙强的。说起来，地宫养殖者的60w在这里算什么...", 
+        xp_value: 514229, 
+        rank: 2713,
+        image: "image/enemy/E2713.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [1],
+        spec_value:{},
+        tags: [],
+        stats: {health: 10, attack: 5000000, agility: 3200000, attack_speed: 1.2, defense: 3000000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+    enemy_templates["血洛游侠"] = new Enemy({
+        name: "血洛游侠", 
+        description: "法师/蝙蝠的双面生物。似乎蝙蝠更强一点耶。", 
+        xp_value: 1346269, 
+        rank: 2714,
+        image: "image/enemy/E2714.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [10],
+        spec_value:{},
+        tags: [],
+        stats: {health: 52800000, attack: 3200000, agility: 3200000, attack_speed: 1.2, defense: 1600000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+    
+    enemy_templates["方片重工A9"] = new Enemy({
+        name: "方片重工A9", 
+        description: "重工系列(3/4).两个特殊属性配合的最好的一次，感觉连B1级生物都随便打！", 
+        xp_value: 514229, 
+        rank: 2715,
+        image: "image/enemy/E2715.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [8,40],
+        spec_value:{8:10},
+        tags: [],
+        stats: {health: 10, attack: 5000000, agility: 3200000, attack_speed: 1.2, defense: 3000000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+    enemy_templates["燕岗狂战傀儡"] = new Enemy({
+        name: "燕岗狂战傀儡", 
+        description: "傀儡怎么可以把伤害转化为生命力呢？简直是未解之谜。", 
+        xp_value: 1346269, 
+        rank: 2716,
+        image: "image/enemy/E2716.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [7,24],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2600000, attack: 4100000, agility: 3200000, attack_speed: 1.2, defense: 1900000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+    
+    enemy_templates["激光炮塔A9"] = new Enemy({
+        name: "激光炮塔A9", 
+        description: "激光不是受击特效，而是攻击特效了！无论普攻中不中，激光都是必中的~", 
+        xp_value: 514229, 
+        rank: 2717,
+        image: "image/enemy/E2717.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [43],
+        spec_value:{43:2500000},
+        tags: [],
+        stats: {health: 960000, attack: 3600000, agility: 3400000, attack_speed: 1.2, defense: 2800000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+    enemy_templates["舰船护卫A9"] = new Enemy({
+        name: "舰船护卫A9", 
+        description: "看来百方就是不知道从哪搞来了两只快没电的这种护卫。不过，他那两只还怪有用的，可以打6连击。", 
+        xp_value: 514229, 
+        rank: 2718,
+        image: "image/enemy/E2718.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 19900000, attack: 3300000, agility: 3200000, attack_speed: 1.2, defense: 2330000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.04},
+            {item_name: "殿堂红宝石", chance:0.02},
+            //90Z
+        ],
+    });
+    
+    enemy_templates["红桃重工B1"] = new Enemy({
+        name: "红桃重工B1", 
+        description: "重工系列的巅峰之作...哈？时封配饮盾？来搞笑的吗？还不如方片耶。", 
+        xp_value: 1346269, 
+        rank: 2719,
+        image: "image/enemy/E2719.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [12,25],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1, attack: 4800000, agility: 3800000, attack_speed: 1.2, defense: 3000000}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+    
+
+
 
     /*
-      黄 蓝
-八阶+ 5%/2%     28Z
-巅峰  3%/5%     50Z
+      黄 蓝 红 
+巅峰  2%/4%/1%     50Z
+巅峰+    5%/2%     90Z
+B1       2%/5%     500Z
 A9 31'7811   /51'4229  exp
-A9卫兵开始算巅峰+
+B1 134'6269  /217'8309  exp
+
+夹击之械开始算巅峰+
 */    
 })();
 

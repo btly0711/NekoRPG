@@ -2553,7 +2553,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "纳娜米",
         id: "纳娜米",
         description: "别卖姐姐！你这个恶魔！<br>(Tips:没有姐姐的话地宫不会被削弱到1/100属性)", 
-        value: 947190984,//B1镭射枪的预估价格约为数百B。
+        value: 947190984,
         stats: {
             attack_power: {
                 multiplier: 1.3,
@@ -2967,6 +2967,20 @@ item_templates["Twist liek a snek"] = new Book({
         components: {
             head: "充能戟头",
             handle: "柳木剑柄",
+        }
+    });
+
+    
+    item_templates["海绿剑"] = new Weapon({
+        components: {
+            head: "海绿剑刃",
+            handle: "水晶剑柄",
+        }
+    });
+    item_templates["海绿戟"] = new Weapon({
+        components: {
+            head: "海绿戟头",
+            handle: "水晶剑柄",
         }
     });
 })();

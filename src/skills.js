@@ -774,6 +774,23 @@ function format_skill_rewards(milestone){
                                         }
                                     }
                             });
+    skills["Resistance"] = new Skill({
+                                    skill_id: "Resistance",
+                                    names: {0: "威压抗性"},
+                                    description: "抵抗天外飞船中无处不在的威压的能力",
+                                    base_xp_cost: 3000,
+                                    xp_scaling: 1.6,
+                                    max_level: 20,
+                                    category: "Environmental",
+                                    get_effect_description: () => {
+                                        return `将威压惩罚削弱到原来的 ^${Math.round(100-100*skills["Resistance"].current_level/skills["Resistance"].max_level)/100} `;
+                                    },
+                                    
+                                    rewards: {
+                                        milestones: {
+                                        }
+                                    }
+                            });
     skills["Presence sensing"] = new Skill({
                 skill_id: "Presence sensing",
                 names: {0: "存在感应"},

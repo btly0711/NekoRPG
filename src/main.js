@@ -1472,6 +1472,16 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     }//自爆/残余血量都爆了
 
 
+    if(attacker.spec.includes(43)){
+        let {damage_taken, fainted} = character.take_damage([],{damage_value: attacker.spec_value[43]},0);
+        update_displayed_health();
+        log_message(character.name + " 受到了" + format_number(damage_taken) + "点伤害[激光]", "hero_missed");
+        if(fainted)
+        {
+            faint(" 被激光击败");
+            return;
+        }
+    }//激光
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
 

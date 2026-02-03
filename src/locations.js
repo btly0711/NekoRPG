@@ -646,6 +646,32 @@ function get_location_type_penalty(type, stage, stat) {
             }
         }
     });
+    
+    location_types["stress"] = new LocationType({
+        name: "stress",
+        stages: {
+            1: {
+                description: "四周弥漫着稀薄的威压，对攻击的效力和速度产生些许影响",
+                related_skill: "Resistance",
+                effects: {
+                    multipliers: {
+                        attack_speed: 0.9,
+                        attack_mul : 0.8
+                    }
+                }
+            },
+            2: {
+                description: "四周弥漫着浓厚的威压，对攻击的效力和速度产生较大影响",
+                related_skill: "Resistance",
+                effects: {
+                    multipliers: {
+                        attack_speed: 0.75,
+                        attack_mul : 0.5,
+                    }
+                }
+            },
+        }
+    });
     location_types["narrow"] = new LocationType({
         name: "narrow",
         stages: {
@@ -2781,7 +2807,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城战场"].connected_locations.push({location: locations["声律城战场 - X"],custom_text:"挑战蓝色的庞然大物"});
     locations["天外飞船"] = new Location({ 
         connected_locations: [{location: locations["声律城战场"], custom_text: "暂且离开这艘飞船"}], 
-        description: "声律城之行的最终目标。可能蕴含着在血洛大陆堪称罕见的宝物！[V1.60前版本终点]",
+        description: "声律城之行的最终目标。可能蕴含着在血洛大陆堪称罕见的宝物，却处处透露出对外来着的不友善与肃杀。",
         name: "天外飞船", 
         is_unlocked: false,
         bgm: 12,
@@ -2789,6 +2815,110 @@ function get_location_type_penalty(type, stage, stat) {
     locations["声律城战场"].connected_locations.push({location: locations["天外飞船"]});
 
 
+    locations["天外飞船 - 1"] = new Combat_zone({
+        description: "B9级飞船的内部。某种压制力场让外来者感到相当不适。", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 1, xp_gain: 1}],
+        enemies_list: ["鎏银幽灵","探险者队长","初级卫兵A9","领域之械A9","荒兽电法兵"],
+        enemy_group_size: [2,2],
+        is_unlocked: true, 
+        name: "天外飞船 - 1",
+        rank:161, 
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        first_reward: {
+            xp: 600e4,
+        },
+        repeatable_reward: {
+            xp: 200e4,
+            locations: [{location: "天外飞船 - 2"}],
+            //百方
+        },
+    });
+    locations["天外飞船 - 2"] = new Combat_zone({
+        description: "B9级飞船的内部。出现了一些似乎同出一源的重工机械。", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 1, xp_gain: 1}],
+        enemies_list: ["荒兽电法兵","黑桃重工A9","夹击之械A9","神权十字A9","梅花重工A9"],
+        enemy_group_size: [2.25,3.25],
+        is_unlocked: false, 
+        name: "天外飞船 - 2",
+        rank:162, 
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        first_reward: {
+            xp: 900e4,
+        },
+        repeatable_reward: {
+            xp: 300e4,
+            locations: [{location: "天外飞船 - 3"}],
+        },
+    });
+    locations["天外飞船 - 3"] = new Combat_zone({
+        description: "B9级飞船的内部。似乎有内鬼混在里面！", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 1, xp_gain: 1}],
+        enemies_list: ["梅花重工A9","古老符文","生命熔炉A9","血洛游侠","白银之锋A9"],
+        enemy_group_size: [2.5,3.5],
+        enemy_stat_halo: -0.1,
+        is_unlocked: false,
+        name: "天外飞船 - 3",
+        rank:163, 
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        first_reward: {
+            xp: 1200e4,
+        },
+        repeatable_reward: {
+            xp: 400e4,
+            locations: [{location: "天外飞船 - 4"}],
+            //空间三角B1
+        },
+    });
+    locations["天外飞船 - 4"] = new Combat_zone({
+        description: "B9级飞船的内部。那些最大只的敌人都在-5...", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 1, xp_gain: 1}],
+        enemies_list: ["白银之锋A9","持盾战士A9","红桃重工B1","燕岗狂战傀儡","激光炮塔"],
+        enemy_group_size: [2.75,3.75],
+        is_unlocked: false,
+        name: "天外飞船 - 4",
+        rank:164, 
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        first_reward: {
+            xp: 1500e4,
+        },
+        repeatable_reward: {
+            xp: 500e4,
+            locations: [{location: "天外飞船 - 5"}],
+            //姐姐区域
+        },
+    });
+    locations["天外飞船 - 5"] = new Combat_zone({
+        description: "B9级飞船的内部。小心416 416 416的黑铁战士！", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 1, xp_gain: 1}],
+        enemies_list: ["方片重工A9","血洛游侠","舰船护卫A9","高级卫兵B1","黑铁战士B1"],
+        enemy_group_size: [3,3],
+        is_unlocked: false,
+        name: "天外飞船 - 5",
+        rank:165, 
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        first_reward: {
+            xp: 1800e4,
+        },
+        repeatable_reward: {
+            xp: 600e4,
+            //locations: [{location: "天外飞船 - X"}],
+        },
+    });
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 1"]});
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 2"]});
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 3"]});
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 4"]});
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 5"]});
 
 
     locations["Nearby cave"] = new Location({ 
