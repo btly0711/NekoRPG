@@ -2879,7 +2879,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "B9级飞船的内部。那些最大只的敌人都在-5...", 
         enemy_count: 20, 
         types: [{type: "stress", stage: 1, xp_gain: 1}],
-        enemies_list: ["白银之锋A9","持盾战士A9","红桃重工B1","燕岗狂战傀儡","激光炮塔"],
+        enemies_list: ["白银之锋A9","持盾战士A9","红桃重工B1","燕岗狂战傀儡","激光炮塔A9"],
         enemy_group_size: [2.75,3.75],
         is_unlocked: false,
         name: "天外飞船 - 4",
