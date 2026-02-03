@@ -4133,7 +4133,7 @@ class Enemy {
         ],
     });
     enemy_templates["黑铁战士B1"] = new Enemy({
-        name: "高级卫兵B1", 
+        name: "黑铁战士B1", 
         description: "416！416！416！我是超级防杀人！", 
         xp_value: 1346269, 
         rank: 2712,

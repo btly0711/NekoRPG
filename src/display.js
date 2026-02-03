@@ -1364,8 +1364,10 @@ function update_displayed_enemies() {
             enemies_div.children[i].children[0].children[1].children[0].innerHTML = `伤害:${format_number(current_enemies[i].stats.attack)}`;
             enemies_div.children[i].children[0].children[1].children[1].innerHTML = `防御:${format_number(current_enemies[i].stats.defense)}`;
             enemies_div.children[i].children[0].children[1].children[2].innerHTML = `攻速:${format_number(disp_speed)}`;
-            enemies_div.children[i].children[0].children[1].children[3].innerHTML = `命中:${Math.floor(100*hit_chance)}%`; //100% if shield!
-            enemies_div.children[i].children[0].children[1].children[4].innerHTML = `闪避:${Math.floor(100*evasion_chance)}%`;
+            let HIT = Math.floor(100*hit_chance);
+            let EVA = Math.floor(100*evasion_chance)
+            enemies_div.children[i].children[0].children[1].children[3].innerHTML = `命中:${(HIT!=100)?(HIT+'%'):'MAX'}`; //100% if shield!
+            enemies_div.children[i].children[0].children[1].children[4].innerHTML = `闪避:${(EVA!=100)?(EVA+'%'):'MAX'}`;
             
         } else {
             enemies_div.children[i].children[0].style.display = "none"; //just hide it
