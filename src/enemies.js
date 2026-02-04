@@ -3935,6 +3935,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.05},
             {item_name: "殿堂红宝石", chance:0.005},
+            {item_name: "重甲残骸", chance:0.09},
             //50Z
         ],
     });
@@ -3954,6 +3955,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.05},
             {item_name: "殿堂红宝石", chance:0.005},
+            {item_name: "雷电加护", chance:0.07},
             //50Z
         ],
     });
@@ -3974,6 +3976,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.05},
             {item_name: "殿堂红宝石", chance:0.005},
+            {item_name: "雷电加护", chance:0.08},
             //50Z
         ],
     });
@@ -3993,6 +3996,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.05},
             {item_name: "殿堂红宝石", chance:0.005},
+            {item_name: "红黑印记", chance:0.06},
             //50Z
         ],
     });
@@ -4013,6 +4017,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "雷电加护", chance:0.13},
             //90Z
         ],
     });
@@ -4033,6 +4038,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "重甲残骸", chance:0.18},
             //90Z
         ],
     });
@@ -4053,6 +4059,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "红黑印记", chance:0.14},
             //90Z
         ],
     });
@@ -4072,6 +4079,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "摩羽币", chance:0.07},
             //90Z
         ],
     });
@@ -4091,6 +4099,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "重甲残骸", chance:0.15},
             //90Z
         ],
     });
@@ -4111,6 +4120,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "B1·能量核心", chance:0.15},
+            {item_name: "重甲残骸", chance:0.25},
             //500Z
         ],
     });
@@ -4129,6 +4140,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "摩羽币", chance:0.07},
             //90Z
         ],
     });
@@ -4147,6 +4159,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "B1·能量核心", chance:0.15},
+            {item_name: "摩羽币", chance:0.05},
             //500Z
         ],
     });
@@ -4165,6 +4179,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "重甲残骸", chance:0.18},
             //90Z
         ],
     });
@@ -4183,6 +4198,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "摩羽币", chance:0.3},
             //500Z
         ],
     });
@@ -4202,6 +4218,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "红黑印记", chance:0.2},
             //90Z
         ],
     });
@@ -4220,6 +4237,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "能量核心·B1", chance:0.2},
             //500Z
         ],
     });
@@ -4238,7 +4256,7 @@ class Enemy {
         stats: {health: 960000, attack: 3600000, agility: 3400000, attack_speed: 1.2, defense: 2800000}, 
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
-            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "雷电加护", chance:0.2},
             //90Z
         ],
     });
@@ -4257,6 +4275,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "重甲残骸", chance:0.2},
             //90Z
         ],
     });
@@ -4276,6 +4295,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "红黑印记", chance:0.8},
             //500Z
         ],
     });
@@ -4555,7 +4575,7 @@ B1 134'6269  /217'8309  exp
         spec_value:{},
         tags: [],
         stats: {health: 3900000, attack:125000, agility: 60000, attack_speed: 1.2, defense: 15000}, 
-        loot_list: [],
+        loot_list: [{item_name:"极品红宝石",chance:3.00}],
     });
     enemy_templates["秘境心火精灵[BOSS]"] = new Enemy({
         name: "秘境心火精灵[BOSS]", 
@@ -4569,7 +4589,7 @@ B1 134'6269  /217'8309  exp
         spec_value:{},
         tags: [],
         stats: {health: 3200000, attack:280000, agility: 150000, attack_speed: 1.2, defense: 120000}, 
-        loot_list: [],
+        loot_list: [{item_name:"极品绿宝石",chance:4.00}],
     });
     
     enemy_templates["蓝帽行者[BOSS]"] = new Enemy({
@@ -4631,7 +4651,7 @@ B1 134'6269  /217'8309  exp
         spec_value:{},
         tags: [],
         stats: {health: 102000000, attack:1600000, agility: 800000, attack_speed: 1.0, defense: 520000}, 
-        loot_list: [],
+        loot_list: [{item_name:"殿堂蓝宝石",chance:4.00}],
     });
     
     enemy_templates["初级卫兵A9[BOSS]"] = new Enemy({
@@ -4646,7 +4666,7 @@ B1 134'6269  /217'8309  exp
         spec_value:{},
         tags: [],
         stats: {health: 144000000, attack:3200000, agility: 1600000, attack_speed: 1.4, defense: 1250000}, 
-        loot_list: [],
+        loot_list: [{item_name:"殿堂红宝石",chance:4.00}],
     });
 
     enemy_templates["Village guard (heavy)"] = new Enemy({

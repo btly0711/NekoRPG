@@ -2419,6 +2419,40 @@ item_templates["Twist liek a snek"] = new Book({
         }
     });
 
+    
+    item_templates["摩羽巨币"] = new Props({
+        name: "摩羽巨币",
+        id: "摩羽巨币",
+        description: "可惜摩羽星没有圣荒城那样的传统。这些钱只能当一面大盾牌使了。", 
+        value: 1e12,
+        stats: {
+            attack_speed: {
+                multiplier: 0.7,
+            },
+            defense: {
+                multiplier: 1.2,
+            },
+            agility: {
+                multiplier: 0.7,
+            }
+        }
+    });
+
+    item_templates["玻璃大炮"] = new Props({
+        name: "玻璃大炮",
+        id: "玻璃大炮",
+        description: "你甚至可以自己动手搓一只！虽然加强了，但是好菜啊这个...", 
+        value: 300e9,
+        stats: {
+            attack_power: {
+                flat: 300000,
+            },
+            defense: {
+                flat: -5000,
+            }
+        }
+    });
+
 
 
 })();
@@ -2862,6 +2896,42 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    
+    item_templates["红钢剑刃"] = new WeaponComponent({
+        name: "红钢剑刃", description: "红钢锭制造的剑刃。",
+        component_type: "long blade",
+        value: 3200e6,
+        component_tier: 9,
+        name_prefix: "红钢",
+        attack_value: 518400,
+        stats: {
+            crit_rate: {
+                flat: 0.15,
+            },
+            attack_speed: {
+                multiplier: 1.15,
+            },
+        }
+    });
+    item_templates["红钢戟头"] = new WeaponComponent({
+        name: "红钢戟头", description: "红钢锭制造的三叉戟头。",
+        component_type: "triple blade",
+        value: 9600e6,
+        component_tier: 9,
+        name_prefix: "红钢",
+        attack_value: 720000,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_mul: {
+                multiplier: 3.40,
+            },
+            attack_speed: {
+                multiplier: 0.50,
+            },
+        }
+    });
     item_templates["骨剑柄"] = new WeaponComponent({
         name: "骨剑柄", description: "由白骨制成的剑柄。易碎，所以使用时会影响自身",
         component_type: "short handle",
@@ -2932,6 +3002,24 @@ item_templates["Twist liek a snek"] = new Book({
             },
             health_regeneration_flat: {
                 flat: 4000.00,
+            },
+        }
+    });
+    
+    item_templates["凝胶剑柄"] = new WeaponComponent({
+        name: "凝胶剑柄", description: "蜡状的固态凝胶做成的剑柄，轻盈的同时导能与手感俱佳。",
+        component_type: "short handle",
+        value: 1.2e9,
+        component_tier: 9,
+        stats: {
+            attack_mul: {
+                flat: 0.3,
+            },
+            crit_multiplier: {
+                flat: 0.4,
+            },
+            agility: {
+                flat: 120000,
             },
         }
     });
@@ -3631,6 +3719,25 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/seagreen_ingot.png",
     });
+    
+    item_templates["固态凝胶"] = new Material({
+        id: "固态凝胶",
+        name: "固态凝胶", 
+        description: "雷电加护劈高能凝胶出现的稳定蜡状物。比起缠绕水晶导能性质一致，手感好得多。", 
+        value: 800e6,
+        material_type: "metal",
+        image: "image/item/soild_rubber.png",
+    });
+    
+    item_templates["红钢锭"] = new Material({
+        id: "红钢锭",
+        name: "红钢锭", 
+        description: "重甲残骸被红黑印记还原并加强后的金属。强度约为B2-B3。", 
+        value: 1800e6,
+        material_type: "metal",
+        image: "image/item/redsteel_ingot.png",
+    });
+    
 })();
 
 //矿石
@@ -3838,6 +3945,16 @@ item_templates["Twist liek a snek"] = new Book({
         realmcap:21,
         image: "image/item/A8_cooked_meat.png",
     });//
+
+    
+    item_templates["超浓缩·坚固药剂"] = new UsableItem({
+        name: "超浓缩·坚固药剂", 
+        description: "经过剧烈的提纯之后，对B3级以下都可以产生效力的药剂。只是持续时间大打折扣。", 
+        value: 120e9,
+        realmcap:21,
+        effects: [{effect: "坚固 A9", duration: 30}],
+        image: "image/item/B3_hard.png",
+    });
     
 })();
 //炼金
@@ -4248,7 +4365,6 @@ item_templates["Twist liek a snek"] = new Book({
         value: 144e6,
         image: "image/item/ruin_essence.png",
     });
-    
     item_templates["高能凝胶"] = new Loot({
         name: "高能凝胶", 
         description: "战场灵体生物体内的黑色凝胶。汇聚了能量，有多种用途。", 
@@ -4260,6 +4376,36 @@ item_templates["Twist liek a snek"] = new Book({
         description: "虽然环境混乱不堪，但是抵达大地级后期的荒兽都拥有自我净化能力。即使是哥布林也能吃...", 
         value: 480e6,
         image: "image/item/A8_meat.png",
+    });
+    item_templates["B1·能量核心"] = new Loot({
+        name: "B1·能量核心", 
+        description: "你知道这是什么的，对吧？超进化·煤炭desu！", 
+        value: 2.64e9,
+        image: "image/item/B1_crystal.png",
+    });
+    item_templates["红黑印记"] = new Loot({
+        name: "红黑印记", 
+        description: "制式重工机械体内的专属印记。可以用于在熔炼时增加金属的强度。", 
+        value: 720e6,
+        image: "image/item/redblack_mark.png",
+    });
+    item_templates["雷电加护"] = new Loot({
+        name: "雷电加护", 
+        description: "阻激夹域机械体内的一缕电属性痕迹。法则属性几乎为0，但已足以固化高能凝胶。", 
+        value: 600e6,
+        image: "image/item/electric_mark.png",
+    });
+    item_templates["重甲残骸"] = new Loot({
+        name: "重甲残骸", 
+        description: "飞船冒险者留下的铠甲。尚未被红黑印记增幅。", 
+        value: 540e6,
+        image: "image/item/heavyarmor_shard.png",
+    });
+    item_templates["摩羽币"] = new Loot({
+        name: "摩羽币", 
+        description: "中等宇宙国度的货币。按宇宙币计价大约只有200Z的价值，但在血洛大陆相当有收藏意义。", 
+        value: 1600e6,
+        image: "image/item/MY_coin.png",
     });
 
 

@@ -618,9 +618,10 @@
                         </div>
                         <div class="crafting_category" data-crafting_category="crafting">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items')">物品/饰品</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('crafting', 'components')">部件</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('crafting', 'equipment')">装备</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items')">第一幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4" onclick="switchCraftingRecipesSubpage('crafting', 'components')">部件</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4" onclick="switchCraftingRecipesSubpage('crafting', 'equipment')">装备</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items">
                                 
@@ -1366,7 +1367,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.61a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.62";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
