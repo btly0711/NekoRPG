@@ -2427,13 +2427,13 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1e12,
         stats: {
             attack_speed: {
-                multiplier: 0.7,
+                multiplier: 0.9,
             },
             defense: {
-                multiplier: 1.2,
+                flat:3333333,
             },
             agility: {
-                multiplier: 0.7,
+                multiplier: 0.9,
             }
         }
     });

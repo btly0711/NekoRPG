@@ -1065,7 +1065,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [6,19],
         recipe_skill: "Forging",
     });
-    forging_recipes.items2["缠绕水晶"] = new ItemRecipe({
+    forging_recipes.items["缠绕水晶"] = new ItemRecipe({
         name: "缠绕水晶",
         recipe_type: "material",
         materials: [{material_id: "透明水晶", count: 1},{material_id: "秘境芦苇", count: 2}],
@@ -1074,7 +1074,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [28,31],
         recipe_skill: "Forging",
     });
-    forging_recipes.items2["缠绕水晶-精制[x5]"] = new ItemRecipe({
+    forging_recipes.items["缠绕水晶-精制[x5]"] = new ItemRecipe({
         name: "缠绕水晶-精制[x5]",
         recipe_type: "material",
         materials: [{material_id: "透明水晶", count: 1},{material_id: "废墟符文", count: 1}],
@@ -1084,7 +1084,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Forging",
     });
     
-    forging_recipes.items2["固态凝胶"] = new ItemRecipe({
+    forging_recipes.items["固态凝胶"] = new ItemRecipe({
         name: "固态凝胶",
         recipe_type: "material",
         materials: [{material_id: "高能凝胶", count: 1},{material_id: "雷电加护", count: 1}],
