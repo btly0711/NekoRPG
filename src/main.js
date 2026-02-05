@@ -775,8 +775,11 @@ function start_textline(textline_key){
         }
     }
     for(let i = 0; i < textline.unlocks.items.length; i++) {
-        log_message(`${character.name} 获取了 "${textline.unlocks.items[i].item_name}"`);
-        add_to_character_inventory([{item: item_templates[textline.unlocks.items[i].item_name]}]);
+        let item_id = textline.unlocks.items[i].item_name;
+        log_message(`${character.name} 获取了 "${item_id}"`);
+        
+        if(textline.unlocks.items[i].quality != undefined) add_to_character_inventory([{item: getItem({...item_templates[item_id], quality: textline.unlocks.items[i].quality})}]);
+        else  add_to_character_inventory([{item: item_templates[item_id]}]);
     }
 
     if(textline.unlocks.money && typeof textline.unlocks.money === "number") {
@@ -916,6 +919,7 @@ function start_textline(textline_key){
                 let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
                 let MM2 = ["生命恢复 1%","生命上限 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
                 displayed_text += `<br>目前的月相为 ${MM1[C_moon]}，<br>赐福内容为 ${MM2[C_moon]}.(1800s)`
+                displayed_text += `<br>⚠️接受皎月祝福会清空原有状态效果⚠️`;
                 
             }
         }

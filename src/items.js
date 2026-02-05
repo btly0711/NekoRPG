@@ -2427,13 +2427,13 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1e12,
         stats: {
             attack_speed: {
-                multiplier: 0.9,
+                multiplier: 0.7,
             },
             defense: {
                 flat:3333333,
             },
             agility: {
-                multiplier: 0.9,
+                multiplier: 0.7,
             }
         }
     });
@@ -2600,6 +2600,27 @@ item_templates["Twist liek a snek"] = new Book({
             },
             max_health: {
                 multiplier: 1.3,
+            }
+        }
+    });
+    
+    item_templates["纳娜米(飞船)"] = new Special({
+        name: "纳娜米(飞船)",
+        id: "纳娜米(飞船)",
+        description: "别卖姐姐！你这个恶魔！<br>(Tips:没有姐姐的话飞船中枢·B6不会在第十回合爆炸", 
+        value: 77777777e6,
+        stats: {
+            attack_power: {
+                multiplier: 1.1,
+            },
+            defense: {
+                multiplier: 1.1,
+            },
+            agility: {
+                multiplier: 1.1,
+            },
+            max_health: {
+                multiplier: 1.1,
             }
         }
     });
@@ -3069,6 +3090,20 @@ item_templates["Twist liek a snek"] = new Book({
         components: {
             head: "海绿戟头",
             handle: "水晶剑柄",
+        }
+    });
+
+    
+    item_templates["红钢剑"] = new Weapon({
+        components: {
+            head: "红钢剑刃",
+            handle: "凝胶剑柄",
+        }
+    });
+    item_templates["红钢戟"] = new Weapon({
+        components: {
+            head: "红钢戟头",
+            handle: "凝胶剑柄",
         }
     });
 })();

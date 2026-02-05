@@ -70,11 +70,15 @@ class Enemy {
             if (final_chance>= Math.random()) item_count ++;
             // if ("count" in item) {
             //     item_count = Math.round(Math.random() * (item["count"]["max"] - item["count"]["min"]) + item["count"]["min"]);
-            //     // calculates how much drops (from range min-max, both inclusive)
+            //     // calculates how much drops (from range min-max, both inclusive
+            //   getItem({...item_templates[result_id], quality: selected_recipe.Q_able}))
             // }
                 
-
-            if(item_count != 0) loot.push({ "item": getItem(item_templates[item.item_name]), "count": item_count });
+            //WIP
+            if(item_count != 0){
+                if(item.quality != undefined) loot.push({ "item": getItem({...item_templates[item.item_name],quality:item.quality}), "count": item_count });
+                else loot.push({ "item": getItem(item_templates[item.item_name]), "count": item_count });
+            }
         }
 
         return loot;
@@ -3900,26 +3904,6 @@ class Enemy {
             //50Z
         ],
     });
-    enemy_templates["血洛老年修士"] = new Enemy({
-        name: "血洛老年修士", 
-        description: "词头是血洛耶。不会那么老的原因是花了几百年跑过了几个世界...", 
-        xp_value: 317811, 
-        rank: 2614,
-        image: "image/enemy/E2614.png",
-        realm: "<span class=realm_terra><b>大地级巅峰</b></span>",
-        size: "small",
-        spec: [],
-        spec_value:{},
-        tags: [],
-        stats: {health: 5600000, attack:1400000, agility: 1200000, attack_speed: 1.2, defense: 880000}, 
-        loot_list: [
-            {item_name: "殿堂黄宝石", chance:0.03},
-            {item_name: "殿堂蓝宝石", chance:0.05},
-            {item_name: "废墟精华", chance:0.30},
-            {item_name: "A7·能量核心", chance:0.16},
-            //50Z
-        ],
-    });
     enemy_templates["初级卫兵A9"] = new Enemy({
         name: "初级卫兵A9", 
         description: "或许境界更应该叫做行星级九阶?散华不满血，满血不可敌。", 
@@ -4161,6 +4145,7 @@ class Enemy {
             {item_name: "殿堂红宝石", chance:0.05},
             {item_name: "B1·能量核心", chance:0.15},
             {item_name: "摩羽币", chance:0.05},
+            {item_name: "雷电加护", chance:0.4},
             //500Z
         ],
     });
@@ -4219,6 +4204,7 @@ class Enemy {
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
             {item_name: "红黑印记", chance:0.2},
+            {item_name: "雷电加护", chance:0.4},
             //90Z
         ],
     });
@@ -4237,7 +4223,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "殿堂红宝石", chance:0.05},
-            {item_name: "能量核心·B1", chance:0.2},
+            {item_name: "B1·能量核心", chance:0.2},
             //500Z
         ],
     });
@@ -4668,6 +4654,44 @@ B1 134'6269  /217'8309  exp
         stats: {health: 144000000, attack:3200000, agility: 1600000, attack_speed: 1.4, defense: 1250000}, 
         loot_list: [{item_name:"殿堂红宝石",chance:4.00}],
     });
+    
+    enemy_templates["百方[BOSS]"] = new Enemy({
+        name: "百方[BOSS]", 
+        description: "这只是正牌的了！不过少爷和纳可比起来进步的有点慢呢——", 
+        xp_value: 514229, 
+        rank: 2797,
+        image: "image/boss/B2102.png",
+        realm: "<span class=realm_terra><b>大地级巅峰 +</b></span>",
+        size: "small",
+        spec: [32,34],
+        spec_value:{},
+        tags: [],
+        stats: {health: 77700000, attack:4560000, agility: 2000000, attack_speed: 1.2, defense: 700000}, 
+        loot_list: [{item_name:"玻璃大炮",chance:1.00,quality:160}],
+    });
+
+    enemy_templates["空间三角B1[BOSS]"] = new Enemy({
+        name: "空间三角B1[BOSS]", 
+        description: "好大一只！好难打！不过，速度有点慢耶。", 
+        xp_value: 2178309, 
+        rank: 2798,
+        image: "image/boss/B2702.png",
+        realm: "<span class=realm_terra><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [6],
+        spec_value:{},
+        tags: [],
+        stats: {health: 105000000, attack:6500000, agility: 4000000, attack_speed: 0.9, defense: 3500000}, 
+        loot_list: [{item_name:"殿堂绿宝石",chance:2.00}],
+    });
+
+
+
+
+
+
+
+
 
     enemy_templates["Village guard (heavy)"] = new Enemy({
         name: "Village guard (heavy)", 

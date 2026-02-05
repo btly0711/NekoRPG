@@ -2809,6 +2809,8 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["声律城战场"], custom_text: "暂且离开这艘飞船"}], 
         description: "声律城之行的最终目标。可能蕴含着在血洛大陆堪称罕见的宝物，却处处透露出对外来着的不友善与肃杀。",
         name: "天外飞船", 
+        traders: ["飞船集市"],
+        dialogues: ["纳娜米(飞船)"],
         is_unlocked: false,
         bgm: 12,
     });//2-7
@@ -2831,8 +2833,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 200e4,
-            locations: [{location: "天外飞船 - 2"}],
-            //百方
+            locations: [{location: "天外飞船 - 2"},{location: "天外飞船 - 右上房间"}],
         },
     });
     locations["天外飞船 - 2"] = new Combat_zone({
@@ -2871,8 +2872,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 400e4,
-            locations: [{location: "天外飞船 - 4"}],
-            //空间三角B1
+            locations: [{location: "天外飞船 - 4"},{location: "天外飞船 - 歧路"}],
         },
     });
     locations["天外飞船 - 4"] = new Combat_zone({
@@ -2892,7 +2892,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 500e4,
             locations: [{location: "天外飞船 - 5"}],
-            //姐姐区域
+            textlines: [{dialogue: "纳娜米(飞船)", lines: ["nnm1"]}],
         },
     });
     locations["天外飞船 - 5"] = new Combat_zone({
@@ -2914,11 +2914,85 @@ function get_location_type_penalty(type, stage, stat) {
             //locations: [{location: "天外飞船 - X"}],
         },
     });
+    
+    locations["天外飞船 - 右上房间"] = new Challenge_zone({
+        description: "等等，如果没有看错的话，右上角的那个家伙是……！", 
+        enemy_count: 1, 
+        enemies_list : [["百方[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "天外飞船 - 右上房间",
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        repeatable_reward: {
+        },
+        unlock_text: "哼，百方少爷？真是冤家路窄呢。被本小姐在这里遇到的话……是时候让你付出代价了！",
+    });
+    
+    locations["天外飞船 - 歧路"] = new Challenge_zone({
+        description: "这里有天空级的机器人堵路！但是，后面的宝石似乎好大一只...", 
+        enemy_count: 1, 
+        enemies_list : [["空间三角B1[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "天外飞船 - 歧路",
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        repeatable_reward: {
+            traders: [{traders:"飞船集市"}],
+        },
+        unlock_text: "传说通过了这里，就是飞船冒险者的交换会...得想想办法，击败了那个蓝色的家伙！",
+    });
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 1"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 2"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 3"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 4"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 5"]});
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 歧路"]});
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 右上房间"]});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     locations["Nearby cave"] = new Location({ 

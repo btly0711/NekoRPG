@@ -198,6 +198,13 @@ class TradeItem {
         inventory_template: "Terra IV",
         is_unlocked: false,
         location_name: "声律城废墟",
+        profit_margin: 4.8,
+    });
+    traders["飞船集市"] = new Trader({
+        name: "飞船集市",
+        inventory_template: "Terra V",
+        is_unlocked: false,
+        location_name: "天外飞船",
         profit_margin: 5.4,
     });
     traders["物品存储箱"] = new Trader({
@@ -449,6 +456,29 @@ class TradeItem {
             new TradeItem({item_name: "符文工作台套件", count: [1,1]}),
 
             
+
+    ];
+    
+    inventory_templates["Terra V"] = 
+    [
+            new TradeItem({item_name: "A7·能量核心", count: [150,250]}),
+            new TradeItem({item_name: "海绿锭", count: [100,250]}),
+            new TradeItem({item_name: "高能织料", count: [50,125]}),
+
+            new TradeItem({item_name: "红钢剑", count: [1], quality: [110, 139], chance: 0.8}),
+            new TradeItem({item_name: "红钢戟", count: [1], quality: [100, 129], chance: 0.5}),
+
+            
+            new TradeItem({item_name: "高能帽子", count: [1], quality: [111, 140], chance: 0.8}),
+            new TradeItem({item_name: "高能背心", count: [1], quality: [111, 140], chance: 0.8}),
+            new TradeItem({item_name: "高能裤子", count: [1], quality: [111, 140], chance: 0.8}),
+            new TradeItem({item_name: "高能袜子", count: [1], quality: [111, 140], chance: 0.8}),
+
+            
+            new TradeItem({item_name: "雷电加护", count: [5,25]}),
+            new TradeItem({item_name: "摩羽币", count: [5,25]}),
+            new TradeItem({item_name: "红黑印记", count: [5,25]}),
+
 
     ];
     inventory_templates["Box"] = 

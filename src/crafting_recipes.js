@@ -76,7 +76,6 @@ class ItemRecipe extends Recipe {
 
     get_availability() {
         for(let i = 0; i < this.materials.length; i++) {
-            console.log(this.materials[i].material_id);
             const key = item_templates[this.materials[i].material_id].getInventoryKey();
             if(!character.inventory[key] || character.inventory[key].count < this.materials[i].count) {
                 return false;
