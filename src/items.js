@@ -2924,7 +2924,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 3200e6,
         component_tier: 9,
         name_prefix: "红钢",
-        attack_value: 518400,
+        attack_value: 388800,
         stats: {
             crit_rate: {
                 flat: 0.15,
@@ -2940,7 +2940,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 9600e6,
         component_tier: 9,
         name_prefix: "红钢",
-        attack_value: 720000,
+        attack_value: 540000,
         stats: {
             crit_rate: {
                 flat: 0.10,
@@ -3761,7 +3761,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "雷电加护劈高能凝胶出现的稳定蜡状物。比起缠绕水晶导能性质一致，手感好得多。", 
         value: 800e6,
         material_type: "metal",
-        image: "image/item/soild_rubber.png",
+        image: "image/item/solid_rubber.png",
     });
     
     item_templates["红钢锭"] = new Material({

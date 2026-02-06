@@ -1558,7 +1558,7 @@ function update_displayed_normal_location(location) {
         locations_button.setAttribute("data-location", location.name);
         locations_button.classList.add("location_choices");
         locations_button.setAttribute("onclick", 'update_displayed_location_choices({location_name: this.getAttribute("data-location"), category: "travel"});');
-        locations_button.innerHTML = '<i class="material-icons">format_list_bulleted</i>  Move somewhere else';
+        locations_button.innerHTML = '<i class="material-icons">format_list_bulleted</i>  展开';
         action_div.appendChild(locations_button);
     } else if(available_locations.length > 0) {
         action_div.append(...create_location_choices({location: location, category: "travel"}));
@@ -1823,7 +1823,7 @@ function create_location_choices({location, category, add_icons = true, is_comba
 function update_displayed_location_choices({location_name, category, add_icons, is_combat}) {
     action_div.replaceChildren(...create_location_choices({location: locations[location_name], category: category, add_icons: add_icons, is_combat: is_combat}));
     const return_button = document.createElement("div");
-    return_button.innerHTML = "<i class='material-icons'>arrow_back</i> Return";
+    return_button.innerHTML = "<i class='material-icons'>arrow_back</i> 收起";
     return_button.setAttribute("onclick", "reload_normal_location()");
     return_button.classList.add("choices_return_button");
     action_div.appendChild(return_button);

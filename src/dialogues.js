@@ -1350,6 +1350,20 @@ class Textline {
         }
     });
     
+    dialogues["核心反应堆"] = new Dialogue({
+        name: "核心反应堆",
+        starting_text: "使用 [核心反应堆]",
+        textlines: {
+            "reactor": new Textline({ 
+                is_unlocked: true,
+                name: "使用 [核心反应堆]",
+                text: "...",
+                unlocks: {
+                    spec:"A7-reactor",
+                },
+            }),
+        }
+    });
 
 
 

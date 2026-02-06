@@ -2810,7 +2810,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "声律城之行的最终目标。可能蕴含着在血洛大陆堪称罕见的宝物，却处处透露出对外来着的不友善与肃杀。",
         name: "天外飞船", 
         traders: ["飞船集市"],
-        dialogues: ["纳娜米(飞船)"],
+        dialogues: ["纳娜米(飞船)","核心反应堆"],
         is_unlocked: false,
         bgm: 12,
     });//2-7

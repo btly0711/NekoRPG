@@ -4676,7 +4676,7 @@ B1 134'6269  /217'8309  exp
         xp_value: 2178309, 
         rank: 2798,
         image: "image/boss/B2702.png",
-        realm: "<span class=realm_terra><b>天空级一阶 +</b></span>",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
         size: "small",
         spec: [6],
         spec_value:{},

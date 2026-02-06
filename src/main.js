@@ -1,7 +1,7 @@
 "use strict";
 
 import { current_game_time } from "./game_time.js";
-import { item_templates, getItem, book_stats, setLootSoldCount, loot_sold_count, recoverItemPrices, rarity_multipliers, getArmorSlot} from "./items.js";
+import { item_templates, getItem, book_stats, setLootSoldCount, loot_sold_count, recoverItemPrices, rarity_multipliers, getArmorSlot, WeaponComponent} from "./items.js";
 import { locations } from "./locations.js";
 import { skills, weapon_type_to_skill, which_skills_affect_skill } from "./skills.js";
 import { dialogues } from "./dialogues.js";
@@ -956,6 +956,9 @@ function start_textline(textline_key){
 
                 }
             }
+        }
+        else if(textline.unlocks.spec == "A7-reactor"){
+            start_reactor_minigame();
         }
     }
 /*
@@ -3853,6 +3856,176 @@ function start_fishing_minigame()
     },frametime * 1000)
 }//完整钓鱼小游戏
 
+
+const reactor_div = document.getElementById("reactor_div");
+let reactor_able = true;
+function reactor_init()
+{
+    inf_combat.RT = {};
+    inf_combat.RT.B1=0;
+    inf_combat.RT.A7=0;
+    inf_combat.RT.LD=0;
+    inf_combat.RT.ER=1;
+    inf_combat.RT.temp=20;
+    inf_combat.RT.power=0;//类似中子
+    inf_combat.RT.rad = 0;//累积辐射
+}
+const B1_num = document.getElementById("B1_core_num");
+const A7_num = document.getElementById("A7_core_num");
+const LD_num = document.getElementById("LD_core_num");
+const ER_num = document.getElementById("ER_core_num");
+const B1_bar = document.getElementById("reactor_B1_bar_current");
+const A7_bar = document.getElementById("reactor_A7_bar_current");
+const LD_bar = document.getElementById("reactor_LD_bar_current");
+const ER_bar = document.getElementById("reactor_ER_bar_current");
+const temp_num = document.getElementById("temp_num");
+const temp_bar = document.getElementById("temp_bar_current");
+const rad_num = document.getElementById("rad_num");
+const rad_quality = document.getElementById("rad_quality");
+const rad_bar = document.getElementById("rad_bar_current");
+function update_displayed_reactor()
+{
+    if(inf_combat.RT == undefined) reactor_init();
+    if(inf_combat.RT.rad == undefined) reactor_init();
+    B1_num.innerText = format_number(inf_combat.RT.B1);
+    A7_num.innerText = format_number(inf_combat.RT.A7);
+    LD_num.innerText = format_number(inf_combat.RT.LD);
+    ER_num.innerText = format_number(inf_combat.RT.ER);
+    B1_bar.style.width = (Math.log10(Math.min(inf_combat.RT.B1,9999)+1)*25).toString() +"%";
+    A7_bar.style.width = (Math.log10(Math.min(inf_combat.RT.A7,9999)+1)*25).toString() +"%";
+    LD_bar.style.width = (Math.log10(Math.min(inf_combat.RT.LD,9999)+1)*25).toString() +"%";
+    ER_bar.style.width = (Math.log10(Math.min(inf_combat.RT.ER,9999)+1)*25).toString() +"%";
+    temp_num.innerText = format_number(inf_combat.RT.temp);
+    rad_num.innerText = format_number(inf_combat.RT.rad);
+    rad_quality.innerText = format_number(Math.log(inf_combat.RT.rad + 1) * 15 + 100);
+    temp_bar.style.width = (100-inf_combat.RT.temp/100).toString() +"%";
+    rad_bar.style.width = (100-Math.log(Math.min(inf_combat.RT.rad,1202604)+1)*100/14).toString() +"%";
+
+
+    
+}
+function start_reactor_minigame()
+{
+    update_displayed_reactor()
+    reactor_able = true;
+    reactor_div.style.display ="inherit";
+    action_div.style.display = "none";
+    let frametime = 0.03;
+    let power_d = 0;
+    const ReactorId = setInterval(() => {
+        power_d = inf_combat.RT.power;
+        inf_combat.RT.power = 0;
+        inf_combat.RT.rad += power_d * frametime;//辐照量+=中子通量
+        //power不/frametime，而是裸数值。
+        //计算增殖燃料：B1·能量核心
+        if(inf_combat.RT.B1 > 1e-4)
+        {
+            inf_combat.RT.power += Math.log10(inf_combat.RT.B1+1)*0.4*power_d;
+            inf_combat.RT.B1 -= Math.log10(inf_combat.RT.B1+1)*0.4*power_d*frametime / 8000;
+            if(inf_combat.RT.B1 < 0) inf_combat.RT.B1 = 0;
+        }//B1的热值是8000，根据储量决定线性系数
+        //B1在316颗进入超临界。
+
+        //计算普通燃料：A7·能量核心
+        if(inf_combat.RT.A7 > 1e-4)
+        {
+            inf_combat.RT.power += Math.sqrt(inf_combat.RT.A7*power_d)*0.4;
+            inf_combat.RT.A7 -= Math.sqrt(inf_combat.RT.A7*power_d)*0.4*frametime/20;
+            if(inf_combat.RT.A7 < 0) inf_combat.RT.A7 = 0;
+        }//A7的热值是20，稳态焚烧速度是每秒焚烧目前1/50的A7
+
+        //计算中子源：雷电加护
+        if(inf_combat.RT.LD > 1e-4)
+        {
+            inf_combat.RT.power += 0.001*inf_combat.RT.LD;
+            inf_combat.RT.LD *= 1-0.001*frametime;
+            if(inf_combat.RT.LD < 0) inf_combat.RT.LD = 0;
+        }
+        //雷电的热值只有1，以1/1000的速度释放中子
+
+        inf_combat.RT.temp += inf_combat.RT.power * 100 * frametime / inf_combat.RT.ER;
+        //灌满了凝胶，一管子温度也只能有100w辐照...
+        inf_combat.RT.temp = (inf_combat.RT.temp-20)*(1-(frametime/((100*inf_combat.RT.ER)**0.333)))+20;
+        //灌的越多冷却越慢。最多的时候需要100s来冷却到1/e.
+        //即初始连续可容忍通量为100，最多凝胶为10000.
+
+        if(inf_combat.RT.temp > 10000)
+        {
+            reactor_able = false;
+            log_message("反应堆因温度过高熔毁了！！！","enemy_attacked_critically");
+            active_effects["辐射"] = new ActiveEffect({...effect_templates["辐射"], duration:100 * inf_combat.RT.ER ** 0.333});
+            update_character_stats();
+            reactor_init();
+        }
+
+        if (!reactor_able) {
+            action_div.style.display = "inherit";
+            reactor_div.style.display = "none";
+            clearInterval(ReactorId);
+        }
+        update_displayed_reactor();
+    },frametime * 1000)
+        
+}//反应堆小游戏
+
+function reactor(item_id,count)
+{
+    if(inf_combat.RT == undefined) reactor_init();
+    if(inf_combat.RT.power == undefined) reactor_init();
+    let item_map = {1:"B1·能量核心",2:"A7·能量核心",3:"雷电加护",4:"高能凝胶"};
+    //检查物品是否足够，扣除物品，如果不够就返回
+    let key = "{\"id\":\""+item_map[item_id]+"\"}";
+    if(character.inventory[key] != undefined)
+    {
+        if(character.inventory[key].count >= count)
+        {
+            remove_from_character_inventory([{ 
+                item_key: key,           
+                item_count: count,
+            }]);
+        }
+        else return;
+    }
+    else return;
+    let key_map = {1:"B1",2:"A7",3:"LD",4:"ER"};
+    if(item_id==1) inf_combat.RT.B1 += count;
+    if(item_id==2) inf_combat.RT.A7 += count;
+    if(item_id==3) inf_combat.RT.LD += count;
+    if(item_id==4){
+        inf_combat.RT.ER += count;
+        inf_combat.RT.rad -= (inf_combat.RT.rad) * count / inf_combat.RT.ER;
+        inf_combat.RT.temp -= (inf_combat.RT.temp - 20) * count / inf_combat.RT.ER;
+        //外来凝胶-降温
+    }
+}
+
+function leave_reactor()
+{
+    reactor_able = false;
+}
+function extract_reactor()
+{
+    if(inf_combat.RT.ER < 10)
+    {
+        log_message("反应堆内部的凝胶不足","enemy_attacked_critically");
+    }
+    else{
+        inf_combat.RT.ER *= 0.8;
+        let RB_quality = Math.round(Math.log(inf_combat.RT.rad + 1) * 15 + 100);
+        inf_combat.RT.rad = 0;
+        let result =  new WeaponComponent({...item_templates["凝胶剑柄"], quality: RB_quality});
+        log_message("获取了 凝胶剑柄 (品质 " + RB_quality + " )","combat_loot");
+        add_to_character_inventory([{item: result}]);
+        //获取一个凝胶剑柄
+        //getresult的结果
+    }
+}
+
+window.reactor =  reactor;
+window.leave_reactor =  leave_reactor;
+window.extract_reactor =  extract_reactor;
+
+
 function update() {
     setTimeout(function()
     {
@@ -4188,6 +4361,7 @@ function get_money(coin_type,coin_num)
         update_displayed_money();
     }
 }
+
 
 window.gem_consume = gem_consume;
 window.get_money = get_money;

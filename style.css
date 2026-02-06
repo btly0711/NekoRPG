@@ -570,6 +570,16 @@ body {
 	position:relative;
 	text-align: left;
 }
+.money_button_wide {
+	display: inline-block;
+	width: 108px;
+	cursor: pointer;
+	font-size: 16px;
+	top:0px;
+	left:4px;
+	position:relative;
+	text-align: left;
+}
 .recipe_10_button {
 	display: var(--item_use_button_display);
 	width: 36px;
@@ -1463,6 +1473,93 @@ i {
 			left: 100px;
 		}
 
+
+#reactor_B1_bar_max {
+	outline: 2px solid #98bda9;
+	background-color: #70887a;
+	margin: auto;
+	width: 99%;
+	height: 16px;
+	margin-top: 10px;
+}
+#reactor_B1_bar_current {
+	background-color: #cffee3;
+	height: 100%;
+}
+
+#reactor_A7_bar_max {
+	outline: 2px solid #bda2bd;
+	background-color: #8f7a8f;
+	margin: auto;
+	width: 99%;
+	height: 16px;
+	margin-top: 10px;
+}
+#reactor_A7_bar_current {
+	background-color: #fbd6fb;
+	height: 100%;
+}
+
+#reactor_LD_bar_max {
+	outline: 2px solid #0050d0;
+	background-color: #0030a0;
+	margin: auto;
+	width: 99%;
+	height: 16px;
+	margin-top: 10px;
+}
+#reactor_LD_bar_current {
+	background-color: #0066ff;
+	height: 100%;
+}
+
+#reactor_ER_bar_max {
+	outline: 2px solid #FFFFFF;
+	background-color: #b0b0b0;
+	margin: auto;
+	width: 99%;
+	height: 16px;
+	margin-top: 10px;
+}
+#reactor_ER_bar_current {
+	background-color: #808080;
+	height: 100%;
+}
+
+
+#temp_bar_max {
+	outline: 2px solid black;
+	background: linear-gradient(to right, black,red,orange,yellow,white,#c0ffff);;
+	margin: auto;
+	width: 99%;
+	height: 16px;
+	margin-top: 10px;
+}
+#temp_bar_current {
+	background-color: black;
+	height: 100%;
+	width:150px;
+	float:right;
+}
+
+
+#rad_bar_max {
+	outline: 2px solid black;
+	background: linear-gradient(to right, lightgreen,lightblue,plum,orange,red,cyan);;
+	margin: auto;
+	width: 99%;
+	height: 16px;
+	margin-top: 10px;
+}
+#rad_bar_current {
+	background-color: black;
+	height: 100%;
+	width:150px;
+	float:right;
+}
+
+
+
 #effects_div div{
 	display: inline-block;
 }
@@ -2193,6 +2290,13 @@ i {
 }
 
 #fish_div {
+    display: none;
+    height: 411px;
+	width: 100%;
+	flex-direction:row;
+}
+
+#reactor_div {
     display: none;
     height: 411px;
 	width: 100%;
