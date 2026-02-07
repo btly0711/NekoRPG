@@ -4139,7 +4139,7 @@ class Enemy {
         spec: [],
         spec_value:{},
         tags: [],
-        stats: {health: 52800000, attack: 4160000, agility: 4160000, attack_speed: 1.2, defense: 4160000}, 
+        stats: {health: 41600000, attack: 4160000, agility: 4160000, attack_speed: 1.2, defense: 4160000}, 
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.02},
             {item_name: "殿堂红宝石", chance:0.05},
@@ -4199,7 +4199,7 @@ class Enemy {
         spec: [8,40],
         spec_value:{8:10},
         tags: [],
-        stats: {health: 10, attack: 5000000, agility: 3200000, attack_speed: 1.2, defense: 3000000}, 
+        stats: {health: 4500000, attack: 5000000, agility: 3200000, attack_speed: 1.2, defense: 3000000}, 
         loot_list: [
             {item_name: "殿堂蓝宝石", chance:0.04},
             {item_name: "殿堂红宝石", chance:0.02},
@@ -4683,6 +4683,21 @@ B1 134'6269  /217'8309  exp
         tags: [],
         stats: {health: 105000000, attack:6500000, agility: 4000000, attack_speed: 0.9, defense: 3500000}, 
         loot_list: [{item_name:"殿堂绿宝石",chance:2.00}],
+    });
+    
+    enemy_templates["储存姬B1[BOSS]"] = new Enemy({
+        name: "储存姬B1[BOSS]", 
+        description: "哈~自爆！我看谁敢嫌弃加血宝石~", 
+        xp_value: 2178309, 
+        rank: 2799,
+        image: "image/boss/B2703.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [36],
+        spec_value:{},
+        tags: [],
+        stats: {health: 361000000, attack:9990000, agility: 4800000, attack_speed: 1.2, defense: 3340000}, 
+        loot_list: [{item_name:"殿堂绿宝石",chance:2.00},{item_name:"摩羽币",chance:33.00}],
     });
 
 

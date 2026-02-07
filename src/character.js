@@ -185,7 +185,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 if(character.xp.current_level == 18){
                         //character.xp.total_xp -= character.xp.current_xp - 99999999 ;
                         if(ignore_cap <= 1){
-                                character.xp.current_xp = 9999.9999e8;
+                                character.xp.current_xp = 2999.9999e8;
                                 return `<b>被<span class="realm_sky">天空级瓶颈</span>限制 - 经验已锁定</b>`
                         }
                         //否则进入突破计划！

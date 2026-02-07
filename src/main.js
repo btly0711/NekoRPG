@@ -83,14 +83,14 @@ window.REALMS=[
 [10,"大地级二阶",1000,250000,80000000,"terra"],
 [11,"大地级三阶",2000,550000,1.6e8,"terra"],
 [12,"大地级四阶",3000,1000000,4.8e8,"terra"],//200w
-[13,"大地级五阶",5000,1500000,18e8,"terra"],//350w
-[14,"大地级六阶",9000,2500000,54e8,"terra"],//600w
-[15,"大地级七阶",16000,6500000,120e8,"terra"],//1250w
-[16,"大地级八阶",32000,12500000,240e8,"terra"],//2500w
-[17,"大地级巅峰",60000,2250000,540e8,"terra"],
+[13,"大地级五阶",5000,1500000,12e8,"terra"],//350w
+[14,"大地级六阶",9000,2500000,36e8,"terra"],//600w
+[15,"大地级七阶",16000,6500000,108e8,"terra"],//1250w
+[16,"大地级八阶",32000,12500000,216e8,"terra"],//2500w
+[17,"大地级巅峰",60000,2250000,432e8,"terra"],
 [18,"大地级破限",150000,32500000,1080e8,"terra"],
 
-[19,"天空级一阶",150000,1.2e8,9999e8,"sky"],//2e
+[19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
 [20,"天空级二阶",500000,3e8,4.5e12,"sky"],//5e
 [21,"天空级三阶",1500000,15e8,18e12,"sky"],//20e
 
@@ -310,6 +310,7 @@ const musicList = {
   10: 'bgms/10.mp3',
   11: 'bgms/11.mp3',
   12: 'bgms/12.mp3',
+  13: 'bgms/13.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -3953,7 +3954,9 @@ function start_reactor_minigame()
         {
             reactor_able = false;
             log_message("反应堆因温度过高熔毁了！！！","enemy_attacked_critically");
-            active_effects["辐射"] = new ActiveEffect({...effect_templates["辐射"], duration:100 * inf_combat.RT.ER ** 0.333});
+            active_effects["辐射"] = new ActiveEffect({...effect_templates["辐射"], duration:Math.round(100 * inf_combat.RT.ER ** 0.333)});
+            update_displayed_effects();
+            character.stats.add_active_effect_bonus();
             update_character_stats();
             reactor_init();
         }

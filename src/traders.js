@@ -463,6 +463,8 @@ class TradeItem {
     [
             new TradeItem({item_name: "A7·能量核心", count: [150,250]}),
             new TradeItem({item_name: "海绿锭", count: [100,250]}),
+            new TradeItem({item_name: "高能凝胶", count: [500,999]}),
+
             new TradeItem({item_name: "高能织料", count: [50,125]}),
 
             new TradeItem({item_name: "红钢剑", count: [1], quality: [110, 139], chance: 0.8}),
@@ -478,6 +480,7 @@ class TradeItem {
             new TradeItem({item_name: "雷电加护", count: [5,25]}),
             new TradeItem({item_name: "摩羽币", count: [5,25]}),
             new TradeItem({item_name: "红黑印记", count: [5,25]}),
+            new TradeItem({item_name: "B1·能量核心", count: [5,10]}),
 
 
     ];

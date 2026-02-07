@@ -2911,7 +2911,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 600e4,
-            //locations: [{location: "天外飞船 - X"}],
+            locations: [{location: "天外飞船 - X"}],
         },
     });
     
@@ -2947,6 +2947,23 @@ function get_location_type_penalty(type, stage, stat) {
         },
         unlock_text: "传说通过了这里，就是飞船冒险者的交换会...得想想办法，击败了那个蓝色的家伙！",
     });
+    
+    locations["天外飞船 - X"] = new Challenge_zone({
+        description: "剧情太多，先不写在这里了……说起来，内存那么贵，这个储存姬B1肯定很值钱吧。", 
+        enemy_count: 1, 
+        enemies_list : [["储存姬B1[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "天外飞船 - X",
+        bgm:12,
+        parent_location: locations["天外飞船"],
+        repeatable_reward: {
+            locations: [{location: "飞船核心"}],
+        },
+        unlock_text: "咕！咕咕！",
+    });
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 1"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 2"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 3"]});
@@ -2954,8 +2971,18 @@ function get_location_type_penalty(type, stage, stat) {
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 5"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 歧路"]});
     locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - 右上房间"]});
+    locations["天外飞船"].connected_locations.push({location: locations["天外飞船 - X"]});
 
 
+    locations["飞船核心"] = new Location({ 
+        connected_locations: [{location: locations["天外飞船"], custom_text: "暂且离开这艘飞船"}], 
+        description: "天外飞船的核心部分。威压遍布，却蕴含着达到天空级的机遇。[V1.70前版本终点]",
+        name: "飞船核心", 
+        is_unlocked: false,
+        bgm: 13,
+        unlock_text: "想必我们已经进入了核心地域，之后的路，恐怕遍地都是强大的科技造物。",
+    });//2-8
+    locations["天外飞船"].connected_locations.push({location: locations["飞船核心"]});
 
 
 
