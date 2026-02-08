@@ -4286,18 +4286,322 @@ class Enemy {
         ],
     });
     
-
-
-
+    enemy_templates["塔门战甲B1"] = new Enemy({
+        name: "塔门战甲B1", 
+        description: "可以召唤许多舰船除草机。虽然看起来很像送经验的...", 
+        xp_value: 1346269, 
+        rank: 2801,
+        image: "image/enemy/E2801.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [44],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1900e4, attack: 880e4, agility: 400e4, attack_speed: 1.2, defense: 200e4}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+    enemy_templates["万象天引B1"] = new Enemy({
+        name: "万象天引B1", 
+        description: "看起来像是某种阿拉丁神灯。不过它可不会满足你的愿望。", 
+        xp_value: 1346269, 
+        rank: 2802,
+        image: "image/enemy/E2802.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1521e4, attack: 740e4, agility: 420e4, attack_speed: 1.2, defense: 280e4}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+     enemy_templates["镭射步兵B1"] = new Enemy({
+        name: "镭射步兵B1", 
+        description: "只要打得中它，就不会被万恶的阻击伤害到。不过，镭射不是激光的意思吗...", 
+        xp_value: 1346269, 
+        rank: 2803,
+        image: "image/enemy/E2803.png",
+        realm: "<span class=realm_sky><b>天空级一阶</b></span>",
+        size: "small",
+        spec: [29],
+        spec_value:{29:10000000},
+        tags: [],
+        stats: {health: 640e4, attack: 600e4, agility: 400e4, attack_speed: 1.2, defense: 420e4}, 
+        loot_list: [
+            {item_name: "殿堂蓝宝石", chance:0.02},
+            {item_name: "殿堂红宝石", chance:0.05},
+            //500Z
+        ],
+    });
+    enemy_templates["空间三角B1"] = new Enemy({
+        name: "空间三角B1", 
+        description: "其实只是核心的敌人。之所以外面那一只有那么多宝石...占山为王desu。", 
+        xp_value: 2178309, 
+        rank: 2804,
+        image: "image/enemy/E2804.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1050e4, attack: 650e4, agility: 440e4, attack_speed: 1.2, defense: 350e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "殿堂绿宝石", chance:0.02},
+            //900Z
+        ],
+    });
+    enemy_templates["舰船除草机B1"] = new Enemy({
+        name: "舰船除草机B1", 
+        description: "其实挺难搞的，但只要你有够多的破墙镐...我是说绿色刀币。", 
+        xp_value: 2178309, 
+        rank: 2805,
+        image: "image/enemy/E2805.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [8,18],
+        spec_value:{8:10,18:10e9},
+        tags: [],
+        stats: {health: 529e4, attack: 830e4, agility: 460e4, attack_speed: 1.2, defense: 350e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "殿堂绿宝石", chance:0.02},
+            //900Z
+        ],
+    });
+    enemy_templates["异化者B1"] = new Enemy({
+        name: "异化者B1", 
+        description: "最后一看，追光得了MVP。老盯着这个伤害数字干嘛？它会把反转的努力异化掉的！", 
+        xp_value: 2178309, 
+        rank: 2806,
+        image: "image/enemy/E2806.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [9],
+        spec_value:{},
+        tags: [],
+        stats: {health: 850e4, attack: 770e4, agility: 480e4, attack_speed: 1.2, defense: 380e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "殿堂绿宝石", chance:0.02},
+            //900Z
+        ],
+    });
+    enemy_templates["核爆能源"] = new Enemy({
+        name: "核爆能源", 
+        description: "真正的核爆也不过如此了。说起来，13斧考不考虑招核弹？", 
+        xp_value: 3524578, 
+        rank: 2807,
+        image: "image/enemy/E2807.png",
+        realm: "<span class=realm_sky><b>天空级二阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 5555.5e4, attack: 1111e4, agility: 500e4, attack_speed: 1.2, defense: 0e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    enemy_templates["鲜血之锋B1"] = new Enemy({
+        name: "鲜血之锋B1", 
+        description: "哈？夺少血？散华？你说你是天空一阶有人信吗？快去请魔攻牵制老祖！", 
+        xp_value: 5702887, 
+        rank: 2808,
+        image: "image/enemy/E2808.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +++</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 81920e4, attack: 1600e4, agility: 600e4, attack_speed: 1.2, defense: 10e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    enemy_templates["剧毒恐怖B1"] = new Enemy({
+        name: "剧毒恐怖B1", 
+        description: "总比你下面的那一只好打。迄今为止还没有任何毒素可以和【马里奥菇菇】媲美...", 
+        xp_value: 2178309, 
+        rank: 2809,
+        image: "image/enemy/E2809.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [8],
+        spec_value:{8:10},
+        tags: [],
+        stats: {health: 450e4, attack: 940e4, agility: 540e4, attack_speed: 1.2, defense: 500e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "殿堂绿宝石", chance:0.02},
+            //900Z
+        ],
+    });
+    enemy_templates["黄金茸茸"] = new Enemy({
+        name: "黄金茸茸", 
+        description: "贵金属茸茸似乎是一条不错的进化路线。不过个人意见：返璞归真的【亲民茸茸】才是究极体。", 
+        xp_value: 3524578, 
+        rank: 2810,
+        image: "image/enemy/E2810.png",
+        realm: "<span class=realm_sky><b>天空级二阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 800e4, attack: 900e4, agility: 560e4, attack_speed: 1.2, defense: 240e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    enemy_templates["银色血眼B1"] = new Enemy({
+        name: "银色血眼B1", 
+        description: "久违(?)的坚固属性。三叉戟打的就是你这种硬石头！", 
+        xp_value: 2178309, 
+        rank: 2811,
+        image: "image/enemy/E2811.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [1],
+        spec_value:{},
+        tags: [],
+        stats: {health: 28, attack: 1100e4, agility: 600e4, attack_speed: 1.2, defense: 600e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "殿堂绿宝石", chance:0.02},
+            //900Z
+        ],
+    });
+    enemy_templates["光子石像B1"] = new Enemy({
+        name: "光子石像B1", 
+        description: "警惕一切和【光】有关的东西。天空级一阶和arc的定数10.6变成一样的定位了...", 
+        xp_value: 5702887, 
+        rank: 2812,
+        image: "image/enemy/E2812.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +++</b></span>",
+        size: "small",
+        spec: [40],
+        spec_value:{},
+        tags: [],
+        stats: {health: 500e4, attack: 1050e4, agility: 640e4, attack_speed: 1.2, defense: 550e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    enemy_templates["游走三头蛇"] = new Enemy({
+        name: "游走三头蛇", 
+        description: "它怎么没有导致飞船的机械短路呢？防护工作做的真好哇。", 
+        xp_value: 3524578, 
+        rank: 2813,
+        image: "image/enemy/E2813.png",
+        realm: "<span class=realm_sky><b>天空级二阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 4400e4, attack: 980e4, agility: 660e4, attack_speed: 1.2, defense: 420e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    enemy_templates["质子粉碎机B1"] = new Enemy({
+        name: "质子粉碎机B1", 
+        description: "夭寿啦——夸克禁闭坏掉啦——", 
+        xp_value: 2178309, 
+        rank: 2814,
+        image: "image/enemy/E2814.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [7],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1440e4, attack: 960e4, agility: 680e4, attack_speed: 1.2, defense: 500e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.05},
+            {item_name: "殿堂绿宝石", chance:0.02},
+            //900Z
+        ],
+    });
+    enemy_templates["城主府基层"] = new Enemy({
+        name: "城主府基层", 
+        description: "没有明说，但不吃贪婪应该是燕岗城的城主府。疾走已经退环境了...现在就连飓风都不好意思拿出来了。", 
+        xp_value: 3524578, 
+        rank: 2815,
+        image: "image/enemy/E2815.png",
+        realm: "<span class=realm_sky><b>天空级二阶</b></span>",
+        size: "small",
+        spec: [4],
+        spec_value:{},
+        tags: [],
+        stats: {health: 422.5e4, attack: 2500e4, agility: 680e4, attack_speed: 1.2, defense: 640e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    enemy_templates["合金弹头B1"] = new Enemy({
+        name: "合金弹头B1", 
+        description: "弹头怎么还有圣阵这种分段打击啊！皮也太厚实了。", 
+        xp_value: 5702887, 
+        rank: 2816,
+        image: "image/enemy/E2816.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +++</b></span>",
+        size: "small",
+        spec: [42],
+        spec_value:{},
+        tags: [],
+        stats: {health: 1764e4, attack: 1000e4, agility: 700e4, attack_speed: 1.2, defense: 700e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    enemy_templates["深邃之暗B2"] = new Enemy({
+        name: "深邃之暗B2", 
+        description: "虽然基础属性十分强大，但好在不像那些一阶特化机器人一样有奇妙的感悟。", 
+        xp_value: 3524578, 
+        rank: 2817,
+        image: "image/enemy/E2817.png",
+        realm: "<span class=realm_sky><b>天空级二阶</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 7744e4, attack: 1296e4, agility: 720e4, attack_speed: 1.2, defense: 720e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //1.6D
+        ],
+    });
+    
     /*
       黄 蓝 红 
-巅峰  2%/4%/1%     50Z
-巅峰+    5%/2%     90Z
 B1       2%/5%     500Z
-A9 31'7811   /51'4229  exp
+B1+         5%/2%    900Z
+B2          2%/5%    1.6D
 B1 134'6269  /217'8309  exp
+B2 352'4578  /570'2887  exp
 
-夹击之械开始算巅峰+
+空间三角B1开始算B1+
 */    
 })();
 

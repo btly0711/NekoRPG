@@ -351,6 +351,12 @@ class Combat_zone {
                 enemies.push(this.get_enemy(halo,enemy_templates["紫锈胎人"])); 
                 enemies.push(this.get_enemy(halo,enemy_templates["紫锈胎人"])); 
             }//召唤
+            if(enemy.spec.includes(44)) {
+                log_message(`召唤了 3x 舰船除草机B1`,"enemy_enhanced");
+                enemies.push(this.get_enemy(halo,enemy_templates["舰船除草机B1"])); 
+                enemies.push(this.get_enemy(halo,enemy_templates["舰船除草机B1"])); 
+                enemies.push(this.get_enemy(halo,enemy_templates["舰船除草机B1"])); 
+            }//召唤
         }
         return enemies;
     }
@@ -665,8 +671,8 @@ function get_location_type_penalty(type, stage, stat) {
                 related_skill: "Resistance",
                 effects: {
                     multipliers: {
-                        attack_speed: 0.75,
-                        attack_mul : 0.5,
+                        attack_speed: 0.5,
+                        attack_mul : 0.25,
                     }
                 }
             },
@@ -2984,7 +2990,107 @@ function get_location_type_penalty(type, stage, stat) {
     });//2-8
     locations["天外飞船"].connected_locations.push({location: locations["飞船核心"]});
 
+    locations["飞船核心 - 1"] = new Combat_zone({
+        description: "B9级飞船的核心。压制力场更为强大，B1级机械随处可见", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 2, xp_gain: 2}],
+        enemies_list: ["塔门战甲B1","万象天引B1","万象天引B1","镭射步兵B1","空间三角B1"],
+        enemy_group_size: [2,2],
+        is_unlocked: true, 
+        name: "飞船核心 - 1",
+        rank:171, 
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        first_reward: {
+            xp: 1200e4,
+        },
+        repeatable_reward: {
+            xp: 4800e4,
+            locations: [{location: "飞船核心 - 2"}],
+        },
+    });
+    locations["飞船核心 - 2"] = new Combat_zone({
+        description: "B9级飞船的核心。压制力场更为强大。对抗压制力场的经验积累的越来越快了。", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 2, xp_gain: 4}],
+        enemies_list: ["镭射步兵B1","空间三角B1","异化者B1","核爆能源","剧毒恐怖B1"],
+        enemy_group_size: [2.5,3.5],
+        is_unlocked: false, 
+        name: "飞船核心 - 2",
+        rank:172, 
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        first_reward: {
+            xp: 2400e4,
+        },
+        repeatable_reward: {
+            xp: 800e4,
+            locations: [{location: "飞船核心 - 3"}],
+        },
+    });
+    locations["飞船核心 - 3"] = new Combat_zone({
+        description: "B9级飞船的核心。机械与荒兽共存，可以闻到进化晶体的缕缕香气[WIP]。", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 2, xp_gain: 8}],
+        enemies_list: ["核爆能源","剧毒恐怖B1","黄金茸茸","银色血眼B1","游走三头蛇"],
+        enemy_group_size: [3,3],
+        is_unlocked: false, 
+        name: "飞船核心 - 3",
+        rank:173, 
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        first_reward: {
+            xp: 3600e4,
+        },
+        repeatable_reward: {
+            xp: 1200e4,
+            locations: [{location: "飞船核心 - 4"}],
+        },
+    });
+    locations["飞船核心 - 4"] = new Combat_zone({
+        description: "B9级飞船的核心。机械与荒兽共存，一股危险的气息就在不远处。", 
+        enemy_count: 20, 
+        types: [{type: "stress", stage: 2, xp_gain: 16}],
+        enemies_list: ["银色血眼B1","游走三头蛇","质子粉碎机B1","城主府基层","深邃之暗B2"],
+        enemy_group_size: [3.5,4.5],
+        is_unlocked: false, 
+        name: "飞船核心 - 4",
+        rank:174, 
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        first_reward: {
+            xp: 4800e4,
+        },
+        repeatable_reward: {
+            xp: 1600e4,
+            locations: [{location: "飞船核心 - 5"}],
+        },
+    });
+    locations["飞船核心 - 5"] = new Combat_zone({
+        description: "就是这里了！冲过去！无需恋战——这里全是和比B2还恐怖的B1级特化机械！", 
+        enemy_count: 10, 
+        types: [{type: "stress", stage: 2, xp_gain: 32}],
+        enemies_list: ["城主府基层","深邃之暗B2","鲜血之锋B1","光子石像B1","合金弹头B1"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "飞船核心 - 5",
+        rank:175, 
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        first_reward: {
+            xp: 4800e4,
+        },
+        repeatable_reward: {
+            xp: 1600e4,
+            //locations: [{location: "飞船核心 - X"}],
+        },
+    });
 
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 1"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 2"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 3"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 4"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 5"]});
 
 
 

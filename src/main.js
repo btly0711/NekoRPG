@@ -1742,7 +1742,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         }
         if(active_effects["牵制 A9"]!=undefined)
         {
-            sdmg_mul *= Math.min(character.stats.full.defense / (target.stats.defense + 0.0001) * 0.6,3);
+            sdmg_mul *= Math.min(character.stats.full.defense / (target.stats.defense + 0.0001) * 0.6,10);
             Spec_E += "[牵制]";
         }
 
@@ -1914,6 +1914,8 @@ function kill_enemy(target) {
             else if(target.name == "威武武士") add_bestiary_lines(24);
             else if(target.name == "废墟猎兵") add_bestiary_lines(25);
             else if(target.name == "废墟虫卒") add_bestiary_lines(26);
+            else if(target.name == "荒兽电法兵") add_bestiary_lines(27);
+            else if(target.name == "塔门战甲B1") add_bestiary_lines(28);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -3560,6 +3562,8 @@ function load(save_data) {
             if(enemy_name == "威武武士") add_bestiary_lines(24);
             if(enemy_name == "废墟猎兵") add_bestiary_lines(25);
             if(enemy_name == "废墟虫卒") add_bestiary_lines(26);
+            if(enemy_name == "荒兽电法兵") add_bestiary_lines(27);
+            if(enemy_name == "塔门战甲B1") add_bestiary_lines(28);
 
         });
     }
