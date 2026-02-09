@@ -87,7 +87,7 @@ window.REALMS=[
 [14,"大地级六阶",9000,2500000,36e8,"terra"],//600w
 [15,"大地级七阶",16000,6500000,108e8,"terra"],//1250w
 [16,"大地级八阶",32000,12500000,216e8,"terra"],//2500w
-[17,"大地级巅峰",60000,2250000,432e8,"terra"],
+[17,"大地级巅峰",60000,22500000,432e8,"terra"],
 [18,"大地级破限",150000,32500000,1080e8,"terra"],
 
 [19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
@@ -3892,6 +3892,10 @@ const rad_num = document.getElementById("rad_num");
 const rad_quality = document.getElementById("rad_quality");
 const rad_bar = document.getElementById("rad_bar_current");
 const evolve = document.getElementById("reactor_evolve");
+const B1_diff = document.getElementById("B1_core_diff");
+const A7_diff = document.getElementById("A7_core_diff");
+const temp_diff = document.getElementById("temp_diff");
+const rad_diff = document.getElementById("rad_diff");
 function update_displayed_reactor()
 {
     if(inf_combat.RT == undefined) reactor_init();
@@ -3911,6 +3915,13 @@ function update_displayed_reactor()
     rad_bar.style.width = (100-Math.log(Math.min(inf_combat.RT.rad,1202604)+1)*100/14).toString() +"%";
 
     evolve.style.display = global_flags["is_evolve_studied"]?"inline-block":"none";
+
+    let frametime = 0.03;
+    B1_diff.innerText = "消耗速度:" + format_number(Math.log10(inf_combat.RT.B1+1)*0.4*inf_combat.RT.power/8000) +"/s "+"临界度:"+format_number(Math.log10(inf_combat.RT.B1+1)*40) + "%";
+    A7_diff.innerText = "消耗速度:" + format_number(Math.sqrt(inf_combat.RT.A7*inf_combat.RT.power)*0.4/20) + "/s";
+    temp_diff.innerText = `(+${format_number(inf_combat.RT.power * 100 / inf_combat.RT.ER)}/s,-${format_number((inf_combat.RT.temp - ((inf_combat.RT.temp-20)*(1-(frametime/((100*inf_combat.RT.ER)**0.333)))+20))/frametime)}/s)`
+    rad_diff.innerText = `(+${format_number(inf_combat.RT.power)}/s)`
+
     
 }
 function start_reactor_minigame()

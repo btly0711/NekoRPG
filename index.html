@@ -570,8 +570,10 @@
                                 <span class="money_button" onclick = "reactor(1,10)">[+10]</span>
                                 <span class="money_button" onclick = "reactor(1,100)">[+100]</span>
                                 <span class="money_button" onclick = "reactor(1,1000)">[+1K]</span>
-                            </span> 
                             <br>
+                            <span id="B1_core_diff">0</span>
+
+                            </span> 
                         </div>
                         <div id = "A7_core_div">
                             <div id = "reactor_A7_bar_max"> 
@@ -584,8 +586,9 @@
                                 <span class="money_button" onclick = "reactor(2,10)">[+10]</span>
                                 <span class="money_button" onclick = "reactor(2,100)">[+100]</span>
                                 <span class="money_button" onclick = "reactor(2,1000)">[+1K]</span>
-                            </span> 
                             <br>
+                            <span id="A7_core_diff">0</span>
+                            </span> 
                         </div>
                         <div id = "LD_core_div">
                             <div id = "reactor_LD_bar_max"> 
@@ -623,6 +626,8 @@
                             </div>
                             <span style="color:#ffb0b0">
                                 <b>反应堆温度 </b>:<span id="temp_num">5600</span>°C
+                                
+                                <span id="temp_diff">0</span>
                             </span> 
                             <br>
                         </div>
@@ -633,6 +638,7 @@
                             </div>
                             <span style="color:#d0ffc0">
                                 <b>总吸收原能 </b>:<span id="rad_num">0</span>
+                                <span id="rad_diff">0</span>
                                  (品质:<span id="rad_quality">160</span>%)
                             </span> 
                             <br>
@@ -1469,7 +1475,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.72a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.72b";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
