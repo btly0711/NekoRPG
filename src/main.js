@@ -2488,12 +2488,6 @@ function character_unequip_item(item_slot) {
 
 
 function use_item(item_key,stated = false) { 
-    
-                const effect = document.getElementById('sky_effect');
-                effect.classList.add('sky-break');
-                effect.addEventListener('animationend', () => {
-                       effect.classList.remove('sky-break');
-                }, { once: true });
     const {id} = JSON.parse(item_key);
     const item_effects = item_templates[id].effects;
     const G_value = item_templates[id].gem_value;
