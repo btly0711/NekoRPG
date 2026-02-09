@@ -55,7 +55,7 @@ import { end_activity_animation,
          update_displayed_book,
          update_backup_load_button,
          update_other_save_load_button,
-         format_number,
+         format_number,add_bestiary_zones
         } from "./display.js";
 import { compare_game_version, get_hit_chance } from "./misc.js";
 import { stances } from "./combat_stances.js";
@@ -91,8 +91,11 @@ window.REALMS=[
 [18,"大地级破限",150000,32500000,1080e8,"terra"],
 
 [19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
-[20,"天空级二阶",500000,3e8,4.5e12,"sky"],//5e
-[21,"天空级三阶",1500000,15e8,18e12,"sky"],//20e
+[20,"天空级二阶",500000,3e8,4e12,"sky"],//5e
+[21,"天空级三阶",1500000,15e8,15e12,"sky"],//20e
+[22,"天空级四阶",4000000,40e8,170.1411e36,"sky"],//60e 经验应该为60e12
+[23,"天空级五阶",16000000,90e8,240e12,"sky"],//150e
+[24,"天空级六阶",40000000,250e8,840e12,"sky"],//400e
 
 ];
 //境界，X级存储了该等级的数据
@@ -103,16 +106,23 @@ const global_flags = {
     is_crafting_unlocked: false,
     is_deep_forest_beaten: false,
     is_realm_enabled: false,
+    is_evolve_studied:false,
 };
 const flag_unlock_texts = {
     is_gathering_unlocked: "你获得了收集材料的能力！",
     is_crafting_unlocked: "你获得了合成物品和装备的能力！",
     is_realm_enabled: "领悟【微火】的进化之路已经被打通！",
+    is_evolve_studied: "你掌握了【初等进化结晶】的凝聚方法！",
 }
 
 // special stats
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0};
+//A6:秘境
+//A7:赶往声律城
+//VP:心境一重价值点
+//RM:不是现实机器。是Realm(领域)层数
+//MP:心境二重宝钱数
 
 
 //in seconds
@@ -1904,18 +1914,7 @@ function kill_enemy(target) {
             enemy_killcount[target.name] = 1;
             create_new_bestiary_entry(target.name);
             if(target.name == "毛茸茸") add_bestiary_lines(11);
-            else if(target.name == "纳家待从") add_bestiary_lines(12);
-            else if(target.name == "腐蚀质石精") add_bestiary_lines(13);
-            else if(target.name == "夜行幽灵") add_bestiary_lines(14);
-            else if(target.name == "行走树妖") add_bestiary_lines(15);
-            else if(target.name == "妖灵飞蛾") add_bestiary_lines(21);
-            else if(target.name == "百家近卫") add_bestiary_lines(22);
-            else if(target.name == "大门派杂役") add_bestiary_lines(23);
-            else if(target.name == "威武武士") add_bestiary_lines(24);
-            else if(target.name == "废墟猎兵") add_bestiary_lines(25);
-            else if(target.name == "废墟虫卒") add_bestiary_lines(26);
-            else if(target.name == "荒兽电法兵") add_bestiary_lines(27);
-            else if(target.name == "塔门战甲B1") add_bestiary_lines(28);
+            add_bestiary_zones(target.name);
         }
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
@@ -2087,6 +2086,12 @@ function add_xp_to_character(xp_to_add, should_info = true, use_bonus,ingore_cap
 
 
 function get_spec_rewards(money){
+    if(money == 11037){
+
+        global_flags["is_evolve_studied"] = true;
+        log_message(`${flag_unlock_texts["is_evolve_studied"]}`, "activity_unlocked");
+        return;
+    }
     let RNG_M = Math.pow(Math.max(Math.random(),1e-6),-1.5)
     log_message(`搜刮废墟，获取了 ${format_money(Math.floor(RNG_M * money))} .`, "location_reward");
     
@@ -2483,6 +2488,12 @@ function character_unequip_item(item_slot) {
 
 
 function use_item(item_key,stated = false) { 
+    
+                const effect = document.getElementById('sky_effect');
+                effect.classList.add('sky-break');
+                effect.addEventListener('animationend', () => {
+                       effect.classList.remove('sky-break');
+                }, { once: true });
     const {id} = JSON.parse(item_key);
     const item_effects = item_templates[id].effects;
     const G_value = item_templates[id].gem_value;
@@ -2986,10 +2997,19 @@ function load(save_data) {
         if(this_realm[0]>=9 && this_realm[0]<=17){
             let A_mul_gain = (this_realm[0]==9?0.2:0.1);
             character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;}
+        if(this_realm[0]>=19 && this_realm[0]<=27){
+            let Luck_gain = (this_realm[0]==19?0.2:0.1);
+            character.stats.flat.level.luck = ( character.stats.flat.level.luck || 0) + Luck_gain;
+        }
+        if(this_realm[0]==19){
+            character.stats.multiplier.level.crit_rate = 0.25;
+            character.stats.multiplier.level.crit_multiplier = 4;
+        }
         let total_skill_xp_multiplier = 1.1;
         if(this_realm[0]>=3) total_skill_xp_multiplier += 0.05;
         if(this_realm[0]>=6) total_skill_xp_multiplier += 0.05;
         if(this_realm[0]>=9) total_skill_xp_multiplier += 0.05;
+        if(this_realm[0]>=19) total_skill_xp_multiplier += 0.15;
         character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
         //复制粘贴的升级代码，只不过没有提示
         //注：以后升级代码需要在这里多写一份。
@@ -2997,11 +3017,9 @@ function load(save_data) {
     
     update_displayed_character_xp(true);
     if(save_data.character.xp.total_xp != 0) add_xp_to_character(save_data.character.xp.total_xp, false);
-    if(character.xp.current_level >= 9)
-    {
         const E_body = document.body;
-        E_body.classList.add('terra_root');
-    }
+    if(character.xp.current_level >= 19) E_body.classList.add('sky_root');
+    else if(character.xp.current_level >= 9 && character.xp.current_level <= 18) E_body.classList.add('terra_root');
 
 
     Object.keys(save_data.skills).forEach(function(key){ 
@@ -3545,25 +3563,23 @@ function load(save_data) {
     //if missing hp is null (save got corrupted) or its more than max_health, set health to minimum allowed (which is 1)
     //otherwise just do simple substraction
     //then same with s.t.a.m.i.n.a below
+    
+    character.stats.add_gem_bonus();
 
+    update_character_stats();
+    update_displayed_character_inventory();
+
+    update_displayed_health();
+    //load current health
+    
+    update_displayed_effects();
     if(save_data["enemy_killcount"]) {
         
         add_bestiary_lines(11);
         Object.keys(save_data["enemy_killcount"]).forEach(enemy_name => {
             enemy_killcount[enemy_name] = save_data["enemy_killcount"][enemy_name];
             create_new_bestiary_entry(enemy_name);
-            if(enemy_name == "纳家待从") add_bestiary_lines(12);
-            if(enemy_name == "腐蚀质石精") add_bestiary_lines(13);
-            if(enemy_name == "夜行幽灵") add_bestiary_lines(14);
-            if(enemy_name == "行走树妖") add_bestiary_lines(15);
-            if(enemy_name == "妖灵飞蛾") add_bestiary_lines(21);
-            if(enemy_name == "百家近卫") add_bestiary_lines(22);
-            if(enemy_name == "大门派杂役") add_bestiary_lines(23);
-            if(enemy_name == "威武武士") add_bestiary_lines(24);
-            if(enemy_name == "废墟猎兵") add_bestiary_lines(25);
-            if(enemy_name == "废墟虫卒") add_bestiary_lines(26);
-            if(enemy_name == "荒兽电法兵") add_bestiary_lines(27);
-            if(enemy_name == "塔门战甲B1") add_bestiary_lines(28);
+            add_bestiary_zones(enemy_name);
 
         });
     }
@@ -3576,15 +3592,6 @@ function load(save_data) {
             create_new_levelary_entry(level_name);
         } 
     });
-    character.stats.add_gem_bonus();
-
-    update_character_stats();
-    update_displayed_character_inventory();
-
-    update_displayed_health();
-    //load current health
-    
-    update_displayed_effects();
     
     create_displayed_crafting_recipes();
     change_location(save_data["current location"]);
@@ -3741,7 +3748,9 @@ function load_other_release_save() {
 
 //update game time
 function update_timer() {
-    current_game_time.go_up(is_sleeping ? 30 : 6);
+    let time_passed = (character.xp.current_level>=19)?48:6;
+    time_passed *= is_sleeping?5:1
+    current_game_time.go_up(time_passed);
     update_character_stats(); //done every second, mostly because of daynight cycle; gotta optimize it at some point
     update_displayed_time();
 }
@@ -3888,6 +3897,7 @@ const temp_bar = document.getElementById("temp_bar_current");
 const rad_num = document.getElementById("rad_num");
 const rad_quality = document.getElementById("rad_quality");
 const rad_bar = document.getElementById("rad_bar_current");
+const evolve = document.getElementById("reactor_evolve");
 function update_displayed_reactor()
 {
     if(inf_combat.RT == undefined) reactor_init();
@@ -3906,7 +3916,7 @@ function update_displayed_reactor()
     temp_bar.style.width = (100-inf_combat.RT.temp/100).toString() +"%";
     rad_bar.style.width = (100-Math.log(Math.min(inf_combat.RT.rad,1202604)+1)*100/14).toString() +"%";
 
-
+    evolve.style.display = global_flags["is_evolve_studied"]?"inline-block":"none";
     
 }
 function start_reactor_minigame()
@@ -4000,7 +4010,6 @@ function reactor(item_id,count)
     if(item_id==3) inf_combat.RT.LD += count;
     if(item_id==4){
         inf_combat.RT.ER += count;
-        inf_combat.RT.rad -= (inf_combat.RT.rad) * count / inf_combat.RT.ER;
         inf_combat.RT.temp -= (inf_combat.RT.temp - 20) * count / inf_combat.RT.ER;
         //外来凝胶-降温
     }
@@ -4027,10 +4036,22 @@ function extract_reactor()
         //getresult的结果
     }
 }
+function extract_evolve()
+{
+    if(inf_combat.RT.rad < 1000000) log_message("反应堆内部的原能不足","enemy_attacked_critically");
+    else{
+        inf_combat.RT.ER *= 0.01;
+        inf_combat.RT.ER = Math.max(inf_combat.RT.ER,1);
+        inf_combat.RT.rad -= 1000000;
+        log_message("获取了 初等进化结晶","combat_loot");
+        add_to_character_inventory([{ "item": getItem(item_templates["初等进化结晶"])}]);
+    }
+}
 
 window.reactor =  reactor;
 window.leave_reactor =  leave_reactor;
 window.extract_reactor =  extract_reactor;
+window.extract_evolve =  extract_evolve;
 
 
 function update() {
@@ -4304,6 +4325,7 @@ function update_quests(){
     else{
         let R=255,G=255,B=255;
         inf_combat.VP = inf_combat.VP || {num:0};
+        inf_combat.MP = inf_combat.MP || 0;
         let lgVP = Math.log10(inf_combat.VP.num+1);
         //lgVP = 3;
         if(lgVP <= 10){
@@ -4321,11 +4343,21 @@ function update_quests(){
         
         quests.innerHTML += "<div id = 'gem_consumer' class = 'gem_consume_button' onclick='gem_consume()'>吞噬物品栏中全部宝石</div>"
         quests.innerHTML += `当前吞噬价值点:${s_color}${format_number(inf_combat.VP.num)}</span> <br>(加成:${s_color}${format_number(Math.pow(inf_combat.VP.num+1,0.07)*100-100)}%</span>)<br><br><br><br>`;
-        if(character.xp.current_level < 17){
+        if(character.xp.current_level < 19){
             quests.innerHTML += "<span class='realm_sky'>天空级一阶</span>解锁心之境界 - 二重！"
         }
         else{
+            quests.innerHTML += `<b><span style="color:cyan">贪婪之神</span> </b> - 献祭金钱，提供全局运气加成<br>`;
+            quests.innerHTML += "<div id = 'coin_consumer' class = 'coin_consume_button' onclick='coin_consume()'>献祭物品栏中宝钱以上货币</div>"
+            quests.innerHTML += `当前献祭金额:<span style="color:cyan">${format_money(inf_combat.MP*1e12)}</span> <br>(加成:<span style="color:cyan">${(format_number((Math.pow(inf_combat.MP+1,0.10)-1)*100))}%</span>)<br><br><br><br>`;
+            //WIP:需要可以吞噬宇宙币
+            //心境二重
+            if(character.xp.current_level < 28){
+                quests.innerHTML += "<span class='realm_cloudy'>云霄级一阶</span>解锁心之境界 - 三重！"
+            }
+            else{
 
+            }
         }
     }
 }
@@ -4349,6 +4381,25 @@ function gem_consume(){
     update_character_stats();
 }
 
+function coin_consume(){
+    inf_combat.MP = inf_combat.MP || 0;
+    Object.keys(character.inventory).forEach(key =>{
+        if(character.inventory[key].item.value == 1e12)
+        {
+            inf_combat.MP += character.inventory[key].count;
+            remove_from_character_inventory([{ 
+                item_key: key,           
+                item_count: character.inventory[key].count,
+            }
+        ]);
+        }
+    });//暂时只吃宝钱，以后可能吃宇宙币
+    update_quests();
+    update_displayed_character_inventory();
+    character.stats.add_gem_bonus();
+    update_character_stats();
+}
+
 function get_money(coin_type,coin_num)
 {
     let value = 1000**coin_type * coin_num;
@@ -4360,7 +4411,7 @@ function get_money(coin_type,coin_num)
     {
         log_message(`钱包: ${format_money(character.money)} -> ${format_money(character.money - value)} `,"activity_money");
         character.money -= value;
-        let coin_map = {1:"红色刀币",2:"黑色刀币",3:"绿色刀币"}
+        let coin_map = {1:"红色刀币",2:"黑色刀币",3:"绿色刀币",4:"紫色刀币"}
         let coin = coin_map[coin_type];
         log_message(`获取了 ${coin} x ${coin_num} !`,"combat_loot");
         add_to_character_inventory([{ "item": getItem(item_templates[coin]), "count": coin_num }]);
@@ -4371,6 +4422,7 @@ function get_money(coin_type,coin_num)
 
 
 window.gem_consume = gem_consume;
+window.coin_consume = coin_consume;
 window.get_money = get_money;
 
 window.equip_item = character_equip_item;

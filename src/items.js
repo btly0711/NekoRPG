@@ -4442,6 +4442,21 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1600e6,
         image: "image/item/MY_coin.png",
     });
+    item_templates["进化结晶凝聚-一学就会"] = new Loot({
+        name: "进化结晶凝聚-一学就会", 
+        description: "因为一学就会，你已经学会了。可以卖掉它了！(请检查核心反应堆)", 
+        value: 100e9,
+        image: "image/item/evolve_script.png",
+    });
+    item_templates["初等进化结晶"] = new  UsableItem({
+        name: "初等进化结晶", 
+        description: "天地间充沛的能量滋养诞生的晶体，接触后能够化作海量的经验为人所用。增加1000亿经验值，可用于突破【天空级】。(Tips:即必须在已有9000亿以上经验时使用才能突破)", 
+        value: 300e9,
+        E_value: 1000e8,
+        effects:[],
+        C_value: 2,
+        image: "image/item/evolve_1e11.png",
+    });
 
 
 
@@ -4493,6 +4508,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "血洛大陆的通用钱币。1D=1000Z。值得一提的是，它有两把剑，可以铸成两锭海绿。", 
         value: 1e9,
         image: "image/item/1D.png",
+    });
+    item_templates["紫色刀币"] = new Loot({
+        name: "紫色刀币", 
+        description: "血洛大陆的通用钱币。1B=1000D。宝石制成的它相当珍贵，甚至有微弱增强气运的功效。", 
+        value: 1e12,
+        image: "image/item/1B.png",
     });
 })();
 

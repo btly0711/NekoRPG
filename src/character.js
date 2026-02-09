@@ -7,8 +7,10 @@ import { update_displayed_character_inventory, update_displayed_equipment,
          format_number,log_message , 
          update_displayed_health, 
          update_displayed_skill_xp_gain, update_all_displayed_skills_xp_gain,
-         update_displayed_xp_bonuses } from "./display.js";
-import { active_effects, current_location, current_stance, update_quests, inf_combat} from "./main.js";
+         update_displayed_xp_bonuses,reload_bestiary} from "./display.js";
+import { active_effects, current_location, current_stance, update_quests, inf_combat,
+        add_xp_to_skill
+} from "./main.js";
 import { current_game_time } from "./game_time.js";
 import { stances } from "./combat_stances.js";
 import {item_templates} from "./items.js";
@@ -46,6 +48,7 @@ character.base_stats = {
         dexterity: 10, 
         intuition: 10,
         attack_mul: 1,
+        luck:1,
 };
 
 
@@ -85,6 +88,8 @@ character.stats.multiplier = {
         stance: {},
         light_level: {},
         environment: {},
+        level: {},
+        coins: {},
 };
 
 character.xp_bonuses = {};
@@ -130,7 +135,7 @@ character.xp = {
 };
 character.starting_xp = character.xp;
 character.get_xp_bonus = function(){
-        return (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1);
+        return (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1) * (character.stats.full.luck || 1);
 }
 character.get_hero_realm = function(){
         if(character.xp.current_level >= 18) return character.xp.current_level - 1;//大地级破限记为巅峰。
@@ -158,6 +163,16 @@ character.upgrade_effects = function(lvl){
                 effect.addEventListener('animationend', () => {
                 effect.classList.remove('orbit-double');}, { once: true });
         }//大地7
+        if(lvl == 19){
+                const effect = document.getElementById('sky_effect');
+                effect.classList.add('sky-break');
+                effect.addEventListener('animationend', () => {
+                       effect.classList.remove('sky-break');
+                }, { once: true });
+                const E_body = document.body;
+                E_body.classList.add('sky_root');
+        }//天空1
+        //天空1事件：WIP！！！
 }
 
 character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
@@ -188,7 +203,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                                 character.xp.current_xp = 9999.9999e8;
                                 return `<b>被<span class="realm_sky">天空级瓶颈</span>限制 - 经验已锁定</b>`
                         }
-                        //否则进入突破计划！
+                        else character.upgrade_effects(19);
                 }
                 character.xp.current_level += 1;
                 if(character.xp.current_level>9) character.upgrade_effects(character.xp.current_level);
@@ -211,6 +226,8 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 if(this_realm[0]>=6) total_skill_xp_multiplier += 0.05;
                 //升级之后技能领悟力变强，境界越高越明显
                 if(this_realm[0]>=9) total_skill_xp_multiplier += 0.05;
+                if(this_realm[0]>=19) total_skill_xp_multiplier += 0.15;
+                //微尘10% 万物15% 潮汐20% 大地25% 天空40%
                 character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
 
                 //显示-提高属性
@@ -224,19 +241,47 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                         gains += `大境界突破，获取特殊能力<span style="color:#ff8080">【微火】</span>！<br>`;
                         gains += `角色属性<span style="color:#66ccff">【普攻倍率】</span>现已解锁！<br>`;
                         add_to_character_inventory([{item: item_templates["微火"], count: 1}]);
+                        gains += `心之境界一重 - 宝石吞噬者 现已解锁！<br>`;
                 }
                 if(this_realm[0]>=9 && this_realm[0]<=17)
                 {
                         let A_mul_gain = (this_realm[0]==9?0.2:0.1);
                         character.stats.flat.level.attack_mul = ( character.stats.flat.level.attack_mul || 0) + A_mul_gain;
-                        gains += `普攻倍率增加了${A_mul_gain.toFixed(2)}<br>`;
+                        gains += `<span style="color:#66ccff">普攻倍率</span>增加了${A_mul_gain.toFixed(2)}<br>`;
                 }
+                if(this_realm[0]==19)
+                {
+                        //add_to_character_inventory([{item: item_templates["微火"], count: 1}]);
+                        if(skills["Neko_Realm"].current_level <= 19){
+                                gains += `大境界突破，【燃灼术】获取了9999兆经验！<br>`;
+                        }
+                        else{
+                                gains += `大境界突破，【火灵幻海】获取了9999兆经验...?<br>`;
+                                gains += `怎么领悟已经突破了哇。也太能刷了叭。<br>`;
+                        }
+                        add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 9999e12,should_info:true,use_bonus:false,add_to_parent:false},);
+                        gains += `角色属性<span style="color:#ffee11">【幸运】</span>现已解锁！<br>`;
+                        gains += `同时，【暴击】属性被浓缩了！<br>【暴击概率】降低为四分之一，【暴击伤害】提高了四倍！<br>`;
+                        character.stats.multiplier.level.crit_rate = 0.25;
+                        character.stats.multiplier.level.crit_multiplier = 4;
+                        gains += `心之境界二重 - 贪婪之神 现已解锁！<br>`;
+                }
+
+
+                if(this_realm[0]>=19 && this_realm[0]<=27)
+                {
+                        let Luck_gain = (this_realm[0]==19?0.2:0.1);
+                        character.stats.flat.level.luck = ( character.stats.flat.level.luck || 0) + Luck_gain;
+                        gains += `<span style="color:#ffee11">幸运</span>增加了${Luck_gain.toFixed(2)}<br>`;
+                }
+
 
                 gains += `技能经验倍率提高了${Math.round(total_skill_xp_multiplier*100-100)}%<br>`;
                 gains += `生命值完全恢复了<br>`;
                 let lvl_display = this_realm[1];
                 if(this_realm[0]<=8) lvl_display=`<span class="realm_basic">${this_realm[1]}</span>`;
                 if(this_realm[0]>=9) lvl_display=`<span class="realm_terra">${this_realm[1]}</span>`;
+                if(this_realm[0]>=19) lvl_display=`<span class="realm_sky">${this_realm[1]}</span>`;
                 
                 levelupresult += `${character.name} 境界突破，达到 ${lvl_display} <br>${gains}`;
                 update_quests();
@@ -333,6 +378,8 @@ character.stats.add_active_effect_bonus = function() {
 character.stats.add_gem_bonus = function(){
         inf_combat.VP =inf_combat.VP || {num:0};
         character.xp_bonuses.multiplier.gems.all_skill = Math.pow(inf_combat.VP.num+1,0.07) || 1;
+        character.stats.multiplier.coins.luck = Math.pow(inf_combat.MP+1,0.10);
+        //luck bonus
 }
 
 /**

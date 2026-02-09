@@ -110,6 +110,7 @@ const stats_divs = {agility: document.getElementById("agility_slot"),
                     max_health: document.getElementById("strength_slot"),
                     health_regeneration_flat: document.getElementById("intuition_slot"),
                     attack_mul: document.getElementById("dexterity_slot"),
+                    luck: document.getElementById("UK1_slot"),
                     //A_mul_slot: document.getElementById("A_mul_slot"),
                     //A_mul_tooltip: document.getElementById("A_mul_tooltip"),
                     };
@@ -185,7 +186,7 @@ function format_number(some_number)
         f_result+='-';
         some_number*=-1;
     }
-    if(some_number == 0) return '0';
+    if(some_number <= 1e-8) return '0';
     let len=Math.floor(Math.log10(some_number)) + 1;//位数！
     if(some_number<1e-4) f_result += '0';
     else if(len<=4||len==6)
@@ -2602,6 +2603,10 @@ function update_displayed_stats() { //updates displayed stats
     A_mul.innerHTML = character.xp.current_level<=8?"Locked":"A.mul:";
     const A_mul_tt = document.getElementById("A_mul_tooltip");
     A_mul_tt.innerHTML = character.xp.current_level<=8?"Not aviliable":"普通攻击的伤害倍率";
+    const Luck = document.getElementById("Luck_slot");
+    Luck.innerHTML = character.xp.current_level<=18?"Locked":"Luck:";
+    const Luck_tt = document.getElementById("Luck_tooltip");
+    Luck_tt.innerHTML = character.xp.current_level<=18?"Not aviliable":"幸运(影响材料掉率,杀怪经验)";
 
     Object.keys(stats_divs).forEach(function(key){
         if(key === "crit_rate" || key === "crit_multiplier") {
@@ -2618,6 +2623,15 @@ function update_displayed_stats() { //updates displayed stats
         }
         else if(key === "attack_mul"){
             if(character.xp.current_level <= 8){
+                stats_divs[key].innerHTML = ``;
+            }
+            else{
+                stats_divs[key].innerHTML = `${(character.stats.full[key]*100).toFixed(1)}%`;
+                update_stat_description(key);
+            }
+        }
+        else if(key === "luck"){
+            if(character.xp.current_level <= 18){
                 stats_divs[key].innerHTML = ``;
             }
             else{
@@ -2689,7 +2703,7 @@ function update_stat_description(stat) {
         <br>基础值: ${Math.round(100*character.base_stats[stat])/100}`;
     }
 
-    let BreakDownMap = {"level":"境界","skills":"技能","skill_milestones":"技能里程碑","equipment":"装备","environment":"环境","light_level":"光照","gems":"宝石","stance":"秘法","active_effect":"效果"};
+    let BreakDownMap = {"level":"境界","skills":"技能","skill_milestones":"技能里程碑","equipment":"装备","environment":"环境","light_level":"光照","gems":"宝石","stance":"秘法","active_effect":"效果","coins":"贪婪之神"};
     
     if(stat === "attack_power" && character.equipment.weapon != undefined) {
         target.innerHTML += 
@@ -2791,15 +2805,7 @@ function update_displayed_character_xp(did_level = false) {
     character_xp_div.children[1].innerText = `Next : ${format_number(character.xp.current_xp)}/${format_number(window.REALMS[character.xp.current_level+1][4])}`;
 
     if(did_level) {
-        if(character.xp.current_level >= 9)
-        {
-            
-            character_level_div.innerHTML = `<span class=realm_terra>境界 : ${window.REALMS[character.xp.current_level][1]}</span>`;
-        }
-        else
-        {
-            character_level_div.innerHTML = `境界 : ${window.REALMS[character.xp.current_level][1]}`;
-        }
+        character_level_div.innerHTML = `<span class=realm_${window.REALMS[character.xp.current_level][5]}>境界 : ${window.REALMS[character.xp.current_level][1]}</span>`;
         update_displayed_health();
     }
 }
@@ -3502,6 +3508,12 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 ];
 
 //超过25倍倍率的攻击暂时视为必中！
+function format_percent(perc){
+    if(perc < 10) return format_number(100*perc) + '%';
+    else return format_number(perc) + 'x'; 
+}
+
+
 function create_new_bestiary_entry(enemy_name) {
     bestiary_entry_divs[enemy_name] = document.createElement("div");
     
@@ -3677,8 +3689,8 @@ function create_new_bestiary_entry(enemy_name) {
         loot_chance_current.classList.add("loot_chance_current");
 
         loot_name.innerHTML = `${enemy.loot_list[i].item_name}`;
-        loot_chance_base.innerHTML = `[${Math.round(enemy.loot_list[i].chance*10000)/100}%]`;
-        loot_chance_current.innerHTML = `${Math.round(10000*enemy.loot_list[i].chance*enemy.get_droprate_modifier())/100}%`;
+        loot_chance_base.innerHTML = `[${format_percent(enemy.loot_list[i].chance)}]`;
+        loot_chance_current.innerHTML = `${format_percent(enemy.loot_list[i].chance*enemy.get_droprate_modifier())}`;
         loot_chance.append(loot_chance_current, loot_chance_base);
         loot_line.append(loot_name, loot_chance);
 
@@ -3747,6 +3759,31 @@ function update_bestiary_entry(enemy_name) {
 function clear_bestiary() {
     Object.keys(bestiary_entry_divs).forEach((enemy) => {
         delete bestiary_entry_divs[enemy];
+    });
+}
+
+function add_bestiary_zones(enemy_name)
+{
+    if(enemy_name == "纳家待从") add_bestiary_lines(12);
+    if(enemy_name == "腐蚀质石精") add_bestiary_lines(13);
+    if(enemy_name == "夜行幽灵") add_bestiary_lines(14);
+    if(enemy_name == "行走树妖") add_bestiary_lines(15);
+    if(enemy_name == "妖灵飞蛾") add_bestiary_lines(21);
+    if(enemy_name == "百家近卫") add_bestiary_lines(22);
+    if(enemy_name == "大门派杂役") add_bestiary_lines(23);
+    if(enemy_name == "威武武士") add_bestiary_lines(24);
+    if(enemy_name == "废墟猎兵") add_bestiary_lines(25);
+    if(enemy_name == "废墟虫卒") add_bestiary_lines(26);
+    if(enemy_name == "荒兽电法兵") add_bestiary_lines(27);
+    if(enemy_name == "塔门战甲B1") add_bestiary_lines(28);
+}
+
+function reload_bestiary(){
+    clear_bestiary();
+    add_bestiary_lines(11);
+        Object.keys(enemy_killcount).forEach(enemy_name => {
+            create_new_bestiary_entry(enemy_name);
+            add_bestiary_zones(enemy_name);
     });
 }
 
@@ -3828,7 +3865,7 @@ function create_new_levelary_entry(level_name) {
             if(lootlist[I_name] == undefined)
             {
                 lootlist[I_name] = 1;
-                tooltip_loots.innerHTML += `[ ${I_name} ] - ${format_number(I_list[I_name] * 100 / level.enemies_list.length)}% <br>`
+                tooltip_loots.innerHTML += `[ ${I_name} ] - ${format_percent(I_list[I_name] * character.stats.full.luck / level.enemies_list.length)} <br>`
             }
         }
         //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
@@ -4014,5 +4051,7 @@ export {
     update_item_recipe_visibility,
     update_item_recipe_tooltips,
     update_displayed_book,
-    update_backup_load_button, update_other_save_load_button
+    update_backup_load_button, update_other_save_load_button,
+    reload_bestiary,
+    add_bestiary_zones,
 }

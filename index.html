@@ -31,6 +31,8 @@
         </div>
 
         <div id="screen_effect"></div>
+        <div id="sky_effect">
+        </div>
 
         <div id = "main_content">
 
@@ -638,6 +640,7 @@
 
                         <div id="reactor_exit">
                             <span class="money_button_wide" onclick = "extract_reactor()" style="color:#808080"><b>[提取凝胶剑柄]</b></span>
+                            <span class="money_button_wider" onclick = "extract_evolve()" style="color:#80FF80" id="reactor_evolve"><b>[凝聚进化结晶(100万原能)]</b></span>
                             <span class="money_button" onclick = "leave_reactor()"><b>[离开]</b></span>
                         </div>
 
@@ -859,6 +862,11 @@
                                         <span class="coin coin_moneyB money_button" onclick = "get_money(3,10)">[10 D]</span>
                                         <span class="coin coin_moneyB money_button" onclick = "get_money(3,100)">[100D]</span>
                                 </div>
+                                <div id = "data_bankB" class="data_entry">
+                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,1)">[1  B]</span>
+                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,10)">[10 B]</span>
+                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,100)">[100B]</span>
+                                </div>
                             </div>
 
                         </div>
@@ -960,10 +968,10 @@
                                 </div>
                             </div>
                             <div class = "stat_slot_div"> 
-                                <div class = "stat_name"> Locked </div>
+                                <div class = "stat_name" id="Luck_slot"> Locked </div>
                                 <div class = "stat_value" id = "UK1_slot"></div> 
                                 <div class = "stat_tooltip"> 
-                                    <div>Not aviliable </div>
+                                    <div id="Luck_tooltip">Not aviliable </div>
                                     <div class="stat_breakdown"></div>
                                 </div>
                             </div>
@@ -1461,7 +1469,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V1.71";
+                document.getElementById("changelog_button").children[0].innerHTML = "V1.72";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

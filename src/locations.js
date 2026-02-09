@@ -3044,7 +3044,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 1200e4,
-            locations: [{location: "飞船核心 - 4"}],
+            locations: [{location: "飞船核心 - 4"},{location: "飞船核心 - 下方房间"}],
         },
     });
     locations["飞船核心 - 4"] = new Combat_zone({
@@ -3085,12 +3085,29 @@ function get_location_type_penalty(type, stage, stat) {
             //locations: [{location: "飞船核心 - X"}],
         },
     });
+    locations["飞船核心 - 下方房间"] = new Challenge_zone({
+        description: "红门内进化气息浓郁的房间.似乎有人在这里做过实验。", 
+        enemy_count: 1, 
+        enemies_list : [["银色血眼B1[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "飞船核心 - 下方房间",
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        repeatable_reward: {
+            money:11037,
+        },
+        unlock_text: "[纳娜米]可可有感觉到吗？附近的能量有一些躁动，似乎在环绕着某个中心旋转。",
+    });
 
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 1"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 2"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 3"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 4"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 5"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 下方房间"]});
 
 
 

@@ -84,6 +84,18 @@
 }
 
 
+.sky_root {
+    --active_background: #4c9baf;  /* 清新中绿 */
+	--background_gradient: linear-gradient(to bottom right, #1e373a, #14292a);
+
+    /* 选项/面板半透明叠加层：降低透明度、调亮一点，层次更清楚，不脏 */
+    --options_gradient: linear-gradient(to bottom right, rgba(40, 74, 80, 0.65), rgba(30, 58, 60, 0.65));
+
+    /* 激活按钮/高亮色：清新的森林绿，饱和但不刺眼 */
+    --active_button_color: #3d828b;
+}
+
+
 body {
 	background-color: #05040f;
 	font-family: Arial, Helvetica, sans-serif;
@@ -573,6 +585,16 @@ body {
 .money_button_wide {
 	display: inline-block;
 	width: 108px;
+	cursor: pointer;
+	font-size: 16px;
+	top:0px;
+	left:4px;
+	position:relative;
+	text-align: left;
+}
+.money_button_wider {
+	display: inline-block;
+	width: 192px;
 	cursor: pointer;
 	font-size: 16px;
 	top:0px;
@@ -1144,6 +1166,18 @@ i {
 	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
+}
+
+.coin_consume_button {
+	float:left;
+	padding: 3px 0px 3px 0px;
+	width: 98px;
+	background:linear-gradient(to top right,rgb(240,0,0),rgb(31,30,51),rgb(185,235,135),rgb(157,93,252),rgb(255, 253, 119));
+	text-align: center;
+	outline: 1px solid white;
+	font-weight:bold;
+	margin: 2px 1px;
+	cursor: pointer;
 }
 
 .realm{
@@ -2208,6 +2242,39 @@ i {
 @keyframes orbit-rotate-double2 {
     from { transform: translate(-50%, -50%) rotate(180deg) translateX(300px) rotate(0deg); }
     to   { transform: translate(-50%, -50%) rotate(540deg) translateX(300px) rotate(-360deg); }
+}
+
+#sky_effect {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* 不阻挡鼠标事件，让游戏正常交互 */
+    transform: scale(1);   /* 初始正常大小 */
+    opacity: 0;            /* 初始隐藏 */
+	z-index: 999;
+	transform-origin: center;
+	background: 
+        radial-gradient(circle at center, 
+            rgb(116, 229, 233) 1%, 
+            rgb(116, 233, 214) 2%, 
+            rgb(116, 233, 175) 5%, 
+            rgba(116,233,125,1.0) 10%, 
+            rgba(116,233,125,0.5) 25%, 
+            rgba(116,233,125,0.2) 50%, 
+            rgba(116,233,125,0.1) 75%, 
+            rgba(0, 150, 0, 0) 100%);
+		
+}
+@keyframes sky-effect {
+    0%   { transform: scale(0); opacity: 1; }
+    10%   { transform: scale(10); opacity: 1; }
+    100% { transform: scale(100); opacity: 0; }
+}
+
+#sky_effect.sky-break {
+    animation: sky-effect 8s ease-in-out forwards;
 }
 
 

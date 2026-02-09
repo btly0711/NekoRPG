@@ -1,5 +1,6 @@
 "use strict";
 
+import { character } from "./character.js";
 import {item_templates, getItem} from "./items.js";
 
 let enemy_templates = {};
@@ -86,6 +87,8 @@ class Enemy {
 
     get_droprate_modifier() {
         let droprate_modifier = this.loot_multi;
+        droprate_modifier *= character.stats.full.luck;
+        //console.log(character.stats.full.luck);
         /*
         if(enemy_killcount[this.name] >= 999) {
             droprate_modifier = 0.1;
@@ -4420,7 +4423,7 @@ class Enemy {
         image: "image/enemy/E2808.png",
         realm: "<span class=realm_sky><b>天空级一阶 +++</b></span>",
         size: "small",
-        spec: [],
+        spec: [37],
         spec_value:{},
         tags: [],
         stats: {health: 81920e4, attack: 1600e4, agility: 600e4, attack_speed: 1.2, defense: 10e4}, 
@@ -5004,6 +5007,26 @@ B2 352'4578  /570'2887  exp
         loot_list: [{item_name:"殿堂绿宝石",chance:2.00},{item_name:"摩羽币",chance:33.00}],
     });
 
+    enemy_templates["银色血眼B1[BOSS]"] = new Enemy({
+        name: "银色血眼B1[BOSS]", 
+        description: "守护着堪称【巨量】的宝物的它，作为重要的剧情节点——被加强了！", 
+        xp_value: 2178309, 
+        rank: 2898,
+        image: "image/boss/B2801.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [1],
+        spec_value:{},
+        tags: [],
+        stats: {health: 2800, attack: 1100e4, agility: 600e4, attack_speed: 1.2, defense: 600e4}, 
+        loot_list: [
+            {item_name: "高能凝胶", chance:999},
+            {item_name: "A7·能量核心", chance:999},
+            {item_name: "B1·能量核心", chance:333},
+            {item_name: "进化结晶凝聚-一学就会", chance:1},
+            //大概3-4B了？
+        ],
+    });
 
 
 
