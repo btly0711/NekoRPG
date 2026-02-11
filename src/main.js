@@ -1399,6 +1399,8 @@ function faint(c_log)
 {
     total_deaths++;
     log_message(character.name + c_log, "hero_defeat");
+    end_activity_animation(); //clears the "animation"
+    current_activity = null;
      update_displayed_health();
     if(options.auto_return_to_bed && last_location_with_bed) {
         change_location(last_location_with_bed);
@@ -4225,7 +4227,6 @@ function update() {
         });
         update_displayed_effect_durations();
         update_displayed_effects();
-
         //health regen
         if(character.stats.full.health_regeneration_flat) {
             character.stats.full.health += character.stats.full.health_regeneration_flat;

@@ -2424,7 +2424,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "摩羽巨币",
         id: "摩羽巨币",
         description: "可惜摩羽星没有圣荒城那样的传统。这些钱只能当一面大盾牌使了。", 
-        value: 1e12,
+        value: 0.999e12,
         stats: {
             attack_speed: {
                 multiplier: 0.7,

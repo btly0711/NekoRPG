@@ -730,6 +730,7 @@ function start_activity_animation(settings) {
     activity_anim = setInterval(() => { //sets a tiny little "animation" for activity text
         const action_status_div = document.getElementById("action_status_div");
         let end = "";
+        if(action_status_div === null) return;
         if(action_status_div.innerHTML.endsWith("...")) {
             end = "...";
         } else if(action_status_div.innerHTML.endsWith("..")) {
@@ -2975,7 +2976,6 @@ function update_displayed_ongoing_activity(current_activity, is_job){
     }
     const action_xp_div = document.getElementById("action_xp_div");
     const needed_xp = skills[activities[current_activity.activity_name].base_skills_names].current_level == skills[activities[current_activity.activity_name].base_skills_names].max_level? "Max": `${Math.round(10000*skills[activities[current_activity.activity_name].base_skills_names].current_xp/skills[activities[current_activity.activity_name].base_skills_names].xp_to_next_lvl)/100}%`
-    
     if(activities[current_activity.activity_name].type !== "GATHERING") {
         action_xp_div.innerText = `每秒获取 ${format_number(current_activity.skill_xp_per_tick*get_skills_overall_xp_gain())}  ${skills[activities[current_activity.activity_name].base_skills_names].name()} 经验值 (${needed_xp})`;
     } else {
