@@ -808,6 +808,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         Q_able: 160,
         recipe_skill: "Crafting",
     });
+
 })();
 //熔炼配方
 
@@ -1237,6 +1238,24 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "超浓缩·坚固药剂", count: 1},
         success_chance: [0.3,1],
         recipe_level: [30,45],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items2["拆包-高能凝胶"] = new ItemRecipe({
+        name: "拆包-高能凝胶",
+        recipe_type: "material",
+        materials: [{material_id: "一捆高能凝胶", count: 1}], 
+        result: {result_id: "高能凝胶", count: 100},
+        success_chance: [0.3,1],
+        recipe_level: [36,36],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items2["拆包-B1·能量核心"] = new ItemRecipe({
+        name: "拆包-B1·能量核心",
+        recipe_type: "material",
+        materials: [{material_id: "一捆B1·能量核心", count: 1}], 
+        result: {result_id: "B1·能量核心", count: 100},
+        success_chance: [0.3,1],
+        recipe_level: [40,40],
         recipe_skill: "Alchemy",
     });
 

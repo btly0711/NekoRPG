@@ -250,6 +250,19 @@ effect_templates["辐射"] = new ActiveEffect({
     name: "辐射",
     effects: {stats: {max_health: {multiplier: 0.5},health_regeneration_percent:{flat:-8}}}
 });
+
+effect_templates["恢复 B1"] = new ActiveEffect({
+    name: "恢复 B1",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 4800000},
+            max_health:{flat: 480000000},
+        }
+    }
+});
+
+
+
 /*  let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
                 let MM2 = ["生命恢复 + 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];*/
 

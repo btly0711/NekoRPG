@@ -3990,6 +3990,15 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [{effect: "坚固 A9", duration: 30}],
         image: "image/item/B3_hard.png",
     });
+
+    item_templates["血气升腾药剂"] = new UsableItem({
+        name: "血气升腾药剂", 
+        description: "可以暂时通过让气血外放，抑制【散华】作用的药剂。为防止喝完暴毙，还附带了恢复气血的功能。", 
+        value: 3e9,
+        realmcap:24,
+        effects: [{effect: "恢复 B1", duration: 90}],
+        image: "image/item/B1_life_medicine.png",
+    });
     
 })();
 //炼金
@@ -4457,7 +4466,18 @@ item_templates["Twist liek a snek"] = new Book({
         C_value: 2,
         image: "image/item/evolve_1e11.png",
     });
-
+    item_templates["一捆高能凝胶"] = new Loot({
+        name: "一捆高能凝胶", 
+        description: "飞船核心机械的冷却剂。可以拆分为100个普通高能凝胶。", 
+        value: 16000e6,
+        image: "image/item/warfield_rubber_100.png",
+    });
+    item_templates["一捆B1·能量核心"] = new Loot({
+        name: "一捆B1·能量核心", 
+        description: "飞船核心机械的能量源。可以拆分为100个普通B1·能量核心。", 
+        value: 264e9,
+        image: "image/item/B1_crystal_100.png",
+    });
 
 
     //以下为打钱的东西
