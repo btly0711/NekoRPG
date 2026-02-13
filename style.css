@@ -921,8 +921,11 @@ body {
 	font-size: 18px;
 	padding: 3px 0px 3px 0px;
 	background-color: rgba(128, 128, 128, 0.5);
+	border-bottom:1px dashed white;
 	text-align: center;
 }
+
+
 .selected_recipe .recipe_creation_button {
 	display: block;
 }

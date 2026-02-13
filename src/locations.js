@@ -2665,7 +2665,7 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 10,
         traders: ["物品存储箱"],
         sleeping: {
-            text: "在符文之屋修炼[+1000XP/s]",
+            text: "在符文之屋修炼[+1万XP/s]",
             xp: 100
         },
             crafting: {
@@ -2981,7 +2981,7 @@ function get_location_type_penalty(type, stage, stat) {
 
 
     locations["飞船核心"] = new Location({ 
-        connected_locations: [{location: locations["天外飞船"], custom_text: "暂且离开这艘飞船"}], 
+        connected_locations: [{location: locations["天外飞船"], custom_text: "暂且离开核心区域"}], 
         description: "天外飞船的核心部分。威压遍布，却蕴含着达到天空级的机遇。[V1.70前版本终点]",
         name: "飞船核心", 
         is_unlocked: false,
@@ -3006,7 +3006,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 4800e4,
-            locations: [{location: "飞船核心 - 2"}],
+            locations: [{location: "飞船核心 - 2"},{location: "飞船核心 - 左上房间"}],
         },
     });
     locations["飞船核心 - 2"] = new Combat_zone({
@@ -3025,7 +3025,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 800e4,
-            locations: [{location: "飞船核心 - 3"}],
+            locations: [{location: "飞船核心 - 3"},{location: "飞船宿舍"}],
         },
     });
     locations["飞船核心 - 3"] = new Combat_zone({
@@ -3085,6 +3085,21 @@ function get_location_type_penalty(type, stage, stat) {
             //locations: [{location: "飞船核心 - X"}],
         },
     });
+    locations["飞船核心 - 左上房间"] = new Challenge_zone({
+        description: "似乎看守着某种修炼法的两只机械造物。", 
+        enemy_count: 1, 
+        enemies_list : [["质子粉碎机B1[BOSS]"]],
+        enemy_group_size: [2,2],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "飞船核心 - 左上房间",
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        repeatable_reward: {
+            money:11038,
+        },
+    });
     locations["飞船核心 - 下方房间"] = new Challenge_zone({
         description: "红门内进化气息浓郁的房间.似乎有人在这里做过实验。", 
         enemy_count: 1, 
@@ -3101,6 +3116,30 @@ function get_location_type_penalty(type, stage, stat) {
         },
         unlock_text: "[纳娜米]可可有感觉到吗？附近的能量有一些躁动，似乎在环绕着某个中心旋转。",
     });
+    locations["飞船宿舍"] = new Location({
+        connected_locations: [{location: locations["飞船核心"], custom_text: "回到飞船核心"}],
+        description: "之前没买符文工作台的有福了！天外科技，无论聚能阵法还是工作台都比符文之屋好一档。",
+        name: "飞船宿舍",
+        is_unlocked: false,
+        bgm: 13,
+        traders: ["物品存储箱"],
+        sleeping: {
+            text: "使用天外聚能阵[+25万XP/s]",
+            xp: 500
+        },
+            crafting: {
+                is_unlocked: true, 
+                use_text: "使用天外工作台[Tier+10]", 
+                tiers: {
+                    crafting: 10,
+                    forging: 10,
+                    smelting: 10,
+                    cooking: 10,
+                    alchemy: 10,
+                }
+            },
+        
+    })
 
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 1"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 2"]});
@@ -3108,6 +3147,8 @@ function get_location_type_penalty(type, stage, stat) {
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 4"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 5"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 下方房间"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 左上房间"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船宿舍"]});
 
 
 

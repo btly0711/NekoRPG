@@ -5043,7 +5043,7 @@ B2 352'4578  /570'2887  exp
         name: "银色血眼B1[BOSS]", 
         description: "守护着堪称【巨量】的宝物的它，作为重要的剧情节点——被加强了！", 
         xp_value: 2178309, 
-        rank: 2898,
+        rank: 2897,
         image: "image/boss/B2801.png",
         realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
         size: "small",
@@ -5057,6 +5057,22 @@ B2 352'4578  /570'2887  exp
             {item_name: "B1·能量核心", chance:333},
             {item_name: "进化结晶凝聚-一学就会", chance:1},
             //大概3-4B了？
+        ],
+    });
+    
+    enemy_templates["质子粉碎机B1[BOSS]"] = new Enemy({
+        name: "质子粉碎机B1[BOSS]", 
+        description: "夭寿啦——夸克禁闭坏掉啦——", 
+        xp_value: 2178309, 
+        rank: 2898,
+        image: "image/boss/B2802.png",
+        realm: "<span class=realm_sky><b>天空级一阶 +</b></span>",
+        size: "small",
+        spec: [7],
+        spec_value:{},
+        tags: [],
+        stats: {health: 14400e4, attack: 960e4, agility: 680e4, attack_speed: 1.6, defense: 500e4}, 
+        loot_list: [
         ],
     });
 

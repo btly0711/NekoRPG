@@ -1120,7 +1120,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     let target_class_name;
     let item_class;
     let options = {};
-    let price_multiplier = 1;
+    let price_multiplier = 0;
     if(target === "trader") {
         options.trader = true;
         price_multiplier = traders[current_trader].getProfitMargin() || price_multiplier;
@@ -2167,9 +2167,20 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
             //equipments
         });
 
+        const equip_max_button = document.createElement("div");
+        equip_max_button.innerHTML = "[制作最大]"
+        equip_max_button.classList.add("recipe_creation_button");
+        equip_max_button.addEventListener("click", (event)=>{
+            window.useRecipemax(event.target);
+            //equipments
+        });
+
         recipe_div.append(component_selections);
         recipe_div.append(accept_recipe_button);
+        recipe_div.append(equip_max_button);
+        
         accept_recipe_button.append(create_recipe_tooltip({category, subcategory, recipe_id, components: []}));
+        equip_max_button.append(create_recipe_tooltip({category, subcategory, recipe_id, components: []}));
     } else {
         throw new Error(`No such crafting subcategory as "${subcategory}"`);
     }

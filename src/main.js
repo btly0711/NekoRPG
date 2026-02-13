@@ -1731,6 +1731,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         }//武器技能+空手技能
         if(character.equipment.method != null){
             if(character.equipment.method.id=="三月断宵") add_xp_to_skill({skill: skills['3Moon/Night'], xp_to_add: target.xp_value});
+            if(character.equipment.method.id=="星解之术") add_xp_to_skill({skill: skills['StarDestruction'], xp_to_add: target.xp_value});
         }
         if(character.stats.full.crit_rate > Math.random()) {
             vibra_damage *= character.stats.full.crit_multiplier;
@@ -2089,9 +2090,13 @@ function add_xp_to_character(xp_to_add, should_info = true, use_bonus,ingore_cap
 
 function get_spec_rewards(money){
     if(money == 11037){
-
         global_flags["is_evolve_studied"] = true;
         log_message(`${flag_unlock_texts["is_evolve_studied"]}`, "activity_unlocked");
+        return;
+    }
+    if(money == 11038){
+        add_to_character_inventory([{item: getItem({...item_templates["星解之术"], quality: 160}), count: 1}]);
+        log_message(`获取了 星解之术`, "activity_unlocked");
         return;
     }
     let RNG_M = Math.pow(Math.max(Math.random(),1e-6),-1.5)
@@ -2379,29 +2384,38 @@ function use_recipe(target,stated = false) {
                 
                 recipe_div.children[1].children[0].children[1].children[0].classList.add('selected_component');
                 component_1_key = recipe_div.children[1].children[0].children[1].querySelector(".selected_component")?.dataset.item_key;
-                log_message(`自动切换材料: ${component_1_key}`, "crafting");
+                if(!stated) log_message(`自动切换材料: ${component_1_key}`, "crafting");
             }
             if(!component_2_key && (recipe_div.children[1].children[1].children[1].children[0] !== undefined))
             {
                 
                 recipe_div.children[1].children[1].children[1].children[0].classList.add('selected_component');
                 component_2_key = recipe_div.children[1].children[1].children[1].querySelector(".selected_component")?.dataset.item_key;
-                log_message(`自动切换材料: ${component_2_key}`, "crafting");
+                if(!stated) log_message(`自动切换材料: ${component_2_key}`, "crafting");
             }
             if(!component_1_key || !component_2_key) {
-                return;
+                return -1;
             } else {
+                let H_q = 0;
                 if(!character.inventory[component_1_key] || !character.inventory[component_2_key]) {
                     throw new Error(`Tried to create item with components that are not present in the inventory!`);
                 } else {
                     total_crafting_attempts++;
                     total_crafting_successes++;
                     result = selected_recipe.getResult(character.inventory[component_1_key].item, character.inventory[component_2_key].item, station_tier);
-                    remove_from_character_inventory([{item_key: component_1_key}, {item_key: component_2_key}]);
-                    add_to_character_inventory([{item: result}]);
+                    if(!stated) {
+                        remove_from_character_inventory([{item_key: component_1_key}, {item_key: component_2_key}]);
+                        add_to_character_inventory([{item: result}]);
+                    }
+                    else{
+                        character.remove_from_inventory([{item_key: component_1_key}, {item_key: component_2_key}]);
+                        character.add_to_inventory([{item: result}]);
+                    }
 
-                    log_message(`制造了 ${result.getName()} [品质 ${result.quality}%]`, "crafting");
-
+                    
+                    if(!stated) log_message(`制造了 ${result.getName()} [品质 ${result.quality}%]`, "crafting");
+                    else H_q = result.quality;
+                
                     const id_1 = JSON.parse(component_1_key).id;
                     const id_2 = JSON.parse(component_2_key).id;
 
@@ -2416,6 +2430,7 @@ function use_recipe(target,stated = false) {
 
                     update_displayed_component_choice({category, recipe_id, component_keys});
                 }
+                if(stated) return H_q;
             }
             //update_displayed_crafting_recipes();
         }  
@@ -2469,7 +2484,20 @@ function use_recipe_max(target) {
             log_message(`批量制造了 ${latest_comp} * ${cnt - 1} ,其中最高品质为 ${cnt_b} %`, "crafting");
 
         } else if(subcategory === "equipment") {
-
+            let cnt = 0;
+            let cnt_b = 0;
+            let cnt_f = 0;
+            
+            while(cnt_f != -1)
+            {
+                cnt++;
+                cnt_f = use_recipe(target,true)
+                cnt_b = Math.max(cnt_b,cnt_f);
+            }
+            
+            update_displayed_character_inventory();
+            log_message(`批量制造了 ${cnt - 1} 件装备 ,其中最高品质为 ${cnt_b} %`, "crafting");
+            
         }
     }
 }

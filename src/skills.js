@@ -639,7 +639,48 @@ function format_skill_rewards(milestone){
                                             },
                                             3: {
                                                     xp_multipliers: {
-                                                        all: 1.33,
+                                                        all: 1.3333,
+                                                    }
+                                            },
+                                        }
+                                    }
+                                });
+     skills["StarDestruction"] = new Skill({skill_id: "StarDestruction", 
+                                    names: {0: "星解之术",1:"星解之术·小成",2:"星解之术·精通",3:"星解之术·大成",4:"星解之术·圆满"}, 
+                                    parent_skill: "Stance mastery",
+                                    description: "天外的观想法，对领悟与能量积累都有巨大作用", 
+                                    max_level_coefficient: 1.25,
+                                    base_xp_cost: 4e12,
+                                    max_level: 4,
+                                    xp_scaling:20,
+                                    get_effect_description: ()=> {
+                                        return `增加基础经验获取量,额外增加领域经验获取量`;
+                                    },
+                                    category: "Stance",
+                                    rewards: {
+                                        milestones: {
+                                            1: {
+                                                    xp_multipliers: {
+                                                        all: 2.0,
+                                                        "Neko_Realm": 2,
+                                                    }
+                                            },
+                                            2: {
+                                                    xp_multipliers: {
+                                                        all: 1.5,
+                                                        "Neko_Realm": 2,
+                                                    }
+                                            },
+                                            3: {
+                                                    xp_multipliers: {
+                                                        all: 1.3333,
+                                                        "Neko_Realm": 2,
+                                                    }
+                                            },
+                                            3: {
+                                                    xp_multipliers: {
+                                                        all: 1.25,
+                                                        "Neko_Realm": 2,
                                                     }
                                             },
                                         }
@@ -788,6 +829,34 @@ function format_skill_rewards(milestone){
                                     
                                     rewards: {
                                         milestones: {
+                                            5: {
+                                                stats: {
+                                                    health_regeneration_flat: {
+                                                        flat:249900
+                                                    },
+                                                },
+                                            },
+                                            10: {
+                                                stats: {
+                                                    health_regeneration_flat: {
+                                                        flat:500000
+                                                    },
+                                                },
+                                            },
+                                            15: {
+                                                stats: {
+                                                    health_regeneration_flat: {
+                                                        flat:750000
+                                                    },
+                                                },
+                                            },
+                                            20: {
+                                                stats: {
+                                                    health_regeneration_flat: {
+                                                        flat:1500000
+                                                    },
+                                                },
+                                            },
                                         }
                                     }
                             });

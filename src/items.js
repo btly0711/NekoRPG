@@ -2470,6 +2470,17 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["星解之术"] = new Method({
+        name: "星解之术",
+        id: "星解之术",
+        description: "释放身体蕴含的基因原力，融解星宙间那颗颗璀璨的星辰。提升总体经验获取率，尤其促进领域的感悟", 
+        value: 9090909090909,
+        stats: {
+            health_regeneration_flat: {
+                flat: 2000000,
+            },
+        }
+    });
 })();
 
 
