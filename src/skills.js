@@ -677,7 +677,7 @@ function format_skill_rewards(milestone){
                                                         "Neko_Realm": 2,
                                                     }
                                             },
-                                            3: {
+                                            4: {
                                                     xp_multipliers: {
                                                         all: 1.25,
                                                         "Neko_Realm": 2,

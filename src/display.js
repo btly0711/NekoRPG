@@ -1120,7 +1120,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     let target_class_name;
     let item_class;
     let options = {};
-    let price_multiplier = 0;
+    let price_multiplier = 1;
     if(target === "trader") {
         options.trader = true;
         price_multiplier = traders[current_trader].getProfitMargin() || price_multiplier;
