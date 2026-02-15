@@ -808,6 +808,18 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         Q_able: 160,
         recipe_skill: "Crafting",
     });
+    
+    crafting_recipes.items2["飞船之心"] = new ItemRecipe({
+        name: "飞船之心",
+        id: "飞船之心",
+        recipe_type: "items",
+        materials: [{material_id: "结界湖之心·材", count: 1},{material_id:"B6·飞船核心",count:1},{material_id:"红钢锭",count:99},{material_id:"固态凝胶",count:99}],
+        result: {result_id: "飞船之心", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [1,1],
+        Q_able: 160,
+        recipe_skill: "Crafting",
+    });
 
 })();
 //熔炼配方
@@ -925,6 +937,16 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "红钢锭", count: 4},
         success_chance: [0.5,1],
         recipe_level: [27,40],
+        recipe_skill: "Smelting",
+    });
+    
+    smelting_recipes.items2["重铸飞船核心"] = new ItemRecipe({
+        name: "重铸飞船之心",
+        recipe_type: "material",
+        materials: [{material_id: "重甲残骸", count: 999},{material_id: "红黑印记", count: 999},{material_id: "B1·能量核心", count: 999},{material_id: "初等进化结晶", count:1}], 
+        result: {result_id: "B6·飞船核心", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [48,48],
         recipe_skill: "Smelting",
     });
 })();

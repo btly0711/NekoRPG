@@ -1365,7 +1365,33 @@ class Textline {
         }
     });
 
+    dialogues["纳布(沼泽)"] = new Dialogue({
+        name: "纳布(沼泽)",
+        textlines: {
+            "zz1": new Textline({ 
+                is_unlocked: true,
+                name: "咕咕咕",
+                text: "咕咕咕",
+                unlocks: {
+                },
+            }),
+        }
+    });
 
+    dialogues["结界湖转化器"] = new Dialogue({
+        name: "结界湖转化器",
+        starting_text: "让你的结界湖之心准备好升级",
+        textlines: {
+            "jjh": new Textline({ 
+                is_unlocked: true,
+                name: "转化(需要结界湖之心位于装备栏)",
+                text: "",
+                unlocks: {
+                    spec:"jjhzx",
+                },
+            }),
+        }
+    });
 
 
 

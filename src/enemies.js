@@ -65,6 +65,7 @@ class Enemy {
             }
             
             let raw_chance = item.chance * this.get_droprate_modifier() ;
+            if(item.ignore_luck) raw_chance = item.chance;
             let item_count = 0;
             item_count = Math.floor(raw_chance);
             let final_chance = raw_chance - item_count;
@@ -5073,6 +5074,23 @@ B2 352'4578  /570'2887  exp
         tags: [],
         stats: {health: 14400e4, attack: 960e4, agility: 680e4, attack_speed: 1.6, defense: 500e4}, 
         loot_list: [
+        ],
+    });
+    
+    enemy_templates["舰船中枢B6[BOSS]"] = new Enemy({
+        name: "舰船中枢B6[BOSS]", 
+        description: "B6飞船的主战中枢。移速迅捷，战力强悍。不过，镭射枪也到了发挥作用的时候了。", 
+        xp_value: 165580141, 
+        rank: 2899,
+        image: "image/boss/B2803.png",
+        realm: "<span class=realm_sky><b>天空级六阶</b></span>",
+        size: "small",
+        spec: [45],//10回合
+        spec_value:{},
+        tags: [],
+        stats: {health: 4225e8, attack: 168100e4, agility: 1200e4, attack_speed: 1.0, defense: 0}, 
+        loot_list: [
+            {item_name: "B6·飞船核心", chance:1 ,ignore_luck:true},
         ],
     });
 

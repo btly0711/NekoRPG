@@ -3515,6 +3515,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [42, "圣阵", "#d9964a", "才德全尽谓之圣人，十圆无缺谓之圣阵。<br>敌人布下圣阵，在战斗进行到第<span style='color:#87CEFA'>五、十、二十</span>回合时，分别对角色造成<span style='color:#87CEFA'>3倍、9倍、27倍</span>角色与敌人攻防之和的穿透伤害。"],
 [43, "激光", "#dda0dd",function(enemy){return "攻击时，无论是否命中，都额外造成<span style='color:#87CEFA'>" + (enemy.spec_value[43]) + "</span>点魔法伤害。"}],
 [44, "召唤", "#f5deb3", "群居生物同心协力的体现。敌人刷新时，额外刷新3只【舰船除草机B1】。"],
+[45, "10回合", "#524fdb","在敌人的手中走过十回合！敌人会在第10回合被镭射枪击中，将<span style='color:#87CEFA'>血量降为1</span>.<br><span style='color:#FF0000'><b>前提是,姐姐被你带在身边.</b></span>"],
 
 ];
 
@@ -3701,7 +3702,7 @@ function create_new_bestiary_entry(enemy_name) {
 
         loot_name.innerHTML = `${enemy.loot_list[i].item_name}`;
         loot_chance_base.innerHTML = `[${format_percent(enemy.loot_list[i].chance)}]`;
-        loot_chance_current.innerHTML = `${format_percent(enemy.loot_list[i].chance*enemy.get_droprate_modifier())}`;
+        loot_chance_current.innerHTML = `${enemy.loot_list[i].ignore_luck?("[Fixed]"):(format_percent(enemy.loot_list[i].chance*enemy.get_droprate_modifier()))}`;
         loot_chance.append(loot_chance_current, loot_chance_base);
         loot_line.append(loot_name, loot_chance);
 

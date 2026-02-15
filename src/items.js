@@ -2656,6 +2656,27 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    
+    item_templates["飞船之心"] = new Special({
+        name: "飞船之心",
+        id: "飞船之心",
+        description: "结界湖之心的第一次升级。不用担心3幕的姐姐会没用...她被加强了。", 
+        value: 4.8e12,
+        stats: {
+            attack_power: {
+                multiplier: 1.03,
+            },
+            defense: {
+                multiplier: 1.03,
+            },
+            agility: {
+                multiplier: 1.03,
+            },
+            max_health: {
+                multiplier: 1.03,
+            }
+        }
+    });
 
 })();
 //usables:
@@ -3784,6 +3805,15 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/redsteel_ingot.png",
     });
     
+    item_templates["结界湖之心·材"] = new Material({
+        id: "结界湖之心·材",
+        name: "结界湖之心·材", 
+        description: "无法继续被佩戴，只是用于合成【飞船之心】的临时解决方案。", 
+        value: 2.4e9,
+        material_type: "metal",
+        image: "image/item/barrierlake_heart.png",
+    });
+    
 })();
 
 //矿石
@@ -4488,6 +4518,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "飞船核心机械的能量源。可以拆分为100个普通B1·能量核心。", 
         value: 264e9,
         image: "image/item/B1_crystal_100.png",
+    });
+    item_templates["B6·飞船核心"] = new Loot({
+        name: "B6·飞船核心", 
+        description: "强烈建议不要卖掉。【结界湖之心】在V3.0X将会超过好不容易省下的姐姐，而重铸一颗飞船核心非常昂贵...", 
+        value: 666666e6,
+        image: "image/item/B6_spaceship_core.png",
     });
 
 

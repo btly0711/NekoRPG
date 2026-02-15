@@ -2982,7 +2982,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["飞船核心"] = new Location({ 
         connected_locations: [{location: locations["天外飞船"], custom_text: "暂且离开核心区域"}], 
-        description: "天外飞船的核心部分。威压遍布，却蕴含着达到天空级的机遇。[V1.70前版本终点]",
+        description: "天外飞船的核心部分。威压遍布，却蕴含着达到天空级的机遇。",
         name: "飞船核心", 
         is_unlocked: false,
         bgm: 13,
@@ -3082,7 +3082,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 1600e4,
-            //locations: [{location: "飞船核心 - X"}],
+            locations: [{location: "飞船核心 - X"}],
         },
     });
     locations["飞船核心 - 左上房间"] = new Challenge_zone({
@@ -3140,6 +3140,21 @@ function get_location_type_penalty(type, stage, stat) {
             },
         
     })
+    locations["飞船核心 - X"] = new Challenge_zone({
+        description: "警报！警报！不明来历生命体已经抵达核心区域！启用主战中枢，执行紧急清扫程序——", 
+        enemy_count: 1, 
+        enemies_list : [["舰船中枢B6[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "飞船核心 - X",
+        bgm:13,
+        parent_location: locations["飞船核心"],
+        repeatable_reward: {
+            locations: [{location: "赫尔沼泽入口"}],
+        },
+    });
 
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 1"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 2"]});
@@ -3149,7 +3164,20 @@ function get_location_type_penalty(type, stage, stat) {
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 下方房间"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - 左上房间"]});
     locations["飞船核心"].connected_locations.push({location: locations["飞船宿舍"]});
+    locations["飞船核心"].connected_locations.push({location: locations["飞船核心 - X"]});
 
+    locations["赫尔沼泽入口"] = new Location({ 
+        connected_locations: [{location: locations["飞船核心"], custom_text: "返回飞船核心区域"},{location: locations["荒兽森林营地"], custom_text: "快速旅行 - 第二幕"}], 
+        description: "天外飞船引发【兽潮】后，一片兽潮蔓延区的前沿阵地。[V2.00前版本终点]",
+        dialogues: ["纳布(沼泽)","结界湖转化器"],
+        name: "赫尔沼泽入口", 
+        is_unlocked: false,
+        bgm: 14,
+        unlock_text: "两年后，燕岗领，赫尔沼泽。",
+    });//3-1pre
+    locations["飞船核心"].connected_locations.push({location: locations["赫尔沼泽入口"]});
+
+    locations["荒兽森林营地"].connected_locations.push({location: locations["赫尔沼泽入口"],custom_text:"快速旅行 - 第三幕"});
 
 
 

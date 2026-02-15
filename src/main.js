@@ -321,6 +321,7 @@ const musicList = {
   11: 'bgms/11.mp3',
   12: 'bgms/12.mp3',
   13: 'bgms/13.mp3',
+  14: 'bgms/14.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -971,6 +972,20 @@ function start_textline(textline_key){
         else if(textline.unlocks.spec == "A7-reactor"){
             start_reactor_minigame();
         }
+        else if(textline.unlocks.spec == "jjhzx"){
+
+            if(character.equipment.special?.name == "结界湖之心")
+            {
+                character.equipment.special = null;
+                add_to_character_inventory([{item: item_templates["结界湖之心·材"], count: 1}]);
+                update_displayed_equipment(); 
+                character.stats.add_all_equipment_bonus();
+                update_displayed_stats();
+                displayed_text += `你的【结界湖之心】已经被转化为【结界湖之心·材】，<br>可以继续升级为【飞船之心】。`;
+                log_message("获取了 结界湖之心·材","combat_loot");
+            }
+            else displayed_text += `请将【结界湖之心】佩戴后再次尝试！`;
+        }
     }
 /*
 赐福消耗当前生命上限^1.40的钱币，
@@ -1224,6 +1239,9 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 }
                 if(current_enemies[enemy_id].spec.includes(36) && E_round == 20){//自爆
                     do_enemy_combat_action(enemy_id,"[自爆]"+Spec_S,0);
+                }
+                if(current_enemies[enemy_id].spec.includes(45) && E_round == 10){//10回合
+                    do_enemy_combat_action(enemy_id,Spec_S,0);
                 }
                 if(current_enemies[enemy_id].spec.includes(38) && E_round == 9)//冰符咒
                 {
@@ -1490,7 +1508,30 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         if(fainted) faint(" 被炸晕了");
         return;
     }//自爆/残余血量都爆了
-
+    if(attacker.spec.includes(45) && E_atk_mul == 0)//标记
+    {
+        if(character.equipment.special?.name == "纳娜米(飞船)")//姐姐在！
+        {
+            log_message(`几乎零点一秒之内，纳娜米手中的武器，绽放出耀眼的银白色光芒。只听轰隆一声巨响，整座飞船都似乎为之震颤！`,"enemy_enhanced");
+            log_message(`遭到反震力冲击的纳娜米纹丝不动。比起地宫之行的时候，她已经提高了足足七阶修为，不再会被区区反冲力给轰吐血了。`,"enemy_enhanced");
+            log_message(`[纳可]没事吧，姐姐——`,"enemy_defeated");
+            log_message(`[纳娜米]噗...我像是有事的样子吗！快去给飞船中枢补刀！`,"enemy_defeated");
+            log_message(`正面被武器击中的飞船中枢B6，受到了不轻的创伤，零部件四处横飞。`,"enemy_enhanced");
+            log_message("它的血量已被降为1。", "hero_attacked_critically");
+            attacker.stats.health = 1;
+            update_displayed_health_of_enemies();
+            return;
+        }
+        else{
+            E_atk_mul = 1;
+            log_message(`几乎零点一秒之内，......谁来着？她在这里嘛？`,"enemy_enhanced");
+            log_message(`[???]...`,"enemy_defeated");
+            log_message(`[纱雪]高能反应！检测到纳娜米未在队伍中！`,"sayuki");
+            log_message(`[纱雪]镭射枪攻击没有了，攻击和血量处于绝对劣势...`,"sayuki");
+            log_message(`[纱雪]那就凭借高额的敏捷和速度，`,"sayuki");
+            log_message(`[纱雪]一点点击碎这个又大又笨的中枢吧！`,"sayuki");
+        }
+    }//10回合/姐姐必须在场
 
     if(attacker.spec.includes(43)){
         let {damage_taken, fainted} = character.take_damage([],{damage_value: attacker.spec_value[43]},0);
@@ -1863,8 +1904,40 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
                 //unlock_location("荒兽森林营地");
 
             }
+            if(target.name == "舰船中枢B6[BOSS]")//没收姐姐2.0
+            {
+                if(character.equipment.special?.name == "纳娜米(飞船)")
+                {
+                    character.equipment.special = null;
+                    log_message(`装备槽里的姐姐回家了！`,"enemy_enhanced");
+                    
+                    update_displayed_equipment(); 
+                    character.stats.add_all_equipment_bonus();
+                    update_displayed_stats();
+                }
+                else if(character.is_in_inventory_nanami("{\"id\":\"纳娜米(飞船)\",\"quality\":130}"))
+                {
+                    remove_from_character_inventory([{item_key:"{\"id\":\"纳娜米(飞船)\",\"quality\":130}"}]);
+                    log_message(`物品栏里的姐姐回家了！`,"enemy_enhanced");
+                }
+                else if(enemy_killcount["舰船中枢B6[BOSS]"] <= 1)
+                {
+                    log_message(`[纱雪]诶诶，怎么哪里都找不到姐姐啊。`,"sayuki");
+                    log_message(`[纱雪]真的打掉了那只4200亿血的中枢耶！好厉害！`,"sayuki");
+                    log_message(`[纱雪]那么，作为给胜利者的小奖励，`,"sayuki");
+                    log_message(`[纱雪]这只姐姐就留给你保管啦。`,"sayuki");
+                }
+                
+                update_displayed_character_inventory({was_anything_new_added:true});
+                //unlock_location("荒兽森林营地");
+                if(enemy_killcount["舰船中枢B6[BOSS]"] <= 1){
+                    current_game_time.go_up(1080000);
+                    //2年
+                }
+            }
             kill_enemy(target);
         }
+
 
         update_displayed_health_of_enemies();
         
@@ -2670,7 +2743,9 @@ function use_item(item_key,stated = false) {
 
     if(E_value != 0)
     {
-        add_xp_to_character(E_value,true,false,C_value);
+        let E_modi = (C_value==2)?(0.2**(Math.max(0,character.xp.current_level-19))):(1);
+        add_xp_to_character(E_value*E_modi,true,false,C_value);
+        log_message(`使用了 ${item_templates[id].name} , 获取了 ${format_number(E_value*E_modi)} 经验${E_modi==1?"":`(压级-${format_number((1-E_modi)*100)}%)`}`,"gather_loot");
     }
 
     if(used && !stated) {
