@@ -4025,9 +4025,9 @@ item_templates["Twist liek a snek"] = new Book({
     
     item_templates["超浓缩·坚固药剂"] = new UsableItem({
         name: "超浓缩·坚固药剂", 
-        description: "经过剧烈的提纯之后，对B3级以下都可以产生效力的药剂。只是持续时间大打折扣。", 
+        description: "经过剧烈的提纯之后，对B5级以下都可以产生效力的药剂。只是持续时间大打折扣。", 
         value: 120e9,
-        realmcap:21,
+        realmcap:23,
         effects: [{effect: "坚固 A9", duration: 30}],
         image: "image/item/B3_hard.png",
     });
@@ -4205,6 +4205,38 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/gem44_100k.png",
         effects: [],
         gem_value: 100000,
+    });
+    item_templates["史诗黄宝石"] = new UsableItem({
+        name: "史诗黄宝石", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷20万点或生命2000万点", 
+        value: 200000,
+        image: "image/item/gem51_200k.png",
+        effects: [],
+        gem_value: 200000,
+    });
+    item_templates["史诗蓝宝石"] = new UsableItem({
+        name: "史诗蓝宝石", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷50万点或生命5000万点", 
+        value: 500000,
+        image: "image/item/gem52_500k.png",
+        effects: [],
+        gem_value: 500000,
+    });
+    item_templates["史诗红宝石"] = new UsableItem({
+        name: "史诗红宝石", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷100万点或生命1亿点", 
+        value: 1000000,
+        image: "image/item/gem53_1M.png",
+        effects: [],
+        gem_value: 1000000,
+    });
+    item_templates["史诗绿宝石"] = new UsableItem({
+        name: "史诗绿宝石", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷200万点或生命2亿点", 
+        value: 2000000,
+        image: "image/item/gem54_2M.png",
+        effects: [],
+        gem_value: 2000000,
     });
 })();
 

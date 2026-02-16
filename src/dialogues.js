@@ -1370,10 +1370,41 @@ class Textline {
         textlines: {
             "zz1": new Textline({ 
                 is_unlocked: true,
-                name: "咕咕咕",
-                text: "咕咕咕",
+                name: "...",
+                text: "没人能够想到，<br>天外来客飞船坠落后的辐射，<br>竟能让如此之多的荒兽产生变异。<br>这或许是外来者最后的报复……<br>这些荒兽变得比之前更强大、更凶残。<br>大量天空级乃至云霄级的荒兽诞生，兽潮产生。",
                 unlocks: {
+                    textlines: [{dialogue: "纳布(沼泽)", lines: ["zz2"]}],
                 },
+                locks_lines: ["zz1"],
+            }),
+            "zz2": new Textline({ 
+                is_unlocked: false,
+                name: "父亲大人以前经历过兽潮吗？是什么样子的？",
+                text: "[纳布]顾名思义……<br>无数发疯的荒兽冲击人类的城镇，<br>众多弱小的平民家破人亡，流离失所。<br>[纳可]……好可怜……<br>[纳布]可可，此次城主府开出了丰厚的奖励，<br>乃是几大领在天外来客的身上所得。<br>只要猎杀荒兽并带回证明，就能领取奖励。",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(沼泽)", lines: ["zz3"]}],
+                },
+                locks_lines: ["zz2"],
+            }),
+            "zz3": new Textline({ 
+                is_unlocked: false,
+                name: "父亲大人，姐姐她现在，已经跟着家族的第一批队伍出发了吗？",
+                text: "",
+                unlocks: {
+                    spec:"3-1-nanami",
+                    textlines: [{dialogue: "纳布(沼泽)", lines: ["zz4"]}],
+                },
+                locks_lines: ["zz3"],
+            }),
+            "zz4": new Textline({ 
+                is_unlocked: false,
+                name: "……明白",
+                text: "好了，时间也差不多了，<br>纳家的下一批队伍已经开拨，<br>那就收拾心情出发吧。<br>有燕岗城大部队的超级强者开路，<br>就不用担心碰到游荡的领域，云霄级兽王了。",
+                unlocks: {
+                    
+                    locations: ["赫尔沼泽"],
+                },
+                locks_lines: ["zz4"],
             }),
         }
     });

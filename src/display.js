@@ -3738,7 +3738,7 @@ function add_bestiary_lines(zone)
     //zone 11-> 1-1，rank作为1200处理
     //sorts bestiary_list div by enemy rank
     bestiary_entry_divs[zone] = document.createElement("div");
-    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心"}
+    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"极寒冰原",34:"冰城",35:"水牢",36:"传承幻境"}
     const name_div = document.createElement("div");
     name_div.innerHTML = `<b>【${ZoneNameMap[zone]}】</b>`;
     name_div.classList.add("bestiary_entry_name");
@@ -3788,6 +3788,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "废墟虫卒") add_bestiary_lines(26);
     if(enemy_name == "荒兽电法兵") add_bestiary_lines(27);
     if(enemy_name == "塔门战甲B1") add_bestiary_lines(28);
+    if(enemy_name == "无面修者") add_bestiary_lines(31);
 }
 
 function reload_bestiary(){

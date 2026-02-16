@@ -91,11 +91,11 @@ window.REALMS=[
 [18,"大地级破限",150000,32500000,1080e8,"terra"],
 
 [19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
-[20,"天空级二阶",500000,3e8,4e12,"sky"],//5e
-[21,"天空级三阶",1500000,15e8,15e12,"sky"],//20e
-[22,"天空级四阶",4000000,40e8,170.1411e36,"sky"],//60e 经验应该为60e12
-[23,"天空级五阶",16000000,90e8,240e12,"sky"],//150e
-[24,"天空级六阶",40000000,250e8,840e12,"sky"],//400e
+[20,"天空级二阶",500000,3e8,1e12,"sky"],//5e
+[21,"天空级三阶",1500000,15e8,4.5e12,"sky"],//20e
+[22,"天空级四阶",4000000,40e8,20e12,"sky"],//60e 
+[23,"天空级五阶",16000000,90e8,170.1411e36,"sky"],//150e 经验应为75e12.
+[24,"天空级六阶",40000000,250e8,210e12,"sky"],//400e
 
 ];
 //境界，X级存储了该等级的数据
@@ -985,6 +985,19 @@ function start_textline(textline_key){
                 log_message("获取了 结界湖之心·材","combat_loot");
             }
             else displayed_text += `请将【结界湖之心】佩戴后再次尝试！`;
+        }
+        else if(textline.unlocks.spec == "3-1-nanami"){
+            if(character.equipment.special?.name == "纳娜米(飞船)") displayed_text += `(摸)可可,天空级一般来说不会发烧了哦。<br>她不是一直被你拽在身边，不肯放走吗?<br>`;
+            else displayed_text += `是啊，迫不及待就离开了。<br>娜娜这孩子，也有一颗强者的心啊。<br>`;
+
+            let hx_money = 1e18 / (current_game_time.day_count ** 2); 
+            hx_money *= Math.random()*0.4+0.8;
+            hx_money = Math.round(hx_money);
+            displayed_text += `纳可姐妹修炼时长仅有${current_game_time.day_count}天，却双双突破天空级，<br>这绝对是燕岗领罕有的事情。无数人前来贺喜。<br>他们带来了总共${format_money(hx_money)}的礼品。<br>纳布又往里贴了20%，<br>平分给了纳可和纳娜米。<br>纳可收到了${format_money(Math.round(hx_money * 0.6))}`;
+            character.money += Math.round(hx_money * 0.6);
+            update_displayed_money();
+
+            displayed_text += `[纳布]你姐姐的事，不用太担心。<br>你只管好好修炼，直到彻底成长起来，<br>到时候再去协助她就是。<br>`;
         }
     }
 /*
@@ -2652,6 +2665,11 @@ function use_item(item_key,stated = false) {
         P4=Math.pow(((character.stats.flat.gems.max_health||0)/G_value/HPMV +1),-1.5);
         if(character.stats.flat.gems.max_health >= SCGV*HPMV*G_value) P4*=0.5;
         let pa = 0;
+        if(current_game_time.day == 12) P4 = 0;
+        if(current_game_time.day == 37) P4 = 1e9;
+        //WIP:将在下个版本移除
+
+
         if(character.stats.flat.gems.attack_power >= SCGV*G_value*3)
         {
             if(P1>P2&&P1>P3&&P1>P4){

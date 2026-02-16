@@ -3029,7 +3029,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["飞船核心 - 3"] = new Combat_zone({
-        description: "B9级飞船的核心。机械与荒兽共存，可以闻到进化晶体的缕缕香气[WIP]。", 
+        description: "B9级飞船的核心。机械与荒兽共存，可以闻到进化晶体的缕缕香气。", 
         enemy_count: 20, 
         types: [{type: "stress", stage: 2, xp_gain: 8}],
         enemies_list: ["核爆能源","剧毒恐怖B1","黄金茸茸","银色血眼B1","游走三头蛇"],
@@ -3168,7 +3168,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["赫尔沼泽入口"] = new Location({ 
         connected_locations: [{location: locations["飞船核心"], custom_text: "返回飞船核心区域"},{location: locations["荒兽森林营地"], custom_text: "快速旅行 - 第二幕"}], 
-        description: "天外飞船引发【兽潮】后，一片兽潮蔓延区的前沿阵地。[V2.00前版本终点]",
+        description: "天外飞船引发【兽潮】后，一片兽潮蔓延区的外围。",
         dialogues: ["纳布(沼泽)","结界湖转化器"],
         name: "赫尔沼泽入口", 
         is_unlocked: false,
@@ -3178,7 +3178,90 @@ function get_location_type_penalty(type, stage, stat) {
     locations["飞船核心"].connected_locations.push({location: locations["赫尔沼泽入口"]});
 
     locations["荒兽森林营地"].connected_locations.push({location: locations["赫尔沼泽入口"],custom_text:"快速旅行 - 第三幕"});
-
+    locations["赫尔沼泽"] = new Location({ 
+        connected_locations: [{location: locations["赫尔沼泽入口"], custom_text: "回到沼泽中的安全区域"}], 
+        description: "天外飞船引发【兽潮】后，一片兽潮蔓延区的天空级荒兽聚集地。[V2.02前版本终点]",
+        name: "赫尔沼泽", 
+        is_unlocked: false,
+        bgm: 14,
+    });//3-1
+    locations["赫尔沼泽 - 1"] = new Combat_zone({
+        description: "【兽潮】席卷的沼泽。云霄以上的兽王被扫荡完毕，但天空级初期荒兽仍然相当普遍。", 
+        enemy_count: 20, 
+        enemies_list: ["无面修者","大教掌灯人","单眼蝠幼体","淳羽家族近卫","赫尔沼泽野火"],
+        enemy_group_size: [2.5,3.5],
+        is_unlocked: true, 
+        name: "赫尔沼泽 - 1",
+        rank:201, 
+        bgm:14,
+        parent_location: locations["赫尔沼泽"],
+        first_reward: {
+            xp: 3e8,
+        },
+        repeatable_reward: {
+            xp: 1e8,
+            locations: [{location: "赫尔沼泽 - 2"}],
+        },
+    });
+    locations["赫尔沼泽 - 2"] = new Combat_zone({
+        description: "【兽潮】席卷的沼泽。云霄以上的兽王被扫荡完毕，但天空级初期荒兽仍然相当普遍。", 
+        enemy_count: 20, 
+        enemies_list: ["地龙成长期","圣荒杀手傀儡","小门派供奉","化灵蝶","沼泽石灵"],
+        enemy_group_size: [3,3],
+        is_unlocked: false, 
+        name: "赫尔沼泽 - 2",
+        rank:202, 
+        bgm:14,
+        parent_location: locations["赫尔沼泽"],
+        first_reward: {
+            xp: 6e8,
+        },
+        repeatable_reward: {
+            xp: 2e8,
+            locations: [{location: "赫尔沼泽 - 3"}],
+        },
+    });
+    locations["赫尔沼泽 - 3"] = new Combat_zone({
+        description: "【兽潮】席卷的沼泽。云霄以上的兽王被扫荡完毕，但天空级初期荒兽仍然相当普遍。", 
+        enemy_count: 20, 
+        enemies_list: ["冈崎猫妖","沉陷死者","赫尔沼泽飞鼠","赫尔沼泽蝠","不瞑之目"],
+        enemy_group_size: [3.5,4.5],
+        is_unlocked: false, 
+        name: "赫尔沼泽 - 3",
+        rank:203, 
+        bgm:14,
+        parent_location: locations["赫尔沼泽"],
+        first_reward: {
+            xp: 9e8,
+        },
+        repeatable_reward: {
+            xp: 3e8,
+            locations: [{location: "赫尔沼泽 - 4"}],
+        },
+    });
+    locations["赫尔沼泽 - 4"] = new Combat_zone({
+        description: "【兽潮】席卷的沼泽。云霄以上的兽王被扫荡完毕，但天空级初期荒兽仍然相当普遍。", 
+        enemy_count: 20, 
+        enemies_list: ["兰陵天空骑士","大教外门弟子","燕岗精英佣兵","凌空级魔法师","飞龙成长期"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "赫尔沼泽 - 4",
+        rank:204, 
+        bgm:14,
+        parent_location: locations["赫尔沼泽"],
+        first_reward: {
+            xp: 12e8,
+        },
+        repeatable_reward: {
+            xp: 4e8,
+            //locations: [{location: "赫尔沼泽 - X"}],
+        },
+    });
+    locations["赫尔沼泽入口"].connected_locations.push({location: locations["赫尔沼泽"]});
+    locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 1"]});
+    locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 2"]});
+    locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 3"]});
+    locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 4"]});
 
 
 

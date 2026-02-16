@@ -46,7 +46,8 @@ class Enemy {
         this.add_to_bestiary = add_to_bestiary; //generally set it false only for SOME of challenges and keep true for everything else
 
         if(size !== "small" && size !== "medium" && size !== "large") {
-            throw new Error(`No such enemy size option as "size"!`);
+            this.size = "small";
+            //throw new Error(`No such enemy size option as "size"!`);
         } else {
             this.size = size;
         }
@@ -76,7 +77,6 @@ class Enemy {
             //   getItem({...item_templates[result_id], quality: selected_recipe.Q_able}))
             // }
                 
-            //WIP
             if(item_count != 0){
                 if(item.quality != undefined) loot.push({ "item": getItem({...item_templates[item.item_name],quality:item.quality}), "count": item_count });
                 else loot.push({ "item": getItem(item_templates[item.item_name]), "count": item_count });
@@ -4628,16 +4628,321 @@ class Enemy {
             //1.6D
         ],
     });
+    enemy_templates["无面修者"] = new Enemy({
+        name: "无面修者", 
+        description: "在好奇为什么天空级二阶的敌人那么少？答案是天外族群的划分太严，好多B2级的被划成B1了...", 
+        xp_value: 5702887, 
+        rank: 3101,
+        image: "image/enemy/E3101.png",
+        realm: "<span class=realm_sky><b>天空级二阶 +</b></span>",
+        spec: [],
+        stats: {health: 600e4, attack: 1490e4, agility: 1080e4, attack_speed: 1.2, defense: 900e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //2.8D
+        ],
+    });
+    enemy_templates["大教掌灯人"] = new Enemy({
+        name: "大教掌灯人", 
+        description: "在兽潮中发现家里的魂灯灭了一大片的他，正在气势汹汹地准备向荒兽发起复仇！", 
+        xp_value: 9227465, 
+        rank: 3102,
+        image: "image/enemy/E3102.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [],
+        stats: {health: 880e4, attack: 1580e4, agility: 1200e4, attack_speed: 1.3, defense: 1080e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["单眼蝠幼体"] = new Enemy({
+        name: "单眼蝠幼体", 
+        description: "某种血脉似乎相当坚韧的蝙蝠，皮糙肉厚。但是...你的天赋是不是混进了什么不干净的东西?", 
+        xp_value: 5702887, 
+        rank: 3103,
+        image: "image/enemy/E3103.png",
+        realm: "<span class=realm_sky><b>天空级二阶 +</b></span>",
+        spec: [5],
+        stats: {health: 9025e4, attack: 1680e4, agility: 1200e4, attack_speed: 1.3, defense: 400e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //2.8D
+        ],
+    });
+    enemy_templates["淳羽家族近卫"] = new Enemy({
+        name: "淳羽家族近卫", 
+        description: "明明是燕岗领第一家族，为什么要用毒药呢？*我是不会告诉你任何东西的！*", 
+        xp_value: 5702887, 
+        rank: 3104,
+        image: "image/enemy/E3104.png",
+        realm: "<span class=realm_sky><b>天空级二阶 +</b></span>",
+        spec: [8],
+        spec_value: {8:10},
+        stats: {health: 350e4, attack: 1850e4, agility: 1320e4, attack_speed: 1.3, defense: 800e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //2.8D
+        ],
+    });
+    enemy_templates["赫尔沼泽野火"] = new Enemy({
+        name: "赫尔沼泽野火", 
+        description: "以火为载体的野生“灵”。温度远不如核爆，却掌握着多种能力。", 
+        xp_value: 5702887, 
+        rank: 3105,
+        image: "image/enemy/E3105.png",
+        realm: "<span class=realm_sky><b>天空级二阶 +</b></span>",
+        spec: [23,0],
+        spec_value: {8:10},
+        stats: {health: 480e4, attack: 1200e4, agility: 1320e4, attack_speed: 1.3, defense: 720e4}, 
+        loot_list: [
+            {item_name: "殿堂红宝石", chance:0.02},
+            {item_name: "殿堂绿宝石", chance:0.05},
+            //2.8D
+        ],
+    });
+    enemy_templates["地龙成长期"] = new Enemy({
+        name: "地龙成长期", 
+        description: "理论上来说天空级已经可以飞了。但它的战斗风格和体重决定了它不会长期飞行。", 
+        xp_value: 9227465, 
+        rank: 3106,
+        image: "image/enemy/E3106.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [],
+        stats: {health: 2000e4, attack: 1900e4, agility: 1440e4, attack_speed: 1.3, defense: 1225e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["圣荒杀手傀儡"] = new Enemy({
+        name: "圣荒杀手傀儡", 
+        description: "从圣荒城进口的傀儡。因为太笨，它不会和其他圣荒城单位一样见钱眼开，但代价是敌友不分。", 
+        xp_value: 9227465, 
+        rank: 3107,
+        image: "image/enemy/E3107.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [10],
+        stats: {health: 1900e4, attack: 2100e4, agility: 1440e4, attack_speed: 1.3, defense: 550e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["小门派供奉"] = new Enemy({
+        name: "小门派供奉", 
+        description: "加入了剿灭行动以应对兽潮威胁的修者。你问3连击?抬头看看攻速吧(笑", 
+        xp_value: 9227465, 
+        rank: 3108,
+        image: "image/enemy/E3108.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [],
+        stats: {health: 3250e4, attack: 1750e4, agility: 1560e4, attack_speed: 3.9, defense: 500e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["化灵蝶"] = new Enemy({
+        name: "化灵蝶", 
+        description: "花灵液？感觉完全是谐音的存在呢。", 
+        xp_value: 9227465, 
+        rank: 3109,
+        image: "image/enemy/E3109.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [31],
+        stats: {health: 800e4, attack: 2116e4, agility: 1620e4, attack_speed: 1.3, defense: 1100e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["沼泽石灵"] = new Enemy({
+        name: "沼泽石灵", 
+        description: "这个纪元是不是有个石头之神之类的纪元神明？怎么走到哪里都有这帮坚固石头怪啊。", 
+        xp_value: 9227465, 
+        rank: 3110,
+        image: "image/enemy/E3110.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [1],
+        stats: {health: 20, attack: 2600e4, agility: 1680e4, attack_speed: 1.3, defense: 1300e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["冈崎猫妖"] = new Enemy({
+        name: "冈崎猫妖", 
+        description: "听起来像是11区的猫妖。完全不讲武德的偷袭玩家！", 
+        xp_value: 9227465, 
+        rank: 3111,
+        image: "image/enemy/E3111.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [2],
+        stats: {health: 240e4, attack: 9000e4, agility: 1680e4, attack_speed: 1.3, defense: 1500e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["沉陷死者"] = new Enemy({
+        name: "沉陷死者", 
+        description: "1-4探险者亡魂也有异界之门。它似乎是某种和死亡相关的领悟...", 
+        xp_value: 9227465, 
+        rank: 3112,
+        image: "image/enemy/E3112.png",
+        realm: "<span class=realm_sky><b>天空级三阶</b></span>",
+        spec: [15],
+        stats: {health: 2000e4, attack: 4000e4, agility: 1800e4, attack_speed: 1.3, defense: 1400e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.04},
+            {item_name: "史诗黄宝石", chance:0.015},
+            //5D
+        ],
+    });
+    enemy_templates["赫尔沼泽飞鼠"] = new Enemy({
+        name: "赫尔沼泽飞鼠", 
+        description: "老鼠飞上天的时候，它还是老鼠吗？还是说，已经可以归类到一种肉翅鸟了呢？", 
+        xp_value: 14930352, 
+        rank: 3113,
+        image: "image/enemy/E3113.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [],
+        stats: {health: 1296e4, attack: 2400e4, agility: 1860e4, attack_speed: 1.3, defense: 1250e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["赫尔沼泽蝠"] = new Enemy({
+        name: "赫尔沼泽蝠", 
+        description: "一想到蝙蝠从天上叼着剑劈下来的画面..就好想笑啊w", 
+        xp_value: 14930352, 
+        rank: 3114,
+        image: "image/enemy/E3114.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [20],
+        stats: {health: 400e4, attack: 2000e4, agility: 1920e4, attack_speed: 1.3, defense: 1350e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["不瞑之目"] = new Enemy({
+        name: "不瞑之目", 
+        description: "盯~ (若叶睦表情包.jpg)", 
+        xp_value: 14930352, 
+        rank: 3115,
+        image: "image/enemy/E3115.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [19],
+        stats: {health: 1849e4, attack: 2600e4, agility: 1980e4, attack_speed: 1.3, defense: 1200e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["兰陵天空骑士"] = new Enemy({
+        name: "兰陵天空骑士", 
+        description: "天空级的骑士听起来和斗气化马差不多耶。不过，似乎这里的骑士只是一个职称~", 
+        xp_value: 14930352, 
+        rank: 3116,
+        image: "image/enemy/E3116.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [39],
+        spec_value: {39:1000e4},
+        stats: {health: 1280e4, attack: 2200e4, agility: 2040e4, attack_speed: 1.3, defense: 1681e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["大教外门弟子"] = new Enemy({
+        name: "大教外门弟子", 
+        description: "教和门派有什么关系呢？不过这样的爆攻教似乎活不久的样子。", 
+        xp_value: 14930352, 
+        rank: 3117,
+        image: "image/enemy/E3117.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [],
+        stats: {health: 300e4, attack: 6600e4, agility: 2100e4, attack_speed: 1.3, defense: 1444e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["燕岗精英佣兵"] = new Enemy({
+        name: "燕岗精英佣兵", 
+        description: "天下武功，唯快不破。这些刀口舔血的佣兵的行事法则就是如此。只是，他们似乎也没那么快。", 
+        xp_value: 14930352, 
+        rank: 3118,
+        image: "image/enemy/E3118.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [],
+        stats: {health: 900e4, attack: 2401e4, agility: 2160e4, attack_speed: 2.7, defense: 1400e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["凌空级魔法师"] = new Enemy({
+        name: "凌空级魔法师", 
+        description: "均衡加点确实是某种意义上的版本答案。全防+魔攻虽然理论胜率更高，但无法适应变化多端的战场。", 
+        xp_value: 14930352, 
+        rank: 3119,
+        image: "image/enemy/E3119.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [],
+        stats: {health: 6400e4, attack: 1800e4, agility: 2220e4, attack_speed: 1.2, defense: 1800e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["飞龙成长期"] = new Enemy({
+        name: "飞龙成长期", 
+        description: "同样被原能辐射影响加速成长期的龙。似乎天生就懂得如何把一份力发挥出两份的效果。", 
+        xp_value: 14930352, 
+        rank: 3120,
+        image: "image/enemy/E3120.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [],
+        stats: {health: 3844e4, attack: 3000e4, agility: 2222e4, attack_speed: 1.2, defense: 1500e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+
+
     
     /*
-      黄 蓝 红 
-B1       2%/5%     500Z
-B1+         5%/2%    900Z
-B2          2%/5%    1.6D
+     红 绿 史诗
+B2+ 2% 5%      2.8D
+B3     4% 1.6%   5D
+B3+    1.5% 4%   9D
 B1 134'6269  /217'8309  exp
 B2 352'4578  /570'2887  exp
-
-空间三角B1开始算B1+
+B3 922'7465  /1493'0352 exp
+赫尔沼泽蝠开始算三阶+
 */    
 })();
 
