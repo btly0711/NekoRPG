@@ -831,8 +831,7 @@ body {
 			padding: 3px;
 			padding-left: 2.4px;
 			padding-right: 2.4px;
-			min-width: 63px;
-			max-width: fit-content;
+			width:73px;
 			text-align: center;
 			outline: 1px solid white;
 			margin: 1px;
@@ -861,6 +860,9 @@ body {
 		}
 		.crafting_subpage_button_4 {
 			width: 99px;
+		}
+		.crafting_subpage_button_5 {
+			width: 79px;
 		}
 
 .crafting_recipe_list {
@@ -948,6 +950,10 @@ body {
 }
 
 .recipe_div:hover .items2_recipe_tooltip.recipe_tooltip{
+	display: block;
+}
+
+.recipe_div:hover .items3_recipe_tooltip.recipe_tooltip{
 	display: block;
 }
 

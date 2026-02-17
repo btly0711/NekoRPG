@@ -4640,6 +4640,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂红宝石", chance:0.02},
             {item_name: "殿堂绿宝石", chance:0.05},
+            {item_name: "荒兽凭证", chance:1.0},
             //2.8D
         ],
     });
@@ -4655,6 +4656,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "沼泽兽油", chance:0.1},
             //5D
         ],
     });
@@ -4670,6 +4672,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂红宝石", chance:0.02},
             {item_name: "殿堂绿宝石", chance:0.05},
+            {item_name: "沼泽兽油", chance:0.04},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
             //2.8D
         ],
     });
@@ -4686,6 +4690,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂红宝石", chance:0.02},
             {item_name: "殿堂绿宝石", chance:0.05},
+            {item_name: "紫色刀币", chance:0.001},
+            {item_name: "荒兽凭证", chance:1},
             //2.8D
         ],
     });
@@ -4702,6 +4708,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂红宝石", chance:0.02},
             {item_name: "殿堂绿宝石", chance:0.05},
+            {item_name: "荧光精华", chance:0.04},
             //2.8D
         ],
     });
@@ -4717,6 +4724,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "沼泽·荒兽肉块", chance:0.05},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
             //5D
         ],
     });
@@ -4732,6 +4741,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "一捆B1·能量核心", chance:0.02},
             //5D
         ],
     });
@@ -4747,6 +4757,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "荒兽凭证", chance:2.5},
             //5D
         ],
     });
@@ -4762,12 +4773,14 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
+            {item_name: "荧光精华", chance:0.06},
             //5D
         ],
     });
     enemy_templates["沼泽石灵"] = new Enemy({
         name: "沼泽石灵", 
-        description: "这个纪元是不是有个石头之神之类的纪元神明？怎么走到哪里都有这帮坚固石头怪啊。", 
+        description: "这个纪元是不是有个石头之神之类的纪元神明？怎么走到哪里都有这帮坚固石头怪啊。对了，好多荒兽在它上面撞死了，所以它身上有油..", 
         xp_value: 9227465, 
         rank: 3110,
         image: "image/enemy/E3110.png",
@@ -4777,6 +4790,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
+            {item_name: "沼泽兽油", chance:0.1},
             //5D
         ],
     });
@@ -4792,6 +4807,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
+            {item_name: "沼泽·荒兽肉块", chance:0.08},
             //5D
         ],
     });
@@ -4807,6 +4824,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.04},
             {item_name: "史诗黄宝石", chance:0.015},
+            {item_name: "沼泽兽油", chance:0.1},
             //5D
         ],
     });
@@ -4822,6 +4840,9 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
+            {item_name: "沼泽·荒兽肉块", chance:0.12},
+            {item_name: "荧光精华", chance:0.04},
             //9D
         ],
     });
@@ -4837,6 +4858,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
+            {item_name: "荧光精华", chance:0.15},
             //9D
         ],
     });
@@ -4852,6 +4875,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荧光精华", chance:0.16},
             //9D
         ],
     });
@@ -4868,6 +4892,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荒兽凭证", chance:3.2},
             //9D
         ],
     });
@@ -4883,6 +4908,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荒兽凭证", chance:4.0},
             //9D
         ],
     });
@@ -4898,6 +4924,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荒兽凭证", chance:2.0},
+            {item_name: "沼泽兽油", chance:0.1},
             //9D
         ],
     });
@@ -4913,6 +4941,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "一捆B1·能量核心", chance:0.04},
             //9D
         ],
     });
@@ -4928,6 +4957,9 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荒兽凭证", chance:1,ignore_luck:true},
+            {item_name: "沼泽兽油", chance:0.08},
+            {item_name: "沼泽·荒兽肉块", chance:0.08},
             //9D
         ],
     });

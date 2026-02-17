@@ -1411,16 +1411,45 @@ class Textline {
 
     dialogues["结界湖转化器"] = new Dialogue({
         name: "结界湖转化器",
-        starting_text: "让你的结界湖之心准备好升级",
+        starting_text: "使用荒兽凭证兑换物品(包括转化器)",
         textlines: {
             "jjh": new Textline({ 
                 is_unlocked: true,
-                name: "转化(需要结界湖之心位于装备栏)",
+                name: "转化结界湖之心(需要结界湖之心位于装备栏)",
                 text: "",
                 unlocks: {
                     spec:"jjhzx",
                 },
             }),
+            "pz-my": new Textline({ 
+                is_unlocked: true,
+                name: "兑换秘银锭(30:1)",
+                text: "",
+                unlocks: {
+                    spec:"pz-my",
+                },
+            }),
+            "pz-bs": new Textline({ 
+                is_unlocked: true,
+                name: "兑换史诗黄宝石(80:1)",
+                text: "",
+                unlocks: {
+                    spec:"pz-bs",
+                },
+            }),
+            "pz-Bq": new Textline({ 
+                is_unlocked: true,
+                name: "兑换紫色刀币(250:1)",
+                text: "",
+                unlocks: {
+                    spec:"pz-Bq",
+                },
+            }),
+
+
+            //20:1 宝石
+            //40:1 秘银
+            //250:1 紫刀币
         }
     });
 

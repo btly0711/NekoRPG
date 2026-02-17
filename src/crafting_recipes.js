@@ -4,11 +4,11 @@ import { character } from "./character.js";
 import { Armor, ArmorComponent, Shield, ShieldComponent, Weapon, WeaponComponent, item_templates } from "./items.js";
 import { skills } from "./skills.js";
 
-const crafting_recipes = {items: {}, items2: {}, components: {}, equipment: {}};
-const cooking_recipes = {items: {}, items2: {}};
-const smelting_recipes = {items: {}, items2: {}};
-const forging_recipes = {items: {}, items2: {} , components: {}};
-const alchemy_recipes = {items: {}, items2: {}};
+const crafting_recipes = {items: {}, items2: {},items3: {}, components: {}, equipment: {}};
+const cooking_recipes = {items: {}, items2: {},items3: {},};
+const smelting_recipes = {items: {}, items2: {},items3: {},};
+const forging_recipes = {items: {}, items2: {} ,items3: {}, components: {}};
+const alchemy_recipes = {items: {}, items2: {},items3: {},};
 
 /*
     recipes can be treated differently for display based on if they are in items/components/equipment category
@@ -240,7 +240,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     if(!selected_recipe) {
         throw new Error(`Tried to use a recipe that doesn't exist: ${category} -> ${subcategory} -> ${recipe_id}`);
     }
-    if(subcategory === "items" || subcategory === "items2") {
+    if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
         exp_value = Math.max(exp_value,1.2 ** selected_recipe.recipe_level[1] * 1);
         //maybe scale with materials needed?
     } else if (subcategory === "components" || selected_recipe.recipe_type === "component") {
@@ -269,6 +269,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "蓝金锭", count: 2, result_id: "蓝金剑刃"}, 
             {material_id: "海绿锭", count: 2, result_id: "海绿剑刃"}, 
             {material_id: "红钢锭", count: 2, result_id: "红钢剑刃"}, 
+            {material_id: "秘银锭", count: 2, result_id: "秘银剑刃"}, 
             //未完待续
         ],
         item_type: "Component",
@@ -296,6 +297,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "蓝金锭", count: 6, result_id: "蓝金戟头"}, 
             {material_id: "海绿锭", count: 6, result_id: "海绿戟头"}, 
             {material_id: "红钢锭", count: 6, result_id: "红钢戟头"}, 
+            {material_id: "秘银锭", count: 6, result_id: "秘银戟头"}, 
             //未完待续
         ],
         item_type: "Component",
@@ -352,6 +354,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "充能合金锭", count: 3, result_id: "充能头盔"}, 
             {material_id: "脉冲合金锭", count: 3, result_id: "脉冲头盔"},
             {material_id: "海绿锭", count: 3, result_id: "海绿头盔"},
+            {material_id: "秘银锭", count: 3, result_id: "秘银头盔"},
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -380,6 +383,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "充能合金锭", count: 4, result_id: "充能胸甲"}, 
             {material_id: "脉冲合金锭", count: 4, result_id: "脉冲胸甲"},
             {material_id: "海绿锭", count: 4, result_id: "海绿胸甲"},
+            {material_id: "秘银锭", count: 4, result_id: "秘银胸甲"},
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -408,6 +412,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "充能合金锭", count: 4, result_id: "充能腿甲"}, 
             {material_id: "脉冲合金锭", count: 4, result_id: "脉冲腿甲"},
             {material_id: "海绿锭", count: 4, result_id: "海绿腿甲"},
+            {material_id: "秘银锭", count: 4, result_id: "秘银腿甲"},
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -437,6 +442,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "充能合金锭", count: 2, result_id: "充能战靴"}, 
             {material_id: "脉冲合金锭", count: 2, result_id: "脉冲战靴"},
             {material_id: "海绿锭", count: 2, result_id: "海绿战靴"},
+            {material_id: "秘银锭", count: 2, result_id: "秘银战靴"},
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -821,6 +827,30 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Crafting",
     });
 
+    
+    crafting_recipes.items3["长明灯"] = new ItemRecipe({
+        name: "长明灯",
+        id: "长明灯",
+        recipe_type: "items",
+        materials: [{material_id: "荧光精华", count: 29},{material_id:"沼泽兽油",count:49},{material_id:"秘银锭",count:79}],
+        result: {result_id: "长明灯", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [46,46],
+        Q_able: 160,
+        recipe_skill: "Crafting",
+    });
+    crafting_recipes.items3["荒兽傀儡"] = new ItemRecipe({
+        name: "荒兽傀儡",
+        id: "荒兽傀儡",
+        recipe_type: "items",
+        materials: [{material_id: "沼泽·荒兽肉块", count: 99},{material_id:"沼泽兽油",count:99},{material_id:"B1·能量核心",count:3997}],//scp-cn-3997.
+        result: {result_id: "荒兽傀儡", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [49,49],
+        Q_able: 200,
+        recipe_skill: "Crafting",
+    });
+
 })();
 //熔炼配方
 
@@ -988,7 +1018,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [12,12],
         recipe_skill: "Cooking",
     });
-    cooking_recipes.items["大地级·烤肉 II"] = new ItemRecipe({
+    cooking_recipes.items2["大地级·烤肉 II"] = new ItemRecipe({
         name: "大地级·烤肉 II",
         recipe_type: "material",
         materials: [{material_id: "森林·荒兽肉块", count: 1},{material_id: "A4·能量核心", count: 1}], 
@@ -998,7 +1028,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Cooking",
     });
     
-    cooking_recipes.items["鱼肉处理"] = new ItemRecipe({
+    cooking_recipes.items2["鱼肉处理"] = new ItemRecipe({
         name: "鱼肉处理",
         recipe_type: "material",
         materials: [{material_id: "湖鲤鱼", count: 1}], 
@@ -1007,7 +1037,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [23,23],
         recipe_skill: "Cooking",
     });
-    cooking_recipes.items["蓝金处理"] = new ItemRecipe({
+    cooking_recipes.items2["蓝金处理"] = new ItemRecipe({
         name: "蓝金处理",
         recipe_type: "material",
         materials: [{material_id: "湖鲤鱼", count: 1}], 
@@ -1017,7 +1047,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Cooking",
     });
     
-    cooking_recipes.items["大地级·烤肉 III"] = new ItemRecipe({
+    cooking_recipes.items2["大地级·烤肉 III"] = new ItemRecipe({
         name: "大地级·烤肉 III",
         recipe_type: "material",
         materials: [{material_id: "战场·荒兽肉块", count: 1},{material_id: "A7·能量核心", count: 1}], 
@@ -1027,7 +1057,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Cooking",
     });
     
-    cooking_recipes.items["废墟恢复药水"] = new ItemRecipe({
+    cooking_recipes.items2["废墟恢复药水"] = new ItemRecipe({
         name: "废墟恢复药水",
         recipe_type: "material",
         materials: [{material_id: "高能凝胶", count: 1},{material_id: "废墟精华", count: 1}], 
@@ -1036,13 +1066,22 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [31,31],
         recipe_skill: "Cooking",
     });
-    cooking_recipes.items["废墟狂暴药水"] = new ItemRecipe({
+    cooking_recipes.items2["废墟狂暴药水"] = new ItemRecipe({
         name: "废墟狂暴药水",
         recipe_type: "material",
         materials: [{material_id: "高能凝胶", count: 2},{material_id: "废墟精华", count: 2}], 
         result: {result_id: "废墟狂暴药水", count: 2},
         success_chance: [0.3,1],
         recipe_level: [34,34],
+        recipe_skill: "Cooking",
+    });
+    cooking_recipes.items3["天空级·炸肉"] = new ItemRecipe({
+        name: "天空级·炸肉 ",
+        recipe_type: "material",
+        materials: [{material_id: "沼泽·荒兽肉块", count: 1},{material_id: "沼泽兽油", count: 1},{material_id: "B1·能量核心", count: 2}], 
+        result: {result_id: "沼泽·荒兽肉排", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [39,39],
         recipe_skill: "Cooking",
     });
 })();

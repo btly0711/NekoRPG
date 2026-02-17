@@ -151,25 +151,30 @@ const crafting_pages = {
     crafting: {
         items: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="items2"]`),
+        items3: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="items3"]`),
         components: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="components"]`),
         equipment: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="equipment"]`),
     },
     cooking: {
         items: document.querySelector(`[data-crafting_category="cooking"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="cooking"] [data-crafting_subcategory="items2"]`),
+        items3: document.querySelector(`[data-crafting_category="cooking"] [data-crafting_subcategory="items3"]`),
     },
     smelting: {
         items: document.querySelector(`[data-crafting_category="smelting"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="smelting"] [data-crafting_subcategory="items2"]`),
+        items3: document.querySelector(`[data-crafting_category="smelting"] [data-crafting_subcategory="items3"]`),
     },
     forging: {
         items: document.querySelector(`[data-crafting_category="forging"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="forging"] [data-crafting_subcategory="items2"]`),
+        items3: document.querySelector(`[data-crafting_category="forging"] [data-crafting_subcategory="items3"]`),
         components: document.querySelector(`[data-crafting_category="forging"] [data-crafting_subcategory="components"]`),
     },
     alchemy: {
         items: document.querySelector(`[data-crafting_category="alchemy"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="alchemy"] [data-crafting_subcategory="items2"]`),
+        items3: document.querySelector(`[data-crafting_category="alchemy"] [data-crafting_subcategory="items3"]`),
     }
 }
 
@@ -307,7 +312,7 @@ function create_item_tooltip_content({item, options={}}) {
         }
 
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[%]"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[%]","Luck":"幸运"}
         if(!options.skip_quality && options?.quality?.length == 2) {
             if(item.getAttack) {
                 item_tooltip += 
@@ -1933,7 +1938,7 @@ function open_crafting_window() {
     
     let elements = document.querySelectorAll(`[data-crafting_subcategory]`);
     for(let i = 0; i < elements.length; i++) {
-        if(elements[i].dataset.crafting_subcategory !== "items" && elements[i].dataset.crafting_subcategory !== "items2") {
+        if(elements[i].dataset.crafting_subcategory !== "items" && elements[i].dataset.crafting_subcategory !== "items2"  && elements[i].dataset.crafting_subcategory !== "items3") {
             elements[i].style.display = "none";
         } else {
             elements[i].style.display = "";
@@ -2009,7 +2014,7 @@ function unexpand_displayed_recipes() {
 function create_displayed_crafting_recipes() {
     Object.keys(recipes).forEach(recipe_category => {
         Object.keys(recipes[recipe_category]).forEach(recipe_subcategory => {
-            if(recipe_subcategory === "items" || recipe_subcategory === "items2") {
+            if(recipe_subcategory === "items" || recipe_subcategory === "items2" || recipe_subcategory === "items3") {
                 crafting_pages[recipe_category][recipe_subcategory].innerHTML = "";
             }
             Object.keys(recipes[recipe_category][recipe_subcategory]).forEach(recipe => {
@@ -2029,7 +2034,7 @@ function add_crafting_recipe_to_display({category, subcategory, recipe_id}) {
     recipe_div.classList.add("recipe_div");
     recipe_div.dataset.recipe_id = recipe_id;
 
-    if(subcategory === "items" || subcategory === "items2") {
+    if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
         
         const recipe_max = document.createElement("span");
         recipe_max.classList.add("recipe_10_button");
@@ -2210,7 +2215,7 @@ function update_displayed_crafting_recipes() {
 function update_displayed_crafting_recipe({category, subcategory, recipe_id}) {
     const recipe_div = crafting_pages[category][subcategory].querySelector(`[data-recipe_id="${recipe_id}"]`);
     const recipe = recipes[category][subcategory][recipe_id];
-    if(subcategory === "items" || subcategory === "items2") {
+    if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
         if(recipe.get_availability()) {
             recipe_div.classList.remove("recipe_unavailable");
         } else {
@@ -2240,6 +2245,9 @@ function create_recipe_tooltip({category, subcategory, recipe_id, material, comp
     } else if(subcategory === "items2"){
         tooltip.innerHTML = create_recipe_tooltip_content({category, subcategory, recipe_id});
         tooltip.classList.add("items2_recipe_tooltip");
+    }else if(subcategory === "items3"){
+        tooltip.innerHTML = create_recipe_tooltip_content({category, subcategory, recipe_id});
+        tooltip.classList.add("items3_recipe_tooltip");
     }else if(subcategory === "components" || recipe.recipe_type === "component") {
         if(!material) {
             throw new Error(`Component recipes require passing a material, but recipe "${category}" -> "${subcategory}" -> "${recipe_id}" had none!`);
@@ -2272,6 +2280,13 @@ function update_item_recipe_tooltips() {
                     }
                 });
             }
+            if(recipe_subcategory === "items3"  ) {
+                Object.keys(recipes[recipe_category][recipe_subcategory]).forEach(recipe => {
+                    if(recipes[recipe_category][recipe_subcategory][recipe].is_unlocked){
+                        update_recipe_tooltip({category: recipe_category, subcategory: "items3", recipe_id: recipe});
+                    }
+                });
+            }
         });
     });
 }
@@ -2279,7 +2294,7 @@ function update_item_recipe_tooltips() {
 function update_recipe_tooltip({category, subcategory, recipe_id, components}) {
     const tooltip = crafting_pages[category][subcategory].querySelector(`[data-recipe_id="${recipe_id}"]`).querySelector(`.${subcategory}_recipe_tooltip`);
     const recipe = recipes[category][subcategory][recipe_id];
-    if(subcategory === "items" || subcategory === "items2") {
+    if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
         tooltip.innerHTML = create_recipe_tooltip_content({category, subcategory, recipe_id});
     } else if(subcategory === "components" || recipe.recipe_type === "component") {
         const material_selections_div = crafting_pages[category][subcategory].querySelector(`[data-recipe_id='${recipe_id}']`).children[1];
@@ -2303,7 +2318,7 @@ function create_recipe_tooltip_content({category, subcategory, recipe_id, materi
     const recipe = recipes[category][subcategory][recipe_id];
     const station_tier = current_location?.crafting?.tiers[category] || 0;
     let tooltip = "";
-    if(subcategory === "items" || subcategory === "items2") {
+    if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
         const success_chance = Math.round(100*recipe.get_success_chance(station_tier));
         tooltip += `配方等级：${recipe.recipe_level[1]}<br>`
         tooltip += `成功率: <b><span style="color:${success_chance > 74?"lime":success_chance>49?"yellow":success_chance>24?"orange":"red"}">${success_chance}%</span></b><br><br>材料:<br>`;
@@ -2519,7 +2534,7 @@ function update_displayed_material_choice({category, subcategory, recipe_id, ref
 function update_item_recipe_visibility() {
     Object.keys(recipes).forEach(recipe_category => {
         Object.keys(recipes[recipe_category]).forEach(recipe_subcategory => {
-            if(recipe_subcategory !== "items" && recipe_subcategory !== "items2") {
+            if(recipe_subcategory !== "items" && recipe_subcategory !== "items2" && recipe_subcategory !== "items3") {
                 //no need to deal with other recipe types as they would be folded and will be reloaded on unfolding
                 return;
             }

@@ -91,11 +91,11 @@ window.REALMS=[
 [18,"大地级破限",150000,32500000,1080e8,"terra"],
 
 [19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
-[20,"天空级二阶",500000,3e8,1e12,"sky"],//5e
-[21,"天空级三阶",1500000,15e8,4.5e12,"sky"],//20e
-[22,"天空级四阶",4000000,40e8,20e12,"sky"],//60e 
-[23,"天空级五阶",16000000,90e8,170.1411e36,"sky"],//150e 经验应为75e12.
-[24,"天空级六阶",40000000,250e8,210e12,"sky"],//400e
+[20,"天空级二阶",500000,3e8,2e12,"sky"],//5e
+[21,"天空级三阶",1500000,10e8,8e12,"sky"],//15e
+[22,"天空级四阶",4000000,25e8,30e12,"sky"],//40e 
+[23,"天空级五阶",16000000,90e8,170.1411e36,"sky"],//150e 经验应为1200e12.
+[24,"天空级六阶",40000000,250e8,210e12,"sky"],//96000e
 
 ];
 //境界，X级存储了该等级的数据
@@ -999,6 +999,27 @@ function start_textline(textline_key){
 
             displayed_text += `[纳布]你姐姐的事，不用太担心。<br>你只管好好修炼，直到彻底成长起来，<br>到时候再去协助她就是。<br>`;
         }
+        else if(textline.unlocks.spec.includes("pz")){
+            let T_S = textline.unlocks.spec;
+            let pz_map = {"pz-Bq":"紫色刀币","pz-my":"秘银锭","pz-bs":"史诗黄宝石"};//凭证
+            let cs_map = {"pz-Bq":250,"pz-my":30,"pz-bs":80};//cost
+            //检查物品是否足够，扣除物品，如果不够就返回
+            let pz_key = "{\"id\":\""+"荒兽凭证"+"\"}";//凭证
+            let C_pz = cs_map[T_S];//Cost_凭证
+            if(character.inventory[pz_key] != undefined)
+            {
+                let T_cnt = Math.floor(character.inventory[pz_key].count/C_pz);//TODO - count
+                remove_from_character_inventory([{ 
+                    item_key: pz_key,           
+                    item_count: C_pz * T_cnt,
+                }]);
+                add_to_character_inventory([{ "item": getItem(item_templates[pz_map[T_S]]), "count": T_cnt }]);
+                displayed_text += `消耗了 ${C_pz * T_cnt} 个 荒兽凭证，<br>`;
+                displayed_text += `兑换了 ${T_cnt} 个 ${pz_map[T_S]}。<br>`;
+
+            }
+            else displayed_text += `未发现【荒兽凭证】！<br>兑换点需要它才能兑换物品...`;
+        }
     }
 /*
 赐福消耗当前生命上限^1.40的钱币，
@@ -1626,7 +1647,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(!attacker.spec.includes(28)) add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
     if(attacker.spec.includes(31)){
         attacker.stats.health += attacker.stats.max_health * 0.30;
-        log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health) * 0.30 + " 点血量","enemy_enhanced");
+        log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health * 0.30)  + " 点血量","enemy_enhanced");
         update_displayed_health_of_enemies();
     }//回春
 
@@ -2353,7 +2374,7 @@ function use_recipe(target,stated = false) {
         const recipe_div = document.querySelector(`[data-crafting_category="${category}"] [data-crafting_subcategory="${subcategory}"] [data-recipe_id="${recipe_id}"]`);
         let leveled = false;
         let result;
-        if(subcategory === "items" || subcategory === "items2") {
+        if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
             if(selected_recipe.get_availability()) {
                 total_crafting_attempts++;
                 const success_chance = selected_recipe.get_success_chance(station_tier);
@@ -2539,7 +2560,7 @@ function use_recipe_max(target) {
         const recipe_div = document.querySelector(`[data-crafting_category="${category}"] [data-crafting_subcategory="${subcategory}"] [data-recipe_id="${recipe_id}"]`);
         let leveled = false;
         let result;
-        if(subcategory === "items" || subcategory === "items2") {
+        if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
             let cnt = 0;
             let cnt_s = 0;
             while(selected_recipe.get_availability()) {
@@ -2665,10 +2686,6 @@ function use_item(item_key,stated = false) {
         P4=Math.pow(((character.stats.flat.gems.max_health||0)/G_value/HPMV +1),-1.5);
         if(character.stats.flat.gems.max_health >= SCGV*HPMV*G_value) P4*=0.5;
         let pa = 0;
-        if(current_game_time.day == 12) P4 = 0;
-        if(current_game_time.day == 37) P4 = 1e9;
-        //WIP:将在下个版本移除
-
 
         if(character.stats.flat.gems.attack_power >= SCGV*G_value*3)
         {

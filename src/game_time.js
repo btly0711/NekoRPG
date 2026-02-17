@@ -65,9 +65,6 @@ Game_time.prototype.toString = function() {
     date_string += ((this.day>9?this.day:`0${this.day}`) + "日 ");
     date_string += ((this.hour>99?this.hour:(this.hour>9?`0${this.hour}`:`00${this.hour}`)) + ":");
     date_string += this.minute>9?this.minute:`0${this.minute}`;
-    if(this.day == 12) date_string += "逆·加血节";
-    if(this.day == 37) date_string += "加血节";
-    //WIP:将在下个版本移除
     return date_string;
 }
 

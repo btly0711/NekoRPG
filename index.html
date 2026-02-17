@@ -721,10 +721,11 @@
                         </div>
                         <div class="crafting_category" data-crafting_category="crafting">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_4 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items')">第一幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_4 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items2')">第二幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_4" onclick="switchCraftingRecipesSubpage('crafting', 'components')">部件</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_4" onclick="switchCraftingRecipesSubpage('crafting', 'equipment')">装备</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_5 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items')">第一幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_5 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_5 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items3')">第三幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_5" onclick="switchCraftingRecipesSubpage('crafting', 'components')">部件</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_5" onclick="switchCraftingRecipesSubpage('crafting', 'equipment')">装备</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items">
                                 
@@ -737,15 +738,19 @@
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items2">
                             </div>
+                            <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items3">
+                            </div>
                         </div>
                         <div class="crafting_category" data-crafting_category="cooking"  style="display:none">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_1 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items')">物品</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items')">第一幕</div><div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items2')">第二幕</div><div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items3')">第三幕</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="cooking" data-crafting_subcategory="items">
                                 
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="cooking" data-crafting_subcategory="items2">
+                            </div>
+                            <div class="crafting_category crafting_recipe_list" data-crafting_category="cooking" data-crafting_subcategory="items3">
                             </div>
                         </div>
                         <div class="crafting_category" data-crafting_category="smelting"  style="display:none">
@@ -756,6 +761,8 @@
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items">
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items2">
+                            </div>
+                            <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items3">
                             </div>
                         </div>
                         <div class="crafting_category" data-crafting_category="forging"  style="display:none">
@@ -772,6 +779,8 @@
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="forging" data-crafting_subcategory="items2">
                             </div>
+                            <div class="crafting_category crafting_recipe_list" data-crafting_category="forging" data-crafting_subcategory="items3">
+                            </div>
                         </div>
                         <div class="crafting_category" data-crafting_category="alchemy"  style="display:none">
                             <div class="crafting_subpage_buttons activable_buttons">
@@ -782,6 +791,8 @@
 
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="alchemy" data-crafting_subcategory="items2">
+                            </div>
+                            <div class="crafting_category crafting_recipe_list" data-crafting_category="alchemy" data-crafting_subcategory="items3">
                             </div>
                         </div>
                         <div id="exit_crafting_button" onclick="closeCraftingWindow()">
@@ -872,6 +883,9 @@
                                         <span class="coin coin_moneyT money_button" onclick = "get_money(4,1)">[1  B]</span>
                                         <span class="coin coin_moneyT money_button" onclick = "get_money(4,10)">[10 B]</span>
                                         <span class="coin coin_moneyT money_button" onclick = "get_money(4,100)">[100B]</span>
+                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,1000)">[1KB]</span>
+                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,10000)">[1WB]</span>
+                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,100000)">[10WB]</span>
                                 </div>
                             </div>
 
@@ -1475,7 +1489,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.01";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.02";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

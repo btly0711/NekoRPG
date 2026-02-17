@@ -2453,6 +2453,31 @@ item_templates["Twist liek a snek"] = new Book({
         }
     });
 
+    item_templates["长明灯"] = new Props({
+        name: "长明灯",
+        id: "长明灯",
+        description: "荧光精华与沼泽兽油混合点燃的天灯。可以驱散沼泽的瘴气，让常年不见光的荒兽短暂愣神。", 
+        value: 9.9e12,
+        stats: {
+            agility: {
+                flat: 7500000,
+            }
+        }
+    });
+    item_templates["荒兽傀儡"] = new Props({
+        name: "荒兽傀儡",
+        id: "荒兽傀儡",
+        description: "飞船核心中记载的禁忌产物。然而，实际用途只是跑去拉仇恨...引来更多的敌人。", 
+        value: 29.9e12,
+        stats: {
+            agility: {
+                multiplier: 0.5,
+            },
+            luck: {
+                multiplier: 1.2,
+            }
+        }
+    });
 
 
 })();
@@ -2979,6 +3004,41 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_mul: {
                 multiplier: 3.40,
+            },
+            attack_speed: {
+                multiplier: 0.50,
+            },
+        }
+    });
+    item_templates["秘银剑刃"] = new WeaponComponent({
+        name: "秘银剑刃", description: "秘银锭制造的剑刃。",
+        component_type: "long blade",
+        value: 40e9,
+        component_tier: 10,
+        name_prefix: "秘银",
+        attack_value: 1440000,
+        stats: {
+            crit_rate: {
+                flat: 0.15,
+            },
+            attack_speed: {
+                multiplier: 1.16,
+            },
+        }
+    });
+    item_templates["秘银戟头"] = new WeaponComponent({
+        name: "秘银戟头", description: "秘银锭制造的三叉戟头。",
+        component_type: "triple blade",
+        value: 120e9,
+        component_tier: 10,
+        name_prefix: "秘银",
+        attack_value: 1800000,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_mul: {
+                multiplier: 3.60,
             },
             attack_speed: {
                 multiplier: 0.50,
@@ -3680,6 +3740,64 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+
+    
+    item_templates["秘银头盔"] = new ArmorComponent({
+        name: "秘银头盔",
+        description: "B5级盔甲，燕岗城护卫长的制式装备。",
+        component_type: "helmet exterior",
+        value: 90e9,
+        component_tier: 10,
+        full_armor_name: "秘银头盔",
+        defense_value: 324000,
+        stats: {
+            attack_mul: {
+                flat: 0.03,
+            },
+        }
+    });
+    item_templates["秘银胸甲"] = new ArmorComponent({
+        name: "秘银胸甲",
+        description: "B5级盔甲，燕岗城护卫长的制式装备。",
+        component_type: "chestplate exterior",
+        value: 120e9,
+        component_tier: 10,
+        full_armor_name: "秘银胸甲",
+        defense_value: 432000,
+        stats: {
+            attack_mul: {
+                flat: 0.03,
+            },
+        }
+    });
+    item_templates["秘银腿甲"] = new ArmorComponent({
+        name: "秘银腿甲",
+        description: "B5级盔甲，燕岗城护卫长的制式装备。",
+        component_type: "leg armor exterior",
+        value: 120e9,
+        component_tier: 10,
+        full_armor_name: "秘银腿甲",
+        defense_value: 432000,
+        stats: {
+            attack_mul: {
+                flat: 0.03,
+            },
+        }
+    });
+    item_templates["秘银战靴"] = new ArmorComponent({
+        name: "秘银战靴",
+        description: "B5级盔甲，燕岗城护卫长的制式装备。",
+        component_type: "shoes exterior",
+        value: 60e9,
+        component_tier: 10,
+        full_armor_name: "秘银战靴",
+        defense_value: 216000,
+        stats: {
+            attack_mul: {
+                flat: 0.03,
+            },
+        }
+    });
 })();
 //盔甲
 
@@ -3803,6 +3921,16 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1800e6,
         material_type: "metal",
         image: "image/item/redsteel_ingot.png",
+    });
+
+    
+    item_templates["秘银锭"] = new Material({
+        id: "秘银锭",
+        name: "秘银锭", 
+        description: "城主府统一作为奖励发放的合金。其中似乎富含Pt/Fe/Cs,还有一些法力能量用于调和。", 
+        value: 54e9,
+        material_type: "metal",
+        image: "image/item/mythril_ingot.png",
     });
     
     item_templates["结界湖之心·材"] = new Material({
@@ -4041,6 +4169,14 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/B1_life_medicine.png",
     });
     
+    item_templates["沼泽·荒兽肉排"] = new UsableItem({
+        name: "沼泽·荒兽肉排", 
+        description: "天空级初期荒兽的肉。和之前的肉都不一样，它是被油炸过的！", 
+        value: 160e9,
+        effects: [{effect: "饱食 VIII", duration: 90}],
+        realmcap:24,
+        image: "image/item/B3_cooked_meat.png",
+    });//
 })();
 //炼金
 (function(){
@@ -4556,6 +4692,31 @@ item_templates["Twist liek a snek"] = new Book({
         description: "强烈建议不要卖掉。【结界湖之心】在V3.0X将会超过好不容易省下的姐姐，而重铸一颗飞船核心非常昂贵...", 
         value: 666666e6,
         image: "image/item/B6_spaceship_core.png",
+    });
+    //3幕
+    item_templates["荒兽凭证"] = new Loot({
+        name: "荒兽凭证", 
+        description: "击杀【天空级初期】荒兽的证明。可以用于在沼泽入口兑换材料。一只荒兽只会有一份，但人可能有更多...", 
+        value: 2e9,
+        image: "image/item/B3_ear.png",
+    });
+    item_templates["沼泽·荒兽肉块"] = new Loot({
+        name: "沼泽·荒兽肉块", 
+        description: "或许会因为进化过快有辐射。但天空级完全可以无视这些杂乱的能量了~", 
+        value: 80e9,
+        image: "image/item/B3_meat.png",
+    });
+    item_templates["荧光精华"] = new Loot({
+        name: "荧光精华", 
+        description: "沼泽天然发光体的遗物。它的荧光可以驱散常年不散的瘴气。", 
+        value: 64e9,
+        image: "image/item/firefly_essence.png",
+    });
+    item_templates["沼泽兽油"] = new Loot({
+        name: "沼泽兽油", 
+        description: "虽然卖相不好，却是荧光精华想要长期发光不可或缺的补给品。它还有一些邪恶的用法..", 
+        value: 48e9,
+        image: "image/item/B3_oil.png",
     });
 
 
