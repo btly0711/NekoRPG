@@ -1009,11 +1009,11 @@ function start_textline(textline_key){
             if(character.inventory[pz_key] != undefined)
             {
                 let T_cnt = Math.floor(character.inventory[pz_key].count/C_pz);//TODO - count
-                remove_from_character_inventory([{ 
+                if(T_cnt != 0) remove_from_character_inventory([{ 
                     item_key: pz_key,           
                     item_count: C_pz * T_cnt,
                 }]);
-                add_to_character_inventory([{ "item": getItem(item_templates[pz_map[T_S]]), "count": T_cnt }]);
+                if(T_cnt != 0) add_to_character_inventory([{ "item": getItem(item_templates[pz_map[T_S]]), "count": T_cnt }]);
                 displayed_text += `消耗了 ${C_pz * T_cnt} 个 荒兽凭证，<br>`;
                 displayed_text += `兑换了 ${T_cnt} 个 ${pz_map[T_S]}。<br>`;
 
