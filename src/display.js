@@ -1889,6 +1889,10 @@ function create_location_types_display(current_location){
         if(current_location.name == "纳家秘境 - ∞"){
             c_halo = inf_combat.A6.cur * 0.08;
         }
+        if(current_location.name.includes("赫尔沼泽")){
+            inf_combat.B3 = inf_combat.B3 || 0;
+            c_halo = inf_combat.B3 * 0.01;
+        }
         type_div.innerHTML += `光环 ${format_number(c_halo*100.0)} %`;
         location_types_div.appendChild(type_div);
     }
@@ -3858,6 +3862,10 @@ function create_new_levelary_entry(level_name) {
         let c_halo = level.enemy_stat_halo;
         if(level_name == "纳家秘境 - ∞"){
             c_halo = inf_combat.A6.cur * 0.08;
+        }
+        if(level_name.includes("赫尔沼泽")){
+            inf_combat.B3 = inf_combat.B3 || 0;
+            c_halo = inf_combat.B3 * 0.01;
         }
         tooltip_tags.innerHTML += `<br>光环 ${format_number(c_halo * 100.0)} %(掉落 + ${format_number((Math.pow(c_halo+1,1)-1)*100.0)}%,经验 + ${format_number((Math.pow(c_halo+1,1.5)-1)*100.0)}%)`;
     }

@@ -26,6 +26,7 @@ function Game_time(new_time) {
             this.hour = this.hour - 180;
             this.day += 1; 
             this.day_count += 1;
+            
         }
     
         while(this.day > 50) 

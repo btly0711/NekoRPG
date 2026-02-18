@@ -192,6 +192,7 @@ class Combat_zone {
                     spec: f_enemy.spec,
                     spec_value:f_enemy.spec_value,
                     realm: f_enemy.realm,
+                    rank:f_enemy.rank,
                     stats: {
                         health: f_enemy.stats.health * f_halo,
                         attack: f_enemy.stats.attack * f_halo,
@@ -339,7 +340,12 @@ class Combat_zone {
                 }
             }
             else if(this.name == "纳家秘境 - ∞"){
+                inf_combat.A6.cur = Math.max(inf_combat.A6.cur,9999);
                 halo_fix = (inf_combat.A6.cur - 6) * 0.08;
+            }
+            else if(this.name.includes("赫尔沼泽")){
+                inf_combat.B3 = inf_combat.B3 || 0;
+                halo_fix = inf_combat.B3 * 0.01 - 0.01;
             }
                 
             const halo = this.enemy_stat_halo + 1 + halo_fix;
@@ -3194,6 +3200,7 @@ function get_location_type_penalty(type, stage, stat) {
         name: "赫尔沼泽 - 1",
         rank:201, 
         bgm:14,
+        enemy_stat_halo:0.01,
         parent_location: locations["赫尔沼泽"],
         first_reward: {
             xp: 3e8,
@@ -3212,6 +3219,7 @@ function get_location_type_penalty(type, stage, stat) {
         name: "赫尔沼泽 - 2",
         rank:202, 
         bgm:14,
+        enemy_stat_halo:0.01,
         parent_location: locations["赫尔沼泽"],
         first_reward: {
             xp: 6e8,
@@ -3230,6 +3238,7 @@ function get_location_type_penalty(type, stage, stat) {
         name: "赫尔沼泽 - 3",
         rank:203, 
         bgm:14,
+        enemy_stat_halo:0.01,
         parent_location: locations["赫尔沼泽"],
         first_reward: {
             xp: 9e8,
@@ -3248,6 +3257,7 @@ function get_location_type_penalty(type, stage, stat) {
         name: "赫尔沼泽 - 4",
         rank:204, 
         bgm:14,
+        enemy_stat_halo:0.01,
         parent_location: locations["赫尔沼泽"],
         first_reward: {
             xp: 12e8,

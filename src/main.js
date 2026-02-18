@@ -117,12 +117,13 @@ const flag_unlock_texts = {
 
 // special stats
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"B3":0};
 //A6:秘境
 //A7:赶往声律城
 //VP:心境一重价值点
 //RM:不是现实机器。是Realm(领域)层数
 //MP:心境二重宝钱数
+//B3:辐射扩散程度(赫尔沼泽)
 
 
 //in seconds
@@ -845,7 +846,7 @@ function start_textline(textline_key){
         textline.otherUnlocks();
     }
     let displayed_text = textline.text;
-    if(textline.unlocks.spec != "")
+    if(textline.unlocks.spec != "" && textline.unlocks.spec != undefined)
     {
         if(textline.unlocks.spec == "DeathCount-1")
         {   
@@ -879,7 +880,10 @@ function start_textline(textline_key){
         else if(textline.unlocks.spec == "A6-up"){
             if(inf_combat.A6.cur < inf_combat.A6.cap){
                 inf_combat.A6.cur++;
-                displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
+                if(inf_combat.A6.cur > 9999) displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
+                else displayed_text += `灵阵功率已达绝对上限【9999】。`
+                inf_combat.A6.cur = Math.max(inf_combat.A6.cur,9999);
+
             }
             else{
                 displayed_text += `灵阵功率已达当前上限...<br>想要继续提高的话，先重新清理敌人吧。`;
@@ -1899,7 +1903,13 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
 
             
 
-            log_message(target.name + " 被打败,获取 " + format_number(xp_display) + " 经验值" + tooltip_ex, "enemy_defeated");
+            log_message(target.name + " 被打败,获取 " + format_number(xp_display) + " 经验值" + tooltip_ex, 
+            "enemy_defeated");
+            if(target.rank >= 3100 && target.rank <= 3200){
+                inf_combat.B3 = inf_combat.B3 || 0;
+                log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3)} % -> ${format_number(inf_combat.B3 + 0.001)} % `,"enemy_defeated");
+                inf_combat.B3 += 0.001;
+            }//3-1的怪
             var loot = target.get_loot();
             if(loot.length > 0) {
                 log_loot(loot);
@@ -2231,6 +2241,7 @@ function get_spec_rewards(money){
 function get_location_rewards(location) {
 
     let should_return = false;
+    update_displayed_combat_location(location);
     if(location.repeatable_reward.money && typeof location.repeatable_reward.money === "number") {
         get_spec_rewards(location.repeatable_reward.money);//2-5搜刮钱
     }
@@ -2240,7 +2251,6 @@ function get_location_rewards(location) {
             location.is_finished = true;
         }
         should_return = true;
-        
 
     if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
             create_new_levelary_entry(location.name);
@@ -2781,6 +2791,14 @@ function use_item(item_key,stated = false) {
         let E_modi = (C_value==2)?(0.2**(Math.max(0,character.xp.current_level-19))):(1);
         add_xp_to_character(E_value*E_modi,true,false,C_value);
         log_message(`使用了 ${item_templates[id].name} , 获取了 ${format_number(E_value*E_modi)} 经验${E_modi==1?"":`(压级-${format_number((1-E_modi)*100)}%)`}`,"gather_loot");
+        if(E_modi != 1){
+            if(E_value == 1e11){
+                inf_combat.B3 = inf_combat.B3 || 0;
+                log_message(`因能量吸收不充分，部分基因原能外溢！`,"gather_loot")
+                log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3 )} % -> ${format_number(inf_combat.B3 + 10 * (1 -  E_modi))} % `,"gather_loot")
+                inf_combat.B3 += 10 * (1 -  E_modi);
+            }
+        }
     }
 
     if(used && !stated) {
@@ -3884,9 +3902,21 @@ function load_other_release_save() {
 function update_timer() {
     let time_passed = (character.xp.current_level>=19)?48:6;
     time_passed *= is_sleeping?5:1
+    let D_C = current_game_time.day_count;
     current_game_time.go_up(time_passed);
     update_character_stats(); //done every second, mostly because of daynight cycle; gotta optimize it at some point
     update_displayed_time();
+    if(D_C != current_game_time.day_count){
+        
+        inf_combat.B3 = inf_combat.B3 || 0;
+        if(inf_combat.B3 > 0.01){
+            let B3_after = inf_combat.B3 * 0.99 - 1;
+            B3_after = Math.max(B3_after,0) 
+            log_message(`新的一天开始了！原能辐射浓度略有下降。`,"gather_loot")
+            log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3)} % -> ${format_number(B3_after)} % `,"gather_loot")
+            inf_combat.B3 = B3_after;
+        }
+    }
 }
 let MouseDown = false;
 function setupMouseControl() {
@@ -4185,10 +4215,11 @@ function extract_evolve()
 {
     if(inf_combat.RT.rad < 1000000) log_message("反应堆内部的原能不足","enemy_attacked_critically");
     else{
-        inf_combat.RT.ER *= 0.01;
-        inf_combat.RT.ER = Math.max(inf_combat.RT.ER,1);
+        // inf_combat.RT.ER *= 0.01;
+        // inf_combat.RT.ER = Math.max(inf_combat.RT.ER,1);
+        inf_combat.RT.power = 0;
         inf_combat.RT.rad -= 1000000;
-        log_message("获取了 初等进化结晶","combat_loot");
+        log_message("获取了 初等进化结晶(反应堆内辐射已清除)","combat_loot");
         add_to_character_inventory([{ "item": getItem(item_templates["初等进化结晶"])}]);
     }
 }
