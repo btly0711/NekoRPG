@@ -5432,6 +5432,29 @@ B3 922'7465  /1493'0352 exp
     });
 
 
+    enemy_templates["魅影幻姬[BOSS]"] = new Enemy({
+        name: "魅影幻姬[BOSS]", 
+        description: "擅长幻术的荒兽。本身实力不算强悍，但可以神不知鬼不觉地让人迷失方向。对了，10x固定凭证是天空级中期的击杀奖励，而4x受影响凭证是两只精英佣兵掉的。", 
+        xp_value: 24157817, 
+        rank: 3199,
+        image: "image/boss/B3101.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        size: "small",
+        spec: [13,0],
+        spec_value:{},
+        tags: [],
+        stats: {health: 4.9e8, attack: 7000e4, agility: 3200e4, attack_speed: 1.5, defense: 1800e4}, 
+        loot_list: [
+            {item_name: "荒兽凭证", chance:4},
+            {item_name: "沼泽兽油", chance:0.2},
+            //抢劫了两只精英佣兵
+            {item_name: "史诗蓝宝石", chance:1},
+            {item_name: "荒兽凭证", chance:10,ignore_luck:true},
+            //本身的掉落
+        ],
+    });
+
+
 
 
 

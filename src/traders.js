@@ -52,7 +52,7 @@ class Trader extends InventoryHaver {
             //refresh inventory
             this.inventory = this.get_inventory_from_template();
 
-            this.last_refresh = (current_game_time.day_count + 1 - current_game_time.day_count % this.refresh_time);
+            this.last_refresh = (current_game_time.day_count);
             return true;
         }
         //otherwise do nothing
@@ -64,7 +64,7 @@ class Trader extends InventoryHaver {
      * @returns {Boolean}
      */
     can_refresh() {
-        return (this.last_refresh < 0 || current_game_time.day_count - (this.last_refresh + this.refresh_shift) >= this.refresh_time);
+        return (this.last_refresh < 0 || current_game_time.day_count - (this.last_refresh) >= this.refresh_time);
     }
 
     /**

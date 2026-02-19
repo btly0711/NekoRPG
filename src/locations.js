@@ -340,7 +340,7 @@ class Combat_zone {
                 }
             }
             else if(this.name == "纳家秘境 - ∞"){
-                inf_combat.A6.cur = Math.max(inf_combat.A6.cur,9999);
+                inf_combat.A6.cur = Math.min(inf_combat.A6.cur,9999);
                 halo_fix = (inf_combat.A6.cur - 6) * 0.08;
             }
             else if(this.name.includes("赫尔沼泽")){
@@ -3186,7 +3186,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["荒兽森林营地"].connected_locations.push({location: locations["赫尔沼泽入口"],custom_text:"快速旅行 - 第三幕"});
     locations["赫尔沼泽"] = new Location({ 
         connected_locations: [{location: locations["赫尔沼泽入口"], custom_text: "回到沼泽中的安全区域"}], 
-        description: "天外飞船引发【兽潮】后，一片兽潮蔓延区的天空级荒兽聚集地。[V2.02前版本终点]",
+        description: "天外飞船引发【兽潮】后，一片兽潮蔓延区的天空级荒兽聚集地。",
         name: "赫尔沼泽", 
         is_unlocked: false,
         bgm: 14,
@@ -3264,15 +3264,41 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 4e8,
-            //locations: [{location: "赫尔沼泽 - X"}],
+            locations: [{location: "赫尔沼泽 - X"}],
         },
+    });
+    locations["赫尔沼泽 - X"] = new Challenge_zone({
+        description: "燕岗精英佣兵们接受了百方的委托，把纳可引到了这里。然而，危险的背后也未尝不是一场机遇。", 
+        enemy_count: 1, 
+        enemies_list : [["魅影幻姬[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "赫尔沼泽 - X",
+        bgm:14,
+        parent_location: locations["赫尔沼泽"],
+        repeatable_reward: {
+            locations: [{location: "黑暗森林"}],
+        },
+        unlock_text : "[燕岗精英佣兵*2]怪物……不要过来！"
     });
     locations["赫尔沼泽入口"].connected_locations.push({location: locations["赫尔沼泽"]});
     locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 1"]});
     locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 2"]});
     locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 3"]});
     locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 4"]});
+    locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - X"]});
+    locations["黑暗森林"] = new Location({ 
+        connected_locations: [{location: locations["赫尔沼泽入口"], custom_text: "回到沼泽中的安全区域"}], 
+        description: "黑暗的，阴云密布的森林。纳可在此迷失了方向，周围似乎没有人烟。[V2.10前版本终点]",
+        name: "黑暗森林", 
+        is_unlocked: false,
+        bgm: 15,
+        unlock_text : "一般在小说里，这种阴森的地方，总会发生不好的事情吧。呜……接下来一定要小心，慢慢找到回去的方向。"
+    });//3-2
 
+    locations["赫尔沼泽"].connected_locations.push({location: locations["黑暗森林"]});
 
 
 

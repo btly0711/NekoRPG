@@ -1836,7 +1836,7 @@ function update_displayed_location_choices({location_name, category, add_icons, 
     action_div.appendChild(return_button);
 }
 
-function update_displayed_combat_location(location) {
+function update_displayed_combat_location(location,disable_switch = false) {
 
     document.documentElement.style.setProperty('--location_desc_tooltip_visibility', "visible");
     clear_action_div();
@@ -1846,7 +1846,7 @@ function update_displayed_combat_location(location) {
     enemy_count_div.style.display = "block";
     combat_div.style.display = "block";
 
-    if(!options.disable_combat_autoswitch) {
+    if(!options.disable_combat_autoswitch && !disable_switch) {
         combat_switch.click();
         combat_switch.classList.add("active_selection_button");
         inventory_switch.classList.remove("active_selection_button");

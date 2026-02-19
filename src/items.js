@@ -4533,7 +4533,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "凝实荒兽森林感悟", 
         description: "对细碎战斗感悟整理而成的完整感悟，可以用于突破大地级或积累经验值。", 
         value: 0,
-        E_value: 1000000,
+        E_value: 10000000,
         effects:[],
         C_value: 1,
         image: "image/item/A1_break_clump.png",

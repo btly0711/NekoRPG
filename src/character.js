@@ -177,7 +177,7 @@ character.upgrade_effects = function(lvl){
 
 character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
         if(use_bonus) {
-                xp_to_add *= (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1);
+                xp_to_add *= character.get_xp_bonus();
         }
         //character.xp.total_xp += xp_to_add;
         ignore_cap = ignore_cap || 0;

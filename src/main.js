@@ -91,9 +91,9 @@ window.REALMS=[
 [18,"大地级破限",150000,32500000,1080e8,"terra"],
 
 [19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
-[20,"天空级二阶",500000,3e8,2e12,"sky"],//5e
-[21,"天空级三阶",1500000,10e8,8e12,"sky"],//15e
-[22,"天空级四阶",4000000,25e8,30e12,"sky"],//40e 
+[20,"天空级二阶",500000,3e8,6e12,"sky"],//5e
+[21,"天空级三阶",1500000,10e8,36e12,"sky"],//15e
+[22,"天空级四阶",4000000,25e8,216e12,"sky"],//40e 
 [23,"天空级五阶",16000000,90e8,170.1411e36,"sky"],//150e 经验应为1200e12.
 [24,"天空级六阶",40000000,250e8,210e12,"sky"],//96000e
 
@@ -194,7 +194,7 @@ const options = {
     auto_return_to_bed: false,
     remember_message_log_filters: false,
     remember_sorting_options: false,
-    combat_disable_autoswitch: false,
+    combat_disable_autoswitch: true,
 };
 
 let message_log_filters = {
@@ -323,6 +323,7 @@ const musicList = {
   12: 'bgms/12.mp3',
   13: 'bgms/13.mp3',
   14: 'bgms/14.mp3',
+  15: 'bgms/15.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -882,7 +883,7 @@ function start_textline(textline_key){
                 inf_combat.A6.cur++;
                 if(inf_combat.A6.cur > 9999) displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
                 else displayed_text += `灵阵功率已达绝对上限【9999】。`
-                inf_combat.A6.cur = Math.max(inf_combat.A6.cur,9999);
+                inf_combat.A6.cur = Math.min(inf_combat.A6.cur,9999);
 
             }
             else{
@@ -1907,8 +1908,8 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             "enemy_defeated");
             if(target.rank >= 3100 && target.rank <= 3200){
                 inf_combat.B3 = inf_combat.B3 || 0;
-                log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3)} % -> ${format_number(inf_combat.B3 + 0.001)} % `,"enemy_defeated");
-                inf_combat.B3 += 0.001;
+                log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3)} % -> ${format_number(inf_combat.B3 + 0.004)} % `,"enemy_defeated");
+                inf_combat.B3 += 0.004;
             }//3-1的怪
             var loot = target.get_loot();
             if(loot.length > 0) {
@@ -2241,7 +2242,7 @@ function get_spec_rewards(money){
 function get_location_rewards(location) {
 
     let should_return = false;
-    update_displayed_combat_location(location);
+    update_displayed_combat_location(location,true);
     if(location.repeatable_reward.money && typeof location.repeatable_reward.money === "number") {
         get_spec_rewards(location.repeatable_reward.money);//2-5搜刮钱
     }
@@ -4559,7 +4560,7 @@ function gem_consume(){
 function coin_consume(){
     inf_combat.MP = inf_combat.MP || 0;
     Object.keys(character.inventory).forEach(key =>{
-        if(character.inventory[key].item.value == 1e12)
+        if(character.inventory[key].item.value == 1e11)
         {
             inf_combat.MP += character.inventory[key].count;
             remove_from_character_inventory([{ 

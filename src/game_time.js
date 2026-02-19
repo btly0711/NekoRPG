@@ -40,6 +40,7 @@ function Game_time(new_time) {
             this.year = this.year - 10081;
             this.era += 1;
         }
+        this.day_count = (this.era - 31698) * 504050 + ( this.year - 1370 ) * 50 + this.day - 18
     
     }
 
