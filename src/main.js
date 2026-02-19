@@ -4560,7 +4560,7 @@ function gem_consume(){
 function coin_consume(){
     inf_combat.MP = inf_combat.MP || 0;
     Object.keys(character.inventory).forEach(key =>{
-        if(character.inventory[key].item.value == 1e11)
+        if(character.inventory[key].item.value == 1e12)
         {
             inf_combat.MP += character.inventory[key].count;
             remove_from_character_inventory([{ 
