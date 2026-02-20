@@ -881,7 +881,7 @@ function start_textline(textline_key){
         else if(textline.unlocks.spec == "A6-up"){
             if(inf_combat.A6.cur < inf_combat.A6.cap){
                 inf_combat.A6.cur++;
-                if(inf_combat.A6.cur > 9999) displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
+                if(inf_combat.A6.cur < 9999) displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
                 else displayed_text += `灵阵功率已达绝对上限【9999】。`
                 inf_combat.A6.cur = Math.min(inf_combat.A6.cur,9999);
 
