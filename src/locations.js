@@ -3365,7 +3365,7 @@ function get_location_type_penalty(type, stage, stat) {
             locations: [{location: "黑暗森林 - 4"}],
         },
     });
-    locations["黑暗森林 - 3"] = new Combat_zone({
+    locations["黑暗森林 - 4"] = new Combat_zone({
         description: "黑暗的，阴云密布的森林。有了峰大哥的指引，出口近在眼前。", 
         enemy_count: 20, 
         types: [{type: "dark", stage: 2, xp_gain: 1}],
