@@ -4963,18 +4963,253 @@ class Enemy {
             //9D
         ],
     });
+    enemy_templates["有角族壮年"] = new Enemy({
+        name: "有角族壮年", 
+        description: "荒兽森林敌人的进化版本。狂战士的画风和领悟真的搭配吗..", 
+        xp_value: 14930352, 
+        rank: 3201,
+        image: "image/enemy/E3201.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [9],
+        stats: {health: 5600e4, attack: 3100e4, agility: 2400e4, attack_speed: 1.3, defense: 1200e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    
+    enemy_templates["黑森异惑之花"] = new Enemy({
+        name: "黑森异惑之花", 
+        description: "听起来像是XOR之花。有没有OR之花和AND之花呢？", 
+        xp_value: 14930352, 
+        rank: 3202,
+        image: "image/enemy/E3202.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [8],
+        spec_value: {8:10},
+        stats: {health: 5000e4, attack: 3300e4, agility: 2520e4, attack_speed: 1.3, defense: 1750e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["黑森镔铁战士"] = new Enemy({
+        name: "黑森镔铁战士", 
+        description: "可惜这里缺少塔门战甲B3来一次召唤一窝。不然也是个令人头疼的对象。", 
+        xp_value: 14930352, 
+        rank: 3203,
+        image: "image/enemy/E3203.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [],
+        stats: {health: 1936e4, attack: 3750e4, agility: 2640e4, attack_speed: 1.3, defense: 2300e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["黑森骸骨"] = new Enemy({
+        name: "黑森骸骨", 
+        description: "和之前的骸骨完全不是一个画风。99^2,2^12,7^4...学数学学疯了?。", 
+        xp_value: 14930352, 
+        rank: 3204,
+        image: "image/enemy/E3204.png",
+        realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
+        spec: [32],
+        stats: {health: 980.1e4, attack: 4096e4, agility: 2662e4, attack_speed: 1.331, defense: 2401e4}, 
+        loot_list: [
+            {item_name: "殿堂绿宝石", chance:0.015},
+            {item_name: "史诗黄宝石", chance:0.04},
+            //9D
+        ],
+    });
+    enemy_templates["司雍世界骨干"] = new Enemy({
+        name: "司雍世界骨干", 
+        description: "其实我觉得下面那家伙更适合称为骨干。B4级对于权力来说太低了，但对于魔物来说刚刚好。", 
+        xp_value: 24157817, 
+        rank: 3205,
+        image: "image/enemy/E3205.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        spec: [],
+        stats: {health: 7500e4, attack: 5000e4, agility: 3276.8e4, attack_speed: 1.3, defense: 2500e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.035},
+            {item_name: "史诗蓝宝石", chance:0.014},
+            //16D
+        ],
+    });
+    enemy_templates["黑森僵尸茸茸"] = new Enemy({
+        name: "黑森僵尸茸茸", 
+        description: "原来茸茸这种生物也可以尸变的吗！本来以为是暴毙了就化掉的类型...", 
+        xp_value: 24157817, 
+        rank: 3206,
+        image: "image/enemy/E3206.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        spec: [9],
+        stats: {health: 5600e4, attack: 4400e4, agility: 3430e4, attack_speed: 1.3, defense: 2500e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.035},
+            {item_name: "史诗蓝宝石", chance:0.014},
+            //16D
+        ],
+    });
+    enemy_templates["黑森猿人战士"] = new Enemy({
+        name: "黑森猿人战士", 
+        description: "为什么只有人类不能做成肉排吃掉呢？", 
+        xp_value: 24157817, 
+        rank: 3207,
+        image: "image/enemy/E3207.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        spec: [],
+        stats: {health: 4500e4, attack: 5400e4, agility: 3600e4, attack_speed: 1.3, defense: 3000e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.035},
+            {item_name: "史诗蓝宝石", chance:0.014},
+            //16D
+        ],
+    });
+    enemy_templates["怨灵探险者"] = new Enemy({
+        name: "怨灵探险者", 
+        description: "衣服都褪色了。在清野江漂了多少年了哇？", 
+        xp_value: 24157817, 
+        rank: 3208,
+        image: "image/enemy/E3208.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        spec: [47],
+        stats: {health: 1e4, attack: 5000e4, agility: 4000e4, attack_speed: 1.6, defense: 3200e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.035},
+            {item_name: "史诗蓝宝石", chance:0.014},
+            //16D
+        ],
+    });
+    enemy_templates["兰陵城深骑士"] = new Enemy({
+        name: "兰陵城深骑士", 
+        description: "别告诉我深骑士就是衣服的颜色比较深。似乎是B9级【蓝金精】镀层..真有钱啊。", 
+        xp_value: 24157817, 
+        rank: 3209,
+        image: "image/enemy/E3209.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        spec: [39],
+        spec_value:{39:0.8e8},
+        stats: {health: 5500e4, attack: 4200e4, agility: 4200e4, attack_speed: 1.2, defense: 2800e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.035},
+            {item_name: "史诗蓝宝石", chance:0.014},
+            //16D
+        ],
+    });
+    //【LIFE CHANGE】
+    // 10%↑
+    //
+    // 20%↓
+
+    enemy_templates["黑森蝎龙"] = new Enemy({
+        name: "黑森蝎龙", 
+        description: "可曾记得在秘境深层被那个爆攻蝎龙支配的恐惧？从这里开始，小怪的生命比例要翻倍了！", 
+        xp_value: 24157817, 
+        rank: 3210,
+        image: "image/enemy/E3210.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        spec: [42],
+        stats: {health: 15842e4, attack: 5400e4, agility: 4400e4, attack_speed: 1.2, defense: 2700e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.035},
+            {item_name: "史诗蓝宝石", chance:0.014},
+            //16D
+        ],
+    });
+
+    enemy_templates["黑森猎兵"] = new Enemy({
+        name: "黑森猎兵", 
+        description: "嘿，爆攻的这不就来了~", 
+        xp_value: 24157817, 
+        rank: 3211,
+        image: "image/enemy/E3211.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        spec: [26],
+        stats: {health: 6000e4, attack: 4500e4, agility: 4400e4, attack_speed: 1.4, defense: 3400e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.035},
+            {item_name: "史诗蓝宝石", chance:0.014},
+            //16D
+        ],
+    });
+    enemy_templates["石风家族队长"] = new Enemy({
+        name: "石风家族队长", 
+        description: "至今我们仍然不知道为什么石风家族要把天空级四阶和大地级一阶编成队伍。暴发户家族缺乏底蕴可见一斑。", 
+        xp_value: 39088169, 
+        rank: 3212,
+        image: "image/enemy/E3212.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [],
+        stats: {health: 13000e4, attack: 5600e4, agility: 4600e4, attack_speed: 1.3, defense: 3800e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.014},
+            {item_name: "史诗蓝宝石", chance:0.035},
+            //28D
+        ],
+    });
+    enemy_templates["凶悍树妖"] = new Enemy({
+        name: "凶悍树妖", 
+        description: "要是在雾岛上能有这么一颗，巴巴塔恐怕永远也找不到传人了。", 
+        xp_value: 39088169, 
+        rank: 3213,
+        image: "image/enemy/E3213.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [],
+        stats: {health: 20000e4, attack: 11000e4, agility: 4800e4, attack_speed: 1.2, defense: 0}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.014},
+            {item_name: "史诗蓝宝石", chance:0.035},
+            //28D
+        ],
+    });
+    enemy_templates["人立电法茸茸"] = new Enemy({
+        name: "人立电法茸茸", 
+        description: "滋滋滋滋——闪光皮卡丘（划掉，降临！", 
+        xp_value: 39088169, 
+        rank: 3214,
+        image: "image/enemy/E3214.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [0],
+        stats: {health: 9600e4, attack: 2200e4, agility: 4800e4, attack_speed: 1.2, defense: 4400e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.014},
+            {item_name: "史诗蓝宝石", chance:0.035},
+            //28D
+        ],
+    });
+    enemy_templates["嫉妒毒虫"] = new Enemy({
+        name: "嫉妒毒虫", 
+        description: "嫉妒使茸茸面目全非。凭什么你有飞船反应堆造的剑柄！呜啊啊啊！", 
+        xp_value: 39088169, 
+        rank: 3215,
+        image: "image/enemy/E3215.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [20,46],
+        stats: {health: 3e8, attack: 6300e4, agility: 5000e4, attack_speed: 1.5, defense: 2800e4}, 
+        loot_list: [
+            {item_name: "史诗黄宝石", chance:0.014},
+            {item_name: "史诗蓝宝石", chance:0.035},
+            //28D
+        ],
+    });
+
 
 
     
     /*
-     红 绿 史诗
-B2+ 2% 5%      2.8D
-B3     4% 1.6%   5D
-B3+    1.5% 4%   9D
-B1 134'6269  /217'8309  exp
-B2 352'4578  /570'2887  exp
-B3 922'7465  /1493'0352 exp
-赫尔沼泽蝠开始算三阶+
+    绿 史诗
+B3+ 1.5% 4%            9D
+B4       3.5% 1.4%     16D
+B4+      1.4% 3.5%     28D
+B3 922'7465  /1493'0352  exp
+B4 2415'7817 /3908'8169  exp
+B5 6324'5986 /1'0233'4155exp
+石风家族队长开始算4阶+
 */    
 })();
 

@@ -223,6 +223,14 @@ class Combat_zone {
                 log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.defense * 0.5)} 生命 [饮盾]`,"enemy_enhanced");
                 newEnemy.stats.health += character.stats.full.defense * 0.5;//饮盾
             }
+            if(newEnemy.spec.includes(46)){
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 2.5)} 生命 [饮剑]`,"enemy_enhanced");
+                newEnemy.stats.health += character.stats.full.attack_power * 2.5;//饮剑·改
+            }
+            if(newEnemy.spec.includes(47)){ 
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.defense * 2.5)} 生命 [饮盾]`,"enemy_enhanced");
+                newEnemy.stats.health += character.stats.full.defense * 2.5;//饮盾·改
+            }
             if(newEnemy.spec.includes(30)){ 
                 log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.agility * newEnemy.spec_value[30])} 攻击 [净化]`,"enemy_enhanced");
                 newEnemy.stats.attack += character.stats.full.agility * newEnemy.spec_value[30];//净化
@@ -3300,7 +3308,87 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["赫尔沼泽"].connected_locations.push({location: locations["黑暗森林"]});
 
+    locations["黑暗森林 - 1"] = new Combat_zone({
+        description: "黑暗的，阴云密布的森林。不过，大家的夜视技能应该早就满了？", 
+        enemy_count: 20, 
+        types: [{type: "dark", stage: 2, xp_gain: 1}],
+        enemies_list: ["冈崎猫妖","沼泽石灵","有角族壮年","黑森镔铁战士","黑森异惑之花"],
+        enemy_group_size: [2.5,3.5],
+        is_unlocked: true, 
+        name: "黑暗森林 - 1",
+        rank:211, 
+        bgm:15,
+        parent_location: locations["黑暗森林"],
+        first_reward: {
+            xp: 15e8,
+        },
+        repeatable_reward: {
+            xp: 5e8,
+            locations: [{location: "黑暗森林 - 2"}],
+        },
+    });
+    locations["黑暗森林 - 2"] = new Combat_zone({
+        description: "黑暗的，阴云密布的森林。四周都是不祥的气息。", 
+        enemy_count: 20, 
+        types: [{type: "dark", stage: 2, xp_gain: 1}],
+        enemies_list: ["黑森异惑之花","黑森骸骨","司雍世界骨干","黑森僵尸茸茸","黑森猿人战士"],
+        enemy_group_size: [3,3],
+        is_unlocked: false, 
+        name: "黑暗森林 - 2",
+        rank:212, 
+        bgm:15,
+        parent_location: locations["黑暗森林"],
+        first_reward: {
+            xp: 18e8,
+        },
+        repeatable_reward: {
+            xp: 6e8,
+            locations: [{location: "黑暗森林 - 3"}],
+        },
+    });
+    locations["黑暗森林 - 3"] = new Combat_zone({
+        description: "黑暗的，阴云密布的森林。敌人的生命力上了一个台阶。", 
+        enemy_count: 20, 
+        types: [{type: "dark", stage: 2, xp_gain: 1}],
+        enemies_list: ["黑森猿人战士","怨灵探险者","兰陵城深骑士","黑森蝎龙","黑森猎兵"],
+        enemy_group_size: [3.5,4.5],
+        is_unlocked: false, 
+        name: "黑暗森林 - 3",
+        rank:213, 
+        bgm:15,
+        parent_location: locations["黑暗森林"],
+        first_reward: {
+            xp: 21e8,
+        },
+        repeatable_reward: {
+            xp: 7e8,
+            locations: [{location: "黑暗森林 - 4"}],
+        },
+    });
+    locations["黑暗森林 - 3"] = new Combat_zone({
+        description: "黑暗的，阴云密布的森林。有了峰大哥的指引，出口近在眼前。", 
+        enemy_count: 20, 
+        types: [{type: "dark", stage: 2, xp_gain: 1}],
+        enemies_list: ["黑森猎兵","石风家族队长","凶悍树妖","人立电法茸茸","嫉妒毒虫"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "黑暗森林 - 4",
+        rank:214, 
+        bgm:15,
+        parent_location: locations["黑暗森林"],
+        first_reward: {
+            xp: 24e8,
+        },
+        repeatable_reward: {
+            xp: 8e8,
+            //locations: [{location: "黑暗森林 - X"}],
+        },
+    });
 
+    locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 1"]});
+    locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 2"]});
+    locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 3"]});
+    locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 4"]});
 
 
 

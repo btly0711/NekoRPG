@@ -3535,7 +3535,8 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [43, "激光", "#dda0dd",function(enemy){return "攻击时，无论是否命中，都额外造成<span style='color:#87CEFA'>" + (enemy.spec_value[43]) + "</span>点魔法伤害。"}],
 [44, "召唤", "#f5deb3", "群居生物同心协力的体现。敌人刷新时，额外刷新3只【舰船除草机B1】。"],
 [45, "10回合", "#524fdb","在敌人的手中走过十回合！敌人会在第10回合被镭射枪击中，将<span style='color:#87CEFA'>血量降为1</span>.<br><span style='color:#FF0000'><b>前提是,姐姐被你带在身边.</b></span>"],
-
+[46, "饮剑·改", "#F0A078","将炽烈的进攻元素吸收并化为自身的能力。<br>敌人的生命增加角色攻击的<span style='color:#87CEFA'>2.5倍</span>。"],
+[47, "饮盾·改", "#3C6794","将刚猛的防守元素吸收并化为自身的能力。<br>敌人的生命增加角色防御的<span style='color:#87CEFA'>2.5倍</span>。"],
 ];
 
 //超过25倍倍率的攻击暂时视为必中！
@@ -3808,6 +3809,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "荒兽电法兵") add_bestiary_lines(27);
     if(enemy_name == "塔门战甲B1") add_bestiary_lines(28);
     if(enemy_name == "无面修者") add_bestiary_lines(31);
+    if(enemy_name == "有角族壮年") add_bestiary_lines(32);
 }
 
 function reload_bestiary(){
