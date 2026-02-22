@@ -5691,7 +5691,7 @@ B5 6324'5986 /1'0233'4155exp
         description: "皮糙肉厚的荒兽。那边那个冒失的家伙在干什么啊！", 
         xp_value: 24157817, 
         rank: 3298,
-        image: "image/boss/B3102.png",
+        image: "image/boss/B3201.png",
         realm: "<span class=realm_sky><b>天空级四阶</b></span>",
         size: "small",
         spec: [13,0],
