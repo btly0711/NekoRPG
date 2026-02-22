@@ -1489,7 +1489,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.11";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.12";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1918,7 +1918,14 @@
                         }
                         else {
                             //add to to sell
-                            total_price += add_to_selling_list({item_key: selected_item, count: number_to_move})
+
+                            if(selected_item == "{\"id\":\"峰\"}"){
+                                log_message("[纱雪]哈?卖掉峰大哥?","sayuki");
+                                log_message("[纱雪]为了防止他把你揍死，帮你取消交易了哦~","sayuki");
+                                return;
+
+                            }
+                            else total_price += add_to_selling_list({item_key: selected_item, count: number_to_move})
                         }
                     } 
                     else if(target==="trader") {

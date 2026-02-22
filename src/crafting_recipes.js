@@ -478,6 +478,11 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         components: ["triple blade", "short handle"],
         item_type: "Weapon",
     });
+    crafting_recipes.equipment["月轮"] = new EquipmentRecipe({
+        name: "月轮",
+        components: ["wheel head", "wheel core"],
+        item_type: "Weapon",
+    });
 
     //full armor
     crafting_recipes.equipment["头盔"] = new EquipmentRecipe({

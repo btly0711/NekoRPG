@@ -172,7 +172,6 @@ character.upgrade_effects = function(lvl){
                 const E_body = document.body;
                 E_body.classList.add('sky_root');
         }//天空1
-        //天空1事件：WIP！！！
 }
 
 character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
@@ -452,6 +451,12 @@ character.stats.add_weapon_type_bonuses = function() {
                 character.stats.multiplier.skills.crit_rate = (skills["Unarmed"].get_coefficient());
         } else {
                 character.stats.multiplier.skills.crit_rate = skills[weapon_type_to_skill[character.equipment.weapon.weapon_type]].get_coefficient();
+                if(character.equipment.weapon.weapon_type == "moonwheel")
+                {
+                        let phase = Math.floor(skills["Moonwheels"].current_level / 20);
+                        let phase_mul = {0:1,1:3,2:6,3:10,4:16,5:24,6:32};
+                        character.stats.multiplier.skills.attack_mul = phase_mul[phase];
+                }
                 //character.stats.multiplier.skills.attack_points = skills[weapon_type_to_skill[character.equipment.weapon.weapon_type]].get_coefficient()**0.3333;
         }
 }

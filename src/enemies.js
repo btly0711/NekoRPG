@@ -5665,8 +5665,6 @@ B5 6324'5986 /1'0233'4155exp
             {item_name: "B6·飞船核心", chance:1 ,ignore_luck:true},
         ],
     });
-
-
     enemy_templates["魅影幻姬[BOSS]"] = new Enemy({
         name: "魅影幻姬[BOSS]", 
         description: "擅长幻术的荒兽。本身实力不算强悍，但可以神不知鬼不觉地让人迷失方向。对了，10x固定凭证是天空级中期的击杀奖励，而4x受影响凭证是两只精英佣兵掉的。", 
@@ -5686,6 +5684,22 @@ B5 6324'5986 /1'0233'4155exp
             {item_name: "史诗蓝宝石", chance:1},
             {item_name: "荒兽凭证", chance:10,ignore_luck:true},
             //本身的掉落
+        ],
+    });
+    enemy_templates["蛮咕兽[BOSS]"] = new Enemy({
+        name: "蛮咕兽[BOSS]", 
+        description: "皮糙肉厚的荒兽。那边那个冒失的家伙在干什么啊！", 
+        xp_value: 24157817, 
+        rank: 3298,
+        image: "image/boss/B3102.png",
+        realm: "<span class=realm_sky><b>天空级四阶</b></span>",
+        size: "small",
+        spec: [13,0],
+        spec_value:{},
+        tags: [],
+        stats: {health: 33.32e8, attack: 6000e4, agility: 4500e4, attack_speed: 1.2, defense:3000e4}, 
+        loot_list: [
+            {item_name: "史诗红宝石", chance:1},
         ],
     });
 

@@ -3301,6 +3301,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["赫尔沼泽入口"], custom_text: "回到沼泽中的安全区域"}], 
         description: "黑暗的，阴云密布的森林。纳可在此迷失了方向，周围似乎没有人烟。[V2.10前版本终点]",
         name: "黑暗森林", 
+        dialogues: ["峰"],
         is_unlocked: false,
         bgm: 15,
         unlock_text : "一般在小说里，这种阴森的地方，总会发生不好的事情吧。呜……接下来一定要小心，慢慢找到回去的方向。"
@@ -3343,7 +3344,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 6e8,
-            locations: [{location: "黑暗森林 - 3"}],
+            locations: [{location: "黑暗森林 - 歧路"}],
         },
     });
     locations["黑暗森林 - 3"] = new Combat_zone({
@@ -3384,11 +3385,28 @@ function get_location_type_penalty(type, stage, stat) {
             //locations: [{location: "黑暗森林 - X"}],
         },
     });
+    locations["黑暗森林 - 歧路"] = new Challenge_zone({
+        description: "吃烤肉的青年附近有一只超大的蛮咕兽！快去救人哇！", 
+        enemy_count: 1, 
+        enemies_list : [["蛮咕兽[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "黑暗森林 - 歧路",
+        bgm:15,
+        parent_location: locations["黑暗森林"],
+        repeatable_reward: {
+            textlines: [{dialogue: "峰", lines: ["lf1"]}],
+        },
+        unlock_text : "咦，前面有人？"
+    });
 
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 1"]});
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 2"]});
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 3"]});
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 4"]});
+    locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 歧路"]});
 
 
 

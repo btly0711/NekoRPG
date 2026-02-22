@@ -1453,6 +1453,96 @@ class Textline {
         }
     });
 
+    dialogues["峰"] = new Dialogue({
+        name: "峰",
+        starting_text: "和铁甲青年对话",
+        textlines: {
+            "lf1": new Textline({ 
+                is_unlocked: false,
+                name: "你，你……",
+                text: "[???]谢谢。<br>[纳可]你是谁，为什么会出现在这种地方？<br>也太可疑了吧！<br>[???]呃……我看上去很可疑吗？",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf2"]}],
+                },
+                locks_lines: ["lf1"],
+            }),
+            "lf2": new Textline({ 
+                is_unlocked: false,
+                name: "还有，你知道刚才有多危险吗，那个大家伙可是天空级四阶！",
+                text: "[???]是吗，天空级四阶……<br>(根据情报，也就是对应恒星级四阶。)<br>以你的实力，对付刚才那头荒兽，<br>也是有不小风险的吧？<br>即使这样，也不惜出手帮助别人？",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf3"]}],
+                },
+                locks_lines: ["lf2"],
+            }),
+            "lf3": new Textline({ 
+                is_unlocked: false,
+                name: "举手之劳而已，才不要你管呀，是在小瞧我吗？",
+                text: "",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf4"]}],
+                    spec: "lf-1",
+                    flags: ["is_moonwheel_unlocked"],
+                },
+                locks_lines: ["lf3"],
+            }),
+            "lf4": new Textline({ 
+                is_unlocked: false,
+                name: "……等等！不许走！",
+                text: "[???]还有什么事吗？<br>[纳可]你……<br>既然你这么厉害，那就带我走出森林吧。<br>我找不到回去的路了。<br>[???]呵呵，好。小丫头，你叫什么名字。<br>[纳可]……<br><br>纳可，我的名字。你呢？<br>[峰]我叫，<span style='color:aqua'>【峰】</span>",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf5"]}],
+                },
+                locks_lines: ["lf4"],
+            }),
+            "lf5": new Textline({ 
+                is_unlocked: false,
+                name: "………………路上，两人逐渐畅谈起来。",
+                text: "[纳可]（怎么说呢……<br>这个家伙，虽然刚才看见的时候，<br>感觉表现得很奇怪。）<br>（但一路走下来，<br>意外地感觉很好相处的样子。）<br>峰……你的年龄应该比我大，<br>那我就称呼你一声峰大哥好了。<br>不介意的话，叫我可可吧。<br>[峰]好啊。可可，你刚才说，<br>这里是燕岗领的势力范围中心？<br>而我们要去的，<br>是燕岗领的【领地主城】燕岗城？",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf6"]}],
+                },
+                locks_lines: ["lf5"],
+            }),
+            "lf6": new Textline({ 
+                is_unlocked: false,
+                name: "是的，只不过兽潮来袭，",
+                text: "[纳可]燕岗领的强者都在抵御兽潮，<br>所以城里暂时没什么人呢。<br>[峰]那么……出了森林之后，<br>就麻烦你带路了。<br><br>【峰】加入了队伍！",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf7"]}],
+                    items: [{item_name: "峰"}],
+                },
+                locks_lines: ["lf6"],
+            }),
+            "lf7": new Textline({ 
+                is_unlocked: false,
+                name: "有情况！",
+                text: "(百方带着一帮百家人出现！)<br>[百方]哈哈，我当是谁，<br>原来是纳可小姐。<br>(反转:我方雷冬出现)<br>(激烈的对峙)<br>(反转:敌方百炎塔出现)<br>(另一轮激烈的对峙)<br>(反转：敌方被峰大哥吓跑)",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf8"]}],
+                },
+                locks_lines: ["lf7"],
+            }),
+            "lf8": new Textline({ 
+                is_unlocked: false,
+                name: "异变再生！",
+                text: "(百家人被13斧抢劫了！)<br>(百家人因为缺少牵制药水打不过13斧！)<br>(百炎塔逃到纳可面前喊救命！)<br>(13斧的人以为好东西在纳可身上准备抢劫！)<br><br>该说不说，还真有个<span class='coin coin_moneySp'>1.21Δ</span>的好东西...<br>(<span class='coin coin_moneySp'>1.21Δ</span>暴起把13斧全杀了！)<br>(雷叔突然激动地要求纳可和峰交好！)",
+                unlocks: {
+                    textlines: [{dialogue: "峰", lines: ["lf9"]}],
+                },
+                locks_lines: ["lf8"],
+            }),
+            "lf9": new Textline({ 
+                is_unlocked: false,
+                name: "这都什么乱七八糟的...",
+                text: "[峰]呵呵，没什么。暂且安全了，<br>先赶路吧。有什么话到了主城再说。<br>[纳可]呜，这个家伙到底怎么回事，<br>这么强为什么不早点说啊！<br>之前花那么大力气救他，<br>其实那只蛮咕兽身上加亿层光环都打不动他！",
+                unlocks: {
+                    locations: ["黑暗森林 - 3"],
+                },
+                locks_lines: ["lf9"],
+            }),
+        }
+    });
 
 
 

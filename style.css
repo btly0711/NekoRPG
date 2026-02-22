@@ -55,7 +55,7 @@
 	--stance_tooltip_left: 0px;
 
 	--bestiary_entry_tooltip_top: 0px;
-	--bestiary_entry_tooltip_left: 0px;
+	--bestiary_entry_tooltip_left: 200px;
 
 	--actions_div_height_default: 420px;
 	--actions_div_height_combat: 120px;

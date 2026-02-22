@@ -286,7 +286,7 @@ function create_item_tooltip_content({item, options={}}) {
             });
         }
 
-        let EquipSlotMap = {"sword":"剑","head":"头部","trident":"三叉戟","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","axe":"斧子","props":"道具","method":"秘法","special":"特殊","realm":"领域"}
+        let EquipSlotMap = {"sword":"剑","head":"头部","trident":"三叉戟","moonwheel":"月轮","torso":"躯干","legs":"腿部","feet":"脚部","pickaxe":"镐子","axe":"斧子","props":"道具","method":"秘法","special":"特殊","realm":"领域"}
         if(item.equip_slot === "weapon") {
             item_tooltip += `<br>类型: <b>${EquipSlotMap[item.weapon_type]}</b>`;
         }
@@ -476,7 +476,7 @@ function create_effect_tooltip(effect_name, duration) {
                 let sign = "";
                 tooltip.innerHTML += `${EffectToolTipMap[key]} : x${sign}${stat_value.multiplier}`;
             }
-            else tooltip.innerHTML += `${EffectToolTipMap[key]} : ${sign}${stat_value.flat}`;
+            else tooltip.innerHTML += `${EffectToolTipMap[key]} : ${sign}${format_number(stat_value.flat)}`;
     }
     tooltip.appendChild(effects_div);
     return tooltip;
@@ -653,6 +653,8 @@ function end_activity_animation() {
     if(down_max) message_log.scrollTop = message_log.scrollHeight;
 
 }
+
+window.log_message = log_message;
 
 function format_rewards(rewards) {
     let formatted = '';
@@ -1164,7 +1166,7 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
     if("quality" in target_item) {
         item_control_div.dataset.item_quality = target_item.quality;
     }
-    let EquipSlotMap = {"sword":"剑","head":"头部","trident":"三叉戟","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法","special":"特殊","realm":"领域"};
+    let EquipSlotMap = {"sword":"剑","head":"头部","trident":"三叉戟","moonwheel":"月轮","torso":"躯干","legs":"腿部","feet":"脚部","weapon":"武器","props":"道具","method":"秘法","special":"特殊","realm":"领域"};
     if(target_item.tags?.equippable) {
         if(target_item.tags.tool) {
             item_name_div.innerHTML = `<span class = "item_slot" >[tool]</span> <span>${target_item.getName()}</span>`;
@@ -2742,7 +2744,7 @@ function update_stat_description(stat) {
     } 
     Object.keys(character.stats.flat).forEach(stat_type => {
         if(character.stats.flat[stat_type][stat] && character.stats.flat[stat_type][stat] !== 0) {
-            target.innerHTML += `<br>${BreakDownMap[stat_type]}: +${Math.round(100*character.stats.flat[stat_type][stat])/100}`;
+            target.innerHTML += `<br>${BreakDownMap[stat_type]}: +${format_number(character.stats.flat[stat_type][stat])}`;
         }
     });
     Object.keys(character.stats.multiplier).forEach(stat_type => {
@@ -2814,7 +2816,7 @@ function format_money(num) {
         let cB=Math.floor(((num-cD*1e9+500e9)/1e12)%1000);
         if(cB!=0 && num<1e21) value = (`<span class="coin coin_moneyT">${cB}B</span> `) + value;
         let cU=Math.floor(((num-cB*1e12+500e12)/1e15)%1000000000);
-        if(cU!=0 && num<1e24) value = (`<span class="coin coin_moneyQa">${cU}U</span> `) + value;
+        if(cU!=0 && num<1e27) value = (`<span class="coin coin_moneyQa">${cU.toLocaleString('en-US')}U</span> `) + value;
         let cJ=Math.floor(((num)/1e24));
         if(cJ!=0) value = (`<span class="coin coin_moneySp">${cJ}Δ</span> `) + value;
         return sign + value;

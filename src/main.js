@@ -107,12 +107,14 @@ const global_flags = {
     is_deep_forest_beaten: false,
     is_realm_enabled: false,
     is_evolve_studied:false,
+    is_moonwheel_unlocked: false,
 };
 const flag_unlock_texts = {
     is_gathering_unlocked: "你获得了收集材料的能力！",
     is_crafting_unlocked: "你获得了合成物品和装备的能力！",
     is_realm_enabled: "领悟【微火】的进化之路已经被打通！",
     is_evolve_studied: "你掌握了【初等进化结晶】的凝聚方法！",
+    is_moonwheel_unlocked: "你掌握了【银霜月轮】的合成方法！[WIP]",
 }
 
 // special stats
@@ -772,6 +774,196 @@ function get_enemy_killcount(){
     });
     return K_sum;
 }
+function textline_special(t_key){
+    let displayed_text = "";
+        if(t_key == "DeathCount-1")
+        {   
+            displayed_text = "如今也算是历经了" + format_number(total_deaths)  + "次生死呢，<br>也知道了父亲大人的话是什么意思。";
+        }
+        else if(t_key == "Realm-A3"){   
+            displayed_text = `……<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>？！` ;
+        }
+        else if(t_key == "Realm-A4"){   
+            let a4_realm = character.xp.current_level;
+            if(a4_realm >= 12) displayed_text = `都到大地级中期了还不去？<br>再这样出去别说你是我女儿！<br>` ;
+            else displayed_text = `你的自创剑法，<br>足以令你发挥出超过大地级五阶的实力。<br>` ;
+
+            if(enemy_killcount["百方[荒兽森林 ver.][BOSS]"]) displayed_text += "...等会，百方已经被你揍哭了???<br>";
+            else displayed_text += "待你历练有成，那区区百方，自是不足为惧！<br>";
+
+            displayed_text += "家族秘境，每半年开启一次。<br>这段时间，你就留在家族，<br>巩固你当前的境界实力吧。";
+            let T=(current_game_time.day-1)*10800+current_game_time.hour*60+current_game_time.minute;
+            T=T%270000;
+            T=270000-T;
+            current_game_time.go_up(T)
+            displayed_text += `<br><br>跳过了${Math.floor(T/10800)}血洛日,${Math.floor((T%10800)/60)}时,${T%60}分钟游戏内时间。`;
+            displayed_text += `<br><br>在这段时间内， ${character.name} 修炼获取了 ${format_number(Math.sqrt(T*1e10))} 经验！`;
+            add_xp_to_character(Math.sqrt(T*1e10),false);
+            update_displayed_time();
+        }
+        else if(t_key == "A6-check"){
+            displayed_text += `当前的灵阵强度是 ${inf_combat.A6.cur}层 , <br>上限是 ${inf_combat.A6.cap}层！`;
+            displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,1)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%`;
+        }   
+        else if(t_key == "A6-up"){
+            if(inf_combat.A6.cur < inf_combat.A6.cap){
+                inf_combat.A6.cur++;
+                if(inf_combat.A6.cur < 9999) displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
+                else displayed_text += `灵阵功率已达绝对上限【9999】。`
+                inf_combat.A6.cur = Math.min(inf_combat.A6.cur,9999);
+
+            }
+            else{
+                displayed_text += `灵阵功率已达当前上限...<br>想要继续提高的话，先重新清理敌人吧。`;
+            }
+        }   
+        else if(t_key == "A6-down"){
+            if(inf_combat.A6.cur > 6){
+                inf_combat.A6.cur--;
+                displayed_text += `功率降低！当前强度：${inf_combat.A6.cur+1} -> ${inf_combat.A6.cur}`;
+            }
+            else{
+                displayed_text += `如果想要少于五层的灵阵，直接去前面的区域就好了...`;
+            }
+        }  
+        else if(t_key == "A7-begin"){
+            let age=Math.round(current_game_time.year - 1359 + (current_game_time.era-31698)*10081);
+            displayed_text += `能在<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>的境界 , <br>${age}岁的年龄，<br>走到结界湖这里，你已经是非常优秀的纳家后人。`;
+
+            displayed_text += `<br>  若我纳家诞生一位天才，<br>或许能重新兴盛，替我报了未尽的仇怨。<br>`;
+
+            if(character.xp.current_level >= 15) displayed_text += `结界已经松动到这种程度了吗...<br>之前，这里还只能容纳大地级中期以下的修者进入的。<br>`;
+            if(age <= 12) displayed_text += `哇！！！居然如此年轻，我纳家振兴在即！<br>`;
+            if(age >= 1000) displayed_text += `我寻思...在这里沉睡了一个纪元不到，<br>外面的宇宙规则都改了？<br>，大地级不应该只有0.1纪元的寿命的嘛...<br>`;
+            else if(age >= 500) displayed_text += `喂喂，这里不是给纳家年轻人用的秘境吗...<br>`;
+            else if(age >= 50) displayed_text += `诶，多少岁...算了啦。<br>有领悟在，什么时候开始都不迟！<br>`;
+            
+        }
+        else if(t_key == "A7-exp"){
+            add_xp_to_skill({skill: skills["Stance mastery"], xp_to_add: 9.999e11});
+            displayed_text += `<br><br> 获取了9999亿【秘法精通】经验值。`;
+        }
+        else if(t_key == "A8-killcount"){
+            let killcount = get_enemy_killcount();
+            displayed_text += `目前为止，${character.name} <br>已经制造了 ${killcount} 份杀戮。<br><br>`;
+            if(killcount < 5e4) displayed_text += `可以在这样的世界中，<br>不造下无谓的杀戮，<br>${character.name} 即使在整个燕岗领中<br>，也是最无瑕的大地级后期强者之一了。`;
+            else if(killcount < 2e5) displayed_text += `在残酷的血洛大陆上，<br>弱肉强食无可厚非。<br>只要问心无愧，<br>敌人们就只是前进路上的踏板。`;
+            else if(killcount < 1e6) displayed_text += `每当冰冷的敌人化作温暖的<br><b>宝石，刀币与价值点，</b><br>${character.name}就感到一股暖流从心中升起。<br>多多杀戮或许在遥远的未来可以促进吸收血洛晶，<br>但更重要的还是不要因杀意失去了理智。`;
+            else{
+                displayed_text += `纯洁的${character.name}<br>善良的${character.name}<br>乖孩子${character.name}<br>这是一场游戏<br>让我看看你到底能够<br>堕落的多么肮脏呢`;
+            }
+        }
+        else if(t_key == "JY-check"){
+            let C_HP = character.stats.full.max_health;
+            let C_realm = character.xp.current_level;
+            if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
+            else{
+                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.35))}<br>`;
+                let C_moon = current_game_time.moon();
+                let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
+                let MM2 = ["生命恢复 1%","生命上限 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
+                displayed_text += `<br>目前的月相为 ${MM1[C_moon]}，<br>赐福内容为 ${MM2[C_moon]}.(1800s)`
+                displayed_text += `<br>⚠️接受皎月祝福会清空原有状态效果⚠️`;
+                
+            }
+        }
+        else if(t_key == "JY-sacrifice"){
+            let C_realm = character.xp.current_level;
+            if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
+            else{
+                let C_money = Math.round(character.stats.full.max_health ** 1.35);
+                if(character.money < C_money)
+                {
+                    displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
+                }
+                else
+                {
+                    displayed_text += `钱包: ${format_money(character.money)} ->`;
+                    character.money -= C_money;
+                    displayed_text += `${format_money(character.money)}.<br>`;
+                    update_displayed_money();
+                    displayed_text += `原有的状态效果全部被皎月净化了！`;
+                    
+                    Object.keys(active_effects).forEach(key => {
+                        delete active_effects[key];
+                    });
+                    let MM3 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
+                    let C_moon = current_game_time.moon();
+                    let moon_effect = "皎月祝福·"+MM3[C_moon];
+                    active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
+                    
+                    character.stats.add_active_effect_bonus();
+                    update_character_stats();
+                    update_displayed_effect_durations();
+                    update_displayed_effects();
+
+
+                }
+            }
+        }
+        else if(t_key == "A7-reactor"){
+            start_reactor_minigame();
+        }
+        else if(t_key == "jjhzx"){
+
+            if(character.equipment.special?.name == "结界湖之心")
+            {
+                character.equipment.special = null;
+                add_to_character_inventory([{item: item_templates["结界湖之心·材"], count: 1}]);
+                update_displayed_equipment(); 
+                character.stats.add_all_equipment_bonus();
+                update_displayed_stats();
+                displayed_text += `你的【结界湖之心】已经被转化为【结界湖之心·材】，<br>可以继续升级为【飞船之心】。`;
+                log_message("获取了 结界湖之心·材","combat_loot");
+            }
+            else displayed_text += `请将【结界湖之心】佩戴后再次尝试！`;
+        }
+        else if(t_key == "3-1-nanami"){
+            if(character.equipment.special?.name == "纳娜米(飞船)") displayed_text += `(摸)可可,天空级一般来说不会发烧了哦。<br>她不是一直被你拽在身边，不肯放走吗?<br>`;
+            else displayed_text += `是啊，迫不及待就离开了。<br>娜娜这孩子，也有一颗强者的心啊。<br>`;
+
+            let hx_money = 1e18 / (current_game_time.day_count ** 2); 
+            hx_money *= Math.random()*0.4+0.8;
+            hx_money = Math.round(hx_money);
+            displayed_text += `纳可姐妹修炼时长仅有${current_game_time.day_count}天，却双双突破天空级，<br>这绝对是燕岗领罕有的事情。无数人前来贺喜。<br>他们带来了总共${format_money(hx_money)}的礼品。<br>纳布又往里贴了20%，<br>平分给了纳可和纳娜米。<br>纳可收到了${format_money(Math.round(hx_money * 0.6))}`;
+            character.money += Math.round(hx_money * 0.6);
+            update_displayed_money();
+
+            displayed_text += `[纳布]你姐姐的事，不用太担心。<br>你只管好好修炼，直到彻底成长起来，<br>到时候再去协助她就是。<br>`;
+        }
+        else if(t_key.includes("pz")){
+            let T_S = t_key;
+            let pz_map = {"pz-Bq":"紫色刀币","pz-my":"秘银锭","pz-bs":"史诗黄宝石"};//凭证
+            let cs_map = {"pz-Bq":250,"pz-my":30,"pz-bs":80};//cost
+            //检查物品是否足够，扣除物品，如果不够就返回
+            let pz_key = "{\"id\":\""+"荒兽凭证"+"\"}";//凭证
+            let C_pz = cs_map[T_S];//Cost_凭证
+            if(character.inventory[pz_key] != undefined)
+            {
+                let T_cnt = Math.floor(character.inventory[pz_key].count/C_pz);//TODO - count
+                if(T_cnt != 0) remove_from_character_inventory([{ 
+                    item_key: pz_key,           
+                    item_count: C_pz * T_cnt,
+                }]);
+                if(T_cnt != 0) add_to_character_inventory([{ "item": getItem(item_templates[pz_map[T_S]]), "count": T_cnt }]);
+                displayed_text += `消耗了 ${C_pz * T_cnt} 个 荒兽凭证，<br>`;
+                displayed_text += `兑换了 ${T_cnt} 个 ${pz_map[T_S]}。<br>`;
+
+            }
+            else displayed_text += `未发现【荒兽凭证】！<br>兑换点需要它才能兑换物品...`;
+        }
+        else if(t_key == "lf-1"){
+            displayed_text +=  `你的精神念力不错，又拥有 ${inf_combat.RM==2?"一":"二"}重领域，<br>
+            你${(character.equipment.weapon==undefined)?("赤手空拳"):((character.equipment.weapon.weapon_type=="sword")?"手里的那把剑":"手里的那把三叉戟")},不适合你。<br>
+            如果换成念力兵器，会更强。<br><br>
+            这把我刚才手搓的【秘银月轮】，<br>
+            还有这类月轮的制作方法[WIP]，<br>
+            就送给你了。
+            `
+            add_to_character_inventory([{item: getItem({...item_templates["秘银月轮"], quality: 159}), count: 1}]);
+        }
+        return displayed_text;
+}
 
 /**
  * 
@@ -849,182 +1041,7 @@ function start_textline(textline_key){
     let displayed_text = textline.text;
     if(textline.unlocks.spec != "" && textline.unlocks.spec != undefined)
     {
-        if(textline.unlocks.spec == "DeathCount-1")
-        {   
-            displayed_text = "如今也算是历经了" + format_number(total_deaths)  + "次生死呢，<br>也知道了父亲大人的话是什么意思。";
-        }
-        else if(textline.unlocks.spec == "Realm-A3"){   
-            displayed_text = `……<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>？！` ;
-        }
-        else if(textline.unlocks.spec == "Realm-A4"){   
-            let a4_realm = character.xp.current_level;
-            if(a4_realm >= 12) displayed_text = `都到大地级中期了还不去？<br>再这样出去别说你是我女儿！<br>` ;
-            else displayed_text = `你的自创剑法，<br>足以令你发挥出超过大地级五阶的实力。<br>` ;
-
-            if(enemy_killcount["百方[荒兽森林 ver.][BOSS]"]) displayed_text += "...等会，百方已经被你揍哭了???<br>";
-            else displayed_text += "待你历练有成，那区区百方，自是不足为惧！<br>";
-
-            displayed_text += "家族秘境，每半年开启一次。<br>这段时间，你就留在家族，<br>巩固你当前的境界实力吧。";
-            let T=(current_game_time.day-1)*10800+current_game_time.hour*60+current_game_time.minute;
-            T=T%270000;
-            T=270000-T;
-            current_game_time.go_up(T)
-            displayed_text += `<br><br>跳过了${Math.floor(T/10800)}血洛日,${Math.floor((T%10800)/60)}时,${T%60}分钟游戏内时间。`;
-            displayed_text += `<br><br>在这段时间内， ${character.name} 修炼获取了 ${format_number(Math.sqrt(T*1e10))} 经验！`;
-            add_xp_to_character(Math.sqrt(T*1e10),false);
-            update_displayed_time();
-        }
-        else if(textline.unlocks.spec == "A6-check"){
-            displayed_text += `当前的灵阵强度是 ${inf_combat.A6.cur}层 , <br>上限是 ${inf_combat.A6.cap}层！`;
-            displayed_text += `<br>当前的效果是： <br>敌人属性 +${inf_combat.A6.cur*8}%  <br>掉落 +${(Math.pow(1+inf_combat.A6.cur*0.08,1)*100-100).toFixed(2)}%<br>经验 +${(Math.pow(1+inf_combat.A6.cur*0.08,1.5)*100-100).toFixed(2)}%`;
-        }   
-        else if(textline.unlocks.spec == "A6-up"){
-            if(inf_combat.A6.cur < inf_combat.A6.cap){
-                inf_combat.A6.cur++;
-                if(inf_combat.A6.cur < 9999) displayed_text += `功率加大！当前强度：${inf_combat.A6.cur-1} -> ${inf_combat.A6.cur}`;
-                else displayed_text += `灵阵功率已达绝对上限【9999】。`
-                inf_combat.A6.cur = Math.min(inf_combat.A6.cur,9999);
-
-            }
-            else{
-                displayed_text += `灵阵功率已达当前上限...<br>想要继续提高的话，先重新清理敌人吧。`;
-            }
-        }   
-        else if(textline.unlocks.spec == "A6-down"){
-            if(inf_combat.A6.cur > 6){
-                inf_combat.A6.cur--;
-                displayed_text += `功率降低！当前强度：${inf_combat.A6.cur+1} -> ${inf_combat.A6.cur}`;
-            }
-            else{
-                displayed_text += `如果想要少于五层的灵阵，直接去前面的区域就好了...`;
-            }
-        }  
-        else if(textline.unlocks.spec == "A7-begin"){
-            let age=Math.round(current_game_time.year - 1359 + (current_game_time.era-31698)*10081);
-            displayed_text += `能在<span class="realm_terra">${window.REALMS[character.xp.current_level][1]}</span>的境界 , <br>${age}岁的年龄，<br>走到结界湖这里，你已经是非常优秀的纳家后人。`;
-
-            displayed_text += `<br>  若我纳家诞生一位天才，<br>或许能重新兴盛，替我报了未尽的仇怨。<br>`;
-
-            if(character.xp.current_level >= 15) displayed_text += `结界已经松动到这种程度了吗...<br>之前，这里还只能容纳大地级中期以下的修者进入的。<br>`;
-            if(age <= 12) displayed_text += `哇！！！居然如此年轻，我纳家振兴在即！<br>`;
-            if(age >= 1000) displayed_text += `我寻思...在这里沉睡了一个纪元不到，<br>外面的宇宙规则都改了？<br>，大地级不应该只有0.1纪元的寿命的嘛...<br>`;
-            else if(age >= 500) displayed_text += `喂喂，这里不是给纳家年轻人用的秘境吗...<br>`;
-            else if(age >= 50) displayed_text += `诶，多少岁...算了啦。<br>有领悟在，什么时候开始都不迟！<br>`;
-            
-        }
-        else if(textline.unlocks.spec == "A7-exp"){
-            add_xp_to_skill({skill: skills["Stance mastery"], xp_to_add: 9.999e11});
-            displayed_text += `<br><br> 获取了9999亿【秘法精通】经验值。`;
-        }
-        else if(textline.unlocks.spec == "A8-killcount"){
-            let killcount = get_enemy_killcount();
-            displayed_text += `目前为止，${character.name} <br>已经制造了 ${killcount} 份杀戮。<br><br>`;
-            if(killcount < 5e4) displayed_text += `可以在这样的世界中，<br>不造下无谓的杀戮，<br>${character.name} 即使在整个燕岗领中<br>，也是最无瑕的大地级后期强者之一了。`;
-            else if(killcount < 2e5) displayed_text += `在残酷的血洛大陆上，<br>弱肉强食无可厚非。<br>只要问心无愧，<br>敌人们就只是前进路上的踏板。`;
-            else if(killcount < 1e6) displayed_text += `每当冰冷的敌人化作温暖的<br><b>宝石，刀币与价值点，</b><br>${character.name}就感到一股暖流从心中升起。<br>多多杀戮或许在遥远的未来可以促进吸收血洛晶，<br>但更重要的还是不要因杀意失去了理智。`;
-            else{
-                displayed_text += `纯洁的${character.name}<br>善良的${character.name}<br>乖孩子${character.name}<br>这是一场游戏<br>让我看看你到底能够<br>堕落的多么肮脏呢`;
-            }
-        }
-        else if(textline.unlocks.spec == "JY-check"){
-            let C_HP = character.stats.full.max_health;
-            let C_realm = character.xp.current_level;
-            if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
-            else{
-                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.35))}<br>`;
-                let C_moon = current_game_time.moon();
-                let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
-                let MM2 = ["生命恢复 1%","生命上限 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];
-                displayed_text += `<br>目前的月相为 ${MM1[C_moon]}，<br>赐福内容为 ${MM2[C_moon]}.(1800s)`
-                displayed_text += `<br>⚠️接受皎月祝福会清空原有状态效果⚠️`;
-                
-            }
-        }
-        else if(textline.unlocks.spec == "JY-sacrifice"){
-            let C_realm = character.xp.current_level;
-            if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
-            else{
-                let C_money = Math.round(character.stats.full.max_health ** 1.35);
-                if(character.money < C_money)
-                {
-                    displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
-                }
-                else
-                {
-                    displayed_text += `钱包: ${format_money(character.money)} ->`;
-                    character.money -= C_money;
-                    displayed_text += `${format_money(character.money)}.<br>`;
-                    update_displayed_money();
-                    displayed_text += `原有的状态效果全部被皎月净化了！`;
-                    
-                    Object.keys(active_effects).forEach(key => {
-                        delete active_effects[key];
-                    });
-                    let MM3 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
-                    let C_moon = current_game_time.moon();
-                    let moon_effect = "皎月祝福·"+MM3[C_moon];
-                    active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
-                    
-                    character.stats.add_active_effect_bonus();
-                    update_character_stats();
-                    update_displayed_effect_durations();
-                    update_displayed_effects();
-
-
-                }
-            }
-        }
-        else if(textline.unlocks.spec == "A7-reactor"){
-            start_reactor_minigame();
-        }
-        else if(textline.unlocks.spec == "jjhzx"){
-
-            if(character.equipment.special?.name == "结界湖之心")
-            {
-                character.equipment.special = null;
-                add_to_character_inventory([{item: item_templates["结界湖之心·材"], count: 1}]);
-                update_displayed_equipment(); 
-                character.stats.add_all_equipment_bonus();
-                update_displayed_stats();
-                displayed_text += `你的【结界湖之心】已经被转化为【结界湖之心·材】，<br>可以继续升级为【飞船之心】。`;
-                log_message("获取了 结界湖之心·材","combat_loot");
-            }
-            else displayed_text += `请将【结界湖之心】佩戴后再次尝试！`;
-        }
-        else if(textline.unlocks.spec == "3-1-nanami"){
-            if(character.equipment.special?.name == "纳娜米(飞船)") displayed_text += `(摸)可可,天空级一般来说不会发烧了哦。<br>她不是一直被你拽在身边，不肯放走吗?<br>`;
-            else displayed_text += `是啊，迫不及待就离开了。<br>娜娜这孩子，也有一颗强者的心啊。<br>`;
-
-            let hx_money = 1e18 / (current_game_time.day_count ** 2); 
-            hx_money *= Math.random()*0.4+0.8;
-            hx_money = Math.round(hx_money);
-            displayed_text += `纳可姐妹修炼时长仅有${current_game_time.day_count}天，却双双突破天空级，<br>这绝对是燕岗领罕有的事情。无数人前来贺喜。<br>他们带来了总共${format_money(hx_money)}的礼品。<br>纳布又往里贴了20%，<br>平分给了纳可和纳娜米。<br>纳可收到了${format_money(Math.round(hx_money * 0.6))}`;
-            character.money += Math.round(hx_money * 0.6);
-            update_displayed_money();
-
-            displayed_text += `[纳布]你姐姐的事，不用太担心。<br>你只管好好修炼，直到彻底成长起来，<br>到时候再去协助她就是。<br>`;
-        }
-        else if(textline.unlocks.spec.includes("pz")){
-            let T_S = textline.unlocks.spec;
-            let pz_map = {"pz-Bq":"紫色刀币","pz-my":"秘银锭","pz-bs":"史诗黄宝石"};//凭证
-            let cs_map = {"pz-Bq":250,"pz-my":30,"pz-bs":80};//cost
-            //检查物品是否足够，扣除物品，如果不够就返回
-            let pz_key = "{\"id\":\""+"荒兽凭证"+"\"}";//凭证
-            let C_pz = cs_map[T_S];//Cost_凭证
-            if(character.inventory[pz_key] != undefined)
-            {
-                let T_cnt = Math.floor(character.inventory[pz_key].count/C_pz);//TODO - count
-                if(T_cnt != 0) remove_from_character_inventory([{ 
-                    item_key: pz_key,           
-                    item_count: C_pz * T_cnt,
-                }]);
-                if(T_cnt != 0) add_to_character_inventory([{ "item": getItem(item_templates[pz_map[T_S]]), "count": T_cnt }]);
-                displayed_text += `消耗了 ${C_pz * T_cnt} 个 荒兽凭证，<br>`;
-                displayed_text += `兑换了 ${T_cnt} 个 ${pz_map[T_S]}。<br>`;
-
-            }
-            else displayed_text += `未发现【荒兽凭证】！<br>兑换点需要它才能兑换物品...`;
-        }
+        displayed_text += textline_special(textline.unlocks.spec);
     }
 /*
 赐福消耗当前生命上限^1.40的钱币，

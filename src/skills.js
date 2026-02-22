@@ -18,6 +18,7 @@ const weapon_type_to_skill = {
     "axe": "Axes",
     "dagger": "Daggers",
     "trident": "Tridents",
+    "moonwheel": "Moonwheels",
     "hammer": "Hammers",
     "sword": "Swords",
     "spear": "Spears",
@@ -1025,6 +1026,25 @@ function format_skill_rewards(milestone){
                                  },
                                   get_effect_description: ()=> {
                                       return `增加持三叉戟时暴击率 ${Math.round(skills["Tridents"].get_coefficient()*1000- 1000)/10 }%`;
+                                  },
+                                  
+                                  max_level_coefficient: 2
+                            });
+    skills["Moonwheels"] = new Skill({skill_id: "Moonwheels", 
+                                  parent_skill: "Weapon mastery",
+                                  names: {0:"银霜月轮·未入门",20: "银霜月轮·一重",40:"银霜月轮·二重",60:"银霜月轮·三重",80:"银霜月轮·四重",100:"银霜月轮·五重",120:"银霜月轮·圆满"}, 
+                                  category: "Weapon",
+                                  description: "操纵【银霜月轮】念力兵器的能力。每20级会蜕变，大幅提升普攻倍率。", rewards: {
+                                    milestones: {
+                                    }
+                                 },
+                                   base_xp_cost:1e10,
+                                   max_level: 120,
+                                  get_effect_description: ()=> {
+                                    let phase = Math.floor(skills["Moonwheels"].current_level / 20);
+                                    let phase_mul = {0:1,1:3,2:6,3:10,4:16,5:24,6:32};
+                                      return `增加持月轮时暴击率 ${Math.round(skills["Moonwheels"].get_coefficient()*1000- 1000)/10 }%，<br>持月轮时普攻倍率变为${phase_mul[phase]}倍。`;
+
                                   },
                                   
                                   max_level_coefficient: 2

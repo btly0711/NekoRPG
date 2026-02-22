@@ -318,7 +318,8 @@ class WeaponComponent extends ItemComponent {
         if(item_data.component_type !== "axe head" && item_data.component_type !== "hammer head"
         && item_data.component_type !== "short blade" && item_data.component_type !== "long blade"
         && item_data.component_type !== "short handle" && item_data.component_type !== "long handle"
-        && item_data.component_type !== "medium handle" && item_data.component_type !== "triple blade") {
+        && item_data.component_type !== "medium handle" && item_data.component_type !== "triple blade"
+        && item_data.component_type !== "wheel core" && item_data.component_type !== "wheel head") {
             throw new Error(`No such weapon component type as ${item_data.component_type}`);
         }
         this.component_type = item_data.component_type;
@@ -855,7 +856,12 @@ class Weapon extends Equippable {
         && item_templates[this.components.head].component_type === "triple blade") {
             //short handle + triple blade = trident
             this.weapon_type = "trident";
+        }else if(item_templates[this.components.handle].component_type === "wheel core" 
+        && item_templates[this.components.head].component_type === "wheel head") {
+            //wheel core + wheel head = moon wheel
+            this.weapon_type = "moonwheel";
         } else {
+            this.weapon_type = "moonwheel";
             throw new Error(`Combination of elements of types ${item_templates[this.components.handle].component_type} and ${item_templates[this.components.head].component_type} does not exist!`);
         }
 
@@ -895,7 +901,7 @@ class Weapon extends Equippable {
     } 
 
     getName() {
-        let WTM = {"sword":"剑","trident":"三叉戟","21":"22","31":"32"}
+        let WTM = {"sword":"剑","trident":"三叉戟","moonwheel":"月轮","31":"32"}
         return `${item_templates[this.components.head].name_prefix} ${this.weapon_type === "hammer" ? "战锤" : WTM[this.weapon_type]}`;
     }
 }
@@ -3136,6 +3142,36 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+
+    
+    item_templates["凝胶轮芯"] = new WeaponComponent({
+        name: "凝胶轮芯", description: "基础款式的【月轮】核心。只能说勉强能用...",
+        component_type: "wheel core",
+        value: 7.2e9,
+        component_tier: 9,
+        stats: {
+            crit_multiplier: {
+                flat: 0.2,
+            },
+        }
+    });
+    item_templates["秘银轮锋"] = new WeaponComponent({
+        name: "秘银轮锋", description: "秘银锭制造的【月轮】镀层。作为三阶念力兵器材料显然不合格，但施展前两重时仍然足够坚固。",
+        component_type: "wheel head",
+        value: 360e9,
+        component_tier: 10,
+        name_prefix: "秘银",
+        attack_value: 1800000,
+        stats: {
+            crit_rate: {
+                flat: 0.1,
+            },
+            attack_speed: {
+                multiplier: 1.1,
+            },
+        }
+    });
+
 })();
 //武器
 (function(){
@@ -3196,6 +3232,12 @@ item_templates["Twist liek a snek"] = new Book({
         components: {
             head: "红钢戟头",
             handle: "凝胶剑柄",
+        }
+    });
+    item_templates["秘银月轮"] = new Weapon({
+        components: {
+            head: "秘银轮锋",
+            handle: "凝胶轮芯",
         }
     });
 })();
@@ -3931,6 +3973,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 54e9,
         material_type: "metal",
         image: "image/item/mythril_ingot.png",
+    });
+    item_templates["峰"] = new Material({
+        id: "峰",
+        name: "峰", 
+        description: "<span class='realm_cloudy'>云霄级巅峰</span><br><b><span style='color:#00fa9a'>百线流</span> <span style='color:#edec9f'>金空法则</span><br><span style='color:lime'>4.489垓</span> <span style='color:red'>167.24京</span> <span style='color:blue'>86.49京</span></b> <br><br>价值连城……但是，前提是你有命拿。", 
+        value: 1.21e24,
+        material_type: "metal",
+        image: "image/item/bigbrother.png",
     });
     
     item_templates["结界湖之心·材"] = new Material({
