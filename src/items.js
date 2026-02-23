@@ -2336,7 +2336,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 545455,
         stats: {
             health_regeneration_flat: {
-                flat: 150,
+                flat: 225,
             },
         }
     });
@@ -2347,7 +2347,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 4444444,
         stats: {
             max_health: {
-                flat: 300000,
+                flat: 450000,
             },
         }
     });
@@ -2364,7 +2364,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: -1000,
             },
             agility: {
-                flat: 4000,
+                flat: 6000,
             }
         }
     });
@@ -2375,7 +2375,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 23456789,
         stats: {
             attack_power: {
-                flat: 4000,
+                flat: 6000,
             },
             health_regeneration_percent: {
                 flat: -1,
@@ -3051,6 +3051,41 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["旋律剑刃"] = new WeaponComponent({
+        name: "旋律剑刃", description: "旋律合金锭制造的剑刃。冷兵器的潜力已经被完全挖掘，它们的额外词条不会继续加强。",
+        component_type: "long blade",
+        value: 600e9,
+        component_tier: 11,
+        name_prefix: "秘银",
+        attack_value: 2880000,
+        stats: {
+            crit_rate: {
+                flat: 0.15,
+            },
+            attack_speed: {
+                multiplier: 1.16,
+            },
+        }
+    });
+    item_templates["旋律戟头"] = new WeaponComponent({
+        name: "旋律戟头", description: "旋律合金锭制造的三叉戟头。冷兵器的潜力已经被完全挖掘，它们的额外词条不会继续加强。",
+        component_type: "triple blade",
+        value: 1800e9,
+        component_tier: 11,
+        name_prefix: "旋律",
+        attack_value: 3600000,
+        stats: {
+            crit_rate: {
+                flat: 0.10,
+            },
+            attack_mul: {
+                multiplier: 3.60,
+            },
+            attack_speed: {
+                multiplier: 0.50,
+            },
+        }
+    });
     item_templates["骨剑柄"] = new WeaponComponent({
         name: "骨剑柄", description: "由白骨制成的剑柄。易碎，所以使用时会影响自身",
         component_type: "short handle",
@@ -3142,6 +3177,23 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["光暗剑柄"] = new WeaponComponent({
+        name: "光暗剑柄", description: "这是最后的剑柄了。看起来还不错的样子，但真不一定比得上300%凝胶..",
+        component_type: "short handle",
+        value: 400e9,
+        component_tier: 11,
+        stats: {
+            attack_mul: {
+                flat: 0.4,
+            },
+            crit_multiplier: {
+                flat: 0.6,
+            },
+            agility: {
+                flat: 1440000,
+            },
+        }
+    });
 
     
     item_templates["凝胶轮芯"] = new WeaponComponent({
@@ -3168,6 +3220,33 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_speed: {
                 multiplier: 1.1,
+            },
+        }
+    });
+    item_templates["光暗轮芯"] = new WeaponComponent({
+        name: "光暗轮芯", description: "入门的【月轮】核心部件。比起被强行操控的凝胶，光暗枝丫算得上正统念力感应材料了。",
+        component_type: "wheel core",
+        value: 2400e9,
+        component_tier: 11,
+        stats: {
+            crit_multiplier: {
+                flat: 0.5,
+            },
+        }
+    });
+    item_templates["旋律轮锋"] = new WeaponComponent({
+        name: "旋律轮锋", description: "旋律合金锭制造的【月轮】镀层。B6级的它是合格的二阶念力兵器，不会阻碍到速度的提高。",
+        component_type: "wheel head",
+        value: 5400e9,
+        component_tier: 11,
+        name_prefix: "秘银",
+        attack_value: 3600000,
+        stats: {
+            crit_rate: {
+                flat: 0.18,
+            },
+            attack_speed: {
+                multiplier: 1.15,
             },
         }
     });
@@ -3460,6 +3539,58 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             attack_power: {
                 flat: 20000,
+            },
+        },
+    });
+    item_templates["黑森帽子"] = new Armor({
+        name: "黑森帽子", 
+        description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
+        value: 480e9,
+        component_type: "helmet interior",
+        base_defense: 810000,
+        component_tier: 11,
+        stats: {
+            attack_power: {
+                flat: 240000,
+            },
+        },
+    });
+    item_templates["黑森背心"] = new Armor({
+        name: "黑森背心", 
+        description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
+        value: 640e9,
+        component_type: "chestplate interior",
+        base_defense: 1080000,
+        component_tier: 11,
+        stats: {
+            attack_power: {
+                flat: 320000,
+            },
+        },
+    });
+    item_templates["黑森裤子"] = new Armor({
+        name: "黑森裤子", 
+        description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
+        value: 640e9,
+        component_type: "leg armor interior",
+        base_defense: 1080000,
+        component_tier: 11,
+        stats: {
+            attack_power: {
+                flat: 320000,
+            },
+        },
+    });
+    item_templates["黑森袜子"] = new Armor({
+        name: "黑森袜子", 
+        description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
+        value: 320e6,
+        component_type: "shoes interior",
+        base_defense: 540000,
+        component_tier: 11,
+        stats: {
+            attack_power: {
+                flat: 160000,
             },
         },
     });
@@ -3973,6 +4104,30 @@ item_templates["Twist liek a snek"] = new Book({
         value: 54e9,
         material_type: "metal",
         image: "image/item/mythril_ingot.png",
+    });
+    item_templates["旋律合金锭"] = new Material({
+        id: "旋律合金锭",
+        name: "旋律合金锭", 
+        description: "使用兽角和荧光精华炼制出的合金。强度B6级，但不适于做盔甲...否则黑暗中自带发光索敌效果。", 
+        value: 648e9,
+        material_type: "metal",
+        image: "image/item/melodyalloy_ingot.png",
+    });
+    item_templates["光暗枝丫"] = new Material({
+        id: "光暗枝丫",
+        name: "光暗枝丫", 
+        description: "被荧光精华注入的黑白枝丫。与精神念力更为适配，外表也更为顺滑。", 
+        value: 512e9,
+        material_type: "metal",
+        image: "image/item/light_twig.png",
+    });
+    item_templates["黑森织料"] = new Material({
+        id: "黑森织料",
+        name: "黑森织料", 
+        description: "性质改良过的叶片。看起来不像是叶片了...不然喵可要变成野人了！", 
+        value: 704e9,
+        material_type: "metal",
+        image: "image/item/mixed_comp04.png",
     });
     item_templates["峰"] = new Material({
         id: "峰",
@@ -4767,6 +4922,31 @@ item_templates["Twist liek a snek"] = new Book({
         description: "虽然卖相不好，却是荧光精华想要长期发光不可或缺的补给品。它还有一些邪恶的用法..", 
         value: 48e9,
         image: "image/item/B3_oil.png",
+    });
+    //3-2
+    item_templates["天空兽角"] = new Loot({
+        name: "天空兽角", 
+        description: "黑暗森林中荒兽的角。被原能浸润过了，是合金的好材料。", 
+        value: 405e9,
+        image: "image/item/sky_horn.png",
+    });
+    item_templates["B4·能量核心"] = new Loot({
+        name: "B4·能量核心", 
+        description: "如果放进核心反应堆会导致瞬间爆炸。这样不稳定的燃料需要更可靠的反应堆。", 
+        value: 218.7e9,
+        image: "image/item/B4_crystal.png",
+    });
+    item_templates["黑白枝丫"] = new Loot({
+        name: "黑白枝丫", 
+        description: "很遗憾，它们不是超巨大的宝石。不过，它们拥有【念力操控】属性..", 
+        value: 341e9,
+        image: "image/item/binary_twig.png",
+    });
+    item_templates["黑森叶片"] = new Loot({
+        name: "黑森叶片", 
+        description: "看似很小其实又大又厚。在恰当的处理后可以做成更好的织料。", 
+        value: 486e9,
+        image: "image/item/forest_leaf.png",
     });
 
 

@@ -448,8 +448,8 @@ function format_skill_rewards(milestone){
                                 names: {0: "战斗"}, 
                                 category: "Combat",
                                 description: "总体战斗技能", 
-                                max_level_coefficient: 2,
-                                base_xp_cost: 60,
+                                max_level_coefficient: 16,
+                                base_xp_cost: 300,
                                 get_effect_description: ()=> {
                                     return `增加 ${Math.round(skills["Combat"].get_coefficient("multiplicative")*1000-1000)/10}% 敏捷`;
                                 }});
@@ -1047,7 +1047,7 @@ function format_skill_rewards(milestone){
 
                                   },
                                   
-                                  max_level_coefficient: 2
+                                  max_level_coefficient: 4
                             });
 
     skills["Axes"] = new Skill({skill_id: "Axes", 

@@ -246,6 +246,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     } else if (subcategory === "components" || selected_recipe.recipe_type === "component") {
         const result_level = 4*result_tier;
         exp_value = Math.max(exp_value,1.2 ** result_level * 4);
+        exp_value *= material_count / 3;
 
     } else {
         const result_level = 4*Math.max(selected_components[0].component_tier,selected_components[1].component_tier);
@@ -270,6 +271,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "海绿锭", count: 2, result_id: "海绿剑刃"}, 
             {material_id: "红钢锭", count: 2, result_id: "红钢剑刃"}, 
             {material_id: "秘银锭", count: 2, result_id: "秘银剑刃"}, 
+            {material_id: "旋律合金锭", count: 2, result_id: "旋律剑刃"}, 
             //未完待续
         ],
         item_type: "Component",
@@ -284,7 +286,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "活化柳木", count: 2, result_id: "柳木剑柄"}, 
             {material_id: "缠绕水晶", count: 2, result_id: "水晶剑柄"}, 
             {material_id: "固态凝胶", count: 2, result_id: "凝胶剑柄"}, 
-            //未完待续
+            {material_id: "光暗枝丫", count: 2, result_id: "光暗剑柄"}, 
         ],
         item_type: "Component",
         recipe_skill: "Forging"
@@ -297,8 +299,29 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "蓝金锭", count: 6, result_id: "蓝金戟头"}, 
             {material_id: "海绿锭", count: 6, result_id: "海绿戟头"}, 
             {material_id: "红钢锭", count: 6, result_id: "红钢戟头"}, 
-            {material_id: "秘银锭", count: 6, result_id: "秘银戟头"}, 
+            {material_id: "秘银锭", count: 6, result_id: "秘银戟头"},
+            {material_id: "旋律合金锭", count: 6, result_id: "旋律戟头"},  
             //未完待续
+        ],
+        item_type: "Component",
+        recipe_skill: "Forging"
+    });
+    forging_recipes.components["轮锋"] = new ComponentRecipe({
+        name: "轮锋",
+        materials: [
+            {material_id: "秘银锭", count: 18, result_id: "秘银轮锋"}, 
+            {material_id: "旋律合金锭", count: 18, result_id: "旋律轮锋"}, 
+            //未完待续 某个临界点后改为36
+        ],
+        item_type: "Component",
+        recipe_skill: "Forging"
+    });
+    forging_recipes.components["轮芯"] = new ComponentRecipe({
+        name: "轮芯",
+        materials: [
+            {material_id: "固态凝胶", count: 12, result_id: "凝胶轮芯"}, 
+            {material_id: "光暗枝丫", count: 12, result_id: "光暗轮芯"}, 
+            //未完待续 某个临界点后改为24
         ],
         item_type: "Component",
         recipe_skill: "Forging"
@@ -369,6 +392,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "活性织料", count: 3, result_id: "活性帽子"},
             {material_id: "湛蓝芦苇", count: 3, result_id: "苇编帽子"},
             {material_id: "高能织料", count: 3, result_id: "高能帽子"},
+            {material_id: "黑森织料", count: 3, result_id: "黑森帽子"},
         ],
         item_type: "Component",
         recipe_skill: "Crafting",
@@ -398,6 +422,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "活性织料", count: 4, result_id: "活性背心"},
             {material_id: "湛蓝芦苇", count: 4, result_id: "苇编背心"},
             {material_id: "高能织料", count: 4, result_id: "高能背心"},
+            {material_id: "黑森织料", count: 4, result_id: "黑森背心"},
         ],
         item_type: "Component",
         recipe_skill: "Crafting",
@@ -427,6 +452,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "活性织料", count: 4, result_id: "活性裤子"},
             {material_id: "湛蓝芦苇", count: 4, result_id: "苇编裤子"},
             {material_id: "高能织料", count: 4, result_id: "高能裤子"},
+            {material_id: "黑森织料", count: 4, result_id: "黑森裤子"},
         ],
         item_type: "Component",
         recipe_skill: "Crafting",
@@ -457,6 +483,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "活性织料", count: 2, result_id: "活性袜子"},
             {material_id: "湛蓝芦苇", count: 2, result_id: "苇编袜子"},
             {material_id: "高能织料", count: 2, result_id: "高能袜子"},
+            {material_id: "黑森织料", count: 2, result_id: "黑森袜子"},
         ],
         item_type: "Component",
         recipe_skill: "Crafting",
@@ -976,12 +1003,22 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     });
     
     smelting_recipes.items2["重铸飞船核心"] = new ItemRecipe({
-        name: "重铸飞船之心",
+        name: "重铸飞船核心",
         recipe_type: "material",
         materials: [{material_id: "重甲残骸", count: 999},{material_id: "红黑印记", count: 999},{material_id: "B1·能量核心", count: 999},{material_id: "初等进化结晶", count:1}], 
         result: {result_id: "B6·飞船核心", count: 1},
         success_chance: [0.5,1],
         recipe_level: [48,48],
+        recipe_skill: "Smelting",
+    });
+
+    smelting_recipes.items3["旋律合金(x2)"] = new ItemRecipe({
+        name: "旋律合金(x2)",
+        recipe_type: "material",
+        materials: [{material_id: "天空兽角", count: 2},{material_id: "荧光精华", count: 3},{material_id: "B4·能量核心", count: 1}], 
+        result: {result_id: "旋律合金锭", count: 2},
+        success_chance: [0.5,1],
+        recipe_level: [27,44],
         recipe_skill: "Smelting",
     });
 })();
@@ -1322,6 +1359,26 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "B1·能量核心", count: 100},
         success_chance: [0.3,1],
         recipe_level: [40,40],
+        recipe_skill: "Alchemy",
+    });
+
+
+    alchemy_recipes.items3["光暗枝丫"] = new ItemRecipe({
+        name: "光暗枝丫",
+        recipe_type: "material",
+        materials: [{material_id: "黑白枝丫", count: 1},{material_id: "荧光精华", count: 2}], 
+        result: {result_id: "光暗枝丫", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [40,43],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items3["黑森织料"] = new ItemRecipe({
+        name: "黑森织料",
+        recipe_type: "material",
+        materials: [{material_id: "黑森叶片", count: 1},{material_id: "荧光精华", count: 1},{material_id: "沼泽兽油", count: 2}], 
+        result: {result_id: "黑森织料", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [40,46],
         recipe_skill: "Alchemy",
     });
 

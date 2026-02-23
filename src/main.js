@@ -55,7 +55,8 @@ import { end_activity_animation,
          update_displayed_book,
          update_backup_load_button,
          update_other_save_load_button,
-         format_number,add_bestiary_zones
+         format_number,add_bestiary_zones,
+         unlock_moonwheel,
         } from "./display.js";
 import { compare_game_version, get_hit_chance } from "./misc.js";
 import { stances } from "./combat_stances.js";
@@ -114,7 +115,7 @@ const flag_unlock_texts = {
     is_crafting_unlocked: "你获得了合成物品和装备的能力！",
     is_realm_enabled: "领悟【微火】的进化之路已经被打通！",
     is_evolve_studied: "你掌握了【初等进化结晶】的凝聚方法！",
-    is_moonwheel_unlocked: "你掌握了【银霜月轮】的合成方法！[WIP]",
+    is_moonwheel_unlocked: "你掌握了【银霜月轮】的合成方法！",
 }
 
 // special stats
@@ -970,10 +971,12 @@ function textline_special(t_key){
             你${(character.equipment.weapon==undefined)?("赤手空拳"):((character.equipment.weapon.weapon_type=="sword")?"手里的那把剑":"手里的那把三叉戟")},不适合你。<br>
             如果换成念力兵器，会更强。<br><br>
             这把我刚才手搓的【秘银月轮】，<br>
-            还有这类月轮的制作方法[WIP]，<br>
+            还有这类月轮的制作方法，<br>
             就送给你了。
             `
+            unlock_moonwheel();
             add_to_character_inventory([{item: getItem({...item_templates["秘银月轮"], quality: 159}), count: 1}]);
+            log_message("提示:轮锋+轮芯的组装 现已解锁","enemy_enhanced")
         }
         return displayed_text;
 }
@@ -4119,8 +4122,8 @@ function update_displayed_reactor()
     evolve.style.display = global_flags["is_evolve_studied"]?"inline-block":"none";
 
     let frametime = 0.03;
-    B1_diff.innerText = "消耗速度:" + format_number(Math.log10(inf_combat.RT.B1+1)*0.4*inf_combat.RT.power/8000) +"/s "+"临界度:"+format_number(Math.log10(inf_combat.RT.B1+1)*40) + "%";
-    A7_diff.innerText = "消耗速度:" + format_number(Math.sqrt(inf_combat.RT.A7*inf_combat.RT.power)*0.4/20) + "/s";
+    B1_diff.innerText = "消耗:" + format_number(Math.log10(inf_combat.RT.B1+1)*0.4*inf_combat.RT.power/8000) +"/s "+"临界度:"+format_number(Math.log10(inf_combat.RT.B1+1)*40) + "%";
+    A7_diff.innerText = "消耗:" + format_number(Math.sqrt(inf_combat.RT.A7*inf_combat.RT.power)*0.4/20) + "/s";
     temp_diff.innerText = `(+${format_number(inf_combat.RT.power * 100 / inf_combat.RT.ER)}/s,-${format_number((inf_combat.RT.temp - ((inf_combat.RT.temp-20)*(1-(frametime/((100*inf_combat.RT.ER)**0.333)))+20))/frametime)}/s)`
     rad_diff.innerText = `(+${format_number(inf_combat.RT.power)}/s)`
 

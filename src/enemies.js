@@ -4975,6 +4975,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "天空兽角", chance:0.025},
             //9D
         ],
     });
@@ -4992,6 +4993,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "荧光精华", chance:0.05},
+            {item_name: "黑森叶片", chance:0.01},
             //9D
         ],
     });
@@ -5007,6 +5010,8 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "B4·能量核心", chance:0.02},
+            {item_name: "黑白枝丫", chance:0.015},
             //9D
         ],
     });
@@ -5022,6 +5027,7 @@ class Enemy {
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
+            {item_name: "B4·能量核心", chance:0.03},
             //9D
         ],
     });
@@ -5037,6 +5043,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
+            {item_name: "黑白枝丫", chance:0.03},
+            {item_name: "黑森叶片", chance:0.015},
             //16D
         ],
     });
@@ -5052,6 +5060,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
+            {item_name: "荧光精华", chance:0.09},
+            {item_name: "B4·能量核心", chance:0.05},
             //16D
         ],
     });
@@ -5067,6 +5077,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
+            {item_name: "天空兽角", chance:0.04},
             //16D
         ],
     });
@@ -5082,6 +5093,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
+            {item_name: "黑白枝丫", chance:0.04},
             //16D
         ],
     });
@@ -5098,6 +5110,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
+            {item_name: "秘银锭", chance:0.3},
             //16D
         ],
     });
@@ -5118,6 +5131,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
+            {item_name: "黑白枝丫", chance:0.02},
+            {item_name: "天空兽角", chance:0.03},
             //16D
         ],
     });
@@ -5133,7 +5148,7 @@ class Enemy {
         stats: {health: 6000e4, attack: 4500e4, agility: 4400e4, attack_speed: 1.4, defense: 3400e4}, 
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
-            {item_name: "史诗蓝宝石", chance:0.014},
+            {item_name: "天空兽角", chance:0.04},
             //16D
         ],
     });
@@ -5149,6 +5164,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.014},
             {item_name: "史诗蓝宝石", chance:0.035},
+            {item_name: "紫色刀币", chance:0.03},
             //28D
         ],
     });
@@ -5164,6 +5180,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.014},
             {item_name: "史诗蓝宝石", chance:0.035},
+            {item_name: "黑森叶片", chance:0.06},
             //28D
         ],
     });
@@ -5179,6 +5196,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.014},
             {item_name: "史诗蓝宝石", chance:0.035},
+            {item_name: "荧光精华", chance:0.2},
+            {item_name: "天空兽角", chance:0.05},
             //28D
         ],
     });
@@ -5194,6 +5213,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.014},
             {item_name: "史诗蓝宝石", chance:0.035},
+            {item_name: "B4·能量核心", chance:0.05},
+            {item_name: "黑白枝丫", chance:0.07},
             //28D
         ],
     });

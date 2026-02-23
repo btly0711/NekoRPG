@@ -566,12 +566,12 @@
                             </div>
                             <span style="color:#CFFEE3">
                                 <b>B1·能量核心</b>:<span id="B1_core_num">0</span>
+                            <span id="B1_core_diff">0</span>
+                            <br>
                                 <span class="money_button" onclick = "reactor(1,1)">[+1]</span>
                                 <span class="money_button" onclick = "reactor(1,10)">[+10]</span>
                                 <span class="money_button" onclick = "reactor(1,100)">[+100]</span>
                                 <span class="money_button" onclick = "reactor(1,1000)">[+1K]</span>
-                            <br>
-                            <span id="B1_core_diff">0</span>
 
                             </span> 
                         </div>
@@ -582,12 +582,12 @@
                             </div>
                             <span style="color:#FBD6FB">
                                 <b>A7·能量核心</b>:<span id="A7_core_num">0</span>
+                            <span id="A7_core_diff">0</span>
+                            <br>
                                 <span class="money_button" onclick = "reactor(2,1)">[+1]</span>
                                 <span class="money_button" onclick = "reactor(2,10)">[+10]</span>
                                 <span class="money_button" onclick = "reactor(2,100)">[+100]</span>
                                 <span class="money_button" onclick = "reactor(2,1000)">[+1K]</span>
-                            <br>
-                            <span id="A7_core_diff">0</span>
                             </span> 
                         </div>
                         <div id = "LD_core_div">
@@ -755,8 +755,9 @@
                         </div>
                         <div class="crafting_category" data-crafting_category="smelting"  style="display:none">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_2 active_selection_button" onclick="switchCraftingRecipesSubpage('smelting', 'items')">第一幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_2" onclick="switchCraftingRecipesSubpage('smelting', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('smelting', 'items')">第一幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('smelting', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('smelting', 'items3')">第三幕</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items">
                             </div>
@@ -784,8 +785,9 @@
                         </div>
                         <div class="crafting_category" data-crafting_category="alchemy"  style="display:none">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_2 active_selection_button" onclick="switchCraftingRecipesSubpage('alchemy', 'items')">第一幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_2" onclick="switchCraftingRecipesSubpage('alchemy', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('alchemy', 'items')">第一幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('alchemy', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('alchemy', 'items3')">第三幕</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="alchemy" data-crafting_subcategory="items">
 
@@ -1489,7 +1491,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.12b";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.13";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
