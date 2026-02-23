@@ -817,6 +817,19 @@ function textline_special(t_key){
                 displayed_text += `灵阵功率已达当前上限...<br>想要继续提高的话，先重新清理敌人吧。`;
             }
         }   
+        else if(t_key == "A6-max"){
+            if(inf_combat.A6.cur < inf_combat.A6.cap){
+                let d_cur = inf_combat.A6.cur;
+                inf_combat.A6.cur = inf_combat.A6.cap;
+                if(inf_combat.A6.cur < 9999) displayed_text += `功率拉满！当前强度：${d_cur} -> ${inf_combat.A6.cur}`;
+                else displayed_text += `灵阵功率已达绝对上限【9999】。`
+                inf_combat.A6.cur = Math.min(inf_combat.A6.cur,9999);
+
+            }
+            else{
+                displayed_text += `灵阵功率已达当前上限...<br>想要继续提高的话，先重新清理敌人吧。`;
+            }
+        }   
         else if(t_key == "A6-down"){
             if(inf_combat.A6.cur > 6){
                 inf_combat.A6.cur--;
@@ -3725,6 +3738,7 @@ function load(save_data) {
             active_effects[effect] = save_data.active_effects[effect];
         });
     }
+    
     if(save_data.character.hp_to_full == null || save_data.character.hp_to_full >= character.stats.full.max_health) {
         character.stats.full.health = 1;
     } else {
@@ -3733,7 +3747,7 @@ function load(save_data) {
     //if missing hp is null (save got corrupted) or its more than max_health, set health to minimum allowed (which is 1)
     //otherwise just do simple substraction
     //then same with s.t.a.m.i.n.a below
-    
+    character.stats.add_active_effect_bonus();
     character.stats.add_gem_bonus();
 
     update_character_stats();

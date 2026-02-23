@@ -449,8 +449,10 @@ character.stats.add_weapon_type_bonuses = function() {
         if(character.equipment.weapon == null) {
                 //没有武器 = 加成很少 Unarmed可以去死了！
                 character.stats.multiplier.skills.crit_rate = (skills["Unarmed"].get_coefficient());
+                character.stats.multiplier.skills.attack_mul = 1;
         } else {
                 character.stats.multiplier.skills.crit_rate = skills[weapon_type_to_skill[character.equipment.weapon.weapon_type]].get_coefficient();
+                character.stats.multiplier.skills.attack_mul = 1;
                 if(character.equipment.weapon.weapon_type == "moonwheel")
                 {
                         let phase = Math.floor(skills["Moonwheels"].current_level / 20);

@@ -953,7 +953,7 @@ class Textline {
                 name: "诶，在这样的核心区域，你应该也有秘境的一些权限吧",
                 text: "啊对的对的！<br>我可以帮您调节秘境的灵阵功率！<br>这样您就可以得到更多的战斗领悟了！",
                 unlocks: {
-                    textlines: [{dialogue: "秘境心火精灵", lines: ["check"]},{dialogue: "秘境心火精灵", lines: ["powerup"]},{dialogue: "秘境心火精灵", lines: ["powerdown"]}],
+                    textlines: [{dialogue: "秘境心火精灵", lines: ["check"]},{dialogue: "秘境心火精灵", lines: ["powerup"]},{dialogue: "秘境心火精灵", lines: ["powerdown"]},{dialogue: "秘境心火精灵", lines: ["powermax"]}],
                     locations: ["纳家秘境 - ∞"],
                 },
                 
@@ -964,6 +964,7 @@ class Textline {
                 name: "现在灵阵功率开了多少哇？",
                 text: "",
                 unlocks: {
+                    textlines:[{dialogue: "秘境心火精灵", lines: ["powermax"]}],
                     spec: "A6-check"
                 },
             }),
@@ -981,6 +982,14 @@ class Textline {
                 text: "",
                 unlocks: {
                     spec: "A6-down"
+                },
+            }),
+            "powermax": new Textline({ 
+                is_unlocked: false,
+                name: "将灵阵功率提高到当前上限(ノ▼Д▼)ノ",
+                text: "",
+                unlocks: {
+                    spec: "A6-max"
                 },
             }),
         }
