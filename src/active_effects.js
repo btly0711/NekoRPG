@@ -82,7 +82,7 @@ effect_templates["恢复 A1"] = new ActiveEffect({
     name: "恢复 A1",
     effects: {
         stats: {
-            health_regeneration_flat: {flat: 1200},
+            health_regeneration_flat: {flat: 1500},
         }
     }
 });
@@ -93,9 +93,9 @@ effect_templates["强化 A1"] = new ActiveEffect({
     effects: {
         stats: {
             health_regeneration_percent: {flat: 1},
-            attack_power:{flat:1280},
-            defense:{flat:1280},
-            agility:{flat:1280},
+            attack_power:{flat:1600},
+            defense:{flat:1600},
+            agility:{flat:1600},
         }
     }
 });
@@ -135,10 +135,10 @@ effect_templates["饱食 IV"] = new ActiveEffect({
     name: "饱食 IV",
     effects: {
         stats: {
-            health_regeneration_flat: {flat: 1600},
-            attack_power:{flat:320},
-            defense:{flat:320},
-            agility:{flat:320},
+            health_regeneration_flat: {flat: 2000},
+            attack_power:{flat:400},
+            defense:{flat:400},
+            agility:{flat:400},
         }
     }
 });
