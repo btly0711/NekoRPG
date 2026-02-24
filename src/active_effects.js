@@ -226,6 +226,25 @@ effect_templates["坚固 A9"] = new ActiveEffect({
         }
     }
 });
+
+effect_templates["灵闪 B9"] = new ActiveEffect({
+    name: "灵闪 B9",
+    effects: {stats: {}}
+});
+effect_templates["散华 B9"] = new ActiveEffect({
+    name: "散华 B9",
+    effects: {stats: {health_regeneration_percent: {flat: -1}}}
+});
+effect_templates["反戈 B9"] = new ActiveEffect({
+    name: "反戈 B9",
+    effects: {stats: {attack_mul: {multiplier: 0.7}}}
+});
+effect_templates["异界之门 B9"] = new ActiveEffect({
+    name: "异界之门 B9",
+    effects: {stats: {attack_mul: {multiplier: 0.1}}}
+});
+
+
 effect_templates["皎月祝福·新月"] = new ActiveEffect({
     name: "皎月祝福·新月",
     effects: {stats: {health_regeneration_percent: {flat: 1}}}

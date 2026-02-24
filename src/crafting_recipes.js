@@ -1382,6 +1382,42 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Alchemy",
     });
 
+    alchemy_recipes.items3["进阶炼金药剂-散华"] = new ItemRecipe({
+        name: "进阶炼金药剂-散华",
+        recipe_type: "material",
+        materials: [{material_id: "黑白枝丫", count: 10},{material_id: "荧光精华", count: 20},{material_id: "沼泽兽油",count:20}], 
+        result: {result_id: "B9·散华药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [48,49],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items3["进阶炼金药剂-反戈"] = new ItemRecipe({
+        name: "进阶炼金药剂-反戈",
+        recipe_type: "material",
+        materials: [{material_id: "黑白枝丫", count: 10},{material_id: "荧光精华", count: 20},{material_id: "沼泽兽油",count:20}], 
+        result: {result_id: "B9·反戈药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [48,49],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items3["进阶炼金药剂-灵闪"] = new ItemRecipe({
+        name: "进阶炼金药剂-灵闪",
+        recipe_type: "material",
+        materials: [{material_id: "黑白枝丫", count: 10},{material_id: "荧光精华", count: 20},{material_id: "沼泽兽油",count:20}], 
+        result: {result_id: "B9·灵闪药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [48,49],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items3["进阶炼金药剂-异界"] = new ItemRecipe({
+        name: "进阶炼金药剂-异界",
+        recipe_type: "material",
+        materials: [{material_id: "黑白枝丫", count: 10},{material_id: "荧光精华", count: 20},{material_id: "沼泽兽油",count:20}], 
+        result: {result_id: "B9·异界药剂", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [48,49],
+        recipe_skill: "Alchemy",
+    });
 
     
 })();

@@ -95,8 +95,11 @@ window.REALMS=[
 [20,"天空级二阶",500000,3e8,6e12,"sky"],//5e
 [21,"天空级三阶",1500000,10e8,36e12,"sky"],//15e
 [22,"天空级四阶",4000000,25e8,216e12,"sky"],//40e 
-[23,"天空级五阶",16000000,90e8,170.1411e36,"sky"],//150e 经验应为1200e12.
-[24,"天空级六阶",40000000,250e8,210e12,"sky"],//96000e
+[23,"天空级五阶",16000000,60e8,170.1411e36,"sky"],//100e 经验应为1200e12.
+[24,"天空级六阶",40000000,150e8,3200e12,"sky"],//250e
+[25,"天空级七阶",70000000,350e8,9600e12,"sky"],//600e
+[26,"天空级八阶",3e8,900e8,3.84e16,"sky"],//1500e
+[27,"天空级巅峰",8e8,1500e8,15.36e16,"sky"],//3000e
 
 ];
 //境界，X级存储了该等级的数据
@@ -1272,11 +1275,11 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 }
                 else do_enemy_combat_action(enemy_id,Spec_S,1);//普攻
 
-                if(current_enemies[enemy_id].spec.includes(13) && current_enemies != null && E_round <= 3)//惑幻
+                if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(13) && E_round <= 3)//惑幻
                 {
                     do_enemy_combat_action(enemy_id,"[惑幻]"+Spec_S,0);
                 }
-                if(current_enemies[enemy_id].spec.includes(14) && current_enemies != null)//斩阵
+                if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(14))//斩阵
                 {
                     if(E_round == 2)
                     {
@@ -1291,7 +1294,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                         do_enemy_combat_action(enemy_id,"[斩阵·终]"+Spec_S,4);
                     }
                 }
-                if(current_enemies[enemy_id].spec.includes(42) && current_enemies != null)//圣阵
+                if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(42))//圣阵
                 {
                     if(E_round == 5)
                     {
@@ -1306,7 +1309,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                         do_enemy_combat_action(enemy_id,"[圣阵·三相]"+Spec_S,27);
                     }
                 }
-                if(current_enemies[enemy_id].spec.includes(20) && current_enemies != null){//天剑
+                if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(20)){//天剑
                     do_enemy_combat_action(enemy_id,"[天剑]"+Spec_S,1.5,2);
                 }
                 if(current_enemies[enemy_id].spec.includes(36) && E_round == 20){//自爆
@@ -1358,6 +1361,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 }
             } //limits the maximum correction to +/- 5ms, just to be safe
         }
+        else clearTimeout(enemy_attack_loops[enemy_id]);
     }, enemy_attack_cooldowns[enemy_id]*1000/(40*tickrate) - enemy_timer_adjustment[enemy_id]);
 }
 
@@ -1496,7 +1500,12 @@ function faint(c_log)
         change_location(last_location_with_bed);
         start_sleeping();
     } else {
-        change_location(current_location.parent_location.name);
+        if(current_location.parent_location != undefined) change_location(current_location.parent_location.name);
+        else{
+            change_location(last_location_with_bed);
+            start_sleeping();
+            log_message("在战斗区外流血而昏迷 - 已自动回到床上！","gathering_loot")
+        }
     }
     return;
 }
@@ -1615,6 +1624,24 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
             return;
         }
     }//激光
+    if(active_effects["灵闪 B9"]!=undefined){
+        if(attacker.stats.attack < character.stats.full.attack_power){
+            spec_mul *= (1 - 0.5 *character.stats.full.defense / attacker.stats.defense);
+            spec_mul = Math.max(spec_mul,0);
+            spec_hint += '[灵闪·正]';
+        } else {
+            spec_mul *= (1 + 3 *character.stats.full.defense / attacker.stats.defense);
+            spec_hint += '[灵闪·逆]';
+        }
+    }
+    if(active_effects["散华 B9"]!=undefined){
+        E_atk_mul_f *= Math.max(( 1 - ((character.stats.full.health/attacker.stats.health) ** 0.5) * 0.1),0);
+        spec_hint += '[散华^1/2]';
+    }
+
+
+//"如果敌人的攻击少于角色的2倍，角色受到的伤害减少(角色防御/敌人防御)的二分之一。反之，增加(角色防御/敌人防御)的两倍。该效果不会把伤害降低到0以下。", 
+    
     const hit_chance = get_hit_chance(attacker.stats.agility, character.stats.full.agility * evasion_agi_modifier);
 
 
@@ -1681,6 +1708,8 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         log_message(character.name + " 受到了 " + format_number(damage_taken) + "  伤害" + spec_hint, "hero_attacked");
     }
 
+
+
     
     if(!attacker.spec.includes(28)) add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
     if(attacker.spec.includes(31)){
@@ -1690,6 +1719,32 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     }//回春
 
     if(fainted) faint(" 失败了");
+    else if(active_effects["反戈 B9"]!=undefined){
+        attacker.stats.health -= damage_taken * 0.50;
+        log_message(attacker.name + " 受到了 " + format_number(damage_taken * 0.50)  + " 点反弹伤害","hero_attacked");
+        //attacker受到damage_taken点伤害
+        if(attacker.stats.health <= 0){
+            total_kills++;
+            attacker.stats.health = 0; //to not go negative on displayed value
+            log_message(attacker.name + "被反伤击败。没有获取经验值。","enemy_defeated");
+
+            var loot = attacker.get_loot();
+            if(loot.length > 0) {
+                log_loot(loot);
+                add_to_character_inventory(loot);
+            }
+            
+            kill_enemy(attacker);
+            if(current_enemies.filter(enemy => enemy.is_alive).length == 0){ //all enemies defeated, do relevant things and set new combat
+                current_location.enemy_groups_killed += 1;
+                if(current_location.enemy_groups_killed > 0 && current_location.enemy_groups_killed % current_location.enemy_count == 0) {
+                    get_location_rewards(current_location);
+                }
+                document.getElementById("enemy_count_div").children[0].children[1].innerHTML = current_location.enemy_count - current_location.enemy_groups_killed % current_location.enemy_count;
+                set_new_combat();
+            }
+        }
+    }
 
     update_displayed_health();
 }
@@ -1871,6 +1926,15 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             sdmg_mul *= Math.min(character.stats.full.defense / (target.stats.defense + 0.0001) * 0.6,10);
             Spec_E += "[牵制]";
         }
+        if(active_effects["异界之门 B9"]!=undefined)
+        {
+            target.stats.spec_value ||= {};
+            
+            target.stats.spec_value[-1] ||= 1;
+            sdmg_mul *= target.stats.spec_value[-1];
+            target.stats.spec_value[-1] += 1;
+            Spec_E += "[异界之门]";
+        }
 
 
         if(target.spec.includes(1))
@@ -1920,7 +1984,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             damage_dealt = b_health;
             total_kills++;
             target.stats.health = 0; //to not go negative on displayed value
-
+        
             //gained xp multiplied ny TOTAL size of enemy group raised to 1/3
             let xp_reward = target.xp_value * (current_enemies.length**0.3334);
             let realm_diff =  get_enemy_realm(target) - character.get_hero_realm();

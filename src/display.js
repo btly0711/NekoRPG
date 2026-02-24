@@ -2829,9 +2829,11 @@ function format_money(num) {
         let cB=Math.floor(((num-cD*1e9+500e9)/1e12)%1000);
         if(cB!=0 && num<1e21) value = (`<span class="coin coin_moneyT">${cB}B</span> `) + value;
         let cU=Math.floor(((num-cB*1e12+500e12)/1e15)%1000000000);
-        if(cU!=0 && num<1e27) value = (`<span class="coin coin_moneyQa">${cU.toLocaleString('en-US')}U</span> `) + value;
+        if(cU!=0 && num<1e25) value = (`<span class="coin coin_moneyQa">${cU.toLocaleString('en-US')}U</span> `) + value;
+        else if(cU!=0 && num<1e27) value = (`<span class="coin coin_moneyQa">${(Math.round(cU/1000)).toLocaleString('en-US')}kU</span> `) + value;
+        else if(cU!=0 && num<1e30) value = (`<span class="coin coin_moneyQa">${(Math.round(cU/1000)).toLocaleString('en-US')}MU</span> `) + value;
         let cJ=Math.floor(((num)/1e24));
-        if(cJ!=0) value = (`<span class="coin coin_moneySp">${cJ}Δ</span> `) + value;
+        if(cJ!=0) value = (`<span class="coin coin_moneySp">${cJ.toLocaleString('en-US')}Δ</span> `) + value;
         return sign + value;
 
 

@@ -4963,6 +4963,11 @@ class Enemy {
             //9D
         ],
     });
+    //【LIFE CHANGE】
+    // 10%↑
+    //
+    // 20%↓
+
     enemy_templates["有角族壮年"] = new Enemy({
         name: "有角族壮年", 
         description: "荒兽森林敌人的进化版本。狂战士的画风和领悟真的搭配吗..", 
@@ -4971,7 +4976,7 @@ class Enemy {
         image: "image/enemy/E3201.png",
         realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
         spec: [9],
-        stats: {health: 5600e4, attack: 3100e4, agility: 2400e4, attack_speed: 1.3, defense: 1200e4}, 
+        stats: {health: 11200e4, attack: 3100e4, agility: 2400e4, attack_speed: 1.3, defense: 1200e4}, 
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
@@ -4989,7 +4994,7 @@ class Enemy {
         realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
         spec: [8],
         spec_value: {8:10},
-        stats: {health: 5000e4, attack: 3300e4, agility: 2520e4, attack_speed: 1.3, defense: 1750e4}, 
+        stats: {health: 10000e4, attack: 3300e4, agility: 2520e4, attack_speed: 1.3, defense: 1750e4}, 
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
@@ -5006,7 +5011,7 @@ class Enemy {
         image: "image/enemy/E3203.png",
         realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
         spec: [],
-        stats: {health: 1936e4, attack: 3750e4, agility: 2640e4, attack_speed: 1.3, defense: 2300e4}, 
+        stats: {health: 3864e4, attack: 3750e4, agility: 2640e4, attack_speed: 1.3, defense: 2300e4}, 
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
@@ -5023,7 +5028,7 @@ class Enemy {
         image: "image/enemy/E3204.png",
         realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
         spec: [32],
-        stats: {health: 980.1e4, attack: 4096e4, agility: 2662e4, attack_speed: 1.331, defense: 2401e4}, 
+        stats: {health: 1960.2e4, attack: 4096e4, agility: 2662e4, attack_speed: 1.331, defense: 2401e4}, 
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
@@ -5039,7 +5044,7 @@ class Enemy {
         image: "image/enemy/E3205.png",
         realm: "<span class=realm_sky><b>天空级四阶</b></span>",
         spec: [],
-        stats: {health: 7500e4, attack: 5000e4, agility: 3276.8e4, attack_speed: 1.3, defense: 2500e4}, 
+        stats: {health: 15000e4, attack: 5000e4, agility: 3276.8e4, attack_speed: 1.3, defense: 2500e4}, 
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
@@ -5056,7 +5061,7 @@ class Enemy {
         image: "image/enemy/E3206.png",
         realm: "<span class=realm_sky><b>天空级四阶</b></span>",
         spec: [9],
-        stats: {health: 5600e4, attack: 4400e4, agility: 3430e4, attack_speed: 1.3, defense: 2500e4}, 
+        stats: {health: 11200e4, attack: 4400e4, agility: 3430e4, attack_speed: 1.3, defense: 2500e4}, 
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
@@ -5073,7 +5078,7 @@ class Enemy {
         image: "image/enemy/E3207.png",
         realm: "<span class=realm_sky><b>天空级四阶</b></span>",
         spec: [],
-        stats: {health: 4500e4, attack: 5400e4, agility: 3600e4, attack_speed: 1.3, defense: 3000e4}, 
+        stats: {health: 9000e4, attack: 5400e4, agility: 3600e4, attack_speed: 1.3, defense: 3000e4}, 
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
@@ -5106,7 +5111,7 @@ class Enemy {
         realm: "<span class=realm_sky><b>天空级四阶</b></span>",
         spec: [39],
         spec_value:{39:0.8e8},
-        stats: {health: 5500e4, attack: 4200e4, agility: 4200e4, attack_speed: 1.2, defense: 2800e4}, 
+        stats: {health: 11000e4, attack: 4200e4, agility: 4200e4, attack_speed: 1.2, defense: 2800e4}, 
         loot_list: [
             {item_name: "史诗黄宝石", chance:0.035},
             {item_name: "史诗蓝宝石", chance:0.014},
@@ -5114,11 +5119,6 @@ class Enemy {
             //16D
         ],
     });
-    //【LIFE CHANGE】
-    // 10%↑
-    //
-    // 20%↓
-
     enemy_templates["黑森蝎龙"] = new Enemy({
         name: "黑森蝎龙", 
         description: "可曾记得在秘境深层被那个爆攻蝎龙支配的恐惧？从这里开始，小怪的生命比例要翻倍了！", 
@@ -5219,6 +5219,10 @@ class Enemy {
         ],
     });
 
+    //【LIFE CHANGE】
+    // 20%↑
+    //
+    // 30%↓
 
 
     

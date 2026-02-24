@@ -417,7 +417,8 @@ class Equippable extends Item {
     }
 
     getValue(quality) {
-        return round_item_price(this.value * (quality || this.quality));
+        return round_item_price(this.value * (quality/100 || this.quality/100) * rarity_multipliers[this.getRarity(quality)]);
+        //WIP
     } 
 
     getRarity(quality){
@@ -510,7 +511,7 @@ class Artifact extends Equippable {
     }
 
     getValue() {
-        return this.value;
+        return round_item_price(this.value);
     } 
 
     getStats(){
@@ -531,10 +532,6 @@ class Props extends Equippable {
         }
     }
 
-    getValue() {
-        return this.value;
-    } 
-
     getStats(){
         return this.stats;
     }
@@ -552,9 +549,6 @@ class Method extends Equippable {
         }
     }
 
-    getValue() {
-        return this.value;
-    } 
 
     getStats(){
         return this.stats;
@@ -573,10 +567,6 @@ class Special extends Equippable {
         }
     }
 
-    getValue() {
-        return this.value;
-    } 
-
     getStats(){
         return this.stats;
     }
@@ -593,11 +583,6 @@ class Realm extends Equippable {
             this.id = this.getName();
         }
     }
-
-    getValue() {
-        return this.value;
-    } 
-
     getStats(){
         return this.stats;
     }
@@ -2629,7 +2614,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "纳娜米",
         id: "纳娜米",
         description: "别卖姐姐！你这个恶魔！<br>(Tips:没有姐姐的话地宫不会被削弱到1/100属性)", 
-        value: 947190984,
+        value: 861082713,
         stats: {
             attack_power: {
                 multiplier: 1.3,
@@ -4382,6 +4367,46 @@ item_templates["Twist liek a snek"] = new Book({
         realmcap:24,
         image: "image/item/B3_cooked_meat.png",
     });//
+
+
+    
+    item_templates["B9·反戈药剂"] = new UsableItem({
+        name: "B9·反戈药剂", 
+        description: "反弹50%伤害，无视防御还给敌人！代价是普攻倍率-30%，而且被反伤抢走击杀的敌人没有经验。(仍然有掉落)", 
+        value: 8.4e12,
+        realmcap:27,
+        effects: [{effect: "反戈 B9", duration: 120}],
+        image: "image/item/B9_reflect.png",
+    });
+    item_templates["B9·灵闪药剂"] = new UsableItem({
+        name: "B9·灵闪药剂", 
+        description: "如果敌人的攻击少于角色的2倍，角色受到的伤害减少(角色防御/敌人防御)的二分之一。反之，增加(角色防御/敌人防御)的两倍。该效果不会把伤害降低到0以下。", 
+        value: 8.4e12,
+        realmcap:27,
+        effects: [{effect: "灵闪 B9", duration: 120}],
+        image: "image/item/B9_spiritdodge.png",
+    });
+    item_templates["B9·散华药剂"] = new UsableItem({
+        name: "B9·散华药剂", 
+        description: "敌人的攻击被削弱(角色生命/敌人生命)^0.5 * 10(单位:%)，但会造成生命流失1%。该效果不会把敌方基础攻击降低到0以下。", 
+        value: 8.4e12,
+        realmcap:27,
+        effects: [{effect: "散华 B9", duration: 120}],
+        image: "image/item/B9_sublimhealth.png",
+    });
+    item_templates["B9·异界药剂"] = new UsableItem({
+        name: "B9·异界药剂", 
+        description: "基础攻击倍率变为20%，但每次命中以40% 60%...递增。长线战斗就选它！", 
+        value: 8.4e12,
+        realmcap:27,
+        effects: [{effect: "异界之门 B9", duration: 120}],
+        image: "image/item/B9_portal.png",
+    });
+    /*
+
+
+
+    */
 })();
 //炼金
 (function(){
