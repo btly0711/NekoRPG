@@ -3056,7 +3056,7 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "long blade",
         value: 600e9,
         component_tier: 11,
-        name_prefix: "秘银",
+        name_prefix: "旋律",
         attack_value: 2880000,
         stats: {
             crit_rate: {
@@ -3584,7 +3584,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["黑森袜子"] = new Armor({
         name: "黑森袜子", 
         description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
-        value: 320e6,
+        value: 320e9,
         component_type: "shoes interior",
         base_defense: 540000,
         component_tier: 11,
