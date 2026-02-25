@@ -240,6 +240,8 @@ stances["SF_Lucky"] = new Stance({
     description: "抛弃了更强的杀伤力，而是专注于保存敌人战利品的价值。同样是攻击3-6个目标。",
     related_skill: "ReflectStarFlower",
     stat_multipliers: {
+        attack_power: 0.80,
+        attack_speed: 1.20,
         luck: 1.20,
     },
     target_count: 3,

@@ -2648,11 +2648,11 @@ function update_displayed_stats() { //updates displayed stats
     const A_mul = document.getElementById("A_mul_slot");
     A_mul.innerHTML = character.xp.current_level<=8?"Locked":"A.mul:";
     const A_mul_tt = document.getElementById("A_mul_tooltip");
-    A_mul_tt.innerHTML = character.xp.current_level<=8?"Not aviliable":"普通攻击的伤害倍率";
+    A_mul_tt.innerHTML = character.xp.current_level<=8?"Not availiable":"普通攻击的伤害倍率";
     const Luck = document.getElementById("Luck_slot");
     Luck.innerHTML = character.xp.current_level<=18?"Locked":"Luck:";
     const Luck_tt = document.getElementById("Luck_tooltip");
-    Luck_tt.innerHTML = character.xp.current_level<=18?"Not aviliable":"幸运(影响材料掉率,杀怪经验)";
+    Luck_tt.innerHTML = character.xp.current_level<=18?"Not availiable":"幸运(影响材料掉率,杀怪经验)";
 
     Object.keys(stats_divs).forEach(function(key){
         if(key === "crit_rate" || key === "crit_multiplier") {
