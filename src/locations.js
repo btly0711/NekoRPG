@@ -3298,8 +3298,8 @@ function get_location_type_penalty(type, stage, stat) {
     locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - 4"]});
     locations["赫尔沼泽"].connected_locations.push({location: locations["赫尔沼泽 - X"]});
     locations["黑暗森林"] = new Location({ 
-        connected_locations: [{location: locations["赫尔沼泽入口"], custom_text: "回到沼泽中的安全区域"}], 
-        description: "黑暗的，阴云密布的森林。纳可在此迷失了方向，周围似乎没有人烟。[V2.10前版本终点]",
+        connected_locations: [{location: locations["赫尔沼泽"], custom_text: "回到赫尔沼泽"}], 
+        description: "黑暗的，阴云密布的森林。纳可在此迷失了方向，周围似乎没有人烟。",
         name: "黑暗森林", 
         dialogues: ["峰"],
         is_unlocked: false,
@@ -3382,7 +3382,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 8e8,
-            //locations: [{location: "黑暗森林 - X"}],
+            locations: [{location: "黑暗森林 - X"}],
         },
     });
     locations["黑暗森林 - 歧路"] = new Challenge_zone({
@@ -3402,13 +3402,58 @@ function get_location_type_penalty(type, stage, stat) {
         unlock_text : "咦，前面有人？"
     });
 
+    locations["黑暗森林 - X"] = new Challenge_zone({
+        description: "峰大哥的月轮感悟限时免费送！打爆这只凶兽就好了！", 
+        enemy_count: 1, 
+        enemies_list : [["天空级凶兽[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "黑暗森林 - X",
+        bgm:15,
+        parent_location: locations["黑暗森林"],
+        repeatable_reward: {
+            locations: [{location: "飞云阁"}],
+            money:216,
+        },
+        unlock_text : "[雷冬]前面是一头变异的荒兽，恐怕达到了四阶巅峰层次。"
+    });
+
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 1"]});
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 2"]});
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 3"]});
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 4"]});
     locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - 歧路"]});
+    locations["黑暗森林"].connected_locations.push({location: locations["黑暗森林 - X"]});
 
 
+    locations["飞云阁"] = new Location({
+        connected_locations: [{location: locations["黑暗森林"], custom_text: "回到黑暗森林"}],
+        description: "商店-睡觉-箱子-合成的一站式解决方案。不愧是城里最好的客栈，感觉像家一样。[V2.20前版本终点]",
+        name: "飞云阁",
+        is_unlocked: false,
+        bgm: 1,//3-3的bgm是16 这个没打错 就是家里的bgm
+        traders: ["物品存储箱","百宝楼"],
+        dialogues: ["峰(飞云)"],
+        sleeping: {
+            text: "在飞云阁休息[+36万XP/s]",
+            xp: 600
+        },
+            crafting: {
+                is_unlocked: true, 
+                use_text: "前往炼化楼合成[Tier+12]", 
+                tiers: {
+                    crafting: 12,
+                    forging: 12,
+                    smelting: 12,
+                    cooking: 12,
+                    alchemy: 12,
+                }
+            },
+        
+    })//3-3 pre.
+    locations["黑暗森林"].connected_locations.push({location: locations["飞云阁"]});
 
 
 

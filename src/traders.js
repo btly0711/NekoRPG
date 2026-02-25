@@ -207,6 +207,13 @@ class TradeItem {
         location_name: "天外飞船",
         profit_margin: 5.4,
     });
+    traders["百宝楼"] = new Trader({
+        name: "百宝楼",
+        inventory_template: "Sky I",
+        is_unlocked: true,
+        location_name: "飞云阁",
+        profit_margin: 4.2,
+    });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",
         trade_text: `<span style="color:#c0ffe0"> <i class="material-icons">work_outline</i> 向箱子里存取物品</span>`,
@@ -481,6 +488,34 @@ class TradeItem {
             new TradeItem({item_name: "摩羽币", count: [5,25]}),
             new TradeItem({item_name: "红黑印记", count: [5,25]}),
             new TradeItem({item_name: "B1·能量核心", count: [5,10]}),
+
+
+    ];
+
+
+    inventory_templates["Sky I"] = 
+    [
+            new TradeItem({item_name: "B1·能量核心", count: [150,250]}),
+            new TradeItem({item_name: "秘银锭", count: [100,250]}),
+            new TradeItem({item_name: "沼泽·荒兽肉排", count: [10,50]}),
+
+            new TradeItem({item_name: "荧光精华", count: [50,125]}),
+            new TradeItem({item_name: "沼泽兽油", count: [50,125]}),
+
+            new TradeItem({item_name: "旋律剑", count: [1], quality: [141, 180], chance: 0.8}),
+            new TradeItem({item_name: "旋律戟", count: [1], quality: [141, 180], chance: 0.8}),
+
+            
+            new TradeItem({item_name: "黑森帽子", count: [1], quality: [141, 180], chance: 0.8}),
+            new TradeItem({item_name: "黑森背心", count: [1], quality: [141, 180], chance: 0.8}),
+            new TradeItem({item_name: "黑森裤子", count: [1], quality: [141, 180], chance: 0.8}),
+            new TradeItem({item_name: "黑森袜子", count: [1], quality: [141, 180], chance: 0.8}),
+
+            
+            new TradeItem({item_name: "天空兽角", count: [5,25]}),
+            new TradeItem({item_name: "黑白枝丫", count: [5,25]}),
+            new TradeItem({item_name: "黑森叶片", count: [5,25]}),
+            new TradeItem({item_name: "黑森织料", count: [5,10],chance:0.5}),
 
 
     ];

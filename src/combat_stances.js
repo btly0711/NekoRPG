@@ -208,4 +208,42 @@ stances["WH_Multi"] = new Stance({
     max_bonus: 3,
 });
 
+
+stances["SF_Power"] = new Stance({
+    name: "映星花·巨星",
+    id: "映星花·巨星",
+    description: "强大的单体攻击秘法，从3个方面对攻击进行叠乘。",
+    related_skill: "ReflectStarFlower",
+    stat_multipliers: {
+        attack_speed: 1.40,
+        attack_power: 1.40,
+        attack_mul  : 1.50,
+    },
+    target_count: 1,
+    max_bonus: 2,
+});
+stances["SF_Multi"] = new Stance({
+    name: "映星花·繁星",
+    id: "映星花·繁星",
+    description: "群体攻击秘法，乘区不如单体攻击，但可以一次攻击3-6个目标。",
+    related_skill: "ReflectStarFlower",
+    stat_multipliers: {
+        attack_speed: 1.20,
+        attack_power: 1.20,
+    },
+    target_count: 3,
+    max_bonus: 2,
+});
+stances["SF_Lucky"] = new Stance({
+    name: "映星花·花海",
+    id: "映星花·花海",
+    description: "抛弃了更强的杀伤力，而是专注于保存敌人战利品的价值。同样是攻击3-6个目标。",
+    related_skill: "ReflectStarFlower",
+    stat_multipliers: {
+        luck: 1.20,
+    },
+    target_count: 3,
+    max_bonus: 2,
+});
+
 export {stances};

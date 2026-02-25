@@ -728,6 +728,18 @@ function format_skill_rewards(milestone){
                                     related_stances: ["WH_Power","WH_Speed","WH_Multi"],
                                     get_effect_description: ()=> {
                                         return `增加[水无心]秘法的使用效果`;
+                                    }});   
+    skills["ReflectStarFlower"] = new Skill({skill_id: "ReflectStarFlower", 
+                                    names: {0: "映星花",10:"映星花·小成",20:"映星花·精通",30:"映星花·大成",40:"映星花·圆满"}, 
+                                    parent_skill: "Stance mastery",
+                                    description: "峰大哥教授的高级秘法。似乎可以用很久的样子。", 
+                                    max_level_coefficient: 1.25,
+                                    base_xp_cost: 100e12,
+                                    category: "Stance",
+                                    max_level: 40,
+                                    related_stances: ["SF_Power","SF_Lucky","SF_Multi"],
+                                    get_effect_description: ()=> {
+                                        return `增加[映星花]秘法的使用效果`;
                                     }});          
                                     
                                     

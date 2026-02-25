@@ -418,7 +418,6 @@ class Equippable extends Item {
 
     getValue(quality) {
         return round_item_price(this.value * (quality/100 || this.quality/100) * rarity_multipliers[this.getRarity(quality)]);
-        //WIP
     } 
 
     getRarity(quality){
@@ -3302,6 +3301,18 @@ item_templates["Twist liek a snek"] = new Book({
         components: {
             head: "秘银轮锋",
             handle: "凝胶轮芯",
+        }
+    });
+    item_templates["旋律剑"] = new Weapon({
+        components: {
+            head: "旋律剑刃",
+            handle: "光暗剑柄",
+        }
+    });
+    item_templates["旋律戟"] = new Weapon({
+        components: {
+            head: "旋律戟头",
+            handle: "光暗剑柄",
         }
     });
 })();

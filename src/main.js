@@ -92,14 +92,14 @@ window.REALMS=[
 [18,"大地级破限",150000,32500000,1080e8,"terra"],
 
 [19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
-[20,"天空级二阶",500000,3e8,6e12,"sky"],//5e
-[21,"天空级三阶",1500000,10e8,36e12,"sky"],//15e
-[22,"天空级四阶",4000000,25e8,216e12,"sky"],//40e 
-[23,"天空级五阶",16000000,60e8,170.1411e36,"sky"],//100e 经验应为1200e12.
-[24,"天空级六阶",40000000,150e8,3200e12,"sky"],//250e
-[25,"天空级七阶",70000000,350e8,9600e12,"sky"],//600e
-[26,"天空级八阶",3e8,900e8,3.84e16,"sky"],//1500e
-[27,"天空级巅峰",8e8,1500e8,15.36e16,"sky"],//3000e
+[20,"天空级二阶",500000,3e8,4e12,"sky"],//5e
+[21,"天空级三阶",1500000,10e8,16e12,"sky"],//15e
+[22,"天空级四阶",4000000,25e8,80e12,"sky"],//40e 
+[23,"天空级五阶",16000000,60e8,170.1411e36,"sky"],//100e 经验应为320e12.
+[24,"天空级六阶",40000000,150e8,1280e12,"sky"],//250e 
+[25,"天空级七阶",70000000,350e8,6000e12,"sky"],//600e
+[26,"天空级八阶",3e8,900e8,2.4e16,"sky"],//1500e
+[27,"天空级巅峰",8e8,1500e8,9.6e16,"sky"],//3000e
 
 ];
 //境界，X级存储了该等级的数据
@@ -330,6 +330,7 @@ const musicList = {
   13: 'bgms/13.mp3',
   14: 'bgms/14.mp3',
   15: 'bgms/15.mp3',
+  16: 'bgms/16.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -981,6 +982,9 @@ function textline_special(t_key){
             add_to_character_inventory([{item: getItem({...item_templates["秘银月轮"], quality: 159}), count: 1}]);
             log_message("提示:轮锋+轮芯的组装 现已解锁","enemy_enhanced")
         }
+        else if(t_key == "lf-leave"){
+            remove_from_character_inventory([{item_key:"{\"id\":\"峰\""}]);
+        }
         return displayed_text;
 }
 
@@ -1625,7 +1629,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         }
     }//激光
     if(active_effects["灵闪 B9"]!=undefined){
-        if(attacker.stats.attack < character.stats.full.attack_power){
+        if(attacker.stats.attack < character.stats.full.attack_power * 2){
             spec_mul *= (1 - 0.5 *character.stats.full.defense / attacker.stats.defense);
             spec_mul = Math.max(spec_mul,0);
             spec_hint += '[灵闪·正]';
@@ -2314,6 +2318,11 @@ function get_spec_rewards(money){
         log_message(`获取了 星解之术`, "activity_unlocked");
         return;
     }
+    if(money == 216){
+        add_xp_to_skill({skill: skills["Moonwheels"],xp_to_add: 9999e12,should_info:true,use_bonus:false,add_to_parent:false},);
+        log_message(`峰大哥演示了月轮的使用方法，【银霜月轮】获取了9999兆 经验！`, "activity_unlocked");
+        return;
+    }
     let RNG_M = Math.pow(Math.max(Math.random(),1e-6),-1.5)
     log_message(`搜刮废墟，获取了 ${format_money(Math.floor(RNG_M * money))} .`, "location_reward");
     
@@ -2339,15 +2348,15 @@ function get_spec_rewards(money){
 function get_location_rewards(location) {
 
     let should_return = false;
+        if(location.is_challenge) {
+            location.is_finished = true;
+        }
     update_displayed_combat_location(location,true);
     if(location.repeatable_reward.money && typeof location.repeatable_reward.money === "number") {
         get_spec_rewards(location.repeatable_reward.money);//2-5搜刮钱
     }
     if(location.enemy_groups_killed == location.enemy_count) { //first clear
 
-        if(location.is_challenge) {
-            location.is_finished = true;
-        }
         should_return = true;
 
     if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
@@ -2443,8 +2452,6 @@ function unlock_location(location,skip_chance = false) {
     if(!location.is_unlocked){
         location.is_unlocked = true;
         const message = location.unlock_text || `解锁地点 ${location.name}`;
-        console.log(location);
-        console.log(location.spec_hint);
         if(location.spec_hint != undefined)
         {
             log_message(location.spec_hint, "sayuki")

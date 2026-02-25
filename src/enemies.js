@@ -5727,6 +5727,23 @@ B5 6324'5986 /1'0233'4155exp
             {item_name: "史诗红宝石", chance:1},
         ],
     });
+    enemy_templates["天空级凶兽[BOSS]"] = new Enemy({
+        name: "天空级凶兽[BOSS]", 
+        description: "好潦草的名字...简直是荒兽里的路人甲。", 
+        xp_value: 63245986, 
+        rank: 3299,
+        image: "image/boss/B3202.png",
+        realm: "<span class=realm_sky><b>天空级四阶 ++</b></span>",
+        size: "small",
+        spec: [20],
+        spec_value:{},
+        tags: [],
+        stats: {health: 23e8, attack: 7000e4, agility: 5500e4, attack_speed: 1.2, defense:3500e4}, //血量200%
+        loot_list: [
+            {item_name: "史诗红宝石", chance:1},
+            {item_name: "天空兽角", chance:4},
+        ],
+    });
 
 
 

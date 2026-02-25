@@ -1550,6 +1550,87 @@ class Textline {
                 },
                 locks_lines: ["lf9"],
             }),
+            "lf10": new Textline({ 
+                is_unlocked: false,
+                name: "呼啊——终于除了那片黑漆漆的森林。",
+                text: "[雷冬]峰大人，这城里我非常熟，<br>如果您有什么想去的地方……<br>[峰]不必了……我们就在此分开吧。<br>[纳可]分开……吗？<br>(纳可严重掠过一抹失落)<br>[峰]对了，这燕岗城最好的住宿地是哪里？<br>[纳可]飞云阁<br>[峰]嗯，如果你想找我，就去飞云阁吧。<br><br>【峰】离开了队伍！",
+                unlocks: {
+                    locations: ["飞云阁"],
+                    spec:"lf-leave",
+                },
+                locks_lines: ["lf10"],
+            }),
+        }
+    });
+    
+    dialogues["峰(飞云)"] = new Dialogue({
+        name: "峰(飞云)",
+        starting_text: "和峰大哥对话",
+        textlines: {
+            "lf11": new Textline({ 
+                is_unlocked: true,
+                name: "峰大哥你……有什么想问的吗？",
+                text: "小家伙，你现在使用的秘法，<br>是从哪里得来的？",
+                unlocks: {
+                    textlines: [{dialogue: "峰(飞云)", lines: ["lf12"]}],
+                },
+                locks_lines: ["lf11"],
+            }),
+            "lf12": new Textline({ 
+                is_unlocked: false,
+                name: "……两年以前，在“天外来客”的飞船上找到的。",
+                text: "[峰]这套秘法仅仅包含基础内容，<br>尚有不很多不完善之处。<br>我且给你一套更深层次的秘法来研习。<br><br>峰手指轻弹，两条光线飞射出去，钻进了纳可眉心。<br>纳可只感觉到脑袋一阵胀痛，<br>随后突然涌现出了许多知识。<br><br>映星花·繁星，映星花·巨星，映星花·花海<br> 已加入可选秘法！",
+                unlocks: {
+                    textlines: [{dialogue: "峰(飞云)", lines: ["lf13"]}],
+                    stances: ["SF_Power","SF_Lucky","SF_Multi"],
+                },
+                locks_lines: ["lf12"],
+            }),
+            "lf13": new Textline({ 
+                is_unlocked: false,
+                name: "……这次抵御兽潮，",
+                text: "[纳可]城主府给予前几名的奖励，<br>恐怕都比不上峰大哥给的这些呢。<br>[峰]兽潮吗？<br>说起来，这其中也有蹊跷。<br>看似是由于飞船坠落所导致，<br>但据我了解，那【D9飞船】里<br>有一台超大的反应堆，<br>而这片大陆缺少安全运行它的知识。",
+                unlocks: {
+                    textlines: [{dialogue: "峰(飞云)", lines: ["lf14"]}],
+                },
+                locks_lines: ["lf13"],
+            }),
+            "lf14": new Textline({ 
+                is_unlocked: false,
+                name: "...?",
+                text: "这种原能反应堆每次爆炸，<br>都会泄露许多【原能辐射】。<br>根据现场的痕迹来看，<br>为了炼制一批【极品进化结晶】，<br>这台反应堆足足爆炸了58次。",
+                unlocks: {
+                    textlines: [{dialogue: "峰(飞云)", lines: ["lf15"]}],
+                },
+                locks_lines: ["lf14"],
+            }),
+            "lf15": new Textline({ 
+                is_unlocked: false,
+                name: "诶——可是死了这么多人啊，为什么……",
+                text: "只要万千弱者的牺牲，<br>能换来一位强者的突破，<br>对族群的价值便远大于那万千弱者。<br>而且，变异后的荒兽材料价值更高，<br>也是合适的历练对象。<br>无法接受吗？没关系。<br>说到底，我并未炸过核心反应堆。<br>这终归只是我的推断罢了。",
+                unlocks: {
+                    textlines: [{dialogue: "峰(飞云)", lines: ["lf16"]}],
+                },
+                locks_lines: ["lf15"],
+            }),
+            "lf16": new Textline({ 
+                is_unlocked: false,
+                name: "突然……对于抵御兽潮没有什么兴趣了。",
+                text: "这些都是【强者】所必须认识到的东西。<br>比起抵御兽潮，<br>或许有一个地方更适合你。<br>在燕岗城以东约万里的地带，<br>有一处隐秘之地，<br>似乎时间的流速在那里被加快了。",
+                unlocks: {
+                    textlines: [{dialogue: "峰(飞云)", lines: ["lf17"]}],
+                },
+                locks_lines: ["lf16"],
+            }),
+            "lf17": new Textline({ 
+                is_unlocked: false,
+                name: "可是峰大哥，为什么你自己不去呢……",
+                text: "没有必要，那些东西是一位域主……<br>领域级强者留下的，<br>打包带走也没有<span class='coin coin_moneySp'>0.01Δ</span>，<br>对我而言没有意义。<br>记住，一定要小心，<br>我且在你的身上留下一道精神印记，<br>遇到危险时，用它来与我沟通。<br><br>WIP:[纯白雪原]暂未开放！<br>V2.21后，继续点击此对话即可解锁它。",
+                unlocks: {
+                    //textlines: [{dialogue: "峰(飞云)", lines: ["lf16"]}],
+                },
+                //locks_lines: ["lf17"],
+            }),
         }
     });
 
