@@ -734,9 +734,9 @@ function format_skill_rewards(milestone){
                                     parent_skill: "Stance mastery",
                                     description: "峰大哥教授的高级秘法。似乎可以用很久的样子。", 
                                     max_level_coefficient: 1.25,
-                                    base_xp_cost: 100e12,
+                                    base_xp_cost: 1000e12,
                                     category: "Stance",
-                                    max_level: 40,
+                                    max_level: 50,
                                     related_stances: ["SF_Power","SF_Lucky","SF_Multi"],
                                     get_effect_description: ()=> {
                                         return `增加[映星花]秘法的使用效果`;
