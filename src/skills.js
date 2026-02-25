@@ -954,7 +954,7 @@ function format_skill_rewards(milestone){
                                     names: {0: "武器熟练", 15: "武器精通"}, 
                                     description: "关于所有武器的知识",
                                     category: "Weapon",
-                                    max_level: 60,
+                                    max_level: 300,
                                     get_effect_description: ()=> {
                                         return `增加所有武器技能经验获取，每1级增加10%`;
                                     },
@@ -963,6 +963,7 @@ function format_skill_rewards(milestone){
                                   parent_skill: "Weapon mastery",
                                   names: {0: "剑术"}, 
                                   category: "Weapon",
+                                    max_level: 60,
                                   description: "传统且高贵的剑术技能", rewards: {
                                     milestones: {
                                         
@@ -1014,6 +1015,7 @@ function format_skill_rewards(milestone){
                                   parent_skill: "Weapon mastery",
                                   names: {0: "戟术"}, 
                                   category: "Weapon",
+                                    max_level: 60,
                                   description: "不传统，也不怎么高贵，但好用的三叉戟技能", rewards: {
                                     milestones: {
                                         
