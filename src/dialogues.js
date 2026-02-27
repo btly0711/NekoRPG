@@ -1637,18 +1637,18 @@ class Textline {
     dialogues["纳娜米(冰原)"] = new Dialogue({
         name: "纳娜米(冰原)",
         textlines: {
-            "sn1": new Textline({ 
-                is_unlocked: false,
+            "by1": new Textline({ 
+                is_unlocked: true,
                 name: "好冷啊……姐姐。为什么燕岗领地图上没有这片雪原的标注？",
                 text: "这里，应该就是那神秘强者峰所说的地方了。<br>环境确实很恶劣，低温加上冰元素，<br>估计大地级在这里都有冻死的风险。",
                 //冰元素设定：微型而懒惰的拉普拉斯妖怪，可以在气温并不十分离谱的情况下制造负热量，吸收人的能量
 
                 unlocks: {
-                    textlines: [{dialogue: "纳娜米(冰原)", lines: ["sn2"]}],
+                    textlines: [{dialogue: "纳娜米(冰原)", lines: ["by2"]}],
                 },
-                locks_lines: ["sn1"],
+                locks_lines: ["by1"],
             }),
-            "sn2": new Textline({ 
+            "by2": new Textline({ 
                 is_unlocked: false,
                 name: "受不了呀，太冷了，还是张开火焰领域取暖吧。",
                 text: "[纳娜米]不要把领域用来做这个...<br>不对，可可，你的火焰领域关过吗？<br>[纳可]诶...<br>总之姐姐你靠过来一点！<br><br>纳娜米加入了队伍！能力的效力增加了5%！",
@@ -1657,7 +1657,7 @@ class Textline {
                 unlocks: {
                     items: [{item_name: "纳娜米(冰原)",quality:160}],
                 },
-                locks_lines: ["sn2"],
+                locks_lines: ["by2"],
             }),
         }
     });
