@@ -5433,7 +5433,7 @@ class Enemy {
         stats: {health: 60, attack: 12250e4, agility: 10000e4, attack_speed: 1.4, defense: 8500e4}, 
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
-            {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "史诗绿宝石", chance:0.006},
             //90D
         ],
     });
@@ -5448,7 +5448,7 @@ class Enemy {
         stats: {health: 15.644e8, attack: 22000e4, agility: 10400e4, attack_speed: 1.3, defense: 4400e4}, 
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
-            {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "史诗绿宝石", chance:0.006},
             //90D
         ],
     });
@@ -5464,7 +5464,7 @@ class Enemy {
         stats: {health: 13.6e8, attack: 17000e4, agility: 10800e4, attack_speed: 1.3, defense: 8500e4}, 
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
-            {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "史诗绿宝石", chance:0.006},
             //90D
         ],
     });
