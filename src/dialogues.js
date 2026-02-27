@@ -1625,15 +1625,42 @@ class Textline {
             "lf17": new Textline({ 
                 is_unlocked: false,
                 name: "可是峰大哥，为什么你自己不去呢……",
-                text: "没有必要，那些东西是一位域主……<br>领域级强者留下的，<br>打包带走也没有<span class='coin coin_moneySp'>0.01Δ</span>，<br>对我而言没有意义。<br>记住，一定要小心，<br>我且在你的身上留下一道精神印记，<br>遇到危险时，用它来与我沟通。<br><br>WIP:[纯白雪原]暂未开放！<br>V2.21后，继续点击此对话即可解锁它。",
+                text: "没有必要，那些东西是一位域主……<br>领域级强者留下的，<br>打包带走也没有<span class='coin coin_moneySp'>0.01Δ</span>，<br>对我而言没有意义。<br>记住，一定要小心，<br>我且在你的身上留下一道精神印记，<br>遇到危险时，用它来与我沟通。<br><br>",
                 unlocks: {
-                    //textlines: [{dialogue: "峰(飞云)", lines: ["lf16"]}],
+                    locations: ["纯白冰原"],
                 },
-                //locks_lines: ["lf17"],
+                locks_lines: ["lf17"],
             }),
         }
     });
 
+    dialogues["纳娜米(冰原)"] = new Dialogue({
+        name: "纳娜米(冰原)",
+        textlines: {
+            "sn1": new Textline({ 
+                is_unlocked: false,
+                name: "好冷啊……姐姐。为什么燕岗领地图上没有这片雪原的标注？",
+                text: "这里，应该就是那神秘强者峰所说的地方了。<br>环境确实很恶劣，低温加上冰元素，<br>估计大地级在这里都有冻死的风险。",
+                //冰元素设定：微型而懒惰的拉普拉斯妖怪，可以在气温并不十分离谱的情况下制造负热量，吸收人的能量
+
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米(冰原)", lines: ["sn2"]}],
+                },
+                locks_lines: ["sn1"],
+            }),
+            "sn2": new Textline({ 
+                is_unlocked: false,
+                name: "受不了呀，太冷了，还是张开火焰领域取暖吧。",
+                text: "[纳娜米]不要把领域用来做这个...<br>不对，可可，你的火焰领域关过吗？<br>[纳可]诶...<br>总之姐姐你靠过来一点！<br><br>纳娜米加入了队伍！能力的效力增加了5%！",
+                //火焰领域设定：高温会让冰元素活化，释放出负热量，但高温领域的量级高于一小片区域的冰元素，起到驱散效果
+
+                unlocks: {
+                    items: [{item_name: "纳娜米(冰原)",quality:160}],
+                },
+                locks_lines: ["sn2"],
+            }),
+        }
+    });
 
 
 

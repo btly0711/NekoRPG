@@ -5219,22 +5219,266 @@ class Enemy {
         ],
     });
 
-    //【LIFE CHANGE】
-    // 20%↑
-    //
-    // 30%↓
 
+    enemy_templates["冰原之痕"] = new Enemy({
+        name: "冰原之痕", 
+        description: "冰元素化生的骷髅，生命力相当顽强！", 
+        xp_value: 39088169, 
+        rank: 3301,
+        image: "image/enemy/E3301.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [],
+        stats: {health: 11.552e8, attack: 7225e4, agility: 5400e4, attack_speed: 1.2, defense: 2100e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.030},
+            {item_name: "史诗红宝石", chance:0.006},
+            //28D
+        ],
+    });
+    enemy_templates["出芽茸茸战士"] = new Enemy({
+        name: "出芽茸茸战士", 
+        description: "想不到还有续集~喵可对茸茸的潜力挖掘不足1%。", 
+        xp_value: 39088169, 
+        rank: 3302,
+        image: "image/enemy/E3302.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [4],
+        stats: {health: 2.52e8, attack: 8200e4, agility: 5700e4, attack_speed: 1.4, defense: 4000e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.030},
+            {item_name: "史诗红宝石", chance:0.006},
+            //28D
+        ],
+    });
+    enemy_templates["冰原骑士"] = new Enemy({
+        name: "冰原骑士", 
+        description: "你不知道吗？散华这东西只有自己血够多才能削弱到人的。", 
+        xp_value: 39088169, 
+        rank: 3303,
+        image: "image/enemy/E3303.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [37],
+        stats: {health: 4.232e8, attack: 7900e4, agility: 6000e4, attack_speed: 1.3, defense: 5200e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.030},
+            {item_name: "史诗红宝石", chance:0.006},
+            //28D
+        ],
+    });
+    enemy_templates["冰原近卫"] = new Enemy({
+        name: "冰原近卫", 
+        description: "冰凌剑倒是不管血多不多都能削到人。实在是强大的领悟...", 
+        xp_value: 39088169, 
+        rank: 3304,
+        image: "image/enemy/E3304.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [48],
+        spec_value:{48:80e4},
+        stats: {health: 2.16e8, attack: 8600e4, agility: 6300e4, attack_speed: 1.3, defense: 5700e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.030},
+            {item_name: "史诗红宝石", chance:0.006},
+            //28D
+        ],
+    });
+    enemy_templates["天空级死士"] = new Enemy({
+        name: "天空级死士", 
+        description: "作为死士居然不带个自爆，都是加伤害技能...而且天剑太难了所以没学会！", 
+        xp_value: 39088169, 
+        rank: 3305,
+        image: "image/enemy/E3305.png",
+        realm: "<span class=realm_sky><b>天空级四阶 +</b></span>",
+        spec: [3,7],
+        stats: {health: 3.362e8, attack: 8100e4, agility: 6600e4, attack_speed: 1.3, defense: 4200e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.030},
+            {item_name: "史诗红宝石", chance:0.006},
+            //28D
+        ],
+    });
+    enemy_templates["司雍传道士"] = new Enemy({
+        name: "司雍传道士", 
+        description: "长得和结界湖的血牛一模一样耶，不过居然是个爆攻人！", 
+        xp_value: 63245986, 
+        rank: 3306,
+        image: "image/enemy/E3306.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [19],
+        stats: {health: 6.48e8, attack: 10700e4, agility: 6900e4, attack_speed: 1.3, defense: 5200e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["冰原出芽茸茸"] = new Enemy({
+        name: "冰原出芽茸茸", 
+        description: "失踪的青色出芽茸茸终于找到了！虽然是靠着外力把自己弄成这个颜色的就是了。", 
+        xp_value: 63245986, 
+        rank: 3307,
+        image: "image/enemy/E3307.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [49],
+        spec_value: {49:{rnd:200,hp:0.3e8}},
+        stats: {health: 3.6e8, attack: 13000e4, agility: 7200e4, attack_speed: 0.9, defense: 5400e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["出芽红茸战士"] = new Enemy({
+        name: "出芽红茸战士", 
+        description: "这就是彩虹攻击！茸茸家族，出发~", 
+        xp_value: 63245986, 
+        rank: 3308,
+        image: "image/enemy/E3308.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [],
+        stats: {health: 1.92e8, attack: 1.98e8, agility: 7800e4, attack_speed: 1.2, defense: 6800e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["冰原之空骸"] = new Enemy({
+        name: "冰原之空骸", 
+        description: "看着很强，其实一点也不弱。被它来上40连击可够喝一壶的了。", 
+        xp_value: 63245986, 
+        rank: 3309,
+        image: "image/enemy/E3309.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [48],
+        spec_value: {48:100e4},
+        stats: {health: 14.45e8, attack: 9216e4, agility: 8100e4, attack_speed: 1.5, defense: 4900e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["掠冰之蝠"] = new Enemy({
+        name: "掠冰之蝠", 
+        description: "6连击...至少比那一帮开局先打出巨额伤害的好处理，对吧？", 
+        xp_value: 63245986, 
+        rank: 3310,
+        image: "image/enemy/E3310.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [33],
+        spec_value: {33:6},
+        stats: {health: 5.618e8, attack: 12900e4, agility: 8400e4, attack_speed: 1.1, defense: 6500e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["霜傀儡"] = new Enemy({
+        name: "霜傀儡", 
+        description: "在下面铲一铲制造雪球会不会有点赚头的样子？", 
+        xp_value: 63245986, 
+        rank: 3311,
+        image: "image/enemy/E3311.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [50],
+        spec_value: {50:210e4},
+        stats: {health: 3.52e8, attack: 18500e4, agility: 8800e4, attack_speed: 1.4, defense: 7500e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["冰原荒兽"] = new Enemy({
+        name: "冰原荒兽", 
+        description: "这地方怎么到处都是这些战前扣血的领悟！好可怕，好可怕，好可怕……", 
+        xp_value: 63245986, 
+        rank: 3312,
+        image: "image/enemy/E3312.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [49],
+        spec_value: {49:{rnd:100,hp:1.0e8}},
+        stats: {health: 9e8, attack: 15000e4, agility: 9200e4, attack_speed: 1.2, defense: 7500e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["射击卫戍"] = new Enemy({
+        name: "射击卫戍", 
+        description: "如果靠着激光可以融化这里的冰雪该有多好……", 
+        xp_value: 63245986, 
+        rank: 3313,
+        image: "image/enemy/E3313.png",
+        realm: "<span class=realm_sky><b>天空级五阶</b></span>",
+        spec: [43],
+        spec_value: {43:1e8},
+        stats: {health: 57.6e8, attack: 14400e4, agility: 9600e4, attack_speed: 1.2, defense: 7200e4}, 
+        loot_list: [
+            {item_name: "史诗蓝宝石", chance:0.012},
+            {item_name: "史诗红宝石", chance:0.030},
+            //50D
+        ],
+    });
+    enemy_templates["冰山石灵"] = new Enemy({
+        name: "冰山石灵", 
+        description: "难得有个属性正常一点的了。坚固比起那一帮开局嗷嗷冲上来冻住你的要和蔼可亲太多了叭……是的，这里是奖励关卡！", 
+        xp_value: 102334155, 
+        rank: 3314,
+        image: "image/enemy/E3314.png",
+        realm: "<span class=realm_sky><b>天空级五阶 +</b></span>",
+        spec: [1],
+        stats: {health: 60, attack: 12250e4, agility: 10000e4, attack_speed: 1.4, defense: 8500e4}, 
+        loot_list: [
+            {item_name: "史诗红宝石", chance:0.036},
+            {item_name: "史诗红宝石", chance:0.006},
+            //90D
+        ],
+    });
+    enemy_templates["冰原老人"] = new Enemy({
+        name: "冰原老人", 
+        description: "呼~我要在它面前呆着回血。谁也不要拦着我。", 
+        xp_value: 102334155, 
+        rank: 3315,
+        image: "image/enemy/E3315.png",
+        realm: "<span class=realm_sky><b>天空级五阶 +</b></span>",
+        spec: [5],
+        stats: {health: 15.644e8, attack: 22000e4, agility: 10400e4, attack_speed: 1.3, defense: 4400e4}, 
+        loot_list: [
+            {item_name: "史诗红宝石", chance:0.036},
+            {item_name: "史诗红宝石", chance:0.006},
+            //90D
+        ],
+    });
+    enemy_templates["冰原骸骨骑士"] = new Enemy({
+        name: "冰原骸骨骑士", 
+        description: "是的，每个区域都有自己的冰凌剑~这就是我们的纯白冰原啊。", 
+        xp_value: 102334155, 
+        rank: 3316,
+        image: "image/enemy/E3316.png",
+        realm: "<span class=realm_sky><b>天空级五阶 +</b></span>",
+        spec: [48],
+        spec_value: {48:120e4},
+        stats: {health: 13.6e8, attack: 17000e4, agility: 10800e4, attack_speed: 1.3, defense: 8500e4}, 
+        loot_list: [
+            {item_name: "史诗红宝石", chance:0.036},
+            {item_name: "史诗红宝石", chance:0.006},
+            //90D
+        ],
+    });
 
     
     /*
-    绿 史诗
-B3+ 1.5% 4%            9D
-B4       3.5% 1.4%     16D
-B4+      1.4% 3.5%     28D
+    蓝   红   绿
+B4+ 3.6% 0.6%      28D
+B5  1.2% 3.0%      50D
+B5+      3.6% 0.6% 90D
 B3 922'7465  /1493'0352  exp
 B4 2415'7817 /3908'8169  exp
 B5 6324'5986 /1'0233'4155exp
-石风家族队长开始算4阶+
+冰山石灵开始是5阶+
 */    
 })();
 

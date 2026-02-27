@@ -95,8 +95,8 @@ window.REALMS=[
 [20,"天空级二阶",500000,3e8,4e12,"sky"],//5e
 [21,"天空级三阶",1500000,10e8,16e12,"sky"],//15e
 [22,"天空级四阶",4000000,25e8,80e12,"sky"],//40e 
-[23,"天空级五阶",16000000,60e8,170.1411e36,"sky"],//100e 经验应为320e12.
-[24,"天空级六阶",40000000,150e8,1280e12,"sky"],//250e 
+[23,"天空级五阶",16000000,60e8,320e12,"sky"],//100e 经验应为320e12.
+[24,"天空级六阶",40000000,150e8,170.1411e36,"sky"],//250e 
 [25,"天空级七阶",70000000,350e8,6000e12,"sky"],//600e
 [26,"天空级八阶",3e8,900e8,2.4e16,"sky"],//1500e
 [27,"天空级巅峰",8e8,1500e8,9.6e16,"sky"],//3000e
@@ -1249,6 +1249,27 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
                 do_enemy_combat_action(enemy_id,"[追光]"+Spec_S,1,50);
             }
         }
+        if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(48)){
+            let blj_mul = (character.stats.full.attack_power + character.stats.full.defense) / current_enemies[enemy_id].attack * 20;
+            let blj_nerf = character.stats.full.agility / current_enemies[enemy_id].spec_value[48] * 0.01;
+            blj_nerf = 1 - blj_nerf;
+            blj_nerf = Math.max(blj_nerf,0);
+            do_enemy_combat_action(enemy_id,`[冰凌剑]`+Spec_S,(blj_mul*blj_nerf));
+        }//冰凌剑
+        if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(49)){
+            let bfs_mul = (current_enemies[enemy_id].spec_value[49].rnd - Math.floor(character.stats.full.health / current_enemies[enemy_id].spec_value[49].hp)) * 0.2;
+            bfs_mul = Math.max(bfs_mul,0);
+            for(let cb=1;cb<=5;cb++) if(current_enemies != null){
+            do_enemy_combat_action(enemy_id,`[冰封术${bfs_mul==0?"·免疫":""}]`+Spec_S,1,bfs_mul);
+            }
+        }//冰封术
+        if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(50)){
+            let ds_mul = (character.stats.full.agility) / current_enemies[enemy_id].attack * 40;
+            let ds_nerf = (character.stats.full.attack_power + character.stats.full.defense) / current_enemies[enemy_id].spec_value[50] * 0.01;
+            ds_nerf = 1 - ds_nerf;
+            ds_nerf = Math.max(ds_nerf,0);
+            do_enemy_combat_action(enemy_id,`[冻伤]`+Spec_S,(ds_mul*ds_nerf));
+        }//冻伤
     }
 
     clearTimeout(enemy_attack_loops[enemy_id]);
@@ -2801,17 +2822,18 @@ function use_item(item_key,stated = false) {
         P4=Math.pow(((character.stats.flat.gems.max_health||0)/G_value/HPMV +1),-1.5);
         if(character.stats.flat.gems.max_health >= SCGV*HPMV*G_value) P4*=0.5;
         let pa = 0;
-
+        console.log(P1,P2,P3,P4);
         if(character.stats.flat.gems.attack_power >= SCGV*G_value*3)
         {
-            if(P1>P2&&P1>P3&&P1>P4){
+            let PM = Math.max(Math.max(P1,P2),Math.max(P3,P4));
+            if(PM==P1){
                 pa=0.5;
             }
-            else if(P2>P1&&P2>P3&&P2>P4)
+            else if(PM==P2)
             {
                 pa=1.5;
             }
-            else if(P3>P1&&P3>P2&&P3>P4)
+            else if(PM==P3)
             {
                 pa=2.5;
             }

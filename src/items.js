@@ -2650,6 +2650,26 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["纳娜米(冰原)"] = new Special({
+        name: "纳娜米(冰原)",
+        id: "纳娜米(冰原)",
+        description: "这一只的话...没有镭射枪，卖了也没事啦。但是这可是珍贵的一次性物品！怎么舍得卖的！", 
+        value: 64e12,
+        stats: {
+            attack_power: {
+                multiplier: 1.05,
+            },
+            defense: {
+                multiplier: 1.05,
+            },
+            agility: {
+                multiplier: 1.05,
+            },
+            max_health: {
+                multiplier: 1.05,
+            }
+        }
+    });
     
     item_templates["结界湖之心"] = new Special({
         name: "结界湖之心",
@@ -3215,6 +3235,9 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             crit_multiplier: {
                 flat: 0.5,
+            },
+            attack_power: {
+                multiplier: 1.02,
             },
         }
     });

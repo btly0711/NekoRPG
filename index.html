@@ -1103,7 +1103,10 @@
 
             <div id = "options_button" class = "game_info" onclick="openOptions()"><span><i class="material-icons">settings</i></span></div>
             <div id = "changelog_button" class = "game_info"><a href="changelog.html" target="_blank"></a></div>
+            <div id = "play_count" class = "pc_right">
+            <img src="https://hitscounter.dev/api/hit?url=https%3A%2F%2Fbtly0711.github.io%2FNekoRPG%2F&label=&icon=hash&color=%23feb272&message=&style=flat&tz=PRC"></div>
             <div id = "help_button" class = "game_info"><a href="help.html" target="_blank"><i class="material-icons">help_outline</i></a></div>
+            ←帮助菜单！常见问题可以找到解答！
             
         </div>
 
@@ -1491,7 +1494,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.20d";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.21";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

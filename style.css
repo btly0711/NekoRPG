@@ -1267,7 +1267,10 @@ i {
 	-webkit-text-fill-color:transparent;
 }
 
-
+.pc_right {
+	top:50%;
+	right:200px;
+}
 
 .skill_sorting_button {
 	float:left;

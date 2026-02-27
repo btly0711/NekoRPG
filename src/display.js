@@ -3554,6 +3554,9 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [45, "10回合", "#524fdb","在敌人的手中走过十回合！敌人会在第10回合被镭射枪击中，将<span style='color:#87CEFA'>血量降为1</span>.<br><span style='color:#FF0000'><b>前提是,姐姐被你带在身边.</b></span>"],
 [46, "饮剑·改", "#F0A078","将炽烈的进攻元素吸收并化为自身的能力。<br>敌人的生命增加角色攻击的<span style='color:#87CEFA'>2.5倍</span>。"],
 [47, "饮盾·改", "#3C6794","将刚猛的防守元素吸收并化为自身的能力。<br>敌人的生命增加角色防御的<span style='color:#87CEFA'>2.5倍</span>。"],
+[48, "冰凌剑", "#87CEEB",function(enemy){return `冰元素领悟。将冰元素变换为剑形态，刺穿对手的术式，唯有灵活的腾挪方可抵挡。<br>战斗前，对角色造成相当于角色攻防和<span style='color:#87CEFA'>20倍</span>的必中伤害。该技能效果可被敏捷减免，每${format_number(enemy.spec_value[48])}点敏捷可减免1%伤害。`}],
+[49, "冰封术", "#73E4D4",function(enemy){return `冰元素领悟。可以让人瞬间变成冰块的术式，唯有蓬勃的生命得以顽强成长。<br>战斗前，对角色进行<span style='color:#87CEFA'>5段${format_number(enemy.spec_value[49].rnd / 5)}倍</span>的先攻。该技能效果可被生命减免，每${enemy.spec_value[49].hp}点生命可免除0.2倍先攻倍率。`}],
+[50, "冻伤", "#97C6E8",function(enemy){return `冰元素领悟。让对手在低温中感受到难以言喻的痛苦，强大的体魄是镇痛的必要条件。<br>战斗前，对角色造成相当于角色敏捷<span style='color:#87CEFA'>40倍</span>的必中伤害。该技能效果可被攻防和减免，每${enemy.spec_value[50]}点攻防和可减免1%伤害。`}],
 ];
 
 //超过25倍倍率的攻击暂时视为必中！
@@ -3775,7 +3778,7 @@ function add_bestiary_lines(zone)
     //zone 11-> 1-1，rank作为1200处理
     //sorts bestiary_list div by enemy rank
     bestiary_entry_divs[zone] = document.createElement("div");
-    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"极寒冰原",34:"冰城",35:"水牢",36:"传承幻境"}
+    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"纯白冰原",34:"冰城",35:"水牢",36:"传承幻境"}
     const name_div = document.createElement("div");
     name_div.innerHTML = `<b>【${ZoneNameMap[zone]}】</b>`;
     name_div.classList.add("bestiary_entry_name");
@@ -3827,6 +3830,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "塔门战甲B1") add_bestiary_lines(28);
     if(enemy_name == "无面修者") add_bestiary_lines(31);
     if(enemy_name == "有角族壮年") add_bestiary_lines(32);
+    if(enemy_name == "冰原之痕") add_bestiary_lines(33);
 }
 
 function reload_bestiary(){

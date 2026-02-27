@@ -3430,7 +3430,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["飞云阁"] = new Location({
         connected_locations: [{location: locations["黑暗森林"], custom_text: "回到黑暗森林"}],
-        description: "商店-睡觉-箱子-合成的一站式解决方案。不愧是城里最好的客栈，感觉像家一样。[V2.20前版本终点]",
+        description: "商店-睡觉-箱子-合成的一站式解决方案。不愧是城里最好的客栈，感觉像家一样。",
         name: "飞云阁",
         is_unlocked: false,
         bgm: 1,//3-3的bgm是16 这个没打错 就是家里的bgm
@@ -3456,11 +3456,97 @@ function get_location_type_penalty(type, stage, stat) {
     locations["黑暗森林"].connected_locations.push({location: locations["飞云阁"]});
 
 
+    locations["纯白冰原"] = new Location({ 
+        connected_locations: [{location: locations["飞云阁"], custom_text: "回到飞云阁"}], 
+        description: "相当寒冷的冰雪天地。温度长期停留在240K(-33°C)附近，空气中弥漫的冰元素更是能让大地级修者遭遇不测[V2.30前版本终点]",
+        name: "纯白冰原", 
+        dialogues: ["纳娜米(冰原)"],
+        is_unlocked: false,
+        bgm: 16,
+        unlock_text : "被厚厚的积雪所包裹的银白世界中，两个女孩站在一座雪山顶端，俯瞰着茫茫的白色大地。"
+    });//3-3
+
+    locations["飞云阁"].connected_locations.push({location: locations["纯白冰原"]});
 
 
 
+    locations["纯白冰原 - 1"] = new Combat_zone({
+        description: "冰雪构成的白色天地。冰元素使得一些冰元素领悟易于施展，小心了！", 
+        enemy_count: 20, 
+        enemies_list: ["冰原之痕","出芽茸茸战士","冰原骑士","冰原近卫"],
+        enemy_group_size: [1,1],
+        is_unlocked: true, 
+        name: "纯白冰原 - 1",
+        rank:221, 
+        bgm:16,
+        parent_location: locations["纯白冰原"],
+        first_reward: {
+            xp: 30e8,
+        },
+        repeatable_reward: {
+            xp: 10e8,
+            locations: [{location: "纯白冰原 - 2"}],
+        },
+    });
+    locations["纯白冰原 - 2"] = new Combat_zone({
+        description: "务必记得时刻保持自己的血线在健康范围。一旦掉出，冰封术的连击……", 
+        enemy_count: 20, 
+        enemies_list: ["天空级死士","冰原出芽茸茸","出芽红茸战士","司雍传道士"],
+        enemy_group_size: [2,2],
+        is_unlocked: false, 
+        name: "纯白冰原 - 2",
+        rank:222, 
+        bgm:16,
+        parent_location: locations["纯白冰原"],
+        first_reward: {
+            xp: 60e8,
+        },
+        repeatable_reward: {
+            xp: 20e8,
+            locations: [{location: "纯白冰原 - 3"}],
+        },
+    });
+    locations["纯白冰原 - 3"] = new Combat_zone({
+        description: "冰封术也是有等级之分的！可以防住上个区域的≠下个区域的也没事……", 
+        enemy_count: 20, 
+        enemies_list: ["冰原之空痕","掠冰之蝠","霜傀儡","冰原荒兽"],
+        enemy_group_size: [3,3],
+        is_unlocked: false, 
+        name: "纯白冰原 - 3",
+        rank:223, 
+        bgm:16,
+        parent_location: locations["纯白冰原"],
+        first_reward: {
+            xp: 90e8,
+        },
+        repeatable_reward: {
+            xp: 30e8,
+            locations: [{location: "纯白冰原 - 4"}],
+        },
+    });
+    locations["纯白冰原 - 4"] = new Combat_zone({
+        description: "按理来说这里有一只1.3亿防的散华。不过现在没有魔攻药，所以只能拿走了。", 
+        enemy_count: 20, 
+        enemies_list: ["射击卫戍","冰原老人","冰原骸骨骑士","冰山石灵"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "纯白冰原 - 4",
+        rank:224, 
+        bgm:16,
+        parent_location: locations["纯白冰原"],
+        first_reward: {
+            xp: 120e8,
+        },
+        repeatable_reward: {
+            xp: 40e8,
+            //locations: [{location: "纯白冰原 - X"}],
+        },
+    });
 
-
+    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 1"]});
+    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 2"]});
+    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 3"]});
+    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 4"]});
 
 
 
