@@ -3509,7 +3509,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纯白冰原 - 3"] = new Combat_zone({
         description: "冰封术也是有等级之分的！可以防住上个区域的≠下个区域的也没事……", 
         enemy_count: 20, 
-        enemies_list: ["冰原之空痕","掠冰之蝠","霜傀儡","冰原荒兽"],
+        enemies_list: ["冰原之空骸","掠冰之蝠","霜傀儡","冰原荒兽"],
         enemy_group_size: [3,3],
         is_unlocked: false, 
         name: "纯白冰原 - 3",

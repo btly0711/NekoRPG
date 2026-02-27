@@ -1250,7 +1250,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
             }
         }
         if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(48)){
-            let blj_mul = (character.stats.full.attack_power + character.stats.full.defense) / current_enemies[enemy_id].attack * 20;
+            let blj_mul = (character.stats.full.attack_power + character.stats.full.defense) / current_enemies[enemy_id].stats.attack * 20;
             let blj_nerf = character.stats.full.agility / current_enemies[enemy_id].spec_value[48] * 0.01;
             blj_nerf = 1 - blj_nerf;
             blj_nerf = Math.max(blj_nerf,0);
@@ -1259,12 +1259,13 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
         if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(49)){
             let bfs_mul = (current_enemies[enemy_id].spec_value[49].rnd - Math.floor(character.stats.full.health / current_enemies[enemy_id].spec_value[49].hp)) * 0.2;
             bfs_mul = Math.max(bfs_mul,0);
+
             for(let cb=1;cb<=5;cb++) if(current_enemies != null){
             do_enemy_combat_action(enemy_id,`[冰封术${bfs_mul==0?"·免疫":""}]`+Spec_S,1,bfs_mul);
             }
         }//冰封术
         if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(50)){
-            let ds_mul = (character.stats.full.agility) / current_enemies[enemy_id].attack * 40;
+            let ds_mul = (character.stats.full.agility) / current_enemies[enemy_id].stats.attack * 40;
             let ds_nerf = (character.stats.full.attack_power + character.stats.full.defense) / current_enemies[enemy_id].spec_value[50] * 0.01;
             ds_nerf = 1 - ds_nerf;
             ds_nerf = Math.max(ds_nerf,0);
@@ -2822,7 +2823,6 @@ function use_item(item_key,stated = false) {
         P4=Math.pow(((character.stats.flat.gems.max_health||0)/G_value/HPMV +1),-1.5);
         if(character.stats.flat.gems.max_health >= SCGV*HPMV*G_value) P4*=0.5;
         let pa = 0;
-        console.log(P1,P2,P3,P4);
         if(character.stats.flat.gems.attack_power >= SCGV*G_value*3)
         {
             let PM = Math.max(Math.max(P1,P2),Math.max(P3,P4));
