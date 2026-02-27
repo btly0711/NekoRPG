@@ -983,7 +983,7 @@ function textline_special(t_key){
             log_message("提示:轮锋+轮芯的组装 现已解锁","enemy_enhanced")
         }
         else if(t_key == "lf-leave"){
-            remove_from_character_inventory([{item_key:"{\"id\":\"峰\""}]);
+            remove_from_character_inventory([{item_key:"{\"id\":\"峰\"}"}]);
         }
         return displayed_text;
 }

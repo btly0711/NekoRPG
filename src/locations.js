@@ -355,6 +355,11 @@ class Combat_zone {
                 inf_combat.B3 = inf_combat.B3 || 0;
                 halo_fix = inf_combat.B3 * 0.01 - 0.01;
             }
+            else if(this.name.includes("纯白冰原") && character.is_in_inventory_nanami("{\"id\":\"峰\"}")){
+                remove_from_character_inventory([{item_key:"{\"id\":\"峰\"}"}]);
+                log_message("[峰]终于到地方了，不枉我盯了她一路。","enemy_enhanced");
+                log_message("[峰那么，我也差不多该走了……","enemy_enhanced");
+            }
                 
             const halo = this.enemy_stat_halo + 1 + halo_fix;
 
