@@ -5450,8 +5450,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
             {item_name: "史诗绿宝石", chance:0.006},
-            {item_name: "蓝金锭", chance:10},
-            {item_name: "秘银锭", chance:0.5},
+            {item_name: "蓝金锭", chance:1},
+            {item_name: "秘银锭", chance:0.25},
             {item_name: "旋律合金锭", chance:0.05},
             //90D
         ],

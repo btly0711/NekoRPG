@@ -4058,7 +4058,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["冰髓胸甲"] = new ArmorComponent({
         name: "冰髓胸甲",
         description: "真的非常冷。不过黑森织料和火灵幻海会保护喵可的！",
-        component_type: "helmet exterior",
+        component_type: "chestplate exterior",
         value: 3.6e12,
         component_tier: 12,
         full_armor_name: "冰髓胸甲",
@@ -4072,7 +4072,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["冰髓腿甲"] = new ArmorComponent({
         name: "冰髓腿甲",
         description: "真的非常冷。不过黑森织料和火灵幻海会保护喵可的！",
-        component_type: "helmet exterior",
+        component_type: "leg armor exterior",
         value: 3.6e12,
         component_tier: 12,
         full_armor_name: "冰髓腿甲",
@@ -4086,7 +4086,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["冰髓战靴"] = new ArmorComponent({
         name: "冰髓战靴",
         description: "真的非常冷。不过黑森织料和火灵幻海会保护喵可的！",
-        component_type: "helmet exterior",
+        component_type: "shoes exterior",
         value: 1.8e12,
         component_tier: 12,
         full_armor_name: "冰髓战靴",
