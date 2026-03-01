@@ -939,7 +939,7 @@ class Textline {
         name: "秘境心火精灵",
         textlines: {
             "xh1": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "哼~知道我的厉害了吗？",
                 text: "饶命，饶命——<br>小的只是秘境诞生的“灵”，<br>根本没有家底或者资源哇...",
                 unlocks: {

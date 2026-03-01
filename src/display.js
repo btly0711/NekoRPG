@@ -316,10 +316,10 @@ function create_item_tooltip_content({item, options={}}) {
         if(!options.skip_quality && options?.quality?.length == 2) {
             if(item.getAttack) {
                 item_tooltip += 
-                    `<br><br>攻击: ${Math.round(10*item.getAttack(options.quality[0]), true)/10}-${Math.round(10*item.getAttack(options.quality[1], true))/10}`;
+                    `<br><br>攻击: ${format_number(item.getAttack(options.quality[0]))}-${format_number(item.getAttack(options.quality[1]))}`;
             } else if(item.getDefense) { 
                 item_tooltip += 
-                `<br><br>防御: ${Math.round(10*item.getDefense(options.quality[0]))/10}-${Math.round(10*item.getDefense(options.quality[1]))/10}`;
+                `<br><br>防御: ${format_number(item.getDefense(options.quality[0]))}-${format_number(item.getDefense(options.quality[1]))}`;
             } else if(item.offhand_type === "shield") {
                 item_tooltip += 
                 `<br><br>Can block up to: ${Math.round(10*item.getShieldStrength(options.quality[0])*(character.stats.total_multiplier.block_strength))/10}-${Math.round(10*item.getShieldStrength(options.quality[1])*(character.stats.total_multiplier.block_strength))/10} damage [base: ${item.getShieldStrength(options.quality[0])}-${item.getShieldStrength(options.quality[1])}]`;
@@ -334,20 +334,20 @@ function create_item_tooltip_content({item, options={}}) {
 
                 if(equip_stats_0[effect_key].flat != null) {
                     item_tooltip += 
-                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: +${equip_stats_0[effect_key].flat}-${equip_stats_1[effect_key].flat}`;
+                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: +${format_number(equip_stats_0[effect_key].flat)}-${format_number(equip_stats_1[effect_key].flat)}`;
                 }
                 if(equip_stats_0[effect_key].multiplier != null) {
                     item_tooltip += 
-                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: x${equip_stats_0[effect_key].multiplier}-${equip_stats_1[effect_key].multiplier}`;
+                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: x${format_number(equip_stats_0[effect_key].multiplier)}-${format_number(equip_stats_1[effect_key].multiplier)}`;
             }
             });
         } else {
             if(item.getAttack) {
                 item_tooltip += 
-                    `<br><br>攻击: ${Math.round(10*item.getAttack())/10}`;
+                    `<br><br>攻击: ${format_number(item.getAttack())}`;
             } else if(item.getDefense && item.equip_slot != "props" && item.equip_slot != "method" && item.equip_slot != "special" && item.equip_slot != "realm") { 
                 item_tooltip += 
-                `<br><br>防御: ${Math.round(10*item.getDefense())/10}`;
+                `<br><br>防御: ${format_number(item.getDefense())}`;
             } else if(item.offhand_type === "shield") {
                 item_tooltip += 
                 `<br><br>Can block up to: ${Math.round(10*item.getShieldStrength()*(character.stats.total_multiplier.block_strength))/10} damage [base: ${item.getShieldStrength()}]`;
@@ -361,11 +361,11 @@ function create_item_tooltip_content({item, options={}}) {
 
                 if(equip_stats[effect_key].flat != null) {
                     item_tooltip += 
-                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: ${equip_stats[effect_key].flat>0?"+":""}${equip_stats[effect_key].flat}`;
+                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: ${equip_stats[effect_key].flat>0?"+":""}${format_number(equip_stats[effect_key].flat)}`;
                 }
                 if(equip_stats[effect_key].multiplier != null) {
                     item_tooltip += 
-                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: x${equip_stats[effect_key].multiplier}`;
+                    `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: x${format_number(equip_stats[effect_key].multiplier)}`;
             }
             });
         }
@@ -2753,7 +2753,7 @@ function update_stat_description(stat) {
     
     if(stat === "attack_power" && character.equipment.weapon != undefined) {
         target.innerHTML += 
-        `<br>武器: +${Math.round(100* character.equipment.weapon.attack_power)/100}`;
+        `<br>武器: +${format_number(character.equipment.weapon.attack_power)}`;
     } 
     Object.keys(character.stats.flat).forEach(stat_type => {
         if(character.stats.flat[stat_type][stat] && character.stats.flat[stat_type][stat] !== 0) {
@@ -2762,7 +2762,7 @@ function update_stat_description(stat) {
     });
     Object.keys(character.stats.multiplier).forEach(stat_type => {
         if(character.stats.multiplier[stat_type][stat] && character.stats.multiplier[stat_type][stat] !== 1) {
-            target.innerHTML += `<br>${BreakDownMap[stat_type]}: x${Math.round(100*character.stats.multiplier[stat_type][stat])/100}`;
+            target.innerHTML += `<br>${BreakDownMap[stat_type]}: x${format_number(character.stats.multiplier[stat_type][stat])}`;
         }
     });
     

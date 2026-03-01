@@ -291,6 +291,15 @@ effect_templates["恢复 B1"] = new ActiveEffect({
         }
     }
 });
+effect_templates["恢复 B4"] = new ActiveEffect({
+    name: "恢复 B4",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 4320e4},
+            max_health:{flat: 24e8},
+        }
+    }
+});
 
 
 

@@ -5232,6 +5232,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.030},
             {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "多孔冰晶", chance:0.04},
             //28D
         ],
     });
@@ -5247,6 +5248,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.030},
             {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "冰原超流体", chance:0.03},
             //28D
         ],
     });
@@ -5262,6 +5264,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.030},
             {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "光暗枝丫", chance:0.06},
             //28D
         ],
     });
@@ -5278,6 +5281,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.030},
             {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "B4·能量核心", chance:0.08},
             //28D
         ],
     });
@@ -5293,6 +5297,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.030},
             {item_name: "史诗红宝石", chance:0.006},
+            {item_name: "B4·能量核心", chance:0.04},
+            {item_name: "玄冰果实", chance:0.0005},
             //28D
         ],
     });
@@ -5308,6 +5314,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "多孔冰晶", chance:0.06},
             //50D
         ],
     });
@@ -5324,6 +5331,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "冰原超流体", chance:0.04},
             //50D
         ],
     });
@@ -5339,6 +5347,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "冰原超流体", chance:0.05},
             //50D
         ],
     });
@@ -5355,6 +5364,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "多孔冰晶", chance:0.025},
+            {item_name: "玄冰果实", chance:0.001},
             //50D
         ],
     });
@@ -5371,6 +5382,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "光暗枝丫", chance:0.1},
             //50D
         ],
     });
@@ -5387,6 +5399,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "B4·能量核心", chance:0.2},
+            {item_name: "玄冰果实", chance:0.0008},
             //50D
         ],
     });
@@ -5403,6 +5417,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "多孔冰晶", chance:0.07},
             //50D
         ],
     });
@@ -5419,6 +5434,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
+            {item_name: "冰原超流体", chance:0.06},
             //50D
         ],
     });
@@ -5434,6 +5450,9 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
             {item_name: "史诗绿宝石", chance:0.006},
+            {item_name: "蓝金锭", chance:10},
+            {item_name: "秘银锭", chance:0.5},
+            {item_name: "旋律合金锭", chance:0.05},
             //90D
         ],
     });
@@ -5449,6 +5468,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
             {item_name: "史诗绿宝石", chance:0.006},
+            {item_name: "玄冰果实", chance:0.0032},
             //90D
         ],
     });
@@ -5465,6 +5485,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
             {item_name: "史诗绿宝石", chance:0.006},
+            {item_name: "多孔冰晶", chance:0.11},
             //90D
         ],
     });

@@ -2468,6 +2468,23 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["冰刺装甲"] = new Props({
+        name: "冰刺装甲",
+        id: "冰刺装甲",
+        description: "虽然后果是隔着两里地都能看见你，但浑身的冰刺可是攻防一体的对敌宝具！（灵活度什么的希腊奶）", 
+        value: 120e12,
+        stats: {
+            attack_power: {
+                flat: +1500e4,
+            },
+            defense: {
+                flat: +1500e4,
+            },
+            agility: {
+                flat: -2400e4,
+            }
+        }
+    });
 
 
 })();
@@ -3063,12 +3080,8 @@ item_templates["Twist liek a snek"] = new Book({
         name_prefix: "旋律",
         attack_value: 2880000,
         stats: {
-            crit_rate: {
-                flat: 0.15,
-            },
-            attack_speed: {
-                multiplier: 1.16,
-            },
+            crit_rate: {flat: 0.15,},
+            attack_speed: {multiplier: 1.16,},
         }
     });
     item_templates["旋律戟头"] = new WeaponComponent({
@@ -3079,15 +3092,35 @@ item_templates["Twist liek a snek"] = new Book({
         name_prefix: "旋律",
         attack_value: 3600000,
         stats: {
-            crit_rate: {
-                flat: 0.10,
-            },
-            attack_mul: {
-                multiplier: 3.60,
-            },
-            attack_speed: {
-                multiplier: 0.50,
-            },
+            crit_rate: {flat: 0.10,},
+            attack_mul: {multiplier: 3.60,},
+            attack_speed: {multiplier: 0.50,},
+        }
+    });
+    
+    item_templates["冰髓剑刃"] = new WeaponComponent({
+        name: "冰髓剑刃", description: "万载冰髓制造的剑刃。这可是货真价实的【冷】兵器。",
+        component_type: "long blade",
+        value: 1800e9,
+        component_tier: 12,
+        name_prefix: "冰髓",
+        attack_value: 6480000,
+        stats: {
+            crit_rate: {flat: 0.15,},
+            attack_speed: {multiplier: 1.16,},
+        }
+    });
+    item_templates["冰髓戟头"] = new WeaponComponent({
+        name: "冰髓戟头", description: "万载冰髓制造的剑刃。这可是货真价实的【冷】兵器。",
+        component_type: "triple blade",
+        value: 5400e9,
+        component_tier: 12,
+        name_prefix: "冰髓",
+        attack_value: 8100000,
+        stats: {
+            crit_rate: {flat: 0.10,},
+            attack_mul: {multiplier: 3.60,},
+            attack_speed: {multiplier: 0.50,},
         }
     });
     item_templates["骨剑柄"] = new WeaponComponent({
@@ -3254,6 +3287,22 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_speed: {
                 multiplier: 1.15,
+            },
+        }
+    });
+    item_templates["冰髓轮锋"] = new WeaponComponent({
+        name: "冰髓轮锋", description: "万载冰髓制造的【月轮】镀层。寒光一闪~我是说真正的【寒光】！",
+        component_type: "wheel head",
+        value: 16200e9,
+        component_tier: 12,
+        name_prefix: "冰髓",
+        attack_value: 9000000,
+        stats: {
+            crit_rate: {
+                flat: 0.21,
+            },
+            attack_speed: {
+                multiplier: 1.16,
             },
         }
     });
@@ -3990,6 +4039,68 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+
+    
+    item_templates["冰髓头盔"] = new ArmorComponent({
+        name: "冰髓头盔",
+        description: "真的非常冷。不过黑森织料和火灵幻海会保护喵可的！",
+        component_type: "helmet exterior",
+        value: 2.7e12,
+        component_tier: 12,
+        full_armor_name: "冰髓头盔",
+        defense_value: 162e4,
+        stats: {
+            attack_mul: {
+                flat: 0.04,
+            },
+        }
+    });
+    item_templates["冰髓胸甲"] = new ArmorComponent({
+        name: "冰髓胸甲",
+        description: "真的非常冷。不过黑森织料和火灵幻海会保护喵可的！",
+        component_type: "helmet exterior",
+        value: 3.6e12,
+        component_tier: 12,
+        full_armor_name: "冰髓胸甲",
+        defense_value: 216e4,
+        stats: {
+            attack_mul: {
+                flat: 0.04,
+            },
+        }
+    });
+    item_templates["冰髓腿甲"] = new ArmorComponent({
+        name: "冰髓腿甲",
+        description: "真的非常冷。不过黑森织料和火灵幻海会保护喵可的！",
+        component_type: "helmet exterior",
+        value: 3.6e12,
+        component_tier: 12,
+        full_armor_name: "冰髓腿甲",
+        defense_value: 216e4,
+        stats: {
+            attack_mul: {
+                flat: 0.04,
+            },
+        }
+    });
+    item_templates["冰髓战靴"] = new ArmorComponent({
+        name: "冰髓战靴",
+        description: "真的非常冷。不过黑森织料和火灵幻海会保护喵可的！",
+        component_type: "helmet exterior",
+        value: 1.8e12,
+        component_tier: 12,
+        full_armor_name: "冰髓战靴",
+        defense_value: 108e4,
+        stats: {
+            attack_mul: {
+                flat: 0.04,
+            },
+        }
+    });
+
+
+
+
 })();
 //盔甲
 
@@ -4131,6 +4242,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 648e9,
         material_type: "metal",
         image: "image/item/melodyalloy_ingot.png",
+    });
+    item_templates["万载冰髓锭"] = new Material({
+        id: "万载冰髓锭",
+        name: "万载冰髓锭", 
+        description: "【冰原超流体】的相变产物。提醒：工作台配方效率极低，建议使用【极寒相变引擎】生产。", 
+        value: 1.92e12,
+        material_type: "metal",
+        image: "image/item/icesteel_ingot.png",
     });
     item_templates["光暗枝丫"] = new Material({
         id: "光暗枝丫",
@@ -4391,6 +4510,15 @@ item_templates["Twist liek a snek"] = new Book({
         realmcap:24,
         effects: [{effect: "恢复 B1", duration: 90}],
         image: "image/item/B1_life_medicine.png",
+    });
+
+    item_templates["能量冰沙"] = new UsableItem({
+        name: "能量冰沙", 
+        description: "将部分生命隐匿起来，从而增大生命的【容量】。", 
+        value: 3e12,
+        realmcap:27,
+        effects: [{effect: "恢复 B4", duration: 90}],
+        image: "image/item/B4_life_medicine.png",
     });
     
     item_templates["沼泽·荒兽肉排"] = new UsableItem({
@@ -5006,6 +5134,35 @@ item_templates["Twist liek a snek"] = new Book({
         description: "看似很小其实又大又厚。在恰当的处理后可以做成更好的织料。", 
         value: 486e9,
         image: "image/item/forest_leaf.png",
+    });
+    //3-3
+    item_templates["多孔冰晶"] = new Loot({
+        name: "多孔冰晶", 
+        description: "空气是热的不良导体。虽然冰原气体似乎不是氮氧混合物，但不妨碍它成为良好的隔热材料。", 
+        value: 864e9,
+        image: "image/item/ice_crystal.png",
+    });
+    item_templates["冰原超流体"] = new Loot({
+        name: "冰原超流体", 
+        description: "热容类似水，冰点类似氦。<br>在吸收足量冰元素之后会相变为万载冰髓……<br>正如其名，此转化在冰原常温[240K]下大约需要一个纪元。", 
+        value: 1.12e12,
+        image: "image/item/iceland_superfiuld.png",
+    });
+    item_templates["玄冰果实"] = new Loot({
+        name: "玄冰果实", 
+        description: "冷却到足够低温后会凝结出一颗冰霜核心。<br>需要在【极寒相变引擎】中散热给【冰原超流体】！(WIP)", 
+        value: 28.8e12,
+        image: "image/item/ice_fruit.png",
+    });
+    
+    item_templates["玄冰果实·觉醒"] = new  UsableItem({
+        name: "玄冰果实·觉醒", 
+        description: "已经凝聚【冰霜核心】的玄冰果实。可用于合成【冰原之心】(可进化装备)，也可直接食用获取1兆经验。", 
+        value: 43.2e12,
+        E_value: 1e12,
+        effects:[],
+        C_value: 3,
+        image: "image/item/ice_fruit_awaken.png",
     });
 
 
