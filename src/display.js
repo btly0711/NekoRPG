@@ -15,7 +15,7 @@ import { current_enemies, options,
 import { dialogues } from "./dialogues.js";
 import { activities } from "./activities.js";
 import { format_time, current_game_time } from "./game_time.js";
-import { book_stats, item_templates, Weapon, Armor, Shield } from "./items.js";
+import { book_stats, item_templates, Weapon, Armor, Shield , rarity_multipliers , getItemRarity } from "./items.js";
 import { get_location_type_penalty, location_types, locations } from "./locations.js";
 import { enemy_killcount, enemy_templates } from "./enemies.js";
 import { expo, format_reading_time, stat_names, get_hit_chance, round_item_price } from "./misc.js"
@@ -405,31 +405,43 @@ function create_item_tooltip_content({item, options={}}) {
         if(item.component_tier) {
             item_tooltip += `<br>部件等级: ${item.component_tier}`;
         }
-        if(Object.keys(item.stats).length > 0 || item?.attack_value !== 0 || item?.attack_multiplier !== 1) {
-            item_tooltip += `<br>基础属性: `;
+        if(options?.quality?.length == 2){
+            if(Object.keys(item.stats).length > 0 || item?.attack_value !== 0 || item?.attack_multiplier !== 1) {
+                item_tooltip += `<br>基础属性: `;
+            }
+            if(item?.attack_value) {
+                item_tooltip += `<br>攻击力: + ${format_number(item.attack_value)}`;
+            }
+            if(item?.defense_value) {
+                item_tooltip += `<br>防御力: + ${format_number(item.defense_value)}`;
+            }
         }
-        if(item?.attack_value) {
-
-            item_tooltip += `<br>攻击力: + ${item.attack_value}`;
+        else{
+            if(Object.keys(item.stats).length > 0 || item?.attack_value !== 0 || item?.attack_multiplier !== 1) {
+                item_tooltip += `<br>预期属性: `;
+            }
+            if(item?.attack_value) {
+                item_tooltip += `<br>攻击力: + ${format_number(item.attack_value * quality/100 * rarity_multipliers[getItemRarity(quality)]) }`;
+            }
+            if(item?.defense_value) {
+                item_tooltip += `<br>防御力: + ${format_number(item.defense_value * quality/100 * rarity_multipliers[getItemRarity(quality)])}`;
+            }
         }
-        if(item?.defense_value) {
-
-            item_tooltip += `<br>防御力: + ${item.defense_value}`;
-        }
+        let rarity_mul = rarity_multipliers[getItemRarity(quality)];
+        if(options?.quality?.length == 2) rarity_mul = 1;
         if(item?.attack_multiplier && item.attack_multiplier !== 1) {
             item_tooltip += `<br>Size-specific attack power: x${item.attack_multiplier}`;
         }
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[%]"}
         Object.keys(item.stats).forEach(function(effect_key) {
 
             if(item.stats[effect_key].flat != null) {
                 item_tooltip += 
-                `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: ${item.stats[effect_key].flat>0?"+":""}${item.stats[effect_key].flat}`;
+                `<br>${stat_names[effect_key]}: ${item.stats[effect_key].flat>0?"+":""}${format_number(item.stats[effect_key].flat*(item.stats[effect_key].flat>0?rarity_mul:1))}`;
             }
             if(item.stats[effect_key].multiplier != null) {
                 item_tooltip += 
-                `<br>${EquipStatMap[capitalize_first_letter(effect_key).replace("_"," ")]}: x${item.stats[effect_key].multiplier}`;
+                `<br>${stat_names[effect_key]}: x${item.stats[effect_key].multiplier + (item.stats[effect_key].multiplier-1) * (rarity_mul - 1)}`;
             }
         });
         item_tooltip += "<br>";

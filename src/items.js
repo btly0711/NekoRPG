@@ -5235,5 +5235,5 @@ export {
     WeaponComponent, ArmorComponent, ShieldComponent,
     getItem, setLootSoldCount, recoverItemPrices, round_item_price, getArmorSlot, getEquipmentValue,
     book_stats, loot_sold_count,
-    rarity_multipliers
+    rarity_multipliers, getItemRarity
 };
