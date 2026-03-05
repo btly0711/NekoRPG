@@ -4554,7 +4554,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 3e12,
         realmcap:27,
         effects: [{effect: "恢复 B4", duration: 90}],
-        image: "image/item/B4_life_medicine.png",
+        image: "image/item/B4_medicine.png",
     });
     
     item_templates["沼泽·荒兽肉排"] = new UsableItem({
