@@ -4462,7 +4462,7 @@ function update_displayed_engine(){
     engine_result_fruit_status.innerText = (inf_combat.FE.fruit == -1)?"未放入":`觉醒${(inf_combat.FE.fruit / 1e4).toFixed(4)}%`
     engine_result_temp.innerText = (inf_combat.FE.outer_temp.toFixed(0)) + 'K / '+ ((inf_combat.FE.outer_temp/240)**2*12).toFixed(2) + 'MPa';
     engine_env1.style.display = (character.equipment.realm?.name == "焰海霜天[领域二重]" || character.equipment.realm?.name == "焰海霜天[领域三重]")?"inline-block":"none";
-    engine_env2.style.display = (character.equipment.realm?.name == "焰海霜天[领域二重]" || character.equipment.realm?.name == "焰海霜天[领域二重]")?"inline-block":"none";
+    engine_env2.style.display = (character.equipment.realm?.name == "焰海霜天[领域二重]" || character.equipment.realm?.name == "焰海霜天[领域三重]")?"inline-block":"none";
 
 
     piston_div.style.left = Math.round(120 * (1+Math.cos(3.1415927*(1+inf_combat.FE.piston))) + 64) + 'px';
@@ -4525,7 +4525,7 @@ function update_displayed_engine(){
 function start_engine_minigame()
 {
     //设定1：冰原的外界气压为1.2 MPa！
-    engine_init();
+    if(inf_combat.FE == undefined) engine_init();
     update_displayed_engine()
     engine_able = true;
     engine_div.style.display ="inherit";
@@ -4585,9 +4585,11 @@ function start_engine_minigame()
         //设定3：冰原空气是单原子气体，绝热系数5/3
 
         if(inf_combat.FE.piston == 1){
-            inf_combat.FE.IA.temp -= frametime * 0.1 * (inf_combat.FE.IA.temp - outer_temp);
+            let dT = frametime * 0.1 * (inf_combat.FE.IA.temp - outer_temp) + frametime * 2e-11 * (inf_combat.FE.IA.temp ** 4 - outer_temp ** 4);
+            if(dT >= inf_combat.FE.IA.temp * 0.1) dT = inf_combat.FE.IA.temp * 0.1;
+            //防炸机制
             //热传导(低温主导)
-            inf_combat.FE.IA.temp -= frametime * 2e-11 * (inf_combat.FE.IA.temp ** 4 - outer_temp ** 4);
+            inf_combat.FE.IA.temp -= dT;
             //热辐射(高温主导)
             //1259K是热辐射=热传导的临界点
         }
@@ -4595,6 +4597,10 @@ function start_engine_minigame()
             let heat_changed = frametime * 0.5 * ((inf_combat.FE.IA.temp - inf_combat.FE.SF.temp) + 2e-10 * (inf_combat.FE.IA.temp**4 - inf_combat.FE.SF.temp**4)) * ((inf_combat.FE.IA.num * inf_combat.FE.SF.num * 1e7)/(inf_combat.FE.IA.num + inf_combat.FE.SF.num * 1e7))
             //使用约化质量 1份超流体视为10M mol冰原空气
             //空气温度>流体温度时heat_changed为正
+            let min_Q = Math.min(inf_combat.FE.IA.temp ** 2 * inf_combat.FE.IA.num,inf_combat.FE.SF.temp ** 2 * inf_combat.FE.SF.num * 1e7) * 0.1;
+            if(heat_changed >= min_Q) heat_changed = min_Q;
+            if(heat_changed <= -1*min_Q) heat_changed = -1 * min_Q;
+            //防炸机制
             inf_combat.FE.IA.temp -= heat_changed / inf_combat.FE.IA.num;
             inf_combat.FE.SF.temp += heat_changed / (inf_combat.FE.SF.num * 1e7);
             //与隔热袋换热

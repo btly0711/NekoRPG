@@ -1373,6 +1373,16 @@ i {
 	left:280px;
 	border:2px solid lightgreen;
 }
+#leave_engine{
+	background-color: rgb(184, 98, 0);
+	width:155px;
+	height:24px;
+	font-weight:bold;
+	position:absolute;
+	top:12px;
+	left:400px;
+	border:2px solid rgb(238, 194, 144);
+}
 #engine_container_stats{
 	position:absolute;
 	top:256px;

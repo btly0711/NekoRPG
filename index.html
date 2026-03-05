@@ -887,7 +887,6 @@
                         </span><br>
                         
                         <span style="background: linear-gradient(to bottom right,cyan,white,cyan);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;" onclick="engine_e(-1)">[将飞船之心转化为材料版]</span><br>
-                        <span style="color:lime" onclick="engine_l()">[离开极寒相变引擎]</span>
                         </b>
                     </div>
                     <div id = "engine_piston">
@@ -920,6 +919,7 @@
                         </div>
                     </div>
                     <div id = "piston_change" onclick="changePistonStatus()"><i class="material-icons">sync</i>移动活塞</div>
+                    <div id = "leave_engine" onclick="engine_l()"><i class="material-icons">directions</i>离开极寒相变引擎</div>
                 </div>
 
                 <div id = "journal_div" class = "box_div">
@@ -1586,7 +1586,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.23b";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.23c";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
