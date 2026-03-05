@@ -4526,6 +4526,7 @@ function start_engine_minigame()
 {
     //设定1：冰原的外界气压为1.2 MPa！
     if(inf_combat.FE == undefined) engine_init();
+    if(inf_combat.FE.SF.temp == NaN ||inf_combat.FE.IA.temp == null) engine_init();
     update_displayed_engine()
     engine_able = true;
     engine_div.style.display ="inherit";
@@ -4585,22 +4586,14 @@ function start_engine_minigame()
         //设定3：冰原空气是单原子气体，绝热系数5/3
 
         if(inf_combat.FE.piston == 1){
-            let dT = frametime * 0.1 * (inf_combat.FE.IA.temp - outer_temp) + frametime * 2e-11 * (inf_combat.FE.IA.temp ** 4 - outer_temp ** 4);
-            if(dT >= inf_combat.FE.IA.temp * 0.1) dT = inf_combat.FE.IA.temp * 0.1;
-            //防炸机制
+            let dT = frametime * 0.1 * (inf_combat.FE.IA.temp - outer_temp);
             //热传导(低温主导)
             inf_combat.FE.IA.temp -= dT;
-            //热辐射(高温主导)
-            //1259K是热辐射=热传导的临界点
         }
         else if(inf_combat.FE.piston == 0){
-            let heat_changed = frametime * 0.5 * ((inf_combat.FE.IA.temp - inf_combat.FE.SF.temp) + 2e-10 * (inf_combat.FE.IA.temp**4 - inf_combat.FE.SF.temp**4)) * ((inf_combat.FE.IA.num * inf_combat.FE.SF.num * 1e7)/(inf_combat.FE.IA.num + inf_combat.FE.SF.num * 1e7))
+            let heat_changed = frametime * 0.5 * (inf_combat.FE.IA.temp - inf_combat.FE.SF.temp) * ((inf_combat.FE.IA.num * inf_combat.FE.SF.num * 1e7)/(inf_combat.FE.IA.num + inf_combat.FE.SF.num * 1e7))
             //使用约化质量 1份超流体视为10M mol冰原空气
             //空气温度>流体温度时heat_changed为正
-            let min_Q = Math.min(inf_combat.FE.IA.temp ** 2 * inf_combat.FE.IA.num,inf_combat.FE.SF.temp ** 2 * inf_combat.FE.SF.num * 1e7) * 0.1;
-            if(heat_changed >= min_Q) heat_changed = min_Q;
-            if(heat_changed <= -1*min_Q) heat_changed = -1 * min_Q;
-            //防炸机制
             inf_combat.FE.IA.temp -= heat_changed / inf_combat.FE.IA.num;
             inf_combat.FE.SF.temp += heat_changed / (inf_combat.FE.SF.num * 1e7);
             //与隔热袋换热
@@ -4619,14 +4612,14 @@ function start_engine_minigame()
 
         inf_combat.FE.SF.ice += frametime * inf_combat.FE.SF.surface * 3.4764e-14 * Math.exp(2623.17 / inf_combat.FE.SF.temp);
 
+        if(inf_combat.FE.SF.ice >= inf_combat.FE.SF.num * 1000) inf_combat.FE.SF.ice = 1000 * inf_combat.FE.SF.num;
+
         if(inf_combat.FE.fruit != -1 && inf_combat.FE.fruit < 1000000){
             let dI = inf_combat.FE.SF.ice * frametime;
             if(inf_combat.FE.fruit + dI > 1000000) dI = 1000000 - inf_combat.FE.fruit;
             inf_combat.FE.fruit += dI;
             inf_combat.FE.SF.ice -= dI;
         }
-        if(inf_combat.FE.SF.ice >= inf_combat.FE.SF.num * 1000) inf_combat.FE.SF.ice = 1000 * inf_combat.FE.SF.num;
-
         
         if (!engine_able) {
             lr_div.style.display = "block";
@@ -4717,7 +4710,7 @@ function engine_e(e_temp){
                 log_message("你的【飞船之心】已经被转化为【飞船之心·材】，","combat_loot");
                 log_message("可以继续升级为【冰原之心】。","combat_loot");
             }
-            else displayed_text += `请将【飞船之心】佩戴后再次尝试！`;
+            else log_message("请将【飞船之心】佩戴后再次尝试！`","combat_looot");
             //借用代码……
     }
 }
