@@ -2562,7 +2562,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 4310344e6,//10B
         stats: {
             attack_power: {
-                multiplier: 10.8,//WIP!!!
+                multiplier: 1.08,//WIP!!!
             },
             defense: {
                 multiplier: 1.08,
