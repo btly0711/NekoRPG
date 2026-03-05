@@ -1663,6 +1663,20 @@ class Textline {
     });
 
 
+    dialogues["极寒相变引擎"] = new Dialogue({
+        name: "极寒相变引擎",
+        starting_text: "使用 [极寒相变引擎]",
+        textlines: {
+            "engine": new Textline({ 
+                is_unlocked: false,
+                name: "使用 [极寒相变引擎]",
+                text: "...",
+                unlocks: {
+                    spec:"freezing-engine",
+                },
+            }),
+        }
+    });
 
 
 

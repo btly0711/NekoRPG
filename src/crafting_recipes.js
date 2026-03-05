@@ -900,6 +900,26 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         Q_able:200,
         recipe_skill: "Crafting",
     });
+    crafting_recipes.items3["极寒相变引擎"] = new ItemRecipe({
+        name: "极寒相变引擎",
+        recipe_type: "material",
+        materials: [{material_id: "旋律合金锭", count: 108},{material_id: "冰原超流体", count: 25},{material_id:"多孔冰晶", count: 15}], 
+        result: {result_id: "极寒相变引擎", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [27,59],
+        recipe_skill: "Crafting",
+    });
+    crafting_recipes.items3["冰原之心"] = new ItemRecipe({
+        name: "冰原之心",
+        id: "冰原之心",
+        recipe_type: "items",
+        materials: [{material_id: "飞船之心·材", count: 1},{material_id:"玄冰果实·觉醒",count:5},{material_id:"万载冰髓锭",count:120},{material_id:"多孔冰晶",count:60}],
+        result: {result_id: "冰原之心", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [1,1],
+        Q_able: 200,
+        recipe_skill: "Crafting",
+    });
 
 })();
 //熔炼配方
@@ -1042,7 +1062,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     smelting_recipes.items3["万载冰髓·古法"] = new ItemRecipe({
         name: "万载冰髓·古法",
         recipe_type: "material",
-        materials: [{material_id: "冰原超流体", count: 10},{material_id: "多孔冰晶", count: 5},{material_id: "史诗蓝宝石",count: 5},{material_id: "黑森叶片", count: 5}], 
+        materials: [{material_id: "冰原超流体", count: 6},{material_id: "多孔冰晶", count: 8},{material_id: "史诗蓝宝石",count: 12},{material_id: "黑森叶片", count: 24}], 
         result: {result_id: "万载冰髓锭", count: 1},
         success_chance: [0.5,1],
         recipe_level: [27,60],

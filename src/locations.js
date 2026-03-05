@@ -3465,7 +3465,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["飞云阁"], custom_text: "回到飞云阁"}], 
         description: "相当寒冷的冰雪天地。温度长期停留在240K(-33°C)附近，空气中弥漫的冰元素更是能让大地级修者遭遇不测[V2.30前版本终点]",
         name: "纯白冰原", 
-        dialogues: ["纳娜米(冰原)"],
+        dialogues: ["纳娜米(冰原)","极寒相变引擎"],
         is_unlocked: false,
         bgm: 16,
         unlock_text : "被厚厚的积雪所包裹的银白世界中，两个女孩站在一座雪山顶端，俯瞰着茫茫的白色大地。"

@@ -2729,6 +2729,26 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["冰原之心"] = new Special({
+        name: "冰原之心",
+        id: "冰原之心",
+        description: "结界湖之心的又一次升级。极寒相变引擎玩的开心吗~", 
+        value: 160e12,
+        stats: {
+            attack_power: {
+                multiplier: 1.03,
+            },
+            defense: {
+                multiplier: 1.03,
+            },
+            agility: {
+                multiplier: 1.03,
+            },
+            max_health: {
+                multiplier: 1.03,
+            }
+        }
+    });
 
 })();
 //usables:
@@ -4284,6 +4304,14 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/barrierlake_heart.png",
     });
+    item_templates["飞船之心·材"] = new Material({
+        id: "飞船之心·材",
+        name: "飞船之心·材", 
+        description: "无法继续被佩戴，只是用于合成【冰原之心】的临时材料。", 
+        value: 4.8e12,
+        material_type: "metal",
+        image: "image/item/spaceship_heart.png",
+    });
     
 })();
 
@@ -4371,6 +4399,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 500e9,
         spec:"T8-table",
         image: "image/item/rune_workingtable.png",
+    });
+    item_templates["极寒相变引擎"] = new UsableItem({
+        id: "极寒相变引擎",
+        name: "极寒相变引擎", 
+        description: "使用多冲程压缩-膨胀来制冷的套件，附带隔热装置。<br>可用于生产万载冰髓与玄冰果实·觉醒。<br>具体使用方式详见左下角问号菜单！", 
+        value: 96e12,
+        spec:"freezing_engine",
+        image: "image/item/freezing_engine.png",
     });
 })();
 

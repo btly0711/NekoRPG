@@ -211,6 +211,7 @@ function format_number(some_number)
     return f_result;
 }
 
+
 function capitalize_first_letter(some_string) {
     return some_string.charAt(0).toUpperCase() + some_string.slice(1);
 }

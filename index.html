@@ -829,6 +829,98 @@
                         </div>
                     </div>
                 </div>
+                <div id = "engine_div" class = "box_div">
+                    <div id = "engine_container">
+                        <div id="container_circle"></div>
+                        <img src="image/spec/container.png" style="transform: scale(1.6); transform-origin: top left; image-rendering: pixelated; display: block;">
+                    </div>
+                    <div id = "engine_container_stats">
+                        <b>
+                        <span style="color:rgb(154, 255, 255)">
+                            冰原超流体 : <span id="container_sf">25</span> m³ / <span id="container_sf_S">25</span> m²
+                            <span class="money_button" onclick = "engine(1,5)">[+5]</span>
+                            <span class="money_button" onclick = "engine(1,50)">[+50]</span>
+                            <span class="money_button" onclick = "engine(1,500)">[+500]</span>
+                            <span class="money_button" onclick = "engine(1,-1)">[+ALL]</span>
+                        </span><br>
+                        <span style="color:rgb(94, 255, 207)">
+                            温度 : <span id="container_temp">240</span> K ( <span id="container_temp_change">0</span> K/s)
+                        </span><br>
+                        <span style="color:rgb(94, 183, 255)">
+                            多孔冰晶 : <span id="container_isolate">15</span> pts / <span id="container_isolate_thickness">0.0416</span> m  
+                            <span class="money_button" onclick = "engine(2,10)">[+10]</span>
+                            <span class="money_button" onclick = "engine(2,100)">[+100]</span>
+                            <span class="money_button" onclick = "engine(2,-1)">[+ALL]</span>
+                            <span class="money_button" onclick = "engine(2,-2)">[-ALL]</span>
+                        </span><br>
+                        <span style="color:rgb(94, 124, 255)">
+                            冰元素 : <span id="container_element">0</span> / <span id="container_element_max">25000</span> pts (<span id="container_element_speed">0</span>pts/s) <br>
+                            
+                            <div id = "engine_element_bar_max"> 
+                                <div id = "engine_element_bar_current">
+                                </div>
+                            </div>
+                            预计时间 : <span id="container_element_time">10000 年</span>.
+                        </span><br>
+                        </b>
+                    </div>
+                    
+                    <div id = "engine_result_stats">
+                        <b>
+                        <span style="color:rgb(0, 255, 255)">
+                            提取 [<span id="engine_result_name">冰原超流体</span>] : <br>
+                            <span class="money_button" onclick = "engine_r(1,5)">[-5]</span>
+                            <span class="money_button" onclick = "engine_r(1,50)">[-50]</span>
+                            <span class="money_button" onclick = "engine_r(1,500)">[-500]</span>
+                            <span class="money_button" onclick = "engine_r(1,-1)">[-ALL]</span>
+                        </span><br>
+                        <span style="color:rgb(0, 4, 255)">
+                            玄冰果实 : <span id="engine_result_fruit_status">未放入</span>
+                            <span class="money_button" onclick = "engine_f(1)">[放入]</span>
+                            <span class="money_button" onclick = "engine_f(2)">[取出]</span>
+                        </span><br>
+                        <span style="color:rgb(94, 183, 255)">
+                            环境 : <span id="engine_result_temp">240</span><br>
+                            <span class="money_button" onclick = "engine_e(240)" style="color:rgb(209, 255, 240)">[冰原]</span>
+                            <span id="engine_env1" class="money_button" onclick = "engine_e(960)" style="color:rgb(255, 94, 0)">[焰海]</span>
+                            <span id="engine_env2" class="money_button" onclick = "engine_e(180)" style="color:rgb(20, 228, 255)">[霜天]</span>
+                        </span><br>
+                        
+                        <span style="background: linear-gradient(to bottom right,cyan,white,cyan);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;" onclick="engine_e(-1)">[将飞船之心转化为材料版]</span><br>
+                        <span style="color:lime" onclick="engine_l()">[离开极寒相变引擎]</span>
+                        </b>
+                    </div>
+                    <div id = "engine_piston">
+                        <div id="container_square"></div>
+                        <div id = "piston_pt1">
+                            <img src="image/spec/piston_pt1.png" style="transform: scale(1.2); transform-origin: top left; image-rendering: pixelated; display: block;">
+                        </div>
+                        <div id = "piston_pt2">
+                            <img src="image/spec/piston_pt2.png" style="transform: scale(1.2); transform-origin: top left; image-rendering: pixelated; display: block;">
+                        </div>
+                        <div id = "piston_buttons">
+                            <div id="piston_compress" onclick="changePistonMode(1)">压缩</div>
+                            <div id="piston_expand"   onclick="changePistonMode(2)">膨胀</div>
+                            <div id="piston_fill"     onclick="changePistonMode(3)">充气</div>
+                            <div id="piston_defill"   onclick="changePistonMode(4)">放气</div>
+                        </div>
+                        <div id = "piston_stats">
+                            <b><span style="color:antiquewhite">
+                            活塞工作状态 : <span id="piston_mode">摸鱼ing</span>
+                            </span><br><span style="color:lightskyblue">
+                            内部气体温度 : <span id="piston_temp">240</span> K
+                            </span><br><span style="color:pink">
+                            内部气体压强 : <span id="piston_pressure">9977.4MPa</span>
+                            </span><br><span style="color:lemonchiffon">
+                            冰原空气体积 : <span id="piston_volume">30</span> / 30.000 m³
+                            </span><br><span style="color:lightsalmon">
+                            喵可做功功率 : <span id="neko_power">0</span> GW
+                            </span><br>
+                        </b>
+                        </div>
+                    </div>
+                    <div id = "piston_change" onclick="changePistonStatus()"><i class="material-icons">sync</i>移动活塞</div>
+                </div>
 
                 <div id = "journal_div" class = "box_div">
                     <div id = "journal_control_div" class="activable_buttons">

@@ -922,6 +922,9 @@ function textline_special(t_key){
         else if(t_key == "A7-reactor"){
             start_reactor_minigame();
         }
+        else if(t_key == "freezing-engine"){
+            start_engine_minigame();
+        }
         else if(t_key == "jjhzx"){
 
             if(character.equipment.special?.name == "结界湖之心")
@@ -2784,6 +2787,12 @@ function use_item(item_key,stated = false) {
             unlock_location(locations["符文之屋"]);
             log_message(`随着符文工作台套件被摆下，一座小屋拔地而起。在这片废墟中，${character.name} 得到了一片温暖的港湾。`,"gather_loot")
         }
+        if(item_templates[id].spec == "freezing_engine"){
+            //unlock 极寒相变引擎
+            engine_init();
+            dialogues["极寒相变引擎"].textlines["engine"].is_unlocked = true;
+            log_message(`旋律合金作为活塞，多孔冰晶作为隔热，冰原超流体作为热容……冰原的环境本十分恶劣，${character.name} 却掌握了巧妙利用它的方法。`,"gather_loot")
+        }
     }
     if(item_templates[id].realmcap!=-1)
     {
@@ -4318,6 +4327,37 @@ function reactor(item_id,count)
     }
 }
 
+function engine(item_id,count){
+    let item_map = {1:"冰原超流体",2:"多孔冰晶"};
+    //检查物品是否足够，扣除物品，如果不够就返回
+    let key = "{\"id\":\""+item_map[item_id]+"\"}";
+    if(count==-2){
+        count = inf_combat.FE.IM.num - 1;
+        inf_combat.FE.IM.num = 1;
+        log_message("提取了 多孔冰晶 * " + count,"combat_loot");
+        add_to_character_inventory([{ "item": getItem(item_templates["多孔冰晶"] ), "count": count}]);
+        return;
+    }
+    if(character.inventory[key] != undefined)
+    {
+        if(count==-1) count = character.inventory[key].count;
+        if(character.inventory[key].count >= count)
+        {
+            remove_from_character_inventory([{ 
+                item_key: key,           
+                item_count: count,
+            }]);
+        }
+        else return;
+    }
+    else return;
+    if(item_id==1){
+        inf_combat.FE.SF.num += count;
+        inf_combat.FE.SF.temp += (inf_combat.FE.outer_temp - inf_combat.FE.SF.temp) * (count / inf_combat.FE.SF.num);
+    }
+    if(item_id==2) inf_combat.FE.IM.num += count;
+}
+
 function leave_reactor()
 {
     reactor_able = false;
@@ -4356,7 +4396,335 @@ window.reactor =  reactor;
 window.leave_reactor =  leave_reactor;
 window.extract_reactor =  extract_reactor;
 window.extract_evolve =  extract_evolve;
+window.engine = engine;
 
+//极寒引擎minigame！
+let engine_able = true;
+
+function engine_init()
+{
+    inf_combat.FE = {};//FreezingEngine,更准确的名称是[极寒二阶相变引擎]/FreezingSecondOrderPhaseTransformationEngine
+    inf_combat.FE.IA = {};//IcelandAir
+    inf_combat.FE.SF = {};//SuperFuild
+    inf_combat.FE.IM = {};//IsolationMaterial
+    inf_combat.FE.FR = {};
+    //为了避免进一步的麻烦，以下内容将尽可能遵守【SI纯粹主义】
+    inf_combat.FE.power = 0;//喵可做功速度(W)
+    inf_combat.FE.outer_temp = 240;
+    inf_combat.FE.fruit = -1;//-1代表未放入，反之代表玄冰果实中积累的冰元素
+    inf_combat.FE.piston = 1;//0:隔热袋内，1:环境中。默认在1.
+    inf_combat.FE.piston_mode = 0;
+    inf_combat.FE.IA.num = 150000000;//物质的量(mol)
+    inf_combat.FE.IA.volume = 30.000;//体积(m^3),也作为活塞推入百分比依据
+    inf_combat.FE.IA.temp = 240.0;//温度(K)
+    inf_combat.FE.IA.pressure = 9977.4e6;//压强(Pa)，作为导出单位
+    inf_combat.FE.SF.num = 25;//加入的25单位超流体，每个单位是1m^3
+    inf_combat.FE.SF.ice = 0;//冰元素积累量
+    inf_combat.FE.SF.temp = 240.0;//同样是温度
+    inf_combat.FE.SF.surface = 41.347;//按m^2计的表面积
+    inf_combat.FE.IM.num = 15;//加入的15单位多孔冰晶 每10单位为1m^3
+    inf_combat.FE.IM.thickness = 0.0356;//冰晶厚度[M]
+    engine_able = true;
+}
+const engine_div = document.getElementById("engine_div");
+const sas_div = document.getElementById("skills_and_stances_div");
+const lr_div = document.getElementById("location_related_div");
+const piston_div = document.getElementById("engine_piston");
+const piston_mode = document.getElementById("piston_mode");
+const piston_temp = document.getElementById("piston_temp");
+const piston_pressure = document.getElementById("piston_pressure");
+const piston_volume = document.getElementById("piston_volume");
+const neko_power = document.getElementById("neko_power");
+const piston_pt2 = document.getElementById("piston_pt2");
+const container_circle = document.getElementById("container_circle");
+const container_square = document.getElementById("container_square");
+const container_sf = document.getElementById("container_sf");
+const container_sf_S = document.getElementById("container_sf_S");
+const container_temp = document.getElementById("container_temp");
+const container_temp_change = document.getElementById("container_temp_change");
+const container_isolate = document.getElementById("container_isolate");
+const container_isolate_thickness = document.getElementById("container_isolate_thickness");
+const container_element = document.getElementById("container_element");
+const container_element_max = document.getElementById("container_element_max");
+const container_element_speed = document.getElementById("container_element_speed");
+const container_element_time = document.getElementById("container_element_time");
+const container_element_bar = document.getElementById("engine_element_bar_current");
+const engine_result_name = document.getElementById("engine_result_name");
+const engine_result_fruit_status = document.getElementById("engine_result_fruit_status");
+const engine_result_temp = document.getElementById("engine_result_temp");
+const engine_env1 = document.getElementById("engine_env1");
+const engine_env2 = document.getElementById("engine_env2");
+
+
+
+function update_displayed_engine(){
+    engine_result_name.innerText = (inf_combat.FE.SF.num * 999.999 - inf_combat.FE.SF.ice < 0)?"万载冰髓":"冰原超流体";
+    engine_result_fruit_status.innerText = (inf_combat.FE.fruit == -1)?"未放入":`觉醒${(inf_combat.FE.fruit / 1e4).toFixed(4)}%`
+    engine_result_temp.innerText = (inf_combat.FE.outer_temp.toFixed(0)) + 'K / '+ ((inf_combat.FE.outer_temp/240)**2*12).toFixed(2) + 'MPa';
+    engine_env1.style.display = (character.equipment.realm?.name == "焰海霜天[领域二重]" || character.equipment.realm?.name == "焰海霜天[领域三重]")?"inline-block":"none";
+    engine_env2.style.display = (character.equipment.realm?.name == "焰海霜天[领域二重]" || character.equipment.realm?.name == "焰海霜天[领域二重]")?"inline-block":"none";
+
+
+    piston_div.style.left = Math.round(120 * (1+Math.cos(3.1415927*(1+inf_combat.FE.piston))) + 64) + 'px';
+    let modemap = {0:"摸鱼ing",1:"压缩内部气体",2:"内部气体自由膨胀",3:"向内部充入气体",4:"释放内部气体"};
+    piston_mode.innerText = modemap[inf_combat.FE.piston_mode];
+    piston_temp.innerText = inf_combat.FE.IA.temp.toFixed(2);
+    let pres = inf_combat.FE.IA.pressure;
+    if(pres <= 1e9) piston_pressure.innerText = (pres/1e3).toFixed(0) + ' kPa';
+    else if(pres <= 1e12) piston_pressure.innerText = (pres/1e6).toFixed(0) + ' MPa';
+    else if(pres <= 1e15) piston_pressure.innerText = (pres/1e9).toFixed(0) + ' GPa';
+    else if(pres <= 1e18) piston_pressure.innerText = (pres/1e12).toFixed(0) + ' TPa';
+    else piston_pressure.innerText = (pres/1e17).toFixed(2) + ' TBar';
+    //动态单位:1GPa以下kPa,……1000000TPa以下TPa，以上TBar。
+    piston_volume.innerText = inf_combat.FE.IA.volume.toFixed(3);
+    neko_power.innerText = (character.stats.full.attack_power ** 1.5 / 1e9).toFixed(1);
+    piston_pt2.style.left = Math.round(10 + 100 * (inf_combat.FE.IA.volume / 30)) + 'px';
+    container_square.style.width = Math.round(100 * (inf_combat.FE.IA.volume / 30)) + 'px';
+
+    let transparenty = Math.log10(inf_combat.FE.IA.num / inf_combat.FE.IA.volume / 1e4) / 6;
+    transparenty = Math.min(1,Math.max(0,transparenty));
+    //1e10mol/m^3时完全不透明，1e4mol/m^3时完全透明。
+    //我知道后者已经是液体而前者是简并物质，但游戏性需要。
+    let temp_index = inf_combat.FE.IA.temp ** 0.5 / 15.4919;
+    temp_index = Math.min(temp_index,3);
+    if(temp_index <= 1) container_square.style.backgroundColor = `rgb(${Math.round(255*temp_index)},255,255,${transparenty.toFixed(3)})`;
+    else container_square.style.backgroundColor = `rgb(255,${Math.round(Math.max(255*(4-temp_index)/2,0))},${Math.round(Math.max(255*(2-temp_index),0))},${transparenty.toFixed(3)})`;
+    //气体颜色：
+    //0K纯青色，240K纯白色，960K纯黄色，2240K纯橙色。
+    //不符合黑体辐射，但是符合对温度的直观感受
+    temp_index = inf_combat.FE.SF.temp ** 0.5 / 15.4919;
+    temp_index = Math.min(temp_index,3);
+    if(temp_index <= 1) container_circle.style.backgroundColor = `rgb(${Math.round(255*temp_index)},255,255,1.0)`;
+    else container_circle.style.backgroundColor = `rgb(255,${Math.round(Math.max(255*(4-temp_index)/2,0))},${Math.round(Math.max(255*(2-temp_index),0))},1.0)`;
+    //对于球
+
+
+    container_sf.innerText = inf_combat.FE.SF.num;
+    container_sf_S.innerText = inf_combat.FE.SF.surface.toFixed(2);
+    container_temp.innerText = inf_combat.FE.SF.temp.toFixed(1);
+    container_isolate.innerText = inf_combat.FE.IM.num;
+    container_isolate_thickness.innerText = inf_combat.FE.IM.thickness.toFixed(4);
+    container_element.innerText = format_number(inf_combat.FE.SF.ice);
+    container_element_max.innerText = format_number(inf_combat.FE.SF.num * 1000);
+    container_element_bar.style.width = Math.min(inf_combat.FE.SF.ice / (inf_combat.FE.SF.num * 10),100).toFixed(1)  + "%" ;
+    let outer_temp = inf_combat.FE.outer_temp;//调整外界温度
+    let SF_heat = (outer_temp - inf_combat.FE.SF.temp) * inf_combat.FE.SF.surface / inf_combat.FE.SF.num / inf_combat.FE.IM.thickness * 0.001;
+    if(inf_combat.FE.piston == 0) SF_heat += 0.5 * (inf_combat.FE.IA.temp - inf_combat.FE.SF.temp) * ((inf_combat.FE.IA.num * inf_combat.FE.SF.num * 1e7)/(inf_combat.FE.IA.num + inf_combat.FE.SF.num * 1e7)) / (inf_combat.FE.SF.num * 1e7);
+    container_temp_change.innerText = SF_heat.toFixed(2);
+    let ice_speed = inf_combat.FE.SF.surface * 3.4764e-14 * Math.exp(2623.17 / inf_combat.FE.SF.temp);
+    container_element_speed.innerText = ice_speed.toFixed(2);
+    let ice_time = (inf_combat.FE.SF.num * 1000 - inf_combat.FE.SF.ice) / ice_speed;
+    ice_time = Math.max(ice_time,0);
+    if(ice_time <= 60) container_element_time.innerText = ice_time.toFixed(1) + '秒';
+    else if(ice_time <= 3600) container_element_time.innerText = (ice_time/60).toFixed(1) + '分钟';
+    else if(ice_time <= 86400) container_element_time.innerText = (ice_time/3600).toFixed(2) + '小时';
+    else if(ice_time <= 31557020) container_element_time.innerText = (ice_time/86400).toFixed(2) + '天';
+    else container_element_time.innerText = (ice_time/31557020).toFixed(2) + '年';
+}
+
+function start_engine_minigame()
+{
+    //设定1：冰原的外界气压为1.2 MPa！
+    engine_init();
+    update_displayed_engine()
+    engine_able = true;
+    engine_div.style.display ="inherit";
+    sas_div.style.display = "none";
+    lr_div.style.display = "none";
+    let frametime = 0.005;
+    let dP,dV,dN,dT,P_index;
+    let cnt=0;
+    let outer_temp = inf_combat.FE.outer_temp;
+    let outer_pressure = 12e6;
+    const EngineId = setInterval(() => {
+        outer_temp = inf_combat.FE.outer_temp;//调整外界温度
+        outer_pressure = ((inf_combat.FE.outer_temp/240)**2*12e6);
+        if(inf_combat.FE.piston_mode == 1){
+            dP = inf_combat.FE.IA.pressure - outer_pressure;
+            dV = (character.stats.full.attack_power ** 1.5) / dP * frametime * 3/5;
+            if(dV >= frametime * inf_combat.FE.IA.volume) dV = frametime * inf_combat.FE.IA.volume;
+            if(inf_combat.FE.IA.volume - dV < 0.3){
+                dV = inf_combat.FE.IA.volume - 0.3;
+            }//设定：极限压缩是0.01m^3.
+            if(dV < 1e-8){
+                inf_combat.FE.piston_mode = 0;//已经压缩到极限了，结束压缩
+            }
+            dT = inf_combat.FE.IA.temp * ( 2/3 ) * dV / inf_combat.FE.IA.volume;
+
+            inf_combat.FE.IA.temp += dT;
+            inf_combat.FE.IA.volume -= dV;
+        }//压缩气体
+        if(inf_combat.FE.piston_mode == 2){
+            P_index = (inf_combat.FE.IA.pressure - 1.2) / (inf_combat.FE.IA.pressure);//膨胀系数
+            dV = inf_combat.FE.IA.volume * frametime * P_index;
+            if(dV + inf_combat.FE.IA.volume >= 30) dV = 30 - inf_combat.FE.IA.volume;
+            if(dV < 1e-8){
+                inf_combat.FE.piston_mode = 0;//已经膨胀到极限了，结束膨胀
+            }
+            dT = inf_combat.FE.IA.temp * ( 2/3 ) * dV / inf_combat.FE.IA.volume;
+            
+            inf_combat.FE.IA.temp -= dT;
+            inf_combat.FE.IA.volume += dV;
+        }//膨胀气体
+        if(inf_combat.FE.piston_mode == 3){
+            //Pdt/(RT1(25/6(p2/p1)^0.4-2.5))
+            dN = (character.stats.full.attack_power ** 1.5) * frametime / (8.3144626 * outer_temp * (25/6 * (inf_combat.FE.IA.pressure / outer_pressure) ** 0.4 - 2.5))  ;
+            if(dN >= frametime * inf_combat.FE.IA.num) dN = 0.025 * inf_combat.FE.IA.num;
+            dT = (dN / inf_combat.FE.IA.num ) * (5/3*outer_temp*(inf_combat.FE.IA.pressure / outer_pressure) ** 0.4  -  inf_combat.FE.IA.temp);
+            inf_combat.FE.IA.num += dN;
+            inf_combat.FE.IA.temp += dT;
+            inf_combat.FE.IA.temp = (inf_combat.FE.IA.temp * inf_combat.FE.IA.num + outer_temp * dN) / (dN + inf_combat.FE.IA.num);
+            //+混合冷却
+        }
+        if(inf_combat.FE.piston_mode == 4){
+            P_index = (inf_combat.FE.IA.pressure - outer_pressure) / (inf_combat.FE.IA.pressure);//散逸
+            dN = inf_combat.FE.IA.num * frametime * P_index;
+            inf_combat.FE.IA.num -= dN;
+        }
+        //设定2：膨胀，压缩速度不能超过每秒1倍自然对数
+        //设定3：冰原空气是单原子气体，绝热系数5/3
+
+        if(inf_combat.FE.piston == 1){
+            inf_combat.FE.IA.temp -= frametime * 0.1 * (inf_combat.FE.IA.temp - outer_temp);
+            //热传导(低温主导)
+            inf_combat.FE.IA.temp -= frametime * 2e-11 * (inf_combat.FE.IA.temp ** 4 - outer_temp ** 4);
+            //热辐射(高温主导)
+            //1259K是热辐射=热传导的临界点
+        }
+        else if(inf_combat.FE.piston == 0){
+            let heat_changed = frametime * 0.5 * ((inf_combat.FE.IA.temp - inf_combat.FE.SF.temp) + 2e-10 * (inf_combat.FE.IA.temp**4 - inf_combat.FE.SF.temp**4)) * ((inf_combat.FE.IA.num * inf_combat.FE.SF.num * 1e7)/(inf_combat.FE.IA.num + inf_combat.FE.SF.num * 1e7))
+            //使用约化质量 1份超流体视为10M mol冰原空气
+            //空气温度>流体温度时heat_changed为正
+            inf_combat.FE.IA.temp -= heat_changed / inf_combat.FE.IA.num;
+            inf_combat.FE.SF.temp += heat_changed / (inf_combat.FE.SF.num * 1e7);
+            //与隔热袋换热
+        }
+        inf_combat.FE.IA.pressure = inf_combat.FE.IA.num * inf_combat.FE.IA.temp * 8.3144626 / inf_combat.FE.IA.volume;
+        // nRT / V
+
+        //WIP:计算表面积&隔热层厚度
+        //V=4pi/3 r^3,S=4pir^2,所以S=(6pi^0.5V)^2/3
+        inf_combat.FE.SF.surface = 4.835975862 * (inf_combat.FE.SF.num ** (2/3));
+        inf_combat.FE.IM.thickness = (0.2387324 * (inf_combat.FE.IM.num * 0.1 + inf_combat.FE.SF.num)) ** (1/3) - (0.2387324 * (inf_combat.FE.SF.num)) ** (1/3);
+        //两球体积之差即为厚度
+
+        inf_combat.FE.SF.temp += (outer_temp - inf_combat.FE.SF.temp) * inf_combat.FE.SF.surface / inf_combat.FE.SF.num / inf_combat.FE.IM.thickness * 0.001 * frametime;
+        //隔热袋与外界换热 开局条件下是0.05倍/s
+
+        inf_combat.FE.SF.ice += frametime * inf_combat.FE.SF.surface * 3.4764e-14 * Math.exp(2623.17 / inf_combat.FE.SF.temp);
+
+        if(inf_combat.FE.fruit != -1 && inf_combat.FE.fruit < 1000000){
+            let dI = inf_combat.FE.SF.ice * frametime;
+            if(inf_combat.FE.fruit + dI > 1000000) dI = 1000000 - inf_combat.FE.fruit;
+            inf_combat.FE.fruit += dI;
+            inf_combat.FE.SF.ice -= dI;
+        }
+        if(inf_combat.FE.SF.ice >= inf_combat.FE.SF.num * 1000) inf_combat.FE.SF.ice = 1000 * inf_combat.FE.SF.num;
+
+        
+        if (!engine_able) {
+            lr_div.style.display = "block";
+            sas_div.style.display = "block";
+            engine_div.style.display = "none";
+            clearInterval(EngineId);
+        }
+        cnt++;
+        if(cnt%5==0) update_displayed_engine();
+    },frametime * 1000);
+
+}
+let piston_changing = 0;
+function changePistonStatus(){
+    if(piston_changing != 0) return;
+    let frametime = 0.025;
+    piston_changing = 1 - inf_combat.FE.piston * 2;
+    const PistonId = setInterval(() => {
+        inf_combat.FE.piston += piston_changing * frametime;
+        if(inf_combat.FE.piston <= 0){
+            inf_combat.FE.piston = 0;
+            piston_changing = 0;
+            clearInterval(PistonId);
+        } 
+        else if(inf_combat.FE.piston >= 1){
+            inf_combat.FE.piston = 1;
+            piston_changing = 0;
+            clearInterval(PistonId);
+        }
+    },frametime * 1000);
+}
+function changePistonMode(mode){
+    if(inf_combat.FE.piston_mode != mode)
+        inf_combat.FE.piston_mode = mode;
+    else
+        inf_combat.FE.piston_mode = 0;
+}
+
+function engine_r(item_id,count){
+    let r_id = (inf_combat.FE.SF.num * 999.999 - inf_combat.FE.SF.ice < 0)?"万载冰髓锭":"冰原超流体";
+    let key = "{\"id\":\""+r_id+"\"}";
+    if(count == -1 && inf_combat.FE.SF.num > 1){
+        count = inf_combat.FE.SF.num - 1;
+    }
+    else if(count > inf_combat.FE.SF.num - 1) return;
+    inf_combat.FE.SF.ice *= (inf_combat.FE.SF.num - count) / inf_combat.FE.SF.num;
+    inf_combat.FE.SF.num -= count;
+    log_message(`提取了 ${r_id} x ${count} !`,"combat_loot");
+
+    add_to_character_inventory([{ "item": getItem(item_templates[r_id]), "count": count}]);
+    update_displayed_character_inventory();
+
+}
+function engine_f(oper){
+    if(oper==1 && inf_combat.FE.fruit == -1){
+        let fr_key = "{\"id\":\""+"玄冰果实"+"\"}";//应为玄冰果实
+        if(character.inventory[fr_key] != undefined){
+            remove_from_character_inventory([{ 
+                item_key: fr_key,           
+                item_count: 1,
+            }]);
+            inf_combat.FE.fruit = 0;
+            log_message(`玄冰果实 已开始吸取冰元素 !`,"enemy_defeated");
+        }
+        //拿走玄冰果实
+    }
+    if(oper==2 && inf_combat.FE.fruit != -1){
+        //根据是否抵达1e6判定取出什么
+        let q_id = inf_combat.FE.fruit > 999900 ? "玄冰果实·觉醒" : "玄冰果实" ;
+        log_message(`提取了 ${q_id} !`,"combat_loot");
+
+        add_to_character_inventory([{ "item": getItem(item_templates[q_id]), "count": 1}]);
+        update_displayed_character_inventory();
+        inf_combat.FE.fruit = -1;
+    }
+}
+function engine_e(e_temp){
+    if(e_temp != -1) inf_combat.FE.outer_temp = e_temp;
+    else{
+        
+            if(character.equipment.special?.name == "飞船之心")
+            {
+                character.equipment.special = null;
+                add_to_character_inventory([{item: item_templates["飞船之心·材"], count: 1}]);
+                update_displayed_equipment(); 
+                character.stats.add_all_equipment_bonus();
+                update_displayed_stats();
+                log_message("你的【飞船之心】已经被转化为【飞船之心·材】，","combat_loot");
+                log_message("可以继续升级为【冰原之心】。","combat_loot");
+            }
+            else displayed_text += `请将【飞船之心】佩戴后再次尝试！`;
+            //借用代码……
+    }
+}
+function engine_l(){
+    engine_able = false;
+}
+
+window.changePistonStatus = changePistonStatus;
+window.changePistonMode = changePistonMode;
+window.engine_r = engine_r;
+window.engine_f = engine_f;
+window.engine_e = engine_e;
+window.engine_l = engine_l;
 
 function update() {
     setTimeout(function()

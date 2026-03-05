@@ -4843,6 +4843,7 @@ class Enemy {
             {item_name: "荒兽凭证", chance:1,ignore_luck:true},
             {item_name: "沼泽·荒兽肉块", chance:0.12},
             {item_name: "荧光精华", chance:0.04},
+            {item_name: "极寒相变引擎", chance:1},
             //9D
         ],
     });

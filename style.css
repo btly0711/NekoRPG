@@ -1353,6 +1353,120 @@ i {
 	left: 410px;
 	top: var(--actions_div_top);
 }
+#engine_div {
+	width: 810px;
+	height: var(--actions_div_height);
+	left: 410px;
+	top: var(--actions_div_top);
+	display:none;
+}
+#engine_piston{
+	position:absolute;
+}
+#piston_change {
+	background-color: rgb(83, 184, 0);
+	width:90px;
+	height:24px;
+	font-weight:bold;
+	position:absolute;
+	top:12px;
+	left:280px;
+	border:2px solid lightgreen;
+}
+#engine_container_stats{
+	position:absolute;
+	top:256px;
+	left:0px;
+}
+#engine_result_stats{
+	position:absolute;
+	top:256px;
+	left:448px;
+}
+#container_circle {
+      position: absolute;
+      width: 192px;                  /* 圆的大小，根据需要改 */
+      height: 192px;
+	  top:128px;
+	  left:128px;
+      background-color: #ffffff;    /* 初始颜色，可被 JS 改 */
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;         /* 防止圆挡住图片的点击事件（可选） */
+    }
+
+#container_square {
+      position: absolute;
+      width: 100px;                  /* 圆的大小，根据需要改 */
+      height: 100px;
+	  top:9.6px;
+	  left:9.6px;
+      background-color: rgba(255,255,255,0.5);    /* 初始颜色，可被 JS 改 */
+      pointer-events: none;         /* 防止圆挡住图片的点击事件（可选） */
+    }
+#engine_piston{
+	top:64px;
+	left:64px;
+	width:240px;
+	height:128px;
+	position:absolute;
+}
+#piston_pt2{
+	top:9px;
+	left:110px;
+	height:110px;
+	width:120px;
+	position:absolute;
+}
+#piston_stats{
+	top:36px;
+	left:240px;
+	height:160px;
+	width:264px;
+	position:absolute;
+}
+#piston_buttons{
+	top:8px;
+	left:240px;
+	height:40px;
+	width:264px;
+	position:absolute;
+}
+#piston_compress,#piston_expand,#piston_fill,#piston_defill{
+	height:22px;
+	width:40px;
+	position:absolute;
+	font-weight:bold;
+	text-align: center;         /* 可选：文字内部也水平居中 */
+}
+#piston_compress{
+	top:0px;
+	left:0px;
+	background-color: rgb(255, 171, 61);
+	border:2px solid rgb(255, 200, 128);
+}
+#piston_expand{
+	top:0px;
+	left:45px;
+	background-color: rgb(36, 186, 255);
+	border:2px solid rgb(128, 247, 255);
+}
+#piston_fill{
+	top:0px;
+	left:90px;
+	background-color: rgb(255, 36, 36);
+	border:2px solid rgb(255, 128, 128);
+}
+#piston_defill{
+	top:0px;
+	left:135px;
+	background-color: rgb(204, 36, 255);
+	border:2px solid rgb(225, 128, 255);
+}
+
+
+
+
 
 #basic_character_info_div {
     width: 400px;
@@ -1519,6 +1633,18 @@ i {
 			left: 100px;
 		}
 
+#engine_element_bar_max {
+	outline: 2px solid #2495ff;
+	background-color: #befbff;
+	margin: auto;
+	width: 99%;
+	height: 16px;
+	margin-top: 10px;
+}
+#engine_element_bar_current {
+	background-color: #00c3ff;
+	height: 100%;
+}
 
 #reactor_B1_bar_max {
 	outline: 2px solid #98bda9;
