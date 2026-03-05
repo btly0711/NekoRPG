@@ -2736,16 +2736,16 @@ item_templates["Twist liek a snek"] = new Book({
         value: 160e12,
         stats: {
             attack_power: {
-                multiplier: 1.03,
+                multiplier: 1.06,
             },
             defense: {
-                multiplier: 1.03,
+                multiplier: 1.06,
             },
             agility: {
-                multiplier: 1.03,
+                multiplier: 1.06,
             },
             max_health: {
-                multiplier: 1.03,
+                multiplier: 1.06,
             }
         }
     });
