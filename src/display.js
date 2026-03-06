@@ -1319,9 +1319,8 @@ function update_displayed_equipment() {
         }
         else 
         {
-            equipment_slots_divs[key].innerHTML = character.equipment[key].getName();
+            equipment_slots_divs[key].innerHTML = `<span class="${rarity_colors[character.equipment[key].getRarity(character.equipment[key].quality)]}">${character.equipment[key].getName()}</span>`;
             equipment_slots_divs[key].classList.remove("equipment_slot_empty");
-
             eq_tooltip = create_item_tooltip(character.equipment[key]);
         }
         equipment_slots_divs[key].appendChild(eq_tooltip);

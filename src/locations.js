@@ -3465,7 +3465,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["飞云阁"], custom_text: "回到飞云阁"}], 
         description: "相当寒冷的冰雪天地。温度长期停留在240K(-33°C)附近，空气中弥漫的冰元素更是能让大地级修者遭遇不测[V2.30前版本终点]",
         name: "纯白冰原", 
-        dialogues: ["纳娜米(冰原)","极寒相变引擎"],
+        dialogues: ["纳娜米(冰原)","极寒相变引擎","冰霜门户"],
         is_unlocked: false,
         bgm: 16,
         unlock_text : "被厚厚的积雪所包裹的银白世界中，两个女孩站在一座雪山顶端，俯瞰着茫茫的白色大地。"
@@ -3526,7 +3526,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 30e8,
-            locations: [{location: "纯白冰原 - 4"}],
+            locations: [{location: "纯白冰原 - 4"},{location: "纯白冰原 - 冰霜门户"}],
         },
     });
     locations["纯白冰原 - 4"] = new Combat_zone({
@@ -3547,11 +3547,28 @@ function get_location_type_penalty(type, stage, stat) {
             //locations: [{location: "纯白冰原 - X"}],
         },
     });
+    locations["纯白冰原 - 冰霜门户"] = new Challenge_zone({
+        description: "前面有一座两侧覆盖着冰雪的石制大门。越过这只怨气魔物才能触碰到它。", 
+        enemy_count: 1, 
+        enemies_list : [["探险者的怨恨[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "纯白冰原 - 冰霜门户",
+        bgm:16,
+        parent_location: locations["纯白冰原"],
+        repeatable_reward: {
+            textlines: [{dialogue: "冰霜门户", lines: ["bs1"]}],
+        },
+        unlock_text : "系统提示：触碰冰霜门户，或许会有意外收获。",
+    });
 
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 1"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 2"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 3"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 4"]});
+    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 冰霜门户"]});
 
 
 

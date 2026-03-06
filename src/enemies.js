@@ -4843,7 +4843,6 @@ class Enemy {
             {item_name: "荒兽凭证", chance:1,ignore_luck:true},
             {item_name: "沼泽·荒兽肉块", chance:0.12},
             {item_name: "荧光精华", chance:0.04},
-            {item_name: "极寒相变引擎", chance:1},
             //9D
         ],
     });
@@ -6008,6 +6007,23 @@ B5 6324'5986 /1'0233'4155exp
         loot_list: [
             {item_name: "史诗红宝石", chance:1},
             {item_name: "天空兽角", chance:4},
+        ],
+    });
+    enemy_templates["探险者的怨恨[BOSS]"] = new Enemy({
+        name: "探险者的怨恨[BOSS]", 
+        description: "虽然有时封和200%血量，但是0防在普攻倍率面前~不堪一击！。", 
+        xp_value: 102334155, 
+        rank: 3398,
+        image: "image/boss/B3301.png",
+        realm: "<span class=realm_sky><b>天空级五阶 +</b></span>",
+        size: "small",
+        spec: [12],
+        spec_value:{},
+        tags: [],
+        stats: {health: 18e8, attack: 39690e4, agility: 9000e4, attack_speed: 1.5, defense:0e4}, //血量200%
+        loot_list: [
+            {item_name: "万载冰髓锭", chance:2},
+            {item_name: "史诗绿宝石", chance:1},
         ],
     });
 

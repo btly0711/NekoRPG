@@ -925,6 +925,24 @@ function textline_special(t_key){
         else if(t_key == "freezing-engine"){
             start_engine_minigame();
         }
+        else if(t_key == "realm-II"){
+            displayed_text += '在看到这冰蓝色六芒星阵时，我印证了很多东西……<br>';
+            displayed_text += '曾经领悟的水元素秘法，<br>';
+            displayed_text += '与火元素领域，彻底融合在了一起。<br>';
+            displayed_text += '竟然……会有这么神异的现象产生。<br>';
+            displayed_text += '互斥的两种元素，本该是极难相容。<br>';
+            displayed_text += '可一旦达到完美的临界点，<br>';
+            displayed_text += '便能迈入【冰火两重天】的玄妙之境，<br>';
+            displayed_text += '迸发出不可思议的力量！<br>';
+            if(skills["Neko_Realm"].current_level <= 29){
+                    displayed_text += `，【火灵幻海】获取了51.2垓经验！<br>`;
+            }
+            else{
+                    displayed_text += `【焰海霜天】获取了51.2垓经验...?<br>`;
+                    displayed_text += `怎么领悟又已经突破了哇！也太能刷了叭！！<br>`;
+            }
+            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 51.2e20,should_info:true,use_bonus:false,add_to_parent:false},);
+        }
         else if(t_key == "jjhzx"){
 
             if(character.equipment.special?.name == "结界湖之心")
@@ -1864,7 +1882,10 @@ function update_neko_realm()
     else if(S_level >= 30 && inf_combat.RM < 3)
     {
         add_to_character_inventory([{item: getItem({...item_templates["焰海霜天[领域二重]"], quality: 200}), count: 1}]);
-        log_message(`领域二重剧情[WIP]！`, "location_unlocked");
+        log_message(`水，滋润万物，温和优雅……`, "gathered_loot");
+        log_message(`火，残酷暴戾，却照耀一切，点燃希望。`, "gathered_loot");
+        log_message(`获取新领悟 [焰海霜天]！`, "location_unlocked");
+        log_message(`[极寒相变引擎] - [焰海] / [霜天] 环境 现已解锁！`, "location_unlocked");
         inf_combat.RM = 3;
     }
     else if(S_level >= 40 && inf_combat.RM < 4)
@@ -4458,7 +4479,7 @@ const engine_env2 = document.getElementById("engine_env2");
 
 
 function update_displayed_engine(){
-    engine_result_name.innerText = (inf_combat.FE.SF.num * 999.999 - inf_combat.FE.SF.ice < 0)?"万载冰髓":"冰原超流体";
+    engine_result_name.innerText = (inf_combat.FE.SF.num * 999.999 - inf_combat.FE.SF.ice < 0)?"万载冰髓锭":"冰原超流体";
     engine_result_fruit_status.innerText = (inf_combat.FE.fruit == -1)?"未放入":`觉醒${(inf_combat.FE.fruit / 1e4).toFixed(4)}%`
     engine_result_temp.innerText = (inf_combat.FE.outer_temp.toFixed(0)) + 'K / '+ ((inf_combat.FE.outer_temp/240)**2*12).toFixed(2) + 'MPa';
     engine_env1.style.display = (character.equipment.realm?.name == "焰海霜天[领域二重]" || character.equipment.realm?.name == "焰海霜天[领域三重]")?"inline-block":"none";
@@ -4526,7 +4547,7 @@ function start_engine_minigame()
 {
     //设定1：冰原的外界气压为1.2 MPa！
     if(inf_combat.FE == undefined) engine_init();
-    if(inf_combat.FE.SF.temp == NaN ||inf_combat.FE.IA.temp == null) engine_init();
+    if(inf_combat.FE.SF.temp != inf_combat.FE.SF.temp ||inf_combat.FE.IA.temp != inf_combat.FE.IA.temp) engine_init();
     update_displayed_engine()
     engine_able = true;
     engine_div.style.display ="inherit";
@@ -4570,7 +4591,7 @@ function start_engine_minigame()
         if(inf_combat.FE.piston_mode == 3){
             //Pdt/(RT1(25/6(p2/p1)^0.4-2.5))
             dN = (character.stats.full.attack_power ** 1.5) * frametime / (8.3144626 * outer_temp * (25/6 * (inf_combat.FE.IA.pressure / outer_pressure) ** 0.4 - 2.5))  ;
-            if(dN >= frametime * inf_combat.FE.IA.num) dN = 0.025 * inf_combat.FE.IA.num;
+            if(dN >= frametime * inf_combat.FE.IA.num) dN = frametime * inf_combat.FE.IA.num;
             dT = (dN / inf_combat.FE.IA.num ) * (5/3*outer_temp*(inf_combat.FE.IA.pressure / outer_pressure) ** 0.4  -  inf_combat.FE.IA.temp);
             inf_combat.FE.IA.num += dN;
             inf_combat.FE.IA.temp += dT;
@@ -4600,6 +4621,11 @@ function start_engine_minigame()
         }
         inf_combat.FE.IA.pressure = inf_combat.FE.IA.num * inf_combat.FE.IA.temp * 8.3144626 / inf_combat.FE.IA.volume;
         // nRT / V
+        if(inf_combat.FE.IA.pressure <= outer_pressure)
+        {
+            inf_combat.FE.IA.num = outer_pressure * inf_combat.FE.IA.volume /  inf_combat.FE.IA.temp / 8.3144626;
+            inf_combat.FE.IA.pressure = inf_combat.FE.IA.num * inf_combat.FE.IA.temp * 8.3144626 / inf_combat.FE.IA.volume;
+        }//内压小于外压就内压=外压！高压锅！
 
         //WIP:计算表面积&隔热层厚度
         //V=4pi/3 r^3,S=4pir^2,所以S=(6pi^0.5V)^2/3

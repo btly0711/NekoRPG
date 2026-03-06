@@ -1678,6 +1678,72 @@ class Textline {
         }
     });
 
+    dialogues["冰霜门户"] = new Dialogue({
+        name: "冰霜门户",
+        textlines: {
+            "bs1": new Textline({ 
+                is_unlocked:false,
+                name: "咦，这是什么。(触摸)",
+                text: "纳可的手触碰上了这冰雪门户。<br>霎时间，刺骨的寒冷触感，<br>从手掌传来，让少女不禁打了个哆嗦。<br>在纳可的眼前，出现了一条长长的甬道，<br>一直通向前方。<br>甬道两侧都是高耸透明的冰壁。",
+
+                unlocks: {
+                    textlines: [{dialogue: "冰霜门户", lines: ["bs2"]}],
+                },
+                locks_lines: ["bs1"],
+            }),
+            "bs2": new Textline({ 
+                is_unlocked:false,
+                name: "(继续向前)",
+                text: "她本能地迈步向甬道的尽头走去，<br>很快看到了一扇冰门，<br>这扇冰门看上去朴实无华，散发着淡蓝色的光芒。<br>冰寒的力量犹如实质，弥漫在空气中，<br>逐渐汇聚成一种陌生而又熟悉的景象，<br>那是——水蓝色的庞大六芒星阵！",
+
+                unlocks: {
+                    textlines: [{dialogue: "冰霜门户", lines: ["bs3"]}],
+                },
+                locks_lines: ["bs2"],
+            }),
+            "bs3": new Textline({ 
+                is_unlocked:false,
+                name: "领域……冰元素的领域！",
+                text: "纳可不受控制地抬起手，火焰的能量席卷，<br>在她的身周蔓延，<br>转瞬与硕大的冰蓝六芒星碰撞！<br>剧烈的爆炸声响彻四周，<br>整个甬道都剧烈地晃动起来。<br>冲击波席卷四周，<br>冰墙出现一道道裂痕，旋即迅速愈合。<br>那水蓝色的六芒星，同样出现一道道缺口，<br>炽热的火焰能量，便趁虚而入，<br>融合进了六芒星的缝隙当中，最终消失不见。",
+
+                unlocks: {
+                    textlines: [{dialogue: "冰霜门户", lines: ["bs4"]}],
+                },
+                locks_lines: ["bs3"],
+            }),
+            "bs4": new Textline({ 
+                is_unlocked:false,
+                name: "水，滋润万物……火，照耀一切……",
+                text: "",
+
+                unlocks: {
+                    spec:"realm-II",
+                    textlines: [{dialogue: "冰霜门户", lines: ["bs5"]}],
+                },
+                locks_lines: ["bs4"],
+            }),
+            "bs5": new Textline({ 
+                is_unlocked:false,
+                name: "……",
+                text: "[纳娜米]可可，你快醒醒啊……<br>别吓姐姐。<br>纳可睁开迷离的双眼，<br>身边姐姐焦急的声音传来。<br>[纳娜米]可可！<br>你刚才突然晕倒了，我还以为你……<br>你还记得发生了什么？",
+
+                unlocks: {
+                    textlines: [{dialogue: "冰霜门户", lines: ["bs6"]}],
+                },
+                locks_lines: ["bs5"],
+            }),
+            "bs6": new Textline({ 
+                is_unlocked:false,
+                name: "(构造微型法阵)你怎么知道我的领域突破了？",
+                text: "[纳娜米]诶诶？什么时候……<br>原来如此，刚才的冰霜门户吗。<br>不愧是你可可，总能给姐姐带来惊吓。<br>说起来，刚刚在里面还发现了这个……<br><br>获取了 [万载冰髓锭] !",
+
+                unlocks: {
+                    items: [{item_name: "万载冰髓锭"}],
+                },
+                locks_lines: ["bs6"],
+            }),
+        }
+    });
 
 
 
