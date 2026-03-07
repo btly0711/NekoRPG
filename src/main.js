@@ -331,6 +331,7 @@ const musicList = {
   14: 'bgms/14.mp3',
   15: 'bgms/15.mp3',
   16: 'bgms/16.mp3',
+  17: 'bgms/17.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -4561,6 +4562,13 @@ function start_engine_minigame()
     const EngineId = setInterval(() => {
         outer_temp = inf_combat.FE.outer_temp;//调整外界温度
         outer_pressure = ((inf_combat.FE.outer_temp/240)**2*12e6);
+        inf_combat.FE.IA.pressure = inf_combat.FE.IA.num * inf_combat.FE.IA.temp * 8.3144626 / inf_combat.FE.IA.volume;
+        // nRT / V
+        if(inf_combat.FE.IA.pressure <= outer_pressure)
+        {
+            inf_combat.FE.IA.num = outer_pressure * inf_combat.FE.IA.volume /  inf_combat.FE.IA.temp / 8.3144626;
+            inf_combat.FE.IA.pressure = inf_combat.FE.IA.num * inf_combat.FE.IA.temp * 8.3144626 / inf_combat.FE.IA.volume;
+        }//内压小于外压就内压=外压！高压锅！
         if(inf_combat.FE.piston_mode == 1){
             dP = inf_combat.FE.IA.pressure - outer_pressure;
             dV = (character.stats.full.attack_power ** 1.5) / dP * frametime * 3/5;
@@ -4570,6 +4578,7 @@ function start_engine_minigame()
             }//设定：极限压缩是0.01m^3.
             if(dV < 1e-8){
                 inf_combat.FE.piston_mode = 0;//已经压缩到极限了，结束压缩
+                dV = 0;
             }
             dT = inf_combat.FE.IA.temp * ( 2/3 ) * dV / inf_combat.FE.IA.volume;
 
@@ -4582,6 +4591,7 @@ function start_engine_minigame()
             if(dV + inf_combat.FE.IA.volume >= 30) dV = 30 - inf_combat.FE.IA.volume;
             if(dV < 1e-8){
                 inf_combat.FE.piston_mode = 0;//已经膨胀到极限了，结束膨胀
+                dV = 0;
             }
             dT = inf_combat.FE.IA.temp * ( 2/3 ) * dV / inf_combat.FE.IA.volume;
             
@@ -4593,6 +4603,11 @@ function start_engine_minigame()
             dN = (character.stats.full.attack_power ** 1.5) * frametime / (8.3144626 * outer_temp * (25/6 * (inf_combat.FE.IA.pressure / outer_pressure) ** 0.4 - 2.5))  ;
             if(dN >= frametime * inf_combat.FE.IA.num) dN = frametime * inf_combat.FE.IA.num;
             dT = (dN / inf_combat.FE.IA.num ) * (5/3*outer_temp*(inf_combat.FE.IA.pressure / outer_pressure) ** 0.4  -  inf_combat.FE.IA.temp);
+            if(dN<1e-8){
+                dN = 0;
+                inf_combat.FE.piston_mode = 0;//已经膨胀到极限了，结束膨胀
+            }
+
             inf_combat.FE.IA.num += dN;
             inf_combat.FE.IA.temp += dT;
             inf_combat.FE.IA.temp = (inf_combat.FE.IA.temp * inf_combat.FE.IA.num + outer_temp * dN) / (dN + inf_combat.FE.IA.num);
@@ -4619,15 +4634,6 @@ function start_engine_minigame()
             inf_combat.FE.SF.temp += heat_changed / (inf_combat.FE.SF.num * 1e7);
             //与隔热袋换热
         }
-        inf_combat.FE.IA.pressure = inf_combat.FE.IA.num * inf_combat.FE.IA.temp * 8.3144626 / inf_combat.FE.IA.volume;
-        // nRT / V
-        if(inf_combat.FE.IA.pressure <= outer_pressure)
-        {
-            inf_combat.FE.IA.num = outer_pressure * inf_combat.FE.IA.volume /  inf_combat.FE.IA.temp / 8.3144626;
-            inf_combat.FE.IA.pressure = inf_combat.FE.IA.num * inf_combat.FE.IA.temp * 8.3144626 / inf_combat.FE.IA.volume;
-        }//内压小于外压就内压=外压！高压锅！
-
-        //WIP:计算表面积&隔热层厚度
         //V=4pi/3 r^3,S=4pir^2,所以S=(6pi^0.5V)^2/3
         inf_combat.FE.SF.surface = 4.835975862 * (inf_combat.FE.SF.num ** (2/3));
         inf_combat.FE.IM.thickness = (0.2387324 * (inf_combat.FE.IM.num * 0.1 + inf_combat.FE.SF.num)) ** (1/3) - (0.2387324 * (inf_combat.FE.SF.num)) ** (1/3);

@@ -5449,10 +5449,9 @@ class Enemy {
         stats: {health: 60, attack: 12250e4, agility: 10000e4, attack_speed: 1.4, defense: 8500e4}, 
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
-            {item_name: "史诗绿宝石", chance:0.006},
             {item_name: "蓝金锭", chance:1},
-            {item_name: "秘银锭", chance:0.25},
-            {item_name: "旋律合金锭", chance:0.05},
+            {item_name: "秘银锭", chance:0.30},
+            {item_name: "旋律合金锭", chance:0.06},
             //90D
         ],
     });
@@ -5467,7 +5466,6 @@ class Enemy {
         stats: {health: 15.644e8, attack: 22000e4, agility: 10400e4, attack_speed: 1.3, defense: 4400e4}, 
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
-            {item_name: "史诗绿宝石", chance:0.006},
             {item_name: "玄冰果实", chance:0.0032},
             //90D
         ],
@@ -5484,8 +5482,7 @@ class Enemy {
         stats: {health: 13.6e8, attack: 17000e4, agility: 10800e4, attack_speed: 1.3, defense: 8500e4}, 
         loot_list: [
             {item_name: "史诗红宝石", chance:0.036},
-            {item_name: "史诗绿宝石", chance:0.006},
-            {item_name: "多孔冰晶", chance:0.11},
+            {item_name: "多孔冰晶", chance:0.13},
             //90D
         ],
     });
@@ -6013,7 +6010,7 @@ B5 6324'5986 /1'0233'4155exp
         name: "探险者的怨恨[BOSS]", 
         description: "虽然有时封和200%血量，但是0防在普攻倍率面前~不堪一击！。", 
         xp_value: 102334155, 
-        rank: 3398,
+        rank: 3397,
         image: "image/boss/B3301.png",
         realm: "<span class=realm_sky><b>天空级五阶 +</b></span>",
         size: "small",
@@ -6024,6 +6021,37 @@ B5 6324'5986 /1'0233'4155exp
         loot_list: [
             {item_name: "万载冰髓锭", chance:2},
             {item_name: "史诗绿宝石", chance:1},
+        ],
+    });
+    enemy_templates["敌意猎兵[BOSS]"] = new Enemy({
+        name: "敌意猎兵[BOSS]", 
+        description: "其实本来也不算特别强……但是它们六只来群殴你耶。", 
+        xp_value: 102334155, 
+        rank: 3398,
+        image: "image/boss/B3302.png",
+        realm: "<span class=realm_sky><b>天空级五阶 +</b></span>",
+        size: "small",
+        spec: [],
+        spec_value:{},
+        tags: [],
+        stats: {health: 60.5e8, attack: 2.2e8, agility: 1.2e8, attack_speed: 1.2, defense:1.1e8}, //血量200%
+        loot_list: [
+        ],
+    });
+    enemy_templates["敌意女巫[BOSS]"] = new Enemy({
+        name: "敌意女巫[BOSS]", 
+        description: "躲在一大群猎兵后面来偷袭你！好屑啊……", 
+        xp_value: 102334155, 
+        rank: 3399,
+        image: "image/boss/B3303.png",
+        realm: "<span class=realm_sky><b>天空级六阶</b></span>",
+        size: "small",
+        spec: [0],
+        spec_value:{},
+        tags: [],
+        stats: {health: 134.48e8, attack: 2.16e8, agility: 1.4e8, attack_speed: 1.5, defense:1.08e8}, //血量200%
+        loot_list: [
+            {item_name: "史诗绿宝石", chance:2},
         ],
     });
 

@@ -705,7 +705,7 @@ function format_skill_rewards(milestone){
                                         else if(R_level<30) R_value = 15e4 * (R_level - 18);
                                         else if(R_level<40) R_value = 121.5e4 * (R_level - 24);
                                         else if(R_level<50) R_value = 486e4 * (R_level - 34);
-                                        return `基础攻击,防御 + ${format_number(R_value)}`;
+                                        return `基础攻击,防御,敏捷 + ${format_number(R_value)}`;
                                         //30w 729w 2916w
                                         //出云落月：4.096e
                                         

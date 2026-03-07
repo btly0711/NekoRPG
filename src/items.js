@@ -2562,7 +2562,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 4310344e6,//10B
         stats: {
             attack_power: {
-                multiplier: 1.08,//WIP!!!
+                multiplier: 1.08,
             },
             defense: {
                 multiplier: 1.08,
@@ -5186,7 +5186,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["玄冰果实"] = new Loot({
         name: "玄冰果实", 
-        description: "冷却到足够低温后会凝结出一颗冰霜核心。<br>需要在【极寒相变引擎】中散热给【冰原超流体】！(WIP)", 
+        description: "冷却到足够低温后会凝结出一颗冰霜核心。<br>需要在【极寒相变引擎】中散热给【冰原超流体】！", 
         value: 28.8e12,
         image: "image/item/ice_fruit.png",
     });

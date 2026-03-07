@@ -491,7 +491,7 @@ character.stats.add_all_skill_level_bonus = function() {
         
         character.stats.multiplier.skills.max_health = skills["Swimming"].get_coefficient("multiplicative");
         
-        character.stats.flat.skills.attack_power = character.stats.flat.skills.defense = character.stats.add_realm_bonus();
+        character.stats.flat.skills.attack_power = character.stats.flat.skills.defense = character.stats.flat.skills.agility = character.stats.add_realm_bonus();
 
         character.stats.add_weapon_type_bonuses();
 }
