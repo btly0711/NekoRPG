@@ -3576,7 +3576,7 @@ function get_location_type_penalty(type, stage, stat) {
         bgm:16,
         parent_location: locations["纯白冰原"],
         repeatable_reward: {
-            locations: [{location: "极寒冰城"}],
+            locations: [{location: "极寒冰宫"}],
         },
         unlock_text : "[猎兵]没什么好说的，真要道歉，那就留在这里吧！杀！",
     });
@@ -3587,17 +3587,99 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 4"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 冰霜门户"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - X"]});
-
     
     locations["极寒冰城"] = new Location({ 
+        connected_locations: [{location: locations["极寒冰宫"], custom_text: "前往【极寒冰宫】"}], 
+        description: "非常抱歉，这里的名字最后一个字已经改掉了的说……为了防止有猫掉进虚空，做了这个地点！",
+        name: "极寒冰城", 
+        is_unlocked: true,
+        bgm: 17,
+    });//3-4(D)
+    
+    locations["极寒冰宫"] = new Location({ 
         connected_locations: [{location: locations["纯白冰原"], custom_text: "回到纯白冰原"}], 
         description: "坐落于纯白冰原的中心地带，完全由冰块组成的城市。女巫似乎希望留下纳可和纳娜米，却没有意识到攻守已悄然逆转。[V2.40前版本终点]",
-        name: "极寒冰城", 
+        name: "极寒冰宫", 
         is_unlocked: false,
         bgm: 17,
         unlock_text : "[女巫]外来的小东西，本以为你们会知难而退，想不到竟然闯入这冰城里来。",
     });//3-4
-    locations["纯白冰原"].connected_locations.push({location: locations["极寒冰城"]});
+    locations["纯白冰原"].connected_locations.push({location: locations["极寒冰宫"]});
+    locations["极寒冰宫 - 1"] = new Combat_zone({
+        description: "充斥着敌意的冰块城市，女巫指引着狂暴的荒兽", 
+        enemy_count: 20, 
+        enemies_list: ["探险者的怨恨","出芽橙茸战士","敌意猎兵","大眼霜冻鱼","敌意女巫"],
+        enemy_group_size: [3,3],
+        enemy_stat_halo:0.12,
+        is_unlocked: true, 
+        name: "极寒冰宫 - 1",
+        rank:231, 
+        bgm:17,
+        parent_location: locations["极寒冰宫"],
+        first_reward: {
+            xp: 150e8,
+        },
+        repeatable_reward: {
+            xp: 50e8,
+            locations: [{location: "极寒冰宫 - 2"}],
+        },
+    });locations["极寒冰宫 - 2"] = new Combat_zone({
+        description: "充斥着敌意的冰块城市，更多的女巫对荒兽不断释放着光环", 
+        enemy_count: 20, 
+        enemies_list: ["敌意女巫","出芽黄茸战士","绝对低温能源","敌意骑士","出芽绿茸战士"],
+        enemy_group_size: [3,3],
+        enemy_stat_halo:0.12,
+        is_unlocked: false, 
+        name: "极寒冰宫 - 2",
+        rank:232,
+        bgm:17,
+        parent_location: locations["极寒冰宫"],
+        first_reward: {
+            xp: 225e8,
+        },
+        repeatable_reward: {
+            xp: 75e8,
+            locations: [{location: "极寒冰宫 - 3"}],
+        },
+    });locations["极寒冰宫 - 3"] = new Combat_zone({
+        description: "充斥着敌意的冰块城市，女巫离开了……毕竟它们也无法掌控冰血除草者的力量。", 
+        enemy_count: 20, 
+        enemies_list: ["冰血除草者","夹击卫戍","敌意傀儡","雪茸茸战士","大教内门弟子","敌意美杜莎"],
+        enemy_group_size: [3,3],
+        is_unlocked: false, 
+        name: "极寒冰宫 - 3",
+        rank:233,
+        bgm:17,
+        parent_location: locations["极寒冰宫"],
+        first_reward: {
+            xp: 300e8,
+        },
+        repeatable_reward: {
+            xp: 100e8,
+            locations: [{location: "极寒冰宫 - 4"}],
+        },
+    });locations["极寒冰宫 - 4"] = new Combat_zone({
+        description: "充斥着敌意的冰块城市，这里是一片较核心的区域……奇怪的粉发少女似乎在附近！要不要跟上呢？", 
+        enemy_count: 20, 
+        enemies_list: ["冰兽龙龙","敌意巫师","出芽青茸战士","自爆步兵","敌意老人"],
+        enemy_group_size: [3,3],
+        is_unlocked: false, 
+        name: "极寒冰宫 - 4",
+        rank:234,
+        bgm:17,
+        parent_location: locations["极寒冰宫"],
+        first_reward: {
+            xp: 450e8,
+        },
+        repeatable_reward: {
+            xp: 150e8,
+            //locations: [{location: "极寒冰宫 - X"}],
+        },
+    });
+    locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 1"]});
+    locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 2"]});
+    locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 3"]});
+    locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 4"]});locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 1"]});
 
 
 
