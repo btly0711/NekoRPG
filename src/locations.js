@@ -3544,7 +3544,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 40e8,
-            locations: [{location: "纯白冰原 - X"}],
+            locations: [{location: "纯白冰原 - XS"}],
         },
     });
     locations["纯白冰原 - 冰霜门户"] = new Challenge_zone({
@@ -3563,7 +3563,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         unlock_text : "系统提示：触碰冰霜门户，或许会有意外收获。",
     });
-    locations["纯白冰原 - X"] = new Challenge_zone({
+    locations["纯白冰原 - XS"] = new Challenge_zone({
         description: "前面有一座两侧覆盖着冰雪的石制大门。越过这只怨气魔物才能触碰到它。", 
         enemy_count: 1, 
         enemy_groups_list : [["敌意女巫[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]"]],
@@ -3572,7 +3572,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_stat_halo:0.24,
         is_unlocked: false, 
         is_challenge: true,
-        name: "纯白冰原 - X",
+        name: "纯白冰原 - XS",
         bgm:16,
         parent_location: locations["纯白冰原"],
         repeatable_reward: {
@@ -3586,7 +3586,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 3"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 4"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 冰霜门户"]});
-    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - X"]});
+    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - XS"], custom_text: "前往挑战冰宫守卫"});
     
     locations["极寒冰城"] = new Location({ 
         connected_locations: [{location: locations["极寒冰宫"], custom_text: "前往【极寒冰宫】"}], 
@@ -3600,7 +3600,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纯白冰原"], custom_text: "回到纯白冰原"}], 
         description: "坐落于纯白冰原的中心地带，完全由冰块组成的城市。女巫似乎希望留下纳可和纳娜米，却没有意识到攻守已悄然逆转。[V2.40前版本终点]",
         name: "极寒冰宫", 
-        is_unlocked: true,
+        is_unlocked: false,
         bgm: 17,
         unlock_text : "[女巫]外来的小东西，本以为你们会知难而退，想不到竟然闯入这冰城里来。",
     });//3-4
@@ -3679,7 +3679,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 1"]});
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 2"]});
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 3"]});
-    locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 4"]});locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 1"]});
+    locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 4"]});
 
 
 
