@@ -3600,7 +3600,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纯白冰原"], custom_text: "回到纯白冰原"}], 
         description: "坐落于纯白冰原的中心地带，完全由冰块组成的城市。女巫似乎希望留下纳可和纳娜米，却没有意识到攻守已悄然逆转。[V2.40前版本终点]",
         name: "极寒冰宫", 
-        is_unlocked: false,
+        is_unlocked: true,
         bgm: 17,
         unlock_text : "[女巫]外来的小东西，本以为你们会知难而退，想不到竟然闯入这冰城里来。",
     });//3-4
