@@ -3563,6 +3563,23 @@ function get_location_type_penalty(type, stage, stat) {
         },
         unlock_text : "系统提示：触碰冰霜门户，或许会有意外收获。",
     });
+    locations["纯白冰原 - X"] = new Challenge_zone({
+        description: "前面有一座两侧覆盖着冰雪的石制大门。越过这只怨气魔物才能触碰到它。", 
+        enemy_count: 1, 
+        enemy_groups_list : [["敌意女巫[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]","敌意猎兵[BOSS]"]],
+        enemy_group_size: [7,7],
+        types: [],
+        enemy_stat_halo:0.24,
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "纯白冰原 - X",
+        bgm:16,
+        parent_location: locations["纯白冰原"],
+        repeatable_reward: {
+            locations: [{location: "极寒冰宫"}],
+        },
+        unlock_text : "[猎兵]没什么好说的，真要道歉，那就留在这里吧！杀！",
+    });
     locations["纯白冰原 - XS"] = new Challenge_zone({
         description: "前面有一座两侧覆盖着冰雪的石制大门。越过这只怨气魔物才能触碰到它。", 
         enemy_count: 1, 
