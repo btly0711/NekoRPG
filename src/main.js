@@ -2408,7 +2408,7 @@ function get_location_rewards(location) {
 
     if(location.first_reward.xp && typeof location.first_reward.xp === "number") {
             create_new_levelary_entry(location.name);
-            log_message(`首次通过 ${location.name} ，获取 ${location.first_reward.xp} 经验 `, "location_reward");
+            log_message(`首次通过 ${location.name} ，获取 ${format_number(location.first_reward.xp)} 经验 `, "location_reward");
             add_xp_to_character(location.first_reward.xp);
             if(location.name == "荒兽森林 - 1"){
                 log_message(`在战斗中，${character.name} 获取了突破大地级的感悟。`, "enemy_enhanced");
@@ -2416,7 +2416,7 @@ function get_location_rewards(location) {
             }
         }
     } else if(location.repeatable_reward.xp && typeof location.repeatable_reward.xp === "number") {
-        log_message(`通过 ${location.name} ，获取额外 ${location.repeatable_reward.xp} 经验 `, "location_reward");
+        log_message(`通过 ${location.name} ，获取额外 ${format_number(location.repeatable_reward.xp)} 经验 `, "location_reward");
         add_xp_to_character(location.repeatable_reward.xp);
         if(location.name.includes("荒兽森林") && (Math.random()<0.1) && character.xp.current_level <= 8){
             log_message(`在战斗中，${character.name} 再次随机地获取了突破大地级的感悟。`, "enemy_enhanced");

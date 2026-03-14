@@ -360,6 +360,18 @@ class Combat_zone {
                 log_message("[峰]终于到地方了，不枉我盯了她一路。","enemy_enhanced");
                 log_message("[峰]那么，我也差不多该走了……","enemy_enhanced");
             }
+            if(character.equipment.props?.name == "光环法杖"){
+                if(enemy.rank >= 4000){
+                    log_message("[一段光环法杖遇到云霄级敌人增幅不动的剧情]","enemy_enhanced");
+                }
+                else if(enemy.rank % 100 >= 50){
+                    log_message("[光环法杖]BOSS级敌人无法被增幅!","enemy_enhanced");
+                }
+                else{
+                    halo_fix += 0.25;
+                    log_message(`[光环法杖]光环:${format_number(100*(this.enemy_stat_halo + halo_fix - 0.25))}% -> ${format_number(100*(this.enemy_stat_halo + halo_fix))}%`,"enemy_enhanced");
+                }
+            }//不是云霄级以上目标(4幕以后目标)
                 
             const halo = this.enemy_stat_halo + 1 + halo_fix;
 
@@ -3603,6 +3615,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 3"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 4"]});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - 冰霜门户"]});
+    locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - X"], custom_text: "前往挑战冰宫守卫[旧]"});
     locations["纯白冰原"].connected_locations.push({location: locations["纯白冰原 - XS"], custom_text: "前往挑战冰宫守卫"});
     
     locations["极寒冰城"] = new Location({ 

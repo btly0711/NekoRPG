@@ -1817,6 +1817,9 @@ function create_location_choices({location, category, add_icons = true, is_comba
 
         choice_list.sort((a,b) => b.classList.contains("travel_normal") - a.classList.contains("travel_normal"));
     } else if (category === "challenge") {
+        //console.log(location);
+        //console.log(location.connected_locations);
+
         const available_challenges = location.connected_locations.filter(location => {if(location.location.is_challenge && location.location.is_unlocked && !location.location.is_finished) return true});
        
         for(let i = 0; i < available_challenges.length; i++) { 

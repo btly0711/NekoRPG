@@ -5506,6 +5506,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.020},
             {item_name: "史诗绿宝石", chance:0.002},
+            {item_name: "B4·能量核心", chance:0.4},
             //90D
         ],
     });
@@ -5524,6 +5525,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.020},
             {item_name: "史诗绿宝石", chance:0.002},
+            {item_name: "镶晶盾牌", chance:0.02},
+            {item_name: "冰原超流体", chance:0.04},
             //90D
         ],
     });
@@ -5542,6 +5545,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.020},
             {item_name: "史诗绿宝石", chance:0.002},
+            {item_name: "冰宫鳞片", chance:0.015},
+            {item_name: "多孔冰晶", chance:0.045},
             //90D
         ],
     });
@@ -5560,6 +5565,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.020},
             {item_name: "史诗绿宝石", chance:0.002},
+            {item_name: "冰宫鳞片", chance:0.03},
             //90D
         ],
     });
@@ -5578,6 +5584,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "光环杖芯", chance:0.023},
             //160D
         ],
     });
@@ -5596,6 +5603,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "镶晶盾牌", chance:0.04},
+            {item_name: "冰原超流体", chance:0.06},
             //160D
         ],
     });
@@ -5614,6 +5623,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "冰原超流体", chance:0.1},
+            {item_name: "万载冰髓锭", chance:0.01},
             //160D
         ],
     });
@@ -5632,6 +5643,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "镶晶盾牌", chance:0.06},
             //160D
         ],
     });
@@ -5650,6 +5662,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "镶晶盾牌", chance:0.03},
+            {item_name: "光环杖芯", chance:0.02},
             //160D
         ],
     });
@@ -5668,6 +5682,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "光环杖芯", chance:0.02},
+            {item_name: "冰宫鳞片", chance:0.03},
             //160D
         ],
     });
@@ -5686,6 +5702,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "冰宫鳞片", chance:0.03},
+            {item_name: "B4·能量核心", chance:0.40},
             //160D
         ],
     });
@@ -5704,6 +5722,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "B4·能量核心", chance:0.40},
+            {item_name: "镶晶盾牌", chance:0.04},
             //160D
         ],
     });
@@ -5722,6 +5742,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.008},
             {item_name: "史诗绿宝石", chance:0.020},
+            {item_name: "冰宫鳞片", chance:0.09},
             //280D
         ],
     });
@@ -5740,6 +5761,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "镶晶盾牌", chance:0.03},
+            {item_name: "多孔冰晶", chance:0.09},
             //160D
         ],
     });
@@ -5758,6 +5781,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.016},
             {item_name: "史诗绿宝石", chance:0.008},
+            {item_name: "光环杖芯", chance:0.05},
             //160D
         ],
     });
@@ -5776,6 +5800,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.008},
             {item_name: "史诗绿宝石", chance:0.020},
+            {item_name: "冰宫鳞片", chance:0.10},
             //280D
         ],
     });
@@ -5794,6 +5819,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.008},
             {item_name: "史诗绿宝石", chance:0.020},
+            {item_name: "光环杖芯", chance:0.08},
             //280D
         ],
     });
@@ -5812,6 +5838,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.008},
             {item_name: "史诗绿宝石", chance:0.020},
+            {item_name: "冰原超流体", chance:0.12},
+            {item_name: "镶晶盾牌", chance:0.08},
             //280D
         ],
     });enemy_templates["自爆步兵"] = new Enemy({
@@ -5829,6 +5857,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.008},
             {item_name: "史诗绿宝石", chance:0.020},
+            {item_name: "玄冰果实", chance:0.01},
+            {item_name: "玄冰果实·觉醒", chance:0.001},
             //280D
         ],
     });
@@ -5847,6 +5877,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗红宝石", chance:0.008},
             {item_name: "史诗绿宝石", chance:0.020},
+            {item_name: "B4·能量核心", chance:0.5},
+            {item_name: "多孔冰晶", chance:0.15},
             //280D
         ],
     });

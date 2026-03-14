@@ -2468,6 +2468,14 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["光环法杖"] = new Props({
+        name: "光环法杖",
+        id: "光环法杖",
+        description: "对敌人释放额外的25%光环！<br>(掉落+25%,经验+39.7%) <br>PS:对<span class='realm_cloudy'>云霄级</span>以上目标或<b>[BOSS]</b>目标无效。", 
+        value: 864e12,
+        stats: {
+        }
+    });
     item_templates["冰刺装甲"] = new Props({
         name: "冰刺装甲",
         id: "冰刺装甲",
@@ -3131,12 +3139,37 @@ item_templates["Twist liek a snek"] = new Book({
         }
     });
     item_templates["冰髓戟头"] = new WeaponComponent({
-        name: "冰髓戟头", description: "万载冰髓制造的剑刃。这可是货真价实的【冷】兵器。",
+        name: "冰髓戟头", description: "万载冰髓制造的戟头。这可是货真价实的【冷】兵器。",
         component_type: "triple blade",
         value: 5400e9,
         component_tier: 12,
         name_prefix: "冰髓",
         attack_value: 8100000,
+        stats: {
+            crit_rate: {flat: 0.10,},
+            attack_mul: {multiplier: 3.60,},
+            attack_speed: {multiplier: 0.50,},
+        }
+    });
+    item_templates["晶化剑刃"] = new WeaponComponent({
+        name: "晶化剑刃", description: "晶化合金制造的剑刃。是时候该去做月轮了不是吗？",
+        component_type: "long blade",
+        value: 6e12,
+        component_tier: 13,
+        name_prefix: "晶化",
+        attack_value: 12960000,
+        stats: {
+            crit_rate: {flat: 0.15,},
+            attack_speed: {multiplier: 1.16,},
+        }
+    });
+    item_templates["晶化戟头"] = new WeaponComponent({
+        name: "晶化戟头", description: "晶化合金制造的戟头。部件经验和使用的材料量挂钩，我是说，做月轮不亏……",
+        component_type: "triple blade",
+        value: 18e12,
+        component_tier: 12,
+        name_prefix: "晶化",
+        attack_value: 16200000,
         stats: {
             crit_rate: {flat: 0.10,},
             attack_mul: {multiplier: 3.60,},
@@ -3319,10 +3352,26 @@ item_templates["Twist liek a snek"] = new Book({
         attack_value: 9000000,
         stats: {
             crit_rate: {
-                flat: 0.21,
+                flat: 0.20,
             },
             attack_speed: {
                 multiplier: 1.16,
+            },
+        }
+    });
+    item_templates["晶化轮锋"] = new WeaponComponent({
+        name: "晶化轮锋", description: "晶化合金制造的【月轮】镀层。融合之后冰元素可以更好地散发出来，增强威力。",
+        component_type: "wheel head",
+        value: 36e12,
+        component_tier: 12,
+        name_prefix: "晶化",
+        attack_value: 1800e4,
+        stats: {
+            crit_rate: {
+                flat: 0.22,
+            },
+            attack_speed: {
+                multiplier: 1.17,
             },
         }
     });
@@ -3637,12 +3686,9 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "helmet interior",
         base_defense: 810000,
         component_tier: 11,
-        stats: {
-            attack_power: {
+        stats: {attack_power: {
                 flat: 240000,
-            },
-        },
-    });
+            },},});
     item_templates["黑森背心"] = new Armor({
         name: "黑森背心", 
         description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
@@ -3650,12 +3696,9 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "chestplate interior",
         base_defense: 1080000,
         component_tier: 11,
-        stats: {
-            attack_power: {
+        stats: { attack_power: {
                 flat: 320000,
-            },
-        },
-    });
+            },},});
     item_templates["黑森裤子"] = new Armor({
         name: "黑森裤子", 
         description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
@@ -3666,9 +3709,7 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             attack_power: {
                 flat: 320000,
-            },
-        },
-    });
+            },},});
     item_templates["黑森袜子"] = new Armor({
         name: "黑森袜子", 
         description: "黑森织料制成的内甲，贴身护甲暂时不会和兵器一样过时。", 
@@ -3679,9 +3720,50 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             attack_power: {
                 flat: 160000,
-            },
-        },
-    });
+            },},});
+    item_templates["极寒帽子"] = new Armor({
+        name: "极寒帽子", 
+        description: "极寒织料制成的内甲。附加词条也是防御：极寒织料的特性即是如此。", 
+        value: 10800e9,
+        component_type: "helmet interior",
+        base_defense: 216e4,
+        component_tier: 13,
+        stats: {defense: {
+                flat: 108e4,
+            },},});
+    item_templates["极寒背心"] = new Armor({
+        name: "极寒背心", 
+        description: "极寒织料制成的内甲，附加词条也是防御：极寒织料的特性即是如此。", 
+        value: 14400e9,
+        component_type: "chestplate interior",
+        base_defense: 288e4,
+        component_tier: 13,
+        stats: { 
+            defense: {
+                flat: 144e4,
+            },},});
+    item_templates["极寒裤子"] = new Armor({
+        name: "极寒裤子", 
+        description: "极寒织料制成的内甲，附加词条也是防御：极寒织料的特性即是如此。", 
+        value: 14400e9,
+        component_type: "leg armor interior",
+        base_defense: 288e4,
+        component_tier: 13,
+        stats: {
+            defense: {
+                flat: 144e4,
+            },},});
+    item_templates["极寒袜子"] = new Armor({
+        name: "极寒袜子", 
+        description: "极寒织料制成的内甲，附加词条也是防御：极寒织料的特性即是如此。", 
+        value: 7200e9,
+        component_type: "shoes interior",
+        base_defense: 144e4,
+        component_tier: 13,
+        stats: {
+            defense: {
+                flat: 72e4,
+            },},});
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
         description: "制式的铁制头盔外壳，因阻挡视野会略微影响攻击速度",
@@ -4311,6 +4393,22 @@ item_templates["Twist liek a snek"] = new Book({
         value: 4.8e12,
         material_type: "metal",
         image: "image/item/spaceship_heart.png",
+    });
+    item_templates["晶化合金锭"] = new Material({
+        id: "晶化合金锭",
+        name: "晶化合金锭", 
+        description: "【万载冰髓】与冰宫中的镶嵌宝石结合成的合金。表面十分锋利，因此不适合制作盔甲。", 
+        value: 6.61e12,
+        material_type: "metal",
+        image: "image/item/icealloy_ingot.png",
+    });
+    item_templates["极寒织料"] = new Material({
+        id: "极寒织料",
+        name: "极寒织料", 
+        description: "将万载冰髓打碎，研磨，注入能量回路中……冰元素固然寒冷刺骨，但广谱能量抵消的特性仍然使它值得作为材料。", 
+        value: 7.21e12,
+        material_type: "metal",
+        image: "image/item/mixed_comp05.png",
     });
     
 })();
@@ -5190,12 +5288,36 @@ item_templates["Twist liek a snek"] = new Book({
         value: 28.8e12,
         image: "image/item/ice_fruit.png",
     });
+    //3-4
+    item_templates["镶晶盾牌"] = new Loot({
+        name: "镶晶盾牌", 
+        description: "冰宫中的高级盾牌，镶嵌着特殊的晶体。可以用于和万载冰髓锭形成合金！", 
+        value: 2.4e12,
+        image: "image/item/crystal_shield.png",
+    });
+    item_templates["冰宫鳞片"] = new Loot({
+        name: "冰宫鳞片", 
+        description: "并不全是龙鳞，只要可以剥皮的敌人身上都会有。没有它的话会被万载冰髓冻死的……", 
+        value: 3.0e12,
+        image: "image/item/icepalace_shard.png",
+    });
+    item_templates["光环杖芯"] = new Loot({
+        name: "光环杖芯", 
+        description: "女巫构建的稳定微型能量回路。可以持续向外转化光环能量，也可用于调和不同性质的力量。", 
+        value: 3.6e12,
+        image: "image/item/halo_ending.png",
+    });
+
     
+
+
+
+
     item_templates["玄冰果实·觉醒"] = new  UsableItem({
         name: "玄冰果实·觉醒", 
-        description: "已经凝聚【冰霜核心】的玄冰果实。可用于合成【冰原之心】(可进化装备)，也可直接食用获取1兆经验。", 
-        value: 43.2e12,
-        E_value: 1e12,
+        description: "已经凝聚【冰霜核心】的玄冰果实。可用于合成【冰原之心】(可进化装备)，也可直接食用获取10兆经验。", 
+        value: 57.6e12,
+        E_value: 10e12,
         effects:[],
         C_value: 3,
         image: "image/item/ice_fruit_awaken.png",
