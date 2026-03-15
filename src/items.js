@@ -2291,6 +2291,15 @@ item_templates["Twist liek a snek"] = new Book({
             "Mining": 4,
         }
     });
+    item_templates["晶化钻头"] = new Tool({
+        name: "晶化钻头",
+        description: "一把晶化合金钻头，即使是坚硬的冰块也可以迅速被刨开！",
+        value: 36e12,
+        equip_slot: "pickaxe",
+        bonus_skill_levels: {
+            "Mining": 15,
+        }
+    });
     item_templates["暗影斧"] = new Tool({
         name: "暗影斧",
         description: "相当锋利的斧头。不过面对百年柳木，依然需要较长的时间来砍伐。",
@@ -3456,6 +3465,24 @@ item_templates["Twist liek a snek"] = new Book({
             handle: "光暗剑柄",
         }
     });
+    item_templates["晶化剑"] = new Weapon({
+        components: {
+            head: "晶化剑刃",
+            handle: "光暗剑柄",
+        }
+    });
+    item_templates["晶化戟"] = new Weapon({
+        components: {
+            head: "晶化戟头",
+            handle: "光暗剑柄",
+        }
+    });
+    item_templates["晶化月轮"] = new Weapon({
+        components: {
+            head: "晶化轮锋",
+            handle: "光暗轮芯",
+        }
+    });
 })();
 //盔甲部件
 (function(){
@@ -4410,6 +4437,14 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/mixed_comp05.png",
     });
+    item_templates["冰块"] = new Material({
+        id: "冰块",
+        name: "冰块", 
+        description: "非常普通的冰块，在地宫都嫌便宜。完全就是建筑废料……", 
+        value: 233,
+        material_type: "metal",
+        image: "image/item/normal_ice.png",
+    });
     
 })();
 
@@ -4505,6 +4540,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 96e12,
         spec:"freezing_engine",
         image: "image/item/freezing_engine.png",
+    });
+    item_templates["冰宫商人"] = new UsableItem({
+        id: "冰宫商人",
+        name: "冰宫商人", 
+        description: "冰宫的女巫们已经把他的身上给搜干净了。当奴隶还能卖一点钱，但放走了等他对接货源收益更高！<br>PS:每血洛日0点刷新商品", 
+        value: 5.21e12,
+        spec:"saved_trader",
+        image: "image/item/icepalace_trader.png",
     });
 })();
 
@@ -5322,6 +5365,7 @@ item_templates["Twist liek a snek"] = new Book({
         C_value: 3,
         image: "image/item/ice_fruit_awaken.png",
     });
+    
 
 
     //以下为打钱的东西

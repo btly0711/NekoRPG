@@ -3,6 +3,7 @@
 import { current_game_time } from "./game_time.js";
 import { InventoryHaver } from "./inventory.js";
 import { item_templates, getItem} from "./items.js";
+import { inf_combat } from "./main.js";
 import { skills } from "./skills.js";
 
 var traders = {};
@@ -74,19 +75,28 @@ class Trader extends InventoryHaver {
     get_inventory_from_template() {
         const inventory = {};
         const inventory_template = inventory_templates[this.inventory_template];
-
+        let quality_fix = 0;
+        let item_mul = 1;
+        if(this.inventory_template == "Sky II"){
+            let eff_N = inf_combat.B6 || 1;
+            quality_fix = 7.5 * Math.log(eff_N);
+            item_mul = eff_N ** 1.2;
+        }
         for (let i = 0; i < inventory_template.length; i++) {
             if (inventory_template[i].chance >= Math.random()) {
                 let item_count = inventory_template[i].count.length == 1 ?
                 inventory_template[i].count[0] : Math.round(Math.random() *
                     (inventory_template[i].count[1] - inventory_template[i].count[0]) + inventory_template[i].count[0]);
+                let item_count_q = item_count;
+                item_count *= item_mul;
+                item_count = Math.ceil(item_count);
                 
                 if(inventory_template[i].quality) {
                     let quality = Math.round(Math.random() *
-                        (inventory_template[i].quality[1] - inventory_template[i].quality[0]) + inventory_template[i].quality[0]);
+                        (inventory_template[i].quality[1] - inventory_template[i].quality[0]) + inventory_template[i].quality[0] + quality_fix);
 
                     const item = getItem({...item_templates[inventory_template[i].item_name], quality});
-                    inventory[item.getInventoryKey()] = { item: item, count: item_count };
+                    inventory[item.getInventoryKey()] = { item: item, count: item_count_q };
                 } else {
                     inventory[item_templates[inventory_template[i].item_name].getInventoryKey()] = { item: getItem(item_templates[inventory_template[i].item_name]), count: item_count };
 
@@ -213,6 +223,13 @@ class TradeItem {
         is_unlocked: true,
         location_name: "飞云阁",
         profit_margin: 4.2,
+    });
+    traders["冰宫商人"] = new Trader({
+        name: "冰宫商人",
+        inventory_template: "Sky II",
+        is_unlocked: false,
+        location_name: "极寒冰宫",
+        profit_margin: 4.8,
     });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",
@@ -516,6 +533,38 @@ class TradeItem {
             new TradeItem({item_name: "黑白枝丫", count: [5,25]}),
             new TradeItem({item_name: "黑森叶片", count: [5,25]}),
             new TradeItem({item_name: "黑森织料", count: [5,10],chance:0.5}),
+
+
+    ];
+    inventory_templates["Sky II"] = 
+    [
+            new TradeItem({item_name: "B4·能量核心", count: [50,250]}),
+            new TradeItem({item_name: "旋律合金锭", count: [50,250]}),
+            new TradeItem({item_name: "能量冰沙", count: [10,50]}),
+
+            new TradeItem({item_name: "冰原超流体", count: [50,125]}),
+            new TradeItem({item_name: "多孔冰晶", count: [50,125]}),
+
+            new TradeItem({item_name: "晶化剑", count: [1], quality: [141, 180]}),
+            new TradeItem({item_name: "晶化戟", count: [1], quality: [141, 180]}),
+            new TradeItem({item_name: "晶化月轮", count: [1], quality: [141, 180]}),
+
+            
+            new TradeItem({item_name: "冰髓头盔", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "冰髓胸甲", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "冰髓腿甲", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "冰髓战靴", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "极寒帽子", count: [1], quality: [141, 180]}),
+            new TradeItem({item_name: "极寒背心", count: [1], quality: [141, 180]}),
+            new TradeItem({item_name: "极寒裤子", count: [1], quality: [141, 180]}),
+            new TradeItem({item_name: "极寒袜子", count: [1], quality: [141, 180]}),
+
+            
+            new TradeItem({item_name: "冰宫鳞片", count: [5,10]}),
+            new TradeItem({item_name: "光环杖芯", count: [5,10]}),
+            new TradeItem({item_name: "镶晶盾牌", count: [5,10]}),
+            new TradeItem({item_name: "万载冰髓锭", count: [1,3]}),
+            new TradeItem({item_name: "玄冰果实", count: [1,1],chance:0.2}),
 
 
     ];

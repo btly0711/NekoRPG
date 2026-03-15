@@ -130,6 +130,7 @@ let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"
 //RM:不是现实机器。是Realm(领域)层数
 //MP:心境二重宝钱数
 //B3:辐射扩散程度(赫尔沼泽)
+//B6:拯救商人数
 
 
 //in seconds
@@ -2814,6 +2815,19 @@ function use_item(item_key,stated = false) {
             engine_init();
             dialogues["极寒相变引擎"].textlines["engine"].is_unlocked = true;
             log_message(`旋律合金作为活塞，多孔冰晶作为隔热，冰原超流体作为热容……冰原的环境本十分恶劣，${character.name} 却掌握了巧妙利用它的方法。`,"gather_loot")
+        }
+        if(item_templates[id].spec == "saved_trader"){
+            inf_combat.B6 = inf_combat.B6 || 0;
+            inf_combat.B6 += 1;
+            log_message(`释放了第${inf_combat.B6}个冰宫商人！`,"gather_loot");
+            log_message(`进货倍率 ${(inf_combat.B6 ** 1.2).toFixed(2)}x , 品质加成: ${(Math.log(inf_combat.B6) * 7.5).toFixed(1)}%`);
+            //基础品质:140%~180%
+            if(inf_combat.B6 == 1){
+                //解锁冰宫商人！
+                
+                const bg_trader = traders["冰宫商人"];
+                bg_trader.is_unlocked = true;
+            }
         }
     }
     if(item_templates[id].realmcap!=-1)

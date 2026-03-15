@@ -1233,6 +1233,16 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Forging",
     });
     
+    forging_recipes.items["晶化钻头"] = new ItemRecipe({
+        name: "晶化钻头",
+        recipe_type: "material",
+        materials: [{material_id: "晶化合金锭", count: 4},{material_id: "光暗枝丫", count: 2}], 
+        result: {result_id: "晶化钻头", count: 1},
+        success_chance: [0.5,1],
+        Q_able: 160,
+        recipe_level: [6,65],
+        recipe_skill: "Forging",
+    });
     forging_recipes.items["暗影斧"] = new ItemRecipe({
         name: "暗影斧",
         recipe_type: "material",

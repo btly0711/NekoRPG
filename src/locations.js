@@ -3630,6 +3630,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纯白冰原"], custom_text: "回到纯白冰原"}], 
         description: "坐落于纯白冰原的中心地带，完全由冰块组成的城市。女巫似乎希望留下纳可和纳娜米，却没有意识到攻守已悄然逆转。[V2.40前版本终点]",
         name: "极寒冰宫", 
+        traders: ["冰宫商人"],
         is_unlocked: false,
         bgm: 17,
         unlock_text : "[女巫]外来的小东西，本以为你们会知难而退，想不到竟然闯入这冰城里来。",
@@ -4395,6 +4396,21 @@ function get_location_type_penalty(type, stage, stat) {
                 resources: [{name: "殿堂红宝石", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]},{name: "殿堂绿宝石", ammount: [[1,1], [1,1]], chance: [0.01, 0.25]}], 
                 time_period: [12, 2],
                 skill_required: [10, 20],
+                scales_with_skill: true,
+            },
+        }),
+    }
+    locations["极寒冰宫"].activities = {
+        "miningIce": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "挖开冰块，拯救被困住的商人",
+            skill_xp_per_tick: 200,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "冰块", ammount: [[1,1], [9,10]], chance: [0.96, 1.0]},{name: "万载冰髓锭", ammount: [[1,1], [1,1]], chance: [0.03, 0.3]},{name: "冰宫商人", ammount: [[1,1], [1,1]], chance: [0.01, 0.1]},], 
+                time_period: [24, 1],
+                skill_required: [40, 60],
                 scales_with_skill: true,
             },
         }),
