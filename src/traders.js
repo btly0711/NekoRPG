@@ -90,8 +90,8 @@ class Trader extends InventoryHaver {
                 let item_count_q = item_count;
                 item_count *= item_mul;
                 item_count = Math.ceil(item_count);
-                
-                if(inventory_template[i].quality) {
+
+                if(inventory_template[i].quality[0] >= 10) {
                     let quality = Math.round(Math.random() *
                         (inventory_template[i].quality[1] - inventory_template[i].quality[0]) + inventory_template[i].quality[0] + quality_fix);
 

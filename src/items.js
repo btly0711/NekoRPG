@@ -3176,7 +3176,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "晶化戟头", description: "晶化合金制造的戟头。部件经验和使用的材料量挂钩，我是说，做月轮不亏……",
         component_type: "triple blade",
         value: 18e12,
-        component_tier: 12,
+        component_tier: 13,
         name_prefix: "晶化",
         attack_value: 16200000,
         stats: {
@@ -3372,7 +3372,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "晶化轮锋", description: "晶化合金制造的【月轮】镀层。融合之后冰元素可以更好地散发出来，增强威力。",
         component_type: "wheel head",
         value: 36e12,
-        component_tier: 12,
+        component_tier: 13,
         name_prefix: "晶化",
         attack_value: 1800e4,
         stats: {
