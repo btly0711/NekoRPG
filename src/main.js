@@ -2820,7 +2820,8 @@ function use_item(item_key,stated = false) {
             inf_combat.B6 = inf_combat.B6 || 0;
             inf_combat.B6 += 1;
             log_message(`释放了第${inf_combat.B6}个冰宫商人！`,"gather_loot");
-            log_message(`进货倍率 ${(inf_combat.B6 ** 1.2).toFixed(2)}x , 品质加成: ${(Math.log(inf_combat.B6) * 7.5).toFixed(1)}%`);
+            if(inf_combat.B6 <= 9999) log_message(`进货倍率 ${(inf_combat.B6 ** 0.8).toFixed(2)}x , 品质加成: ${(Math.log(inf_combat.B6) * 9).toFixed(1)}%`,"gather_loot");
+            else log_message(`之前的9999个商人已经垄断了燕岗领的生意！抓来更多的也没用了！`,"gather_loot");
             //基础品质:140%~180%
             if(inf_combat.B6 == 1){
                 //解锁冰宫商人！

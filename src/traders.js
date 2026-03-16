@@ -79,8 +79,9 @@ class Trader extends InventoryHaver {
         let item_mul = 1;
         if(this.inventory_template == "Sky II"){
             let eff_N = inf_combat.B6 || 1;
-            quality_fix = 7.5 * Math.log(eff_N);
-            item_mul = eff_N ** 1.2;
+            if(eff_N >= 9999) eff_N = 9999;
+            quality_fix = 9 * Math.log(eff_N);
+            item_mul = eff_N ** 0.8;
         }
         for (let i = 0; i < inventory_template.length; i++) {
             if (inventory_template[i].chance >= Math.random()) {
