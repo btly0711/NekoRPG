@@ -689,7 +689,7 @@ function format_skill_rewards(milestone){
                                     }
                                 });
     skills["Neko_Realm"] = new Skill({skill_id: "Neko_Realm", 
-                                    names: {0: "微火",10:"燃灼术",20:"火灵幻海[领域一重]",30:"焰海霜天[领域二重]",40:"焰海霜天[领域三重]"}, 
+                                    names: {0: "微火",10:"燃灼术",20:"火灵幻海[领域一重]",30:"焰海霜天[领域二重]",35:"焰海霜天[领域三重]",40:"出云落月[领域四重]"}, 
                                     parent_skill: "Stance mastery",
                                     description: "纳可的领域(雏形).每升一级都能获取基础属性，每提高一个阶段都能获取全新的领悟！", 
                                     max_level_coefficient: 1.25,
@@ -703,8 +703,9 @@ function format_skill_rewards(milestone){
                                         if(R_level<10) R_value = 1000 * R_level;
                                         else if(R_level<20) R_value = 1.5e4 * (R_level - 8);
                                         else if(R_level<30) R_value = 15e4 * (R_level - 18);
-                                        else if(R_level<40) R_value = 121.5e4 * (R_level - 24);
-                                        else if(R_level<50) R_value = 486e4 * (R_level - 34);
+                                        else if(R_level<35) R_value = 121.5e4 * (R_level - 24);
+                                        else if(R_level<40) R_value = 486e4 * (R_level - 29);
+                                        else if(R_level<50) R_value = 2.048e8 * (R_level - 38);
                                         return `基础攻击,防御,敏捷 + ${format_number(R_value)}`;
                                         //30w 729w 2916w
                                         //出云落月：4.096e
@@ -1528,12 +1529,45 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
           },
       }
     },
+
+    
     get_effect_description: ()=> {
       let value = skills["Swimming"].get_coefficient("multiplicative");
       return `将生命上限乘以 ${format_number(value)}`;
     },
     
     });
+
+
+
+
+    
+    skills["AquaElement"] = new Skill({skill_id: "AquaElement",
+    description: "感应水元素，加快对领域的感悟！(领域三重巅峰[lv.39]前有效)",
+    names: {0: "水元素亲和",10:"水元素精通"},
+    max_level: 18,
+    xp_scaling: 1.6,
+    category: "Activity",
+    base_xp_cost: 10e4,
+    max_level_coefficient: 10000,
+    rewards: {
+      milestones: {
+      }
+    },
+    get_effect_description: ()=> {
+      let value = skills["AquaElement"].get_coefficient("multiplicative");
+      return `将领域感悟速度乘以 ${format_number(value)} [Lv.39后将^0.5]`;
+    },
+    
+    });
+
+
+
+
+
+
+
+
     skills["Meditation"] = new Skill({skill_id: "Meditation",
                                 names: {0: "Meditation"}, 
                                 description: "Focus your mind",

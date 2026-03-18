@@ -3628,9 +3628,10 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["极寒冰宫"] = new Location({ 
         connected_locations: [{location: locations["纯白冰原"], custom_text: "回到纯白冰原"}], 
-        description: "坐落于纯白冰原的中心地带，完全由冰块组成的城市。女巫似乎希望留下纳可和纳娜米，却没有意识到攻守已悄然逆转。[V2.40前版本终点]",
+        description: "坐落于纯白冰原的中心地带，完全由冰块组成的城市。女巫似乎希望留下纳可和纳娜米，却没有意识到攻守已悄然逆转。",
         name: "极寒冰宫", 
         traders: ["冰宫商人"],
+        dialogues: ["溪月"],
         is_unlocked: false,
         bgm: 17,
         unlock_text : "[女巫]外来的小东西，本以为你们会知难而退，想不到竟然闯入这冰城里来。",
@@ -3704,13 +3705,40 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 150e8,
-            //locations: [{location: "极寒冰宫 - X"}],
+            locations: [{location: "极寒冰宫 - X"}],
         },
+    });
+    locations["极寒冰宫 - X"] = new Challenge_zone({
+        description: "在光环的庇护之下，我等将誓死冲锋！谔谔啊啊啊啊啊啊！", 
+        enemy_count: 1, 
+        enemies_list : [["敌意老人[BOSS]"]],
+        enemy_group_size: [4,4],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        enemy_stat_halo:0.50,
+        name: "极寒冰宫 - X",
+        bgm:17,
+        parent_location: locations["极寒冰宫"],
+        repeatable_reward: {
+            textlines: [{dialogue: "溪月", lines: ["xy1"]}],
+        },
+        unlock_text : "[敌意老人]狂妄自大的外来者，杀我族人，罪该当诛！"
     });
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 1"]});
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 2"]});
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 3"]});
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - 4"]});
+    locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - X"]});
+    locations["时封水牢"] = new Location({ 
+        connected_locations: [{location: locations["极寒冰宫"], custom_text: "回到极寒冰宫"}], 
+        description: "充盈着水元素的奇怪领域。被奇怪的粉色头发女孩子打晕之后就进来了！[V2.50前版本终点]",
+        name: "时封水牢", 
+        is_unlocked: false,
+        bgm: 18,
+        unlock_text : "[老人]你们……完了……主人会……替我们……报仇……",
+    });//3-4
+    locations["极寒冰宫"].connected_locations.push({location: locations["时封水牢"]});
 
 
 
@@ -4413,6 +4441,17 @@ function get_location_type_penalty(type, stage, stat) {
                 skill_required: [40, 60],
                 scales_with_skill: true,
             },
+        }),
+    }
+    
+    locations["时封水牢"].activities = {
+        
+        "AquaElement": new LocationActivity({
+            activity_name: "AquaElement",
+            infinite: true,
+            starting_text: "感应时封水牢中充盈的水元素",
+            skill_xp_per_tick: 1,
+            is_unlocked: true,
         }),
     }
 })();

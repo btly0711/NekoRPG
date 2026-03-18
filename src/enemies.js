@@ -6450,6 +6450,22 @@ B7 4'3349'4437 /7'0140'8733 exp
             {item_name: "史诗绿宝石", chance:2},
         ],
     });
+    enemy_templates["敌意老人[BOSS]"] = new Enemy({
+        name: "敌意老人[BOSS]", 
+        description: "相当耐揍，但是也只剩下耐揍了。", 
+        xp_value: 267914296, 
+        rank: 3499,
+        image: "image/boss/B3303.png",
+        realm: "<span class=realm_sky><b>天空级六阶 +</b></span>",
+        size: "small",
+        spec: [5],
+        spec_value:{},
+        tags: [],
+        stats: {health: 326.7e8, attack: 4.5e8, agility: 3.9e8, attack_speed: 1.4, defense:3.0e8}, //血量300%
+        loot_list: [
+            //280D
+        ],
+    });
 
 
 

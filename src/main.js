@@ -542,7 +542,7 @@ function start_activity(selected_activity) {
 }
 
 function end_activity() {
-    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿","woodcutting":"砍伐","fishing":"钓鱼"}
+    let ActivityEndMap = {"Running":"跑步","Swimming":"游泳","mining":"挖矿","woodcutting":"砍伐","fishing":"钓鱼","AquaElement":"水元素感应"}
     log_message(`${character.name} 结束了 ${ActivityEndMap[current_activity.activity_name]}`, "activity_finished");
     if(current_activity.exp_scaling)
     {
@@ -1890,11 +1890,17 @@ function update_neko_realm()
         log_message(`[极寒相变引擎] - [焰海] / [霜天] 环境 现已解锁！`, "location_unlocked");
         inf_combat.RM = 3;
     }
-    else if(S_level >= 40 && inf_combat.RM < 4)
+    else if(S_level >= 35 && inf_combat.RM < 4)
     {
         add_to_character_inventory([{item: getItem({...item_templates["焰海霜天[领域三重]"], quality: 200}), count: 1}]);
-        log_message(`领域三重剧情[WIP]！`, "location_unlocked");
+        log_message(`领域【焰海霜天】晋升为第三重！请检查装备栏查看详情！`, "location_unlocked");
         inf_combat.RM = 4;
+    }
+    else if(S_level >= 40 && inf_combat.RM < 5)
+    {
+        add_to_character_inventory([{item: getItem({...item_templates["焰海霜天[领域四重]"], quality: 240}), count: 1}]);
+        log_message(`领域四重剧情[WIP]！`, "location_unlocked");
+        inf_combat.RM = 5;
     }
 }
 
@@ -1965,7 +1971,11 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
 
         if(global_flags.is_realm_enabled)
         {
-            add_xp_to_skill({skill: skills['Neko_Realm'], xp_to_add: damage_dealt});//战斗领悟(领域)
+            let Realm_XP = damage_dealt;
+            if(skills["Neko_Realm"].current_level <= 39) Realm_XP *= (skills["AquaElement"].get_coefficient("multiplicative") || 1);
+            else Realm_XP *= (skills["AquaElement"].get_coefficient("multiplicative") || 1) ** 0.5;
+            //console.log(format_number(damage_dealt),format_number(Realm_XP));
+            add_xp_to_skill({skill: skills['Neko_Realm'], xp_to_add: Realm_XP});//战斗领悟(领域)
             update_neko_realm();
         }
         if(active_effects["魔攻 A9"]!=undefined && damage_dealt < proto_d * 0.1)
@@ -4076,6 +4086,8 @@ function load_other_release_save() {
 function update_timer() {
     let time_passed = (character.xp.current_level>=19)?48:6;
     time_passed *= is_sleeping?5:1
+    if(current_location.name.includes("时封")) time_passed /= 3;
+    time_passed = Math.ceil(time_passed);
     let D_C = current_game_time.day_count;
     current_game_time.go_up(time_passed);
     update_character_stats(); //done every second, mostly because of daynight cycle; gotta optimize it at some point

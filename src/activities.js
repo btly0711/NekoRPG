@@ -119,6 +119,13 @@ class Gathering extends Training {
         base_skills_names: ["Swimming"],
         is_unlocked: true,
     });
+    activities["AquaElement"] = new Training({
+        name: "AquaElement",
+        action_text: "感应水元素",
+        description: "八大基础元素之一的亲和力，暂时只能作用于领域经验",
+        base_skills_names: ["AquaElement"],
+        is_unlocked: true,
+    });
 })();
 
 //resource gatherings

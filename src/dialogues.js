@@ -1746,6 +1746,69 @@ class Textline {
     });
 
 
+    dialogues["溪月"] = new Dialogue({
+        name: "溪月",
+        starting_text: "和突然出现的神秘少女交流",
+        textlines: {
+            "xy1": new Textline({ 
+                is_unlocked: false,
+                name: "有点奇怪，姐姐。",
+                text: "[纳可]之前的战斗中，那些家伙在死亡后，<br>他们的“族人”非但没有害怕，<br>反倒更疯狂地扑上来。<br>简直不像是正常人嘛……<br>打个比方的话，更像是我们曾经遇到的,<br>那些没有感情的【科技造物】。<br><br>[纳娜米]诶，不可能吧？<br>你的意思是说，<br>这些家伙都不是真正的人类？<br>[纳可]真正的人类里，怎么会像这样，<br>成千上万地冲锋上来呢？",
+                unlocks: {
+                    textlines: [{dialogue: "溪月", lines: ["xy2"]}],
+                },
+                
+                locks_lines: ["xy1"],
+            }),
+            "xy2": new Textline({ 
+                is_unlocked: false,
+                name: "……",
+                text: "[???]恭喜恭喜。外来者，<br>你们破译了这里的秘密！<br>作为奖励，送你们去一个好玩的地方，<br>【水牢】。<br>[纳娜米]你是……之前看到的那个女孩子！<br>果然，是你刻意把我们引导到这里的。<br>[纳可](双眼放光)感觉是，不得了的地方！",
+                unlocks: {
+                    textlines: [{dialogue: "溪月", lines: ["xy3"]}],
+                    locations: ["时封水牢"],
+                },
+                
+                locks_lines: ["xy2"],
+            }),
+            "xy3": new Textline({ 
+                is_unlocked: false,
+                name: "姐姐，姐姐，醒醒……",
+                text: "[纳娜米]唔，可可……？！<br>太好了，你还在就好……<br>[纳可]我没事，……那个女孩，并没有杀我们，<br>而是把我们扔在了这里……<br>[溪月]欢迎两位可爱的小姑娘。<br>咯咯，我还在哦。比起【那个女孩】,<br>你们称呼我为【溪月】更好些。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月", lines: ["xy4"]}],
+                },
+                locks_lines: ["xy3"],
+            }),
+            "xy4": new Textline({ 
+                is_unlocked: false,
+                name: "是你在引导我们吗？为什么要这么做。",
+                text: "[溪月]这都是主人的安排。<br>不过怎么也没想到，<br>这次的外来者，竟然这么可爱，咯咯。<br>两位，这水牢之中，<br>关押着数百名天空级强者，<br>实力从天空级一二阶，到五六阶不等。<br>想要出去，办法很简单——<br>杀死这座水牢中所有的强者！<br>出口，会向最后的胜利者开启。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月", lines: ["xy5"]}],
+                },
+                locks_lines: ["xy4"],
+            }),
+            "xy5": new Textline({ 
+                is_unlocked: false,
+                name: "(愣住)",
+                text: "[纳可]才数百名?<br>突破到天空级六阶都需要1120兆经验耶。<br>这么点哪里够啦！<br><br>[溪月]咯咯，这里还有主人布下的结界。<br>丰沛的水元素孕育下，<br>这里会产生，最高天空级七阶的水【灵】。<br>简而言之，<br>战斗经验绝对管够！<br>虽然这里你们想跑随便跑，<br>但是天空级七阶的敌人可不是哪里都有的哦！<br>好啦，我的任务已经完成啦，<br>祝你们好运，拜拜咯。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月", lines: ["xy6"]}],
+                },
+                locks_lines: ["xy5"],
+            }),
+            "xy6": new Textline({ 
+                is_unlocked: false,
+                name: "喂，喂！",
+                text: "[纳娜米]看样子人真的走了。<br>[纳可]现在该怎么办，姐姐……<br>这里一只【灵】都没有呢。<br>[纳娜米]不一定。<br>也许，可以主动去找水牢中的强者，<br>尝试沟通一番。<br>[纳可]诶，要去找他们吗？<br>[纳娜米]他们或许也因为【灵】的袭击而感到困扰吧。<br>去帮忙解决【灵】，似乎是双赢的事呢。<br><br>(WIP:竺虎&后续区域 将在V2.41加入)",
+                unlocks: {
+                    //WIP:时封水牢-0
+                },
+                //locks_lines: ["xy6"],
+            }),
+        }
+    });
 
 
 

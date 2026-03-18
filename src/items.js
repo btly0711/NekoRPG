@@ -2633,6 +2633,26 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["出云落月[领域四重]"] = new Realm({
+        name: "出云落月[领域四重]",
+        id: "出云落月[领域四重]",
+        description: "水火元素纵横交错而成的领域。水帘之间，一袭布裙如同仙子临凡，出云之姿风华绝代；火焰灼烧，暗藏杀机凌厉，剑锋所向，斩断天际，月落星沉！。", 
+        value: 28571427e9,//100U
+        stats: {
+            attack_power: {
+                multiplier: 1.30,
+            },
+            defense: {
+                multiplier: 1.30,
+            },
+            max_health: {
+                multiplier: 1.50,
+            },
+            attack_mul: {
+                multiplier: 3.00,
+            },
+        }
+    });
 })();
 
         /*

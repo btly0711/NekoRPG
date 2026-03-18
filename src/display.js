@@ -441,8 +441,10 @@ function create_item_tooltip_content({item, options={}}) {
                 `<br>${stat_names[effect_key]}: ${item.stats[effect_key].flat>0?"+":""}${format_number(item.stats[effect_key].flat*(item.stats[effect_key].flat>0?rarity_mul:1))}`;
             }
             if(item.stats[effect_key].multiplier != null) {
-                item_tooltip += 
+                if(item.stats[effect_key].multiplier >= 1) item_tooltip += 
                 `<br>${stat_names[effect_key]}: x${item.stats[effect_key].multiplier + (item.stats[effect_key].multiplier-1) * (rarity_mul - 1)}`;
+                else item_tooltip += 
+                `<br>${stat_names[effect_key]}: x${item.stats[effect_key].multiplier}`;
             }
         });
         item_tooltip += "<br>";
@@ -2976,7 +2978,7 @@ function start_activity_display(current_activity) {
 
 
     const action_end_text = document.createElement("div");
-    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳","mining":"挖掘","woodcutting":"砍伐","fishing":"钓鱼"};
+    const ActivityNameMap = {"Running":"跑步","Swimming":"游泳","mining":"挖掘","woodcutting":"砍伐","fishing":"钓鱼","AquaElement":"水元素感应"};
     const dev_ACNMap = false;
     action_end_text.innerText = `结束 ${dev_ACNMap?current_activity.activity_name:ActivityNameMap[current_activity.activity_name]}`;
     action_end_text.id = "action_end_text";
