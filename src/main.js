@@ -1898,7 +1898,7 @@ function update_neko_realm()
     }
     else if(S_level >= 40 && inf_combat.RM < 5)
     {
-        add_to_character_inventory([{item: getItem({...item_templates["焰海霜天[领域四重]"], quality: 240}), count: 1}]);
+        add_to_character_inventory([{item: getItem({...item_templates["出云落月[领域四重]"], quality: 240}), count: 1}]);
         log_message(`领域四重剧情[WIP]！`, "location_unlocked");
         inf_combat.RM = 5;
     }

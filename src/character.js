@@ -476,8 +476,9 @@ character.stats.add_realm_bonus = function(){
         if(R_level<10) R_value = 1000 * R_level;
         else if(R_level<20) R_value = 1.5e4 * (R_level - 8);
         else if(R_level<30) R_value = 15e4 * (R_level - 18);
-        else if(R_level<40) R_value = 121.5e4 * (R_level - 24);
-        else if(R_level<50) R_value = 486e4 * (R_level - 34);
+        else if(R_level<35) R_value = 121.5e4 * (R_level - 24);
+        else if(R_level<40) R_value = 486e4 * (R_level - 29);
+        else if(R_level<50) R_value = 2.048e8 * (R_level - 38);
         return R_value;
 }
 

@@ -6455,7 +6455,7 @@ B7 4'3349'4437 /7'0140'8733 exp
         description: "相当耐揍，但是也只剩下耐揍了。", 
         xp_value: 267914296, 
         rank: 3499,
-        image: "image/boss/B3303.png",
+        image: "image/boss/B3401.png",
         realm: "<span class=realm_sky><b>天空级六阶 +</b></span>",
         size: "small",
         spec: [5],
