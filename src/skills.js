@@ -1556,7 +1556,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     },
     get_effect_description: ()=> {
       let value = skills["AquaElement"].get_coefficient("multiplicative");
-      return `将领域感悟速度乘以 ${format_number(value)} [Lv.39后将^0.5]`;
+      return `将领域感悟速度乘以 ${format_number(value)} [Lv.39后将^0.25]`;
     },
     
     });
