@@ -1015,7 +1015,7 @@ function textline_special(t_key){
             update_displayed_money();
         }
         else if(t_key == "moonwheel-lv40"){
-            add_xp_to_skill({skill: skills["MoonWheels"], xp_to_add: 9999e16,should_info:true,use_bonus:false,add_to_parent:false},);
+            add_xp_to_skill({skill: skills["Moonwheels"], xp_to_add: 2.99e20,should_info:true,use_bonus:false,add_to_parent:false},);
         }
         return displayed_text;
 }
