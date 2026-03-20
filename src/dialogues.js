@@ -1861,8 +1861,7 @@ class Textline {
                 name: "现在呢，到底是谁要死在这里呀。",
                 text: "[竺虎]天真！就算你们再能打，<br>在境界所限………………<br><br>(死一般的寂静)",
                 unlocks: {
-                    textlines: [{dialogue: "竺虎", lines: ["zh6-1"]}],
-                    textlines: [{dialogue: "竺虎", lines: ["zh6-2"]}],
+                    textlines: [{dialogue: "竺虎", lines: ["zh6-1"]},{dialogue: "竺虎", lines: ["zh6-2"]}],
                 },
                 
                 locks_lines: ["zh5"],

@@ -3795,7 +3795,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["时封水牢 - 2"] = new Combat_zone({
         description: "囚禁着大量天空级强者的水牢。也孕育着许多用于积攒经验的【灵】。", 
         enemy_count: 20, 
-        enemies_list: ["出芽蓝茸战士","燕岗迷途强者","水牢嗜血哥布林","识灵水藻","徘徊的紫马"],
+        enemies_list: ["出芽蓝茸战士","燕岗迷途强者","水牢嗜血哥布林","识灵水藻","徘徊的紫乌"],
         enemy_group_size: [4,4],
         is_unlocked: false, 
         name: "时封水牢 - 2",
