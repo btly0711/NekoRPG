@@ -977,9 +977,16 @@
                                         <span class="coin coin_moneyT money_button" onclick = "get_money(4,1)">[1  B]</span>
                                         <span class="coin coin_moneyT money_button" onclick = "get_money(4,10)">[10 B]</span>
                                         <span class="coin coin_moneyT money_button" onclick = "get_money(4,100)">[100B]</span>
-                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,1000)">[1KB]</span>
-                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,10000)">[1WB]</span>
-                                        <span class="coin coin_moneyT money_button" onclick = "get_money(4,100000)">[10WB]</span>
+                                </div>
+                                <div id = "data_bankU" class="data_entry">
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(5,1)">[1  U]</span>
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(5,10)">[10 U]</span>
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(5,100)">[100U]</span>
+                                </div>
+                                <div id = "data_bankkU" class="data_entry">
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(6,1)">[1 kU]</span>
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(6,10)">[10kU]</span>
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(6,100)">[100kU]</span>
                                 </div>
                             </div>
 
@@ -1586,7 +1593,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.40c";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.41";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

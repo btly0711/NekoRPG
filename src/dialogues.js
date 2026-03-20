@@ -1803,14 +1803,173 @@ class Textline {
                 name: "喂，喂！",
                 text: "[纳娜米]看样子人真的走了。<br>[纳可]现在该怎么办，姐姐……<br>这里一只【灵】都没有呢。<br>[纳娜米]不一定。<br>也许，可以主动去找水牢中的强者，<br>尝试沟通一番。<br>[纳可]诶，要去找他们吗？<br>[纳娜米]他们或许也因为【灵】的袭击而感到困扰吧。<br>去帮忙解决【灵】，似乎是双赢的事呢。<br><br>(WIP:竺虎&后续区域 将在V2.41加入)",
                 unlocks: {
-                    //WIP:时封水牢-0
+                    textlines: [{dialogue: "竺虎", lines: ["zh1"]}],
                 },
-                //locks_lines: ["xy6"],
+                locks_lines: ["xy6"],
             }),
         }
     });
 
+    
 
+    dialogues["竺虎"] = new Dialogue({
+        name: "竺虎",
+        
+        textlines: {
+            "zh1": new Textline({ 
+                is_unlocked: false,
+                name: "…",
+                text: "[竺虎]哦呦，生面孔？<br>呵呵，这水牢有段时间没有新人了。<br><br>[纳娜米]你好，<br>你也是被关押进来的强者？<br><br>[竺虎]是啊，早先几百年就被关押在这里了。<br>哦，那边那个小姑娘，<br>你手里拿的那把武器，不错嘛。",
+                unlocks: {
+                    textlines: [{dialogue: "竺虎", lines: ["zh2"]}],
+                },
+                
+                locks_lines: ["zh1"],
+            }),
+            "zh2": new Textline({ 
+                is_unlocked: false,
+                name: "在叫我吗……？",
+                text: "[竺虎]没错，啧啧，<br>看起来是品质很高的念力兵器。<br>那么，我就不客气的收下了。",
+                unlocks: {
+                    textlines: [{dialogue: "竺虎", lines: ["zh3"]}],
+                },
+                
+                locks_lines: ["zh2"],
+            }),
+            "zh3": new Textline({ 
+                is_unlocked: false,
+                name: "这，这可不能随便给你！",
+                text: "[竺虎]哈哈哈，真是太幼稚了。<br>新人，你们还不懂这里的规则吧。<br>在这里强者为尊，杀人更是家常便饭。<br>两个天空级初……哈？！<br>现在求饶还来得及吗？",
+                unlocks: {
+                    textlines: [{dialogue: "竺虎", lines: ["zh4"]}],
+                },
+                
+                locks_lines: ["zh3"],
+            }),
+            "zh4": new Textline({ 
+                is_unlocked: false,
+                name: "想打架就直说嘛……",
+                text: "[纳娜米]既然如此，<br>不再废话——你就死在这里好了。<br>(可可，拿下这家伙就交给你了！)",
+                unlocks: {
+                    locations: ["时封水牢 - I"],
+                },
+                
+                locks_lines: ["zh4"],
+            }),
+            "zh5": new Textline({ 
+                is_unlocked: false,
+                name: "现在呢，到底是谁要死在这里呀。",
+                text: "[竺虎]天真！就算你们再能打，<br>在境界所限………………<br><br>(死一般的寂静)",
+                unlocks: {
+                    textlines: [{dialogue: "竺虎", lines: ["zh6-1"]}],
+                    textlines: [{dialogue: "竺虎", lines: ["zh6-2"]}],
+                },
+                
+                locks_lines: ["zh5"],
+            }),
+            "zh6-1": new Textline({ 
+                is_unlocked: false,
+                name: "饶恕",
+                text: "[纳可]看在本小姐今天心情不错的份上，<br>你可以走了~<br><br>[竺虎]那就告辞了，两位大人——",
+                unlocks: {
+                    textlines: [{dialogue: "竺虎", lines: ["zh7"]}],
+                },
+                
+                locks_lines: ["zh6-1","zh6-2"],
+            }),
+            "zh6-2": new Textline({ 
+                is_unlocked: false,
+                name: "<span style='color:red'><b>杀害</b></span>",
+                text: "[竺虎]饶命啊——<br><br>(月轮切割声)<br><br>[纳可]好了，差不多就这样埋了吧。<br>[纳娜米]长大了啊……<br><br>获取了 沼泽·荒兽肉块 * 5!<br>获取了 晶化 剑(品质 239%)!<br>获取了 <span class='coin coin_moneyT'>259B</span> <span class='coin coin_moneyB'>346D</span> <span class='coin coin_moneyM'>107Z</span> <span class='coin coin_moneyK'>197X</span> <span class='coin coin_copper'>56C</span>!",
+                unlocks: {
+                    spec:"kill-zh",
+                    textlines: [{dialogue: "竺虎", lines: ["zh7"]}],
+                },
+                
+                locks_lines: ["zh6-1","zh6-2"],
+            }),
+            "zh7": new Textline({ 
+                is_unlocked: false,
+                name: "真是的，明明自己技不如人，还要放狠话。",
+                text: "[纳娜米](此处省去水牢的强度判断)<br>还记得你之前，<br>在那天外来客的飞船中说过的话吗？<br>[纳可]是指什么话呢。<br>[纳娜米]你说，只要在飞船内成为天空级九阶，<br>麻烦便会迎刃而解！<br><br>仿佛醍醐灌顶一般，纳可似乎意识到了什么，顿时眼前一亮。",
+                unlocks: {
+                    textlines: [{dialogue: "竺虎", lines: ["zh8"]}],
+                },
+                
+                locks_lines: ["zh7"],
+            }),
+            "zh8": new Textline({ 
+                is_unlocked: false,
+                name: "可是姐姐，压级要扣80%经验耶。",
+                text: "[纳娜米]只有当实力超出了所有人，<br>才会受到这样的惩罚。<br>而已经超越了所有人，<br>危机不就不复存在了吗？<br><br>[纳可]有道理诶。",
+                unlocks: {
+                    locations: ["时封水牢 - 1"],
+                },
+                
+                locks_lines: ["zh8"],
+            }),
+        }
+    });
+    
+    dialogues["莫尔"] = new Dialogue({
+        name: "莫尔",
+        textlines: {
+            "mr1": new Textline({ 
+                is_unlocked: false,
+                name: "你找上我们，有什么事吗？",
+                text: "放心吧，我无意对付你们。<br>我只是想讨教一下，能压制竺虎的【领域】，<br>到底有多神奇。",
+                unlocks: {
+                    textlines: [{dialogue: "莫尔", lines: ["mr2"]}],
+                },
+                locks_lines: ["mr1"],
+            }),
+            "mr2": new Textline({ 
+                is_unlocked: false,
+                name: "没兴趣啊，而且很奇怪啊。",
+                text: "[纳可]明明身处牢笼之中，朝不保夕的处境下，<br>还在想着与人切磋较量吗……<br><br>[莫尔]这里的凶险，我当然知道的比你们多。<br>可比起变强，这有算得了什么呢。<br>我可以告诉你们，<br>这水牢中的几个最强者，<br>脾气可都很古怪。<br>像强榜发布者【蓝柒】，落叶刀【秋兴】等，<br>每一个实力都数十倍于我。",
+                unlocks: {
+                    textlines: [{dialogue: "莫尔", lines: ["mr3"]}],
+                },
+                locks_lines: ["mr2"],
+            }),
+            "mr3": new Textline({ 
+                is_unlocked: false,
+                name: "…",
+                text: "[纳娜米]所以，你觉得我们会答应吗？<br>在这里战斗，对我们也没有任何好处吧，<br>还可能会吸引来其他强者。<br><br>[莫尔]嗯，这也确实，<br>在下料定两位不会轻易答应，不过——<br>这不是轻率的冒犯，而是一次交易。",
+                unlocks: {
+                    textlines: [{dialogue: "莫尔", lines: ["mr4"]}],
+                },
+                locks_lines: ["mr3"],
+            }),
+            "mr4": new Textline({ 
+                is_unlocked: false,
+                name: "诶诶？什么交易，你在说什么啊。",
+                text: "[莫尔]可爱的小家伙，你手里的武器，很强。<br>我曾长时间研究过念力兵器，<br>你这月轮的构架，起码是巅峰灵宝级。<br>即使云霄级强者，也会趋之若鹜。<br>可是你暂时无法发挥它的威力。<br>而我，或许可以帮到你。<br>[纳可]你的意思是！<br><br>[莫尔]如果我赢了，我什么都不会做。<br>只求能够学习你的领悟，<br>或是听听你对领域一道的见解。",
+                unlocks: {
+                    textlines: [{dialogue: "莫尔", lines: ["mr5"]}],
+                },
+                locks_lines: ["mr4"],
+            }),
+            "mr5": new Textline({ 
+                is_unlocked: false,
+                name: "(他真的值得信任吗……)",
+                text: "[莫尔]我知道你在担心什么，<br>以强榜强者的声誉起誓，<br>我绝不会随意做什么手脚。<br>况且，做出见不得人的勾当，<br>一旦消息从这传出去，<br>恐怕便是身败名裂，招致灾祸吧。<br><br>[纳可]好……我答应你。既然如此，请吧。",
+                unlocks: {
+                    locations: ["时封水牢 - II"],
+                },
+                locks_lines: ["mr5"],
+            }),
+            "mr6": new Textline({ 
+                is_unlocked: false,
+                name: "(……)",
+                text: "依照约定，莫尔将自己关于念力兵器的领悟，<br>毫无保留地教给了纳可。<br>到了此时，她才发现，<br>在这水牢之中，也并非只有你死我活，<br>如莫尔这般一心为修炼的强者也有不少。<br>交谈之中，她感受得到莫尔对于变强的渴望，<br>这份渴望的价值甚至是超越了生存。<br>很快，由216颗白水晶构造成的月轮，<br></br>在少女的手上，绽放出更华丽的光彩……<br>【银霜月轮】获取9999京经验！",
+                unlocks: {
+                    spec:"moonwheel-lv40",
+                },
+                locks_lines: ["mr6"],
+            }),
+        }
+    });
 
 
 

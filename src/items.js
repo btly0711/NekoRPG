@@ -4963,6 +4963,38 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [],
         gem_value: 2000000,
     });
+    item_templates["传说黄宝石"] = new UsableItem({
+        name: "传说黄宝石", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷500万点或生命5亿点", 
+        value: 5000000,
+        image: "image/item/gem61_5M.png",
+        effects: [],
+        gem_value: 5000000,
+    });
+    item_templates["传说蓝宝石"] = new UsableItem({
+        name: "传说蓝宝石", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷1000万点或生命10亿点", 
+        value: 10000000,
+        image: "image/item/gem62_10M.png",
+        effects: [],
+        gem_value: 10000000,
+    });
+    item_templates["传说红宝石"] = new UsableItem({
+        name: "传说红宝石", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷2000万点或生命20亿点", 
+        value: 20000000,
+        image: "image/item/gem63_20M.png",
+        effects: [],
+        gem_value: 20000000,
+    });
+    item_templates["传说绿宝石"] = new UsableItem({
+        name: "传说绿宝石", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷5000万点或生命50亿点", 
+        value: 50000000,
+        image: "image/item/gem64_50M.png",
+        effects: [],
+        gem_value: 50000000,
+    });
 })();
 
 
@@ -5442,6 +5474,18 @@ item_templates["Twist liek a snek"] = new Book({
         description: "血洛大陆的通用钱币。1B=1000D。宝石制成的它相当珍贵，甚至有微弱增强气运的功效。", 
         value: 1e12,
         image: "image/item/1B.png",
+    });
+    item_templates["宇宙币"] = new Loot({
+        name: "宇宙币", 
+        description: "全宇宙通用的货币。1U=1000B。界主强者在突破时会凝聚海量宇宙晶，切成小块即为富含能量的宇宙币。", 
+        value: 1e15,
+        image: "image/item/1U.png",
+    });
+    item_templates["宇宙币堆"] = new Loot({
+        name: "宇宙币堆", 
+        description: "一大堆宇宙币，共计1000U(或记为1kU)", 
+        value: 1000e15,
+        image: "image/item/1000U.png",
     });
 })();
 

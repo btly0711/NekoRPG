@@ -97,8 +97,8 @@ window.REALMS=[
 [22,"天空级四阶",4000000,25e8,80e12,"sky"],//40e 
 [23,"天空级五阶",16000000,60e8,320e12,"sky"],//100e
 [24,"天空级六阶",40000000,150e8,1120e12,"sky"],//250e 
-[25,"天空级七阶",70000000,350e8,170.1411e36,"sky"],//600e 应为6000e12
-[26,"天空级八阶",3e8,900e8,2.4e16,"sky"],//1500e
+[25,"天空级七阶",70000000,350e8,6000e12,"sky"],//600e 应为6000e12
+[26,"天空级八阶",3e8,900e8,170.1411e36,"sky"],//1500e
 [27,"天空级巅峰",8e8,1500e8,9.6e16,"sky"],//3000e
 
 ];
@@ -1008,6 +1008,14 @@ function textline_special(t_key){
         }
         else if(t_key == "lf-leave"){
             remove_from_character_inventory([{item_key:"{\"id\":\"峰\"}"}]);
+        }
+        else if(t_key == "kill-zh"){
+            add_to_character_inventory([{item: getItem({...item_templates["晶化剑"], quality: 239}), count: 1}]);add_to_character_inventory([{ "item": getItem(item_templates["沼泽·荒兽肉块"]), "count": 5 }]);
+            character.money += 259346107197056;
+            update_displayed_money();
+        }
+        else if(t_key == "moonwheel-lv40"){
+            add_xp_to_skill({skill: skills["MoonWheels"], xp_to_add: 9999e16,should_info:true,use_bonus:false,add_to_parent:false},);
         }
         return displayed_text;
 }
@@ -5114,7 +5122,7 @@ function gem_consume(){
 function coin_consume(){
     inf_combat.MP = inf_combat.MP || 0;
     Object.keys(character.inventory).forEach(key =>{
-        if(character.inventory[key].item.value == 1e12)
+        if(character.inventory[key].item.name == "紫色刀币" || character.inventory[key].item.name.includes("宇宙币"))
         {
             inf_combat.MP += character.inventory[key].count;
             remove_from_character_inventory([{ 
@@ -5123,7 +5131,7 @@ function coin_consume(){
             }
         ]);
         }
-    });//暂时只吃宝钱，以后可能吃宇宙币
+    });//吃宇宙币，宝钱
     update_quests();
     update_displayed_character_inventory();
     character.stats.add_gem_bonus();
@@ -5141,7 +5149,7 @@ function get_money(coin_type,coin_num)
     {
         log_message(`钱包: ${format_money(character.money)} -> ${format_money(character.money - value)} `,"activity_money");
         character.money -= value;
-        let coin_map = {1:"红色刀币",2:"黑色刀币",3:"绿色刀币",4:"紫色刀币"}
+        let coin_map = {1:"红色刀币",2:"黑色刀币",3:"绿色刀币",4:"紫色刀币",5:"宇宙币",6:"宇宙币堆"}
         let coin = coin_map[coin_type];
         log_message(`获取了 ${coin} x ${coin_num} !`,"combat_loot");
         add_to_character_inventory([{ "item": getItem(item_templates[coin]), "count": coin_num }]);

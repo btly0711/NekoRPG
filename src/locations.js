@@ -3734,12 +3734,106 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["极寒冰宫"], custom_text: "回到极寒冰宫"}], 
         description: "充盈着水元素的奇怪领域。被奇怪的粉色头发女孩子打晕之后就进来了！[V2.50前版本终点]",
         name: "时封水牢", 
+        dialogues: ["竺虎","莫尔"],
         is_unlocked: false,
         bgm: 18,
         unlock_text : "[老人]你们……完了……主人会……替我们……报仇……",
     });//3-4
+    
     locations["极寒冰宫"].connected_locations.push({location: locations["时封水牢"]});
 
+    locations["时封水牢 - I"] = new Challenge_zone({
+        description: "这一区的小boss着实很多。将会从I~IV区分！", 
+        enemy_count: 1, 
+        enemies_list : [["竺虎[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "时封水牢 - I",
+        bgm:18,
+        parent_location: locations["时封水牢"],
+        repeatable_reward: {
+            textlines: [{dialogue: "竺虎", lines: ["zh5"]}],
+        },
+    });
+    locations["时封水牢 - II"] = new Challenge_zone({
+        description: "莫尔的脾气很好，人也很好……不会有杀害按钮了啦。", 
+        enemy_count: 1, 
+        enemies_list : [["莫尔[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "时封水牢 - II",
+        bgm:18,
+        parent_location: locations["时封水牢"],
+        repeatable_reward: {
+            textlines: [{dialogue: "莫尔", lines: ["mr6"]}],
+        },
+    });
+
+    
+    locations["时封水牢 - 1"] = new Combat_zone({
+        description: "囚禁着大量天空级强者的水牢。也孕育着许多用于积攒经验的【灵】。", 
+        enemy_count: 20, 
+        enemies_list: ["大门派先锋","水牢雪怪","水牢花妖","成熟期蛟龙","出芽蓝茸战士"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "时封水牢 - 1",
+        rank:241, 
+        bgm:18,
+        parent_location: locations["时封水牢"],
+        first_reward: {
+            xp: 900e8,
+        },
+        repeatable_reward: {
+            xp: 300e8,
+            locations: [{location: "时封水牢 - 2"}],
+        },
+    });
+    locations["时封水牢 - 2"] = new Combat_zone({
+        description: "囚禁着大量天空级强者的水牢。也孕育着许多用于积攒经验的【灵】。", 
+        enemy_count: 20, 
+        enemies_list: ["出芽蓝茸战士","燕岗迷途强者","水牢嗜血哥布林","识灵水藻","徘徊的紫马"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "时封水牢 - 2",
+        rank:242, 
+        bgm:18,
+        parent_location: locations["时封水牢"],
+        first_reward: {
+            xp: 1200e8,
+        },
+        repeatable_reward: {
+            xp: 400e8,
+            locations: [{location: "时封水牢 - 3"}],
+        },
+    });
+    locations["时封水牢 - 3"] = new Combat_zone({
+        description: "囚禁着大量天空级强者的水牢。也孕育着许多用于积攒经验的【灵】。", 
+        enemy_count: 20, 
+        enemies_list: ["徘徊的紫马","夜巡傀儡","水猫茸茸","徘徊的骸骨","水牢骨角茸茸"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "时封水牢 - 3",
+        rank:243, 
+        bgm:18,
+        parent_location: locations["时封水牢"],
+        first_reward: {
+            xp: 1500e8,
+        },
+        repeatable_reward: {
+            xp: 500e8,
+            textlines: [{dialogue: "莫尔", lines: ["mr1"]}],
+            //locations: [{location: "时封水牢深处"}],
+        },
+    });
+    locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - I"]});
+    locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - II"]});
+    locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - 1"]});
+    locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - 2"]});
+    locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - 3"]});
 
 
 
