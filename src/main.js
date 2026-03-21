@@ -5140,7 +5140,7 @@ function coin_consume(){
 
 function get_money(coin_type,coin_num)
 {
-    let value = 100**coin_type * coin_num;
+    let value = 1000**coin_type * coin_num;
     if(character.money < value)
     {
         log_message(`余额不足! (${format_money(character.money)} / ${format_money(value)})`,"activity_money");
