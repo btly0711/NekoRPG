@@ -5122,7 +5122,7 @@ function gem_consume(){
 function coin_consume(){
     inf_combat.MP = inf_combat.MP || 0;
     Object.keys(character.inventory).forEach(key =>{
-        if(character.inventory[key].item.name == "紫色刀币" || character.inventory[key].item.name.includes("宇宙币"))
+        if(character.inventory[key].item.name == "紫色刀币" || character.inventory[key].item.name?.includes("宇宙币"))
         {
             inf_combat.MP += character.inventory[key].count * character.inventory[key].item.value / 1e12;
             remove_from_character_inventory([{ 
@@ -5140,7 +5140,7 @@ function coin_consume(){
 
 function get_money(coin_type,coin_num)
 {
-    let value = 1000**coin_type * coin_num;
+    let value = 100**coin_type * coin_num;
     if(character.money < value)
     {
         log_message(`余额不足! (${format_money(character.money)} / ${format_money(value)})`,"activity_money");
