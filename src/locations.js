@@ -3732,7 +3732,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["极寒冰宫"].connected_locations.push({location: locations["极寒冰宫 - X"]});
     locations["时封水牢"] = new Location({ 
         connected_locations: [{location: locations["极寒冰宫"], custom_text: "回到极寒冰宫"}], 
-        description: "充盈着水元素的奇怪领域。被奇怪的粉色头发女孩子打晕之后就进来了！[V2.50前版本终点]",
+        description: "充盈着水元素的奇怪领域。被奇怪的粉色头发女孩子打晕之后就进来了！",
         name: "时封水牢", 
         dialogues: ["竺虎","莫尔"],
         is_unlocked: false,
@@ -3817,6 +3817,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_group_size: [4,4],
         is_unlocked: false, 
         name: "时封水牢 - 3",
+        enemy_stat_halo: 0.06,
         rank:243, 
         bgm:18,
         parent_location: locations["时封水牢"],
@@ -3826,7 +3827,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 500e8,
             textlines: [{dialogue: "莫尔", lines: ["mr1"]}],
-            //locations: [{location: "时封水牢深处"}],
+            locations: [{location: "水牢深处"}],
         },
     });
     locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - I"]});
@@ -3835,8 +3836,114 @@ function get_location_type_penalty(type, stage, stat) {
     locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - 2"]});
     locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - 3"]});
 
+    
+    
+    locations["水牢深处"] = new Location({ 
+        connected_locations: [{location: locations["时封水牢"], custom_text: "时封水牢"}], 
+        description: "充盈着水元素的奇怪领域。从此出发去挑战强榜强者！[V2.50前版本终点/很抱歉之前那个是假的]",
+        name: "水牢深处", 
+        dialogues: ["秋兴","蓝柒"],
+        is_unlocked: false,
+        bgm: 18,
+    });//3-4
+    locations["时封水牢"].connected_locations.push({location: locations["水牢深处"]});
+
+    locations["时封水牢 - 4"] = new Combat_zone({
+        description: "囚禁着大量天空级强者的水牢。从此出发可以前往强榜强者的住处。", 
+        enemy_count: 20, 
+        enemies_list: ["水牢石灵","仙旅城强战士","城主府骨干","火箭卫戍","小门派长老"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        name: "时封水牢 - 4",
+        rank:244, 
+        bgm:18,
+        parent_location: locations["水牢深处"],
+        first_reward: {
+            xp: 1800e8,
+        },
+        repeatable_reward: {
+            xp: 600e8,
+            textlines: [{dialogue: "秋兴", lines: ["qx1"]}],
+        },
+    });
+    locations["时封水牢 - 5"] = new Combat_zone({
+        description: "囚禁着大量天空级强者的水牢。从此出发可以前往强榜强者的住处。", 
+        enemy_count: 20, 
+        enemies_list: ["小门派长老","水牢幽暗人形","出芽紫茸战士","星月幻术师","绿皮怪物"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "时封水牢 - 5",
+        rank:245, 
+        enemy_stat_halo: 0.10,
+        bgm:18,
+        parent_location: locations["水牢深处"],
+        first_reward: {
+            xp: 2400e8,
+        },
+        repeatable_reward: {
+            xp: 800e8,
+            textlines: [{dialogue: "蓝柒", lines: ["lq1"]}],
+            locations: [{location: "时封水牢 - 6"}],
+        },
+    });
+    locations["时封水牢 - 6"] = new Combat_zone({
+        description: "囚禁着大量天空级强者的水牢。距离出水的岸边已经越来越近了。", 
+        enemy_count: 20, 
+        enemies_list: ["星月幻术师","魔化枭蝎","古龙幼崽","血杀殿余孽","城主府骨干"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "时封水牢 - 6",
+        rank:246, 
+        enemy_stat_halo: 0.10,
+        bgm:18,
+        parent_location: locations["水牢深处"],
+        first_reward: {
+            xp: 2400e8,
+        },
+        repeatable_reward: {
+            xp: 800e8,
+            //locations: [{location: "时封水牢 - X"}],
+        },
+    });
+    
+    locations["时封水牢 - III"] = new Challenge_zone({
+        description: "击败她以解锁时封水牢 - 5！", 
+        enemy_count: 1, 
+        enemies_list : [["秋兴[BOSS]"]],//BOSS:WIP
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "时封水牢 - III",
+        bgm:18,
+        parent_location: locations["水牢深处"],
+        repeatable_reward: {
+            locations: [{location: "时封水牢 - 5"}],
+            textlines: [{dialogue: "秋兴", lines: ["qx5"]}],
+        },
+    });
+    locations["时封水牢 - IV"] = new Challenge_zone({
+        description: "击败她以……拿到三颗传奇红宝石？", 
+        enemy_count: 1, 
+        enemies_list : [["蓝柒[放水 ver.][BOSS]"]],//BOSS:WIP
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "时封水牢 - IV",
+        bgm:18,
+        parent_location: locations["水牢深处"],
+        repeatable_reward: {
+            textlines: [{dialogue: "蓝柒", lines: ["lq5"]}],
+        },
+    });
 
 
+    locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - 4"]});    
+    locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - 5"]});    
+    locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - 6"]});
+    locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - III"]});  
+    locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - IV"]});  
 
 
 

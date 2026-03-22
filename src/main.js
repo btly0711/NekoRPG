@@ -74,30 +74,30 @@ window.REALMS=[
 [1,"微尘级中级",1,50,5,"basic"],
 [2,"微尘级高级",3,200,100,"basic"],
 [3,"万物级初等",6,700,1200,"basic"],//0.1spd 
-[4,"万物级高等",12,3000,4800,"basic"],
+[4,"万物级高等",15,3000,4800,"basic"],
 [5,"万物级巅峰",25,6000,16000,"basic"],
-[6,"潮汐级初等",40,10000,36000,"basic"],//0.1spd
+[6,"潮汐级初等",50,10000,36000,"basic"],//0.1spd
 [7,"潮汐级高等",100,20000,120000,"basic"],
 [8,"潮汐级巅峰",250,40000,2400000,"basic"],
 
-[9,"大地级一阶",600,120000,60000000,"terra"],
+[9,"大地级一阶",550,120000,60000000,"terra"],
 [10,"大地级二阶",1000,250000,80000000,"terra"],
 [11,"大地级三阶",2000,550000,1.6e8,"terra"],
 [12,"大地级四阶",3000,1000000,4.8e8,"terra"],//200w
 [13,"大地级五阶",5000,1500000,12e8,"terra"],//350w
 [14,"大地级六阶",9000,2500000,36e8,"terra"],//600w
-[15,"大地级七阶",16000,6500000,108e8,"terra"],//1250w
-[16,"大地级八阶",32000,12500000,216e8,"terra"],//2500w
-[17,"大地级巅峰",60000,22500000,432e8,"terra"],
-[18,"大地级破限",150000,32500000,1080e8,"terra"],
+[15,"大地级七阶",15000,6500000,108e8,"terra"],//1250w
+[16,"大地级八阶",36000,12500000,216e8,"terra"],//2500w
+[17,"大地级巅峰",72000,22500000,432e8,"terra"],
+[18,"大地级破限",126000,32500000,1080e8,"terra"],
 
-[19,"天空级一阶",150000,1.2e8,10000e8,"sky"],//2e
-[20,"天空级二阶",500000,3e8,4e12,"sky"],//5e
+[19,"天空级一阶",180000,1.2e8,10000e8,"sky"],//2e
+[20,"天空级二阶",550000,3e8,4e12,"sky"],//5e
 [21,"天空级三阶",1500000,10e8,16e12,"sky"],//15e
 [22,"天空级四阶",4000000,25e8,80e12,"sky"],//40e 
 [23,"天空级五阶",16000000,60e8,320e12,"sky"],//100e
 [24,"天空级六阶",40000000,150e8,1120e12,"sky"],//250e 
-[25,"天空级七阶",70000000,350e8,6000e12,"sky"],//600e 应为6000e12
+[25,"天空级七阶",72500000,350e8,6000e12,"sky"],//600e 应为6000e12
 [26,"天空级八阶",3e8,900e8,170.1411e36,"sky"],//1500e
 [27,"天空级巅峰",8e8,1500e8,9.6e16,"sky"],//3000e
 
@@ -1016,6 +1016,17 @@ function textline_special(t_key){
         }
         else if(t_key == "moonwheel-lv40"){
             add_xp_to_skill({skill: skills["Moonwheels"], xp_to_add: 2.99e20,should_info:true,use_bonus:false,add_to_parent:false},);
+        }
+        else if(t_key == "realm-III"){
+            if(skills["Neko_Realm"].current_level <= 34){
+                    displayed_text += `【焰海霜天[领域二重]】获取了1.68秭经验！<br>`;
+            }
+            else{
+                    displayed_text += `【焰海霜天[领域三重]】获取了1.68秭经验！<br>`;
+                    displayed_text += `这次……能提前突破一点也不意外（笑！<br>`;
+            }
+            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 1.68e24,should_info:true,use_bonus:false,add_to_parent:false},);
+            add_xp_to_skill({skill: skills["AquaElement"], xp_to_add: 3997e4,should_info:true,use_bonus:false,add_to_parent:false},);
         }
         return displayed_text;
 }
@@ -5088,7 +5099,6 @@ function update_quests(){
             quests.innerHTML += `<b><span style="color:cyan">贪婪之神</span> </b> - 献祭金钱，提供全局运气加成<br>`;
             quests.innerHTML += "<div id = 'coin_consumer' class = 'coin_consume_button' onclick='coin_consume()'>献祭物品栏中宝钱以上货币</div>"
             quests.innerHTML += `当前献祭金额:<span style="color:cyan">${format_money(inf_combat.MP*1e12)}</span> <br>(加成:<span style="color:cyan">${(format_number((Math.pow(inf_combat.MP+1,0.10)-1)*100))}%</span>)<br><br><br><br>`;
-            //WIP:需要可以吞噬宇宙币
             //心境二重
             if(character.xp.current_level < 28){
                 quests.innerHTML += "<span class='realm_cloudy'>云霄级一阶</span>解锁心之境界 - 三重！"

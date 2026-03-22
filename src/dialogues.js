@@ -1801,7 +1801,7 @@ class Textline {
             "xy6": new Textline({ 
                 is_unlocked: false,
                 name: "喂，喂！",
-                text: "[纳娜米]看样子人真的走了。<br>[纳可]现在该怎么办，姐姐……<br>这里一只【灵】都没有呢。<br>[纳娜米]不一定。<br>也许，可以主动去找水牢中的强者，<br>尝试沟通一番。<br>[纳可]诶，要去找他们吗？<br>[纳娜米]他们或许也因为【灵】的袭击而感到困扰吧。<br>去帮忙解决【灵】，似乎是双赢的事呢。<br><br>(WIP:竺虎&后续区域 将在V2.41加入)",
+                text: "[纳娜米]看样子人真的走了。<br>[纳可]现在该怎么办，姐姐……<br>这里一只【灵】都没有呢。<br>[纳娜米]不一定。<br>也许，可以主动去找水牢中的强者，<br>尝试沟通一番。<br>[纳可]诶，要去找他们吗？<br>[纳娜米]他们或许也因为【灵】的袭击而感到困扰吧。<br>去帮忙解决【灵】，似乎是双赢的事呢。",
                 unlocks: {
                     textlines: [{dialogue: "竺虎", lines: ["zh1"]}],
                 },
@@ -1970,7 +1970,141 @@ class Textline {
         }
     });
 
+    dialogues["秋兴"] = new Dialogue({
+        name: "秋兴",
+        textlines: {
+            "qx1": new Textline({ 
+                is_unlocked: false,
+                name: "(落叶刀……！排名第三的落叶刀！)",
+                text: "[秋兴]啊哈，我知道你们想说什么。<br>其实我早就发现你们的藏身之处了。<br>只不过，我在等你们成长，<br>直到足以与我对抗。",
+                unlocks: {
+                    textlines: [{dialogue: "秋兴", lines: ["qx2"]}],
+                },
+                locks_lines: ["qx1"],
+            }),
+            "qx2": new Textline({ 
+                is_unlocked: false,
+                name: "想要更强的对手，为什么盯着我们不放啊。",
+                text: "[秋兴]哈哈哈，<br>小姑娘，你看到一个好玩的玩具，<br>会忍心放着不玩吗？",
+                unlocks: {
+                    textlines: [{dialogue: "秋兴", lines: ["qx3-1"]},{dialogue: "秋兴", lines: ["qx3-2"]}],
+                },
+                locks_lines: ["qx2"],
+            }),
+            "qx3-1": new Textline({ 
+                is_unlocked: false,
+                name: "……所谓好玩的玩具，是指我们？",
+                text: "[秋兴]聪明！没错，我只是单纯觉得好玩，<br>所以想和你们玩而已。<br>自然，如果你们能让我满意，<br>我会放你们离开。<br>哎呀，真是漂亮的小东西呢……<br>让我看看。<br><br>秋兴伸出手来，<br>作势想要触碰纳可的脸颊。",
+                unlocks: {
+                    textlines: [{dialogue: "秋兴", lines: ["qx4"]}],
+                },
+                locks_lines: ["qx3-1","qx3-2"],
+            }),
+            "qx3-2": new Textline({ 
+                is_unlocked: false,
+                name: "(拿出极寒相变引擎)这个我可是放着没管！",
+                text: "[秋兴]哈？(推，拉，推，拉)<br>这根本不是什么玩具啊！<br>比起这个，还是你们更好玩一点。<br>哎呀，真是漂亮的小东西呢……<br>让我看看。<br><br>秋兴伸出手来，<br>作势想要触碰纳可的脸颊。",
+                unlocks: {
+                    textlines: [{dialogue: "秋兴", lines: ["qx4"]}],
+                },
+                locks_lines: ["qx3-1","qx3-2"],
+            }),
+            "qx4": new Textline({ 
+                is_unlocked: false,
+                name: "啪——",
+                text: "[纳娜米]呸，无耻败类，别碰可可，<br>否则你最好祈祷你不会出事。<br><br>[秋兴]哦呀，小姐脾气倒挺大。<br>只不过，你的实力能不能配得上你的脾气呢?",
+                unlocks: {
+                    locations: ["时封水牢 - III"],
+                },
+                locks_lines: ["qx4"],
+            }),
+            "qx5": new Textline({ 
+                is_unlocked: false,
+                name: "你这家伙……为什么要留手？",
+                text: "[秋兴]怎么？这么可爱的小妹妹，<br>难道一定要打生打死不成？哈哈哈……<br>(省略了部分关于水牢势力分布的剧情)<br>(蓝柒没有碾压的实力，<br>但因为反抗者内部矛盾，<br>反抗蓝柒从未成功)<br><br>从秋兴的身上学到了领域之道！<br>【水元素亲和】获取了3997万经验！",
+                unlocks: {
+                    spec:"realm-III",
+                    locations: ["时封水牢 - 5"],
+                    textlines: [{dialogue: "秋兴", lines: ["qx6-1"]},{dialogue: "秋兴", lines: ["qx6-2"]},{dialogue: "秋兴", lines: ["qx6-3"]}],
+                },
+                locks_lines: ["qx5"],
+            }),
+            
+            "qx6-1": new Textline({ 
+                is_unlocked: false,
+                name: "<span style='color:red'><b>杀害</b></span>",
+                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                unlocks: {
+                },
+                //locks_lines: ["qx6-1","qx6-2","qx6-3"],
+            }),
+            "qx6-2": new Textline({ 
+                is_unlocked: false,
+                name: "<span style='color:red'><b>侵犯</b></span>",
+                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                unlocks: {
+                },
+                //locks_lines: ["qx6-1","qx6-2","qx6-3"],
+            }),
+            "qx6-3": new Textline({ 
+                is_unlocked: false,
+                name: "<b>离开</b>",
+                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                unlocks: {
+                },
+                //locks_lines: ["qx6-1","qx6-2","qx6-3"],
+            }),
+        }
+    });
 
+
+    dialogues["蓝柒"] = new Dialogue({
+        name: "蓝柒",
+        textlines: {
+            "lq1": new Textline({ 
+                is_unlocked: false,
+                name: "(强者的气息……她果然来了吗？)",
+                text: "[蓝柒]……<br><br>[纳娜米]你一直在看着吧，<br>我们和秋兴的那一场战斗。<br>不然，也不会把可可的实力，<br>评定为强榜第三——<br>不如说，水牢里的很多次战斗，<br>你都在背后看着？<br><br>[蓝柒]……",
+                unlocks: {
+                    textlines: [{dialogue: "蓝柒", lines: ["lq2"]}],
+                },
+                locks_lines: ["lq1"],
+            }),"lq2": new Textline({ 
+                is_unlocked: false,
+                name: "姐姐，先停一下……",
+                text: "[纳娜米]可可，这种时候打断姐姐很烦诶……<br><br>[蓝柒]……<br>不要再继续成长了。<br>会有可怕的事情发生的。",
+                unlocks: {
+                    textlines: [{dialogue: "蓝柒", lines: ["lq3"]}],
+                },
+                locks_lines: ["lq2"],
+            }),"lq3": new Textline({ 
+                is_unlocked: false,
+                name: "什么意思……？",
+                text: "[蓝柒]有特殊的原因。<br>总之，不要再继续了，这是警告——",
+                unlocks: {
+                    locations: ["时封水牢 - IV"],
+                },
+                locks_lines: ["lq3"],
+            }),"lq4": new Textline({ 
+                is_unlocked: false,
+                name: "……",
+                text: "[蓝柒]到此为止吧，这是最后的劝告。<br>这里的破局方法，和你们想的不一样。<br>再见。《br><br>[纳娜米]这样就走了吗？<br>似乎是我们预想之外的情况。",
+                unlocks: {
+                    textlines: [{dialogue: "蓝柒", lines: ["lq5"]}],
+                },
+                locks_lines: ["lq4"],
+            }),"lq5": new Textline({ 
+                is_unlocked: false,
+                name: "搞不懂呢，之前的秋兴也不像在说话的样子。",
+                text: "[纳可]这个女孩，真的是蓝柒吗？<br>实力确实很强，但和说话的不一样呀。<br>甚至……没有在她的身上感受到什么恶意。<br><br>[纳娜米]疑点越来越多了。<br>她的意思是，这座水牢中，<br>还存在着不同的，能够逃出去的方法吗？<br>[纳可]回去吧，姐姐。<br>稍晚一点再做打算。",
+                unlocks: {
+                    
+                    items: [{item_name: "传说红宝石"}],
+                },
+                locks_lines: ["lq5"],
+            }),
+        }
+    });
 
 
 
