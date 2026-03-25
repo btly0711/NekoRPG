@@ -52,6 +52,8 @@ function get_hit_chance(attack_agi, evasion_agi) {
     return result;
 }
 
+
+
 /**
  * 
  * @returns {String} 1 if a is newer, 0 if both are same, -1 if b is newer

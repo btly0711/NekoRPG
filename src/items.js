@@ -2502,6 +2502,20 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["虹彩灯球"] = new Props({
+        name: "虹彩灯球",
+        id: "虹彩灯球",
+        description: "大量虹彩杖芯拼合而成的迪斯科灯球，因为水素合金的硬度而难以击碎。可以让敌人愣神，无法组织防御！", 
+        value: 2880e12,
+        stats: {
+            attack_power: {
+                flat: +6000e4,
+            },
+            agility: {
+                flat: +3000e4,
+            },
+        }
+    });
 
 
 })();
@@ -3349,7 +3363,7 @@ item_templates["Twist liek a snek"] = new Book({
         component_tier: 11,
         stats: {
             crit_multiplier: {
-                flat: 0.5,
+                flat: 0.4,
             },
             attack_power: {
                 multiplier: 1.02,
@@ -3401,6 +3415,37 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_speed: {
                 multiplier: 1.17,
+            },
+        }
+    });
+    item_templates["水素轮锋"] = new WeaponComponent({
+        name: "水素轮锋", description: "水素合金制造的【月轮】镀层。虽然水素合金几近透明，但越是如此越能让轮芯显得光彩夺目。",
+        component_type: "wheel head",
+        value: 248.4e12,
+        component_tier: 14,
+        name_prefix: "水素",
+        attack_value: 6000e4,
+        stats: {
+            crit_rate: {
+                flat: 0.24,
+            },
+            attack_speed: {
+                multiplier: 1.18,
+            },
+        }
+    });
+    
+    item_templates["虹彩轮芯"] = new WeaponComponent({
+        name: "虹彩轮芯", description: "初阶的【月轮】核心部件。借助它，月轮终于开始向流光溢彩的方向靠拢。",
+        component_type: "wheel core",
+        value: 100.8e12,
+        component_tier: 14,
+        stats: {
+            crit_multiplier: {
+                flat: 0.6,
+            },
+            attack_power: {
+                multiplier: 1.03,
             },
         }
     });
@@ -4246,6 +4291,63 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    
+    item_templates["水素头盔"] = new ArmorComponent({
+        name: "水素头盔",
+        description: "它本身是几乎透明的……外甲不能单独穿戴！想什么呢！",
+        component_type: "helmet exterior",
+        value: 41.4e12,
+        component_tier: 14,
+        full_armor_name: "水素头盔",
+        defense_value: 1728e4,
+        stats: {
+            attack_mul: {
+                flat: 0.05,
+            },
+        }
+    });
+    item_templates["水素胸甲"] = new ArmorComponent({
+        name: "水素胸甲",
+        description: "它本身是几乎透明的……外甲不能单独穿戴！想什么呢！",
+        component_type: "chestplate exterior",
+        value: 55.2e12,
+        component_tier: 14,
+        full_armor_name: "水素胸甲",
+        defense_value: 2304e4,
+        stats: {
+            attack_mul: {
+                flat: 0.05,
+            },
+        }
+    });
+    item_templates["水素腿甲"] = new ArmorComponent({
+        name: "水素腿甲",
+        description: "它本身是几乎透明的……外甲不能单独穿戴！想什么呢！",
+        component_type: "leg armor exterior",
+        value: 55.2e12,
+        component_tier: 14,
+        full_armor_name: "水素腿甲",
+        defense_value: 2304e4,
+        stats: {
+            attack_mul: {
+                flat: 0.05,
+            },
+        }
+    });
+    item_templates["水素战靴"] = new ArmorComponent({
+        name: "水素战靴",
+        description: "它本身是几乎透明的……外甲不能单独穿戴！想什么呢！",
+        component_type: "shoes exterior",
+        value: 27.6e12,
+        component_tier: 14,
+        full_armor_name: "水素战靴",
+        defense_value: 1152e4,
+        stats: {
+            attack_mul: {
+                flat: 0.05,
+            },
+        }
+    });
 
 
 
@@ -4395,7 +4497,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["万载冰髓锭"] = new Material({
         id: "万载冰髓锭",
         name: "万载冰髓锭", 
-        description: "【冰原超流体】的相变产物。提醒：工作台配方效率极低，建议使用【极寒相变引擎】生产。", 
+        description: "【冰原超流体】的相变产物。强度为B6级中上。", 
         value: 1.92e12,
         material_type: "metal",
         image: "image/item/icesteel_ingot.png",
@@ -4444,7 +4546,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["晶化合金锭"] = new Material({
         id: "晶化合金锭",
         name: "晶化合金锭", 
-        description: "【万载冰髓】与冰宫中的镶嵌宝石结合成的合金。表面十分锋利，因此不适合制作盔甲。", 
+        description: "【万载冰髓】与冰宫中的镶嵌宝石结合成的合金。表面十分锋利，因此不适合制作盔甲。强度为B7+级。", 
         value: 6.61e12,
         material_type: "metal",
         image: "image/item/icealloy_ingot.png",
@@ -4464,6 +4566,22 @@ item_templates["Twist liek a snek"] = new Book({
         value: 233,
         material_type: "metal",
         image: "image/item/normal_ice.png",
+    });
+    item_templates["水素合金锭"] = new Material({
+        id: "水素合金锭",
+        name: "水素合金锭", 
+        description: "水素晶体注入冰原超流体得到的合金。比起冰元素，水元素与它的相性更好。它的强度为B9-级。", 
+        value: 27.6e12,
+        material_type: "metal",
+        image: "image/item/aquaalloy_ingot.png",
+    });
+    item_templates["虹彩杖芯"] = new Material({
+        id: "虹彩杖芯",
+        name: "虹彩杖芯", 
+        description: "悬浮着的光环杖芯本就是不错的念力兵器材料，而虹彩凝胶的多种元素更使得兵器可以更加灵活。", 
+        value: 16.8e12,
+        material_type: "metal",
+        image: "image/item/rainbow_ending.png",
     });
     
 })();
@@ -5401,6 +5519,25 @@ item_templates["Twist liek a snek"] = new Book({
         description: "女巫构建的稳定微型能量回路。可以持续向外转化光环能量，也可用于调和不同性质的力量。", 
         value: 3.6e12,
         image: "image/item/halo_ending.png",
+    });
+    //3-5
+    item_templates["B7·能量核心"] = new Loot({
+        name: "B7·能量核心", 
+        description: "颜色更加深邃而内敛了。或许云霄级的核心会有一个惊喜？", 
+        value: 8.8e12,
+        image: "image/item/B7_crystal.png",
+    });
+    item_templates["虹彩凝胶"] = new Loot({
+        name: "虹彩凝胶", 
+        description: "和那个只值几十个铜板的兄弟不同，它的彩色来源于多种元素的力量，因此价值不菲。", 
+        value: 10.4e12,
+        image: "image/item/rainbow_rubber.png",
+    });
+    item_templates["水素晶体"] = new Loot({
+        name: "水素晶体", 
+        description: "这个水素不是hydro-gen，而是水元素啦……或者你也可以当它是无人深空那个二氢晶体？", 
+        value: 12.4e12,
+        image: "image/item/aqua_element.png",
     });
 
     

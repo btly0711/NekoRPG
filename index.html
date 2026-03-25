@@ -1497,7 +1497,8 @@
                 var a = window.document.createElement('a');
                 a.href = window.URL.createObjectURL(new Blob([save_to_file()], {type: 'text/plain'}));
                 a.download = `neko-rpg ${getDate()}.txt`;
-                console.log(Date());
+                
+                GetSaveRewards();
 
                 document.body.appendChild(a);
                 a.click();
@@ -1594,7 +1595,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.42";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.43";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

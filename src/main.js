@@ -122,8 +122,9 @@ const flag_unlock_texts = {
 }
 
 // special stats
+
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"B3":0};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"B3":0,"ST":0};
 //A6:秘境
 //A7:赶往声律城
 //VP:心境一重价值点
@@ -131,6 +132,7 @@ let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"
 //MP:心境二重宝钱数
 //B3:辐射扩散程度(赫尔沼泽)
 //B6:拯救商人数
+//ST:SaveTime(上次保存时间)
 
 
 //in seconds
@@ -4106,7 +4108,7 @@ function load_other_release_save() {
 function update_timer() {
     let time_passed = (character.xp.current_level>=19)?48:6;
     time_passed *= is_sleeping?5:1
-    if(current_location.name.includes("时封")) time_passed /= 3;
+    if(current_location.name.includes("水牢")) time_passed /= 3;
     time_passed = Math.ceil(time_passed);
     let D_C = current_game_time.day_count;
     current_game_time.go_up(time_passed);
@@ -4803,6 +4805,25 @@ window.engine_r = engine_r;
 window.engine_f = engine_f;
 window.engine_e = engine_e;
 window.engine_l = engine_l;
+
+
+function GetSaveRewards() {
+    let time = (new Date()).valueOf();
+    inf_combat.ST = inf_combat.ST || 0;
+    if(time - inf_combat.ST >= 3.6e6)//1h
+    {
+        //获取灵感
+        active_effects["灵感"] = new ActiveEffect({...effect_templates["灵感"], duration:900});
+        character.stats.add_active_effect_bonus();
+        update_character_stats();
+        update_displayed_effect_durations();
+        update_displayed_effects();
+        inf_combat.ST = time;
+    }
+
+
+}
+window.GetSaveRewards = GetSaveRewards;
 
 function update() {
     setTimeout(function()

@@ -3925,7 +3925,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["时封水牢 - IV"] = new Challenge_zone({
         description: "击败她以……拿到三颗传奇红宝石？", 
         enemy_count: 1, 
-        enemies_list : [["蓝柒[放水 ver.][BOSS]"]],//BOSS:WIP
+        enemies_list : [["蓝柒[放水 ver.][BOSS]"]],
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: false, 

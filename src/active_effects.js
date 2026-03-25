@@ -1,3 +1,5 @@
+import { add_xp_to_skill } from "./main.js";
+
 const effect_templates = {}; 
 //templates, since some effects will appear across multiple items but with different durations
 
@@ -130,6 +132,8 @@ effect_templates["虚弱"] = new ActiveEffect({
         }
     }
 });
+
+
 
 effect_templates["饱食 IV"] = new ActiveEffect({
     name: "饱食 IV",
@@ -280,6 +284,11 @@ effect_templates["皎月祝福·残月"] = new ActiveEffect({
 effect_templates["辐射"] = new ActiveEffect({
     name: "辐射",
     effects: {stats: {max_health: {multiplier: 0.5},health_regeneration_percent:{flat:-8}}}
+});
+
+effect_templates["灵感"] = new ActiveEffect({
+    name: "灵感",
+    effects: {stats: {luck:{multiplier: 1.2}}}
 });
 
 effect_templates["恢复 B1"] = new ActiveEffect({

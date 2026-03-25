@@ -486,7 +486,7 @@ function create_effect_tooltip(effect_name, duration) {
         //for regeneration bonuses, it is assumed they are only flat and not multiplicative
         //${capitalize_first_letter(key.replaceAll("_", " ").replace("flat","").replace("percent",""))}
             let sign = stat_value.flat > 0? "+":"";
-            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复[%]","crit_rate":"暴率","attack_speed":"攻速","max_health":"生命上限"}
+            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复[%]","crit_rate":"暴率","attack_speed":"攻速","max_health":"生命上限","luck":"幸运"}
             if(stat_value.flat == undefined){
                 let sign = "";
                 tooltip.innerHTML += `${EffectToolTipMap[key]} : x${sign}${stat_value.multiplier}`;
@@ -2812,16 +2812,28 @@ function update_displayed_effect_durations() {
         }
     });
 }
-
+let save_button = document.getElementById("save_to_file_button");
 function update_displayed_time() {
     if(current_game_time.hour >= 150 || current_game_time.hour < 30) {
-        time_field.innerHTML = current_game_time.toString() + '✨';
+        time_field.innerText = current_game_time.toString() + '✨';
     } else {
-        time_field.innerHTML = current_game_time.toString() + '☀️';
+        time_field.innerText = current_game_time.toString() + '☀️';
     }
     let cur_moon = current_game_time.moon();
     let moons="🌑🌒🌓🌔🌕🌖🌗🌘";
-    time_field.innerHTML += (moons[cur_moon*2]+moons[cur_moon*2+1]);
+    time_field.innerText += (moons[cur_moon*2]+moons[cur_moon*2+1]);
+
+    let time = (new Date()).valueOf();
+    inf_combat.ST = inf_combat.ST || 0;
+    if(time - inf_combat.ST >= 3.6e6)//1h
+    {
+        save_button.innerHTML = "<span class='rarity_antique'><b>导出(奖励)</span></b>";
+    }
+    else{
+        save_button.innerHTML = "导出";
+    }
+
+    //WIP:导出按钮颜色
 }
 
 /** 

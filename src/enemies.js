@@ -5896,6 +5896,7 @@ class Enemy {
         stats: {health: 17.6e8, attack: 4.8e8, agility: 4.4e8, attack_speed: 1.3, defense:3.2e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.025},
+            {item_name: "水素晶体", chance:0.025},
             //280D
         ],
     });
@@ -5913,6 +5914,7 @@ class Enemy {
         stats: {health: 51.2e8, attack: 5.2e8, agility: 4.5e8, attack_speed: 1.3, defense:3.0e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.025},
+            {item_name: "多孔冰晶", chance:0.36},
             //280D
         ],
     });
@@ -5930,6 +5932,7 @@ class Enemy {
         stats: {health: 51.2e8, attack: 5.2e8, agility: 4.6e8, attack_speed: 1.3, defense:3.0e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.025},
+            {item_name: "虹彩凝胶", chance:0.025},
             //280D
         ],
     });
@@ -5947,6 +5950,7 @@ class Enemy {
         stats: {health: 30e8, attack: 5.5e8, agility: 4.8e8, attack_speed: 1.1, defense:3.5e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.025},
+            {item_name: "冰宫鳞片", chance:0.09},
             //280D
         ],
     });
@@ -5964,6 +5968,7 @@ class Enemy {
         stats: {health: 58e8, attack: 5.3e8, agility: 5.0e8, attack_speed: 2.9, defense:2.6e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.025},
+            {item_name: "虹彩凝胶", chance:0.03},
             //280D
         ],
     });
@@ -5981,6 +5986,7 @@ class Enemy {
         stats: {health: 28.9e8, attack: 6.225e8, agility: 5.2e8, attack_speed: 1.3, defense:3.125e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.025},
+            {item_name: "紫色刀币", chance:0.3},
             //280D
         ],
     });
@@ -5998,6 +6004,7 @@ class Enemy {
         stats: {health: 60e8, attack: 5.1e8, agility: 5.0e8, attack_speed: 1.3, defense:2.55e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.025},
+            {item_name: "光环杖芯", chance:0.11},
             //280D
         ],
     });
@@ -6016,6 +6023,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.012},
             {item_name: "传说黄宝石", chance:0.006},
+            {item_name: "B7·能量核心", chance:0.045},
             //500D
         ],
     });
@@ -6033,6 +6041,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.012},
             {item_name: "传说黄宝石", chance:0.006},
+            {item_name: "水素晶体", chance:0.02},
+            {item_name: "虹彩凝胶", chance:0.02},
             //500D
         ],
     });
@@ -6051,6 +6061,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.012},
             {item_name: "传说黄宝石", chance:0.006},
+            {item_name: "宇宙币", chance:0.0005},
             //500D
         ],
     });
@@ -6068,6 +6079,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.012},
             {item_name: "传说黄宝石", chance:0.006},
+            {item_name: "B7·能量核心", chance:0.08},
             //500D
         ],
     });
@@ -6085,6 +6097,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.012},
             {item_name: "传说黄宝石", chance:0.006},
+            {item_name: "水素晶体", chance:0.05},
             //500D
         ],
     });
@@ -6102,6 +6115,8 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.012},
             {item_name: "传说黄宝石", chance:0.006},
+            {item_name: "冰原超流体", chance:0.2},
+            {item_name: "虹彩凝胶", chance:0.03},
             //500D
         ],
     });
@@ -6119,6 +6134,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.006},
             {item_name: "传说黄宝石", chance:0.015},
+            {item_name: "万载冰髓锭", chance:0.25},
             //500D
         ],
     });
@@ -6136,6 +6152,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.006},
             {item_name: "传说黄宝石", chance:0.015},
+            {item_name: "光环杖芯", chance:0.15},
             //500D
         ],
     });
@@ -6153,6 +6170,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.006},
             {item_name: "传说黄宝石", chance:0.015},
+            {item_name: "水素晶体", chance:0.06},
             //500D
         ],
     });
@@ -6171,6 +6189,7 @@ class Enemy {
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.006},
             {item_name: "传说黄宝石", chance:0.015},
+            {item_name: "B7·能量核心", chance:0.09},
             //500D
         ],
     });
@@ -6188,6 +6207,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "冰原超流体", chance:0.2},
+            {item_name: "多孔冰晶", chance:0.2},
             //900D
         ],
     });
@@ -6205,6 +6226,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "水素晶体", chance:0.10},
             //900D
         ],
     });
@@ -6222,6 +6244,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "虹彩凝胶", chance:0.08},
             //900D
         ],
     });
@@ -6239,6 +6262,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "虹彩凝胶", chance:0.04},
+            {item_name: "光环杖芯", chance:0.15},
             //900D
         ],
     });
@@ -6256,6 +6281,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "B7·能量核心", chance:0.12},
             //900D
         ],
     });
@@ -6273,6 +6299,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "虹彩凝胶", chance:0.10},
             //900D
         ],
     });
@@ -6290,6 +6317,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "水素晶体", chance:0.12},
             //900D
         ],
     });
@@ -6307,6 +6335,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
+            {item_name: "宇宙币", chance:0.001},
             //900D
         ],
     });
@@ -6324,6 +6353,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说黄宝石", chance:0.006},
             {item_name: "传说蓝宝石", chance:0.015},
+            {item_name: "冰原超流体", chance:0.3},
+            {item_name: "光环杖芯", chance:0.15},
             //900D
         ],
     });
@@ -6962,8 +6993,8 @@ B7 4'3349'4437 /7'0140'8733 exp
         name: "蓝柒[放水 ver.][BOSS]", 
         description: "强榜的发布者，拥有着碾压般的实力。虽然这里三重领域只用了一重……", 
         xp_value: 701408733, 
-        rank: 3597,
-        image: "image/boss/B3503.png",
+        rank: 3598,
+        image: "image/boss/B3504.png",
         realm: "<span class=realm_sky><b>天空级六阶 +++</b></span>",//真正实力：天空级六阶 [IV].(3个加号以上换用罗马数字)
         size: "small",
         spec: [0],
