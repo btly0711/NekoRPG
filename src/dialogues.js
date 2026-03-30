@@ -2033,26 +2033,28 @@ class Textline {
             "qx6-1": new Textline({ 
                 is_unlocked: false,
                 name: "<span style='color:red'><b>杀害</b></span>",
-                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                text: "[秋兴]不要……求你了……我什么都会做的！<br><br>(月轮切割声)<br><br>[纳可]呜，为什么我要这么做……<br>[纳娜米]……可可，你让我感到陌生。<br><br><br>获取了 <span class='coin coin_moneyT'>923B</span> <span class='coin coin_moneyB'>124D</span> <span class='coin coin_moneyM'>981Z</span> <span class='coin coin_moneyK'>247X</span> <span class='coin coin_copper'>561C</span>!<br><span style='color:aqua'>冰家</span>对纳可的好感大幅降低了！",
                 unlocks: {
+                    spec:"qx-kill",
                 },
-                //locks_lines: ["qx6-1","qx6-2","qx6-3"],
+                locks_lines: ["qx6-1","qx6-2","qx6-3"],
             }),
             "qx6-2": new Textline({ 
                 is_unlocked: false,
                 name: "<span style='color:red'><b>侵犯</b></span>",
-                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                text: "(纳可蹲下,挑起秋兴的下巴)<br>现在谁才是可爱的小妹妹哇？<br>领域三重·焰海霜天·焰海，开！<br>伴随着1280K的高温，<br>以及伴生的强劲环流，<br>秋兴的衣物瞬间被撕开几条巨型裂口。<br>三只驯化好的水牢嗜血哥布林乘虚而入，<br>被命令轮番攻击秋兴。虽然无法破防，<br>但【冰封术】的控制效果却分外出色。<br>……<br>……<br>如此一整血洛日后，<br>纳可方才击杀哥布林，<br>将秋兴带回了洞府。<br><br>秋兴对纳可产生了特殊的情感！",
                 unlocks: {
+                    spec:"qx-sox",
                 },
-                //locks_lines: ["qx6-1","qx6-2","qx6-3"],
+                locks_lines: ["qx6-1","qx6-2","qx6-3"],
             }),
             "qx6-3": new Textline({ 
                 is_unlocked: false,
                 name: "<b>离开</b>",
-                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                text: "[纳可]你可以走了哦~<br>以后有空再来交流领域之道哇？<br><br>[秋兴]",
                 unlocks: {
                 },
-                //locks_lines: ["qx6-1","qx6-2","qx6-3"],
+                locks_lines: ["qx6-1","qx6-2","qx6-3"],
             }),
         }
     });
@@ -2102,11 +2104,69 @@ class Textline {
                     items: [{item_name: "传说红宝石"}],
                 },
                 locks_lines: ["lq5"],
+            }),"lq6": new Textline({ 
+                is_unlocked: false,
+                name: "……",
+                text: "[蓝柒]你们很强……<br>但是，想要破局，<br>还不够……",
+                unlocks: {
+                    textlines: [{dialogue: "蓝柒", lines: ["lq7"]}],
+                },
+                locks_lines: ["lq6"],
+            }),"lq7": new Textline({ 
+                is_unlocked: false,
+                name: "可以问一下吗？",
+                text: "[纳娜米]你看到我们来到这里，<br>为什么会表现得这么失态。<br><br>[蓝柒]这个问题，不是很想回答……<br>可能……很快，你们就会明白的吧。<br>可我已经帮不了你们什么了。<br>",
+                unlocks: {
+                    locations: ["水牢走廊"],
+                    textlines: [{dialogue: "蓝柒", lines: ["lq8-1"]},{dialogue: "蓝柒", lines: ["lq8-2"]},{dialogue: "蓝柒", lines: ["lq8-3"]}],
+                },
+                locks_lines: ["lq7"],
+            }),
+            "lq8-1": new Textline({ 
+                is_unlocked: false,
+                name: "<span style='color:red'><b>杀害</b></span>",
+                text: "[蓝柒]如果……这就是你们心中的水牢……<br><br>(月轮切割声)<br><br>[纳可]重要的人……靠谱的前辈……<br>我是从什么时候开始变成这样的呢？<br>[纳娜米]……可可，别杀我，我害怕……<br><br><br>获取了 <span class='coin coin_moneyQa'>5U</span> <span class='coin coin_moneyT'>810B</span> <span class='coin coin_moneyB'>358D</span> <span class='coin coin_moneyM'>643Z</span> <span class='coin coin_moneyK'>364X</span> <span class='coin coin_copper'>656C</span>!<br><span style='color:aqua'>冰家</span>对纳可的好感大幅降低了！",
+                unlocks: {
+                    spec:"lq-kill",
+                },
+                locks_lines: ["lq8-1","lq8-2","lq8-3"],
+            }),
+            "lq8-2": new Textline({ 
+                is_unlocked: false,
+                name: "<span style='color:red'><b>侵犯</b></span>",
+                text: "蓝柒在纳可心中早已是谜团重重的强者。<br>借此机会，她决定把蓝柒带回洞府，<br>严加“审问”，以便探出个究竟。<br>[纳可]地宫狂暴药剂~废墟狂暴药剂~<br>永远别想恢复体力，反抗我了哦~<br>[蓝柒]你很强……但是……还不够……<br>[纳可]差不多得了，领域四重才够嘛？<br>(纳可取出一桶异界药剂，一饮而尽！)<br><br>在每回合不断加码的倍率下，<br>蓝柒终究还是没能抵挡住纳可的“攻击”。<br><br>蓝柒对纳可产生了特殊的情感！",
+                unlocks: {
+                    spec:"lq-sox",
+                },
+                locks_lines: ["lq8-1","lq8-2","lq8-3"],
+            }),
+            "lq8-3": new Textline({ 
+                is_unlocked: false,
+                name: "<b>离开</b>",
+                text: "想要前进的话，就过去吧，<br>愿伟大的不朽神灵保佑你们。",
+                unlocks: {
+                },
+                locks_lines: ["lq8-1","lq8-2","lq8-3"],
             }),
         }
     });
 
 
+    dialogues["溪月 II"] = new Dialogue({
+        name: "溪月 II",
+        starting_text: "和走廊中的粉发少女交流",
+        textlines: {
+            "xy7": new Textline({ 
+                is_unlocked: true,
+                name: "…",
+                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                unlocks: {
+                },
+                
+                //locks_lines: ["xy7"],
+            }),
+        }
+    });
 
 
 

@@ -112,6 +112,9 @@ const global_flags = {
     is_realm_enabled: false,
     is_evolve_studied:false,
     is_moonwheel_unlocked: false,
+    qx_status: 0,
+    lq_status: 0,//0:离开 1:杀害 2:侵犯
+    
 };
 const flag_unlock_texts = {
     is_gathering_unlocked: "你获得了收集材料的能力！",
@@ -336,6 +339,7 @@ const musicList = {
   16: 'bgms/16.mp3',
   17: 'bgms/17.mp3',
   18: 'bgms/18.mp3',
+  19: 'bgms/19.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -1029,6 +1033,22 @@ function textline_special(t_key){
             }
             add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 1.68e24,should_info:true,use_bonus:false,add_to_parent:false},);
             add_xp_to_skill({skill: skills["AquaElement"], xp_to_add: 3997e4,should_info:true,use_bonus:false,add_to_parent:false},);
+        }
+        else if(t_key == "qx-kill"){
+            character.money += 923124981247561;
+            global_flags['qx_status'] = 1;
+            update_displayed_money();
+        }else if(t_key == "qx-sox"){
+            global_flags['qx_status'] = 2;
+            current_game_time.go_up(10800);
+        }
+        else if(t_key == "lq-kill"){
+            character.money += 5810358643364656;
+            global_flags['lq_status'] = 1;
+            update_displayed_money();
+        }else if(t_key == "lq-sox"){
+            global_flags['lq_status'] = 2;
+            current_game_time.go_up(32400);
         }
         return displayed_text;
 }

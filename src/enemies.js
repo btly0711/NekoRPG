@@ -7004,6 +7004,21 @@ B7 4'3349'4437 /7'0140'8733 exp
             {item_name: "传说红宝石", chance:2,ignore_luck:true},
         ],
     });
+    enemy_templates["蓝柒[BOSS]"] = new Enemy({
+        name: "蓝柒[BOSS]", 
+        description: "强榜的发布者，拥有着碾压般的实力。领域齐出的她强的可怕，甚至超越了3+之境……", 
+        xp_value: 1134903170, 
+        rank: 3599,
+        image: "image/boss/B3504.png",
+        realm: "<span class=realm_sky><b>天空级六阶 [IV]</b></span>",
+        size: "small",
+        spec: [0,7,42],
+        tags: [],
+        stats: {health: 1742.4e8, attack: 17.64e8, agility: 14.4e8, attack_speed: 1.7, defense:10.24e8}, //血量400%
+        loot_list: [
+            {item_name: "传说红宝石", chance:4,ignore_luck:true},
+        ],
+    });
 
 
 

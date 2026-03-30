@@ -2509,10 +2509,10 @@ item_templates["Twist liek a snek"] = new Book({
         value: 2880e12,
         stats: {
             attack_power: {
-                flat: +6000e4,
+                flat: +7500e4,
             },
             agility: {
-                flat: +3000e4,
+                flat: +4500e4,
             },
         }
     });

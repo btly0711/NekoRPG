@@ -3827,7 +3827,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 500e8,
             textlines: [{dialogue: "莫尔", lines: ["mr1"]}],
-            locations: [{location: "水牢深处"}],
+            locations: [{location: "水牢深处"},{location: "水牢洞府"}],
         },
     });
     locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - I"]});
@@ -3837,15 +3837,43 @@ function get_location_type_penalty(type, stage, stat) {
     locations["时封水牢"].connected_locations.push({location: locations["时封水牢 - 3"]});
 
     
+    locations["水牢洞府"] = new Location({
+        connected_locations: [{location: locations["水牢深处"], custom_text: "回到水牢中战斗"}],
+        description: "强榜强者在听闻纳可姐妹的战绩后，“主动”腾出的一间洞府。",
+        name: "水牢洞府",
+        is_unlocked: false,
+        bgm: 18,
+        traders: ["物品存储箱"],
+        sleeping: {
+            text: "在水牢洞府修炼[+0.36亿XP/s]",
+            xp: 6000
+        },
+            crafting: {
+                is_unlocked: true, 
+                use_text: "使用熔炼阵法[Tier+14]", 
+                tiers: {
+                    crafting: 14,
+                    forging: 14,
+                    smelting: 14,
+                    cooking: 14,
+                    alchemy: 14,
+                }
+            },
+        
+    })
+    
+    locations["时封水牢"].connected_locations.push({location: locations["水牢洞府"]});
+
+    
     
     locations["水牢深处"] = new Location({ 
-        connected_locations: [{location: locations["时封水牢"], custom_text: "时封水牢"}], 
-        description: "充盈着水元素的奇怪领域。从此出发去挑战强榜强者！[V2.50前版本终点/很抱歉之前那个是假的]",
+        connected_locations: [{location: locations["时封水牢"], custom_text: "回到时封水牢"}], 
+        description: "充盈着水元素的奇怪领域。从此出发去挑战强榜强者！",
         name: "水牢深处", 
         dialogues: ["秋兴","蓝柒"],
         is_unlocked: false,
         bgm: 18,
-    });//3-4
+    });//3-4II
     locations["时封水牢"].connected_locations.push({location: locations["水牢深处"]});
 
     locations["时封水牢 - 4"] = new Combat_zone({
@@ -3902,7 +3930,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 800e8,
-            //locations: [{location: "时封水牢 - X"}],
+            locations: [{location: "时封水牢 - X"}],
         },
     });
     
@@ -3937,6 +3965,21 @@ function get_location_type_penalty(type, stage, stat) {
             textlines: [{dialogue: "蓝柒", lines: ["lq5"]}],
         },
     });
+    locations["时封水牢 - X"] = new Challenge_zone({
+        description: "击败她以离开水牢！", 
+        enemy_count: 1, 
+        enemies_list : [["蓝柒[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "时封水牢 - X",
+        bgm:18,
+        parent_location: locations["水牢深处"],
+        repeatable_reward: {
+            textlines: [{dialogue: "蓝柒", lines: ["lq7"]}],
+        },
+    });
 
 
     locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - 4"]});    
@@ -3944,6 +3987,19 @@ function get_location_type_penalty(type, stage, stat) {
     locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - 6"]});
     locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - III"]});  
     locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - IV"]});  
+    locations["水牢深处"].connected_locations.push({location: locations["时封水牢 - X"]});  
+
+
+    
+    locations["水牢走廊"] = new Location({ 
+        connected_locations: [{location: locations["时封水牢"], custom_text: "回到时封水牢"}], 
+        description: "已经离开了时封水牢的范围……等会！那个粉色头发的女孩子！[V2.50前版本终点/很抱歉之前那个又是假的……]",
+        name: "水牢走廊", 
+        dialogues: ["溪月 II"],
+        is_unlocked: false,
+        bgm: 19,
+    });//3-4III
+    locations["水牢深处"].connected_locations.push({location: locations["水牢走廊"]});  
 
 
 
