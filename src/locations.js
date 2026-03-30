@@ -3838,7 +3838,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     
     locations["水牢洞府"] = new Location({
-        connected_locations: [{location: locations["水牢深处"], custom_text: "回到水牢中战斗"}],
+        connected_locations: [{location: locations["时封水牢"], custom_text: "回到水牢中战斗"}],
         description: "强榜强者在听闻纳可姐妹的战绩后，“主动”腾出的一间洞府。",
         name: "水牢洞府",
         is_unlocked: false,
