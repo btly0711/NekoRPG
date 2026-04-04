@@ -2042,7 +2042,7 @@ class Textline {
             "qx6-2": new Textline({ 
                 is_unlocked: false,
                 name: "<span style='color:red'><b>侵犯</b></span>",
-                text: "(纳可蹲下,挑起秋兴的下巴)<br>现在谁才是可爱的小妹妹哇？<br>领域三重·焰海霜天·焰海，开！<br>伴随着1280K的高温，<br>以及伴生的强劲环流，<br>秋兴的衣物瞬间被撕开几条巨型裂口。<br>三只驯化好的水牢嗜血哥布林乘虚而入，<br>被命令轮番攻击秋兴。虽然无法破防，<br>但【冰封术】的控制效果却分外出色。<br>……<br>……<br>如此一整血洛日后，<br>纳可方才击杀哥布林，<br>将秋兴带回了洞府。<br><br>秋兴对纳可产生了特殊的情感！",
+                text: "(纳可蹲下,挑起秋兴的下巴)<br>现在谁才是可爱的小妹妹哇？<br>领域三重·焰海霜天·焰海，开！<br>伴随着1280K的高温，<br>以及伴生的强劲环流，<br>秋兴的衣物瞬间被撕开几条巨型裂口。<br>3颗从哥布林身上提取的【冰封术】水晶，<br>被轮番催动，冰冻秋兴。在对方无力反抗的条件下，<br>3颗水晶恰好连续控制。<br>……<br>……<br>如此一整血洛日后，<br>纳可方才击杀哥布林，<br>将秋兴带回了洞府。<br><br>秋兴对纳可产生了特殊的情感！",
                 unlocks: {
                     spec:"qx-sox",
                 },
@@ -2159,12 +2159,115 @@ class Textline {
             "xy7": new Textline({ 
                 is_unlocked: true,
                 name: "…",
-                text: "剧情暂未填写!<br>请等待<b>V2.44</b>更新",
+                text: "恭喜恭喜，你们过关了！",
                 unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy8"]}],
                 },
                 
-                //locks_lines: ["xy7"],
+                locks_lines: ["xy7"],
             }),
+            "xy8": new Textline({ 
+                is_unlocked: false,
+                name: "过关……你是，之前冰原上的那个女孩子。",
+                text: "[纳娜米]这样也算我们过关了吗。<br>我们可并没有杀光水牢的强者。<br><br>[溪月]过关的办法——并非只有自相残杀，<br>如果你到达领域三重，这条通道自然会为你敞开。<br>是不是觉得很混乱呀？<br>没关系，你们很快会明白的。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy9"]}],
+                },
+                
+                locks_lines: ["xy8"],
+            }),
+            "xy9": new Textline({ 
+                is_unlocked: false,
+                name: "能告诉我们这里究竟是什么地方吗。。",
+                text: "[溪月]唔姆，这个嘛，当然没问题。<br>这里是主人构建的结界，<br>据说有百万年历史呢，可厉害啦。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy10"]}],
+                },
+                
+                locks_lines: ["xy9"],
+            }),
+            "xy10": new Textline({ 
+                is_unlocked: false,
+                name: "等等，主人？",
+                text: "[溪月]你也知道，被关在这里的这些强者，<br>虽然都被困住出不去的……<br>可只要他们不破坏这里的规矩，<br>就能安全地活上许多年，<br>令实力提升到惊人的程度。<br><br>当然，水牢中缺乏修炼资源。<br>原本可能已经突破天空级九阶的强者，<br>在这里只能打磨到天空级六阶[IV]，<br>具有抗衡初入天空级八阶的实力。<br><br>[PS/设定补充]<br>无特殊说明下，2+对应1个小境界。<br>为避免境界过于冗长，<br>3+以上会以罗马数字的形式展示。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy11"]}],
+                },
+                
+                locks_lines: ["xy10"],
+            }),
+            "xy11": new Textline({ 
+                is_unlocked: false,
+                name: "可是……在这期间，你知道有多少人死去了吗？",
+                text: "[溪月]啊呀，真是单纯的孩子。<br>虽然不忍心，可还是给你讲讲吧。<br>为培养强者，这些都是必然的牺牲。<br>在几百名天空级的厮杀中，<br>一旦诞生了一名云霄级——<br>这云霄级强者的价值，<br>可就要超过，嗯……我算算……<br>根据阶位不同，<br>10万~31亿天空级一阶的总和！<br><br>说到底这里百万年来就死了三万天空级！<br>你看看右上角的击杀统计，<br>有什么资格在这里评价主人啊！",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy12"]}],
+                },
+                
+                locks_lines: ["xy11"],
+            }),
+            "xy12": new Textline({ 
+                is_unlocked: false,
+                name: "那，已经获得胜利的我们要做什么？",
+                text: "[溪月]你们已经有了接受传承的资格！<br>接下来嘛，就让我带你们去见主人。<br>进入传承幻境，能得到多少领悟经验和修炼心得，<br>就看你们自己啦。<br><br>[纳可]我……无法接受。<br>[纳娜米]……可可，我们跟上去吧。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy13"]}],
+                },
+                
+                locks_lines: ["xy12"],
+            }),
+            "xy13": new Textline({ 
+                is_unlocked: false,
+                name: "不，我说的不是这个……",
+                text: "[纳可]10万~31亿天空级一阶的总和！<br>如果可以培养出一些云霄级强者，<br>肯定可以有源源不断的<span class='coin coin_moneyT'>宝钱</span>和<span class='coin coin_moneyQa'>宇宙币</span>涌来吧……<br>等接收完传承，是时候整合家族了！<br>现在的我，感觉已经具备了挑战父亲大人的能力呢。<br>(天空级巅峰 [-4]的老东西！<br>你的时代结束了！)",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy14"]}],
+                },
+                
+                locks_lines: ["xy13"],
+            }),
+            "xy14": new Textline({ 
+                is_unlocked: false,
+                name: "(抖了抖)收拾收拾心情……",
+                text: "[???]小姑娘，能来到这里，<br>勇气可嘉，胆识可嘉。<br>[左阿]首先，自我介绍一下。<br>原燕岗领混元门，少门主左阿。<br>[纳娜米]左阿？！您是……<br>燕岗领史书上记载的那位前辈？<br>[左阿]哈哈，不错。这么多年过去了，<br>还有小辈记得我的名字，<br>看来我还没被世人忘个干净。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy15"]}],
+                },
+                
+                locks_lines: ["xy14"],
+            }),
+            "xy15": new Textline({ 
+                is_unlocked: false,
+                name: "(姐姐……我没看过史书诶。他是谁？）",
+                text: "[纳娜米]距今约十万年历史的前辈高人……<br>因为和门主的冲突毁灭了昔日如日中天的【混元门】。<br>[左阿]呵呵，在这里传音可瞒不住我的感知。<br>当年，我出身于外门弟子之家，<br>天资平平，不受人重视。<br>后来，觉醒了天生元神体，<br>才突飞猛进，称为宗门高层。<br><br>[纳可]诶？天生元神体怎么会后天觉醒的哇。<br>[左阿]咳咳……总之门主要夺舍我！<br>我以云霄级巅峰之身，<br>与他同归于尽。<br>但是在我死亡的瞬间，我迈入了领域级层次。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy16"]}],
+                },
+                
+                locks_lines: ["xy15"],
+            }),
+            "xy16": new Textline({ 
+                is_unlocked: false,
+                name: "呼……",
+                text: "[左阿]最终就成了现在这样，<br>以一个扭曲的姿态活在这结界里。<br>既然你们冒着巨大风险来到这里，<br>又通过了我设下的重重关卡，<br>自然是不能让你们白来一趟。<br>[左阿]现在，开放你们的身心，<br>进入传承幻境，接受我的传承吧。<br>我只负责送你们进入幻境，<br>能有多少领悟，就看你们的造化了。<br>切记，传承只赠有缘人……<br>我占了溪月的对话框那么久，<br>也该歇歇了。",
+                unlocks: {
+                    textlines: [{dialogue: "溪月 II", lines: ["xy17"]}],
+                },
+                
+                locks_lines: ["xy16"],
+            }),
+            "xy17": new Textline({ 
+                is_unlocked: false,
+                name: "（眼前一亮）",
+                text: "随着左阿话音落下，<br>纳可和纳娜米眼前浮现白光，<br>似乎要将身体里的灵魂拉扯出来。<br>白光持续了片刻，而后，在这片空间中央，<br>形成了一个巨大的漩涡，<br><br>隐约之间，旋涡中映出了彩色的光华。<br>随着漩涡中的光线越来越亮，<br>纳可终于能够看清周围的一切，<br>她缓缓地睁开了眼睛。<br><br>进入传承幻境，纳娜米……算了，这个不收了啦。<br>反正估计你也有冰原之心了的说……",
+                unlocks: {
+                    locations: ["传承幻境"],
+                },
+                
+                locks_lines: ["xy17"],
+            }),
+
+            
         }
     });
 

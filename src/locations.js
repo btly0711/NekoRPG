@@ -3738,7 +3738,7 @@ function get_location_type_penalty(type, stage, stat) {
         is_unlocked: false,
         bgm: 18,
         unlock_text : "[老人]你们……完了……主人会……替我们……报仇……",
-    });//3-4
+    });//3-5
     
     locations["极寒冰宫"].connected_locations.push({location: locations["时封水牢"]});
 
@@ -3873,7 +3873,7 @@ function get_location_type_penalty(type, stage, stat) {
         dialogues: ["秋兴","蓝柒"],
         is_unlocked: false,
         bgm: 18,
-    });//3-4II
+    });//3-5II
     locations["时封水牢"].connected_locations.push({location: locations["水牢深处"]});
 
     locations["时封水牢 - 4"] = new Combat_zone({
@@ -3993,13 +3993,22 @@ function get_location_type_penalty(type, stage, stat) {
     
     locations["水牢走廊"] = new Location({ 
         connected_locations: [{location: locations["时封水牢"], custom_text: "回到时封水牢"}], 
-        description: "已经离开了时封水牢的范围……等会！那个粉色头发的女孩子！[V2.50前版本终点/很抱歉之前那个又是假的……]",
+        description: "已经离开了时封水牢的范围……等会！那个粉色头发的女孩子！",
         name: "水牢走廊", 
         dialogues: ["溪月 II"],
         is_unlocked: false,
         bgm: 19,
-    });//3-4III
+    });//3-5III
     locations["水牢深处"].connected_locations.push({location: locations["水牢走廊"]});  
+
+    locations["传承幻境"] = new Location({ 
+        connected_locations: [{location: locations["时封水牢"], custom_text: "回到时封水牢"}], 
+        description: "散发着五彩光华的空间，周围有许多实力相近(?)的荒兽。苏醒了，猎杀时刻！[V2.60前版本终点]",
+        name: "传承幻境", 
+        is_unlocked: false,
+        bgm: 19,
+    });//3-6
+    locations["水牢走廊"].connected_locations.push({location: locations["传承幻境"]});  
 
 
 
