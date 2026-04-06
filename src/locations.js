@@ -3926,10 +3926,10 @@ function get_location_type_penalty(type, stage, stat) {
         bgm:18,
         parent_location: locations["水牢深处"],
         first_reward: {
-            xp: 2400e8,
+            xp: 3000e8,
         },
         repeatable_reward: {
-            xp: 800e8,
+            xp: 1000e8,
             locations: [{location: "时封水牢 - X"}],
         },
     });
@@ -4011,7 +4011,83 @@ function get_location_type_penalty(type, stage, stat) {
     locations["水牢走廊"].connected_locations.push({location: locations["传承幻境"]});  
 
 
+    locations["传承幻境 - 1"] = new Combat_zone({
+        description: "散发着五彩光华的空间。无论左阿到底想要什么，至少这里真的有很多突破机缘。", 
+        enemy_count: 20, 
+        enemies_list: ["奇异菇菇","幻境掌灯人","蓝皮怪物","幻境通识者","幻境翠绿行者"],
+        enemy_group_size: [2.5,3.5],
+        is_unlocked: true, 
+        name: "传承幻境 - 1",
+        rank:251, 
+        bgm:19,
+        parent_location: locations["传承幻境"],
+        first_reward: {
+            xp: 3600e8,
+        },
+        repeatable_reward: {
+            xp: 1200e8,
+            locations: [{location: "传承幻境 - 2"}],
+        },
+    });
+    locations["传承幻境 - 2"] = new Combat_zone({
+        description: "散发着五彩光华的空间。无论左阿到底想要什么，至少这里真的有很多突破机缘。", 
+        enemy_count: 20, 
+        enemies_list: ["幻境翠绿行者","幻境飞蛾","风尘的窃贼","深邃级魔法师","荒野守尸人"],
+        enemy_group_size: [3,3],
+        is_unlocked: false, 
+        name: "传承幻境 - 2",
+        rank:252, 
+        bgm:19,
+        parent_location: locations["传承幻境"],
+        first_reward: {
+            xp: 4200e8,
+        },
+        repeatable_reward: {
+            xp: 1400e8,
+            locations: [{location: "传承幻境 - 3"}],
+        },
+    });
+    locations["传承幻境 - 3"] = new Combat_zone({
+        description: "散发着五彩光华的空间。无论左阿到底想要什么，至少这里真的有很多突破机缘。", 
+        enemy_count: 20, 
+        enemies_list: ["火烈茸茸","幻境火蝶","出芽粉茸战士","凶恶的金乌","幻境血魔"],
+        enemy_group_size: [3.5,4.5],
+        is_unlocked: false, 
+        name: "传承幻境 - 3",
+        rank:253, 
+        bgm:19,
+        parent_location: locations["传承幻境"],
+        first_reward: {
+            xp: 4800e8,
+        },
+        repeatable_reward: {
+            xp: 1600e8,
+            locations: [{location: "传承幻境 - 4"}],
+        },
+    });
+    locations["传承幻境 - 4"] = new Combat_zone({
+        description: "散发着五彩光华的空间。无论左阿到底想要什么，至少这里真的有很多突破机缘。", 
+        enemy_count: 20, 
+        enemies_list: ["幻境血魔","窥秘商人","燕岗领独行侠","幻境石灵","磐石蜘蛛"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "传承幻境 - 4",
+        rank:254, 
+        bgm:19,
+        parent_location: locations["传承幻境"],
+        first_reward: {
+            xp: 5400e8,
+        },
+        repeatable_reward: {
+            xp: 1800e8,
+            //locations: [{location: "传承幻境 - X"}],
+        },
+    });
 
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 1"]});
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 2"]});
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 3"]});
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 4"]});    
 
 
 

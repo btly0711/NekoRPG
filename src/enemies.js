@@ -6358,18 +6358,372 @@ class Enemy {
             //900D
         ],
     });
+    enemy_templates["奇异菇菇"] = new Enemy({
+        name: "奇异菇菇", 
+        description: "已经进入了幻境，但战斗还要继续！说起来，外面的装备居然可以带进来耶。", 
+        xp_value: 701408733, 
+        rank: 3601,
+        image: "image/enemy/E3601.png",
+        realm: "<span class=realm_sky><b>天空级七阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 150e8, attack: 15.4e8, agility: 12.0e8, attack_speed: 1.3, defense:8.9e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            //900D
+        ],
+    });
+    enemy_templates["幻境掌灯人"] = new Enemy({
+        name: "幻境掌灯人", 
+        description: "喂喂，版本更新了！这里到处都是光，要你有什么用哇。", 
+        xp_value: 701408733, 
+        rank: 3602,
+        image: "image/enemy/E3602.png",
+        realm: "<span class=realm_sky><b>天空级七阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 72e8, attack: 16.1e8, agility: 13e8, attack_speed: 1.3, defense:13.5e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            //900D
+        ],
+    });
+    enemy_templates["蓝皮怪物"] = new Enemy({
+        name: "蓝皮怪物", 
+        description: "和绿皮怪物一桌!这一只和那个东西一样敷衍啊。", 
+        xp_value: 701408733, 
+        rank: 3603,
+        image: "image/enemy/E3603.png",
+        realm: "<span class=realm_sky><b>天空级七阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 90e8, attack: 17.2e8, agility: 14.0e8, attack_speed: 1.3, defense:10.5e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            //900D
+        ],
+    });
+    enemy_templates["幻境通识者"] = new Enemy({
+        name: "幻境通识者", 
+        description: "和绿皮怪物一桌!这一只和那个东西一样敷衍啊。", 
+        xp_value: 1134903170, 
+        rank: 3604,
+        image: "image/enemy/E3604.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [18],
+        spec_value:{18:1e15},
+        tags: [],
+        stats: {health: 440e8, attack: 17.7e8, agility: 15.0e8, attack_speed: 1.3, defense:12.5e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //900D
+        ],
+    });
+    enemy_templates["幻境通识者"] = new Enemy({
+        name: "幻境通识者", 
+        description: "胸口蝴蝶结，但看起来心事重重的样子。衣服不会是他抢来的吧……", 
+        xp_value: 1134903170, 
+        rank: 3604,
+        image: "image/enemy/E3604.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [18],
+        spec_value:{18:1e15},
+        tags: [],
+        stats: {health: 440e8, attack: 17.7e8, agility: 16.0e8, attack_speed: 1.3, defense:12.5e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["火烈茸茸"] = new Enemy({
+        name: "火烈茸茸", 
+        description: "居然在高温下还可以下毒。只要防杀喵可就好了吧~(不过你能看到这个就说明它失败了！)", 
+        xp_value: 1134903170, 
+        rank: 3605,
+        image: "image/enemy/E3605.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [8],
+        spec_value:{8:10},
+        tags: [],
+        stats: {health: 16e8, attack: 35e8, agility: 17.0e8, attack_speed: 1.3, defense:17.5e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["幻境翠绿行者"] = new Enemy({
+        name: "幻境翠绿行者", 
+        description: "蓝帽行者总是被模仿，但400%血量下它也从未被超越。", 
+        xp_value: 1134903170, 
+        rank: 3606,
+        image: "image/enemy/E3606.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [3],
+        tags: [],
+        stats: {health: 16e8, attack: 22.5e8, agility: 18.0e8, attack_speed: 1.3, defense:14.0e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["风尘的窃贼"] = new Enemy({
+        name: "风尘的窃贼", 
+        description: "追光……？既然可以破防火烈茸茸，你大概也接近20亿攻防了吧。", 
+        xp_value: 1134903170, 
+        rank: 3607,
+        image: "image/enemy/E3607.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [40],
+        tags: [],
+        stats: {health: 288e8, attack: 20e8, agility: 19.0e8, attack_speed: 1.3, defense:14.8e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["深邃级魔法师"] = new Enemy({
+        name: "深邃级魔法师", 
+        description: "丢掉了本职工作——魔攻。是法师失格！绝对算的吧！这就是deep♂dark♂fantasy的代价啊。", 
+        xp_value: 1134903170, 
+        rank: 3608,
+        image: "image/enemy/E3608.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [20,49],
+        spec_value:{49:{rnd:200,hp:8e8}},
+        tags: [],
+        stats: {health: 288e8, attack: 22e8, agility: 20e8, attack_speed: 1.3, defense:11.0e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["荒野守尸人"] = new Enemy({
+        name: "荒野守尸人", 
+        description: "骷髅守尸是准备组个mc小队吗？这样，带上苦力怕蜘蛛和末影人，组个乐队……", 
+        xp_value: 1134903170, 
+        rank: 3609,
+        image: "image/enemy/E3609.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 360e8, attack: 25.6e8, agility: 21.0e8, attack_speed: 1.3, defense:16.0e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["幻境火蝶"] = new Enemy({
+        name: "幻境火蝶", 
+        description: "你已经救出了公主！你可以选择就此封盘，认为你已经“通关”了，又或者你还愿意继续……串台了。公主不是红色翅膀……", 
+        xp_value: 1134903170, 
+        rank: 3610,
+        image: "image/enemy/E3610.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 109.6e8, attack: 27e8, agility: 22.0e8, attack_speed: 1.3, defense:16.0e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["出芽粉茸战士"] = new Enemy({
+        name: "出芽粉茸战士", 
+        description: "彩虹攻击(8/7)。是不是最开始搞错了啦……", 
+        xp_value: 1134903170, 
+        rank: 3611,
+        image: "image/enemy/E3611.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [23],
+        tags: [],
+        stats: {health: 81e8, attack: 24.01e8, agility: 23.0e8, attack_speed: 1.3, defense:18.0e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.004},
+            //1.6B
+        ],
+    });
+    enemy_templates["凶恶的金乌"] = new Enemy({
+        name: "凶恶的金乌", 
+        description: "我，纱雪，在此发誓！我绝不会和上次一样把乌打成马了！", 
+        xp_value: 1836311903, 
+        rank: 3612,
+        image: "image/enemy/E3612.png",
+        realm: "<span class=realm_sky><b>天空级八阶 +</b></span>",
+        size: "small",
+        spec: [19],
+        tags: [],
+        stats: {health: 270.4e8, attack: 24e8, agility: 24.0e8, attack_speed: 1.3, defense:20.8e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.004},
+            {item_name: "传说红宝石", chance:0.010},
+            //2.8B
+        ],
+    });
+    enemy_templates["幻境血魔"] = new Enemy({
+        name: "幻境血魔", 
+        description: "血魔海一滴血液分化而成的生命。只有普通七阶后期的战力，但生命力雄厚。", 
+        xp_value: 1836311903, 
+        rank: 3613,
+        image: "image/enemy/E3613.png",
+        realm: "<span class=realm_sky><b>天空级八阶 +</b></span>",
+        size: "small",
+        spec: [37],
+        tags: [],
+        stats: {health: 440e8, attack: 18.8e8, agility: 25.0e8, attack_speed: 1.3, defense:13.5e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.004},
+            {item_name: "传说红宝石", chance:0.010},
+            //2.8B
+        ],
+    });
+    enemy_templates["窥秘商人"] = new Enemy({
+        name: "窥秘商人", 
+        description: "看起来就很狡猾。影魇族人转生来了？", 
+        xp_value: 1836311903, 
+        rank: 3614,
+        image: "image/enemy/E3614.png",
+        realm: "<span class=realm_sky><b>天空级八阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 704e8, attack: 30e8, agility: 26.0e8, attack_speed: 1.3, defense:20e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.004},
+            {item_name: "传说红宝石", chance:0.010},
+            //2.8B
+        ],
+    });
+    enemy_templates["燕岗领独行侠"] = new Enemy({
+        name: "燕岗领独行侠", 
+        description: "走投无路的迷途强者，误入水牢，从厮杀中悟出领域三重……多棒的故事啊。可惜这个结界可不是那种真正的传承之地哦。", 
+        xp_value: 1836311903, 
+        rank: 3615,
+        image: "image/enemy/E3615.png",
+        realm: "<span class=realm_sky><b>天空级八阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 140e8, attack: 35e8, agility: 27.0e8, attack_speed: 1.3, defense:0e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.004},
+            {item_name: "传说红宝石", chance:0.010},
+            //2.8B
+        ],
+    });
+    enemy_templates["幻境飞蛾"] = new Enemy({
+        name: "幻境飞蛾", 
+        description: "在这里是不是搞错了什么哇。上下都是八阶巅峰，而你只是八阶初期……", 
+        xp_value: 1134903170, 
+        rank: 3616,
+        image: "image/enemy/E3616.png",
+        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 320e8, attack: 21e8, agility: 17.0e8, attack_speed: 1.3, defense:12e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传说红宝石", chance:0.04},
+            //1.6B
+        ],
+    });
+    enemy_templates["幻境石灵"] = new Enemy({
+        name: "幻境石灵", 
+        description: "如果生命倍率一直这样提高，这些石头怪迟早会变成问题的?内甲的A.mul会保护大家的！", 
+        xp_value: 1836311903, 
+        rank: 3617,
+        image: "image/enemy/E3617.png",
+        realm: "<span class=realm_sky><b>天空级八阶 +</b></span>",
+        size: "small",
+        spec: [1],
+        tags: [],
+        stats: {health: 96, attack: 28.8e8, agility: 28.0e8, attack_speed: 1.3, defense:24e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.004},
+            {item_name: "传说红宝石", chance:0.010},
+            //2.8B
+        ],
+    });
+    enemy_templates["磐石蜘蛛"] = new Enemy({
+        name: "磐石蜘蛛", 
+        description: "蜘蛛类绝对是最强的荒兽。每回合高百分比而且无上限的回血呢。", 
+        xp_value: 1836311903, 
+        rank: 3618,
+        image: "image/enemy/E3618.png",
+        realm: "<span class=realm_sky><b>天空级八阶 +</b></span>",
+        size: "small",
+        spec: [31],
+        tags: [],
+        stats: {health: 409.6e8, attack: 33e8, agility: 29.0e8, attack_speed: 1.3, defense:22e8}, //血量40%
+        loot_list: [
+            {item_name: "传说蓝宝石", chance:0.004},
+            {item_name: "传说红宝石", chance:0.010},
+            //2.8B
+        ],
+    });
+    enemy_templates["心魔"] = new Enemy({
+        name: "心魔", 
+        description: "出于某种原因，它确实在这个版本被塞进来了。不过它是货真价实的下区怪就是了。", 
+        xp_value: 4807526976, 
+        rank: 3701,
+        image: "image/enemy/E3701.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [13,33],
+        spec_value:{33:13},
+        tags: [],
+        stats: {health: 1777.6e8, attack: 56.78e8, agility: 44.4e8, attack_speed: 1.0, defense:0e8}, //血量40%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传说绿宝石", chance:0.010},
+            //2.8B
+        ],
+    });
 
 
     
     /*
-         绿   传
-B6+      2.5% 280D
-B7       1.2% 0.6% 500D
-B7(后半)  0.6% 1.5% 500D
-B7+           1.2% 0.6% 900D
-B6 1'6558'0141 /2'6791'4296 exp
+    蓝 红 
+B7+ 1.0%     900D
+B8  1.0% 0.4% 1.6B
+B8+ 0.4% 1.0% 2.8B
 B7 4'3349'4437 /7'0140'8733 exp
-小门派长老开始是7阶+
+B8 11'3490'3170/18'3631'1903exp
+B9 29'7121'5073/48'0752'6976exp
+
+B9++ 7,778,742,049exp 16B
+
+火烈茸茸和幻境飞蛾换位
+
+
+凶恶的金乌开始是8阶+
+圣荒城头目开始9阶+
+血洛大陆骨干开始9阶++(考虑到C1=B9+4 B9+2是常规等级)
+大门派精英独占9阶+++(经验和C1一致 掉落比C1少半档)
+
+
+
 */    
 })();
 

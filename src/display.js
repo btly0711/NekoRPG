@@ -3807,7 +3807,7 @@ function add_bestiary_lines(zone)
     //zone 11-> 1-1，rank作为1200处理
     //sorts bestiary_list div by enemy rank
     bestiary_entry_divs[zone] = document.createElement("div");
-    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"纯白冰原",34:"极寒冰宫",35:"时封水牢",36:"传承幻境"}
+    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"纯白冰原",34:"极寒冰宫",35:"时封水牢",36:"传承幻境",37:"幻境核心",41:"城门战",42:"【WIP】战",43:"【WIP】战",44:"毬毬山谷",45:"鲜血峰",46:"破败之域",47:"破败危壁",48:"灭门战【WIP/需要剧情修正】",51:"枯叶走廊",52:"灰魇【WIP】",53:"灰魇庭院",54:"珍珠海",55:"风雷大会",56:"行道盟审判战",61:"深林【WIP】",62:"血魔海",63:"炎眸【WIP】",64:"葬地【WIP】",65:"冗音圣树",66:"冗音之塔",67:"音界",68:"圣城【WIP】"}
     const name_div = document.createElement("div");
     name_div.innerHTML = `<b>【${ZoneNameMap[zone]}】</b>`;
     name_div.classList.add("bestiary_entry_name");
@@ -3862,6 +3862,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "冰原之痕") add_bestiary_lines(33);
     if(enemy_name == "探险者的怨恨") add_bestiary_lines(34);
     if(enemy_name == "大门派先锋") add_bestiary_lines(35);
+    if(enemy_name == "奇异菇菇") add_bestiary_lines(36);
 }
 
 function reload_bestiary(){
