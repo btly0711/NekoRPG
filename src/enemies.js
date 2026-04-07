@@ -6644,7 +6644,7 @@ class Enemy {
         stats: {health: 320e8, attack: 21e8, agility: 17.0e8, attack_speed: 1.3, defense:12e8}, //血量40%
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
-            {item_name: "传说红宝石", chance:0.04},
+            {item_name: "传说红宝石", chance:0.004},
             //1.6B
         ],
     });
