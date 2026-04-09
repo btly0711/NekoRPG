@@ -2862,13 +2862,13 @@ function use_item(item_key,stated = false) {
             unlock_location(locations["符文之屋"]);
             log_message(`随着符文工作台套件被摆下，一座小屋拔地而起。在这片废墟中，${character.name} 得到了一片温暖的港湾。`,"gather_loot")
         }
-        if(item_templates[id].spec == "freezing_engine"){
+        else if(item_templates[id].spec == "freezing_engine"){
             //unlock 极寒相变引擎
             engine_init();
             dialogues["极寒相变引擎"].textlines["engine"].is_unlocked = true;
             log_message(`旋律合金作为活塞，多孔冰晶作为隔热，冰原超流体作为热容……冰原的环境本十分恶劣，${character.name} 却掌握了巧妙利用它的方法。`,"gather_loot")
         }
-        if(item_templates[id].spec == "saved_trader"){
+        else if(item_templates[id].spec == "saved_trader"){
             inf_combat.B6 = inf_combat.B6 || 0;
             inf_combat.B6 += 1;
             log_message(`释放了第${inf_combat.B6}个冰宫商人！`,"gather_loot");
@@ -2880,6 +2880,15 @@ function use_item(item_key,stated = false) {
                 
                 const bg_trader = traders["冰宫商人"];
                 bg_trader.is_unlocked = true;
+            }
+        }
+        else if(item_templates[id].spec == "random-potion"){
+            let Potion_name = {0:"B9·灵闪药剂",1:"B9·异界药剂",2:"B9·散华药剂",3:"B9·反戈药剂"}
+            let Rnd = '';
+            for(let cnt=1;cnt<=5;cnt++){
+                Rnd = Potion_name[Math.floor(Math.random()*4)]
+                log_message(`从 B9·??药剂 中获取了 ${Rnd}! (${cnt} / 5)`,"combat_loot");
+                add_to_character_inventory([{ "item": getItem(item_templates[Rnd]), "count": 1 }]);
             }
         }
     }

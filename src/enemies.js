@@ -6371,6 +6371,7 @@ class Enemy {
         stats: {health: 150e8, attack: 15.4e8, agility: 12.0e8, attack_speed: 1.3, defense:8.9e8}, //血量40%
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传承水晶·绿", chance:0.015},
             //900D
         ],
     });
@@ -6387,6 +6388,7 @@ class Enemy {
         stats: {health: 72e8, attack: 16.1e8, agility: 13e8, attack_speed: 1.3, defense:13.5e8}, //血量40%
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
+            {item_name: "传承水晶·蓝", chance:0.012},
             //900D
         ],
     });
@@ -6403,24 +6405,7 @@ class Enemy {
         stats: {health: 90e8, attack: 17.2e8, agility: 14.0e8, attack_speed: 1.3, defense:10.5e8}, //血量40%
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
-            //900D
-        ],
-    });
-    enemy_templates["幻境通识者"] = new Enemy({
-        name: "幻境通识者", 
-        description: "和绿皮怪物一桌!这一只和那个东西一样敷衍啊。", 
-        xp_value: 1134903170, 
-        rank: 3604,
-        image: "image/enemy/E3604.png",
-        realm: "<span class=realm_sky><b>天空级八阶</b></span>",
-        size: "small",
-        spec: [18],
-        spec_value:{18:1e15},
-        tags: [],
-        stats: {health: 440e8, attack: 17.7e8, agility: 15.0e8, attack_speed: 1.3, defense:12.5e8}, //血量40%
-        loot_list: [
-            {item_name: "传说蓝宝石", chance:0.010},
-            {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·橙", chance:0.022},
             //900D
         ],
     });
@@ -6439,6 +6424,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·白", chance:0.027},
             //1.6B
         ],
     });
@@ -6457,6 +6443,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·橙", chance:0.04},
             //1.6B
         ],
     });
@@ -6474,6 +6461,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·绿", chance:0.026},
             //1.6B
         ],
     });
@@ -6491,6 +6479,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·白", chance:0.033},
             //1.6B
         ],
     });
@@ -6509,6 +6498,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·粉", chance:0.013},
             //1.6B
         ],
     });
@@ -6526,6 +6516,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·白", chance:0.037},
             //1.6B
         ],
     });
@@ -6543,6 +6534,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·橙", chance:0.045},
             //1.6B
         ],
     });
@@ -6560,6 +6552,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·粉", chance:0.015},
             //1.6B
         ],
     });
@@ -6577,6 +6570,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.004},
             {item_name: "传说红宝石", chance:0.010},
+            {item_name: "传承水晶·蓝", chance:0.02},
+            {item_name: "传承水晶·绿", chance:0.02},
             //2.8B
         ],
     });
@@ -6594,6 +6589,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.004},
             {item_name: "传说红宝石", chance:0.010},
+            {item_name: "传承水晶·橙", chance:0.07},
             //2.8B
         ],
     });
@@ -6611,6 +6607,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.004},
             {item_name: "传说红宝石", chance:0.010},
+            {item_name: "传承水晶·粉", chance:0.01},
+            {item_name: "传承水晶·白", chance:0.03},
             //2.8B
         ],
     });
@@ -6628,6 +6626,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.004},
             {item_name: "传说红宝石", chance:0.010},
+            {item_name: "传承水晶·绿", chance:0.035},
             //2.8B
         ],
     });
@@ -6645,6 +6644,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.010},
             {item_name: "传说红宝石", chance:0.004},
+            {item_name: "传承水晶·蓝", chance:0.022},
             //1.6B
         ],
     });
@@ -6662,6 +6662,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.004},
             {item_name: "传说红宝石", chance:0.010},
+            {item_name: "传承水晶·蓝", chance:0.044},
             //2.8B
         ],
     });
@@ -6679,6 +6680,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.004},
             {item_name: "传说红宝石", chance:0.010},
+            {item_name: "传承水晶·白", chance:0.08},
             //2.8B
         ],
     });

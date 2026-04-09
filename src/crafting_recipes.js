@@ -324,6 +324,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "万载冰髓锭", count: 18, result_id: "冰髓轮锋"}, 
             {material_id: "晶化合金锭", count: 18, result_id: "晶化轮锋"}, 
             {material_id: "水素合金锭", count: 18, result_id: "水素轮锋"}, 
+            {material_id: "宝石母锭", count: 18, result_id: "宝石轮锋"}, 
             //未完待续 某个临界点[月轮三重]后改为36
         ],
         item_type: "Component",
@@ -1127,6 +1128,15 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [27,67],
         recipe_skill: "Smelting",
     });
+    smelting_recipes.items3["熔炼宝石母"] = new ItemRecipe({
+        name: "熔炼宝石母)",
+        recipe_type: "material",
+        materials: [{material_id: "传承水晶·橙", count: 1},{material_id: "传承水晶·白", count: 2}], 
+        result: {result_id: "宝石母锭", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [27,72],
+        recipe_skill: "Smelting",
+    });
 })();
 
 (function(){
@@ -1239,6 +1249,24 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "能量冰沙", count: 1},
         success_chance: [0.3,1],
         recipe_level: [54,54],
+        recipe_skill: "Cooking",
+    });
+    cooking_recipes.items3["幻境·恢复精华"] = new ItemRecipe({
+        name: "幻境·恢复精华",
+        recipe_type: "material",
+        materials: [{material_id: "传承水晶·橙", count: 1},{material_id: "传承水晶·绿", count: 1}], 
+        result: {result_id: "幻境·恢复精华", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [54,64],
+        recipe_skill: "Cooking",
+    });
+    cooking_recipes.items3["幻境·狂暴精华"] = new ItemRecipe({
+        name: "幻境·狂暴精华",
+        recipe_type: "material",
+        materials: [{material_id: "传承水晶·橙", count: 1},{material_id: "传承水晶·蓝", count: 1}], 
+        result: {result_id: "幻境·狂暴精华", count: 1},
+        success_chance: [0.3,1],
+        recipe_level: [54,68],
         recipe_skill: "Cooking",
     });
 })();
@@ -1559,6 +1587,15 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "虹彩杖芯", count: 2},
         success_chance: [0.3,1],
         recipe_level: [40,65],
+        recipe_skill: "Alchemy",
+    });
+    alchemy_recipes.items3["进阶炼金药剂……？(x3)"] = new ItemRecipe({
+        name: "进阶炼金药剂……？(x3)",
+        recipe_type: "material",
+        materials: [{material_id: "传承水晶·橙", count: 1},{material_id: "传承水晶·粉", count: 1}], 
+        result: {result_id: "B9·??药剂", count: 3},
+        success_chance: [0.3,1],
+        recipe_level: [40,70],
         recipe_skill: "Alchemy",
     });
 

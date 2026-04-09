@@ -311,6 +311,26 @@ effect_templates["恢复 B4"] = new ActiveEffect({
 });
 
 
+effect_templates["恢复 B8"] = new ActiveEffect({
+    name: "恢复 B8",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 6.72e8},
+            health_regeneration_percent: {flat: 0.168},
+        }
+    }
+});
+effect_templates["强化 B8"] = new ActiveEffect({
+    name: "强化 B8",
+    effects: {
+        stats: {
+            attack_power:{flat:2.88e8},
+            defense:{flat:2.88e8},
+            agility:{flat:2.88e8},
+        }
+    }
+});
+
 
 /*  let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
                 let MM2 = ["生命恢复 + 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];*/

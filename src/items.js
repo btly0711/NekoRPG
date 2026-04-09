@@ -3449,6 +3449,22 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["宝石轮锋"] = new WeaponComponent({
+        name: "宝石轮锋", description: "宝石母制造的【月轮】镀层。嗯……A1的宝石锭造不了轮锋。没有歧义！",
+        component_type: "wheel head",
+        value: 1436.4e12,
+        component_tier: 15,
+        name_prefix: "水素",
+        attack_value: 13500e4,
+        stats: {
+            crit_rate: {
+                flat: 0.26,
+            },
+            attack_speed: {
+                multiplier: 1.19,
+            },
+        }
+    });
 
 })();
 //武器
@@ -4583,7 +4599,14 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/rainbow_ending.png",
     });
-    
+    item_templates["宝石母锭"] = new Material({
+        id: "宝石母锭",
+        name: "宝石母锭", 
+        description: "吞噬星空的设定中，矿脉中会含有100ppm的【精】和10ppb的【母】，分别+1tier和+2tier。<br>因此，宝石锭是A1级，宝石母锭就是C1级了！", 
+        value: 133e12,
+        material_type: "metal",
+        image: "image/item/gemM_ingot.png",
+    });
 })();
 
 //矿石
@@ -4879,11 +4902,32 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [{effect: "异界之门 B9", duration: 120}],
         image: "image/item/B9_portal.png",
     });
-    /*
+    item_templates["B9·??药剂"] = new UsableItem({
+        name: "B9·??药剂", 
+        description: "使用后随机获取5瓶B9级炼金药剂。", 
+        value: 50e12,
+        realmcap:27,
+        spec:"random-potion",
+        image: "image/item/B9_unknown.png",
+    });
+    
+    item_templates["幻境·恢复精华"] = new UsableItem({
+        name: "幻境·恢复精华", 
+        description: "被击碎的传承水晶·绿。是稀有的百分比恢复——别想囤几十万个！云霄级突破清buff的！", 
+        value: 100e12,
+        effects: [{effect: "恢复 B8", duration: 60}],
+        realmcap:27,
+        image: "image/item/B8_medicine.png",
+    });
+    item_templates["幻境·狂暴精华"] = new UsableItem({
+        name: "幻境·狂暴精华", 
+        description: "被击碎的传承水晶·蓝。绝对出乎意料的是，这个没有debuff！结界的一百纪元里，配方已经变得完美了呢。", 
+        value: 120e12,
+        effects: [{effect: "狂暴 B8", duration: 60}],
+        realmcap:27,
+        image: "image/item/B8_booster.png",
+    });
 
-
-
-    */
 })();
 //炼金
 (function(){
@@ -5539,6 +5583,39 @@ item_templates["Twist liek a snek"] = new Book({
         value: 12.4e12,
         image: "image/item/aqua_element.png",
     });
+    //3-6
+    item_templates["传承水晶·橙"] = new Loot({
+        name: "传承水晶·橙", 
+        description: "左阿传承的一部分。一种与幻境阵法核心相连的水晶，能量输出比能量核心稳定许多。", 
+        value: 40e12,
+        image: "image/item/inherit_orange.png",
+    });
+    item_templates["传承水晶·白"] = new Loot({
+        name: "传承水晶·白", 
+        description: "左阿传承的一部分。单纯锋利而闪光的水晶。", 
+        value: 50e12,
+        image: "image/item/inherit_white.png",
+    });
+    item_templates["传承水晶·绿"] = new Loot({
+        name: "传承水晶·绿", 
+        description: "左阿传承的一部分。蕴含大量生机的水晶，加强热以提取能量。", 
+        value: 60e12,
+        image: "image/item/inherit_green.png",
+    });
+    item_templates["传承水晶·蓝"] = new Loot({
+        name: "传承水晶·蓝", 
+        description: "左阿传承的一部分。蕴含大量虚浮力量的水晶。", 
+        value: 75e12,
+        image: "image/item/inherit_blue.png",
+    });
+    item_templates["传承水晶·粉"] = new Loot({
+        name: "传承水晶·粉", 
+        description: "左阿传承的一部分。看似杂乱无章，实际上却含有大量能量回路的水晶。", 
+        value: 125e12,
+        image: "image/item/inherit_pink.png",
+    });
+
+
 
     
 
