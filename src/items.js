@@ -4923,7 +4923,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "幻境·狂暴精华", 
         description: "被击碎的传承水晶·蓝。绝对出乎意料的是，这个没有debuff！结界的一百纪元里，配方已经变得完美了呢。", 
         value: 120e12,
-        effects: [{effect: "狂暴 B8", duration: 60}],
+        effects: [{effect: "强化 B8", duration: 60}],
         realmcap:27,
         image: "image/item/B8_booster.png",
     });
