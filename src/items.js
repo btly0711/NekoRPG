@@ -3454,7 +3454,7 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "wheel head",
         value: 1436.4e12,
         component_tier: 15,
-        name_prefix: "水素",
+        name_prefix: "宝石",
         attack_value: 13500e4,
         stats: {
             crit_rate: {
