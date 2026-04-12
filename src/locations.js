@@ -4045,7 +4045,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 1400e8,
-            locations: [{location: "传承幻境 - 3"}],
+            locations: [{location: "传承幻境 - 3"},{location: "传承幻境 - 水晶空间"}],
         },
     });
     locations["传承幻境 - 3"] = new Combat_zone({
