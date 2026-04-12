@@ -99,7 +99,7 @@ window.REALMS=[
 [24,"天空级六阶",40000000,150e8,1120e12,"sky"],//250e 
 [25,"天空级七阶",72500000,350e8,6000e12,"sky"],//600e 
 [26,"天空级八阶",3e8,900e8,2.4e16,"sky"],//1500e
-[27,"天空级巅峰",8e8,1500e8,170.1411e36,"sky"],//3000e  应为2.4e16
+[27,"天空级巅峰",8e8,1500e8,170.1411e36,"sky"],//3000e  应为9.6e16
 
 ];
 //境界，X级存储了该等级的数据
@@ -1285,6 +1285,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(26)) Spec_S += "[分裂]";
     if(current_enemies[enemy_id].spec.includes(27)) Spec_S += "[柔骨]";
     if(current_enemies[enemy_id].spec.includes(39)) Spec_S += "[贪婪·宝石]";
+    if(current_enemies[enemy_id].spec.includes(51)) Spec_S += "[压制]";
     
     if(isnew) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
@@ -1636,6 +1637,11 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(attacker.spec.includes(5))//牵制
     {
         spec_mul *= attacker.stats.defense/character.stats.full.defense;
+        if(spec_mul == Infinity) spec_mul = 9999.99;//防止除以0
+    }
+    if(attacker.spec.includes(51))//压制
+    {
+        spec_mul *= (attacker.stats.defense+attacker.stats.attack)/(character.stats.full.defense+character.stats.full.attack_power);
         if(spec_mul == Infinity) spec_mul = 9999.99;//防止除以0
     }
     if(attacker.spec.includes(18)){//贪婪
@@ -2000,6 +2006,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         if(character.equipment.method != null){
             if(character.equipment.method.id=="三月断宵") add_xp_to_skill({skill: skills['3Moon/Night'], xp_to_add: target.xp_value});
             if(character.equipment.method.id=="星解之术") add_xp_to_skill({skill: skills['StarDestruction'], xp_to_add: target.xp_value});
+            if(character.equipment.method.id=="映星紫华") add_xp_to_skill({skill: skills['ReflectStarVioletLight'], xp_to_add: target.xp_value});
         }
         if(character.stats.full.crit_rate > Math.random()) {
             vibra_damage *= character.stats.full.crit_multiplier;
@@ -2887,9 +2894,11 @@ function use_item(item_key,stated = false) {
             let Rnd = '';
             for(let cnt=1;cnt<=5;cnt++){
                 Rnd = Potion_name[Math.floor(Math.random()*4)]
-                log_message(`从 B9·??药剂 中获取了 ${Rnd}! (${cnt} / 5)`,"combat_loot");
-                add_to_character_inventory([{ "item": getItem(item_templates[Rnd]), "count": 1 }]);
+                //log_message(`从 B9·??药剂 中获取了 ${Rnd}! (${cnt} / 5)`,"combat_loot");
+                character.add_to_inventory([{ "item": getItem(item_templates[Rnd]), "count": 1 }]);
             }
+            
+            update_displayed_character_inventory({was_anything_new_added:true});
         }
     }
     if(item_templates[id].realmcap!=-1)

@@ -7375,6 +7375,25 @@ B9++ 7,778,742,049exp 16B
             {item_name: "传说红宝石", chance:4,ignore_luck:true},
         ],
     });
+    enemy_templates["怪物手册[BOSS]"] = new Enemy({
+        name: "怪物手册[BOSS]", 
+        description: "为什么怪物手册会成精啊！另外，不觉得压制比牵制还要容易成为负累吗……", 
+        xp_value: 2971215073, 
+        rank: 3697,
+        image: "image/boss/B3601.png",
+        realm: "<span class=realm_sky><b>天空级八阶 ++</b></span>",
+        size: "small",
+        spec: [9,51],
+        tags: [],
+        stats: {health: 4936e8, attack: 36e8, agility: 21e8, attack_speed: 1.3, defense:21e8}, //血量400%
+        loot_list: [
+            {item_name: "传承水晶·橙", chance:2,ignore_luck:true},
+            {item_name: "传承水晶·白", chance:2,ignore_luck:true},
+            {item_name: "传承水晶·粉", chance:2,ignore_luck:true},
+            {item_name: "传承水晶·绿", chance:2,ignore_luck:true},
+            {item_name: "传承水晶·蓝", chance:2,ignore_luck:true},
+        ],
+    });
 
 
 

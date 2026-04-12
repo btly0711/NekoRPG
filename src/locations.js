@@ -4004,6 +4004,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["传承幻境"] = new Location({ 
         connected_locations: [{location: locations["时封水牢"], custom_text: "回到时封水牢"}], 
         description: "散发着五彩光华的空间，周围有许多实力相近(?)的荒兽。苏醒了，猎杀时刻！[V2.60前版本终点]",
+        dialogues: ["传承水晶"],
         name: "传承幻境", 
         is_unlocked: false,
         bgm: 19,
@@ -4089,6 +4090,22 @@ function get_location_type_penalty(type, stage, stat) {
     locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 3"]});
     locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 4"]});    
 
+    locations["传承幻境 - 水晶空间"] = new Challenge_zone({
+        description: "击败成精的怪物手册来获取五色水晶——当然还有映星紫华。", 
+        enemy_count: 1, 
+        enemies_list : [["怪物手册[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "传承幻境 - 水晶空间",
+        bgm:19,
+        parent_location: locations["传承幻境"],
+        repeatable_reward: {
+            textlines: [{dialogue: "传承水晶", lines: ["sj1"]}],
+        },
+    });
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 水晶空间"]});    
 
 
 

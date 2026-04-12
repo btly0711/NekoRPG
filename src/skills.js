@@ -688,6 +688,48 @@ function format_skill_rewards(milestone){
                                         }
                                     }
                                 });
+    
+     skills["ReflectStarVioletLight"] = new Skill({skill_id: "ReflectStarVioletLight", 
+                                    names: {0: "映星紫华",1:"映星紫华·小成",2:"映星紫华·精通",3:"映星紫华·大成",4:"映星紫华·圆满"}, 
+                                    parent_skill: "Stance mastery",
+                                    description: "【映星花】秘法的第二层大境界。可以大幅增强原始秘法的经验获取。", 
+                                    max_level_coefficient: 1.25,
+                                    base_xp_cost: 5000e16,
+                                    max_level: 4,
+                                    xp_scaling:20,
+                                    get_effect_description: ()=> {
+                                        return `增加基础经验获取量,额外增加【映星花】经验获取量`;
+                                    },
+                                    category: "Stance",
+                                    rewards: {
+                                        milestones: {
+                                            1: {
+                                                    xp_multipliers: {
+                                                        all: 2.0,
+                                                        "ReflectStarFlower": 2,
+                                                    }
+                                            },
+                                            2: {
+                                                    xp_multipliers: {
+                                                        all: 1.5,
+                                                        "ReflectStarFlower": 2,
+                                                    }
+                                            },
+                                            3: {
+                                                    xp_multipliers: {
+                                                        all: 1.3333,
+                                                        "ReflectStarFlower": 2,
+                                                    }
+                                            },
+                                            4: {
+                                                    xp_multipliers: {
+                                                        all: 1.25,
+                                                        "ReflectStarFlower": 2,
+                                                    }
+                                            },
+                                        }
+                                    }
+                                });
     skills["Neko_Realm"] = new Skill({skill_id: "Neko_Realm", 
                                     names: {0: "微火",10:"燃灼术",20:"火灵幻海[领域一重]",30:"焰海霜天[领域二重]",35:"焰海霜天[领域三重]",40:"出云落月[领域四重]"}, 
                                     parent_skill: "Stance mastery",

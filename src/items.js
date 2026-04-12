@@ -2544,6 +2544,20 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["映星紫华"] = new Method({
+        name: "映星紫华",
+        id: "映星紫华",
+        description: "神秘令人难以捉摸的进阶术式，于内敛的紫色光华之中，蕴含着令人心惊胆颤的力量。", 
+        value: 909090909090909090,//16位数(90.91U)
+        stats: {
+            health_regeneration_flat: {
+                flat: 5e8,
+            },
+            crit_multiplier: {
+                flat: 0.12,
+            },
+        }
+    });
 })();
 
 

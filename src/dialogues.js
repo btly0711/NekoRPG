@@ -2271,8 +2271,34 @@ class Textline {
         }
     });
 
+    dialogues["传承水晶"] = new Dialogue({
+        name: "传承水晶",
+        starting_text: "触摸散发着光亮的水晶",
+        textlines: {
 
+            "sj1": new Textline({ 
+                is_unlocked: false,
+                name: "(摸)",
+                text: "[纳可]果然，这些水晶中，<br>蕴含着左阿前辈的感悟！<br>好强大的力量……<br>可却夹杂着强烈的暴戾气息。<br>左阿前辈，过去到底经历了什么呢？<br>一定要静心凝神……<br>算了，我也不好说人家啦。",
+                unlocks: {
+                    textlines: [{dialogue: "传承水晶", lines: "sj2"}],
+                },
+                
+                locks_lines: ["sj2"],
+            }),
+            "sj2": new Textline({ 
+                is_unlocked: false,
+                name: "(闭眼)",
+                text: "[纳可]……只是稍一接触，<br>秘法之中，许多尚未融汇贯通的部分，<br>一下就豁然开朗。<br>这是峰大哥赐予我的秘法，<br>它真正的潜力果然不同凡响。<br>(内心OS:毕竟上限可是50级！)<br>有些期待，不知道蜕变成功后会有多强呢？<br><br>领悟了新的秘法<span style='color:aqua'> 【映星紫华】</span>！<br>请在装备栏中进行装备。",
+                unlocks: {
+                    items: [{item_name: "映星紫华",quality:200}],
+                },
+                
+                locks_lines: ["sj2"],
+            }),
 
+        }
+    });
 
 
 
