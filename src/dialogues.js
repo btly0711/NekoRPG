@@ -2275,16 +2275,15 @@ class Textline {
         name: "传承水晶",
         starting_text: "触摸散发着光亮的水晶",
         textlines: {
-
             "sj1": new Textline({ 
                 is_unlocked: false,
                 name: "(摸)",
                 text: "[纳可]果然，这些水晶中，<br>蕴含着左阿前辈的感悟！<br>好强大的力量……<br>可却夹杂着强烈的暴戾气息。<br>左阿前辈，过去到底经历了什么呢？<br>一定要静心凝神……<br>算了，我也不好说人家啦。",
                 unlocks: {
-                    textlines: [{dialogue: "传承水晶", lines: "sj2"}],
+                    textlines: [{dialogue: "传承水晶", lines: ["sj2"]}],
                 },
                 
-                locks_lines: ["sj2"],
+                locks_lines: ["sj1"],
             }),
             "sj2": new Textline({ 
                 is_unlocked: false,

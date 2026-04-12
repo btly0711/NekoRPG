@@ -1101,6 +1101,11 @@ function start_textline(textline_key){
     for(let i = 0; i < textline.unlocks.textlines.length; i++) { //unlocking textlines
         const dialogue_name = textline.unlocks.textlines[i].dialogue;
         for(let j = 0; j < textline.unlocks.textlines[i].lines.length; j++) {
+            if(dialogues[dialogue_name].textlines[textline.unlocks.textlines[i].lines[j]] == undefined)
+            {
+                console.error(`未定义的对话: NPC[${dialogue_name}] - 对话[${textline.unlocks.textlines[i].lines[j]}]`);
+                console.log(textline.unlocks);
+            }
             dialogues[dialogue_name].textlines[textline.unlocks.textlines[i].lines[j]].is_unlocked = true;
         }
     }
