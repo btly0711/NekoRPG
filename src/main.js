@@ -1655,7 +1655,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(attacker.spec.includes(52))//压制·伪
     {
         let QZ_P = global_flags['qz_percent'] || 0;
-        spec_mul *= (attacker.stats.defense+attacker.stats.attack)/(character.stats.full.defense+character.stats.full.attack_power) ** (1-0.01*QZ_P);
+        spec_mul *= ((attacker.stats.defense+attacker.stats.attack)/(character.stats.full.defense+character.stats.full.attack_power)) ** (1-0.01*QZ_P);
         spec_mul *= (attacker.stats.defense/character.stats.full.defense) ** (0.01*QZ_P);
 
         if(spec_mul == Infinity) spec_mul = 9999.99;//防止除以0
