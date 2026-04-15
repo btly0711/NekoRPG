@@ -232,6 +232,13 @@ class TradeItem {
         location_name: "极寒冰宫",
         profit_margin: 4.8,
     });
+    traders["窥秘商人"] = new Trader({
+        name: "窥秘商人",
+        inventory_template: "Sky III",
+        is_unlocked: false,
+        location_name: "传承幻境",
+        profit_margin: 6.4,
+    });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",
         trade_text: `<span style="color:#c0ffe0"> <i class="material-icons">work_outline</i> 向箱子里存取物品</span>`,
@@ -566,6 +573,33 @@ class TradeItem {
             new TradeItem({item_name: "镶晶盾牌", count: [5,10]}),
             new TradeItem({item_name: "万载冰髓锭", count: [1,3]}),
             new TradeItem({item_name: "玄冰果实", count: [1,1],chance:0.2}),
+
+
+    ];
+    inventory_templates["Sky III"] = 
+    [
+            new TradeItem({item_name: "B7·能量核心", count: [50,250]}),
+            new TradeItem({item_name: "晶化合金锭", count: [50,250]}),
+            new TradeItem({item_name: "B9·??药剂", count: [10,50]}),
+
+            new TradeItem({item_name: "冰宫鳞片", count: [50,125]}),
+            new TradeItem({item_name: "光环杖芯", count: [50,125]}),
+
+            new TradeItem({item_name: "水素月轮", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "宝石月轮", count: [1], quality: [141, 180]}),
+
+            
+            new TradeItem({item_name: "水素头盔", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "水素胸甲", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "水素腿甲", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "水素战靴", count: [1], quality: [151, 190]}),
+
+            
+            new TradeItem({item_name: "传承水晶·橙", count: [5,10]}),
+            new TradeItem({item_name: "传承水晶·蓝", count: [5,10]}),
+            new TradeItem({item_name: "传承水晶·白", count: [5,10]}),
+            new TradeItem({item_name: "传承水晶·绿", count: [5,10]}),
+            new TradeItem({item_name: "牵制-从入门到入土", count: [50,100]}),
 
 
     ];

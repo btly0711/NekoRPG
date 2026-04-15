@@ -114,6 +114,8 @@ const global_flags = {
     is_moonwheel_unlocked: false,
     qx_status: 0,
     lq_status: 0,//0:离开 1:杀害 2:侵犯
+    qz_percent: 0,//牵制-从入门到精通 获取的百分比
+
     
 };
 const flag_unlock_texts = {
@@ -1291,6 +1293,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(27)) Spec_S += "[柔骨]";
     if(current_enemies[enemy_id].spec.includes(39)) Spec_S += "[贪婪·宝石]";
     if(current_enemies[enemy_id].spec.includes(51)) Spec_S += "[压制]";
+    if(current_enemies[enemy_id].spec.includes(52)) Spec_S += "[压制..?]";
     
     if(isnew) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
@@ -1647,6 +1650,14 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(attacker.spec.includes(51))//压制
     {
         spec_mul *= (attacker.stats.defense+attacker.stats.attack)/(character.stats.full.defense+character.stats.full.attack_power);
+        if(spec_mul == Infinity) spec_mul = 9999.99;//防止除以0
+    }
+    if(attacker.spec.includes(52))//压制·伪
+    {
+        let QZ_P = global_flags['qz_percent'] || 0;
+        spec_mul *= (attacker.stats.defense+attacker.stats.attack)/(character.stats.full.defense+character.stats.full.attack_power) ** (1-0.01*QZ_P);
+        spec_mul *= (attacker.stats.defense/character.stats.full.defense) ** (0.01*QZ_P);
+
         if(spec_mul == Infinity) spec_mul = 9999.99;//防止除以0
     }
     if(attacker.spec.includes(18)){//贪婪
@@ -2869,18 +2880,19 @@ function use_item(item_key,stated = false) {
 
     let used = false;
     if(item_templates[id].spec != 0){
-        if(item_templates[id].spec == "T8-table"){
+        let I_spec = item_templates[id].spec;
+        if(I_spec == "T8-table"){
             //unlock 符文之屋
             unlock_location(locations["符文之屋"]);
             log_message(`随着符文工作台套件被摆下，一座小屋拔地而起。在这片废墟中，${character.name} 得到了一片温暖的港湾。`,"gather_loot")
         }
-        else if(item_templates[id].spec == "freezing_engine"){
+        else if(I_spec == "freezing_engine"){
             //unlock 极寒相变引擎
             engine_init();
             dialogues["极寒相变引擎"].textlines["engine"].is_unlocked = true;
             log_message(`旋律合金作为活塞，多孔冰晶作为隔热，冰原超流体作为热容……冰原的环境本十分恶劣，${character.name} 却掌握了巧妙利用它的方法。`,"gather_loot")
         }
-        else if(item_templates[id].spec == "saved_trader"){
+        else if(I_spec == "saved_trader"){
             inf_combat.B6 = inf_combat.B6 || 0;
             inf_combat.B6 += 1;
             log_message(`释放了第${inf_combat.B6}个冰宫商人！`,"gather_loot");
@@ -2894,7 +2906,7 @@ function use_item(item_key,stated = false) {
                 bg_trader.is_unlocked = true;
             }
         }
-        else if(item_templates[id].spec == "random-potion"){
+        else if(I_spec == "random-potion"){
             let Potion_name = {0:"B9·灵闪药剂",1:"B9·异界药剂",2:"B9·散华药剂",3:"B9·反戈药剂"}
             let Rnd = '';
             for(let cnt=1;cnt<=5;cnt++){
@@ -2904,6 +2916,11 @@ function use_item(item_key,stated = false) {
             }
             
             update_displayed_character_inventory({was_anything_new_added:true});
+        }
+        else if(I_spec = "HeartDemon_nerf"){
+            global_flags["qz_percent"] = (global_flags["qz_percent"] || 0) + 1;
+            if(global_flags["qz_percent"]>100) global_flags["qz_percent"] = 100;
+            log_message(`牵制领悟度提升到了 ${global_flags["qz_percent"]}%!`,"gather_loot");
         }
     }
     if(item_templates[id].realmcap!=-1)

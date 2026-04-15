@@ -3578,6 +3578,18 @@ item_templates["Twist liek a snek"] = new Book({
             handle: "光暗轮芯",
         }
     });
+    item_templates["水素月轮"] = new Weapon({
+        components: {
+            head: "水素轮锋",
+            handle: "虹彩轮芯",
+        }
+    });
+    item_templates["宝石月轮"] = new Weapon({
+        components: {
+            head: "宝石轮锋",
+            handle: "虹彩轮芯",
+        }
+    });
 })();
 //盔甲部件
 (function(){
@@ -4724,6 +4736,15 @@ item_templates["Twist liek a snek"] = new Book({
         spec:"saved_trader",
         image: "image/item/icepalace_trader.png",
     });
+    
+    item_templates["牵制-从入门到精通"] = new UsableItem({
+        id: "牵制-从入门到精通",
+        name: "牵制-从入门到精通", 
+        description: "传承水晶的知识补全了被涂黑的书！虽然自己不应该用，但可以套路心魔……<br>实际效果:【压制·伪】判定 +1%牵制比重(上限100%/加权几何平均)<br>", 
+        value: 168e12,
+        spec:"HeartDemon_nerf",
+        image: "image/item/BurnBloodPlus.png",
+    });
 })();
 
 //消耗品
@@ -5645,6 +5666,7 @@ item_templates["Twist liek a snek"] = new Book({
         C_value: 3,
         image: "image/item/ice_fruit_awaken.png",
     });
+    
     
 
 

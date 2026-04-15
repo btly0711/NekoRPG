@@ -4005,6 +4005,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["时封水牢"], custom_text: "回到时封水牢"}], 
         description: "散发着五彩光华的空间，周围有许多实力相近(?)的荒兽。苏醒了，猎杀时刻！[V2.60前版本终点]",
         dialogues: ["传承水晶"],
+        traders: ["窥秘商人"],
         name: "传承幻境", 
         is_unlocked: false,
         bgm: 19,
@@ -4064,6 +4065,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 1600e8,
             locations: [{location: "传承幻境 - 4"}],
+            traders: [{traders:"窥秘商人"}],
         },
     });
     locations["传承幻境 - 4"] = new Combat_zone({
@@ -4081,7 +4083,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 1800e8,
-            //locations: [{location: "传承幻境 - X"}],
+            locations: [{location: "传承幻境 - ?"},/*{location: "传承幻境 - X"}*/],
         },
     });
 
@@ -4105,7 +4107,24 @@ function get_location_type_penalty(type, stage, stat) {
             textlines: [{dialogue: "传承水晶", lines: ["sj1"]}],
         },
     });
-    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 水晶空间"]});    
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - 水晶空间"]});   
+    
+    
+    locations["传承幻境 - ?"] = new Challenge_zone({
+        description: "测试一下伤害是否正常！(才不是因为纱雪的存档还在3-5没办法测，才放这个地图在这里的。)", 
+        enemy_count: 1, 
+        enemies_list : [["心魔木偶[SP]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "传承幻境 - ?",
+        bgm:19,
+        parent_location: locations["传承幻境"],
+        repeatable_reward: {
+        },
+    });
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - ?"]});   
 
 
 

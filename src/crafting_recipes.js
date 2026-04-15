@@ -1269,6 +1269,15 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [54,68],
         recipe_skill: "Cooking",
     });
+    cooking_recipes.items3["牵制-从入门到精通(x2)"] = new ItemRecipe({
+        name: "牵制-从入门到精通",
+        recipe_type: "material",
+        materials: [{material_id: "传承水晶·粉", count: 1},{material_id: "传承水晶·蓝", count: 1},{material_id: "传承水晶·橙", count: 1},{material_id: "传承水晶·白", count: 1},{material_id: "传承水晶·绿", count: 1},{material_id: "牵制-从入门到入土", count: 1}], 
+        result: {result_id: "牵制-从入门到精通", count: 2},
+        success_chance: [0.3,1],
+        recipe_level: [54,70],
+        recipe_skill: "Cooking",
+    });
 })();
 
 //锻造[镐头]

@@ -7394,7 +7394,27 @@ B9++ 7,778,742,049exp 16B
             {item_name: "传承水晶·蓝", chance:2,ignore_luck:true},
         ],
     });
+    enemy_templates["心魔木偶[SP]"] = new Enemy({
+        name: "心魔木偶[SP]", 
+        description: "被高维存在注入力量的木偶。测试完压制·伪它就该下班了！", 
+        xp_value: 4807526976, 
+        rank: 3699.9,
+        image: "image/spec/fishmark.png",
+        realm: "<span class=realm_basic><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [52],
+        tags: [],
+        stats: {health: 9999e12, attack: 113.56e8, agility: 44.4e8, attack_speed: 1.0, defense:1e4}, 
+        loot_list: [
+            {item_name: "宇宙币", chance:168,ignore_luck:true},
+        ],
+    });
+/*
 
+属性是99.99J/113.56E/1W/44.4E/1.0，
+只有一个【压制·伪】属性。
+ 
+*/
 
 
 
