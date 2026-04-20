@@ -7398,7 +7398,7 @@ B9++ 7,778,742,049exp 16B
         name: "心魔木偶[SP]", 
         description: "被高维存在注入力量的木偶。测试完压制·伪它就该下班了！", 
         xp_value: 4807526976, 
-        rank: 3699.9,
+        rank: 3698,
         image: "image/spec/fishmark.png",
         realm: "<span class=realm_basic><b>天空级巅峰 +</b></span>",
         size: "small",
@@ -7409,7 +7409,25 @@ B9++ 7,778,742,049exp 16B
             {item_name: "宇宙币", chance:168,ignore_luck:true},
         ],
     });
+    
+    enemy_templates["心魔[BOSS]"] = new Enemy({
+        name: "心魔[BOSS]", 
+        description: "我保留了一些同调，这样你才知道你打的是心魔。不过，它还是会被牵制领悟度欺负就是了！", 
+        xp_value: 2971215073, 
+        rank: 3699,
+        image: "image/boss/B3602.png",
+        realm: "<span class=realm_sky><b>天空级巅峰</b></span>",
+        size: "small",
+        spec: [33,52,53],
+        spec_value:{33:13},
+        tags: [],
+        stats: {health: 17776e8, attack: 1e4, agility: 44.4e8, attack_speed: 1.0, defense:1e4}, //血量400%
+        loot_list: [
+        ],
+    });
 /*
+
+17776Z/113.56E/1W/44.4E/1.0
 
 属性是99.99J/113.56E/1W/44.4E/1.0，
 只有一个【压制·伪】属性。

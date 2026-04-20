@@ -215,6 +215,11 @@ class Combat_zone {
                 newEnemy.stats.defense += character.stats.full.defense * 0.1;
                 log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.1)} 攻击，${format_number(character.stats.full.defense * 0.1)}防御 [同调]`,"enemy_enhanced");
             }//同调
+            if(newEnemy.spec.includes(53))
+            {
+                newEnemy.stats.attack += character.stats.full.attack_power * 2.0;
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 2.0)} 攻击 [同调·魔]`,"enemy_enhanced");
+            }//同调
             if(newEnemy.spec.includes(24)){
                 log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.5)} 生命 [饮剑]`,"enemy_enhanced");
                 newEnemy.stats.health += character.stats.full.attack_power * 0.5;//饮剑
@@ -4003,7 +4008,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["传承幻境"] = new Location({ 
         connected_locations: [{location: locations["时封水牢"], custom_text: "回到时封水牢"}], 
-        description: "散发着五彩光华的空间，周围有许多实力相近(?)的荒兽。苏醒了，猎杀时刻！[V2.60前版本终点]",
+        description: "散发着五彩光华的空间，周围有许多实力相近(?)的荒兽。苏醒了，猎杀时刻！",
         dialogues: ["传承水晶"],
         traders: ["窥秘商人"],
         name: "传承幻境", 
@@ -4083,7 +4088,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 1800e8,
-            locations: [{location: "传承幻境 - ?"},/*{location: "传承幻境 - X"}*/],
+            locations: [{location: "传承幻境 - ?"},{location: "传承幻境 - X"}],
         },
     });
 
@@ -4125,8 +4130,32 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - ?"]});   
+    locations["传承幻境 - X"] = new Challenge_zone({
+        description: "如果打不过的话，回去吃两本牵制书！说不定还有其他的邪道呢？", 
+        enemy_count: 1, 
+        enemies_list : [["心魔[BOSS]"]],
+        enemy_group_size: [4,4],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "传承幻境 - X",
+        bgm:19,
+        parent_location: locations["传承幻境"],
+        repeatable_reward: {
+            locations: [{location: "幻境核心·地宫"}],
+        },
+    });
+    locations["传承幻境"].connected_locations.push({location: locations["传承幻境 - X"]});   
 
 
+    locations["幻境核心·地宫"] = new Location({ 
+        connected_locations: [{location: locations["传承幻境"], custom_text: "回到传承幻境"}], 
+        description: "幻境之行，应该就到此为止……等等，骗人的吧，这，这里是——地宫？有姐姐的声音！[V2.61前版本终点]",
+        name: "幻境核心·地宫", 
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(1区)
+    locations["传承幻境"].connected_locations.push({location: locations["幻境核心·地宫"]});   
 
 
 

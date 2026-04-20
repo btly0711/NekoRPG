@@ -342,6 +342,7 @@ const musicList = {
   17: 'bgms/17.mp3',
   18: 'bgms/18.mp3',
   19: 'bgms/19.mp3',
+  20: 'bgms/20.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
