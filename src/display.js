@@ -3866,6 +3866,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "探险者的怨恨") add_bestiary_lines(34);
     if(enemy_name == "大门派先锋") add_bestiary_lines(35);
     if(enemy_name == "奇异菇菇") add_bestiary_lines(36);
+    if(enemy_name == "心魔") add_bestiary_lines(37);
 }
 
 function reload_bestiary(){

@@ -4152,12 +4152,59 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["传承幻境"], custom_text: "回到传承幻境"}], 
         description: "幻境之行，应该就到此为止……等等，骗人的吧，这，这里是——地宫？有姐姐的声音！[V2.61前版本终点]",
         name: "幻境核心·地宫", 
+        dialogues: ["纳娜米?"],
         is_unlocked: false,
         bgm: 20,
     });//3-7(1区)
     locations["传承幻境"].connected_locations.push({location: locations["幻境核心·地宫"]});   
 
+    locations["幻境核心 - 1"] = new Combat_zone({
+        description: "隐约听到姐姐的声音？！姐姐不会——就在那里——", 
+        enemy_count: 30, 
+        enemies_list: ["心魔","燕岗辉煌佣兵","地宫虫将","地宫不眠者","地下焚天火","燕岗城卫队长"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "幻境核心 - 1",
+        rank:261, 
+        bgm:20,
+        parent_location: locations["幻境核心·地宫"],
+        first_reward: {
+            xp: 6000e8,
+        },
+        repeatable_reward: {
+            xp: 2000e8,
+            textlines: [{dialogue: "纳娜米?", lines: ["hx1"]}],
+        },
+    });
+    locations["幻境核心 - I"] = new Challenge_zone({
+        description: "大胆茸茸！我一眼就看出你不是姐姐！姐姐虽然会灵体，但哪有你这么强哇。", 
+        enemy_count: 1, 
+        enemies_list : [["喵咕啦[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "幻境核心 - I",
+        bgm:20,
+        parent_location: locations["幻境核心·地宫"],
+        repeatable_reward: {
+            locations: [{location: "幻境核心·结界湖"}],
+        },
+    });
+    locations["幻境核心·地宫"].connected_locations.push({location: locations["幻境核心 - 1"]});   
+    locations["幻境核心·地宫"].connected_locations.push({location: locations["幻境核心 - I"]});  
 
+
+
+    locations["幻境核心·结界湖"] = new Location({ 
+        connected_locations: [{location: locations["幻境核心·地宫"], custom_text: "回到一重幻境"}], 
+        description: "所以这一次是——家族秘境，结界湖吗，不知道这里有没有冰柱鱼。这里也算是……对我影响很深的地方呢。[V2.62前版本终点]",
+        name: "幻境核心·结界湖", 
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(2区)
+
+    locations["幻境核心·地宫"].connected_locations.push({location: locations["幻境核心·结界湖"]});  
 
 
 
@@ -4859,6 +4906,25 @@ function get_location_type_penalty(type, stage, stat) {
             starting_text: "感应时封水牢中充盈的水元素",
             skill_xp_per_tick: 1,
             is_unlocked: true,
+        }),
+    }
+    
+    locations["幻境核心·地宫"].activities = {
+        "mining100MGem": new LocationActivity({
+            activity_name: "mining",
+            infinite: true,
+            starting_text: "偷偷用镐子挖出……血杀剑？",
+            skill_xp_per_tick: 1000,
+            is_unlocked: true,
+            exp_scaling: true,
+            scaling_id: "100M",
+            exp_o:1.8,//每完成一次需要的时间指数提升
+            gained_resources: {
+                resources: [{name: "血杀剑", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
+                time_period: [40, 2],
+                skill_required: [50, 70],
+                scales_with_skill: true,
+            },
         }),
     }
 })();

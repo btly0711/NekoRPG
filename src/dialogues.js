@@ -2299,6 +2299,54 @@ class Textline {
         }
     });
 
+    dialogues["纳娜米?"] = new Dialogue({
+        name: "纳娜米?",
+        starting_text: "和地宫的姐姐……真的是姐姐吗？",
+        textlines: {
+            "hx1": new Textline({ 
+                is_unlocked: false,
+                name: "诶，姐姐，……你说什么？",
+                text: "[纳娜米]可可！你终于醒了！<br>你之前和地宫的怪物厮杀，<br>消耗了太多体力，晕过去了。<br>不过放心吧，这一片区域的怪物，<br>刚才已经被姐姐清理干净了，<br>姐姐会保护你的。",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米?", lines: ["hx2"]}],
+                },
+                
+                locks_lines: ["hx1"],
+            }),
+            "hx2": new Textline({ 
+                is_unlocked: false,
+                name: "姐姐，方才我晕倒的时候",
+                text: "[纳可]你在……清理这片区域的怪物对吧。<br><br>[纳娜米?]是啊，你就不要担心了。<br>有姐姐在，这些都是小问题……",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米?", lines: ["hx3"]}],
+                },
+                
+                locks_lines: ["hx2"],
+            }),
+            "hx3": new Textline({ 
+                is_unlocked: false,
+                name: "你……你不是姐姐！",
+                text: "[纳可]在进幻境之前，<br>姐姐还只有天空级六阶！<br>怎么可能打得过八九阶的敌人哇。<br><br>[纳娜米?]………………<br><br>[纳可]你在听吗？我终于明白了，<br>我现在看到的一切都是幻觉，<br>而不是什么时间倒流。<br>你到底是谁？",
+                unlocks: {
+                    textlines: [{dialogue: "纳娜米?", lines: ["hx4"]}],
+                },
+                
+                locks_lines: ["hx3"],
+            }),
+            "hx4": new Textline({ 
+                is_unlocked: false,
+                name: "你到底是谁？",
+                text: "[纳可]你是我内心的心魔！对不对！<br><br><del>[纳娜米?]</del>[喵咕啦]<br>恭喜，答错啦！我是，<br>和你姐姐衣服颜色一样的茸茸！<br>我可不像心魔那个笨蛋一样会去用牵制！",
+                unlocks: {
+                    locations: ["幻境核心 - I"],
+                },
+                
+                locks_lines: ["hx4"],
+            }),
+
+        }
+    });
+
 
 
 

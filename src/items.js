@@ -5192,6 +5192,46 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [],
         gem_value: 50000000,
     });
+    item_templates["血杀剑"] = new UsableItem({
+        name: "血杀剑", 
+        description: "虽然看起来是剑，但其实是血洛晶的一丝碎片，蕴含着强烈的杀戮能量！使用时必定增加攻击1亿点。", 
+        value: 1e15,
+        image: "image/item/bloodkill_sword.png",
+        effects: [],
+        gem_value: 100e6,
+    });
+    item_templates["神话黄宝石"] = new UsableItem({
+        name: "神话黄宝石", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷1亿点或生命100亿点", 
+        value: 100e6,
+        image: "image/item/gem71_100M.png",
+        effects: [],
+        gem_value: 100e6,
+    });
+    item_templates["神话蓝宝石"] = new UsableItem({
+        name: "神话蓝宝石", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷2亿点或生命200亿点", 
+        value: 200e6,
+        image: "image/item/gem72_200M.png",
+        effects: [],
+        gem_value: 200e6,
+    });
+    item_templates["神话红宝石"] = new UsableItem({
+        name: "神话红宝石", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷5亿点或生命500亿点", 
+        value: 500e6,
+        image: "image/item/gem73_500M.png",
+        effects: [],
+        gem_value: 500e6,
+    });
+    item_templates["神话绿宝石"] = new UsableItem({
+        name: "神话绿宝石", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷10亿点或生命1000亿点", 
+        value: 1e9,
+        image: "image/item/gem74_1B.png",
+        effects: [],
+        gem_value: 1e9,
+    });
 })();
 
 
