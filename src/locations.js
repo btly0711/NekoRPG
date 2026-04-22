@@ -4182,7 +4182,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list : [["喵咕啦[BOSS]"]],
         enemy_group_size: [1,1],
         types: [],
-        is_unlocked: false, 
+        is_unlocked: true, 
         is_challenge: true,
         name: "幻境核心 - I",
         bgm:20,
