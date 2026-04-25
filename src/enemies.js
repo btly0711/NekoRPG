@@ -6803,8 +6803,8 @@ class Enemy {
         ],
     });
 
-    enemy_templates["秘境荧光泡芙"] = new Enemy({
-        name: "秘境荧光泡芙", 
+    enemy_templates["秘境荧光帕芙"] = new Enemy({
+        name: "秘境荧光帕芙", 
         description: "最近，好多人都在抓的闪光品种，是这个吗？", 
         xp_value: 2971215073, 
         rank: 3707,
