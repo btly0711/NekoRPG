@@ -315,7 +315,7 @@ effect_templates["恢复 B8"] = new ActiveEffect({
     name: "恢复 B8",
     effects: {
         stats: {
-            health_regeneration_flat: {flat: 6.72e8},
+            health_regeneration_flat: {flat: 16.72e8},
             health_regeneration_percent: {flat: 0.168},
         }
     }
@@ -324,9 +324,9 @@ effect_templates["强化 B8"] = new ActiveEffect({
     name: "强化 B8",
     effects: {
         stats: {
-            attack_power:{flat:1.44e8},
-            defense:{flat:1.44e8},
-            agility:{flat:1.44e8},
+            attack_power:{flat:2.88e8},
+            defense:{flat:2.88e8},
+            agility:{flat:2.88e8},
         }
     }
 });
@@ -337,10 +337,10 @@ effect_templates["饱食 IX"] = new ActiveEffect({
     name: "饱食 IX",
     effects: {
         stats: {
-            health_regeneration_flat: {flat: 32.4e8},
-            attack_power:{flat:2.7e8},
-            defense:{flat:2.7e8},
-            agility:{flat:2.7e8},
+            health_regeneration_flat: {flat: 84.8e8},
+            attack_power:{flat:5.4e8},
+            defense:{flat:5.4e8},
+            agility:{flat:5.4e8},
         }
     }
 });

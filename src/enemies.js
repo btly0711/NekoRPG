@@ -3088,7 +3088,7 @@ class Enemy {
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "极品绿宝石", chance:0.02},
-            {item_name: "蓝晶碎片", chance:0.07},
+            {item_name: "蓝金碎片", chance:0.07},
             //5.0Z
         ],
     });
@@ -6882,7 +6882,7 @@ class Enemy {
         size: "small",
         spec: [31],
         tags: [],
-        stats: {health: 451.25e4, attack: 52e4, agility: 50e8, attack_speed: 1.4, defense:36e8}, //血量50%
+        stats: {health: 451.25e4, attack: 52e8, agility: 50e8, attack_speed: 1.4, defense:36e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -6899,7 +6899,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 1352e4, attack: 63e4, agility: 52e8, attack_speed: 1.4, defense:27e8}, //血量50%
+        stats: {health: 1352e4, attack: 63e8, agility: 52e8, attack_speed: 1.4, defense:27e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},

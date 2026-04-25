@@ -4254,7 +4254,7 @@ function start_fishing_minigame()
 {
     fish_div.style.display ="inherit";
     action_div.style.display = "none";
-    console.log("start")
+    //console.log("start")
     let FishRNG = (get_total_skill_level("Fishing") * 0.2) * Math.random();
     let cur_fish = fishs[1];
     if(FishRNG > 0.5) cur_fish = fishs[2];
@@ -4356,7 +4356,7 @@ function start_fishing_minigame_changed()
 {
     fish_changed_div.style.display ="inherit";
     action_div.style.display = "none";
-    console.log("start again")
+    //console.log("start again")
     let FishRNG = (get_total_skill_level("Fishing") * 0.2) * Math.random();
     let cur_fish = fishs_changed[1];
     if(FishRNG > 2.5) cur_fish = fishs_changed[2];
@@ -4410,7 +4410,7 @@ function start_fishing_minigame_changed()
             rod_vx += offset_x * rod_diff * frametime;
             rod_vy += offset_y * rod_diff * frametime;
             //rod_vx += 250 * frametime;
-            console.log(`相对于中心点的位移: dx = ${offset_x.toFixed(1)}, dy = ${offset_y.toFixed(1)}`);
+            //console.log(`相对于中心点的位移: dx = ${offset_x.toFixed(1)}, dy = ${offset_y.toFixed(1)}`);
             
         }
         //WIP:需要判定鼠标位置，矢量加速

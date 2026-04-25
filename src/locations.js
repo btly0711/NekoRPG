@@ -4957,7 +4957,7 @@ function get_location_type_penalty(type, stage, stat) {
             },
         }),
     }
-    locations["幻境核心·结界湖"].activites = {
+    locations["幻境核心·结界湖"].activities = {
         "fishing2": new LocationActivity({
             activity_name: "fishing",
             infinite: true,
