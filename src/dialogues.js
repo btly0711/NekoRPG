@@ -2346,6 +2346,44 @@ class Textline {
 
         }
     });
+    
+    dialogues["纳鹰?"] = new Dialogue({
+        name: "纳鹰?",
+        starting_text: "和结界湖里的老祖……肯定是假的！",
+        textlines: {
+            "hx5": new Textline({ 
+                is_unlocked: false,
+                name: "纳鹰前辈……不，你不是前辈!",
+                text: "[纳鹰?]哦呵呵，看来出了一点意外。<br>小丫头，先不要着急。<br>你一次性接受了很多知识，<br>必然会导致你的神识出现短暂的活跃期，<br>甚至勾勒出许多不存在的幻象。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰?", lines: ["hx6"]}],
+                },
+                
+                locks_lines: ["hx5"],
+            }),
+            "hx6": new Textline({ 
+                is_unlocked: false,
+                name: "幻象？你，你在说什么啊……",
+                text: "[纳鹰?]听着，小丫头，<br>抛却你脑海中那些杂乱的念头。<br>我将自己关于领域的领悟传授给你，<br>这或许会影响到你之后的路。<br>在未来，你甚至可能拥有领域——",
+                unlocks: {
+                    textlines: [{dialogue: "纳鹰?", lines: ["hx7"]}],
+                },
+                
+                locks_lines: ["hx6"],
+            }),
+            "hx7": new Textline({ 
+                is_unlocked: false,
+                name: "我……我的领域？",
+                text: "[纳可]听着，老登！我的确拥有领域，<br>，而且是——领域三重巅峰！<br>[纳鹰?]……(消散)<br>[纳可]呼……这一只的本体就是心魔，<br>倒免去一番苦战。<br>感觉对它的理解又深了一层。<br>这样下去的话，<br>不知道能否更进一步呢……",
+                unlocks: {
+                    locations: ["幻境核心·战场"],
+                },
+                
+                locks_lines: ["hx7"],
+            }),
+        }
+    });
+    
 
 
 

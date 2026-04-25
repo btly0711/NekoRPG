@@ -105,6 +105,11 @@ window.REALMS=[
 [30,"云霄级二阶",150e8,28000e8,500e16,"cloudy"],//4z 
 [31,"云霄级三阶",600e8,6.5e12,4000e16,"cloudy"],//10.5z 
 [32,"云霄级四阶",1200e8,10.5e12,1.2e20,"cloudy"],//21.0z 
+[33,"云霄级五阶",1,1,1,"cloudy"],//下面没填数据
+[34,"云霄级六阶",1,1,1,"cloudy"],
+[35,"云霄级七阶",1,1,1,"cloudy"],
+[36,"云霄级八阶",1,1,1,"cloudy"],
+[37,"云霄级巅峰",1,1,1,"cloudy"],
 
 ];
 //境界，X级存储了该等级的数据
@@ -4194,6 +4199,7 @@ function update_timer() {
     }
 }
 let MouseDown = false;
+    let mousePos = { clientX: 0, clientY: 0 };   // 全局保存最新鼠标位置
 function setupMouseControl() {
     document.addEventListener('pointerdown', () => {
         MouseDown = true;
@@ -4213,6 +4219,12 @@ function setupMouseControl() {
     window.addEventListener('blur', () => {
         MouseDown = false;
     });
+
+// 这个监听器非常轻，只负责更新坐标
+    document.addEventListener('mousemove', (e) => {
+    mousePos.clientX = e.clientX;
+    mousePos.clientY = e.clientY;
+}, { passive: true });   // passive: true 性能更好
 }
 setupMouseControl();
 
@@ -4308,6 +4320,145 @@ function start_fishing_minigame()
 
     },frametime * 1000)
 }//完整钓鱼小游戏
+
+
+
+
+const fish_changed_div = document.getElementById("fish_changed_div");
+const fish_progress_changed_bar = document.getElementById("fish_progress_changed_bar");
+const fish_game_changed_div = document.getElementById("fish_game_changed_div");
+const fish_rod_changed_div = document.getElementById("fish_rod_changed_div");
+const fish_rod_2nd_div = document.getElementById("fish_rod_2nd_div");
+let fish_vx = 0,fish_xx = 100;
+let rod_vx = 0,rod_xx = 100;
+let fish_vy = 0,fish_xy = 100;
+let rod_vy = 0,rod_xy = 100;
+let center_x,center_y,offset_x,offset_y;
+let rod_diff = 0.750;//操控力度
+let fishs_changed = {1:{name:"冰柱鱼",str:60},2:{name:"血莲鱼",str:120},3:{name:"冰柱鱼王",str:180}}
+//bar_health rod_length保留
+function update_displayed_fish_changed()
+{
+    fish_progress_changed_bar.style.height = bar_health.toFixed(0) + "%";
+    fish_progress_changed_bar.style.top = (100-bar_health).toFixed(0) + "%";
+    fish_progress_changed_bar.style.background = `rgb(${Math.min((100 - bar_health)*5.1,255)},${Math.min((bar_health)*5.1,255)},0)`
+
+    fish_game_changed_div.style.bottom = fish_xx + "px";
+    fish_rod_changed_div.style.bottom = rod_xx + "px";
+    fish_game_changed_div.style.left = fish_xy + "px";
+    fish_rod_changed_div.style.left = rod_xy + "px";
+    fish_rod_2nd_div.style.bottom = rod_xx - rod_length * 0.3 + "px";
+    fish_rod_2nd_div.style.left = rod_xy - rod_length * 0.3 + "px";
+}
+
+
+function start_fishing_minigame_changed()
+{
+    fish_changed_div.style.display ="inherit";
+    action_div.style.display = "none";
+    console.log("start again")
+    let FishRNG = (get_total_skill_level("Fishing") * 0.2) * Math.random();
+    let cur_fish = fishs_changed[1];
+    if(FishRNG > 2.5) cur_fish = fishs_changed[2];
+    if(FishRNG > 4.0) cur_fish = fishs_changed[3];
+    bar_health = 25;
+    rod_length = 30 + get_total_skill_level("Fishing") * 3;
+    fish_rod_changed_div.style.height = rod_length + "px";
+    fish_rod_changed_div.style.width = rod_length + "px";
+    fish_rod_2nd_div.style.height = rod_length * 1.6 + "px";
+    fish_rod_2nd_div.style.width = rod_length * 1.6 + "px";
+    fish_vx = 0,fish_xx = 40;
+    rod_vx = 0,rod_xx = 30;
+    fish_vy = 0,fish_xy = 40;
+    rod_vy = 0,rod_xy = 30;
+    rod_diff = Math.min(1.00,get_total_skill_level("Fishing") * 0.05);
+    let movinginterval = Math.round(3000 / cur_fish.str);
+    let remaininterval = 1;
+    let frametime = 0.03;
+
+
+    //游戏初始化
+    const fishId = setInterval(() => {
+        
+        if((fish_xx + 12 < rod_xx + rod_length && rod_xx < fish_xx + 12) && (fish_xy + 12 < rod_xy + rod_length && rod_xy < fish_xy + 12)) bar_health += 0.4;//鱼，上钩
+        else if((fish_xx + 12 < rod_xx + rod_length * 1.3 && rod_xx - rod_length * 0.3 < fish_xx + 12) && (fish_xy + 12 < rod_xy + rod_length * 1.3 && rod_xy - rod_length * 0.3 < fish_xy + 12)) bar_health += 0;//鱼，不动
+        else bar_health -= 0.3;//鱼，脱钩
+        remaininterval -= 1;
+        if(remaininterval <= 0){
+            remaininterval = movinginterval;
+            fish_vx += (Math.random()*2-0.9)*cur_fish.str;
+            fish_vy += (Math.random()*2-1)*cur_fish.str;
+        }//鱼，扑腾(水平方向没有倾向)
+        fish_xx += fish_vx * frametime;
+        fish_xy += fish_vy * frametime;//鱼，移动
+        fish_vx -= 60 * frametime;//感受到了重力
+        if((fish_xx <= 0 && fish_vx < 0)||(fish_xx >= 290 && fish_vx > 0)){
+            fish_vx = fish_vx * -0.7;
+        }//鱼，反弹(X)
+        if((fish_xy <= 0 && fish_vy < 0)||(fish_xy >= 290 && fish_vy > 0)){
+            fish_vy = fish_vy * -0.9;
+        }//鱼，反弹(Y)
+        fish_vx = fish_vx * 0.99;
+        fish_vy = fish_vy * 0.99;//鱼，受阻。
+
+        if(MouseDown){
+            center_x = rod_xx + rod_length / 2;
+            center_y = rod_xy + rod_length / 2;
+            offset_x = - mousePos.clientY - center_x + 731.5;
+            offset_y = mousePos.clientX - center_y - 483.5;
+
+            rod_vx += offset_x * rod_diff * frametime;
+            rod_vy += offset_y * rod_diff * frametime;
+            //rod_vx += 250 * frametime;
+            console.log(`相对于中心点的位移: dx = ${offset_x.toFixed(1)}, dy = ${offset_y.toFixed(1)}`);
+            
+        }
+        //WIP:需要判定鼠标位置，矢量加速
+        rod_vx -= 60 * frametime;
+
+
+        rod_xx += rod_vx * frametime;
+        rod_xy += rod_vy * frametime;
+        rod_vx *= 0.99,rod_vy *= 0.99;
+        //条，移动
+        if((rod_xx + rod_length >= 318 && rod_vx > 0)){
+            rod_vx = rod_vx * -0.4;
+            rod_xx = 318 - rod_length;
+        }//条，反弹(上)
+        if((rod_xx <= 0 && rod_vx < 0)){
+            rod_vx = rod_vx * -0.8;
+            rod_xx = 0;
+        }//条，反弹(下)
+        if((rod_xy + rod_length >= 318 && rod_vy > 0)){
+            rod_vy = rod_vy * -0.9;
+            rod_xy = 318 - rod_length;
+        }//条，反弹(右)
+        if((rod_xy <= 0 && rod_vy < 0)){
+            rod_vy = rod_vy * -0.9;
+            rod_xy = 0;
+        }//条，反弹(左)
+        //注意左右弹性系数0.9 上0.4下0.8
+
+        update_displayed_fish_changed();
+        if (bar_health >= 100) {
+            log_message(cur_fish.name + " 上钩了！","enemy_defeated");
+            action_div.style.display = "inherit";
+            fish_changed_div.style.display = "none";
+            add_xp_to_skill({skill: skills["Fishing"], xp_to_add: cur_fish.str / 5});//四倍经验
+            add_to_character_inventory([{item: item_templates[cur_fish.name], count: 1}]);
+            clearInterval(fishId);
+        }
+        if (bar_health <= 0) {
+            log_message(cur_fish.name + " 逃跑了！","enemy_enhanced");
+            action_div.style.display = "inherit";
+            fish_changed_div.style.display = "none";
+            clearInterval(fishId);
+        }
+        current_activity.gathering_time = 0;
+        //不准继续！
+
+    },frametime * 1000)
+}//完整钓鱼小游戏·改
 
 
 const reactor_div = document.getElementById("reactor_div");
@@ -4967,7 +5118,8 @@ function update() {
                         const items = [];
                         if(current_activity.activity_name == "fishing")
                         {
-                            start_fishing_minigame();
+                            if(current_activity.skill_xp_per_tick == 1) start_fishing_minigame();
+                            else start_fishing_minigame_changed();
                             //把鱼丢到物品栏里
                             //log_loot
                         }

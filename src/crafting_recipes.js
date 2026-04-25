@@ -1129,7 +1129,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Smelting",
     });
     smelting_recipes.items3["熔炼宝石母"] = new ItemRecipe({
-        name: "熔炼宝石母)",
+        name: "熔炼宝石母",
         recipe_type: "material",
         materials: [{material_id: "传承水晶·橙", count: 1},{material_id: "传承水晶·白", count: 2}], 
         result: {result_id: "宝石母锭", count: 1},

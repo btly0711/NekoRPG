@@ -1824,7 +1824,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
 
     skills["Fishing"] = new Skill({skill_id: "Fishing", 
         names: {0: "钓鱼"}, 
-        description: "增加钓鱼的熟练度,提高大鱼上钩的概率[3级出现青花鱼/10级出现冰柱鱼]",
+        description: "增加钓鱼的熟练度,提高大鱼上钩的概率[3级出现青花鱼/10级出现冰柱鱼]<br>幻境核心:0.75x长度[13级出现血莲鱼，21级出现冰柱鱼王]",
         category: "Activity",
         base_xp_cost: 80,
         visibility_treshold: 4,

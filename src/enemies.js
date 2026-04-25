@@ -6709,7 +6709,7 @@ class Enemy {
         spec: [13,33,53],
         spec_value:{33:13},
         tags: [],
-        stats: {health: 2222e8, attack: 56.78e8, agility: 32e8, attack_speed: 1.0, defense:0e8}, //血量50%
+        stats: {health: 2222e8, attack: 56.78e8, agility: 30e8, attack_speed: 1.0, defense:0e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -6726,7 +6726,7 @@ class Enemy {
         size: "small",
         spec: [6],
         tags: [],
-        stats: {health: 440e8, attack: 36e8, agility: 36e8, attack_speed: 1.5, defense:22e8}, //血量50%
+        stats: {health: 440e8, attack: 36e8, agility: 32e8, attack_speed: 1.5, defense:22e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -6743,7 +6743,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 1100e8, attack: 38e8, agility: 40e8, attack_speed: 1.4, defense:20e8}, //血量50%
+        stats: {health: 1100e8, attack: 38e8, agility: 34e8, attack_speed: 1.4, defense:20e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -6760,7 +6760,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 250e8, attack: 55e8, agility: 44e8, attack_speed: 1.4, defense:27.5e8}, //血量50%
+        stats: {health: 250e8, attack: 55e8, agility: 36e8, attack_speed: 1.4, defense:27.5e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -6777,7 +6777,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 75e8, attack: 90e8, agility: 48e8, attack_speed: 1.4, defense:35e8}, //血量50%
+        stats: {health: 75e8, attack: 90e8, agility: 38e8, attack_speed: 1.4, defense:35e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -6795,13 +6795,118 @@ class Enemy {
         size: "small",
         spec: [1],
         tags: [],
-        stats: {health: 160, attack: 44.44e8, agility: 52e8, attack_speed: 1.4, defense:0e8}, //血量50%
+        stats: {health: 160, attack: 44.44e8, agility: 40e8, attack_speed: 1.4, defense:0e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
             //5B
         ],
     });
+
+    enemy_templates["秘境荧光泡芙"] = new Enemy({
+        name: "秘境荧光泡芙", 
+        description: "最近，好多人都在抓的闪光品种，是这个吗？", 
+        xp_value: 2971215073, 
+        rank: 3707,
+        image: "image/enemy/E3707.png",
+        realm: "<span class=realm_sky><b>天空级巅峰</b></span>",
+        size: "small",
+        spec: [0],
+        tags: [],
+        stats: {health: 320e8, attack: 32e8, agility: 42e8, attack_speed: 1.4, defense:32e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.008},
+            {item_name: "传说绿宝石", chance:0.003},
+            //5B
+        ],
+    });
+    enemy_templates["秘境闪耀精灵"] = new Enemy({
+        name: "秘境闪耀精灵", 
+        description: "更亮了！惑幻……说起来，明明是幻境，它居然是第一只有这种属性的敌人吗？", 
+        xp_value: 2971215073, 
+        rank: 3708,
+        image: "image/enemy/E3708.png",
+        realm: "<span class=realm_sky><b>天空级巅峰</b></span>",
+        size: "small",
+        spec: [13,27],
+        tags: [],
+        stats: {health: 344.45e8, attack: 49e8, agility: 44e8, attack_speed: 1.4, defense:33e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.008},
+            {item_name: "传说绿宝石", chance:0.003},
+            //5B
+        ],
+    });
+    enemy_templates["喵咕啦"] = new Enemy({
+        name: "喵咕啦", 
+        description: "这种生物是怎么拟态成姐姐的样子的……衣服可以模拟，那皮肤呢？", 
+        xp_value: 2971215073, 
+        rank: 3709,
+        image: "image/enemy/E3709.png",
+        realm: "<span class=realm_sky><b>天空级巅峰</b></span>",
+        size: "small",
+        spec: [21],
+        spec_value:{21:60e8},
+        tags: [],
+        stats: {health: 555.5e8, attack: 1e4, agility: 46e8, attack_speed: 1.4, defense:37.5e8}, //血量50%(x)
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.008},
+            {item_name: "传说绿宝石", chance:0.003},
+            //5B
+        ],
+    });
+    enemy_templates["残雪灵阵"] = new Enemy({
+        name: "残雪灵阵", 
+        description: "相传，在一个魔女之力满地飞的时间线，许多残雪灵阵被释放进了地宫。好在这里没有那种事情。", 
+        xp_value: 2971215073, 
+        rank: 3710,
+        image: "image/enemy/E3710.png",
+        realm: "<span class=realm_sky><b>天空级巅峰</b></span>",
+        size: "small",
+        spec: [11],
+        tags: [],
+        stats: {health: 1e4, attack: 1e4, agility: 48e8, attack_speed: 1.4, defense:42e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.008},
+            {item_name: "传说绿宝石", chance:0.003},
+            //5B
+        ],
+    });
+    enemy_templates["晓雪魅蝠"] = new Enemy({
+        name: "晓雪魅蝠", 
+        description: "名字前面加一个晓的确听起来厉害多了！越打血越多的可恶蝙蝠……", 
+        xp_value: 2971215073, 
+        rank: 3711,
+        image: "image/enemy/E3711.png",
+        realm: "<span class=realm_sky><b>天空级巅峰</b></span>",
+        size: "small",
+        spec: [31],
+        tags: [],
+        stats: {health: 451.25e4, attack: 52e4, agility: 50e8, attack_speed: 1.4, defense:36e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.008},
+            {item_name: "传说绿宝石", chance:0.003},
+            //5B
+        ],
+    });
+    enemy_templates["威武星骑士"] = new Enemy({
+        name: "威武星骑士", 
+        description: "幸好结界湖的蓝帽行者没有戴着更大的帽子出现在这里。否则它大概能有几兆血。", 
+        xp_value: 4807526976, 
+        rank: 3712,
+        image: "image/enemy/E3712.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1352e4, attack: 63e4, agility: 52e8, attack_speed: 1.4, defense:27e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //5B
+        ],
+    });
+
 
 
     
@@ -6819,7 +6924,6 @@ B9++ 7,778,742,049exp 16B
 火烈茸茸和幻境飞蛾换位
 
 
-凶恶的金乌开始是8阶+
 圣荒城头目开始9阶+
 血洛大陆骨干开始9阶++(考虑到C1=B9+4 B9+2是常规等级)
 大门派精英独占9阶+++(经验和C1一致 掉落比C1少半档)

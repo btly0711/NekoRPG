@@ -4198,17 +4198,47 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["幻境核心·结界湖"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·地宫"], custom_text: "回到一重幻境"}], 
-        description: "所以这一次是——家族秘境，结界湖吗，不知道这里有没有冰柱鱼。这里也算是……对我影响很深的地方呢。[V2.62前版本终点]",
+        description: "所以这一次是——家族秘境，结界湖吗，不知道这里有没有冰柱鱼。这里也算是……对我影响很深的地方呢。",
         name: "幻境核心·结界湖", 
+        dialogues: ["纳鹰?"],
         is_unlocked: false,
         bgm: 20,
     });//3-7(2区)
 
     locations["幻境核心·地宫"].connected_locations.push({location: locations["幻境核心·结界湖"]});  
 
+    locations["幻境核心 - 2"] = new Combat_zone({
+        description: "就是在这里，纳鹰前辈传授了我很多修炼心得，令我一步步成长到现在。", 
+        enemy_count: 30, 
+        enemies_list: ["心魔","残雪灵阵","秘境荧光帕芙","秘境闪耀精灵","喵咕啦","晓雪魅蝠","威武星骑士"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        name: "幻境核心 - 2",
+        enemy_stat_halo:0.1,
+        rank:262, 
+        bgm:20,
+        parent_location: locations["幻境核心·结界湖"],
+        first_reward: {
+            xp: 7500e8,
+        },
+        repeatable_reward: {
+            xp: 2500e8,
+            textlines: [{dialogue: "纳鹰?", lines: ["hx5"]}],
+        },
+    });
+    locations["幻境核心·结界湖"].connected_locations.push({location: locations["幻境核心 - 2"]});  
 
 
 
+    locations["幻境核心·战场"] = new Location({ 
+        connected_locations: [{location: locations["幻境核心·结界湖"], custom_text: "回到二重幻境"}], 
+        description: "幻境，已经被打破了两重。那一场生灵涂炭的劫难……身临其境，不自觉就会变得暴戾起来。[V2.63前版本终点]",
+        name: "幻境核心·战场", 
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(3区)
+
+    locations["幻境核心·结界湖"].connected_locations.push({location: locations["幻境核心·战场"]});  
 
 
 
@@ -4923,6 +4953,21 @@ function get_location_type_penalty(type, stage, stat) {
                 resources: [{name: "血杀剑", ammount: [[1,1], [1,1]], chance: [1.0, 1.0]}], 
                 time_period: [40, 2],
                 skill_required: [50, 70],
+                scales_with_skill: true,
+            },
+        }),
+    }
+    locations["幻境核心·结界湖"].activites = {
+        "fishing2": new LocationActivity({
+            activity_name: "fishing",
+            infinite: true,
+            starting_text: "在幻境·结界湖中垂钓(2D)",
+            skill_xp_per_tick: 4,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "冰柱鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "血莲鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "冰柱鱼王", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]}],
+                time_period: [15, 3],
+                skill_required: [15, 35],
                 scales_with_skill: true,
             },
         }),

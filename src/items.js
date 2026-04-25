@@ -4684,6 +4684,25 @@ item_templates["Twist liek a snek"] = new Book({
         realmcap:20,
         image: "image/item/ice_fish.png",
     });
+    
+    item_templates["血莲鱼"] = new UsableItem({
+        id: "血莲鱼",
+        name: "血莲鱼", 
+        description: "青花鱼的究极形态——天空级七阶。比起只会沉浮的鱼，学会了在二维平面移动……", 
+        value: 192e12,
+        effects: [{effect: "饱食 IX", duration: 45}],
+        realmcap:31,
+        image: "image/item/red_fish.png",
+    });
+    item_templates["冰柱鱼王"] = new UsableItem({
+        id: "冰柱鱼王",
+        name: "冰柱鱼王", 
+        description: "传说有误！结界能量太充沛了，冰柱鱼王突破到天空级巅峰 +了！这里最强的不会有3+境吧……虽然没资源突破不了云霄级就是了啦。", 
+        value: 864e12,
+        effects: [{effect: "饱食 IX", duration: 360}],
+        realmcap:34,
+        image: "image/item/ice_fish_king.png",
+    });
 })();
 
 //特殊
