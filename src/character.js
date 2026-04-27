@@ -662,6 +662,12 @@ character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = tr
                 log_message(`坚固药剂抵挡了溢出的 ${format_number(damage_taken - character.stats.full.max_health * 0.05)} 伤害！`,"enemy_enhanced")
                 damage_taken = character.stats.full.max_health * 0.0500001;
         }
+        if(active_effects["烈日祝福·坤"]!=undefined && damage_taken > character.stats.full.max_health * 0.08)
+        {
+                log_message(`烈日祝福·坤 抵挡了溢出的 ${format_number(damage_taken - character.stats.full.max_health * 0.08)} 伤害！`,"enemy_enhanced")
+                damage_taken = character.stats.full.max_health * 0.0800001;
+        }
+
 
         character.stats.full.health -= damage_taken;
 

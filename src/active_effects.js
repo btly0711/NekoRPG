@@ -345,6 +345,41 @@ effect_templates["饱食 IX"] = new ActiveEffect({
     }
 });
 
+
+effect_templates["烈日祝福·乾"] = new ActiveEffect({
+    name: "烈日祝福·乾",
+    effects: {stats: {max_health: {multiplier: 1.8}}}
+});
+effect_templates["烈日祝福·兑"] = new ActiveEffect({
+    name: "烈日祝福·兑",
+    effects: {stats: {health_regeneration_percent: {flat: 1.5}}}
+});
+effect_templates["烈日祝福·离"] = new ActiveEffect({
+    name: "烈日祝福·离",
+    effects: {stats: {attack_power: {multiplier: 1.2}}}
+});
+effect_templates["烈日祝福·震"] = new ActiveEffect({
+    name: "烈日祝福·震",
+    effects: {stats: {attack_speed: {multiplier: 1.15}}}
+});
+effect_templates["烈日祝福·巽"] = new ActiveEffect({
+    name: "烈日祝福·巽",
+    //牵制(80%效力)
+});
+effect_templates["烈日祝福·坎"] = new ActiveEffect({
+    name: "烈日祝福·坎",
+    //魔攻(20%效力)
+});
+effect_templates["烈日祝福·艮"] = new ActiveEffect({
+    name: "烈日祝福·艮",
+    effects: {stats: {attack_mul: {multiplier: 0.8}}}
+    //回风(普攻倍率80%)
+});
+effect_templates["烈日祝福·坤"] = new ActiveEffect({
+    name: "烈日赐福·坤",
+    //坚固(无副作用/8%)
+});
+
 /*  let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
                 let MM2 = ["生命恢复 + 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];*/
 

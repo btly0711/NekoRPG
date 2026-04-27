@@ -4234,12 +4234,59 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["幻境核心·结界湖"], custom_text: "回到二重幻境"}], 
         description: "幻境，已经被打破了两重。那一场生灵涂炭的劫难……身临其境，不自觉就会变得暴戾起来。[V2.63前版本终点]",
         name: "幻境核心·战场", 
+        dialogues: ["烈日神像"],
         is_unlocked: false,
         bgm: 20,
     });//3-7(3区)
 
     locations["幻境核心·结界湖"].connected_locations.push({location: locations["幻境核心·战场"]});  
 
+    locations["幻境核心 - 3"] = new Combat_zone({
+        description: "就是在这里，纳鹰前辈传授了我很多修炼心得，令我一步步成长到现在。", 
+        enemy_count: 30, 
+        enemies_list: ["心魔","威武星骑士","兰陵城头目","圣荒城头目","战场不朽骸骨","血腥追风者"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        name: "幻境核心 - 3",
+        enemy_stat_halo:0.18,
+        rank:263, 
+        bgm:20,
+        parent_location: locations["幻境核心·战场"],
+        first_reward: {
+            xp: 9000e8,
+        },
+        repeatable_reward: {
+            xp: 3000e8,
+            locations: [{location: "幻境核心 - II"}],
+        },
+    });
+    locations["幻境核心 - II"] = new Challenge_zone({
+        description: "说起来，彭罗斯三角什么的在攻防中会有怎样的妙用呢？感觉是一个不错的巧思主题。", 
+        enemy_count: 1, 
+        enemies_list : [["不可能三角B9[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "幻境核心 - II",
+        bgm:20,
+        parent_location: locations["幻境核心·战场"],
+        repeatable_reward: {
+            locations: [{location: "幻境核心·飞船"}],
+        },
+    });
+    locations["幻境核心·战场"].connected_locations.push({location: locations["幻境核心 - 3"]});  
+    locations["幻境核心·战场"].connected_locations.push({location: locations["幻境核心 - II"]});  
+
+    locations["幻境核心·飞船"] = new Location({ 
+        connected_locations: [{location: locations["幻境核心·战场"], custom_text: "回到三重幻境"}], 
+        description: "那么，第四重幻境……天外来客的飞船核心？说起来，附近的区域，似乎有一种莫名的怨念在聚集。[V2.65前版本终点]",
+        name: "幻境核心·飞船", 
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(4区)
+
+    locations["幻境核心·战场"].connected_locations.push({location: locations["幻境核心·飞船"]});  
 
 
 
@@ -4957,6 +5004,21 @@ function get_location_type_penalty(type, stage, stat) {
             },
         }),
     }
+    locations["传承幻境"].activities = {
+        "fishing2": new LocationActivity({
+            activity_name: "fishing",
+            infinite: true,
+            starting_text: "在幻境·结界湖中垂钓(2D)",
+            skill_xp_per_tick: 4,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "冰柱鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "血莲鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "冰柱鱼王", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]}],
+                time_period: [15, 3],
+                skill_required: [15, 35],
+                scales_with_skill: true,
+            },
+        }),
+    }//WIP to be deleted
     locations["幻境核心·结界湖"].activities = {
         "fishing2": new LocationActivity({
             activity_name: "fishing",

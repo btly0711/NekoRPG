@@ -2386,6 +2386,39 @@ class Textline {
     
 
 
+    dialogues["烈日神像"] = new Dialogue({
+        name: "烈日神像",
+        starting_text: "参拜幻境·战场中的烈日之神像",
+        textlines: {
+            "lr1": new Textline({ 
+                is_unlocked: true,
+                name: "(不算恭敬地稍微拜一拜)",
+                text: "[烈日投影]<br>咳咳……听我弟弟皎月讲过你的事了。<br>总之，这座神像的材质更好！<br>虽然需要的不只是刀币，还多了些宇宙币……<br>作为回报，你可以得到烈日的祝福！<br>它们比原来的buff更强大！<br><br>对了，生命力和加钱的规矩还是老样子。<br><br><span class='realm_cloudy'>云霄级四阶</span>以上的修者也算了，<br>这个中档神像承载不了太强的力量投影。<br>此外，提醒一下——每22.5h祝福内容就会切换。<br>鉴于<span class='realm_cloudy'>云霄级</span>4.8h/s的时间流速，<br>不建议当场查看祝福，而是查表。",
+                unlocks: {
+                    textlines: [{dialogue: "烈日神像", lines: ["lr2"]},{dialogue: "烈日神像", lines: ["lr3"]}],
+                },
+                
+                locks_lines: ["lr1"],
+            }), 
+            "lr2": new Textline({ 
+                is_unlocked: false,
+                name: "(查询目前赐福与消耗信息)",
+                text: "",
+                unlocks: {
+                    spec: "LR-check",
+                },
+            }), 
+            "lr3": new Textline({ 
+                is_unlocked: false,
+                name: "(上供刀币获取赐福)",
+                text: "",
+                unlocks: {
+                    spec: "LR-sacrifice",
+                },
+            }), 
+        }
+    });
+
 
 
 

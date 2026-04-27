@@ -907,6 +907,27 @@ function textline_special(t_key){
                 
             }
         }
+        else if(t_key == "LR-check"){
+            let C_HP = character.stats.full.max_health;
+            let C_realm = character.xp.current_level;
+            if(C_realm >= 32) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
+            else{
+                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.45))}<br>`;
+                let C_time = current_game_time.hour + current_game_time.minutes / 60;
+                C_time = Math.floor(C_time / 22.5)
+                let MM1 = ["0-23点","23-45点","45-67点","67-90点","90-113点","113-135点","135-157点","157-180点"];
+                let MM2 = ["生命上限 x 1.8","生命恢复 1.5%","攻击伤害 x 1.2","攻击速度 x 1.15","牵制 [80% 效力]","魔攻 [20% 占比]","回风 [80% 倍率]","坚固 [8% 吸收线]"];
+                displayed_text += `<br>目前的时段为 ${MM1[C_time]}，<br>赐福内容为 ${MM2[C_time]}.(1800s)`
+                displayed_text += `<br>⚠️接受烈阳祝福会清空原有状态效果⚠️`;
+                /*
+                
+<br>·乾:血量*1.8,兑:回血+1.5%,离:攻击*1.2,震:攻速*1.15.
+<br>·巽:牵制80%,坎:魔攻20%,艮:回风/普攻倍率*0.8,坤:坚固(受伤上限8%/无副作用)
+
+                */
+                
+            }
+        }
         else if(t_key == "JY-sacrifice"){
             let C_realm = character.xp.current_level;
             if(C_realm >= 22) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
@@ -930,6 +951,41 @@ function textline_special(t_key){
                     let MM3 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
                     let C_moon = current_game_time.moon();
                     let moon_effect = "皎月祝福·"+MM3[C_moon];
+                    active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
+                    
+                    character.stats.add_active_effect_bonus();
+                    update_character_stats();
+                    update_displayed_effect_durations();
+                    update_displayed_effects();
+
+
+                }
+            }
+        }
+        else if(t_key == "LR-sacrifice"){
+            let C_realm = character.xp.current_level;
+            if(C_realm >= 32) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
+            else{
+                let C_money = Math.round(character.stats.full.max_health ** 1.45);
+                if(character.money < C_money)
+                {
+                    displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
+                }
+                else
+                {
+                    displayed_text += `钱包: ${format_money(character.money)} ->`;
+                    character.money -= C_money;
+                    displayed_text += `${format_money(character.money)}.<br>`;
+                    update_displayed_money();
+                    displayed_text += `原有的状态效果全部被烈日净化了！`;
+                    
+                    Object.keys(active_effects).forEach(key => {
+                        delete active_effects[key];
+                    });
+                    let MM3 = ["乾","兑","离","震","巽","坎","艮","坤"];
+                    let C_time = current_game_time.hour + current_game_time.minutes / 60;
+                    C_time = Math.floor(C_time / 22.5)
+                    let moon_effect = "烈日祝福·"+MM3[C_time];
                     active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
                     
                     character.stats.add_active_effect_bonus();
@@ -1541,7 +1597,7 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
 
             for(let i = 0; i < targets.length; i++) {
                 let alive_targets = current_enemies.filter(enemy => enemy.is_alive);
-                if(active_effects["回风 A9"]!=undefined)
+                if(active_effects["回风 A9"]!=undefined || active_effects["烈日祝福·艮"]!=undefined)
                 {
                     do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,0.8,"[回风-弱]");
                     alive_targets = current_enemies.filter(enemy => enemy.is_alive);
@@ -1750,11 +1806,12 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     }//激光
     if(active_effects["灵闪 B9"]!=undefined){
         if(attacker.stats.attack < character.stats.full.attack_power * 2){
-            spec_mul *= (1 - 0.5 *character.stats.full.defense / attacker.stats.defense);
+            spec_mul *= (1 - 0.5 *character.stats.full.defense / Math.min(1,attacker.stats.defense));
             spec_mul = Math.max(spec_mul,0);
+            
             spec_hint += '[灵闪·正]';
         } else {
-            spec_mul *= (1 + 3 *character.stats.full.defense / attacker.stats.defense);
+            spec_mul *= (1 + 3 *character.stats.full.defense / Math.min(1,attacker.stats.defense));
             spec_hint += '[灵闪·逆]';
         }
     }
@@ -2059,11 +2116,22 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             damage_dealt = proto_d * 0.1;
             Spec_E += "[魔攻]";
         }
+        if(active_effects["烈日祝福·坎"]!=undefined && damage_dealt < proto_d * 0.2)
+        {
+            damage_dealt = proto_d * 0.1;
+            Spec_E += "[魔攻·祝福]";
+        }
         if(active_effects["牵制 A9"]!=undefined)
         {
             sdmg_mul *= Math.min(character.stats.full.defense / (target.stats.defense + 0.0001) * 0.6,10);
             Spec_E += "[牵制]";
         }
+        if(active_effects["烈日祝福·巽"]!=undefined)
+        {
+            sdmg_mul *= Math.min(character.stats.full.defense / (target.stats.defense + 0.0001) * 0.8,10);
+            Spec_E += "[牵制·祝福]";
+        }
+        
         if(active_effects["异界之门 B9"]!=undefined)
         {
             target.stats.spec_value ||= {};

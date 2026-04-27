@@ -6425,7 +6425,7 @@ class Enemy {
         realm: "<span class=realm_sky><b>天空级八阶</b></span>",
         size: "small",
         spec: [18],
-        spec_value:{18:1e15},
+        spec_value:{18:400e12},
         tags: [],
         stats: {health: 440e8, attack: 17.7e8, agility: 16.0e8, attack_speed: 1.3, defense:12.5e8}, //血量40%
         loot_list: [
@@ -6706,7 +6706,7 @@ class Enemy {
         image: "image/enemy/E3701.png",
         realm: "<span class=realm_sky><b>天空级巅峰</b></span>",
         size: "small",
-        spec: [13,33,53],
+        spec: [52,33,53],
         spec_value:{33:13},
         tags: [],
         stats: {health: 2222e8, attack: 56.78e8, agility: 30e8, attack_speed: 1.0, defense:0e8}, //血量50%
@@ -6882,7 +6882,7 @@ class Enemy {
         size: "small",
         spec: [31],
         tags: [],
-        stats: {health: 451.25e4, attack: 52e8, agility: 50e8, attack_speed: 1.4, defense:36e8}, //血量50%
+        stats: {health: 451.25e8, attack: 52e8, agility: 50e8, attack_speed: 1.4, defense:36e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -6899,7 +6899,77 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 1352e4, attack: 63e8, agility: 52e8, attack_speed: 1.4, defense:27e8}, //血量50%
+        stats: {health: 1352e8, attack: 63e8, agility: 52e8, attack_speed: 1.4, defense:27e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //5B
+        ],
+    });
+    enemy_templates["圣荒城头目"] = new Enemy({
+        name: "圣荒城头目", 
+        description: "幻境也复刻了对应城市居民的弱点！无伤它的方法已经昭然若揭了。", 
+        xp_value: 4807526976, 
+        rank: 3713,
+        image: "image/enemy/E3713.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [18],
+        spec_value: {18:1e15},
+        tags: [],
+        stats: {health: 1104.5e8, attack: 63e8, agility: 48e8, attack_speed: 1.4, defense:37e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //5B
+        ],
+    });
+    enemy_templates["兰陵城头目"] = new Enemy({
+        name: "兰陵城头目", 
+        description: "这只也差不多！虽然冰宫幻境本身在燕岗领深处，但幻境中的灵却是恐惧显化而成。", 
+        xp_value: 4807526976, 
+        rank: 3714,
+        image: "image/enemy/E3714.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [39],
+        spec_value: {39:5000e8},
+        tags: [],
+        stats: {health: 924.5e8, attack: 55e8, agility: 50e8, attack_speed: 1.4, defense:44e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //5B
+        ],
+    });
+    enemy_templates["战场不朽骸骨"] = new Enemy({
+        name: "战场不朽骸骨", 
+        description: "就连头骨都已然发黑。光环……甚至还增强了一些？", 
+        xp_value: 4807526976, 
+        rank: 3715,
+        image: "image/enemy/E3715.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [11],
+        tags: [],
+        stats: {health: 900e8, attack: 65e8, agility: 52e8, attack_speed: 1.4, defense:30e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //5B
+        ],
+    });
+    enemy_templates["血腥追风者"] = new Enemy({
+        name: "血腥追风者", 
+        description: "【废墟追风者】的概念扰动延续到幻境了！毕竟追光作为小怪技能也太超模了啦……", 
+        xp_value: 4807526976, 
+        rank: 3716,
+        image: "image/enemy/E3716.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [36,16],
+        tags: [],
+        stats: {health: 1350e8, attack: 65e8, agility: 52e8, attack_speed: 1.4, defense:30e8}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
@@ -7641,6 +7711,20 @@ B9++ 7,778,742,049exp 16B
         spec_value:{21:60e8},
         tags: [],
         stats: {health: 5555e8, attack: 1e4, agility: 50e8, attack_speed: 1.5, defense:37.5e8}, //血量500%(x)原创属性！
+        loot_list: [
+        ],
+    });
+    enemy_templates["不可能三角B9[BOSS]"] = new Enemy({
+        name: "不可能三角B9[BOSS]", 
+        description: "单纯的数值怪。我猜可以打到这里应该不是很怕它了。", 
+        xp_value: 4807526976, 
+        rank: 3791,
+        image: "image/boss/B3701.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 15125e8, attack: 77e8, agility: 60e8, attack_speed: 1.6, defense:48e8}, //血量500%
         loot_list: [
         ],
     });
