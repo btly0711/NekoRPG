@@ -910,10 +910,13 @@ function textline_special(t_key){
         else if(t_key == "LR-check"){
             let C_HP = character.stats.full.max_health;
             let C_realm = character.xp.current_level;
-            if(C_realm >= 32) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
+            if(C_realm >= 32){
+                displayed_text += `这个神像仅能给 ${character.name} 这样的强者清空效果...`;
+                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.4))}<br>`;
+            }
             else{
-                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.45))}<br>`;
-                let C_time = current_game_time.hour + current_game_time.minutes / 60;
+                displayed_text += `基于 ${format_number(C_HP)} 的生命力，<br>赐福一次的耗费为 ${format_money(Math.round(C_HP ** 1.4))}<br>`;
+                let C_time = current_game_time.hour + current_game_time.minute / 60;
                 C_time = Math.floor(C_time / 22.5)
                 let MM1 = ["0-23点","23-45点","45-67点","67-90点","90-113点","113-135点","135-157点","157-180点"];
                 let MM2 = ["生命上限 x 1.8","生命恢复 1.5%","攻击伤害 x 1.2","攻击速度 x 1.15","牵制 [80% 效力]","魔攻 [20% 占比]","回风 [80% 倍率]","坚固 [8% 吸收线]"];
@@ -964,9 +967,8 @@ function textline_special(t_key){
         }
         else if(t_key == "LR-sacrifice"){
             let C_realm = character.xp.current_level;
-            if(C_realm >= 32) displayed_text += `这个神像不足以给 ${character.name} 这样的强者赐福...`;
-            else{
-                let C_money = Math.round(character.stats.full.max_health ** 1.45);
+            
+                let C_money = Math.round(character.stats.full.max_health ** 1.4);
                 if(character.money < C_money)
                 {
                     displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
@@ -982,20 +984,20 @@ function textline_special(t_key){
                     Object.keys(active_effects).forEach(key => {
                         delete active_effects[key];
                     });
-                    let MM3 = ["乾","兑","离","震","巽","坎","艮","坤"];
-                    let C_time = current_game_time.hour + current_game_time.minutes / 60;
-                    C_time = Math.floor(C_time / 22.5)
-                    let moon_effect = "烈日祝福·"+MM3[C_time];
-                    active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
-                    
-                    character.stats.add_active_effect_bonus();
-                    update_character_stats();
-                    update_displayed_effect_durations();
-                    update_displayed_effects();
-
-
+                    if(C_realm >= 32) displayed_text += `这个神像仅能给 ${character.name} 这样的强者清空效果...`;
+                    else{
+                        let MM3 = ["乾","兑","离","震","巽","坎","艮","坤"];
+                        let C_time = current_game_time.hour + current_game_time.minute / 60;
+                        C_time = Math.floor(C_time / 22.5)
+                        let moon_effect = "烈日祝福·"+MM3[C_time];
+                        active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
+                        
+                        character.stats.add_active_effect_bonus();
+                        update_character_stats();
+                        update_displayed_effect_durations();
+                        update_displayed_effects();
+                    }
                 }
-            }
         }
         else if(t_key == "A7-reactor"){
             start_reactor_minigame();
