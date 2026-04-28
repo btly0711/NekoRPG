@@ -990,6 +990,7 @@ function textline_special(t_key){
                         let C_time = current_game_time.hour + current_game_time.minute / 60;
                         C_time = Math.floor(C_time / 22.5)
                         let moon_effect = "烈日祝福·"+MM3[C_time];
+                        console.log("moon_effect")
                         active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
                         
                         character.stats.add_active_effect_bonus();

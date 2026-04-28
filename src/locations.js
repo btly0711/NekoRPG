@@ -5004,21 +5004,6 @@ function get_location_type_penalty(type, stage, stat) {
             },
         }),
     }
-    locations["传承幻境"].activities = {
-        "fishing2": new LocationActivity({
-            activity_name: "fishing",
-            infinite: true,
-            starting_text: "在幻境·结界湖中垂钓(2D)",
-            skill_xp_per_tick: 4,
-            is_unlocked: true,
-            gained_resources: {
-                resources: [{name: "冰柱鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "血莲鱼", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]},{name: "冰柱鱼王", ammount: [[1,1], [1,1]], chance: [0.00000001, 0.00000001]}],
-                time_period: [15, 3],
-                skill_required: [15, 35],
-                scales_with_skill: true,
-            },
-        }),
-    }//WIP to be deleted
     locations["幻境核心·结界湖"].activities = {
         "fishing2": new LocationActivity({
             activity_name: "fishing",

@@ -364,10 +364,12 @@ effect_templates["烈日祝福·震"] = new ActiveEffect({
 });
 effect_templates["烈日祝福·巽"] = new ActiveEffect({
     name: "烈日祝福·巽",
+    effects: {stats: {}}
     //牵制(80%效力)
 });
 effect_templates["烈日祝福·坎"] = new ActiveEffect({
     name: "烈日祝福·坎",
+    effects: {stats: {}}
     //魔攻(20%效力)
 });
 effect_templates["烈日祝福·艮"] = new ActiveEffect({
@@ -377,6 +379,7 @@ effect_templates["烈日祝福·艮"] = new ActiveEffect({
 });
 effect_templates["烈日祝福·坤"] = new ActiveEffect({
     name: "烈日赐福·坤",
+    effects: {stats: {}}
     //坚固(无副作用/8%)
 });
 
