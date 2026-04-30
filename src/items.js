@@ -2466,7 +2466,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["荒兽傀儡"] = new Props({
         name: "荒兽傀儡",
         id: "荒兽傀儡",
-        description: "飞船核心中记载的禁忌产物。然而，实际用途只是跑去拉仇恨...引来更多的敌人。", 
+        description: "飞船核心中记载的禁忌产物。然而，实际用途只是跑去拉仇恨...引来更多的敌人。<br><span class='realm_cloudy'><b>云霄级一阶</b></span>失效!", 
         value: 29.9e12,
         stats: {
             agility: {
@@ -2513,6 +2513,37 @@ item_templates["Twist liek a snek"] = new Book({
             },
             agility: {
                 flat: +4500e4,
+            },
+        }
+    });
+    item_templates["传承水晶·彩"] = new Props({
+        name: "传承水晶·彩",
+        id: "传承水晶·彩",
+        description: "幻境中的敌人都源自这些水晶，在它们附近时敌人精神最为松懈，等效于提供属性！", 
+        value: 24.16e15,
+        stats: {
+            attack_power: {
+                flat: +3e8,
+            },
+            defense: {
+                flat: +3e8,
+            },
+            agility: {
+                flat: +5e8,
+            },
+        }
+    });
+    item_templates["幻符灵阵"] = new Props({
+        name: "幻符灵阵",
+        id: "幻符灵阵",
+        description: "收拢月轮水晶，凝聚力量，蓄力一击。攻击的广度收窄许多，但深度却足以穿透最坚硬的天空级金属。<br><span class='realm_cloudy'><b>云霄级四阶</b></span>失效!", 
+        value: 24.16e15,
+        stats: {
+            attack_power: {
+                multiplier: 1.25,
+            },
+            attack_mul: {
+                multiplier: 0.4,
             },
         }
     });
@@ -3422,7 +3453,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 36e12,
         component_tier: 13,
         name_prefix: "晶化",
-        attack_value: 1800e4,
+        attack_value: 2400e4,
         stats: {
             crit_rate: {
                 flat: 0.22,
@@ -3438,7 +3469,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 248.4e12,
         component_tier: 14,
         name_prefix: "水素",
-        attack_value: 6000e4,
+        attack_value: 7200e4,
         stats: {
             crit_rate: {
                 flat: 0.24,
@@ -3469,13 +3500,29 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1436.4e12,
         component_tier: 15,
         name_prefix: "宝石",
-        attack_value: 13500e4,
+        attack_value: 16800e4,
         stats: {
             crit_rate: {
                 flat: 0.26,
             },
             attack_speed: {
                 multiplier: 1.19,
+            },
+        }
+    });
+    item_templates["魂晶轮锋"] = new WeaponComponent({
+        name: "魂晶轮锋", description: "魂晶制造的【月轮】镀层。这是最后一处18个锭的消耗了……再往后会是完整版36锭的月轮！",
+        component_type: "wheel head",
+        value: 7290e12,
+        component_tier: 16,
+        name_prefix: "宝石",
+        attack_value: 47040e4,
+        stats: {
+            crit_rate: {
+                flat: 0.28,
+            },
+            attack_speed: {
+                multiplier: 1.20,
             },
         }
     });
@@ -4390,6 +4437,63 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    //价格基本单位:405e12,防御基本单位:0.216e8
+    item_templates["魂晶头盔"] = new ArmorComponent({
+        name: "魂晶头盔",
+        description: "从魂晶开始，因为需要更厚的装甲来发挥材料的潜力，它们的消耗翻倍了！(经验也翻倍了)",
+        component_type: "helmet exterior",
+        value: 2025e12,
+        component_tier: 16,
+        full_armor_name: "魂晶头盔",
+        defense_value: 1.08e8,
+        stats: {
+            attack_mul: {
+                flat: 0.06,
+            },
+        }
+    });
+    item_templates["魂晶胸甲"] = new ArmorComponent({
+        name: "魂晶胸甲",
+        description: "从魂晶开始，因为需要更厚的装甲来发挥材料的潜力，它们的消耗翻倍了！(经验也翻倍了)",
+        component_type: "chestplate exterior",
+        value: 3240e12,
+        component_tier: 16,
+        full_armor_name: "魂晶胸甲",
+        defense_value: 1.728e8,
+        stats: {
+            attack_mul: {
+                flat: 0.06,
+            },
+        }
+    });
+    item_templates["魂晶腿甲"] = new ArmorComponent({
+        name: "魂晶腿甲",
+        description: "从魂晶开始，因为需要更厚的装甲来发挥材料的潜力，它们的消耗翻倍了！(经验也翻倍了)",
+        component_type: "leg armor exterior",
+        value: 2835e12,
+        component_tier: 16,
+        full_armor_name: "魂晶腿甲",
+        defense_value: 1.512e8,
+        stats: {
+            attack_mul: {
+                flat: 0.06,
+            },
+        }
+    });
+    item_templates["魂晶战靴"] = new ArmorComponent({
+        name: "魂晶战靴",
+        description: "从魂晶开始，因为需要更厚的装甲来发挥材料的潜力，它们的消耗翻倍了！(经验也翻倍了)",
+        component_type: "shoes exterior",
+        value: 1620e12,
+        component_tier: 16,
+        full_armor_name: "魂晶战靴",
+        defense_value: 0.864e8,
+        stats: {
+            attack_mul: {
+                flat: 0.06,
+            },
+        }
+    });
 
 
 
@@ -4632,6 +4736,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 133e12,
         material_type: "metal",
         image: "image/item/gemM_ingot.png",
+    });
+    item_templates["魂晶锭"] = new Material({
+        id: "魂晶锭",
+        name: "魂晶锭", 
+        description: "吸收魂魄的紫晶锭。粗制器灵，但是更强了——境界越高的修者，死后的魂魄残留越多的灵性。", 
+        value: 672e12,
+        material_type: "metal",
+        image: "image/item/violet_ingot.png",
     });
 })();
 
@@ -5707,6 +5819,25 @@ item_templates["Twist liek a snek"] = new Book({
         description: "左阿传承的一部分。看似杂乱无章，实际上却含有大量能量回路的水晶。", 
         value: 125e12,
         image: "image/item/inherit_pink.png",
+    });
+    //3-7
+    item_templates["天空级魂魄"] = new Loot({
+        name: "天空级魂魄", 
+        description: "保留完整能量回路，自动吸收天地间能量的魂魄。放置数年也不会丢失记忆。", 
+        value: 210e12,
+        image: "image/item/B9_soul.png",
+    });
+    item_templates["紫晶碎片"] = new Loot({
+        name: "紫晶碎片", 
+        description: "蓝金的上位金属。晶莹剔透，具有容纳灵魂的潜质。", 
+        value: 325e12,
+        image: "image/item/violet_fragment.png",
+    });
+    item_templates["幻境符文"] = new Loot({
+        name: "幻境符文", 
+        description: "由纳可的水火领域外溢的能量衍生的符文。巨型结界的作用可不是盖的！", 
+        value: 369e12,
+        image: "image/item/violet_fragment.png",
     });
 
 

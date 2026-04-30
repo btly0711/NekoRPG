@@ -6713,6 +6713,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "天空级魂魄", chance:0.023},
             //5B
         ],
     });
@@ -6730,6 +6731,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "传承水晶·白", chance:0.05},
+            {item_name: "传承水晶·橙", chance:0.062},
             //5B
         ],
     });
@@ -6747,6 +6750,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "传承水晶·粉", chance:0.02},
+            {item_name: "天空级魂魄", chance:0.012},
             //5B
         ],
     });
@@ -6764,6 +6769,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "天空级魂魄", chance:0.025},
             //5B
         ],
     });
@@ -6781,6 +6787,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "天空级魂魄", chance:0.026},
             //5B
         ],
     });
@@ -6799,6 +6806,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "传承水晶·粉", chance:0.02},
+            {item_name: "天空级魂魄", chance:0.012},
             //5B
         ],
     });
@@ -6817,6 +6826,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "传承水晶·白", chance:0.06},
+            {item_name: "传承水晶·橙", chance:0.06},
             //5B
         ],
     });
@@ -6834,6 +6845,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "传承水晶·粉", chance:0.05},
             //5B
         ],
     });
@@ -6852,6 +6864,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "紫晶碎片", chance:0.018},
             //5B
         ],
     });
@@ -6869,6 +6882,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "紫晶碎片", chance:0.020},
             //5B
         ],
     });
@@ -6886,6 +6900,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
+            {item_name: "紫晶碎片", chance:0.022},
             //5B
         ],
     });
@@ -6903,7 +6918,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
-            //5B
+            {item_name: "紫晶碎片", chance:0.027},
+            //9B
         ],
     });
     enemy_templates["圣荒城头目"] = new Enemy({
@@ -6921,7 +6937,10 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
-            //5B
+            {item_name: "传承水晶·白", chance:0.04},
+            {item_name: "传承水晶·橙", chance:0.04},
+            {item_name: "传承水晶·粉", chance:0.04},
+            //9B
         ],
     });
     enemy_templates["兰陵城头目"] = new Enemy({
@@ -6939,7 +6958,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
-            //5B
+            {item_name: "幻境符文", chance:0.021},
+            //9B
         ],
     });
     enemy_templates["战场不朽骸骨"] = new Enemy({
@@ -6956,7 +6976,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
-            //5B
+            {item_name: "幻境符文", chance:0.024},
+            //9B
         ],
     });
     enemy_templates["血腥追风者"] = new Enemy({
@@ -6973,7 +6994,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
-            //5B
+            {item_name: "幻境符文", chance:0.027},
+            //9B
         ],
     });
 

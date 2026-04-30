@@ -1522,7 +1522,6 @@ function update_displayed_normal_location(location) {
 
     ////////////////////////////////
     //add buttons to start gathering
-    console.log(location.activities);
     if(global_flags.is_gathering_unlocked) {
         const available_gatherings = Object.values(location.activities).filter(activity => activities[activity.activity_name].type === "GATHERING" 
                                                                         && activities[activity.activity_name].is_unlocked
