@@ -7741,7 +7741,7 @@ B9++ 7,778,742,049exp 16B
         description: "单纯的数值怪。我猜可以打到这里应该不是很怕它了。", 
         xp_value: 4807526976, 
         rank: 3791,
-        image: "image/boss/B3701.png",
+        image: "image/boss/B3702.png",
         realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
         size: "small",
         spec: [],
