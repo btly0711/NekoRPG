@@ -1060,7 +1060,7 @@ function textline_special(t_key){
             let C_pz = cs_map[T_S];//Cost_凭证
             if(character.inventory[pz_key] != undefined)
             {
-                let T_cnt = Math.floor(character.inventory[pz_key].count/C_pz);//TODO - count
+                let T_cnt = Math.floor(character.inventory[pz_key].count/C_pz);
                 if(T_cnt != 0) remove_from_character_inventory([{ 
                     item_key: pz_key,           
                     item_count: C_pz * T_cnt,
@@ -1070,7 +1070,60 @@ function textline_special(t_key){
                 displayed_text += `兑换了 ${T_cnt} 个 ${pz_map[T_S]}。<br>`;
 
             }
-            else displayed_text += `未发现【荒兽凭证】！<br>兑换点需要它才能兑换物品...`;
+            else displayed_text += `未发现【<img src='image/item/B3_ear.png'>荒兽凭证】！<br>兑换点需要它才能兑换物品...`;
+        }
+        else if(t_key.includes("gacha")){
+            let cnt = 1;
+            if(t_key == 'gacha-10') cnt = 10;
+            let cur_cost = cnt==1?10:90;
+            let fj_key = "{\"id\":\""+"传承水晶·粉"+"\"}";//粉
+            if(character.inventory[fj_key] != undefined)
+            {
+
+                let cur_cnt = character.inventory[fj_key].count;//目前的粉色数量
+                if(cur_cnt >= cur_cost)
+                    {
+                    remove_from_character_inventory([{ 
+                        item_key: fj_key,           
+                        item_count: cur_cost,
+                    }]);
+                    //宝石母锭 & 幻境符文 & 紫晶碎片 & 天空级魂魄 & 传说红宝石：安慰奖，各12.4%
+                    //魂晶锭 & 血莲鱼 & 传说绿宝石 & 宇宙币：罕见物品，各8% 还有8%
+                    //血杀剑 & 冰柱鱼王 &中等进化结晶碎片：稀有物品，各2%
+                    //【峰】：隐藏物品，兆分之一的概率
+                    displayed_text += `抽奖结果：<br>`;
+                    for(let c_num = 1;c_num <= cnt;c_num ++){
+                        let gacha_RNG = Math.random();
+                        let reward_list = {1:{1:"宝石母锭",2:"幻境符文",3:"紫晶碎片",4:"天空级魂魄",5:"传说红宝石"},2:{1:"魂晶锭",2:"血莲鱼",3:"传说绿宝石",4:"宇宙币"},3:{1:"血杀剑",2:"冰柱鱼王",3:"中等进化结晶碎片"},4:{1:"峰",2:"峰"}};
+                        let reward_lvl = 0;
+                        if(gacha_RNG<0.62) reward_lvl = 1;
+                        else if(gacha_RNG<0.94
+
+                        ) reward_lvl = 2;
+                        else if(gacha_RNG<0.9999) reward_lvl = 3;
+                        else{
+                            let RNG2 = Math.random(),RNG3 = Math.random();
+                            if(RNG2<0.0001 && RNG3<0.0001){
+                                reward_lvl = 4;
+                            }
+                            else reward_lvl = 3;
+                        }
+                        let reward_order = Math.floor(Math.random()*(6-reward_lvl))+1;
+                        if(reward_order > 6-reward_lvl) reward_order = 6-reward_lvl;
+                        let reward_name = reward_list[reward_lvl][reward_order];
+                        let reward_style = {1:"style='filter:drop-shadow(0 0 5px #0f0)'",2:"style='filter:drop-shadow(0 0 9px #0cf) drop-shadow(0 0 9px #0f0) '",3:"style='filter: drop-shadow(0 0 12px #c0f) drop-shadow(0 0 9px #00f) drop-shadow(0 0 6px #0cf)'",4:"style='filter:drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00)"}
+                        add_to_character_inventory([{ "item": getItem(item_templates[reward_name]), "count": 1 }]);
+                        displayed_text += `<img src=${item_templates[reward_name].image} ${reward_style[reward_lvl]}>`;
+                        if(c_num == 5) displayed_text += "<br><br>";
+                        if(c_num%5 != 0)displayed_text += ` , `
+
+                        //<img src="https://picsum.photos/100" style="filter:drop-shadow(0 0 10px #0ff) drop-shadow(0 0 25px #0ff)">
+                    }
+                }
+                else displayed_text += `【<img src='image/item/inherit_pink.png'>传承水晶·粉】不足！ ${cur_cnt} / ${cur_cost}`;
+
+            }
+            else displayed_text += `未发现【<img src='image/item/inherit_pink.png'>传承水晶·粉】！<br>需要它才能扭蛋...`;
         }
         else if(t_key == "lf-1"){
             displayed_text +=  `你的精神念力不错，又拥有 ${inf_combat.RM==2?"一":"二"}重领域，<br>
@@ -1364,6 +1417,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(39)) Spec_S += "[贪婪·宝石]";
     if(current_enemies[enemy_id].spec.includes(51)) Spec_S += "[压制]";
     if(current_enemies[enemy_id].spec.includes(52)) Spec_S += "[压制..?]";
+    if(current_enemies[enemy_id].spec.includes(54)) Spec_S += "[生命限制]";
     
     if(isnew) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
@@ -1822,6 +1876,10 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         E_atk_mul_f *= Math.max(( 1 - ((character.stats.full.health/attacker.stats.health) ** 0.5) * 0.1),0);
         spec_hint += '[散华^1/2]';
     }
+    if(attacker.spec.includes(54))
+    {
+        E_atk_mul_f *= attacker.stats.health / character.stats.full.health;
+    }//生命限制
 
 
 //"如果敌人的攻击少于角色的2倍，角色受到的伤害减少(角色防御/敌人防御)的二分之一。反之，增加(角色防御/敌人防御)的两倍。该效果不会把伤害降低到0以下。", 
@@ -2543,7 +2601,6 @@ function get_spec_rewards(money){
             log_message(`${character.name} 感到附近有财富与交易的气息 ....`, "location_reward");
         }//6 12 18 24 30
     }
-    //TODO:增加废墟商人的解锁，并且在已经解锁之后不再提示。
 
 }
 /**
@@ -4406,7 +4463,7 @@ let fish_vy = 0,fish_xy = 100;
 let rod_vy = 0,rod_xy = 100;
 let center_x,center_y,offset_x,offset_y;
 let rod_diff = 0.750;//操控力度
-let fishs_changed = {1:{name:"冰柱鱼",str:60},2:{name:"血莲鱼",str:120},3:{name:"冰柱鱼王",str:180}}
+let fishs_changed = {1:{name:"冰柱鱼",str:80},2:{name:"血莲鱼",str:120},3:{name:"冰柱鱼王",str:160}}
 //bar_health rod_length保留
 function update_displayed_fish_changed()
 {

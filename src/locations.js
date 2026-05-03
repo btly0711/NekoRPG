@@ -4282,6 +4282,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["幻境核心·战场"], custom_text: "回到三重幻境"}], 
         description: "那么，第四重幻境……天外来客的飞船核心？说起来，附近的区域，似乎有一种莫名的怨念在聚集。[V2.65前版本终点]",
         name: "幻境核心·飞船", 
+        dialogues: ["末世天骄","十连扭蛋机"],
         is_unlocked: false,
         bgm: 20,
     });//3-7(4区)
@@ -4289,7 +4290,67 @@ function get_location_type_penalty(type, stage, stat) {
     locations["幻境核心·战场"].connected_locations.push({location: locations["幻境核心·飞船"]});  
 
 
+    locations["幻境核心 - 4"] = new Combat_zone({
+        description: "这种怨念……这是之前三重幻境，都没有感应到过的。这一次，又是什么呢？", 
+        enemy_count: 30, 
+        enemies_list: ["心魔","黄桃重工B9","不可能三角B9","极寒之锋B9","金色血眼B9","恐怖机人B9"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        name: "幻境核心 - 4",
+        rank:264, 
+        bgm:20,
+        parent_location: locations["幻境核心·飞船"],
+        first_reward: {
+            xp: 12000e8,
+        },
+        repeatable_reward: {
+            xp: 4000e8,
+            locations: [{location: "幻境核心 - III"}],
+        },
+    });
+    locations["幻境核心 - 歧路"] = new Challenge_zone({
+        description: "看来讲话是讲不通了！Plan B~物·理·超·度！", 
+        enemy_count: 1, 
+        enemies_list : [["末世天骄[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "幻境核心 - 歧路",
+        bgm:20,
+        parent_location: locations["幻境核心·飞船"],
+        repeatable_reward: {
+            textlines: [{dialogue: "十连扭蛋机", lines: ["nd1"]}],
+        },
+    });
+    locations["幻境核心 - III"] = new Challenge_zone({
+        description: "真的非常狠！蛮咕兽，狠咕兽，特咕兽——征集下一个名字！暴咕兽怎么样？", 
+        enemy_count: 1, 
+        enemies_list : [["狠咕兽[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "幻境核心 - III",
+        bgm:20,
+        parent_location: locations["幻境核心·飞船"],
+        repeatable_reward: {
+            locations: [{location: "幻境核心·森林"}],
+        },
+    });
+    locations["幻境核心·飞船"].connected_locations.push({location: locations["幻境核心 - 4"]});  
+    locations["幻境核心·飞船"].connected_locations.push({location: locations["幻境核心 - III"]});  
 
+
+    locations["幻境核心·森林"] = new Location({ 
+        connected_locations: [{location: locations["幻境核心·飞船"], custom_text: "回到四重幻境"}], 
+        description: "好浓的雾气……不过辨认眼前的事物还是没问题的。这是，遇到峰大哥的那片森林吧。[V2.66前版本终点]",
+        name: "幻境核心·森林", 
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(5区)
+
+    locations["幻境核心·飞船"].connected_locations.push({location: locations["幻境核心·森林"]});  
 
 
 

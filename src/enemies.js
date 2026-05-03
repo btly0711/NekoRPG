@@ -6998,6 +6998,92 @@ class Enemy {
             //9B
         ],
     });
+    enemy_templates["黄桃重工B9"] = new Enemy({
+        name: "黄桃重工B9", 
+        description: "呵，长大了。饮盾倍率也高了十倍。不过——普攻倍率翻了可不止十倍啊！", 
+        xp_value: 4807526976, 
+        rank: 3717,
+        image: "image/enemy/E3717.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [12,47],
+        tags: [],
+        stats: {health: 100e8, attack: 68e8, agility: 60e8, attack_speed: 1.5, defense:54e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //9B
+        ],
+    });
+    enemy_templates["不可能三角B9"] = new Enemy({
+        name: "不可能三角B9", 
+        description: "有没有一种可能……我是说可能……它有一堆战前给自己上buff的属性，只是我们不知道？", 
+        xp_value: 4807526976, 
+        rank: 3718,
+        image: "image/enemy/E3718.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1512.5e8, attack: 77e8, agility: 64e8, attack_speed: 1.6, defense:48e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //9B
+        ],
+    });
+    enemy_templates["极寒之锋B9"] = new Enemy({
+        name: "极寒之锋B9", 
+        description: "或许我永远不会忘记被鲜血之锋B1支配的恐惧的。另外，生命限制……牵制出3.0版了？！", 
+        xp_value: 4807526976, 
+        rank: 3719,
+        image: "image/enemy/E3719.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [49,54],
+        spec_value:{49:{rnd:648,hp:10e8}},
+        tags: [],
+        stats: {health: 6480e8, attack: 88e8, agility: 68e8, attack_speed: 1.4, defense:1e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //9B
+        ],
+    });
+    enemy_templates["金色血眼B9"] = new Enemy({
+        name: "金色血眼B9", 
+        description: "简单的技能，极……和我的月轮说去吧！", 
+        xp_value: 4807526976, 
+        rank: 3720,
+        image: "image/enemy/E3720.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [1],
+        tags: [],
+        stats: {health: 140, attack: 80e8, agility: 72e8, attack_speed: 1.5, defense:70e8}, //血量50%
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //9B
+        ],
+    });
+    enemy_templates["恐怖机人B9"] = new Enemy({
+        name: "恐怖机人B9", 
+        description: "道理我都懂，为什么你不是32*32的？异界之门原来是传送门啊！", 
+        xp_value: 4807526976, 
+        rank: 3721,
+        image: "image/enemy/E3721.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
+        size: "small",
+        spec: [1],
+        tags: [],
+        stats: {health: 1200e8, attack: 81e8, agility: 76e8, attack_speed: 1.5, defense:60e8}, //血量50%*5(异界)
+        loot_list: [
+            {item_name: "传说红宝石", chance:0.003},
+            {item_name: "传说绿宝石", chance:0.008},
+            //9B
+        ],
+    });
 
 
 
@@ -7017,7 +7103,7 @@ B9++ 7,778,742,049exp 16B
 
 
 圣荒城头目开始9阶+
-血洛大陆骨干开始9阶++(考虑到C1=B9+4 B9+2是常规等级)
+冈崎喵妖开始9阶++(考虑到C1=B9+4 B9+2是常规等级)
 大门派精英独占9阶+++(经验和C1一致 掉落比C1少半档)
 
 
@@ -7740,13 +7826,42 @@ B9++ 7,778,742,049exp 16B
         name: "不可能三角B9[BOSS]", 
         description: "单纯的数值怪。我猜可以打到这里应该不是很怕它了。", 
         xp_value: 4807526976, 
-        rank: 3791,
+        rank: 3792,
         image: "image/boss/B3702.png",
         realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
         size: "small",
         spec: [],
         tags: [],
         stats: {health: 15125e8, attack: 77e8, agility: 60e8, attack_speed: 1.6, defense:48e8}, //血量500%
+        loot_list: [
+        ],
+    });
+    enemy_templates["末世天骄[BOSS]"] = new Enemy({
+        name: "末世天骄[BOSS]", 
+        description: "末世秘境天才的一缕残魂。在漫长的时光中流失了99.9999%的力量，只剩下<span class=realm_sky><b>天空级巅峰 ++</b></span>的能级……", 
+        xp_value: 7778742049, 
+        rank: 3793,
+        image: "image/boss/B3703.png",
+        realm: "<b><span class=realm_cloudy><del>云霄级巅峰 [XII]<del>云霄级一阶 --</span></b>",
+        size: "small",
+        spec: [51,15,34],
+        tags: [],
+        stats: {health: 29990e8, attack: 120e8, agility: 70e8, attack_speed: 1.2, defense:20e8}, //血量500%
+        loot_list: [
+            {item_name: "传承水晶·粉", chance:60,ignore_luck:true},
+        ],
+    });
+    enemy_templates["狠咕兽[BOSS]"] = new Enemy({
+        name: "狠咕兽[BOSS]", 
+        description: "幸好不是大宝石版的特咕兽。又一只数值怪——平平常常，对吧？", 
+        xp_value: 7778742049, 
+        rank: 3794,
+        image: "image/boss/B3704.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 27775e8, attack: 110e8, agility: 75e8, attack_speed: 1.5, defense:55e8}, //血量500%
         loot_list: [
         ],
     });

@@ -3589,13 +3589,20 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [52, "压制·伪", "#47e6a4", "压制/牵制对手的招式可能成为窍门或是负累。<br>敌人每回合伤害*<span style='color:#87CEFA'>(敌人攻防和/角色攻防和)^(1-0.01*牵制领悟度)*(敌人防御力/角色防御力)^(0.01*牵制领悟度)</span>。"],
 [53, "同调·魔", "#FF6A00","玄妙且具备威胁的领悟，可以共享属性。<br>敌人会随着角色的变强而变强，其攻击附加<span style='color:#87CEFA'>200%</span>角色的攻击。"],
 ];
+[54, "生命限制", "#ffacc5","限制对手的能力可能成为窍门或是负累。<br>敌人每回合伤害*（敌人生命/角色生命）。"],
 
 //超过25倍倍率的攻击暂时视为必中！
-function format_percent(perc){
+function format_perc(perc){
     if(perc < 10) return format_number(100*perc) + '%';
     else return format_number(perc) + 'x'; 
 }
 
+function format_numberL(perc){
+    if(perc < 1e-6) return format_number(10000*perc) + '/亿';
+    else if(perc < 0.001) return format_number(10000*perc) + '‰₀‌';
+    else if(perc < 10) return format_number(100*perc) + '%';
+    else return format_number(perc) + 'x'; 
+}
 
 function create_new_bestiary_entry(enemy_name) {
     bestiary_entry_divs[enemy_name] = document.createElement("div");
@@ -3772,8 +3779,9 @@ function create_new_bestiary_entry(enemy_name) {
         loot_chance_current.classList.add("loot_chance_current");
 
         loot_name.innerHTML = `${enemy.loot_list[i].item_name}`;
-        loot_chance_base.innerHTML = `[${format_percent(enemy.loot_list[i].chance)}]`;
-        loot_chance_current.innerHTML = `${enemy.loot_list[i].ignore_luck?("[Fixed]"):(format_percent(enemy.loot_list[i].chance*enemy.get_droprate_modifier()))}`;
+        //console.log(enemy.loot_list)
+        loot_chance_base.innerHTML = `[${format_numberL(enemy.loot_list[i].chance)}]`;
+        loot_chance_current.innerHTML = `${enemy.loot_list[i].ignore_luck?("[Fixed]"):(format_numberL(enemy.loot_list[i].chance*enemy.get_droprate_modifier()))}`;
         loot_chance.append(loot_chance_current, loot_chance_base);
         loot_line.append(loot_name, loot_chance);
 
@@ -3959,7 +3967,7 @@ function create_new_levelary_entry(level_name) {
             if(lootlist[I_name] == undefined)
             {
                 lootlist[I_name] = 1;
-                tooltip_loots.innerHTML += `[ ${I_name} ] - ${format_percent(I_list[I_name] * character.stats.full.luck / level.enemies_list.length)} <br>`
+                tooltip_loots.innerHTML += `[ ${I_name} ] - ${format_numberL(I_list[I_name] * character.stats.full.luck / level.enemies_list.length)} <br>`
             }
         }
         //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;

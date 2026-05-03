@@ -1420,11 +1420,11 @@ class Textline {
 
     dialogues["结界湖转化器"] = new Dialogue({
         name: "结界湖转化器",
-        starting_text: "使用荒兽凭证兑换物品(包括转化器)",
+        starting_text: "使用<img src='image/item/B3_ear.png'>荒兽凭证兑换物品(包括转化器)",
         textlines: {
             "jjh": new Textline({ 
                 is_unlocked: true,
-                name: "转化结界湖之心(需要结界湖之心位于装备栏)",
+                name: "转化<img src='image/item/barrierlake_heart.png'>结界湖之心(需要结界湖之心位于装备栏)",
                 text: "",
                 unlocks: {
                     spec:"jjhzx",
@@ -1432,7 +1432,7 @@ class Textline {
             }),
             "pz-my": new Textline({ 
                 is_unlocked: true,
-                name: "兑换秘银锭(30:1)",
+                name: "兑换<img src='image/item/mythril_ingot.png'>秘银锭(30:1)",
                 text: "",
                 unlocks: {
                     spec:"pz-my",
@@ -1440,7 +1440,7 @@ class Textline {
             }),
             "pz-bs": new Textline({ 
                 is_unlocked: true,
-                name: "兑换史诗黄宝石(80:1)",
+                name: "兑换<img src='image/item/gem51_200k.png'>史诗黄宝石(80:1)",
                 text: "",
                 unlocks: {
                     spec:"pz-bs",
@@ -1448,7 +1448,7 @@ class Textline {
             }),
             "pz-Bq": new Textline({ 
                 is_unlocked: true,
-                name: "兑换紫色刀币(250:1)",
+                name: "兑换<img src='image/item/1B.png'>紫色刀币(250:1)",
                 text: "",
                 unlocks: {
                     spec:"pz-Bq",
@@ -2414,6 +2414,74 @@ class Textline {
                 text: "",
                 unlocks: {
                     spec: "LR-sacrifice",
+                },
+            }), 
+        }
+    });
+
+    dialogues["末世天骄"] = new Dialogue({
+        name: "末世天骄",
+        starting_text: "和怨念集合体对话",
+        textlines: {
+            "hx8": new Textline({ 
+                is_unlocked: true,
+                name: "(来到面前)",
+                text: "[？？？]我不甘心！不甘心！<br>本天才英明一世，历尽坎坷闯过天才战，<br>却栽在了一场区区试炼任务中！<br><br>[纳可]好强烈的怨念，而且是之前没有见过的人。<br>难道是……这艘飞船的主人吗？<br>也就是，那位陨落在这里的，<br>天外来客。",
+                unlocks: {
+                    textlines: [{dialogue: "末世天骄", lines: ["hx9"]}],
+                },
+                
+                locks_lines: ["hx8"],
+            }), 
+            "hx9": new Textline({ 
+                is_unlocked: false,
+                name: "原来如此……",
+                text: "[纳可]就在我被封锁在飞船内的那段时间，<br>他的怨念便已经附着在我内心深处，<br>许久以来，我竟然未曾察觉……<br>[？？？]杀，杀了你们！<br>敢挡本天才的强者路，<br>不过是一群愚昧的土著罢了——<br>[纳可]看来……你真的是很不甘心呢。<br>被你称之为土著的，<br>那些死在你手上的血洛大陆居民，<br>他们何尝又不想活着？<br>你肆意屠杀低阶血洛居民，<br>分明于你毫无益处，<br>只是发泄愤恨的手段！<br><br>你觉得，真正的天才面临陨落……",
+                unlocks: {
+                    textlines: [{dialogue: "末世天骄", lines: ["hx10"]}],
+                },
+                locks_lines: ["hx9"],
+            }), 
+            "hx10": new Textline({ 
+                is_unlocked: false,
+                name: "会像你一样歇斯底里吗？",
+                text: "[？？？]你……我……<br>谔谔啊啊啊啊——<br><br>天外来客，突然间不再说话，<br>似是彻底冷静下来。<br>他的眼神变得平静无波。<br>突然之间，周遭散逸的怨念沸腾起来，<br>天外来客桀笑出声。<br><br>[？？？]呵呵呵……<br>你在反应堆熔毁时，<br>可曾怀疑过为何辐射如此短暂？<br>那都是因为——本天才！<br>本天才已经恢复到半步云霄级！",
+                unlocks: {
+                    locations: ["幻境核心 - 歧路"],
+                },
+                locks_lines: ["hx10"],
+            }), 
+        }
+    });
+
+    dialogues["十连扭蛋机"] = new Dialogue({
+        name: "十连扭蛋机",
+        starting_text: "使用 [十连扭蛋机]",
+        textlines: {
+            "nd1": new Textline({ 
+                is_unlocked: true,
+                name: "扭蛋机介绍",
+                text: "使用 <img src='image/item/inherit_pink.png'>传承水晶·粉 抽奖！<br>10块一抽，90块十连！",
+                unlocks: {
+                    textlines: [{dialogue: "十连扭蛋机", lines: ["nd2"]},{dialogue: "十连扭蛋机", lines: ["nd3"]}],
+                },
+                
+                locks_lines: ["nd1"],
+            }), 
+            "nd2": new Textline({ 
+                is_unlocked: false,
+                name: "单抽(10 x <img src='image/item/inherit_pink.png'>传承水晶·粉)",
+                text: "",
+                unlocks: {
+                    spec:"gacha-1",
+                },
+            }), 
+            "nd3": new Textline({ 
+                is_unlocked: false,
+                name: "十连(90 x <img src='image/item/inherit_pink.png'>传承水晶·粉)",
+                text: "",
+                unlocks: {
+                    spec:"gacha-10",
                 },
             }), 
         }

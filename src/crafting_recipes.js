@@ -1378,7 +1378,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     forging_recipes.items["缠绕水晶-精制[x5]"] = new ItemRecipe({
         name: "缠绕水晶-精制[x5]",
         recipe_type: "material",
-        materials: [{material_id: "透明水晶", count: 1},{material_id: "废墟符文", count: 1}],
+        materials: [{material_id: "透明水晶", count: 1},{material_id: "废墟精华", count: 1}],
         result: {result_id: "缠绕水晶", count: 5},
         success_chance: [0.5,1],
         recipe_level: [28,34],
