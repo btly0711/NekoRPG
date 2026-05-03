@@ -7075,7 +7075,7 @@ class Enemy {
         image: "image/enemy/E3721.png",
         realm: "<span class=realm_sky><b>天空级巅峰 +</b></span>",
         size: "small",
-        spec: [1],
+        spec: [],
         tags: [],
         stats: {health: 1200e8, attack: 81e8, agility: 76e8, attack_speed: 1.5, defense:60e8}, //血量50%*5(异界)
         loot_list: [
