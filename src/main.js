@@ -1075,7 +1075,7 @@ function textline_special(t_key){
         else if(t_key.includes("gacha")){
             let cnt = 1;
             if(t_key == 'gacha-10') cnt = 10;
-            if(t_key == 'gacha-10') cnt = 50;
+            if(t_key == 'gacha-50') cnt = 50;
             let cur_cost = cnt==1?10:(cnt*9);
             let fj_key = "{\"id\":\""+"传承水晶·粉"+"\"}";//粉
             if(character.inventory[fj_key] != undefined)

@@ -3603,7 +3603,7 @@ function format_perc(perc){
 
 function format_numberL(perc){
     if(perc < 1e-6) return format_number(10000*perc) + '/亿';
-    else if(perc < 0.001) return format_number(10000*perc) + '‰₀‌';
+    else if(perc < 0.001) return format_number(10000*perc) + '‱';
     else if(perc < 10) return format_number(100*perc) + '%';
     else return format_number(perc) + 'x'; 
 }
