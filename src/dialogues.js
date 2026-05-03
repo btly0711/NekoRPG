@@ -2482,6 +2482,15 @@ class Textline {
                 text: "",
                 unlocks: {
                     spec:"gacha-10",
+                    textlines: [{dialogue: "十连扭蛋机", lines: ["nd4"]}],
+                },
+            }), 
+            "nd4": new Textline({ 
+                is_unlocked: false,
+                name: "五十连(450 x <img src='image/item/inherit_pink.png'>传承水晶·粉)",
+                text: "",
+                unlocks: {
+                    spec:"gacha-50",
                 },
             }), 
         }

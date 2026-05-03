@@ -1075,7 +1075,8 @@ function textline_special(t_key){
         else if(t_key.includes("gacha")){
             let cnt = 1;
             if(t_key == 'gacha-10') cnt = 10;
-            let cur_cost = cnt==1?10:90;
+            if(t_key == 'gacha-10') cnt = 50;
+            let cur_cost = cnt==1?10:(cnt*9);
             let fj_key = "{\"id\":\""+"传承水晶·粉"+"\"}";//粉
             if(character.inventory[fj_key] != undefined)
             {
@@ -1114,8 +1115,8 @@ function textline_special(t_key){
                         let reward_style = {1:"style='filter:drop-shadow(0 0 5px #0f0)'",2:"style='filter:drop-shadow(0 0 9px #0cf) drop-shadow(0 0 9px #0f0) '",3:"style='filter: drop-shadow(0 0 12px #c0f) drop-shadow(0 0 9px #00f) drop-shadow(0 0 6px #0cf)'",4:"style='filter:drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00)"}
                         add_to_character_inventory([{ "item": getItem(item_templates[reward_name]), "count": 1 }]);
                         displayed_text += `<img src=${item_templates[reward_name].image} ${reward_style[reward_lvl]}>`;
-                        if(c_num == 5) displayed_text += "<br><br>";
-                        if(c_num%5 != 0)displayed_text += ` , `
+                        if(c_num%10 == 0) displayed_text += "<br><br>";
+                        else displayed_text += ` , `
 
                         //<img src="https://picsum.photos/100" style="filter:drop-shadow(0 0 10px #0ff) drop-shadow(0 0 25px #0ff)">
                     }
