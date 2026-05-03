@@ -3588,9 +3588,13 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [51, "压制", "#e3e647", "压制对手的招式可能成为窍门或是负累。<br>敌人每回合伤害*<span style='color:#87CEFA'>（敌人攻防和/角色攻防和）</span>。"],
 [52, "压制·伪", "#47e6a4", "压制/牵制对手的招式可能成为窍门或是负累。<br>敌人每回合伤害*<span style='color:#87CEFA'>(敌人攻防和/角色攻防和)^(1-0.01*牵制领悟度)*(敌人防御力/角色防御力)^(0.01*牵制领悟度)</span>。"],
 [53, "同调·魔", "#FF6A00","玄妙且具备威胁的领悟，可以共享属性。<br>敌人会随着角色的变强而变强，其攻击附加<span style='color:#87CEFA'>200%</span>角色的攻击。"],
-];
 [54, "生命限制", "#ffacc5","限制对手的能力可能成为窍门或是负累。<br>敌人每回合伤害*（敌人生命/角色生命）。"],
 
+
+
+
+
+];
 //超过25倍倍率的攻击暂时视为必中！
 function format_perc(perc){
     if(perc < 10) return format_number(100*perc) + '%';
@@ -3735,7 +3739,10 @@ function create_new_bestiary_entry(enemy_name) {
 
     for(let ine=0;ine<enemy.spec.length;ine++){
         let S_STS = spec_stat[enemy.spec[ine]];
-        spec_stats.innerHTML += `<br><b><font color="${S_STS[2]}">${S_STS[1][0]==undefined?S_STS[1](enemy):S_STS[1]} </font></b> ：${S_STS[3][0]==undefined?S_STS[3](enemy):S_STS[3]} `;
+        if(S_STS != undefined){
+            spec_stats.innerHTML += `<br><b><font color="${S_STS[2]}">${S_STS[1][0]==undefined?S_STS[1](enemy):S_STS[1]} </font></b> ：${S_STS[3][0]==undefined?S_STS[3](enemy):S_STS[3]} `;
+        }
+        else console.error("特殊属性 编号[" + enemy.spec[ine] + "] 未定义！");
     }
     
     stat_line_5.appendChild(spec_stats);
@@ -3844,7 +3851,11 @@ function add_bestiary_lines(zone)
  * @param {String} enemy_name 
  */
 function update_bestiary_entry(enemy_name) {
-    bestiary_entry_divs[enemy_name].children[1].innerHTML = enemy_killcount[enemy_name];
+    if(bestiary_entry_divs[enemy_name].children[1] != undefined) bestiary_entry_divs[enemy_name].children[1].innerHTML = enemy_killcount[enemy_name];
+    else{
+        console.log(bestiary_entry_divs[enemy_name]);
+        console.error(`敌人[${enemy_name}] 的怪物手册词条未定义！`)
+    }
 }
 
 function clear_bestiary() {
