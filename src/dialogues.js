@@ -2459,7 +2459,7 @@ class Textline {
         starting_text: "使用 [十连扭蛋机]",
         textlines: {
             "nd1": new Textline({ 
-                is_unlocked: true,
+                is_unlocked: false,
                 name: "扭蛋机介绍",
                 text: "使用 <img src='image/item/inherit_pink.png'>传承水晶·粉 抽奖！<br>10块一抽，90块十连！",
                 unlocks: {

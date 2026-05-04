@@ -4232,7 +4232,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["幻境核心·战场"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·结界湖"], custom_text: "回到二重幻境"}], 
-        description: "幻境，已经被打破了两重。那一场生灵涂炭的劫难……身临其境，不自觉就会变得暴戾起来。[V2.63前版本终点]",
+        description: "幻境，已经被打破了两重。那一场生灵涂炭的劫难……身临其境，不自觉就会变得暴戾起来。",
         name: "幻境核心·战场", 
         dialogues: ["烈日神像"],
         is_unlocked: false,
@@ -4242,7 +4242,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["幻境核心·结界湖"].connected_locations.push({location: locations["幻境核心·战场"]});  
 
     locations["幻境核心 - 3"] = new Combat_zone({
-        description: "就是在这里，纳鹰前辈传授了我很多修炼心得，令我一步步成长到现在。", 
+        description: "要坚信，这一切的劫难……都是假象……假象！", 
         enemy_count: 30, 
         enemies_list: ["心魔","威武星骑士","兰陵城头目","圣荒城头目","战场不朽骸骨","血腥追风者"],
         enemy_group_size: [4,4],
@@ -4280,7 +4280,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["幻境核心·飞船"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·战场"], custom_text: "回到三重幻境"}], 
-        description: "那么，第四重幻境……天外来客的飞船核心？说起来，附近的区域，似乎有一种莫名的怨念在聚集。[V2.65前版本终点]",
+        description: "那么，第四重幻境……天外来客的飞船核心？说起来，附近的区域，似乎有一种莫名的怨念在聚集。",
         name: "幻境核心·飞船", 
         dialogues: ["末世天骄","十连扭蛋机"],
         is_unlocked: false,
@@ -4340,6 +4340,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["幻境核心·飞船"].connected_locations.push({location: locations["幻境核心 - 4"]});  
     locations["幻境核心·飞船"].connected_locations.push({location: locations["幻境核心 - III"]});  
+    locations["幻境核心·飞船"].connected_locations.push({location: locations["幻境核心 - 歧路"]});  
 
 
     locations["幻境核心·森林"] = new Location({ 
