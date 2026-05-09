@@ -5143,7 +5143,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["噬芒兰"] = new OtherItem({
         name: "噬芒兰", 
         description: "它暗到似乎可以吸收周围的光。幻境阵法中多余的暗元素全数汇入了四重幻境，它就是受益者。", 
-        value: 4.5e12,
+        value: 4.5e15,
         image: "image/item/light_absorb_flower.png",
     });
 
