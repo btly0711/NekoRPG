@@ -3943,7 +3943,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["时封水牢 - III"] = new Challenge_zone({
         description: "击败她以解锁时封水牢 - 5！", 
         enemy_count: 1, 
-        enemies_list : [["秋兴[BOSS]"]],/
+        enemies_list : [["秋兴[BOSS]"]],
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: false, 
