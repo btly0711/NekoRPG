@@ -2832,7 +2832,6 @@ function update_displayed_time() {
         save_button.innerHTML = "导出";
     }
 
-    //WIP:导出按钮颜色
 }
 
 /** 
@@ -3553,7 +3552,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [16, "飓风", "#337d3d","这个敌人迅疾如风，引动了天地间的风元素异象。<br>敌人首先发动4段<span style='color:#87CEFA'>5倍伤害</span>的攻击。"],
 [17, "执着", "#cbb2d9","铁杵磨成针。<br>敌人的攻击额外增加角色生命的0.5%。"],
 [18, "贪婪", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>角色每拥有${format_money(enemy.spec_value[18])},该敌人伤害减少<span style='color:#87CEFA'>1%</span>.`}],
-[19, "同调", "#FF6A6A","玄妙且具备威胁的领悟，可以共享属性。<br>敌人会随着角色的变强而变强，其攻防附加<span style='color:#87CEFA'>10%</span>角色的攻防。"],
+[19, "同调", "#FF6A6A","玄妙且具备威胁的领悟，可以共享属性。<br>敌人会随着角色的变强而变强，其攻防敏附加<span style='color:#87CEFA'>10%</span>角色的攻防。"],
 [20, "天剑", "#9B8AFC","可将天地能量汇聚于自身的攻势进行战斗。<br>敌人每回合额外造成自身攻击<span style='color:#87CEFA'>3倍</span>与角色防御<span style='color:#87CEFA'>2倍</span>差值的伤害。"],
 [21, "灵体", "#ff9977",function(enemy){return "以特殊的生命形式而存在。<br>敌人对角色每回合造成<span style='color:#87CEFA'>" + (enemy.spec_value[21]) + "与角色敏捷之差的五倍</span>点伤害。<br>此额外伤害下限为0."}],
 [22, "绝世", "#DEF27B","五连绝世。<br>战斗前，敌人以0.9倍的攻击力发动一次<span style='color:#87CEFA'>5连击</span>。"],

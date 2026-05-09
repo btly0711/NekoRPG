@@ -2300,6 +2300,12 @@ item_templates["Twist liek a snek"] = new Book({
             "Mining": 15,
         }
     });
+    item_templates["死神之镰"] = new Tool({
+        name: "死神之镰",
+        description: "虽然名字很唬人，但这些附着的灵魂唯一作用就是更快的收割绝音蕨。<br>[收割]技能视为高4级！",
+        value: 12e15,
+        equip_slot: "sickle",
+    });
     item_templates["暗影斧"] = new Tool({
         name: "暗影斧",
         description: "相当锋利的斧头。不过面对百年柳木，依然需要较长的时间来砍伐。",
@@ -5127,6 +5133,20 @@ item_templates["Twist liek a snek"] = new Book({
         value: 240e6,
         image: "image/item/mixed_comp03.png",
     });
+    
+    item_templates["绝音蕨"] = new OtherItem({
+        name: "绝音蕨", 
+        description: "本身价值不算高昂，但却是第三幕最佳内甲的必备材料！", 
+        value: 24811e9,
+        image: "image/item/slient_fern.png",
+    });
+    item_templates["噬芒兰"] = new OtherItem({
+        name: "噬芒兰", 
+        description: "它暗到似乎可以吸收周围的光。幻境阵法中多余的暗元素全数汇入了四重幻境，它就是受益者。", 
+        value: 4.5e12,
+        image: "image/item/light_absorb_flower.png",
+    });
+
 })();
 
 //宝石
@@ -5848,7 +5868,6 @@ item_templates["Twist liek a snek"] = new Book({
         value: 369e12,
         image: "image/item/fantasy_rune.png",
     });
-
 
 
     

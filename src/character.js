@@ -138,7 +138,8 @@ character.get_xp_bonus = function(){
         return (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1) * (character.stats.full.luck || 1);
 }
 character.get_hero_realm = function(){
-        if(character.xp.current_level >= 18) return character.xp.current_level - 1;//大地级破限记为巅峰。
+        if(character.xp.current_level >= 18) return character.xp.current_level - 1;//大地级破限[18]记为大地巅峰[17]。
+        if(character.xp.current_level >= 28) return character.xp.current_level - 2;//天空级破限[28]记为天空巅峰[26]。
         return character.xp.current_level;
 }
 character.upgrade_effects = function(lvl){

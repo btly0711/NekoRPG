@@ -1604,6 +1604,24 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     });
 
 
+    skills["GrassCutting"] = new Skill({skill_id: "GrassCutting",
+    description: "更好地收割绝音蕨！",
+    names: {0: "收割",10:"收割·精通",20:"收割·大师"},
+    max_level: 20,
+    xp_scaling: 1.6,
+    category: "Activity",
+    base_xp_cost: 40e4,
+    max_level_coefficient: 10000,
+    rewards: {
+      milestones: {
+      }
+    },
+    get_effect_description: ()=> {
+      let value = skills["GrassCutting"].current_level + ((character.equipment.sickle?.name == "死神之镰")?4:0);
+      return `收割半径 ${format_number(15+1.5*value)}px ,生成速度 ${format_number(0.5+0.1*value)}/s,<br>容量上限 ${format_number(Math.floor((value + 1) ** 1.5 * 10))},【噬芒兰】概率 :${format_number(value ** 0.7 / 20)}% <br>${(character.equipment.sickle?.name == "死神之镰")?"<span style='violet'><b>[死神之镰已激活 / 有效等级+4]</b></span>":""}`;
+    },
+    
+    });
 
 
 

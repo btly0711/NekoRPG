@@ -2510,6 +2510,21 @@ i {
 	width: 100%;
 	flex-direction:row;
 }
+#grass_div {
+    display: none;
+    height: 411px;
+	width: 100%;
+	flex-direction:row;
+}
+#grassfield_div{
+    height: 321px;
+	width: 96%;
+	background: green;
+	position:relative;
+	left: 2%;
+	outline: 2px solid gray; 
+	display: flex; 
+}
 #fish_div {
     display: none;
     height: 411px;

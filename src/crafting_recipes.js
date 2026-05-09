@@ -1394,6 +1394,17 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [28,42],
         recipe_skill: "Forging",
     });
+    forging_recipes.items["死神之镰"] = new ItemRecipe({
+        name: "死神之镰",
+        id: "死神之镰",
+        recipe_type: "items",
+        materials: [{material_id:"魂晶锭",count:18},{material_id: "血莲鱼", count: 6}],
+        result: {result_id: "死神之镰", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [1,80],
+        Q_able:240,
+        recipe_skill: "Forging",
+    });
     
     
 })();

@@ -680,6 +680,24 @@
 
 
                     </div>
+                    
+                    <div id = "grass_div">
+                        <div id = "grass_info_div">
+                            <b>= 绝音蕨 = </b> Tier 16内甲与轮芯的必需品！ <br>
+                            <span style="color:lime">小概率获取噬芒兰！概率与收割技能相关.</span><br>
+                        </div>
+                        <div id = "grass_stat_div">
+                            <span style="font-size:large;color:#c0ffc0;left:10px"><b>
+                            <span id='grassfield_current'> 0</span> / <span id='grassfield_cap'>10</span> (<span id='grasstimer_current'>0.00</span> / <span id='grasstimer_cap'>2.00</span> s) ~ 已收割:<span id='grass_harvested'>0</span>
+                            </b></span>
+                        </div>
+                        <div id = "grassfield_div">
+                            <canvas id="grassCanvas" width="384" height="320"></canvas>
+                        </div>
+                        <div id="grass_exit">
+                            <span class="money_button" onclick = "leave_grass()"><b>[离开]</b></span>
+                        </div>
+                    </div>
                     <div id = "location_actions_div">	
                         
                     </div>
@@ -1621,7 +1639,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.65e";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.66";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

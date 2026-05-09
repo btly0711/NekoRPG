@@ -213,7 +213,8 @@ class Combat_zone {
             {
                 newEnemy.stats.attack += character.stats.full.attack_power * 0.1;
                 newEnemy.stats.defense += character.stats.full.defense * 0.1;
-                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.1)} 攻击，${format_number(character.stats.full.defense * 0.1)}防御 [同调]`,"enemy_enhanced");
+                newEnemy.stats.agility += character.stats.full.agility * 0.1;
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power * 0.1)} 攻击，${format_number(character.stats.full.defense * 0.1)}防御 ，${format_number(character.stats.full.agility * 0.1)} 敏捷 [同调]`,"enemy_enhanced");
             }//同调
             if(newEnemy.spec.includes(53))
             {
@@ -3942,7 +3943,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["时封水牢 - III"] = new Challenge_zone({
         description: "击败她以解锁时封水牢 - 5！", 
         enemy_count: 1, 
-        enemies_list : [["秋兴[BOSS]"]],//BOSS:WIP
+        enemies_list : [["秋兴[BOSS]"]],/
         enemy_group_size: [1,1],
         types: [],
         is_unlocked: false, 
@@ -4345,8 +4346,9 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["幻境核心·森林"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·飞船"], custom_text: "回到四重幻境"}], 
-        description: "好浓的雾气……不过辨认眼前的事物还是没问题的。这是，遇到峰大哥的那片森林吧。[V2.66前版本终点]",
+        description: "好浓的雾气……不过辨认眼前的事物还是没问题的。这是，遇到峰大哥的那片森林吧。",
         name: "幻境核心·森林", 
+        dialogues: ["心魔之主","草场"],
         is_unlocked: false,
         bgm: 20,
     });//3-7(5区)
@@ -4354,6 +4356,56 @@ function get_location_type_penalty(type, stage, stat) {
     locations["幻境核心·飞船"].connected_locations.push({location: locations["幻境核心·森林"]});  
 
 
+
+    locations["幻境核心 - 5"] = new Combat_zone({
+        description: "说起来，如果不是百家联合许多势力设计，我也就不会遇到峰大哥，就不会有后来的这些事情。", 
+        enemy_count: 30, 
+        enemies_list: ["心魔","冈崎喵妖","血洛大陆骨干","扭曲毒虫","狠咕兽","超量凶悍树妖"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        name: "幻境核心 - 5",
+        rank:265, 
+        bgm:20,
+        parent_location: locations["幻境核心·森林"],
+        first_reward: {
+            xp: 15000e8,
+        },
+        repeatable_reward: {
+            xp: 5000e8,
+            //locations: [{location: "幻境核心 - IV"}],
+            textlines: [{dialogue: "心魔之主", lines: ["xm1"]}],
+            //【心魔之煮】剧情，最终解锁【幻境核心 - IV】
+        },
+    });
+    locations["幻境核心 - IV"] = new Challenge_zone({
+        description: "这家伙的信心取决于被牵制毒害的有多深！说到底不就差了两倍吗……魔不行别怪到牵制头上哇。", 
+        enemy_count: 1, 
+        enemies_list : [["心魔之主[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "幻境核心 - IV",
+        bgm:20,
+        parent_location: locations["幻境核心·森林"],
+        repeatable_reward: {
+            locations: [{location: "幻境核心·现世"}],
+        },
+    });
+    locations["幻境核心·森林"].connected_locations.push({location: locations["幻境核心 - 5"]});  
+    locations["幻境核心·森林"].connected_locations.push({location: locations["幻境核心 - IV"]});  
+
+
+    locations["幻境核心·现世"] = new Location({ 
+        connected_locations: [{location: locations["幻境核心·森林"], custom_text: "回到五重幻境"}], 
+        description: "挣脱开心魔的侵袭后，彩色光芒浮现。五层幻境全部破碎，此地即是幻境的真正核心。[V2.58前版本终点]",
+        dialogues: ["溪月(核心)"],
+        name: "幻境核心·现世", 
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(6区)
+
+    locations["幻境核心·森林"].connected_locations.push({location: locations["幻境核心·现世"]});  
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 

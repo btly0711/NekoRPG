@@ -1764,7 +1764,7 @@ class Enemy {
         size: "small",
         spec: [19],
         tags: [],
-        stats: {health: 22200, attack:4800, agility: 4050, attack_speed: 1.2, defense: 1000}, 
+        stats: {health: 22200, attack:4800, agility: 3750, attack_speed: 1.2, defense: 1000}, 
         loot_list: [
             {item_name: "高级蓝宝石", chance:0.03},
             {item_name: "高级红宝石", chance:0.02},
@@ -2479,7 +2479,7 @@ class Enemy {
         size: "small",
         spec: [19],
         tags: [],
-        stats: {health: 250000, attack:40000, agility: 24000, attack_speed: 1.2, defense: 16000}, 
+        stats: {health: 250000, attack:40000, agility: 22000, attack_speed: 1.2, defense: 16000}, 
         loot_list: [
             {item_name: "极品黄宝石", chance:0.05},
             {item_name: "极品蓝宝石", chance:0.01},
@@ -2927,7 +2927,7 @@ class Enemy {
         spec: [19,37],
         spec_value:{},
         tags: [],
-        stats: {health: 1090000, attack:160000, agility: 102000, attack_speed: 1.2, defense: 50000}, 
+        stats: {health: 1090000, attack:160000, agility: 91600, attack_speed: 1.2, defense: 50000}, 
         loot_list: [
             {item_name: "极品红宝石", chance:0.05},
             {item_name: "水溶精华", chance:0.2},
@@ -3393,7 +3393,7 @@ class Enemy {
         spec: [19,15],
         spec_value:{},
         tags: [],
-        stats: {health: 1280000, attack:570000, agility: 440000, attack_speed: 1.6, defense: 34000}, 
+        stats: {health: 1280000, attack:570000, agility: 390600, attack_speed: 1.6, defense: 34000}, 
         loot_list: [
             {item_name: "绿色刀币", chance:0.01},
             {item_name: "废墟符文", chance:0.04},
@@ -4871,7 +4871,7 @@ class Enemy {
         image: "image/enemy/E3115.png",
         realm: "<span class=realm_sky><b>天空级三阶 +</b></span>",
         spec: [19],
-        stats: {health: 1849e4, attack: 2600e4, agility: 1980e4, attack_speed: 1.3, defense: 1200e4}, 
+        stats: {health: 1849e4, attack: 2600e4, agility: 1780e4, attack_speed: 1.3, defense: 1200e4}, 
         loot_list: [
             {item_name: "殿堂绿宝石", chance:0.015},
             {item_name: "史诗黄宝石", chance:0.04},
@@ -5310,7 +5310,7 @@ class Enemy {
         image: "image/enemy/E3306.png",
         realm: "<span class=realm_sky><b>天空级五阶</b></span>",
         spec: [19],
-        stats: {health: 6.48e8, attack: 10700e4, agility: 6900e4, attack_speed: 1.3, defense: 5200e4}, 
+        stats: {health: 6.48e8, attack: 10700e4, agility: 6200e4, attack_speed: 1.3, defense: 5200e4}, 
         loot_list: [
             {item_name: "史诗蓝宝石", chance:0.012},
             {item_name: "史诗红宝石", chance:0.030},
@@ -6044,7 +6044,7 @@ class Enemy {
         size: "small",
         spec: [19],
         tags: [],
-        stats: {health: 62.28e8, attack: 5.2e8, agility: 5.2e8, attack_speed: 1.4, defense:4.1e8}, //血量40%
+        stats: {health: 62.28e8, attack: 5.2e8, agility: 4.5e8, attack_speed: 1.4, defense:4.1e8}, //血量40%
         loot_list: [
             {item_name: "史诗绿宝石", chance:0.012},
             {item_name: "传说黄宝石", chance:0.006},
@@ -6338,7 +6338,7 @@ class Enemy {
         size: "small",
         spec: [19],
         tags: [],
-        stats: {health: 124e8, attack: 12.1e8, agility: 9.6e8, attack_speed: 1.3, defense:4.0e8}, //血量40%
+        stats: {health: 124e8, attack: 12.1e8, agility: 8.5e8, attack_speed: 1.3, defense:4.0e8}, //血量40%
         loot_list: [
             {item_name: "传说黄宝石", chance:0.015},
             {item_name: "传说蓝宝石", chance:0.006},
@@ -6573,7 +6573,7 @@ class Enemy {
         size: "small",
         spec: [19],
         tags: [],
-        stats: {health: 270.4e8, attack: 24e8, agility: 24.0e8, attack_speed: 1.3, defense:20.8e8}, //血量40%
+        stats: {health: 270.4e8, attack: 24e8, agility: 21.5e8, attack_speed: 1.3, defense:20.8e8}, //血量40%
         loot_list: [
             {item_name: "传说蓝宝石", chance:0.004},
             {item_name: "传说红宝石", chance:0.010},
@@ -7082,6 +7082,87 @@ class Enemy {
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
             //9B
+        ],
+    });
+    enemy_templates["冈崎喵妖"] = new Enemy({
+        name: "冈崎喵妖", 
+        description: "恐怖爆攻……你的迅捷哪去了！不会以为这么脆也打得到人吧？", 
+        xp_value: 7778742049, 
+        rank: 3722,
+        image: "image/enemy/E3722.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 90e8, attack: 240e8, agility: 88e8, attack_speed: 1.7, defense:80e8}, //血量50%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["血洛大陆骨干"] = new Enemy({
+        name: "血洛大陆骨干", 
+        description: "骨干从骨头变成了帅气的机甲啊！难怪燕岗城主府一直以来都不算太强的样子", 
+        xp_value: 7778742049, 
+        rank: 3723,
+        image: "image/enemy/E3723.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 720e8, attack: 112e8, agility: 96e8, attack_speed: 1.5, defense:60e8}, //血量50%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["扭曲毒虫"] = new Enemy({
+        name: "扭曲毒虫", 
+        description: "加强自己和削弱敌人的手段简直出神入化。什么时候纳可也可以学会这些呢？", 
+        xp_value: 7778742049, 
+        rank: 3724,
+        image: "image/enemy/E3724.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [8,19,46,47],
+        spec_value:{8:10},
+        tags: [],
+        stats: {health: 1056e8, attack: 85e8, agility: 88e8, attack_speed: 1.4, defense:50e8}, //血量50%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["狠咕兽"] = new Enemy({
+        name: "狠咕兽", 
+        description: "版本更新了……现在纯度不高的堆数值没用了啦。和我的普攻倍率说去吧！", 
+        xp_value: 7778742049, 
+        rank: 3725,
+        image: "image/enemy/E3725.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 2777.5e8, attack: 110e8, agility: 100e8, attack_speed: 1.5, defense:55e8}, //血量500%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["超量凶悍树妖"] = new Enemy({
+        name: "超量凶悍树妖", 
+        description: "一般来说，超出常规巅峰2倍的基础数值即可被称为【超量/破限】，领取【喽啰/人阶】等阶位……<br>但为了直观起见，喵可RPG全部使用加号！", 
+        xp_value: 7778742049, 
+        rank: 3726,
+        image: "image/enemy/E3726.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [31],
+        tags: [],
+        stats: {health: 1000e8, attack: 110e8, agility:104e8, attack_speed: 1.5, defense:50e8}, //血量500%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
         ],
     });
 
@@ -7842,7 +7923,7 @@ B9++ 7,778,742,049exp 16B
         xp_value: 7778742049, 
         rank: 3793,
         image: "image/boss/B3703.png",
-        realm: "<b><span class=realm_cloudy><del>云霄级巅峰 [XII]<del>云霄级一阶 --</span></b>",
+        realm: "<span class=realm_cloudy><del><b>云霄级巅峰 [XII]</b><del>云霄级一阶 --</span>",
         size: "small",
         spec: [51,15,34],
         tags: [],
@@ -7862,6 +7943,20 @@ B9++ 7,778,742,049exp 16B
         spec: [],
         tags: [],
         stats: {health: 27775e8, attack: 110e8, agility: 75e8, attack_speed: 1.5, defense:55e8}, //血量500%
+        loot_list: [
+        ],
+    });
+    enemy_templates["心魔之主[BOSS]"] = new Enemy({
+        name: "心魔之主[BOSS]", 
+        description: "常规的云霄级一阶对应天空级巅峰 +++。很明显，这只心魔绝不是正常突破的……因此境界不稳，甚至在跌落的边缘。", 
+        xp_value: 7778742049, 
+        rank: 3795,
+        image: "image/boss/B3705.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 -</b></span>",
+        size: "small",
+        spec: [36,52],
+        tags: [],
+        stats: {health: 40500e8, attack: 180e8, agility: 120e8, attack_speed: 1.5, defense:60e8}, //血量500%
         loot_list: [
         ],
     });

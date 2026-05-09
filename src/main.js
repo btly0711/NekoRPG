@@ -1006,6 +1006,9 @@ function textline_special(t_key){
         else if(t_key == "freezing-engine"){
             start_engine_minigame();
         }
+        else if(t_key == "grass-field"){
+            start_grass_minigame();
+        }
         else if(t_key == "realm-II"){
             displayed_text += '在看到这冰蓝色六芒星阵时，我印证了很多东西……<br>';
             displayed_text += '曾经领悟的水元素秘法，<br>';
@@ -1175,6 +1178,14 @@ function textline_special(t_key){
         }else if(t_key == "lq-sox"){
             global_flags['lq_status'] = 2;
             current_game_time.go_up(32400);
+        }
+        else if(t_key == "heartdemon-lord"){
+            displayed_text += `[心魔之主]哼，自爆！<br>恐怕云霄级强者来了，<br>都扛不住16兆伤害吧！<br>`;
+            let qz_perc = global_flags["qz_percent"];
+            displayed_text += `……哈？压制${100 - qz_perc}%,牵制${qz_perc}%?<br>`;
+            if(qz_perc < 30) displayed_text += `哈哈哈——恐惧牵制又如何？<br>你不会的技能，我又从何模仿起呢？<br>强行抹杀！汇集心魔的一切力量，<br>誓要令你……彻底沉眠！`;
+            else if(qz_perc < 70) displayed_text += `你还偷看燕岗领五大禁书之一的牵制书！<br>自己从来没用过，也不想用……<br>只是为了坑我吗！<br>……强行抹杀……汇集力量……<br>令你，彻底沉眠！`;
+            else displayed_text += `牵制书不愧是燕岗领五大禁书之一……<br>该死，我的力量已经十不存一。<br>你到底从哪里搞到的这个？<br>外面那帮黄不拉几的商人，<br>还是某个封闭许久的老坟？<br><br>唏，可以和解吗？`
         }
         return displayed_text;
 }
@@ -2011,6 +2022,9 @@ function get_enemy_realm(enemy){
             break;  
         case "天":
             realm_e += 18;
+            break;  
+        case "云":
+            realm_e += 27;
             break;  
     }
     switch (realm_l){
@@ -4542,7 +4556,6 @@ function start_fishing_minigame_changed()
             //console.log(`相对于中心点的位移: dx = ${offset_x.toFixed(1)}, dy = ${offset_y.toFixed(1)}`);
             
         }
-        //WIP:需要判定鼠标位置，矢量加速
         rod_vx -= 60 * frametime;
 
 
@@ -4589,6 +4602,153 @@ function start_fishing_minigame_changed()
     },frametime * 1000)
 }//完整钓鱼小游戏·改
 
+
+function grass_add(a, b) {
+    inf_combat.GR.grass.add([a, b]);  
+}
+function grass_remove(a, b) {
+    for (const pair of inf_combat.GR.grass) {
+        if (pair[0] === a && pair[1] === b) {
+            inf_combat.GR.grass.delete(pair);
+            return true;
+        }
+    }
+    return false;
+}
+function grass_check(cursorX,cursorY) {
+    for (const [a, b] of inf_combat.GR.grass) {
+        if(((cursorX-a)**2+(cursorY-b)**2)**0.5 < 20 + skills["GrassCutting"].current_level * 2)
+        {
+            grass_remove(a,b);
+            add_to_character_inventory([{ "item": getItem(item_templates["绝音蕨"]), "count": 1 }]);
+            let light_chance = Math.floor(inf_combat.GR.eff_lvl ** 0.7 * 500);//
+            let light_rnd = Math.floor(Math.random() * 1e6);
+            if(light_rnd <= light_chance){
+                log_message(`收割检定:1d1000000=${light_rnd}/${light_chance} `,"combat_loot");
+                log_message(`成功!已获取【噬芒兰】*1.`,"combat_loot");
+                add_to_character_inventory([{ "item": getItem(item_templates["噬芒兰"]), "count": 1 }]);
+            }
+            else console.log(`收割检定:1d1000000=${light_rnd}/${light_chance} , 失败`)
+            //nf_combat.GR.harvested += 1;
+            add_xp_to_skill({skill: skills["GrassCutting"], xp_to_add: 1,should_info:true,use_bonus:true});
+        }
+    }
+}
+function grass_drew(callback) {
+    for (const [a, b] of tupleSet) {
+        callback(a, b);
+    }
+}
+const grass_div = document.getElementById("grass_div");
+const grass_canvas = document.getElementById('grassCanvas');
+const ctx = grass_canvas.getContext('2d');
+let grass_able = true;
+const GRASS_SIZE = 7;
+function grass_clear() {
+    inf_combat.GR.grass.clear();
+}
+function grass_init(){
+    //主要内容：草的位置，草的总数，当前收割半径等
+    inf_combat.GR = {}
+    inf_combat.GR.grass = new Set();
+    inf_combat.GR.radius = 20;
+    inf_combat.GR.grass_amount = 0;
+    inf_combat.GR.grass_cap = 100;
+    inf_combat.GR.eff_lvl = 0;
+    inf_combat.GR.harvested = 0;//已弃用
+}
+function redraw_grass(){
+    ctx.clearRect(0, 0, grass_canvas.width, grass_canvas.height);
+    
+    ctx.fillStyle = '#0f0';
+    ctx.strokeStyle = '#464';
+    ctx.lineWidth = 2;
+    
+    for (const [x, y] of inf_combat.GR.grass) {
+        ctx.beginPath();
+        ctx.arc(x, y, GRASS_SIZE, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.stroke();
+    }
+    ctx.save();
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.6)';
+    ctx.lineWidth = 1.5;
+    
+    offset_x =  mousePos.clientX - 435;
+    offset_y = mousePos.clientY - 431;
+    ctx.beginPath();
+    ctx.arc(offset_x , offset_y, inf_combat.GR.radius, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+
+    grass_check(offset_x,offset_y);
+}
+const grassfield_current = document.getElementById("grassfield_current");
+const grassfield_cap = document.getElementById("grassfield_cap");
+const grasstimer_current = document.getElementById("grasstimer_current");
+const grasstimer_cap = document.getElementById("grasstimer_cap");
+const grass_harvested = document.getElementById("grass_harvested");
+
+let grass_spawn_cooldown = 1.00;
+let grass_cur_cooldown = 0.00;
+function update_displayed_grass(){
+    
+    redraw_grass();
+    grassfield_current.innerText = inf_combat.GR.grass.size.toFixed(0);
+    grassfield_cap.innerText = inf_combat.GR.grass_cap.toFixed(0);
+    grasstimer_current.innerText = grass_cur_cooldown.toFixed(2);
+    grasstimer_cap.innerText = grass_spawn_cooldown.toFixed(2);
+    if((character.inventory[`{"id":"绝音蕨"}`]?.count) != undefined) grass_harvested.innerText = (character.inventory[`{"id":"绝音蕨"}`]?.count).toFixed(0);
+    else grass_harvested.innerText = 0;
+    //inf_combat.GR.harvested 弃用，直接读取物品栏
+    //更新收割圆环形状
+    //更新储存草量
+    //主要内容：更新草场，更新收割圆环，更新目前储存的草
+    
+}
+function start_grass_minigame(){
+
+    grass_able = true;
+    grass_div.style.display ="inherit";
+    action_div.style.display = "none";
+    let frametime = 0.04;
+    if(inf_combat.GR == undefined) grass_init();
+    if(inf_combat.GR.grass.size == undefined) grass_init();
+    redraw_grass();
+    grass_spawn_cooldown = 1.00;
+    grass_cur_cooldown = 0.00;
+    const GrassId = setInterval(() => {
+        inf_combat.GR.eff_lvl = skills["GrassCutting"].current_level + ((character.equipment.sickle?.name == "死神之镰")?4:0);
+        inf_combat.GR.radius = inf_combat.GR.eff_lvl * 1.5 + 15;
+        grass_spawn_cooldown = 10.0 / (5 + inf_combat.GR.eff_lvl);
+        inf_combat.GR.grass_cap = Math.floor((inf_combat.GR.eff_lvl + 1) ** 1.5 * 10);
+        
+        grass_cur_cooldown += frametime;
+        if(grass_cur_cooldown > grass_spawn_cooldown){
+            grass_cur_cooldown -= grass_spawn_cooldown;
+            if(inf_combat.GR.grass.size < inf_combat.GR.grass_cap){
+                let X_grass = Math.round(Math.random()*(384-2*GRASS_SIZE) + GRASS_SIZE);
+                let Y_grass = Math.round(Math.random()*(320-2*GRASS_SIZE) + GRASS_SIZE);
+                grass_add(X_grass,Y_grass);
+            }
+        }
+        if (!grass_able) {
+            action_div.style.display = "inherit";
+            grass_div.style.display = "none";
+            clearInterval(GrassId);
+        }
+        update_displayed_grass();
+    },frametime * 1000);
+}
+
+function leave_grass()
+{
+    grass_able = false;
+}
+window.leave_grass = leave_grass;
+//割草小游戏
 
 const reactor_div = document.getElementById("reactor_div");
 let reactor_able = true;
