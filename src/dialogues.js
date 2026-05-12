@@ -2582,14 +2582,14 @@ class Textline {
         name: "溪月(核心)",
         starting_text: "和粉发少女[溪月]对话",
         textlines: {
-            "hx11": new Textline({ 
+            "hx11_1": new Textline({ 
                 is_unlocked: true,
                 name: "(睁眼)",
                 text: "[溪月]欢迎来到，幻境核心的最深层——<br>幻境核心·现世。<br>不要东张西望啦，你找不到我的。<br>我在你的识海深处，通过意念来传递讯息。",
                 unlocks: {
                     textlines: [{dialogue: "溪月(核心)", lines: ["hx12"]}],
                 },
-                locks_lines: ["hx11"],
+                locks_lines: ["hx11_1"],
             }), 
             "hx12": new Textline({ 
                 is_unlocked: false,
