@@ -990,7 +990,6 @@ function textline_special(t_key){
                         let C_time = current_game_time.hour + current_game_time.minute / 60;
                         C_time = Math.floor(C_time / 22.5)
                         let moon_effect = "烈日祝福·"+MM3[C_time];
-                        console.log("moon_effect")
                         active_effects[moon_effect] = new ActiveEffect({...effect_templates[moon_effect], duration:1800});
                         
                         character.stats.add_active_effect_bonus();
@@ -1040,6 +1039,20 @@ function textline_special(t_key){
                 log_message("获取了 结界湖之心·材","combat_loot");
             }
             else displayed_text += `请将【结界湖之心】佩戴后再次尝试！`;
+        }
+        else if(t_key == "byzx"){
+
+            if(character.equipment.special?.name == "冰原之心")
+            {
+                character.equipment.special = null;
+                add_to_character_inventory([{item: item_templates["冰原之心·材"], count: 1}]);
+                update_displayed_equipment(); 
+                character.stats.add_all_equipment_bonus();
+                update_displayed_stats();
+                displayed_text += `你的【冰原之心】已经被转化为【冰原之心·材】，<br>可以继续升级为【幻境之心】。[WIP:将在V2.68加入]`;
+                log_message("获取了 冰原之心·材","combat_loot");
+            }
+            else displayed_text += `请将【冰原之心】佩戴后再次尝试！`;
         }
         else if(t_key == "3-1-nanami"){
             if(character.equipment.special?.name == "纳娜米(飞船)") displayed_text += `(摸)可可,天空级一般来说不会发烧了哦。<br>她不是一直被你拽在身边，不肯放走吗?<br>`;
@@ -1098,7 +1111,7 @@ function textline_special(t_key){
                     displayed_text += `抽奖结果：<br>`;
                     for(let c_num = 1;c_num <= cnt;c_num ++){
                         let gacha_RNG = Math.random();
-                        let reward_list = {1:{1:"宝石母锭",2:"幻境符文",3:"紫晶碎片",4:"天空级魂魄",5:"传说红宝石"},2:{1:"魂晶锭",2:"血莲鱼",3:"传说绿宝石",4:"宇宙币"},3:{1:"血杀剑",2:"冰柱鱼王",3:"中等进化结晶碎片"},4:{1:"峰",2:"峰"}};
+                        let reward_list = {1:{1:"宝石母锭",2:"幻境符文",3:"紫晶碎片",4:"天空级魂魄",5:"绝音蕨",6:"绝音蕨"},2:{1:"魂晶锭",2:"血莲鱼",3:"传说绿宝石",4:"宇宙币"},3:{1:"血杀剑",2:"冰柱鱼王",3:"中等进化结晶碎片",4:"噬芒兰"},4:{1:"峰",2:"峰"}};
                         let reward_lvl = 0;
                         if(gacha_RNG<0.62) reward_lvl = 1;
                         else if(gacha_RNG<0.94
@@ -1112,8 +1125,9 @@ function textline_special(t_key){
                             }
                             else reward_lvl = 3;
                         }
-                        let reward_order = Math.floor(Math.random()*(6-reward_lvl))+1;
-                        if(reward_order > 6-reward_lvl) reward_order = 6-reward_lvl;
+                        let reward_total = (reward_lvl<=2)?(8-2*reward_lvl):(10-2*reward_lvl);
+                        let reward_order = Math.floor(Math.random()*(reward_total))+1;
+                        if(reward_order > reward_total) reward_order = reward_total;
                         let reward_name = reward_list[reward_lvl][reward_order];
                         let reward_style = {1:"style='filter:drop-shadow(0 0 5px #0f0)'",2:"style='filter:drop-shadow(0 0 9px #0cf) drop-shadow(0 0 9px #0f0) '",3:"style='filter: drop-shadow(0 0 12px #c0f) drop-shadow(0 0 9px #00f) drop-shadow(0 0 6px #0cf)'",4:"style='filter:drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00) drop-shadow(0 0 20px #f00)"}
                         add_to_character_inventory([{ "item": getItem(item_templates[reward_name]), "count": 1 }]);
@@ -2183,7 +2197,6 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             let Realm_XP = damage_dealt;
             if(skills["Neko_Realm"].current_level < 39) Realm_XP *= (skills["AquaElement"].get_coefficient("multiplicative") || 1);
             else Realm_XP *= (skills["AquaElement"].get_coefficient("multiplicative") || 1) ** 0.5;
-            //console.log(format_number(damage_dealt),format_number(Realm_XP));
             add_xp_to_skill({skill: skills['Neko_Realm'], xp_to_add: Realm_XP});//战斗领悟(领域)
             update_neko_realm();
         }
@@ -4397,7 +4410,6 @@ function start_fishing_minigame()
 {
     fish_div.style.display ="inherit";
     action_div.style.display = "none";
-    //console.log("start")
     let FishRNG = (get_total_skill_level("Fishing") * 0.2) * Math.random();
     let cur_fish = fishs[1];
     if(FishRNG > 0.5) cur_fish = fishs[2];
@@ -4499,7 +4511,6 @@ function start_fishing_minigame_changed()
 {
     fish_changed_div.style.display ="inherit";
     action_div.style.display = "none";
-    //console.log("start again")
     let FishRNG = (get_total_skill_level("Fishing") * 0.2) * Math.random();
     let cur_fish = fishs_changed[1];
     if(FishRNG > 2.5) cur_fish = fishs_changed[2];
@@ -4552,8 +4563,7 @@ function start_fishing_minigame_changed()
 
             rod_vx += offset_x * rod_diff * frametime;
             rod_vy += offset_y * rod_diff * frametime;
-            //rod_vx += 250 * frametime;
-            //console.log(`相对于中心点的位移: dx = ${offset_x.toFixed(1)}, dy = ${offset_y.toFixed(1)}`);
+
             
         }
         rod_vx -= 60 * frametime;
@@ -4628,7 +4638,6 @@ function grass_check(cursorX,cursorY) {
                 log_message(`成功!已获取【噬芒兰】*1.`,"combat_loot");
                 add_to_character_inventory([{ "item": getItem(item_templates["噬芒兰"]), "count": 1 }]);
             }
-            else console.log(`收割检定:1d1000000=${light_rnd}/${light_chance} , 失败`)
             //nf_combat.GR.harvested += 1;
             add_xp_to_skill({skill: skills["GrassCutting"], xp_to_add: 1,should_info:true,use_bonus:true});
         }

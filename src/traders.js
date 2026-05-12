@@ -103,7 +103,6 @@ class Trader extends InventoryHaver {
 
                 }
             }
-            //console.log(inventory_template[i]);
 
 
         }

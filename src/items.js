@@ -4695,6 +4695,14 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/spaceship_heart.png",
     });
+    item_templates["冰原之心·材"] = new Material({
+        id: "冰原之心·材",
+        name: "冰原之心·材", 
+        description: "无法继续被佩戴，只是用于合成【幻境之心】的临时材料。", 
+        value: 160e12,
+        material_type: "metal",
+        image: "image/item/iceland_heart.png",
+    });
     item_templates["晶化合金锭"] = new Material({
         id: "晶化合金锭",
         name: "晶化合金锭", 

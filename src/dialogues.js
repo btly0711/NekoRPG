@@ -2493,6 +2493,15 @@ class Textline {
                     spec:"gacha-50",
                 },
             }), 
+            
+            "by": new Textline({ 
+                is_unlocked: true,
+                name: "转化<img src='image/item/iceland_heart.png'>冰原之心(需要冰原之心位于装备栏)[WIP:幻境之心将在V2.68加入]",
+                text: "",
+                unlocks: {
+                    spec:"byzx",
+                },
+            }),
         }
     });
 
@@ -2574,7 +2583,7 @@ class Textline {
         starting_text: "和粉发少女[溪月]对话",
         textlines: {
             "hx11": new Textline({ 
-                is_unlocked: false,
+                is_unlocked: true,
                 name: "(睁眼)",
                 text: "[溪月]欢迎来到，幻境核心的最深层——<br>幻境核心·现世。<br>不要东张西望啦，你找不到我的。<br>我在你的识海深处，通过意念来传递讯息。",
                 unlocks: {
@@ -2785,7 +2794,7 @@ class Textline {
                 name: "我也会全力以赴的！",
                 text: "[纳可]那么，溪月小姐，合作愉快。<br><br>[溪月]……谢谢，拜托了……<br><br>[V2.67后此处解锁幻境核心 - 6]",
                 unlocks: {
-                    //幻境核心-6
+                    locations:["幻境核心 - 6"],
                 },
             }), 
         }

@@ -89,7 +89,6 @@ class Enemy {
     get_droprate_modifier() {
         let droprate_modifier = this.loot_multi;
         droprate_modifier *= character.stats.full.luck;
-        //console.log(character.stats.full.luck);
         /*
         if(enemy_killcount[this.name] >= 999) {
             droprate_modifier = 0.1;
@@ -7143,7 +7142,7 @@ class Enemy {
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 2777.5e8, attack: 110e8, agility: 100e8, attack_speed: 1.5, defense:55e8}, //血量500%
+        stats: {health: 2777.5e8, attack: 110e8, agility: 100e8, attack_speed: 1.5, defense:55e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
             //16B
@@ -7159,12 +7158,94 @@ class Enemy {
         size: "small",
         spec: [31],
         tags: [],
-        stats: {health: 1000e8, attack: 110e8, agility:104e8, attack_speed: 1.5, defense:50e8}, //血量500%
+        stats: {health: 1000e8, attack: 110e8, agility:104e8, attack_speed: 1.5, defense:50e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
             //16B
         ],
     });
+    enemy_templates["暗杀飞蛾"] = new Enemy({
+        name: "暗杀飞蛾", 
+        description: "非常遗憾，暗杀什么的在这里不生效——你在战斗框里就是索敌对象！", 
+        xp_value: 7778742049, 
+        rank: 3727,
+        image: "image/enemy/E3727.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [26],
+        tags: [],
+        stats: {health: 216e8, attack: 108.9e8, agility:100e8, attack_speed: 1.5, defense:88.36e8}, //血量50%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["古龙小兽"] = new Enemy({
+        name: "古龙小兽", 
+        description: "【古龙】可是这里最强的龙族！每一条都有成年<span class='realm_cloudy'>云霄级巅峰</span>的血脉。不过它大概长不大就是了。", 
+        xp_value: 7778742049, 
+        rank: 3728,
+        image: "image/enemy/E3728.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [26],
+        tags: [],
+        stats: {health: 2000e8, attack: 125e8, agility:108e8, attack_speed: 1.5, defense:72e8}, //血量50%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["巨人强豪"] = new Enemy({
+        name: "巨人强豪", 
+        description: "还记得无限秘境的【巨人先锋】吗……如果秘境不封顶，891,880层的它将会拥有这一只的攻击强度。", 
+        xp_value: 7778742049, 
+        rank: 3729,
+        image: "image/enemy/E3729.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [16],
+        tags: [],
+        stats: {health: 750e8, attack: 132e8, agility:112e8, attack_speed: 1.5, defense:90e8}, //血量50%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["血洛流浪剑客"] = new Enemy({
+        name: "血洛流浪剑客", 
+        description: "又一个流浪进来的！真想学天剑呐……普攻倍率是不缺，但攻击乘区可是缺的很。", 
+        xp_value: 7778742049, 
+        rank: 3730,
+        image: "image/enemy/E3730.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++</b></span>",
+        size: "small",
+        spec: [10,20],
+        tags: [],
+        stats: {health: 1104.5e8, attack: 133e8, agility:116e8, attack_speed: 1.5, defense:78e8}, //血量50%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.015},
+            //16B
+        ],
+    });
+    enemy_templates["大门派精英"] = new Enemy({
+        name: "大门派精英", 
+        description: "拥有着极为深厚的积累，如果想要突破的话它随时都可以突破。不过，毕竟成为【心之灵】的一员的未来还是太黑暗了……", 
+        xp_value: 12586269025, 
+        rank: 3731,
+        image: "image/enemy/E3731.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +++</b></span>",
+        size: "small",
+        spec: [33,34],
+        spec_value:{33:5},
+        tags: [],
+        stats: {health: 1521e8, attack: 114e8, agility:120e8, attack_speed: 1.2, defense:94e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //28B
+        ],
+    });
+
 
 
 

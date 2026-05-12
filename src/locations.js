@@ -4398,7 +4398,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["幻境核心·现世"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·森林"], custom_text: "回到五重幻境"}], 
-        description: "挣脱开心魔的侵袭后，彩色光芒浮现。五层幻境全部破碎，此地即是幻境的真正核心。[V2.58前版本终点]",
+        description: "挣脱开心魔的侵袭后，彩色光芒浮现。五层幻境全部破碎，此地即是幻境的真正核心。[V2.68前版本终点]",
         dialogues: ["溪月(核心)"],
         name: "幻境核心·现世", 
         is_unlocked: false,
@@ -4406,6 +4406,26 @@ function get_location_type_penalty(type, stage, stat) {
     });//3-7(6区)
 
     locations["幻境核心·森林"].connected_locations.push({location: locations["幻境核心·现世"]});  
+    
+    locations["幻境核心 - 6"] = new Combat_zone({
+        description: "请登上最后的决战之地，击败左阿！[将会在V2.69被添加]", 
+        enemy_count: 30, 
+        enemies_list: ["暗杀飞蛾","巨人强豪","古龙小兽","血洛流浪剑客","大门派精英"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "幻境核心 - 6",
+        rank:266, 
+        bgm:20,
+        parent_location: locations["幻境核心·现世"],
+        first_reward: {
+            xp: 18000e8,
+        },
+        repeatable_reward: {
+            xp: 6000e8,
+            //解锁最终BOSS战区域！（这里将会接一个对话）
+        },
+    });
+    locations["幻境核心·现世"].connected_locations.push({location: locations["幻境核心 - 6"]});  
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 

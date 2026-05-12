@@ -1818,8 +1818,6 @@ function create_location_choices({location, category, add_icons = true, is_comba
 
         choice_list.sort((a,b) => b.classList.contains("travel_normal") - a.classList.contains("travel_normal"));
     } else if (category === "challenge") {
-        //console.log(location);
-        //console.log(location.connected_locations);
 
         const available_challenges = location.connected_locations.filter(location => {if(location.location.is_challenge && location.location.is_unlocked && !location.location.is_finished) return true});
        
@@ -3785,7 +3783,6 @@ function create_new_bestiary_entry(enemy_name) {
         loot_chance_current.classList.add("loot_chance_current");
 
         loot_name.innerHTML = `${enemy.loot_list[i].item_name}`;
-        //console.log(enemy.loot_list)
         loot_chance_base.innerHTML = `[${format_numberL(enemy.loot_list[i].chance)}]`;
         loot_chance_current.innerHTML = `${enemy.loot_list[i].ignore_luck?("[Fixed]"):(format_numberL(enemy.loot_list[i].chance*enemy.get_droprate_modifier()))}`;
         loot_chance.append(loot_chance_current, loot_chance_base);
