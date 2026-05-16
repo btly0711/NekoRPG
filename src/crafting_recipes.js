@@ -337,6 +337,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "固态凝胶", count: 12, result_id: "凝胶轮芯"}, 
             {material_id: "光暗枝丫", count: 12, result_id: "光暗轮芯"}, 
             {material_id: "虹彩杖芯", count: 12, result_id: "虹彩轮芯"}, 
+            {material_id: "破空紫蕨", count: 12, result_id: "破空轮芯"}, 
             //未完待续 某个临界点[月轮三重]后改为24
         ],
         item_type: "Component",
