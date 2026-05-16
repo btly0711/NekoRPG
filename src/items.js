@@ -3520,6 +3520,20 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["破空轮芯"] = new WeaponComponent({
+        name: "破空轮芯", description: "中阶的【月轮】核心部件。反重力场可以迷惑视线——也就是敌人甚至看不见它就被攻击了。",
+        component_type: "wheel core",
+        value: 4608e12,
+        component_tier: 16,
+        stats: {
+            crit_multiplier: {
+                flat: 0.8,
+            },
+            attack_power: {
+                multiplier: 1.04,
+            },
+        }
+    });
     item_templates["宝石轮锋"] = new WeaponComponent({
         name: "宝石轮锋", description: "宝石母制造的【月轮】镀层。嗯……A1的宝石锭造不了轮锋。没有歧义！",
         component_type: "wheel head",
@@ -3970,6 +3984,50 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             defense: {
                 flat: 72e4,
+            },},});
+    
+    item_templates["幻符帽子"] = new Armor({
+        name: "幻符帽子", 
+        description: "幻符织料制成的内甲。本来应该是隐身的，可惜外甲还是可以被看见……", 
+        value: 1920e12,
+        component_type: "helmet interior",
+        base_defense: 0.96e8,
+        component_tier: 16,
+        stats: {agility:{
+                flat: 0.36e8,
+            },},});
+    item_templates["幻符背心"] = new Armor({
+        name: "幻符背心", 
+        description: "幻符织料制成的内甲。本来应该是隐身的，可惜外甲还是可以被看见……", 
+        value: 3072e12,
+        component_type: "chestplate interior",
+        base_defense: 1.536e8,
+        component_tier: 16,
+        stats: { 
+            agility: {
+                flat: 0.576e8,
+            },},});
+    item_templates["幻符裤子"] = new Armor({
+        name: "幻符裤子", 
+        description: "幻符织料制成的内甲。本来应该是隐身的，可惜外甲还是可以被看见……", 
+        value: 2784e12,
+        component_type: "leg armor interior",
+        base_defense: 1.344e8,
+        component_tier: 16,
+        stats: {
+            agility: {
+                flat: 0.504e8,
+            },},});
+    item_templates["幻符袜子"] = new Armor({
+        name: "幻符袜子", 
+        description: "幻符织料制成的内甲。本来应该是隐身的，可惜外甲还是可以被看见……",  
+        value: 1536e12,
+        component_type: "shoes interior",
+        base_defense: 0.768e8,
+        component_tier: 16,
+        stats: {
+            defense: {
+                flat: 0.288e8,
             },},});
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
