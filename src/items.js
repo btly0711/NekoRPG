@@ -2851,6 +2851,26 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["幻境之心"] = new Special({
+        name: "幻境之心",
+        id: "幻境之心",
+        description: "这甚至还不是最终形态。对了，这个超长的材料清单有没有出bug啊？", 
+        value: 218.7e15,
+        stats: {
+            attack_power: {
+                multiplier: 1.10,
+            },
+            defense: {
+                multiplier: 1.10,
+            },
+            agility: {
+                multiplier: 1.10,
+            },
+            max_health: {
+                multiplier: 1.10,
+            }
+        }
+    });
 
 })();
 //usables:
@@ -4743,6 +4763,12 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/rainbow_ending.png",
     });
+    item_templates["破空紫蕨"] = new OtherItem({
+        name: "破空紫蕨", 
+        description: "引力异常的功率可不止于让绝音蕨自动漂浮！它可以打乱战斗区域的光线，让敌人手忙脚乱！",
+        value: 768e12,
+        image: "image/item/floating_fern.png",
+    });
     item_templates["宝石母锭"] = new Material({
         id: "宝石母锭",
         name: "宝石母锭", 
@@ -5142,6 +5168,12 @@ item_templates["Twist liek a snek"] = new Book({
         image: "image/item/mixed_comp03.png",
     });
     
+    item_templates["幻符织料"] = new OtherItem({
+        name: "幻符织料", 
+        description: "幻境符文/绝音蕨的两层吸收使得它几乎完成了光学隐身。什么叫外甲可以被看见？不要在意那些细节！",
+        value: 666e12,
+        image: "image/item/mixed_comp06.png",
+    });
     item_templates["绝音蕨"] = new OtherItem({
         name: "绝音蕨", 
         description: "本身价值不算高昂，但却是第三幕最佳内甲的必备材料！", 
@@ -5875,6 +5907,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "由纳可的水火领域外溢的能量衍生的符文。巨型结界的作用可不是盖的！", 
         value: 369e12,
         image: "image/item/fantasy_rune.png",
+    });
+    item_templates["引力反常"] = new Loot({
+        name: "引力反常", 
+        description: "天外飞船到底是怎么飞进血洛的？这就是答案了！", 
+        value: 416e12,
+        image: "image/item/gravi_error.png",
     });
 
 

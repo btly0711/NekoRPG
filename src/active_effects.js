@@ -345,7 +345,6 @@ effect_templates["饱食 IX"] = new ActiveEffect({
     }
 });
 
-
 effect_templates["烈日祝福·乾"] = new ActiveEffect({
     name: "烈日祝福·乾",
     effects: {stats: {max_health: {multiplier: 1.8}}}

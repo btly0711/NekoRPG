@@ -4372,9 +4372,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 5000e8,
-            //locations: [{location: "幻境核心 - IV"}],
             textlines: [{dialogue: "心魔之主", lines: ["xm1"]}],
-            //【心魔之煮】剧情，最终解锁【幻境核心 - IV】
         },
     });
     locations["幻境核心 - IV"] = new Challenge_zone({
@@ -4398,9 +4396,26 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["幻境核心·现世"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·森林"], custom_text: "回到五重幻境"}], 
-        description: "挣脱开心魔的侵袭后，彩色光芒浮现。五层幻境全部破碎，此地即是幻境的真正核心。[V2.68前版本终点]",
+        description: "挣脱开心魔的侵袭后，彩色光芒浮现。五层幻境全部破碎，此地即是幻境的真正核心。另外，左阿忙着抹除印记，这里的阵法可以偷用一下！[V2.68前版本终点]",
         dialogues: ["溪月(核心)"],
         name: "幻境核心·现世", 
+        
+        traders: ["物品存储箱"],
+        sleeping: {
+            text: "“借用”幻境阵法修炼[+25亿XP/s]",
+            xp: 50000
+        },
+            crafting: {
+                is_unlocked: true, 
+                use_text: "“借用”熔炼阵法[Tier+16]", 
+                tiers: {
+                    crafting: 16,
+                    forging: 16,
+                    smelting: 16,
+                    cooking: 16,
+                    alchemy: 16,
+                }
+            },
         is_unlocked: false,
         bgm: 20,
     });//3-7(6区)

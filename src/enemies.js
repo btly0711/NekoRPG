@@ -7011,6 +7011,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
+            {item_name: "引力反常", chance:0.022},
             //9B
         ],
     });
@@ -7028,6 +7029,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
+            {item_name: "引力反常", chance:0.024},
             //9B
         ],
     });
@@ -7046,6 +7048,8 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
+            {item_name: "传承水晶·蓝", chance:0.02},
+            {item_name: "紫晶碎片", chance:0.03},
             //9B
         ],
     });
@@ -7063,6 +7067,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
+            {item_name: "引力反常", chance:0.026},
             //9B
         ],
     });
@@ -7080,6 +7085,7 @@ class Enemy {
         loot_list: [
             {item_name: "传说红宝石", chance:0.003},
             {item_name: "传说绿宝石", chance:0.008},
+            {item_name: "引力反常", chance:0.028},
             //9B
         ],
     });
@@ -7096,6 +7102,7 @@ class Enemy {
         stats: {health: 90e8, attack: 240e8, agility: 88e8, attack_speed: 1.7, defense:80e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "天空级魂魄", chance:0.075},
             //16B
         ],
     });
@@ -7112,6 +7119,7 @@ class Enemy {
         stats: {health: 720e8, attack: 112e8, agility: 96e8, attack_speed: 1.5, defense:60e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "幻境符文", chance:0.041},
             //16B
         ],
     });
@@ -7129,6 +7137,7 @@ class Enemy {
         stats: {health: 1056e8, attack: 85e8, agility: 88e8, attack_speed: 1.4, defense:50e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "引力反常", chance:0.035},
             //16B
         ],
     });
@@ -7145,6 +7154,7 @@ class Enemy {
         stats: {health: 2777.5e8, attack: 110e8, agility: 100e8, attack_speed: 1.5, defense:55e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "紫晶碎片", chance:0.048},
             //16B
         ],
     });
@@ -7161,6 +7171,7 @@ class Enemy {
         stats: {health: 1000e8, attack: 110e8, agility:104e8, attack_speed: 1.5, defense:50e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "传承水晶·粉", chance:0.12},
             //16B
         ],
     });
@@ -7177,6 +7188,7 @@ class Enemy {
         stats: {health: 216e8, attack: 108.9e8, agility:100e8, attack_speed: 1.5, defense:88.36e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "幻境符文", chance:0.052},
             //16B
         ],
     });
@@ -7193,6 +7205,7 @@ class Enemy {
         stats: {health: 2000e8, attack: 125e8, agility:108e8, attack_speed: 1.5, defense:72e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "紫晶碎片", chance:0.052},
             //16B
         ],
     });
@@ -7209,6 +7222,7 @@ class Enemy {
         stats: {health: 750e8, attack: 132e8, agility:112e8, attack_speed: 1.5, defense:90e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "天空级魂魄", chance:0.081},
             //16B
         ],
     });
@@ -7225,6 +7239,7 @@ class Enemy {
         stats: {health: 1104.5e8, attack: 133e8, agility:116e8, attack_speed: 1.5, defense:78e8}, //血量50%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.015},
+            {item_name: "魂晶锭", chance:0.022},
             //16B
         ],
     });
@@ -7242,6 +7257,7 @@ class Enemy {
         stats: {health: 1521e8, attack: 114e8, agility:120e8, attack_speed: 1.2, defense:94e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "宇宙币", chance:0.028},
             //28B
         ],
     });
