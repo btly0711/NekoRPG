@@ -1173,7 +1173,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Smelting",
     });
     smelting_recipes.items3["熔炼魂晶(x3)"] = new ItemRecipe({
-        name: "熔炼魂晶",
+        name: "熔炼魂晶(x3)",
         recipe_type: "material",
         materials: [{material_id: "传承水晶·橙", count: 3},{material_id: "传承水晶·白", count: 1},{material_id: "天空级魂魄", count: 2},{material_id: "紫晶碎片", count: 3}], 
         result: {result_id: "魂晶锭", count: 3},

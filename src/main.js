@@ -139,7 +139,7 @@ const flag_unlock_texts = {
 // special stats
 
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"B3":0,"ST":0};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"B3":0,"ST":0,"S3":{live:false,sp:0,b1:8,b2:8,b3:0}};
 //A6:秘境
 //A7:赶往声律城
 //VP:心境一重价值点
@@ -148,6 +148,7 @@ let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"
 //B3:辐射扩散程度(赫尔沼泽)
 //B6:拯救商人数
 //ST:SaveTime(上次保存时间)
+//S3:第三幕最终战，live表示开战与否，sp灵魂之力,b1b2b3是怪物数。
 
 
 //in seconds
@@ -1049,7 +1050,7 @@ function textline_special(t_key){
                 update_displayed_equipment(); 
                 character.stats.add_all_equipment_bonus();
                 update_displayed_stats();
-                displayed_text += `你的【冰原之心】已经被转化为【冰原之心·材】，<br>可以继续升级为【幻境之心】。[WIP:将在V2.68加入]`;
+                displayed_text += `你的【冰原之心】已经被转化为【冰原之心·材】，<br>可以继续升级为【幻境之心】。`;
                 log_message("获取了 冰原之心·材","combat_loot");
             }
             else displayed_text += `请将【冰原之心】佩戴后再次尝试！`;
@@ -1176,6 +1177,20 @@ function textline_special(t_key){
             }
             add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 1.68e24,should_info:true,use_bonus:false,add_to_parent:false},);
             add_xp_to_skill({skill: skills["AquaElement"], xp_to_add: 3997e4,should_info:true,use_bonus:false,add_to_parent:false},);
+        }
+        else if(t_key == "realm-IV"){
+            if(skills["Neko_Realm"].current_level <= 39){
+                    displayed_text += `【焰海霜天[领域三重]】获取了64秭经验！<br>（到现在，<br>在直面领域级强者，<br>感受其来自领域的威压之后，<br>本就临近突破的四重领域，<br>终于迈出了最后一步。）`;
+                    
+            }
+            else{
+                    displayed_text += `【出云落月[领域四重]】获取了64秭经验！<br>`;
+                    displayed_text += `抱歉纱雪高考去了……别说突破了都有人48级了！喵啊啊啊！<br>`;
+            }
+            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 64e24,should_info:true,use_bonus:false,add_to_parent:false},);
+        }else if(t_key == "S3-start"){
+            inf_combat.S3 = {live:true,sp:0,b1:8,b2:8,b3:0};
+
         }
         else if(t_key == "qx-kill"){
             character.money += 923124981247561;
@@ -1444,6 +1459,7 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(51)) Spec_S += "[压制]";
     if(current_enemies[enemy_id].spec.includes(52)) Spec_S += "[压制..?]";
     if(current_enemies[enemy_id].spec.includes(54)) Spec_S += "[生命限制]";
+    if(current_enemies[enemy_id].spec.includes(55)) Spec_S += "[贪婪·改]";
     
     if(isnew) {
         enemy_timer_variance_accumulator[enemy_id] = 0;
@@ -1746,6 +1762,12 @@ function faint(c_log)
     end_activity_animation(); //clears the "animation"
     current_activity = null;
      update_displayed_health();
+    if(inf_combat.S3?.live){
+        if(current_location.parent_location != undefined) change_location(current_location.parent_location.name);
+        log_message("心之灵的虚影摇曳着。现在还不能倒下！","combat_loot")
+        return;
+    }//BOSS战正在进行
+    
     if(options.auto_return_to_bed && last_location_with_bed) {
         change_location(last_location_with_bed);
         start_sleeping();
@@ -1818,6 +1840,10 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         inf_combat.VP = inf_combat.VP || {num:0};
         spec_mul *= (1 - 0.01*(inf_combat.VP.num/attacker.spec_value[39]));
         spec_mul = Math.max(spec_mul,0);
+    }
+    if(attacker.spec.includes(55)){//贪婪·改
+        spec_mul *= (1 - 0.01*(character.money/attacker.spec_value[55]));
+        spec_mul = Math.max(spec_mul,0.2);
     }
 
     if(attacker.spec.includes(7)) spec_mul *= 1.5;//撕裂
@@ -1956,11 +1982,11 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(attacker.spec.includes(27)) sdef_mul *= character.stats.full.attack_power / character.stats.full.defense * 0.1 + 1;//柔骨
     
     if(attacker.spec.includes(34)){
-        if(attacker.defense < character.stats.full.defense){
+        if(attacker.stats.defense < character.stats.full.defense){
             spec_hint += "[凌弱·免疫]";
         }
         else{
-            sdef_mul *= (2- attacker.defense/character.stats.full.defense);
+            sdef_mul *= (2- attacker.stats.defense/character.stats.full.defense);
             sdef_mul = sdef_mul || 0;
             spec_hint += "[凌弱]";
         }
@@ -2039,6 +2065,12 @@ function get_enemy_realm(enemy){
             break;  
         case "云":
             realm_e += 27;
+            break;  
+        case "领":
+            realm_e += 36;
+            break;  
+        case "世":
+            realm_e += 45;
             break;  
     }
     switch (realm_l){
@@ -2121,8 +2153,38 @@ function update_neko_realm()
     else if(S_level >= 40 && inf_combat.RM < 5)
     {
         add_to_character_inventory([{item: getItem({...item_templates["出云落月[领域四重]"], quality: 240}), count: 1}]);
-        log_message(`领域四重剧情[WIP]！`, "location_unlocked");
+        log_message(`领悟了第四重领域【出云落月】！请检查装备栏查看详情！`, "location_unlocked");
         inf_combat.RM = 5;
+    }
+}
+function get_spirit_buff(S3_sp){
+    
+    locations["幻境核心 - B1"].is_unlocked = (inf_combat.S3.b1 != 0);
+    locations["幻境核心 - B2"].is_unlocked = (inf_combat.S3.b2 != 0);
+    locations["幻境核心 - B3"].is_unlocked = (inf_combat.S3.b3 != 0);
+    //判定自选关解锁
+    console.log(S3_sp);
+    if(S3_sp == 5){
+        log_message(`${character.name} 生命上限提升了20%！`,"enemy_enhanced");
+        active_effects["灵魂之力 I"] = new ActiveEffect({...effect_templates["灵魂之力 I"], duration: 99999999});
+    }
+    if(S3_sp == 10){
+        log_message(`${character.name} 生命上限提升了20%！`,"enemy_enhanced");
+        active_effects["灵魂之力 II"] = new ActiveEffect({...effect_templates["灵魂之力 II"], duration: 99999999});
+    }
+    if(S3_sp == 15){
+        log_message(`${character.name} 攻防敏提升了1亿！`,"enemy_enhanced");
+        active_effects["灵魂之力 III"] = new ActiveEffect({...effect_templates["灵魂之力 III"], duration: 99999999});
+    }
+    if(S3_sp == 20){
+        log_message(`${character.name} 攻防敏提升了1亿！`,"enemy_enhanced");
+        active_effects["灵魂之力 IV"] = new ActiveEffect({...effect_templates["灵魂之力 IV"], duration: 99999999});
+    }
+    if(S3_sp >= 25){
+        locations["幻境核心 - X"].is_unlocked = true;
+        log_message(`【左阿】封印完成，全属性降低10081倍！`,"enemy_enhanced");
+        log_message(`${character.name} 将全身心的灵魂力量投入幻境！ 攻防敏提升了5亿！`,"enemy_enhanced");
+        active_effects["灵魂之力 V"] = new ActiveEffect({...effect_templates["灵魂之力 V"], duration: 99999999});
     }
 }
 
@@ -2298,6 +2360,31 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
 
             log_message(target.name + " 被打败,获取 " + format_number(xp_display) + " 经验值" + tooltip_ex, 
             "enemy_defeated");
+            //亡语判定区
+            if(target.spec.includes(56))
+            {
+                log_message(`${character.name} 获取了60s【迟缓】效果！`,"enemy_enhanced");
+                active_effects["迟缓"] = new ActiveEffect({...effect_templates["迟缓"], duration:60});
+                inf_combat.S3.b1 -= 1;
+            }//禁锢
+            if(target.spec.includes(57))
+            {
+                log_message(`场上增加了3只【心之灵·暴走】！`,"enemy_enhanced");
+                inf_combat.S3.b2 -= 1;
+                inf_combat.S3.b3 += 3;
+            }//滋生
+            if(target.spec.includes(58))
+            {
+                log_message(`【心之灵·暴走】的攻击与血量提高了5%！`,"enemy_enhanced");
+                //计算公式:((8-inf_combat.S3.b2)*3-inf_combat.S3.b3)*0.05)
+                inf_combat.S3.b3 -= 1;
+            }//暴走
+            if(target.spec.includes(59))
+            {
+                log_message(`获取了1点【灵魂之力】！`,"enemy_enhanced");
+                inf_combat.S3.sp += 1;
+                get_spirit_buff(inf_combat.S3.sp);
+            }//心之力
             if(target.rank >= 3100 && target.rank <= 3200){
                 inf_combat.B3 = inf_combat.B3 || 0;
                 log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3)} % -> ${format_number(inf_combat.B3 + 0.004)} % `,"enemy_defeated");
@@ -2371,6 +2458,23 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
                     current_game_time.go_up(1080000);
                     //2年
                 }
+            }
+            if(target.name == "左阿(垂死)[BOSS]"){
+                locations["幻境核心 - B1"].is_unlocked = false;
+                locations["幻境核心 - B2"].is_unlocked = false;
+                locations["幻境核心 - B3"].is_unlocked = false;
+                inf_combat.S3.live = false;
+                locations["幻境核心·决战"].is_unlocked = false;
+                locations["幻境核心·出口"].is_unlocked = true;
+                change_location("幻境核心·出口");
+                
+                log_message(`击败左阿！自动切换地图【幻境核心·出口】！`,"enemy_enhanced");
+                log_message(`【幻境核心·决战】已封锁且无法进入！`,"enemy_enhanced");
+                log_message(`所有状态效果已清除！`,"enemy_enhanced");
+                Object.keys(active_effects).forEach(key => {
+                    delete active_effects[key];
+                });
+
             }
             kill_enemy(target);
         }
@@ -2640,6 +2744,12 @@ function get_location_rewards(location) {
     let should_return = false;
         if(location.is_challenge) {
             location.is_finished = true;
+            if(location.name.includes("幻境核心 - B")){
+                location.is_finished = false;
+                should_return = true;
+                //特判：幻境核心自选打怪虽然是挑战区域但是不会清空
+                //挑战区域仅仅为了避开楼层手册
+            }
         }
     update_displayed_combat_location(location,true);
     if(location.repeatable_reward.money && typeof location.repeatable_reward.money === "number") {

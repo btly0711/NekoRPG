@@ -2496,7 +2496,7 @@ class Textline {
             
             "by": new Textline({ 
                 is_unlocked: true,
-                name: "转化<img src='image/item/iceland_heart.png'>冰原之心(需要冰原之心位于装备栏)[WIP:幻境之心将在V2.68加入]",
+                name: "转化<img src='image/item/iceland_heart.png'>冰原之心(需要冰原之心位于装备栏)",
                 text: "",
                 unlocks: {
                     spec:"byzx",
@@ -2792,10 +2792,20 @@ class Textline {
             "hx34": new Textline({ 
                 is_unlocked: false,
                 name: "我也会全力以赴的！",
-                text: "[纳可]那么，溪月小姐，合作愉快。<br><br>[溪月]……谢谢，拜托了……<br><br>[V2.67后此处解锁幻境核心 - 6]",
+                text: "[纳可]那么，溪月小姐，合作愉快。<br><br>[溪月]……谢谢，拜托了……<br><br>",
                 unlocks: {
                     locations:["幻境核心 - 6"],
                 },
+                locks_lines: ["hx34"],
+            }), 
+            "hx35": new Textline({ 
+                is_unlocked: false,
+                name: "那么，帮我开启最终决战之地吧！",
+                text: "[溪月]嗯……准备好了！<br><br>",
+                unlocks: {
+                    locations:["幻境核心·决战"],
+                },
+                locks_lines: ["hx35"],
             }), 
         }
     })
@@ -2814,6 +2824,117 @@ class Textline {
             }),
         }
     });
+    dialogues["左阿(决战)"] = new Dialogue({
+        name: "左阿(决战)",
+        starting_text: "和左阿“前辈”对话",
+        textlines: {
+            "za1": new Textline({ 
+                is_unlocked: true,
+                name: "终于到了，支撑整片幻境的力量源泉……",
+                text: "[左阿]恭喜你，小丫头。<br>活着走到这里，<br>代表你有资格获得我【左阿】的传承。<br>只不过——",
+                unlocks: {
+                    textlines: [{dialogue: "左阿(决战)", lines: ["za2"]}],
+                },
+                locks_lines: ["za1"],
+            }),
+            "za2": new Textline({ 
+                is_unlocked: false,
+                name: "不用你揭开谜底，我已经知道了。",
+                text: "[纳可]你编造了很多谎言，<br>真是让人失望，左阿前辈。<br><br>[左阿]啊哈哈哈哈哈，很好，有趣有趣。<br>看来事情，稍微有了那么一点点，<br>出乎意料的变化。",
+                unlocks: {
+                    textlines: [{dialogue: "左阿(决战)", lines: ["za3"]}],
+                },
+                locks_lines: ["za2"],
+            }),
+            "za3": new Textline({ 
+                is_unlocked: false,
+                name: "你的时代已经过去了，前辈。",
+                text: "[纳可]没有必要再在这里兴风作浪了。<br><br>[左阿]别废话了，如今我十万年的大计，<br>只差最后一步，<br>又岂会因为一个小丫头而放弃。<br>你知道我有多恨那个老不死的门主吧。<br>如果不是因为他，<br>我这等枭雄又岂会屈居这结界内十万年。",
+                unlocks: {
+                    textlines: [{dialogue: "左阿(决战)", lines: ["za4"]}],
+                },
+                locks_lines: ["za3"],
+            }),
+            "za4": new Textline({ 
+                is_unlocked: false,
+                name: "做了这么多的事情，你还没有意识到自己的平平无奇吗？",
+                text: "[纳可]你的路从最开始，就已经走错了。<br>十万年间，总共有二十三万余冒险者，<br>闯入了这里。<br>他们中未到天空级的二十万，<br>在踏入的一瞬间便化为了结界的养分。<br>你甚至没考虑去舔个包——<br>要是里面有人带着B6镭射枪这种宝物，<br>你也不要了？",
+                unlocks: {
+                    textlines: [{dialogue: "左阿(决战)", lines: ["za5"]}],
+                },
+                locks_lines: ["za4"],
+            }),
+            "za5": new Textline({ 
+                is_unlocked: false,
+                name: "三万天空级，在水牢的时间加速下，",
+                text: "[纳可]历经五十万年，无数场屠杀，<br>仅剩如今的几百人存活。<br>考虑到天空级的寿命仅为一万年……<br>如今存活者仍有数百人，<br>说明绝大部分都是自然死亡！<br>水牢里的氛围应该互相猜忌，<br>而不是和如今一样充满秩序！",
+                unlocks: {
+                    textlines: [{dialogue: "左阿(决战)", lines: ["za6"]}],
+                },
+                locks_lines: ["za5"],
+            }),
+            "za6": new Textline({ 
+                is_unlocked: false,
+                name: "另外，还有二十五位云霄级强者，",
+                text: "[纳可]由于已经足够作为容器，<br>因此被你毫不留情地直接杀死……<br>这就是你把灵魂放着不管的借口？<br><br>[左阿]小丫头，<br>不知道你从哪来的勇气，<br>开始说教我的水牢管理太烂了。<br>可你的修为对我来说，还是太嫩了。",
+                unlocks: {
+                    textlines: [{dialogue: "左阿(决战)", lines: ["za7"]}],
+                },
+                locks_lines: ["za6"],
+            }),
+            "za7": new Textline({ 
+                is_unlocked: false,
+                name: "[左阿]开什么玩笑？",
+                text: "[纳可]时间到了。<br>是时候蜕变了，领域力量。",
+                unlocks: {
+                    textlines: [{dialogue: "左阿(决战)", lines: ["za8"]}],
+                    spec:"realm-IV",
+                },
+                locks_lines: ["za7"],
+            }),
+            "za8": new Textline({ 
+                is_unlocked: false,
+                name: "(警告⚠️:触发该剧情后快速返回将被禁用)",
+                text: "[左阿]你的底牌只是如此吗？<br>[纳可]离结束还早呢。<br><br>【第三幕BOSS战已开始！】",
+                unlocks: {
+                    textlines: [{dialogue: "决战木牌", lines: ["S31"]},{dialogue: "决战木牌", lines: ["S32"]},{dialogue: "决战木牌", lines: ["S33"]}],
+                    spec:"S3-start",
+                },
+                locks_lines: ["za8"],
+            }),
+        }
+    });
+    dialogues["决战木牌"] = new Dialogue({
+        name: "决战木牌",
+        starting_text: "查看boss战规则",
+        textlines: {
+            "S31": new Textline({ 
+                is_unlocked: false,
+                name: "【心之灵】和【灵魂之力】",
+                text: "每击败一只【心之灵】，<br>都能获得1点【灵魂之力】！<br>当灵魂之力累计到5、10点后，你的生命上限增加20%！<br>累计到15、20点后，你的攻防敏上升1亿！<br>累计到25点后，封印将会完成！<br>封印完成后，<br>左阿的实力将被削弱<span style='color:aqua'>10081</span>倍，与纳可进入最终的决战！",
+                unlocks: {
+                },
+                
+            }),
+            "S32": new Textline({ 
+                is_unlocked: false,
+                name: "仪表盘显示",
+                text: "<img src='image/item/violet_ingot.png'>魂晶锭 代表着【灵魂之力】！，<br><img src='image/boss/B3706.png'><img src='image/boss/B3707.png'><img src='image/boss/B3708.png'>心之灵 代表场上此种心之灵剩余量！",
+                unlocks: {
+                },
+                
+            }),
+            "S33": new Textline({ 
+                is_unlocked: false,
+                name: "我怎么回不去了",
+                text: "最终决战一旦开始，就无法回头！<br>读档吧……我想我应该在外面就警告过你了。<br>当然，打完了还是可以回去的就是了。",
+                unlocks: {
+                },
+                
+            }),
+        }
+    });
+
 
 
 

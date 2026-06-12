@@ -6708,7 +6708,7 @@ class Enemy {
         spec: [52,33,53],
         spec_value:{33:13},
         tags: [],
-        stats: {health: 2222e8, attack: 56.78e8, agility: 30e8, attack_speed: 1.0, defense:0e8}, //血量50%
+        stats: {health: 2222e8, attack: 56.78e8, agility: 30e8, attack_speed: 1.0, defense:1e4}, //血量50%
         loot_list: [
             {item_name: "传说红宝石", chance:0.008},
             {item_name: "传说绿宝石", chance:0.003},
@@ -7870,7 +7870,7 @@ B9++ 7,778,742,049exp 16B
         spec: [23],
         spec_value:{},
         tags: [],
-        stats: {health: 810e8, attack: 8.5e8, agility: 4.5e8, attack_speed: 1.4, defense:2.4e8}, //血量400%
+        stats: {health: 1012.5e8, attack: 8.5e8, agility: 4.5e8, attack_speed: 1.4, defense:2.4e8}, //血量500%
         loot_list: [
             {item_name: "传说黄宝石", chance:1},
         ],
@@ -7886,7 +7886,7 @@ B9++ 7,778,742,049exp 16B
         spec: [50],
         spec_value:{50:0.16e8},
         tags: [],
-        stats: {health: 1299.6e8, attack: 7.7e8, agility: 6.0e8, attack_speed: 1.2, defense:3.3e8}, //血量400%
+        stats: {health: 1624.5e8, attack: 7.7e8, agility: 6.0e8, attack_speed: 1.2, defense:3.3e8}, //血量500%
         loot_list: [
             {item_name: "传说黄宝石", chance:2},
         ],
@@ -7901,7 +7901,7 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [46,32],
         tags: [],
-        stats: {health: 1000e8, attack: 10.5e8, agility: 9.0e8, attack_speed: 1.4, defense:8.4e8}, //血量400%
+        stats: {health: 1250e8, attack: 10.5e8, agility: 9.0e8, attack_speed: 1.4, defense:8.4e8}, //血量500%
         loot_list: [
         ],
     });
@@ -7915,7 +7915,7 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [0],
         tags: [],
-        stats: {health: 1210e8, attack: 12.25e8, agility: 10.8e8, attack_speed: 1.6, defense:6.76e8}, //血量400%
+        stats: {health: 1512.5e8, attack: 12.25e8, agility: 10.8e8, attack_speed: 1.6, defense:6.76e8}, //血量500%
         loot_list: [
             {item_name: "传说红宝石", chance:2,ignore_luck:true},
         ],
@@ -7930,7 +7930,7 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [0,7,42],
         tags: [],
-        stats: {health: 1742.4e8, attack: 17.64e8, agility: 14.4e8, attack_speed: 1.7, defense:10.24e8}, //血量400%
+        stats: {health: 4356e8, attack: 17.64e8, agility: 14.4e8, attack_speed: 1.7, defense:10.24e8}, //血量10x
         loot_list: [
             {item_name: "传说红宝石", chance:4,ignore_luck:true},
         ],
@@ -7945,7 +7945,7 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [9,51],
         tags: [],
-        stats: {health: 4936e8, attack: 36e8, agility: 21e8, attack_speed: 1.3, defense:21e8}, //血量400%
+        stats: {health: 12340e8, attack: 36e8, agility: 21e8, attack_speed: 1.3, defense:21e8}, //血量10x
         loot_list: [
             {item_name: "传承水晶·橙", chance:2,ignore_luck:true},
             {item_name: "传承水晶·白", chance:2,ignore_luck:true},
@@ -7981,7 +7981,7 @@ B9++ 7,778,742,049exp 16B
         spec: [33,52,53],
         spec_value:{33:13},
         tags: [],
-        stats: {health: 17776e8, attack: 1e4, agility: 44.4e8, attack_speed: 1.0, defense:1e4}, //血量400%
+        stats: {health: 44440e8, attack: 1e4, agility: 44.4e8, attack_speed: 1.0, defense:1e4}, //血量10x
         loot_list: [
         ],
     });
@@ -7996,7 +7996,7 @@ B9++ 7,778,742,049exp 16B
         spec: [21],
         spec_value:{21:60e8},
         tags: [],
-        stats: {health: 5555e8, attack: 1e4, agility: 50e8, attack_speed: 1.5, defense:37.5e8}, //血量500%(x)原创属性！
+        stats: {health: 22220e8, attack: 1e4, agility: 50e8, attack_speed: 1.5, defense:37.5e8}, //血量20x(x)原创属性！
         loot_list: [
         ],
     });
@@ -8010,7 +8010,7 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 15125e8, attack: 77e8, agility: 60e8, attack_speed: 1.6, defense:48e8}, //血量500%
+        stats: {health: 60500e8, attack: 77e8, agility: 60e8, attack_speed: 1.6, defense:48e8}, //血量20x
         loot_list: [
         ],
     });
@@ -8024,7 +8024,7 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [51,15,34],
         tags: [],
-        stats: {health: 29990e8, attack: 120e8, agility: 70e8, attack_speed: 1.2, defense:20e8}, //血量500%
+        stats: {health: 119960e8, attack: 120e8, agility: 70e8, attack_speed: 1.2, defense:20e8}, //血量20x
         loot_list: [
             {item_name: "传承水晶·粉", chance:60,ignore_luck:true},
         ],
@@ -8039,7 +8039,7 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [],
         tags: [],
-        stats: {health: 27775e8, attack: 110e8, agility: 75e8, attack_speed: 1.5, defense:55e8}, //血量500%
+        stats: {health: 111110e8, attack: 110e8, agility: 75e8, attack_speed: 1.5, defense:55e8}, //血量20x
         loot_list: [
         ],
     });
@@ -8053,10 +8053,83 @@ B9++ 7,778,742,049exp 16B
         size: "small",
         spec: [36,52],
         tags: [],
-        stats: {health: 40500e8, attack: 180e8, agility: 120e8, attack_speed: 1.5, defense:60e8}, //血量500%
+        stats: {health: 162000e8, attack: 180e8, agility: 120e8, attack_speed: 1.5, defense:60e8}, //血量20x
         loot_list: [
         ],
     });
+    enemy_templates["心之灵·禁锢[BOSS]"] = new Enemy({
+        name: "心之灵·禁锢[BOSS]", 
+        description: "被左阿作为【容器】备选的云霄级强者。", 
+        xp_value: 12586269025, 
+        rank: 3796,
+        image: "image/boss/B3706.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [56,59],
+        tags: [],
+        stats: {health: 28800e8, attack: 160e8, agility: 150e8, attack_speed: 1.5, defense:130e8}, //血量20x
+        loot_list: [
+        ],
+    });
+    enemy_templates["心之灵·滋生[BOSS]"] = new Enemy({
+        name: "心之灵·滋生[BOSS]", 
+        description: "被左阿作为【容器】备选的云霄级强者。", 
+        xp_value: 12586269025, 
+        rank: 3797,
+        image: "image/boss/B3707.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [55,57,59],
+        spec_value: {55:20e15},
+        tags: [],
+        stats: {health: 22400e8, attack: 210e8, agility: 180e8, attack_speed: 1.5, defense:124e8}, //血量20x
+        loot_list: [
+        ],
+    });
+    enemy_templates["心之灵·暴走[BOSS]"] = new Enemy({
+        name: "心之灵·暴走[BOSS]", 
+        description: "被左阿作为【容器】备选的云霄级强者。", 
+        xp_value: 12586269025, 
+        rank: 3798,
+        image: "image/boss/B3708.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [55,58,59],
+        spec_value: {55:30e15},
+        tags: [],
+        stats: {health: 51000e8, attack: 180e8, agility: 180e8, attack_speed: 1.5, defense:128e8}, //血量20x
+        loot_list: [
+        ],
+    });
+    enemy_templates["左阿(垂死)[BOSS]"] = new Enemy({
+        name: "左阿(垂死)[BOSS]", 
+        description: "仅剩的一缕残魂也被封印的余下0.01%的力量。千算万算也没有算到这一步……对了。只有云霄级五阶的经验了。它现在太菜了。", 
+        xp_value: 591286729879, 
+        rank: 3799,
+        image: "image/boss/B3709.png",
+        realm: "<span class=realm_realm><b>领域级一阶 [-18]</b></span>",
+        size: "small",
+        spec: [34,17],
+        tags: [],
+        stats: {health: 3300000e8, attack: 365e8, agility: 220e8, attack_speed: 1.5, defense:144.4e8}, //血量500x
+        loot_list: [
+        ],
+    });
+    enemy_templates["左阿[BOSS]"] = new Enemy({
+        name: "左阿[BOSS]", 
+        description: "怎么看到这一句的？你丫作弊了吧。", 
+        xp_value: 591286729879, 
+        rank: 3799.9,
+        image: "image/boss/B3709.png",
+        realm: "<span class=realm_realm><b>领域级一阶 [-2]</b></span>",
+        size: "small",
+        spec: [34,17],
+        tags: [],
+        stats: {health: 3326730e12, attack: 367.9565e12, agility: 221.7821e12, attack_speed: 1.5, defense:145.5696e8}, //血量500x
+        loot_list: [
+        ],
+    });
+    //WIP: SPEC 56 57 58尚未实装
 /*
 
 17776Z/113.56E/1W/44.4E/1.0

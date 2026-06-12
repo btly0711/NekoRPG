@@ -1588,6 +1588,13 @@ function update_displayed_normal_location(location) {
 
     location_name_span.innerText = current_location.name;
     document.getElementById("location_description_div").innerText = current_location.getDescription();
+    
+    if(inf_combat.S3?.live){
+        document.getElementById("S3_current_div").display = 'inherit';
+        document.getElementById("S3_current_div").innerHTML = "<img src='image/item/violet_ingot.png'><b><span style='color:plum'>灵魂之力 : " + inf_combat.S3.sp + "</span><br>剩余敌人: </b>";
+        document.getElementById("S3_current_div").innerHTML += `<img src='image/boss/B3706.png'><b><span style='color:lightblue'> x${inf_combat.S3.b1} </span></b><img src='image/boss/B3707.png'><b><span style='color:yellow'> x${inf_combat.S3.b2} </span></b><img src='image/boss/B3708.png'><b><span style='color:orange'> x${inf_combat.S3.b3} </span></b>`;
+    }
+    else document.getElementById("S3_current_div").innerHTML = '';
 }
 
 /**
@@ -1801,7 +1808,7 @@ function create_location_choices({location, category, add_icons = true, is_comba
             choice_list.push(action);
         }
 
-        if(last_location_with_bed && !location.sleeping && (!location.connected_locations || location?.connected_locations?.filter(loc => loc.location.name === last_location_with_bed).length == 0)) {
+        if((!inf_combat.S3?.live) && last_location_with_bed && !location.sleeping && (!location.connected_locations || location?.connected_locations?.filter(loc => loc.location.name === last_location_with_bed).length == 0)) {
             const last_bed = locations[last_location_with_bed];
 
             const action = document.createElement("div");
@@ -1894,6 +1901,7 @@ function update_displayed_combat_location(location,disable_switch = false) {
     
     document.getElementById("location_description_div").innerText = current_location.getDescription();
     create_location_types_display(current_location);
+    document.getElementById("S3_current_div").display = 'none';
 }
 
 function create_location_types_display(current_location){
@@ -3586,8 +3594,11 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [52, "压制·伪", "#47e6a4", "压制/牵制对手的招式可能成为窍门或是负累。<br>敌人每回合伤害*<span style='color:#87CEFA'>(敌人攻防和/角色攻防和)^(1-0.01*牵制领悟度)*(敌人防御力/角色防御力)^(0.01*牵制领悟度)</span>。"],
 [53, "同调·魔", "#FF6A00","玄妙且具备威胁的领悟，可以共享属性。<br>敌人会随着角色的变强而变强，其攻击附加<span style='color:#87CEFA'>200%</span>角色的攻击。"],
 [54, "生命限制", "#ffacc5","限制对手的能力可能成为窍门或是负累。<br>敌人每回合伤害*（敌人生命/角色生命）。"],
-
-
+[55, "贪婪·改", "#bfc630",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>角色每拥有${format_money(enemy.spec_value[55])},该敌人伤害减少<span style='color:#87CEFA'>1%</span>,上限<span style='color:#87CEFA'>80%</span>.`}],
+[56, "禁锢", "#808080","敌人死亡时，角色获取一个<span style='color:#87CEFA'>攻速-20%</span>的状态效果，持续<span style='color:#87CEFA'>30s</span>。"],
+[57, "滋生", "#ff20c0","敌人死亡时，场上【心之灵·暴走】数量增加3个。"],
+[58, "暴走", "#fffc62","敌人死亡时，场上【心之灵·暴走】基础攻击/血量增加5%(叠加)。"],
+[59, "心之灵", "#b0f6ff","敌人死亡时，获取1点【灵魂之力】。"],
 
 
 

@@ -382,6 +382,38 @@ effect_templates["烈日祝福·坤"] = new ActiveEffect({
     //坚固(无副作用/8%)
 });
 
+
+effect_templates["迟缓"] = new ActiveEffect({
+    name: "迟缓",
+    effects: {stats: {attack_speed: {multiplier: 0.8}}}
+});
+effect_templates["灵魂之力 I"] = new ActiveEffect({
+    name: "灵魂之力 I",
+    effects: {stats: {max_health: {multiplier: 1.2}}}
+});
+effect_templates["灵魂之力 II"] = new ActiveEffect({
+    name: "灵魂之力 II",
+    effects: {stats: {max_health: {multiplier: 1.2}}}
+});
+effect_templates["灵魂之力 III"] = new ActiveEffect({
+    name: "灵魂之力 III",
+    effects: {stats: {
+            attack_power:{flat:1e8},
+            defense:{flat:1e8},
+            agility:{flat:1e8},}}});
+effect_templates["灵魂之力 IV"] = new ActiveEffect({
+    name: "灵魂之力 IV",
+    effects: {stats: {
+            attack_power:{flat:1e8},
+            defense:{flat:1e8},
+            agility:{flat:1e8},}}});
+effect_templates["灵魂之力 V"] = new ActiveEffect({
+    name: "灵魂之力 V",
+    effects: {stats: {
+            attack_power:{flat:5e8},
+            defense:{flat:5e8},
+            agility:{flat:5e8},}}});
+
 /*  let MM1 = ["新月","蛾眉月","上弦月","盈凸月","满月","亏凸月","下弦月","残月"];
                 let MM2 = ["生命恢复 + 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];*/
 

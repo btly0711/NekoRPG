@@ -231,9 +231,9 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
 
                 //显示-提高属性
-                gains += `攻击提高了${this_realm[2] * 2}<br>`;
-                gains += `防御,敏捷提高了${this_realm[2]}<br>`;
-                gains += `生命上限提高了${this_realm[3]}<br>`;
+                gains += `攻击提高了${format_number(this_realm[2] * 2)}<br>`;
+                gains += `防御,敏捷提高了${format_number(this_realm[2])}<br>`;
+                gains += `生命上限提高了${format_number(this_realm[3])}<br>`;
                 if(realm_spd_gain != 0) gains += `小阶段突破，攻击速度额外增加${realm_spd_gain}<br>`;
                 if(this_realm[0]==9)
                 {

@@ -4026,7 +4026,7 @@ item_templates["Twist liek a snek"] = new Book({
         base_defense: 0.768e8,
         component_tier: 16,
         stats: {
-            defense: {
+            agility: {
                 flat: 0.288e8,
             },},});
     item_templates["铁制头盔"] = new ArmorComponent({

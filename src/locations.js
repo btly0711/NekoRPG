@@ -241,6 +241,12 @@ class Combat_zone {
                 log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.agility * newEnemy.spec_value[30])} 攻击 [净化]`,"enemy_enhanced");
                 newEnemy.stats.attack += character.stats.full.agility * newEnemy.spec_value[30];//净化
             }
+            if(newEnemy.spec.includes(58)){
+                let M58 = ((8-inf_combat.S3.b2)*3-inf_combat.S3.b3)*0.05 + 1;
+                newEnemy.stats.health *= M58;
+                newEnemy.stats.attack *= M58;
+                log_message(`${f_enemy.name} 的攻击/血量 变为 ${format_number(M58*100)}% ! [暴走]`,"enemy_enhanced");
+            }//暴走-实现
             if(newEnemy.name == "地宫养殖者[BOSS]")//特判地宫养殖者
             {
                 if(enemy_killcount["地宫养殖者[BOSS]"]) console.log("试图再次击杀");
@@ -4396,7 +4402,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["幻境核心·现世"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·森林"], custom_text: "回到五重幻境"}], 
-        description: "挣脱开心魔的侵袭后，彩色光芒浮现。五层幻境全部破碎，此地即是幻境的真正核心。另外，左阿忙着抹除印记，这里的阵法可以偷用一下！[V2.68前版本终点]",
+        description: "挣脱开心魔的侵袭后，彩色光芒浮现。五层幻境全部破碎，此地即是幻境的真正核心。另外，左阿忙着抹除印记，这里的阵法可以偷用一下！",
         dialogues: ["溪月(核心)"],
         name: "幻境核心·现世", 
         
@@ -4437,10 +4443,108 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 6000e8,
-            //解锁最终BOSS战区域！（这里将会接一个对话）
+            textlines: [{dialogue: "溪月(核心)", lines: ["hx35"]}],
         },
     });
     locations["幻境核心·现世"].connected_locations.push({location: locations["幻境核心 - 6"]});  
+
+
+
+
+    locations["幻境核心·决战"] = new Location({ 
+        connected_locations: [],//没有退路可言！
+        description: "这里就是第三幕的终极尽头！对了，你回不去了。复活也是就地复活哦。",
+        name: "幻境核心·决战", 
+        dialogues: ["左阿(决战)","决战木牌"],
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(最终)
+    locations["幻境核心·现世"].connected_locations.push({location: locations["幻境核心·决战"],custom_text:"进入决战[⚠️胜利前无法返回]"});  
+
+
+    locations["幻境核心 - B1"] = new Challenge_zone({
+        description: "心之灵·禁锢 自选敌人区域！", 
+        enemy_count: 1, 
+        enemies_list : [["心之灵·禁锢[BOSS]"]],
+        enemy_group_size: [1,1],
+        enemy_stat_halo: 0.25,
+        types: [],
+        is_unlocked: true, 
+        is_challenge: true,
+        name: "幻境核心 - B1",
+        bgm:20,
+        parent_location: locations["幻境核心·决战"],
+        repeatable_reward: {},
+    });
+    locations["幻境核心 - B2"] = new Challenge_zone({
+        description: "心之灵·滋生 自选敌人区域！", 
+        enemy_count: 1, 
+        enemies_list : [["心之灵·滋生[BOSS]"]],
+        enemy_group_size: [1,1],
+        enemy_stat_halo: 0.25,
+        types: [],
+        is_unlocked: true, 
+        is_challenge: true,
+        name: "幻境核心 - B2",
+        bgm:20,
+        parent_location: locations["幻境核心·决战"],
+        repeatable_reward: {},
+    });
+    locations["幻境核心 - B3"] = new Challenge_zone({
+        description: "心之灵·暴走 自选敌人区域！", 
+        enemy_count: 1, 
+        enemies_list : [["心之灵·暴走[BOSS]"]],
+        enemy_group_size: [1,1],
+        enemy_stat_halo: 0.25,
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "幻境核心 - B3",
+        bgm:20,
+        parent_location: locations["幻境核心·决战"],
+        repeatable_reward: {},
+    });
+    locations["幻境核心 - X"] = new Challenge_zone({
+        description: "左阿的最终战斗！", 
+        enemy_count: 1, 
+        enemies_list : [["左阿(垂死)[BOSS]"]],
+        enemy_stat_halo: 0.1,
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "幻境核心 - X",
+        bgm:20,
+        parent_location: locations["幻境核心·决战"],
+        repeatable_reward: {
+            locations: [{location: "幻境核心·出口"}],
+        },
+    });
+    
+    locations["幻境核心·决战"].connected_locations.push({location: locations["幻境核心 - B1"],custom_text:"挑战心之灵·禁锢"});
+    locations["幻境核心·决战"].connected_locations.push({location: locations["幻境核心 - B2"],custom_text:"挑战心之灵·滋生"});
+    locations["幻境核心·决战"].connected_locations.push({location: locations["幻境核心 - B3"],custom_text:"挑战心之灵·暴走"});
+    locations["幻境核心·决战"].connected_locations.push({location: locations["幻境核心 - X"],custom_text:"挑战左阿！！！"});
+
+    
+
+    locations["幻境核心·出口"] = new Location({ 
+        connected_locations: [{location: locations["幻境核心·现世"], custom_text: "回到幻境核心"}], 
+        description: "左阿的战斗……结束了！[V2.70前版本终点]",
+        name: "幻境核心·出口", 
+        dialogues: [],//出口剧情！
+        is_unlocked: false,
+        bgm: 20,
+    });//3-7(5区)
+    locations["幻境核心·现世"].connected_locations.push({location: locations["幻境核心·出口"]});
+    locations["幻境核心·决战"].connected_locations.push({location: locations["幻境核心·出口"],custom_text:"离开决战之地"});
+
+
+
+
+
+
+
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 

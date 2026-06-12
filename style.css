@@ -2136,6 +2136,11 @@ i {
 			color: rgb(224, 224, 224);
 			padding: 5px;
 		}
+		#S3_current_div {
+			height: 113px;
+			font-style: italic;
+			padding: 5px;
+		}
 
 #time_and_location {
 	left: 410px;
