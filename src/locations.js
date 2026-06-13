@@ -4529,16 +4529,27 @@ function get_location_type_penalty(type, stage, stat) {
     
 
     locations["幻境核心·出口"] = new Location({ 
-        connected_locations: [{location: locations["幻境核心·现世"], custom_text: "回到幻境核心"}], 
-        description: "左阿的战斗……结束了！[V2.70前版本终点]",
+        connected_locations: [{location: locations["幻境核心·现世"], custom_text: "回到六重幻境"}], 
+        description: "左阿的战斗……结束了！",
         name: "幻境核心·出口", 
-        dialogues: [],//出口剧情！
+        dialogues: ["冰溪月"],//出口剧情！
         is_unlocked: false,
         bgm: 20,
     });//3-7(5区)
     locations["幻境核心·现世"].connected_locations.push({location: locations["幻境核心·出口"]});
     locations["幻境核心·决战"].connected_locations.push({location: locations["幻境核心·出口"],custom_text:"离开决战之地"});
 
+    locations["纳家宝库"] = new Location({ 
+        connected_locations: [{location: locations["幻境核心·出口"], custom_text: "回到幻境核心"},{location: locations["赫尔沼泽入口"], custom_text: "快速旅行 - 第三幕"}], 
+        description: "终于回到家族了！是时候夺走这家主大位……[V2.70前版本终点]",
+        name: "纳家宝库", 
+        //dialogues: ["纳布(宝库)"],//老登剧情！
+        is_unlocked: false,
+        bgm: 21,
+    });//4-1(初始区)
+    locations["幻境核心·出口"].connected_locations.push({location: locations["纳家宝库"]});
+
+    locations["赫尔沼泽入口"].connected_locations.push({location: locations["纳家宝库"],custom_text:"快速旅行 - 第四幕"});
 
 
 

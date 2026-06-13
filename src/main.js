@@ -354,6 +354,7 @@ const musicList = {
   18: 'bgms/18.mp3',
   19: 'bgms/19.mp3',
   20: 'bgms/20.mp3',
+  21: 'bgms/21.mp3',
 };
 
 let hasPlayed = false;  // 确保只触发一次
@@ -1216,6 +1217,43 @@ function textline_special(t_key){
             else if(qz_perc < 70) displayed_text += `你还偷看燕岗领五大禁书之一的牵制书！<br>自己从来没用过，也不想用……<br>只是为了坑我吗！<br>……强行抹杀……汇集力量……<br>令你，彻底沉眠！`;
             else displayed_text += `牵制书不愧是燕岗领五大禁书之一……<br>该死，我的力量已经十不存一。<br>你到底从哪里搞到的这个？<br>外面那帮黄不拉几的商人，<br>还是某个封闭许久的老坟？<br><br>唏，可以和解吗？`
         }
+        else if(t_key == "save"){
+                var a = window.document.createElement('a');
+                a.href = window.URL.createObjectURL(new Blob([save_to_file()], {type: 'text/plain'}));
+                a.download = `Autosave_corrupt_prevention`;
+
+                document.body.appendChild(a);
+                a.click();
+
+                document.body.removeChild(a);
+        }
+        else if(t_key.includes("P3")){
+            if(t_key == "P3-1"){
+                displayed_text += global_flags['lq_status']==1?"原本的强榜第二，也不是蓝柒，而是<span style='color:aqua'>冰蓝</span>。<br>不过，她倒在了黎明前的黑暗中……":`喏，我旁边这位也不是蓝柒，而是<span style='color:aqua'>冰蓝</span><br><br>[冰蓝]……嗯嗯……`;
+            }if(t_key == "P3-2"){
+                displayed_text += global_flags['qx_status']==1?"例如秋兴就是一例……<br>不过倒也不用担心冰家追下追杀令。<br>作为死士，在危机四伏的水牢中遇难，<br>也在所难免。":`<br>[秋兴]哎啊啊，小姐。<br>这种说法有点太残忍了吧？<br>家主大人待我等不薄，<br>我等也不过是奉命行事。`;
+            }if(t_key == "P3-3"){
+                displayed_text += global_flags['lq_status']==1?"[纳可]那，之所以排出强榜是为了……<br><br>[冰溪月]哎呀呀，这你得去问冰蓝了……<br>最新一代的强榜还是她一手操办的呢。":`[纳可]那，蓝柒……冰蓝小姐，<br>之所以排出强榜是为了？<br><br>[冰蓝]……左阿是一个戒心很重的人。<br>我将实力控制在天空级六阶，<br>长此以往，他必然会有疑心。<br>【强榜】是一种掩饰，<br>这让左阿误以为我是那种享受者，<br>压制他人，高高在上的家伙。<br><br>[莫尔]是的，而且在那老贼的眼中，<br>这样一个榜单，反而看似对他的杀戮规则有益。<br>呵，他也以为自己能轻松掌控全局。`;
+            }
+            if(t_key == "P3-4"){
+                let kr = (global_flags['qx_status']==1?1:0) + (global_flags['lq_status']==1?1:0);
+                if(kr == 0){
+                    displayed_text += "[冰蓝]两位，大恩不言谢。<br>自此之后，凡我族血脉所及之处，<br>便敬二位为坐上宾，<br>即便献上性命，也定护你们周全。<br><br>[冰溪月]哦哦，气场很足的嘛。<br>话说小蓝你今天，<br>一次性说了这么多话？有点难得呀。<br>是时候了，回家了哦。<br>纳可小姐……谢谢你。<br>拿着这个，后会有期啦。<br><br>冰溪月玉手一挥，<br>一枚镌刻着<span style='color:aqua'>冰</span>字的玉简落入纳可手中。"
+                    add_to_character_inventory([{ "item": getItem(item_templates["冰家玉简"]), "count": 1}]);
+                    //获取冰家玉简(价值1000u)
+                }
+                if(kr == 1){
+                    displayed_text += "[冰溪月]两位，虽说有些许摩擦，<br>但冤家宜解不宜结，<br>毕竟小姐也是唯一成功破局之人。<br>纳可小姐……谢谢你。<br>拿着这个，后会有期啦。<br><br>冰溪月玉手一挥，<br>一叠369枚<span class='coin coin_moneyQa' >宇宙币</span>落入纳可手中。"
+                    character.money += 369e15;
+                    //获取888u
+                }
+                if(kr == 2){
+                    displayed_text += "[冰溪月]两位……<br>虽然破局之人是你们，<br>但你们的杀念属实太重。<br>在被你杀掉之前，<br>我还是先溜为妙。<br><br>冰溪月玉手一捏，<br>一枚镌刻着<span style='color:aqua'>冰</span>字的玉简被捏碎，<br>她的身影也消散在空气中。"
+                    //杀了俩还想要东西？
+                }
+            }
+
+        }//Past-3 第三幕boss战后多种判定
         return displayed_text;
 }
 
@@ -2186,6 +2224,11 @@ function get_spirit_buff(S3_sp){
         log_message(`${character.name} 将全身心的灵魂力量投入幻境！ 攻防敏提升了5亿！`,"enemy_enhanced");
         active_effects["灵魂之力 V"] = new ActiveEffect({...effect_templates["灵魂之力 V"], duration: 99999999});
     }
+    
+                        character.stats.add_active_effect_bonus();
+                        update_character_stats();
+                        update_displayed_effect_durations();
+                        update_displayed_effects();
 }
 
 function do_character_combat_action({target, attack_power}, target_num,c_atk_mul,c_hint) {
@@ -4865,6 +4908,7 @@ function start_grass_minigame(){
 function leave_grass()
 {
     grass_able = false;
+    
 }
 window.leave_grass = leave_grass;
 //割草小游戏

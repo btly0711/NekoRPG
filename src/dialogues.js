@@ -2804,6 +2804,7 @@ class Textline {
                 text: "[溪月]嗯……准备好了！<br><br>",
                 unlocks: {
                     locations:["幻境核心·决战"],
+                    spec:'save',
                 },
                 locks_lines: ["hx35"],
             }), 
@@ -2935,6 +2936,121 @@ class Textline {
         }
     });
 
+    dialogues["冰溪月"] = new Dialogue({
+        name: "冰溪月",
+        starting_text: "和溪月对话",
+        textlines: {
+            "bx1": new Textline({ 
+                is_unlocked: true,
+                name: "(残留的水元素结界仍在水牢中流淌，)",
+                text: "但那若隐若现的窒息感已然消散。<br>十几道身影，正围站在天光洒落的平台上。<br><br>[纳可]诶，诶？<br>所以说，这里的所有人，<br>都是来自溪月小姐……的家族？<br><br>[冰溪月]溪月只是暂时的名字，<br>重新自我介绍一下吧。<br>在下，冰家，<span style='color:aqua'>冰溪月</span>。<br>",
+                unlocks: {
+                    spec:"P3-1",
+                    textlines: [{dialogue: "冰溪月", lines: ["bx2"]}],
+                },
+                
+                locks_lines: ["bx1"],
+            }),
+            "bx2": new Textline({ 
+                is_unlocked: false,
+                name: "那……其他人呢？",
+                text: "[冰溪月]嘻嘻，很抱歉到现在才告诉你。<br>不过也是没有办法的事情。<br>另外，强榜这二十个人，不能说全部，<br>但大多数都是被我们陆续安排进来，<br>作为死士一样潜伏的哦。<br>",
+                unlocks: {
+                    spec:"P3-2",
+                    textlines: [{dialogue: "冰溪月", lines: ["bx3"]}],
+                },
+                
+                locks_lines: ["bx2"],
+            }),
+            "bx3": new Textline({ 
+                is_unlocked: false,
+                name: "原来是这样，怪不得……",
+                text: "[纳娜米]那么多拥有领域的强者聚集在这里。<br><br>[冰溪月]唔，事实上还不仅如此。<br>为了得到水牢的信息，<br>家族先后付出了几位，<br>云霄级前辈的性命为代价。",
+                unlocks: {
+                    textlines: [{dialogue: "冰溪月", lines: ["bx4"]}],
+                },
+                
+                locks_lines: ["bx3"],
+            }),
+            "bx4": new Textline({ 
+                is_unlocked: false,
+                name: "是那些魂灵吗……",
+                text: "",
+                unlocks: {
+                    textlines: [{dialogue: "冰溪月", lines: ["bx5"]}],
+                    spec:"P3-3",
+                },
+                
+                locks_lines: ["bx4"],
+            }),
+            "bx5": new Textline({ 
+                is_unlocked: false,
+                name: "所以，这些都在你们的计算之中吗？",
+                text: "[纳娜米]那，那我和可可——<br><br>纳娜米的情绪突然有些激动，<br>虽然纳可最终成功破局，<br>但她本不想自己妹妹被牵扯进这种事情之中。<br><br>[纳可]姐姐，没关系的。<br>经历了这一切之后，<br>我感觉自己现在强的可怕。<br>回家后，也该和老爹谈谈了……<br>家主之位，自古能者居之！",
+                unlocks: {
+                    textlines: [{dialogue: "冰溪月", lines: ["bx6"]}],
+                },
+                
+                locks_lines: ["bx5"],
+            }),
+            "bx6": new Textline({ 
+                is_unlocked: false,
+                name: "…",
+                text: "",
+                unlocks: {
+                    spec:"P3-4",
+                    textlines: [{dialogue: "冰溪月", lines: ["bx7"]}],
+                },
+                
+                locks_lines: ["bx6"],
+            }),
+            "bx7": new Textline({ 
+                is_unlocked: false,
+                name: "唔，要走了吗？……",
+                text: "[纳娜米]虽然还有很多想问的，<br>但你们背负的东西比想象的要沉重呢。<br>好好休息一下吧。<br><br>[莫尔]走吧，族中前辈早就等得着急了。<br>那么，就此别过，保重。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "冰溪月", lines: ["bx8"]}],
+                },
+                locks_lines: ["bx7"],
+            }),
+            "bx8": new Textline({ 
+                is_unlocked: false,
+                name: "姐姐……刚才你说的，",
+                text: "[纳可]在幻境里看到了前所未见的东西，<br>是真的吗？<br><br>[纳娜米]是啊，那片景象……真的很奇怪。<br>可可，你说你闯过的幻境是根据你的记忆，<br>生成与信念相背离的事物，试图让你堕入黑暗。<br>可我不记得我的记忆里有——<br>或者我曾去过那幻境中的地方。<br>一片金辉交映的天空，<br>巨兽翻腾衔云而舞，仙乐回荡震彻云霄。",
+                unlocks: {
+                    textlines: [{dialogue: "冰溪月", lines: ["bx9"]}],
+                },
+                locks_lines: ["bx8"],
+            }),
+            "bx9": new Textline({ 
+                is_unlocked: false,
+                name: "哇，听起来挺神奇的……",
+                text: "[纳娜米]可是……<br>每当我试图看清那些兽影，听清那仙乐，<br>意识就好像被震得眩晕起来。",
+                unlocks: {
+                    textlines: [{dialogue: "冰溪月", lines: ["bx10"]}],
+                },
+                locks_lines: ["bx9"],
+            }),
+            "bx10": new Textline({ 
+                is_unlocked: false,
+                name: "每个人的幻境都有所不同……吗？",
+                text: "[纳可]那姐姐，你有没有什么头绪呀。<br><br>[纳娜米]不知道，但我想回家族之后，<br>先闭关一段时间。<br>虽然怪异无比，但我走出来时，<br>却觉得领悟繁多。<br>就像那个地方藏着什么突破的契机一样。<br>",
+                unlocks: {
+                    textlines: [{dialogue: "冰溪月", lines: ["bx11"]}],
+                },
+                locks_lines: ["bx10"],
+            }),
+            "bx11": new Textline({ 
+                is_unlocked: false,
+                name: "太好了姐姐，我们快回去，",
+                text: "[纳可]把消息告诉峰大哥和父亲他们……<br><br>[纳娜米]呼——好，此间事已了，是时候离开了。<br>",
+                unlocks: {
+                    locations:["纳家宝库"],
+                },
+                locks_lines: ["bx11"],
+            }),
+        }
+    });
 
 
 
