@@ -2554,6 +2554,17 @@ item_templates["Twist liek a snek"] = new Book({
         }
     });
 
+    item_templates["伊芙"] = new Props({
+        name: "伊芙",
+        id: "伊芙",
+        description: "你猜为什么纳家没有云霄级，却可以在燕岗城经商？这面自适应盾牌连云霄级一阶的攻击都能进行层层削弱！", 
+        value: 1888e15,
+        stats: {
+            defense: {
+                flat: 30e8,
+            }
+        }
+    });
 
 })();
 

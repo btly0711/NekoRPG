@@ -2849,6 +2849,12 @@ function format_money(num) {
     let value=``;
     const sign = num >= 0 ? '' : '-';
     num = Math.abs(num);
+    if(num<100){
+        if((num - Math.floor(num))>0.01)
+        {
+            return  `<span class="coin coin_copper">${num.toFixed(2)}C</span> `
+        }
+    }
 
     if(num > 0) {
         let cC=Math.floor(num%1000);
@@ -3629,6 +3635,22 @@ function create_new_bestiary_entry(enemy_name) {
     kill_counter.classList.add("bestiary_entry_kill_count");
     
 
+
+    bestiary_entry_divs[enemy_name].appendChild(name_div);
+    bestiary_entry_divs[enemy_name].appendChild(kill_counter);
+
+    bestiary_entry_divs[enemy_name].setAttribute("data-bestiary", -1*enemy.rank);
+    bestiary_entry_divs[enemy_name].classList.add("bestiary_entry_div");
+    bestiary_list.appendChild(bestiary_entry_divs[enemy_name]);
+
+    //sorts bestiary_list div by enemy rank
+    [...bestiary_list.children].sort((a,b)=>parseInt(a.getAttribute("data-bestiary")) - parseInt(b.getAttribute("data-bestiary")))
+                                .forEach(node=>bestiary_list.appendChild(node));
+}
+
+function add_bestiary_tooltip(enemy_name){
+
+    const enemy = enemy_templates[enemy_name];
     const bestiary_tooltip = document.createElement("div");
     const tooltip_xp = document.createElement("div"); //base xp enemy gives
     tooltip_xp.innerHTML = enemy.description;
@@ -3779,7 +3801,7 @@ function create_new_bestiary_entry(enemy_name) {
 
         tooltip_drops.appendChild(loot_line);
     }
-
+    let perdicted_value = 0;
     for(let i = 0; i < enemy.loot_list.length; i++) {
         const loot_line = document.createElement("div");
         const loot_name = document.createElement("div");
@@ -3800,9 +3822,14 @@ function create_new_bestiary_entry(enemy_name) {
         loot_line.append(loot_name, loot_chance);
 
         tooltip_drops.appendChild(loot_line);
+        perdicted_value += enemy.loot_list[i].chance * enemy.get_droprate_modifier() * item_templates[enemy.loot_list[i].item_name].value;
     }
 
     bestiary_tooltip.classList.add("bestiary_entry_tooltip");
+
+    
+    const tooltip_value = document.createElement("div"); //base enemy stats
+    tooltip_value.innerHTML = "<br>预期收益: " + format_money(perdicted_value);
     
     bestiary_tooltip.appendChild(tooltip_desc);
     bestiary_tooltip.appendChild(stat_realm);
@@ -3810,18 +3837,14 @@ function create_new_bestiary_entry(enemy_name) {
     bestiary_tooltip.appendChild(tooltip_tags);
     bestiary_tooltip.appendChild(tooltip_stats);
     bestiary_tooltip.appendChild(tooltip_drops);
+    bestiary_tooltip.appendChild(tooltip_value);
 
-    bestiary_entry_divs[enemy_name].appendChild(name_div);
-    bestiary_entry_divs[enemy_name].appendChild(kill_counter);
+
     bestiary_entry_divs[enemy_name].appendChild(bestiary_tooltip);
+}
 
-    bestiary_entry_divs[enemy_name].setAttribute("data-bestiary", -1*enemy.rank);
-    bestiary_entry_divs[enemy_name].classList.add("bestiary_entry_div");
-    bestiary_list.appendChild(bestiary_entry_divs[enemy_name]);
-
-    //sorts bestiary_list div by enemy rank
-    [...bestiary_list.children].sort((a,b)=>parseInt(a.getAttribute("data-bestiary")) - parseInt(b.getAttribute("data-bestiary")))
-                                .forEach(node=>bestiary_list.appendChild(node));
+function clear_bestiary_tooltip(enemy_name){
+    bestiary_entry_divs[enemy_name].querySelectorAll('.bestiary_entry_tooltip').forEach(el => el.remove());
 }
 
 
@@ -3921,6 +3944,21 @@ function create_new_levelary_entry(level_name) {
     if(level.rank==0) return;
     
 
+    levelary_entry_divs[level_name].appendChild(name_div);
+    levelary_entry_divs[level_name].appendChild(kill_counter);
+
+    levelary_entry_divs[level_name].setAttribute("data-levelary", -1*level.rank);
+    levelary_entry_divs[level_name].classList.add("bestiary_entry_div");
+    levelary_list.appendChild(levelary_entry_divs[level_name]);
+
+    // sorts levelary_list div by enemy rank
+    [...levelary_list.children].sort((a,b)=>parseInt(a.getAttribute("data-levelary")) - parseInt(b.getAttribute("data-levelary")))
+                                .forEach(node=>levelary_list.appendChild(node));
+}
+
+
+function add_levelary_tooltip(level_name) {
+    const level = locations[level_name];
     const levelary_tooltip = document.createElement("div");
     levelary_tooltip.classList.add("bestiary_entry_tooltip");
     const tooltip_xp = document.createElement("div"); //base xp enemy gives
@@ -3963,6 +4001,7 @@ function create_new_levelary_entry(level_name) {
      tooltip_loots.innerHTML += `<br>此处战利品(平均)：<br>`;
     let lootlist = {0:0};
     let I_list = [];
+    let predict_value = 0;
      for(let j=0;j<level.enemies_list.length;j++)
     {
         let C_enemy = enemy_templates[level.enemies_list[j]];
@@ -3972,9 +4011,14 @@ function create_new_levelary_entry(level_name) {
             let I_name = C_enemy.loot_list[k].item_name;
             if(I_list[I_name] == undefined) I_list[I_name] = C_enemy.loot_list[k].chance;
             else I_list[I_name] += C_enemy.loot_list[k].chance;
+            predict_value += C_enemy.loot_list[k].chance * item_templates[C_enemy.loot_list[k].item_name].value;
         }
         //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
     }
+
+
+    const value_loots = document.createElement("div");
+    value_loots.innerHTML += `<br>预期收益/敌人：` + format_money(predict_value);
 
     for(let j=0;j<level.enemies_list.length;j++)
     {
@@ -3996,24 +4040,15 @@ function create_new_levelary_entry(level_name) {
     levelary_tooltip.appendChild(tooltip_tags);
     levelary_tooltip.appendChild(tooltip_enemies);
     levelary_tooltip.appendChild(tooltip_loots);
-
-    levelary_entry_divs[level_name].appendChild(name_div);
-    levelary_entry_divs[level_name].appendChild(kill_counter);
+    levelary_tooltip.appendChild(value_loots);
     levelary_entry_divs[level_name].appendChild(levelary_tooltip);
+}
 
-    levelary_entry_divs[level_name].setAttribute("data-levelary", -1*level.rank);
-    levelary_entry_divs[level_name].classList.add("bestiary_entry_div");
-    levelary_list.appendChild(levelary_entry_divs[level_name]);
-
-    // sorts levelary_list div by enemy rank
-    [...levelary_list.children].sort((a,b)=>parseInt(a.getAttribute("data-levelary")) - parseInt(b.getAttribute("data-levelary")))
-                                .forEach(node=>levelary_list.appendChild(node));
+function clear_levelary_tooltip(level_name) {
+    levelary_entry_divs[level_name].querySelectorAll('.bestiary_entry_tooltip').forEach(el => el.remove());
 }
 
 
-function update_levelary_entry(level_name) {
-    levelary_entry_divs[level_name].children[1].innerHTML = enemy_killcount[enemy_name];
-}
 
 function clear_levelary() {
     Object.keys(levelary_entry_divs).forEach((level) => {
@@ -4175,4 +4210,8 @@ export {
     reload_bestiary,
     add_bestiary_zones,
     unlock_moonwheel,
+    add_bestiary_tooltip,
+    clear_bestiary_tooltip,
+    add_levelary_tooltip,
+    clear_levelary_tooltip,
 }

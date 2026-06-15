@@ -1642,7 +1642,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.70";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.71";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -1987,6 +1987,7 @@
                 //bestiary entry tooltips
                 const bestiary_box_div = document.getElementById("bestiary_box_div");
                 bestiary_box_div.addEventListener('mousemove', move_bestiary_entry_tooltip, false);
+                let latest_enemy = "<b>";
                 function move_bestiary_entry_tooltip(event) {
                     if(Date.now() >= tooltip_wait) {
                         let hovered_element = retarget_clicked_to_class(event.target,["bestiary_entry_div"],[]);
@@ -1994,6 +1995,13 @@
                             return;
                         }
                         
+                        let current_enemy = hovered_element.children[0].innerHTML;
+                        if(current_enemy.includes("<b>")) current_enemy = "<b>";
+                        if(current_enemy != latest_enemy){
+                            if(current_enemy != "<b>") add_bestiary_tooltip(current_enemy);
+                            if(latest_enemy != "<b>") clear_bestiary_tooltip(latest_enemy);
+                            latest_enemy = current_enemy;
+                        }
                         const tooltip_height = hovered_element.children[0].scrollHeight;
                         
                         const body = document.getElementsByTagName("body")[0];
@@ -2012,6 +2020,49 @@
                         tooltip_wait = Date.now() + 1000 / tooltip_move_ticks;
                     }
                 }
+                //levelary entry tooltips
+                const levelary_box_div = document.getElementById("levelary_box_div");
+                levelary_box_div.addEventListener('mousemove', move_levelary_entry_tooltip, false);
+                let latest_level = "<b>";
+                function move_levelary_entry_tooltip(event) {
+                    if(Date.now() >= tooltip_wait) {
+                        let hovered_element = retarget_clicked_to_class(event.target,["bestiary_entry_div"],[]);
+                        if(!hovered_element) {
+                            return;
+                        }
+                        
+                        let current_level = hovered_element.children[0].innerHTML;
+                        if(!current_level.includes("-")) current_level = "<b>";
+                        if(current_level != latest_level){
+                            if(current_level != "<b>") add_levelary_tooltip(current_level);
+                            if(latest_level != "<b>") clear_levelary_tooltip(latest_level);
+                            latest_level = current_level;
+                        }
+                        const tooltip_height = hovered_element.children[0].scrollHeight;
+                        
+                        const body = document.getElementsByTagName("body")[0];
+                        const scrollbar_X_visible = (body.scrollWidth - body.clientWidth) > 0;
+
+                        const bottom_edge_position = 
+                            window.innerHeight - tooltip_height + window.scrollY - 33 - (scrollbar_X_visible?10:0);
+                        
+                        document.documentElement.style.setProperty('--bestiary_entry_tooltip_left', `${event.pageX - 1250}px`);
+
+                        if(event.pageY > bottom_edge_position) {
+                            document.documentElement.style.setProperty('--bestiary_entry_tooltip_top', `${bottom_edge_position}px`);
+                        } else {
+                            document.documentElement.style.setProperty('--bestiary_entry_tooltip_top', `${event.pageY}px`);
+                        }
+                        tooltip_wait = Date.now() + 1000 / tooltip_move_ticks;
+                    }
+                }
+
+
+
+
+
+
+
 
                 //active effects tooltip
                 const active_effects_div = document.getElementById("effects_div");

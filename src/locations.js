@@ -4543,13 +4543,38 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["幻境核心·出口"], custom_text: "回到幻境核心"},{location: locations["赫尔沼泽入口"], custom_text: "快速旅行 - 第三幕"}], 
         description: "终于回到家族了！是时候夺走这家主大位……[V2.70前版本终点]",
         name: "纳家宝库", 
-        //dialogues: ["纳布(宝库)"],//老登剧情！
+        dialogues: ["纳布(宝库)"],//老登剧情！
         is_unlocked: false,
         bgm: 21,
     });//4-1(初始区)
+    locations["纳家宝库 - X"] = new Challenge_zone({
+        description: "老爹突破了。想要拿走奇宝可没有原作那么简单了！", 
+        enemy_count: 1, 
+        enemies_list : [["纳布[BOSS]"]],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "纳家宝库 - X",
+        bgm:21,
+        parent_location: locations["纳家宝库"],
+        repeatable_reward: {
+            textlines: [{dialogue: "纳布(宝库)", lines: ["bk6"]}],
+        },
+    });
     locations["幻境核心·出口"].connected_locations.push({location: locations["纳家宝库"]});
-
+    locations["纳家宝库"].connected_locations.push({location: locations["纳家宝库 - X"]});
     locations["赫尔沼泽入口"].connected_locations.push({location: locations["纳家宝库"],custom_text:"快速旅行 - 第四幕"});
+    locations["狩猎大赛·城门战"] = new Location({ 
+        connected_locations: [{location: locations["纳家宝库"], custom_text: "回到纳家宝库"}], 
+        description: "激动人心的燕岗领狩猎大赛。这里是第一阶段！[V2.74前版本终点]",
+        name: "狩猎大赛·城门战", 
+        dialogues: [],
+        is_unlocked: false,
+        bgm: 21,
+    });//4-1
+    locations["纳家宝库"].connected_locations.push({location: locations["狩猎大赛·城门战"]});
+
 
 
 

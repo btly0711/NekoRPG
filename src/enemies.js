@@ -8129,7 +8129,19 @@ B9++ 7,778,742,049exp 16B
         loot_list: [
         ],
     });
-    //WIP: SPEC 56 57 58尚未实装
+    enemy_templates["纳布[BOSS]"] = new Enemy({
+        name: "纳布[BOSS]", 
+        description: "柿子之蒸向来如此……老东西，你的时代结束了！", 
+        xp_value: 12586269025, 
+        rank: 4197,
+        image: "image/boss/B4101.png",
+        realm: "<span class=realm_realm><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [10],
+        tags: [],
+        stats: {health: 695000e8, attack: 625e8, agility: 337.5e8, attack_speed: 1.5, defense:220e8}, //属性5x(天空9)，血量额外50x
+        loot_list: [{item_name:"伊芙",chance:1.00,ignore_luck:true}],
+    });
 /*
 
 17776Z/113.56E/1W/44.4E/1.0

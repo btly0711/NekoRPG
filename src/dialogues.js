@@ -3052,6 +3052,69 @@ class Textline {
         }
     });
 
+    dialogues["纳布(宝库)"] = new Dialogue({
+        name: "纳布(宝库)",
+        starting_text: "和 纳布(宝库) 对话",
+        textlines: {
+            "bk1": new Textline({ 
+                is_unlocked: true,
+                name: "我回来了~",
+                text: "[纳布]可可！娜娜！没事吧，<br>我找你们找了",
+                unlocks: {
+                    spec:"age-check",
+                    textlines: [{dialogue: "纳布(宝库)", lines: ["bk2"]}],
+                },
+                locks_lines: ["bk1"],
+            }),
+            "bk2": new Textline({ 
+                is_unlocked: false,
+                name: "我没关系的。",
+                text: "[纳可]父亲大人，您说过的，<br>只有危险的地方才有机遇。<br>我能有现在的实力，<br>也正是拜这串生死危机所赐。<br><br>[纳布]<span class='realm_sky'>天空级巅峰</span>?领域四重?!!<br>不愧是我纳布……说吧，<br>这次回家族是为了什么?",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(宝库)", lines: ["bk3"]}],
+                },
+                locks_lines: ["bk2"],
+            }),
+            "bk3": new Textline({ 
+                is_unlocked: false,
+                name: "听说……最近有个燕岗领狩猎大赛？",
+                text: "[纳布]是啊……<span class='realm_cloudy'>云霄级</span>以下都可以参加。<br>31698纪元1372年那场兽潮后，<br>整个燕岗领的荒兽提升了一个档次。<br>狩猎大赛奖励不菲，<br>且云霄级荒兽材料支持带回家。",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(宝库)", lines: ["bk4"]}],
+                },
+                locks_lines: ["bk3"],
+            }),
+            "bk4": new Textline({ 
+                is_unlocked: false,
+                name: "这样！那我要去！",
+                text: "[纳布]可可可以，娜娜就算了……<br>对了，本来要传给你们纳家奇宝【伊芙】的。<br>可是，因为满燕岗领搜寻太久，<br>我也心生感悟，一朝破入了<span class='realm_cloudy'>云霄级</span>。<br>看来这家主之位，<br>就得由我再坐几年喽！",
+                unlocks: {
+                    textlines: [{dialogue: "纳布(宝库)", lines: ["bk5"]}],
+                    locations:["狩猎大赛·城门战"],
+                },
+                locks_lines: ["bk4"],
+            }),
+            "bk5": new Textline({ 
+                is_unlocked: false,
+                name: "我不服！",
+                text: "[纳布]年轻人有勇气是好事。<br>如果可可有实力击败我，<br>那我也就放心养老去了。",
+                unlocks: {
+                    locations:["纳家宝库 - X"],
+                },
+                locks_lines: ["bk5"],
+            }),
+            "bk6": new Textline({ 
+                is_unlocked: false,
+                name: "这下可以了吧？",
+                text: "[纳布]好好好。<br>这是你要的东西。<br>呵，长大了……<br><br>[提醒]<br>获取了纳家奇宝【伊芙】！<br>[WIP->V3.01]家族系统 现已激活!",
+                unlocks: {
+                    flags: ["is_family_enabled"],
+                },
+                locks_lines: ["bk5"],
+            }),
+        },
+    });
+
 
 
     dialogues["心之石像"] = new Dialogue({

@@ -57,12 +57,21 @@ import { end_activity_animation,
          update_other_save_load_button,
          format_number,add_bestiary_zones,
          unlock_moonwheel,
+         add_bestiary_tooltip,
+         clear_bestiary_tooltip,
+         add_levelary_tooltip,
+         clear_levelary_tooltip,
         } from "./display.js";
 import { compare_game_version, get_hit_chance } from "./misc.js";
 import { stances } from "./combat_stances.js";
 import { get_recipe_xp_value, recipes } from "./crafting_recipes.js";
 import { game_version, get_game_version } from "./game_version.js";
 import { ActiveEffect, effect_templates } from "./active_effects.js";
+
+window.add_bestiary_tooltip = add_bestiary_tooltip;
+window.clear_bestiary_tooltip = clear_bestiary_tooltip;
+window.add_levelary_tooltip = add_levelary_tooltip;
+window.clear_levelary_tooltip = clear_levelary_tooltip;
 
 const save_key = "save data";
 const dev_save_key = "dev save data";
@@ -120,6 +129,7 @@ const global_flags = {
     is_crafting_unlocked: false,
     is_deep_forest_beaten: false,
     is_realm_enabled: false,
+    is_family_enabled: false,
     is_evolve_studied:false,
     is_moonwheel_unlocked: false,
     qx_status: 0,
@@ -134,6 +144,7 @@ const flag_unlock_texts = {
     is_realm_enabled: "领悟【微火】的进化之路已经被打通！",
     is_evolve_studied: "你掌握了【初等进化结晶】的凝聚方法！",
     is_moonwheel_unlocked: "你掌握了【银霜月轮】的合成方法！",
+    is_family_enabled: "【家族系统】已激活！(右下角第三栏)",
 }
 
 // special stats
@@ -1254,6 +1265,15 @@ function textline_special(t_key){
             }
 
         }//Past-3 第三幕boss战后多种判定
+        else if(t_key == "age-check"){
+            let age=Math.round(current_game_time.year - 1374 + (current_game_time.era-31698)*10081);
+            // 1374年 15岁 进入时封水牢(RPG标准世界线)
+            displayed_text += `${age}年了呐！！<br>`
+            if(age<10) displayed_text += `家族里的人都说你们很快就会回来。<br>看来我也是瞎操心一趟。`;
+            else if(age<100) displayed_text += `虽然那个历练地点是峰大哥建议的……<br>但以后还是不要离开那么久，好吗？<br>`;
+            else if(age<1000) displayed_text += `得亏你们还记得回来……<br>再不回来的话，<br>家族都不知道谁继承了。`
+            else displayed_text += `满燕岗城都在传，<br>曾经惊才绝艳的纳可姐妹，<br>双双陨落在了那座出不去的冰宫！<br>再晚回来几年，你们估计连纳家都看不到了。`
+        }
         return displayed_text;
 }
 
@@ -2201,7 +2221,6 @@ function get_spirit_buff(S3_sp){
     locations["幻境核心 - B2"].is_unlocked = (inf_combat.S3.b2 != 0);
     locations["幻境核心 - B3"].is_unlocked = (inf_combat.S3.b3 != 0);
     //判定自选关解锁
-    console.log(S3_sp);
     if(S3_sp == 5){
         log_message(`${character.name} 生命上限提升了20%！`,"enemy_enhanced");
         active_effects["灵魂之力 I"] = new ActiveEffect({...effect_templates["灵魂之力 I"], duration: 99999999});
