@@ -1274,6 +1274,14 @@
                     <input type="checkbox" id="options_dont_autoswitch_to_combat" name="options_dont_autoswitch_to_combat" value="options_dont_autoswitch_to_combat" onclick = "option_combat_autoswitch()"/>
                     <label for="options_dont_autoswitch_to_combat">开始战斗时不自动切出物品栏</label>
                 </div>
+                <div class="options_choice">
+                    <input type="checkbox" id="options_combat_filter" name="options_combat_filter" value="options_combat_filter" onclick = "option_combat_filter()"/>
+                    <label for="options_combat_filter">战斗日志过滤器[闪避/0伤/击杀]</label>
+                </div>
+                <div class="options_choice">
+                    <input type="checkbox" id="options_format_change" name="options_format_change" value="options_format_change" onclick = "option_format_change()"/>
+                    <label for="options_format_change">科学计数法[刷新以全部生效]</label>
+                </div>
             </div>
             <div id="close_options" onclick="closeOptions()"> X </div>
             <div id = "backup_load_button" class="options_button" onclick = "loadTheBackup()">加载备份自动存档</div>
@@ -1642,7 +1650,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V2.71";
+                document.getElementById("changelog_button").children[0].innerHTML = "V2.72";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

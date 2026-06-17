@@ -231,6 +231,8 @@ const options = {
     remember_message_log_filters: false,
     remember_sorting_options: false,
     combat_disable_autoswitch: true,
+    option_combat_filter: false,
+    option_format_change: false,
 };
 
 let message_log_filters = {
@@ -329,6 +331,32 @@ function option_remember_filters(option) {
     }
 }
 
+function option_combat_filter(option) {
+    const checkbox = document.getElementById("options_combat_filter");
+
+    if(checkbox.checked || option) {
+        options.option_combat_filter = true;
+    } else {
+        options.option_combat_filter = false;
+    }
+
+    if(option) {
+        checkbox.checked = option;
+    }
+}
+function option_format_change(option) {
+    const checkbox = document.getElementById("options_format_change");
+
+    if(checkbox.checked || option) {
+        options.option_format_change = true;
+    } else {
+        options.option_format_change = false;
+    }
+
+    if(option) {
+        checkbox.checked = option;
+    }
+}
 function option_combat_autoswitch(option) {
     const checkbox = document.getElementById("options_dont_autoswitch_to_combat");
 
@@ -1499,9 +1527,12 @@ function reset_combat_loops() {
  * @param {*} enemy_id 
  * @param {*} cooldown 
  */
+
+let cd_needed = [0,0,0,0,0,0,0,0];
+let cur_cd = [0,0,0,0,0,0,0,0];
 function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_round:回合数
     count = count || 0;
-    update_enemy_attack_bar(enemy_id, count);
+    //update_enemy_attack_bar(enemy_id, 0);
     let Spec_S = "";
     if(current_enemies[enemy_id].spec.includes(0)) Spec_S += "[魔攻]";
     if(current_enemies[enemy_id].spec.includes(5)) Spec_S += "[牵制]";
@@ -1520,8 +1551,8 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(55)) Spec_S += "[贪婪·改]";
     
     if(isnew) {
-        enemy_timer_variance_accumulator[enemy_id] = 0;
-        enemy_timer_adjustment[enemy_id] = 0;
+        cd_needed[enemy_id] = 1000 / current_enemies[enemy_id].stats.attack_speed;
+        cur_cd[enemy_id] = 0;
         if(current_enemies[enemy_id].spec.includes(2)) do_enemy_combat_action(enemy_id,"[迅捷]"+Spec_S);//迅捷(开局攻击)
         if(current_enemies != null) if(current_enemies[enemy_id].spec.includes(4))
         {
@@ -1571,18 +1602,17 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
         }//冻伤
     }
 
+    let frametime = 25;
     clearTimeout(enemy_attack_loops[enemy_id]);
     enemy_attack_loops[enemy_id] = setTimeout(() => {
         if(current_enemies != null)
         {
-            enemy_timers[enemy_id][0] = Date.now(); 
-            enemy_timer_variance_accumulator[enemy_id] += ((enemy_timers[enemy_id][0] - enemy_timers[enemy_id][1]) - enemy_attack_cooldowns[enemy_id]*1000/(40*tickrate));
-
-            enemy_timers[enemy_id][1] = Date.now();
-            update_enemy_attack_bar(enemy_id, count);
-            count++;
+            cur_cd[enemy_id] += frametime;
+            //console.log(enemy_id,(cur_cd[enemy_id] / cd_needed[enemy_id])*100 )
+            update_enemy_attack_bar(enemy_id, cur_cd[enemy_id] / cd_needed[enemy_id]);
             let atk_sign = 0;
-            if(count >= 40) {
+            if(cur_cd[enemy_id] >= cd_needed[enemy_id]) {
+                cur_cd[enemy_id] -= cd_needed[enemy_id];
                 count = 0;
                 if(current_enemies[enemy_id].spec.includes(10))
                 {
@@ -1671,22 +1701,9 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
             }
             do_enemy_attack_loop(enemy_id, count,E_round + atk_sign,false);
 
-            if(enemy_timer_variance_accumulator[enemy_id] <= 5/tickrate && enemy_timer_variance_accumulator[enemy_id] >= -5/tickrate) {
-                enemy_timer_adjustment[enemy_id] = time_variance_accumulator;
-            }
-            else {
-                if(enemy_timer_variance_accumulator[enemy_id] > 5/tickrate) {
-                    enemy_timer_adjustment[enemy_id] = 5/tickrate;
-                }
-                else {
-                    if(enemy_timer_variance_accumulator[enemy_id] < -5/tickrate) {
-                        enemy_timer_adjustment[enemy_id] = -5/tickrate;
-                    }
-                }
-            } //limits the maximum correction to +/- 5ms, just to be safe
         }
         else clearTimeout(enemy_attack_loops[enemy_id]);
-    }, enemy_attack_cooldowns[enemy_id]*1000/(40*tickrate) - enemy_timer_adjustment[enemy_id]);
+    }, frametime);
 }
 
 function clear_enemy_attack_loop(enemy_id) {
@@ -1742,14 +1759,16 @@ function set_character_attack_loop({base_cooldown}) {
  * @param {String} attack_power 
  * @param {String} attack_type 
  */
+let chara_cd = 0;
 function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power, targets}) {
     let count = 0;
     clear_character_attack_loop();
+    let frametime = 20;
     character_attack_loop = setInterval(() => {
-        update_character_attack_bar(count);
-        count++;
-        if(count >= 40) {
-            count = 0;
+        update_character_attack_bar(chara_cd/(actual_cooldown * 1000));
+        chara_cd += frametime;
+        if(chara_cd >= actual_cooldown * 1000) {
+            chara_cd -= actual_cooldown * 1000;
             let leveled = false;
 
             for(let i = 0; i < targets.length; i++) {
@@ -1788,7 +1807,7 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
                 set_new_combat();
             }
         }
-    }, actual_cooldown*1000/(40*tickrate));
+    }, frametime);
 }
 
 function clear_character_attack_loop() {
@@ -1998,7 +2017,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
 
     if((hit_chance < Math.random()) && (spec_mul * E_atk_mul_f) < 25) { //EVADED ATTACK
-        log_message(character.name + " 闪避了一次攻击", "enemy_missed");
+        if(!options.option_combat_filter) log_message(character.name + " 闪避了一次攻击", "enemy_missed");
         return; //damage fully evaded, nothing more can happen
     }
     //目前25倍以上攻击是必中状态。
@@ -2055,9 +2074,10 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     if(critted)
     {
-        log_message(character.name + " 受到了 " + format_number(damage_taken) + " 伤害[暴击]" + spec_hint, "hero_attacked_critically");
+        console.log(options.option_combat_filter);
+        if((!options.option_combat_filter) || damage_taken != 0) log_message(character.name + " 受到了 " + format_number(damage_taken) + " 伤害[暴击]" + spec_hint, "hero_attacked_critically");
     } else {
-        log_message(character.name + " 受到了 " + format_number(damage_taken) + "  伤害" + spec_hint, "hero_attacked");
+        if((!options.option_combat_filter) || damage_taken != 0) log_message(character.name + " 受到了 " + format_number(damage_taken) + "  伤害" + spec_hint, "hero_attacked");
     }
 
 
@@ -2385,11 +2405,13 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         }
         let b_health = target.stats.health;
         target.stats.health -= damage_dealt;
+        let filter = false;
+        if(options.option_combat_filter && ((damage_dealt == 0) || (target.stats.health <= 0))) filter = true;
         if(critted) {
-            log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害[暴击]" + Spec_E, "enemy_attacked_critically");
+            if(!filter) log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害[暴击]" + Spec_E, "enemy_attacked_critically");
         }
         else {
-            log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害" + Spec_E, "enemy_attacked");
+            if(!filter) log_message(target.name + " 受到了 " + format_number(damage_dealt) + " 伤害" + Spec_E, "enemy_attacked");
         }
         
         const effect = document.getElementById(`E${target_num}_effect`);
@@ -2568,7 +2590,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             log_message(character.name + " 未命中,并受到了" + format_number(damage_taken) + "点伤害[阻击]", "hero_missed");
             if(fainted) faint(" 被阻击击败")
         }
-        else log_message(character.name + " 未命中", "hero_missed");
+        else if(!options.option_combat_filter) log_message(character.name + " 未命中", "hero_missed");
     }
     if(target.spec.includes(35)){
         let {damage_taken, fainted} = character.take_damage([],{damage_value: Math.max(target.spec_value[35]-character.stats.full.agility,0)},0);
@@ -3721,12 +3743,20 @@ function load(save_data) {
     option_combat_autoswitch(options.disable_combat_autoswitch);
 
     options.remember_message_log_filters = save_data.options?.remember_message_log_filters;
+    
     if(save_data.message_filters) {
         Object.keys(message_log_filters).forEach(filter => {
             message_log_filters[filter] = save_data.message_filters[filter] ?? true;
         })
     }
     option_remember_filters(options.remember_message_log_filters);
+
+    options.option_combat_filter = save_data.options?.option_combat_filter;
+    option_combat_filter(options.option_combat_filter);
+
+    options.option_format_change = save_data.options?.option_format_change;
+    option_format_change(options.option_format_change);
+
 
     //this can be removed at some point
     const is_from_before_eco_rework = compare_game_version("v0.3.5", save_data["game version"]) == 1;
@@ -5945,6 +5975,8 @@ window.updateRecipeTooltip = update_recipe_tooltip;
 window.option_uniform_textsize = option_uniform_textsize;
 window.option_bed_return = option_bed_return;
 window.option_combat_autoswitch = option_combat_autoswitch;
+window.option_combat_filter = option_combat_filter;
+window.option_format_change = option_format_change;
 window.option_remember_filters = option_remember_filters;
 
 window.getDate = get_date;

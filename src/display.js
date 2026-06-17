@@ -194,6 +194,14 @@ function format_number(some_number)
     if(some_number <= 1e-8) return '0';
     let len=Math.floor(Math.log10(some_number)) + 1;//位数！
     if(some_number<1e-4) f_result += '0';
+    if(options.option_format_change && some_number > 1e6){
+        len--;//exp
+        some_number *= 0.1 ** len;
+        f_result += some_number.toFixed(2);
+        f_result += 'e';
+        f_result += Math.round(len);
+        return f_result;
+    }
     else if(len<=4||len==6)
     {
         f_result += String(some_number).substring(0,6);
@@ -2678,7 +2686,7 @@ function update_displayed_stats() { //updates displayed stats
 
     Object.keys(stats_divs).forEach(function(key){
         if(key === "crit_rate" || key === "crit_multiplier") {
-            stats_divs[key].innerHTML = `${(character.stats.full[key]*100).toFixed(1)}%`;
+            stats_divs[key].innerHTML = `${format_numberL(character.stats.full[key])}`;
             update_stat_description(key);
         } 
         else if(key === "attack_speed") {
@@ -2694,7 +2702,7 @@ function update_displayed_stats() { //updates displayed stats
                 stats_divs[key].innerHTML = ``;
             }
             else{
-                stats_divs[key].innerHTML = `${(character.stats.full[key]*100).toFixed(1)}%`;
+                stats_divs[key].innerHTML = `${format_numberL(character.stats.full[key])}`;
                 update_stat_description(key);
             }
         }
@@ -2703,7 +2711,7 @@ function update_displayed_stats() { //updates displayed stats
                 stats_divs[key].innerHTML = ``;
             }
             else{
-                stats_divs[key].innerHTML = `${(character.stats.full[key]*100).toFixed(1)}%`;
+                stats_divs[key].innerHTML = `${format_numberL(character.stats.full[key])}`;
                 update_stat_description(key);
             }
         }
@@ -4065,11 +4073,11 @@ function clear_skill_list(){
 }
 
 function update_enemy_attack_bar(enemy_id, num) {
-    enemies_div.children[enemy_id].querySelector(".enemy_attack_bar").style.width = `${Math.min(num*2.6,100)}%`;
+    enemies_div.children[enemy_id].querySelector(".enemy_attack_bar").style.width = `${Math.min(num*100,100)}%`;
 }
 
 function update_character_attack_bar(num) {
-    character_attack_bar.style.width = `${Math.min(num*2.6,100)}%`;
+    character_attack_bar.style.width = `${Math.min(num*100,100)}%`;
 }
 
 function update_backup_load_button(date_string){
