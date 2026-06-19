@@ -135,6 +135,24 @@ class ComponentRecipe extends ItemRecipe{
                 throw new Error(`Component recipe ${this.name} does not produce a valid result!`);
             }
         }
+        this.getResultWithFixedQuality = function(material, quality = 100){
+            const result = item_templates[this.materials.filter(x => x.material_id===material.id)[0].result_id];
+            if(result.tags["clothing"]) {
+                //means its a clothing (wearable internal part of armor)
+                return new Armor({...item_templates[result.id], quality: quality});
+            } else if(result.tags["armor component"]) {
+
+                return new ArmorComponent({...item_templates[result.id], quality: quality});
+            } else if(result.tags["weapon component"]) {
+
+                return new WeaponComponent({...item_templates[result.id], quality: quality});
+            } else if(result.tags["shield component"]) {
+
+                return new ShieldComponent({...item_templates[result.id], quality: quality});
+            } else {
+                throw new Error(`Component recipe ${this.name} does not produce a valid result!`);
+            }
+        }//真批量专用
     }
 
     get_quality_range(tier = 0) {
@@ -209,7 +227,44 @@ class EquipmentRecipe extends Recipe {
                 throw new Error(`Recipe "${this.name}" has an incorrect item_type provided ("${this.item_type}")`);
             }
         }
+        
+        this.getResultWithFixedQuality = function(component_1, component_2, quality = 100){
+            if(this.item_type === "Weapon") {
+                return new Weapon(
+                    {
+                        components: {
+                            head: component_1.id,
+                            handle: component_2.id,
+                        },
+                        quality: quality,
+                    }
+                );
+            } else if(this.item_type === "Armor") {
+                return new Armor(
+                    {
+                        components: {
+                            internal: component_1.id,
+                            external: component_2.id,
+                        },
+                        quality: quality,
+                    }
+                );
+            } else if(this.item_type === "Shield") {
+                return new Shield(
+                    {
+                        components: {
+                            shield_base: component_1.id,
+                            handle: component_2.id,
+                        },
+                        quality: quality,
+                    }
+                );
+            } else {
+                throw new Error(`Recipe "${this.name}" has an incorrect item_type provided ("${this.item_type}")`);
+            }
+        }
     }
+    
 
     get_quality_range(component_quality, tier = 0) {
         //const skill = skills[this.recipe_skill];

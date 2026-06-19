@@ -10,7 +10,8 @@ import { current_enemies, options,
     get_current_book, last_location_with_bed, 
     last_combat_location, faved_stances, 
     selected_stance, unlock_location,
-    global_flags,
+    global_flags, get_enemy_killcount,
+    total_crafting_successes,total_crafting_attempts,
     inf_combat} from "./main.js";
 import { dialogues } from "./dialogues.js";
 import { activities } from "./activities.js";
@@ -83,6 +84,9 @@ const inventory_switch = document.getElementById("switch_to_inventory")
 const data_entry_divs = {
                             character: document.getElementById("character_xp_multiplier"),
                             skills: document.getElementById("skills_xp_multiplier"),
+                            kills: document.getElementById("character_killcount"),
+                            crafts: document.getElementById("character_craftcount"),
+                            craft: document.getElementById("character_craftcounts"),
                         };
 
 let skill_sorting = "name";
@@ -2908,6 +2912,9 @@ function update_displayed_character_xp(did_level = false) {
 function update_displayed_xp_bonuses() {
     data_entry_divs.character.innerHTML = `<span class="data_entry_name">基础等级经验获取:</span><span class="data_entry_value">x${format_number(get_hero_xp_gain())}</span>`;
     data_entry_divs.skills.innerHTML = `<span class="data_entry_name">基础技能经验获取:</span><span class="data_entry_value">x${format_number(get_skills_overall_xp_gain())}</span>`;
+    data_entry_divs.kills.innerHTML = `<span class="data_entry_name">敌人击杀数:</span><span class="data_entry_value">${Math.round(get_enemy_killcount())}</span>`;
+    data_entry_divs.crafts.innerHTML = `<span class="data_entry_name">合成成功数:</span><span class="data_entry_value">${Math.round(total_crafting_successes)}</span>`;
+    data_entry_divs.craft.innerHTML = `<span class="data_entry_name">合成尝试数:</span><span class="data_entry_value">${Math.round(total_crafting_attempts)}</span>`;
 }
 
 
@@ -3862,9 +3869,10 @@ function add_bestiary_lines(zone)
     //zone 11-> 1-1，rank作为1200处理
     //sorts bestiary_list div by enemy rank
     bestiary_entry_divs[zone] = document.createElement("div");
-    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"纯白冰原",34:"极寒冰宫",35:"时封水牢",36:"传承幻境",37:"幻境核心",41:"城门战",42:"【WIP】战",43:"【WIP】战",44:"毬毬山谷",45:"鲜血峰",46:"破败之域",47:"破败危壁",48:"灭门战【WIP/需要剧情修正】",51:"枯叶走廊",52:"灰魇【WIP】",53:"灰魇庭院",54:"珍珠海",55:"风雷大会",56:"行道盟审判战",61:"深林【WIP】",62:"血魔海",63:"炎眸【WIP】",64:"葬地【WIP】",65:"冗音圣树",66:"冗音之塔",67:"音界",68:"圣城【WIP】"}
+    let ZoneNameMap = {11:"纳家练兵场",12:"燕岗城",13:"燕岗城郊",14:"地宫",15:"地宫核心",21:"荒兽森林",22:"清野江畔",23:"纳家秘境",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"纯白冰原",34:"极寒冰宫",35:"时封水牢",36:"传承幻境",37:"幻境核心",41:"城门战",42:"【WIP】战",43:"【WIP】战",44:"毬毬山谷",45:"鲜血峰",46:"破败之域",47:"破败危壁",48:"灭门战【WIP/需要剧情修正】",51:"枯叶走廊",52:"灰魇【WIP】",53:"灰魇庭院",54:"珍珠海",55:"风雷大会",56:"行道盟审判战",61:"深林【WIP】",62:"血魔海",63:"炎眸【WIP】",64:"葬地【WIP】",65:"冗音圣树",66:"冗音之塔",67:"音界",68:"圣城【WIP】"};//显示名
+    let ZoneTpMap = {11:"纳家大厅",12:"燕岗城",13:"燕岗近郊",14:"地宫浅层",15:"地宫深层",21:"荒兽森林",22:"清野江畔",23:"纳家秘境 - 战斗区",24:"结界湖",25:"声律城废墟",26:"声律城战场",27:"天外飞船",28:"飞船核心",31:"赫尔沼泽",32:"黑暗森林",33:"纯白冰原",34:"极寒冰宫",35:"时封水牢",36:"传承幻境",37:"幻境核心·地宫",41:"狩猎大赛·城门战",42:"【WIP】战",43:"【WIP】战",44:"毬毬山谷",45:"鲜血峰",46:"破败之域",47:"破败危壁",48:"灭门战【WIP/需要剧情修正】",51:"枯叶走廊",52:"灰魇【WIP】",53:"灰魇庭院",54:"珍珠海",55:"风雷大会",56:"行道盟审判战",61:"深林【WIP】",62:"血魔海",63:"炎眸【WIP】",64:"葬地【WIP】",65:"冗音圣树",66:"冗音之塔",67:"音界",68:"圣城【WIP】"};//TP地点名
     const name_div = document.createElement("div");
-    name_div.innerHTML = `<b>【${ZoneNameMap[zone]}】</b>`;
+    name_div.innerHTML = `<b><div  onclick="change_location('${ZoneTpMap[zone]}')">【${ZoneNameMap[zone]}】</div></b>`;
     name_div.classList.add("bestiary_entry_name");
 
     const kill_counter = document.createElement("div");

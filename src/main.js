@@ -5,7 +5,7 @@ import { item_templates, getItem, book_stats, setLootSoldCount, loot_sold_count,
 import { locations } from "./locations.js";
 import { skills, weapon_type_to_skill, which_skills_affect_skill } from "./skills.js";
 import { dialogues } from "./dialogues.js";
-import { enemy_killcount } from "./enemies.js";
+import { enemy_killcount, enemy_templates } from "./enemies.js";
 import { traders } from "./traders.js";
 import { is_in_trade, start_trade, cancel_trade, accept_trade, exit_trade, add_to_trader_inventory,
          add_to_buying_list, remove_from_buying_list, add_to_selling_list, remove_from_selling_list} from "./trade.js";
@@ -457,7 +457,7 @@ function change_location(location_name) {
     if(typeof current_location !== "undefined" && current_location.name !== location.name ) { 
         //so it's not called when initializing the location on page load or on reloading current location (due to new unlocks)
         log_message(`[ 进入 ${location.name} ]`, "message_travel");
-    }
+            }
 
     if(location.crafting) {
         update_displayed_crafting_recipes();
@@ -480,6 +480,7 @@ function change_location(location_name) {
     }
 }
 
+window.change_location = change_location;
 
 /**
  * 
@@ -829,16 +830,10 @@ function reload_normal_location() {
     update_displayed_normal_location(current_location);
 }
 function get_enemy_killcount(){
-    let bestiary_div =document.getElementById("bestiary_list");
-    let bestiary_childs = bestiary_div.querySelectorAll('.bestiary_entry_div');
+    
     let K_sum = 0;
-    let K_num;
-    bestiary_childs.forEach((div, index) => {
-        K_num = div.children[1].innerHTML;
-        if(K_num[0] != '<')
-        {
-            K_sum += Number(K_num);
-        }
+    Object.keys(enemy_killcount).forEach(key => {
+        K_sum += enemy_killcount[key];
     });
     return K_sum;
 }
@@ -3106,34 +3101,64 @@ function use_recipe(target,stated = false) {
                 if(!character.inventory[component_1_key] || !character.inventory[component_2_key]) {
                     throw new Error(`Tried to create item with components that are not present in the inventory!`);
                 } else {
-                    total_crafting_attempts++;
-                    total_crafting_successes++;
-                    result = selected_recipe.getResult(character.inventory[component_1_key].item, character.inventory[component_2_key].item, station_tier);
-                    if(!stated) {
-                        remove_from_character_inventory([{item_key: component_1_key}, {item_key: component_2_key}]);
-                        add_to_character_inventory([{item: result}]);
-                    }
+                    let E_ttl = Math.min(character.inventory[component_1_key]?.count,character.inventory[component_2_key]?.count);
+                    let E_range,E_base,E_imp1,E_cur,E_q,E_exp;
+                    console.log(E_ttl);
+                    if(E_ttl >= 100 && stated){
+                        const id_1 = JSON.parse(component_1_key).id;
+                        const id_2 = JSON.parse(component_2_key).id;
+                    console.log("reached 3");
+
+                        total_crafting_attempts+=E_ttl;
+                        total_crafting_successes+=E_ttl;
+                        E_range = selected_recipe.get_quality_range(selected_recipe.get_component_quality_weighted(character.inventory[component_1_key].item, character.inventory[component_2_key].item), (station_tier-Math.max(character.inventory[component_1_key].item.component_tier, character.inventory[component_2_key].item.component_tier)) || 0);
+                        E_base = Math.floor(1e-10 + E_ttl / (E_range[1] - E_range[0] + 1));
+                        E_imp1 = E_ttl - E_base * (E_range[1] - E_range[0] + 1) + E_range[0];
+                        H_q = E_range[1] + 1e4 * E_ttl;
+                        E_exp = 0;
+                        for(E_q = E_range[0];E_q <= E_range[1];E_q += 1){
+                            E_cur = E_base + ((E_q < E_imp1)?1:0) ;
+                            result = selected_recipe.getResultWithFixedQuality(character.inventory[component_1_key].item, character.inventory[component_2_key].item, E_q);
+                            
+                            character.add_to_inventory([{item: result,count: E_cur}]);
+
+                            E_exp += get_recipe_xp_value({category, subcategory, recipe_id, selected_components: [item_templates[id_1], item_templates[id_2]], rarity_multiplier: rarity_multipliers[result.getRarity()]})
+                        }
+                        remove_from_character_inventory([{item_key: component_1_key,item_count:E_ttl}, {item_key: component_2_key,item_count:E_ttl}]);
+                        add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: E_exp * E_ttl});
+
+                        
+                    }//装备真·批量(两个部件都超过100件且在批量模式激活)
                     else{
-                        character.remove_from_inventory([{item_key: component_1_key}, {item_key: component_2_key}]);
-                        character.add_to_inventory([{item: result}]);
+                        total_crafting_attempts++;
+                        total_crafting_successes++;
+                        result = selected_recipe.getResult(character.inventory[component_1_key].item, character.inventory[component_2_key].item, station_tier);
+                        if(!stated) {
+                            remove_from_character_inventory([{item_key: component_1_key}, {item_key: component_2_key}]);
+                            add_to_character_inventory([{item: result}]);
+                        }
+                        else{
+                            character.remove_from_inventory([{item_key: component_1_key}, {item_key: component_2_key}]);
+                            character.add_to_inventory([{item: result}]);
+                        }
+
+                        
+                        if(!stated) log_message(`制造了 ${result.getName()} [品质 ${result.quality}%]`, "crafting");
+                        else H_q = result.quality;
+                    
+                        const id_1 = JSON.parse(component_1_key).id;
+                        const id_2 = JSON.parse(component_2_key).id;
+
+                        const exp_value = get_recipe_xp_value({category, subcategory, recipe_id, selected_components: [item_templates[id_1], item_templates[id_2]], rarity_multiplier: rarity_multipliers[result.getRarity()]})
+                        
+                        leveled = add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value});
+                        
                     }
+                    
 
-                    
-                    if(!stated) log_message(`制造了 ${result.getName()} [品质 ${result.quality}%]`, "crafting");
-                    else H_q = result.quality;
-                
-                    const id_1 = JSON.parse(component_1_key).id;
-                    const id_2 = JSON.parse(component_2_key).id;
-
-                    const exp_value = get_recipe_xp_value({category, subcategory, recipe_id, selected_components: [item_templates[id_1], item_templates[id_2]], rarity_multiplier: rarity_multipliers[result.getRarity()]})
-                    
-                    leveled = add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value});
-                    
                     const component_keys = {};
                     component_keys[component_1_key] = true;
                     component_keys[component_2_key] = true;
-                    
-
                     update_displayed_component_choice({category, recipe_id, component_keys});
                 }
                 if(stated) return H_q;
@@ -3162,32 +3187,113 @@ function use_recipe_max(target) {
         if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
             let cnt = 0;
             let cnt_s = 0;
-            while(selected_recipe.get_availability()) {
-                cnt++;
-                cnt_s += use_recipe(target,true);
-            }
-            result = selected_recipe.getResult();
-            const {result_id, count} = result;
-            update_displayed_character_inventory();
-            update_item_recipe_visibility();
-            update_item_recipe_tooltips();
-            log_message(`批量制造了 ${item_templates[result_id].getName()} ,其中 ${cnt_s}/${cnt} 成功`, "crafting");
+            let S_chance = selected_recipe.get_success_chance(station_tier);
+            if(S_chance != 1){
+                while(selected_recipe.get_availability() && cnt <= 1000) {
+                    cnt++;
+                    cnt_s += use_recipe(target,true);
+                }
+                result = selected_recipe.getResult();
+                const {result_id, count} = result;
+                update_displayed_character_inventory();
+                update_item_recipe_visibility();
+                update_item_recipe_tooltips();
+                log_message(`批量制造了 ${item_templates[result_id].getName()} ,其中 ${cnt_s}/${cnt} 成功`, "crafting");
+            }//伪批量(不足100%,上限1000)
+            else{
+                let max_todo = 1e308;
+                for(let i = 0; i < selected_recipe.materials.length; i++) {
+                    const key = item_templates[selected_recipe.materials[i].material_id].getInventoryKey();
+                    max_todo = Math.min(max_todo,Math.floor((character.inventory[key]?.count || 0) / selected_recipe.materials[i].count));
+                } //检查批量数量
+                for(let i = 0; i < selected_recipe.materials.length; i++) {
+                    const key = item_templates[selected_recipe.materials[i].material_id].getInventoryKey();
+                    remove_from_character_inventory([{item_key: key, item_count: selected_recipe.materials[i].count * max_todo}]);
+                } //扣除物品
+                const exp_value = get_recipe_xp_value({category, subcategory, recipe_id});
+                total_crafting_attempts += max_todo;
+                total_crafting_successes += max_todo;
+
+                result = selected_recipe.getResult();
+                const {result_id, count} = result;
+                //读取结果
+                if(selected_recipe.Q_able != undefined){
+                    add_to_character_inventory([{item: getItem({...item_template[result_id], quality: selected_recipe.Q_able}), count: count * max_todo}]);
+                }
+                else{
+                    add_to_character_inventory([{item: item_templates[result_id], count: count * max_todo}]); 
+                }//给予物品
+                log_message(`真·批量制造了 ${item_templates[result_id].getName()} x${count}(${max_todo}轮)`, "crafting");
+                add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: exp_value * max_todo});
+                update_displayed_character_inventory();
+                update_item_recipe_visibility();
+                update_item_recipe_tooltips();
+            }//真·批量(100%,9e15前不会出事)
 
         } else if(subcategory === "components" || selected_recipe.recipe_type === "component" ) {
         
             let cnt = 0;
             let cnt_b = 0;
             let cnt_f = 0;
-            
-            while(cnt_f != -1)
-            {
-                cnt++;
-                cnt_f = use_recipe(target,true)
-                cnt_b = Math.max(cnt_b,cnt_f);
-            }
-            
-            update_displayed_character_inventory();
-            log_message(`批量制造了 ${latest_comp} * ${cnt - 1} ,其中最高品质为 ${cnt_b} %`, "crafting");
+            const material_div = recipe_div.children[1].querySelector(".selected_material");
+            const material_1_key = material_div.dataset.item_key;
+            const {id} = JSON.parse(material_1_key);
+            const recipe_material = selected_recipe.materials.filter(x=> x.material_id===id)[0];
+            if(recipe_material.count * 1000 >= character.inventory[material_1_key]?.count) {
+                while(cnt_f != -1)
+                {
+                    cnt++;
+                    cnt_f = use_recipe(target,true)
+                    cnt_b = Math.max(cnt_b,cnt_f);
+                }
+                update_displayed_character_inventory();
+                log_message(`批量制造了 ${latest_comp} * ${cnt - 1} ,其中最高品质为 ${cnt_b} %`, "crafting");
+            }//伪·批量(<=1000)
+            else{
+                let c_ttl = Math.floor(character.inventory[material_1_key]?.count / recipe_material.count)
+                let c_base = Math.floor(c_ttl/100);
+                let c_imp1 = c_ttl - c_base * 100;
+                let c_cur,result;
+                let proto_result = selected_recipe.getResult(character.inventory[material_1_key].item, station_tier);//quality字段仍需改动
+                let q_range,q_groups,q_base,q_imp1,q_cur,q_exp;
+                //每轮制作c_base个物品，如果轮数<=c_imp1则制作c_base+1个
+                
+                for(let c_cnt = 1;c_cnt <= 100;c_cnt += 1){
+                    c_cur = c_base + ((c_cnt <= c_imp1)?1:0);
+                    //c_cur即为本轮制作部件数
+                    //轮内细分
+                    q_range = selected_recipe.get_quality_range(station_tier - proto_result.component_tier);
+                    q_groups = (q_range[1]-q_range[0])/4 + 1;
+                    q_base = Math.floor(c_cur/q_groups + 1e-10);
+                    q_imp1 = q_range[0] + 4*(c_cur - q_base * q_groups);
+                    q_exp = 0;
+                    for(let c_quality = q_range[0];c_quality <= q_range[1];c_quality += 4)
+                    {//按品质:优先供给低品质，同时每个品质都滚一遍，分别计算经验等
+                        q_cur = q_base + ((c_quality < q_imp1)?1:0);
+                        result = selected_recipe.getResultWithFixedQuality(character.inventory[material_1_key].item, c_quality);
+                        character.add_to_inventory([{item: result, count: q_cur}]);
+                        q_exp += get_recipe_xp_value({category, subcategory, recipe_id, material_count: recipe_material.count * q_cur, rarity_multiplier: rarity_multipliers[result.getRarity()], result_tier: result.component_tier});
+                        //计算经验并给予物品
+                    }
+                    add_xp_to_skill({skill: skills[selected_recipe.recipe_skill], xp_to_add: q_exp});
+                    //叠加经验
+                }
+                remove_from_character_inventory([{item_key: material_1_key, item_count: recipe_material.count * c_ttl}]);
+                total_crafting_attempts += c_ttl;
+                total_crafting_successes += c_ttl;
+                //后拿走材料/计算总数
+                update_displayed_character_inventory();
+                update_item_recipe_visibility();
+                update_item_recipe_tooltips();
+                log_message(`真·批量制造了 ${result.id} * ${c_ttl} ,其中最高品质为 ${q_range[1]} %`, "crafting");
+                material_div.classList.remove("selected_material");
+                if(character.inventory[material_1_key]) { 
+                    if(recipe_material.count > character.inventory[material_1_key].count) { 
+                        material_div.classList.add("recipe_unavailable");
+                    }
+                } else material_div.remove();
+                update_displayed_material_choice({category, subcategory, recipe_id, refreshing: true});
+            }//部件的真·批量合成
 
         } else if(subcategory === "equipment") {
             let cnt = 0;
@@ -3198,11 +3304,17 @@ function use_recipe_max(target) {
             {
                 cnt++;
                 cnt_f = use_recipe(target,true)
+                if(cnt_f >= 1e4){
+                    cnt += Math.floor(cnt_f / 1e4);
+                    cnt -= 1;
+                    cnt_f -= 1e4 * Math.floor(cnt_f / 1e4);
+                }
                 cnt_b = Math.max(cnt_b,cnt_f);
             }
             
             update_displayed_character_inventory();
-            log_message(`批量制造了 ${cnt - 1} 件装备 ,其中最高品质为 ${cnt_b} %`, "crafting");
+            if(cnt_b >= 1e12) log_message(`真·批量制造了 ${cnt - 1} 件装备 ,其中最高品质为 ${cnt_b - 1e12} %`, "crafting");
+            else log_message(`批量制造了 ${cnt - 1} 件装备 ,其中最高品质为 ${cnt_b} %`, "crafting");
             
         }
     }
@@ -6077,7 +6189,7 @@ if(is_on_dev()) {
 export { current_enemies, can_work, 
         current_location, active_effects, 
         enough_time_for_earnings, add_xp_to_skill, 
-        get_current_book, unlock_location,
+        get_current_book, unlock_location,get_enemy_killcount,
         last_location_with_bed, 
         last_combat_location, 
         inf_combat,
@@ -6085,4 +6197,5 @@ export { current_enemies, can_work,
         faved_stances, options,
         update_quests,
         global_flags,
+        total_crafting_successes,total_crafting_attempts,
         character_equip_item };
