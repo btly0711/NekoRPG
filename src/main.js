@@ -5749,10 +5749,10 @@ function init_family(){
     re_influ:0,
     influ:0,
     }
-    for(let r = 1; r <= 99 ; r += 1){ family_data.mem[r] = mem_data;}
+    for(let r = 1; r <= 99 ; r += 1){ family_data.mem[r] = {vis:false,num:0.0,break:0,die:0,ali:2};}
     //console.log(family_data.mem[r])}
     //console.log(family_data);
-    family_data.mem[0]={vis:true,num:0.0,break:-1,die:-1,ali:2};
+    family_data.mem[0]={vis:true,num:0.0,break:-1,die:-1,ali:2}; 
     //console.log(family_data);
 }
 function update_family_data_sign(num,realm,op)//num当前【出事】人数，realm境界，op:1突破2暴毙
@@ -5799,6 +5799,7 @@ function update_family_daily(){
 
             if(rel_break > 0 && (!family_data.mem[r].vis)){
                 family_data.mem[r].vis = true;//解锁新境界
+                console.log("unlocked",r);
                 log_message(`夺位之后${family_data.mem[0].break * -1}天，首位纳家天骄子弟重回<span class='${realm_rate[r][4]}'>${realm_rate[r][3]}！`,"activity_money");
                 if(character.inventory[`{"id":"冰家玉简"}`]?.count == 1){
                     if(r==25){
@@ -5826,6 +5827,7 @@ function update_family_daily(){
     family_data.re_gain = 0;
     for(let r=1;r<=99;r+=1){
         if(family_data.mem[r].vis){
+            console.log(r,realm_rate,realm_rate[r]);
             family_data.re_gain += family_data.mem[r].num * realm_rate[r][2] * ali_data[family_data.mem[r].ali][0];
         }
     }//算钱

@@ -3557,6 +3557,7 @@ function update_displayed_family() {
         family_locked.style.display='none';
         family_unlocked.style.display='block';
         if(!family_data.unlocked) init_family();//初始化
+        if(family_data.mem[99].vis) init_family();//不存在的境界有人！如果真的99境了那么需要移除这一句
         
         //更新计时器
         let re_time = 10800 - (current_game_time.hour * 60 + current_game_time.minute);
@@ -3606,7 +3607,6 @@ function update_displayed_family_members(){
         if(family_data.mem[r].vis){
             family_mem_divs[r] = document.createElement("tr");
             family_mem_divs[r].classList.add("stance_list_entry");
-            //console.log(r);
             const mem_realm = `<td class="member_list member_list_realm ${realm_rate[r][4]}">${realm_rate[r][3]}</td>`;
             const mem_num = `<td class="member_list member_list_num ${realm_rate[r][4]}">${format_number(family_data.mem[r].num)}</td>`;
             const mem_break = `<td class="member_list member_list_change" style='color:lightgreen'><b>${format_mem_change(family_data.mem[r].break)}</b></td>`;
