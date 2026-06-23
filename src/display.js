@@ -3580,7 +3580,9 @@ function format_mem_change(mem_data){
 }//正数代表数目，负数代表时间
 function update_displayed_family_members(){
 
-    
+    if(!global_flags['is_family_enabled']) return;
+    //init_family();
+    //console.log(family_data);
     document.getElementById("family_re_gain").innerHTML = format_money(family_data.re_gain);
     document.getElementById("family_re_influ").innerText = format_number(family_data.re_influ);
     document.getElementById("family_influ").innerHTML = format_number(family_data.influ);
@@ -3604,6 +3606,7 @@ function update_displayed_family_members(){
         if(family_data.mem[r].vis){
             family_mem_divs[r] = document.createElement("tr");
             family_mem_divs[r].classList.add("stance_list_entry");
+            //console.log(r);
             const mem_realm = `<td class="member_list member_list_realm ${realm_rate[r][4]}">${realm_rate[r][3]}</td>`;
             const mem_num = `<td class="member_list member_list_num ${realm_rate[r][4]}">${format_number(family_data.mem[r].num)}</td>`;
             const mem_break = `<td class="member_list member_list_change" style='color:lightgreen'><b>${format_mem_change(family_data.mem[r].break)}</b></td>`;

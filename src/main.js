@@ -5740,7 +5740,7 @@ function binary_distri(num,prob){
 }
 let mem_data = {vis:false,num:0.0,break:0,die:0,ali:2};
 function init_family(){
-    //console.log("family inited!");
+    console.log("family inited!");
     family_data = {
     unlocked:true,
     baby:0,
@@ -5749,9 +5749,11 @@ function init_family(){
     re_influ:0,
     influ:0,
     }
-    for(let r = 0; r <= 99 ; r += 1) family_data.mem[r] = mem_data;
-    family_data.mem[0].vis=true;
-    family_data.mem[0].break = -1;
+    for(let r = 1; r <= 99 ; r += 1){ family_data.mem[r] = mem_data;}
+    //console.log(family_data.mem[r])}
+    //console.log(family_data);
+    family_data.mem[0]={vis:true,num:0.0,break:-1,die:-1,ali:2};
+    //console.log(family_data);
 }
 function update_family_data_sign(num,realm,op)//num当前【出事】人数，realm境界，op:1突破2暴毙
 {
