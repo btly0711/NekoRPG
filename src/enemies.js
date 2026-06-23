@@ -8135,7 +8135,7 @@ B9++ 7,778,742,049exp 16B
         xp_value: 12586269025, 
         rank: 4197,
         image: "image/boss/B4101.png",
-        realm: "<span class=realm_realm><b>云霄级一阶</b></span>",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
         size: "small",
         spec: [10],
         tags: [],

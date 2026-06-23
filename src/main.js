@@ -61,6 +61,8 @@ import { end_activity_animation,
          clear_bestiary_tooltip,
          add_levelary_tooltip,
          clear_levelary_tooltip,
+         update_displayed_family,
+         update_displayed_family_members,
         } from "./display.js";
 import { compare_game_version, get_hit_chance } from "./misc.js";
 import { stances } from "./combat_stances.js";
@@ -161,6 +163,15 @@ let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"
 //ST:SaveTime(上次保存时间)
 //S3:第三幕最终战，live表示开战与否，sp灵魂之力,b1b2b3是怪物数。
 
+//vis可见性，num数量,break/die0代表无记录 正值代表数目 负值代表经过天数，ali1~5代表五种家族态度
+let family_data = {
+    unlocked:false,
+    baby:0,
+    mem:[],
+    re_gain:0,
+    influ:0,
+    re_influ:0,
+}
 
 //in seconds
 let total_playtime = 0;
@@ -1004,7 +1015,7 @@ function textline_special(t_key){
         else if(t_key == "LR-sacrifice"){
             let C_realm = character.xp.current_level;
             
-                let C_money = Math.round(character.stats.full.max_health ** 1.4);
+                let C_money = Math.round(character.stats.full.max_health ** 1.5);
                 if(character.money < C_money)
                 {
                     displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
@@ -3107,7 +3118,7 @@ function use_recipe(target,stated = false) {
                     if(E_ttl >= 100 && stated){
                         const id_1 = JSON.parse(component_1_key).id;
                         const id_2 = JSON.parse(component_2_key).id;
-                    console.log("reached 3");
+                    //console.log("reached 3");
 
                         total_crafting_attempts+=E_ttl;
                         total_crafting_successes+=E_ttl;
@@ -3614,6 +3625,7 @@ function create_save() {
         save_data.global_flags = global_flags;
         save_data.gem_stats = character.stats.flat.gems;//存储宝石属性
         save_data.inf_combat = inf_combat;//无限秘境
+        save_data.family_data = family_data;//家族系统
         
         save_data["character"] = {
                                 name: character.name, titles: character.titles, 
@@ -3836,7 +3848,7 @@ function load(save_data) {
     total_crafting_attempts = save_data.total_crafting_attempts || 0;
     total_crafting_successes = save_data.total_crafting_successes || 0;
     inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8},"A7":{cur:0},"VP":{num:0}};//无限秘境
-
+    family_data = save_data.family_data || {};
     name_field.value = save_data.character.name;
     character.name = save_data.character.name;
     character.bonus_skill_levels = save_data.character.bonus_skill_levels;
@@ -3873,6 +3885,11 @@ function load(save_data) {
     //this can be removed at some point
     const is_from_before_eco_rework = compare_game_version("v0.3.5", save_data["game version"]) == 1;
     setLootSoldCount(save_data.loot_sold_count || {});
+
+    update_displayed_family();
+    update_displayed_family_members();
+    document.getElementById("baby_born_num").value = family_data.baby;
+    //重载家族
 
     character.money = (save_data.character.money || 0) * ((is_from_before_eco_rework == 1)*10 || 1);
     update_displayed_money();
@@ -4647,15 +4664,24 @@ function load_other_release_save() {
 }
 
 //update game time
-function update_timer() {
-    let time_passed = (character.xp.current_level>=19)?48:6;
-    time_passed *= is_sleeping?5:1
-    if(current_location.name.includes("水牢")) time_passed /= 3;
+function get_time_passed(){
+
+    let time_passed = 6;
+    if((character.xp.current_level>=19)) time_passed = 48;
+    if((character.xp.current_level>=28)) time_passed = 288;
+    time_passed *= is_sleeping?5:1;
+    if(current_location?.name.includes("水牢")) time_passed /= 3;
     time_passed = Math.ceil(time_passed);
+    return time_passed;
+}
+
+function update_timer() {
     let D_C = current_game_time.day_count;
-    current_game_time.go_up(time_passed);
+    current_game_time.go_up(get_time_passed());
     update_character_stats(); //done every second, mostly because of daynight cycle; gotta optimize it at some point
+    if(global_flags['is_family_enabled']) update_displayed_family();
     update_displayed_time();
+    //update_family_daily();
     if(D_C != current_game_time.day_count){
         
         inf_combat.B3 = inf_combat.B3 || 0;
@@ -4666,7 +4692,9 @@ function update_timer() {
             log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3)} % -> ${format_number(B3_after)} % `,"gather_loot")
             inf_combat.B3 = B3_after;
         }
+        if(global_flags['is_family_enabled']) update_family_daily();
     }
+    
 }
 let MouseDown = false;
     let mousePos = { clientX: 0, clientY: 0 };   // 全局保存最新鼠标位置
@@ -5637,6 +5665,214 @@ window.engine_f = engine_f;
 window.engine_e = engine_e;
 window.engine_l = engine_l;
 
+const baby_num = document.getElementById("baby_born_num");
+baby_num.addEventListener("change", () => family_data.baby = (Number(baby_num.value)!=Number(baby_num.value))?0:baby_num.value);
+const realm_rate =[
+    [1.0,2e-4,0.01,"微尘级初级","realm_basic"],
+    [0.4,2e-4,0.0215,"微尘级中级","realm_basic"],
+    [0.15,2e-4,0.0465,"微尘级高级","realm_basic"],
+    [0.05,2e-4,0.1,"万物级初等","realm_basic"],
+    [0.02,2e-4,0.215,"万物级高等","realm_basic"],
+    [0.01,2e-4,0.465,"万物级巅峰","realm_basic"],
+    [4e-3,2e-4,1.0,"潮汐级初等","realm_basic"],
+    [1e-3,2e-4,2.15,"潮汐级高等","realm_basic"],
+    [1e-4,2e-4,4.65,"潮汐级巅峰","realm_basic"],
+    [3e-4,2e-5,100,"大地级一阶","realm_terra"],
+    [3e-4,2e-5,215,"大地级二阶","realm_terra"],
+    [3e-4,2e-5,465,"大地级三阶","realm_terra"],
+    [1e-4,2e-5,1e3,"大地级四阶","realm_terra"],
+    [1e-4,2e-5,2.15e3,"大地级五阶","realm_terra"],
+    [1e-4,2e-5,4.65e3,"大地级六阶","realm_terra"],
+    [4e-5,2e-5,10e3,"大地级七阶","realm_terra"],
+    [4e-5,2e-5,21.5e3,"大地级八阶","realm_terra"],
+    [4e-6,2e-5,46.5e3,"大地级巅峰","realm_terra"],
+    [2e-5,2e-6,1e6,"天空级一阶","realm_sky"],
+    [2e-5,2e-6,2.15e6,"天空级二阶","realm_sky"],
+    [2e-5,2e-6,4.65e6,"天空级三阶","realm_sky"],
+    [6e-6,2e-6,10e6,"天空级四阶","realm_sky"],
+    [6e-6,2e-6,21.5e6,"天空级五阶","realm_sky"],
+    [6e-6,2e-6,46.5e6,"天空级六阶","realm_sky"],
+    [2e-6,2e-6,100e6,"天空级七阶","realm_sky"],
+    [2e-6,2e-6,215e6,"天空级八阶","realm_sky"],
+    [1e-7,2e-6,465e6,"天空级巅峰","realm_sky"],
+    [0,2e-7,10e9,"云霄级一阶","realm_cloudy"],
+
+
+]
+//0位是升级率，1位是暴毙率，2位是赚钱速度
+//3位名称，4位颜色
+//不含破限，不能和角色等级混用
+function binary_distri(num,prob){
+    if(prob >= 1) return num;
+    if(num*prob >= 10){
+        let N_RNG = Math.sqrt(-2 * Math.log(Math.random())) * Math.cos(2 * Math.PI * Math.random());
+        let expection = num*prob;
+        let sigma = Math.sqrt(prob*(1-prob)*num);
+        let redirected_RNG = Math.round(expection + sigma * N_RNG);//标准正态分布化
+        if(redirected_RNG>num) redirected_RNG=num;
+        if(redirected_RNG<0) redirected_RNG=0;
+        return redirected_RNG;
+        //正态分布模拟
+    }
+    if(num>=200){
+        let lmd = num * prob;
+        let pb = [],pb_len = 0,pb_pointer = 1;
+        let fr = [];//前缀和
+        while(true){
+            pb[pb_len] = Math.exp(-lmd)*(lmd**pb_len)/pb_pointer;//期望
+            fr[pb_len] = (pb_len==0?0:fr[pb_len - 1]) + pb[pb_len];
+            if(pb_len > 10 && pb[pb_len]<1e-8) break;//舍去尾部
+            pb_len += 1;
+            pb_pointer *= pb_len;//计算阶乘
+        }
+        let pb_RNG = Math.random();
+        for(let q=0;q<=pb_len;q+=1){
+            if(pb_RNG * fr[pb_len] <= fr[q]) return Math.min(q,num);
+        }
+        return Math.min(pb_len,num);
+        //泊松分布模拟
+    }
+    //直接模拟
+    
+    let ans=0;
+    for(let q=1;q<=num;q+=1) ans+=(Math.random()<prob)?1:0;
+    return ans;
+}
+let mem_data = {vis:false,num:0.0,break:0,die:0,ali:2};
+function init_family(){
+    //console.log("family inited!");
+    family_data = {
+    unlocked:true,
+    baby:0,
+    mem:[],
+    re_gain:0,
+    re_influ:0,
+    influ:0,
+    }
+    for(let r = 0; r <= 99 ; r += 1) family_data.mem[r] = mem_data;
+    family_data.mem[0].vis=true;
+    family_data.mem[0].break = -1;
+}
+function update_family_data_sign(num,realm,op)//num当前【出事】人数，realm境界，op:1突破2暴毙
+{
+    if(!family_data.mem[realm].vis) return;//不显示自然无需统计生死
+    if(op==1){
+        if(num!=0) family_data.mem[realm].break = num;
+        else if(family_data.mem[realm].break>0) family_data.mem[realm].break = -1;
+        else if(family_data.mem[realm].break<0) family_data.mem[realm].break -= 1;
+    }
+    if(op==2){
+        if(num!=0) family_data.mem[realm].die = num;
+        else if(family_data.mem[realm].die>0) family_data.mem[realm].die = -1;
+        else if(family_data.mem[realm].die<0) family_data.mem[realm].die -= 1;
+    }
+}
+let ali_data = [[],
+[0.4,1,1],
+[1,3,5],
+[2,5,15],
+[5,10,60],
+[20,30,300],
+]//5个档次
+function update_family_daily(){
+    //realm_rate;//0突破率 1暴毙率 2赚钱率
+    //每个境界先计算暴毙，再计算突破:
+    family_data.mem[0].break -= 1;
+    for(let r=0;r<=99;r+=1){
+        if(family_data.mem[r].vis){
+            
+            let rel_die = binary_distri(family_data.mem[r].num,realm_rate[r][1] * ali_data[family_data.mem[r].ali][2])
+            if(rel_die > family_data.mem[r].num) rel_die = family_data.mem[r].num;//死掉的人不能比原来活着的人多！\o/
+            family_data.mem[r].num -= rel_die;
+            update_family_data_sign(rel_die,r,2);
+        }
+    }//暴毙计算
+    for(let r=99;r>=1;r-=1){
+        if(family_data.mem[r-1].vis){
+            let rel_break = binary_distri(family_data.mem[r-1].num,realm_rate[r-1][0] * ali_data[family_data.mem[r-1].ali][1])
+            
+            if(rel_break > family_data.mem[r-1].num) rel_break = family_data.mem[r-1].num;
+            family_data.mem[r].num += rel_break;
+            family_data.mem[r-1].num -= rel_break;
+
+            if(rel_break > 0 && (!family_data.mem[r].vis)){
+                family_data.mem[r].vis = true;//解锁新境界
+                log_message(`夺位之后${family_data.mem[0].break * -1}天，首位纳家天骄子弟重回<span class='${realm_rate[r][4]}'>${realm_rate[r][3]}！`,"activity_money");
+                if(character.inventory[`{"id":"冰家玉简"}`]?.count == 1){
+                    if(r==25){
+                        log_message(`<span class='realm_sky'>秋兴【天空级八阶】</span>加入了新纳家！`,"activity_money");
+                        family_data.mem[r].num += 1;
+                        rel_break += 1;
+                    }
+                    if(r==26){
+                        log_message(`<span class='realm_sky'>冰蓝【天空级巅峰】</span>加入了新纳家！`,"activity_money");
+                        log_message(`或许你可以考虑把玉简卖了。`,"activity_money");
+                        family_data.mem[r].num += 1;
+                        rel_break += 1;
+                    }
+                }
+                if(r==21){
+                    log_message(`<span class='realm_sky'>纳娜米【天空级四阶】</span>加入了新纳家！`,"activity_money");
+                    family_data.mem[r].num += 1;
+                    rel_break += 1;
+                }
+            }
+
+            update_family_data_sign(rel_break,r,1);
+        }
+    }//突破计算
+    family_data.re_gain = 0;
+    for(let r=1;r<=99;r+=1){
+        if(family_data.mem[r].vis){
+            family_data.re_gain += family_data.mem[r].num * realm_rate[r][2] * ali_data[family_data.mem[r].ali][0];
+        }
+    }//算钱
+    character.money += family_data.re_gain;
+    family_data.re_influ = 0;
+    family_data.influ ||= 0;
+    
+    for(let r=1;r<=99;r+=1){
+        if(family_data.mem[r].vis){
+            family_data.re_influ += (family_data.mem[r].num ** 0.5) * (realm_rate[r][2]) * (ali_data[family_data.mem[r].ali][0])/ 1e8;
+        }
+    }//影响力(被策略影响^2)
+
+    family_data.influ += family_data.re_influ;
+
+
+
+
+    if(character.money < 1e3 * family_data.baby ** 1.5)
+    {
+        log_message(`因无力负担 ${format_number(family_data.baby )} 个新生儿产生的 ${format_money(1e3 * family_data.baby ** 1.5)} 费用，纳可破产了！`,"activity_money");
+        log_message(`计划每日新生儿数目已经归零！`,"activity_money");
+        family_data.baby = 0;
+        document.getElementById("baby_born_num").value = 0;
+    }
+
+    family_data.mem[0].num = Number(family_data.mem[0].num) + Number(family_data.baby);//获取新生儿
+    if(family_data.mem[0].num>0 && !family_data.mem[0].vis){
+        family_data.mem[0].vis = true;
+    }
+    
+    character.money -= 1e3 * family_data.baby ** 1.5;
+
+
+
+
+    update_displayed_family_members();
+    update_displayed_money();
+}
+
+
+document.getElementById("family_member_list").addEventListener('change',function(c_ali){
+    const target = c_ali.target.closest('select[id$="_family_ali"]');
+    if(target){
+        //console.log(target.id,target.value);
+        family_data.mem[Number(target.id[0]+target.id[1])].ali = Number(target.value);
+    }
+})
+
 
 function GetSaveRewards() {
     let time = (new Date()).valueOf();
@@ -5902,7 +6138,7 @@ function update() {
 
         total_playtime += 1/tickrate;
         update();
-    }, 1000/tickrate - time_adjustment);
+    }, 1000/tickrate - time_adjustment);//100更为1000
     //uses time_adjustment based on time_variance_accumulator for more precise overall stabilization
     //(instead of only stabilizing relative to previous tick, it stabilizes relative to sum of deviations)
     //probably completely unnecessary lol, but hey, it sounds cool
@@ -6198,4 +6434,6 @@ export { current_enemies, can_work,
         update_quests,
         global_flags,
         total_crafting_successes,total_crafting_attempts,
+        get_time_passed,family_data,init_family,
+        realm_rate,
         character_equip_item };

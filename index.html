@@ -790,7 +790,7 @@
                         </div>
                         <div class="crafting_category" data-crafting_category="cooking"  style="display:none">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items')">第一幕</div><div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items2')">第二幕</div><div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items3')">第三幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('cooking', 'items')">第一幕</div><div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('cooking', 'items2')">第二幕</div><div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('cooking', 'items3')">第三幕</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="cooking" data-crafting_subcategory="items">
                                 
@@ -867,12 +867,34 @@
                         <table id = "stance_list">
                         </table>
                     </div>
+                    <div id = "family_div">
+                        <span id = "family_locked">
+                        家族系统~纳可现在还不是家主！<br>
+                        通过<b>区域 3 - 7</b>后击败<span class='realm_cloudy'>纳布(宝库)</span>解锁！
+                        </span>
+                        <div id = "family_system">
+                        <span style='color:lightyellow'>⌚️下一血洛日:</span> <span id= "family_timer_game">180h</span> ( 现实 <span id= "family_timer_real">99</span> )<br>
+
+                        
+                        <span style='color:lightcyan'>次日<span class='realm_basic'>微尘级初级</span>新生儿数 : </span><input type = "text" id = "baby_born_num"> <br>
+                        <span style='color:lightcoral'>每日养育耗费 : </span><span id="family_baby_cost"></span><br>
+                        <span style='color:lightgreen'>每日家族赚取: </span><span id="family_re_gain"></span><br>
+                        <span style='color:lightskyblue'>纳家影响力:<span id="family_influ">0</span><img src='image/item/B9_soul.png'>(<span id="family_re_influ">0</span><img src='image/item/B9_soul.png'>/d)</span>
+                        <br><br>
+                        
+                        <table id = "family_member_list">
+                        </table>
+                        </div>
+                    </div>
                     <div id = "skill_and_stance_control_div" class="activable_buttons">
                         <div id="show_skills" class="skill_stance_control_button active_selection_button" onclick="showSkills()">
                             技能
                         </div>
                         <div id="show_stances" class="skill_stance_control_button" onclick="showStances()">
                             姿态
+                        </div>
+                        <div id="show_family" class="skill_stance_control_button" onclick="showFamily()">
+                            家族
                         </div>
                     </div>
                 </div>
@@ -1134,7 +1156,7 @@
                                 <div class = "stat_name" id="A_mul_slot"> Locked </div>
                                 <div class = "stat_value" id = "dexterity_slot"></div> 
                                 <div class = "stat_tooltip"> 
-                                    <div id="A_mul_tooltip">Not availiable</div>
+                                    <div id="A_mul_tooltip">Not available</div>
                                     <div class="stat_breakdown"></div>
                                 </div>
                             </div>
@@ -1142,7 +1164,7 @@
                                 <div class = "stat_name" id="Luck_slot"> Locked </div>
                                 <div class = "stat_value" id = "UK1_slot"></div> 
                                 <div class = "stat_tooltip"> 
-                                    <div id="Luck_tooltip">Not availiable </div>
+                                    <div id="Luck_tooltip">Not available </div>
                                     <div class="stat_breakdown"></div>
                                 </div>
                             </div>
@@ -1152,7 +1174,7 @@
                                 <div class = "stat_name"> Locked </div>
                                 <div class = "stat_value" id = "hit_chance_slot"></div> 
                                 <div class = "stat_tooltip"> 
-                                    <div> Not availiable </div>
+                                    <div> Not available </div>
                                     <div class="stat_breakdown"></div>
                                 </div>
                             </div>
@@ -1162,7 +1184,7 @@
 
                                 <!-- tooltip content is set in display.js-->
                                 <div class = "stat_tooltip">
-                                    <div>Not availiable</div>
+                                    <div>Not available</div>
                                     <div></div>
                                 </div>
                             </div>
@@ -1455,11 +1477,19 @@
             function showSkills() {
                 document.getElementById("skill_list_div").style.display = "block";
                 document.getElementById("stance_list_div").style.display = "none";
+                document.getElementById("family_div").style.display = "none";
             }
 
             function showStances() {
                 document.getElementById("skill_list_div").style.display = "none";
                 document.getElementById("stance_list_div").style.display = "block";
+                document.getElementById("family_div").style.display = "none";
+            }
+
+            function showFamily() {
+                document.getElementById("skill_list_div").style.display = "none";
+                document.getElementById("stance_list_div").style.display = "none";
+                document.getElementById("family_div").style.display = "block";
             }
 
             function switchToCombat() {
@@ -1653,7 +1683,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V3.00";
+                document.getElementById("changelog_button").children[0].innerHTML = "V3.01";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

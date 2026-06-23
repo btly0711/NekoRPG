@@ -500,6 +500,11 @@ body {
 #stance_list_div {
 	display: none;
 }
+#family_div {
+	display: none;
+	height:395px;
+	overflow-y: scroll;
+}
 
 .skill_stance_control_button {
 	float:left;
@@ -1741,6 +1746,17 @@ i {
 }
 
 
+#baby_born_num {
+	text-align: center;
+	width: 80px;
+	margin: auto;
+	background-color: var(--background_gradient);
+	border: 2px solid gray;
+	color: white;
+	font-size: 16px;
+}
+
+
 
 #effects_div div{
 	display: inline-block;
@@ -1928,6 +1944,7 @@ i {
 	overflow-y: scroll;
 }
 
+
 #inventory_control_div {
 	font-size: 20px;
 	position: absolute;
@@ -2049,7 +2066,7 @@ i {
 }
 
 #skill_list_div, #stance_list_div {
-	height: 386px;
+	height: 395px;
 }
 		#skill_list {
 			overflow-y: scroll;
@@ -2108,6 +2125,25 @@ i {
 	border-right: 1px solid gray;
 	border-bottom: 2px dotted gray;
 }
+
+.member_list_realm{
+	width: 60px;
+	border: 1px solid white;
+}
+.member_list_num, .member_list_change , .member_list_alti{
+	width: 75px;
+	border: 1px solid white;
+}
+
+.member_list_header{
+
+	border: 2px solid white;
+}
+.member_list{
+	
+	text-align: center;
+}
+
 
 .stances_name, .stance_list_header_name {
 	width: 300px;
