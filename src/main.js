@@ -2475,6 +2475,11 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
                 inf_combat.S3.sp += 1;
                 get_spirit_buff(inf_combat.S3.sp);
             }//心之力
+            if(target.spec.includes(62))
+            {
+                log_message(`${character.name} 获取了60s【死线】效果！`,"enemy_enhanced");
+                active_effects["死线"] = new ActiveEffect({...effect_templates["死线"], duration:60});
+            }//死线(1/3)
             if(target.rank >= 3100 && target.rank <= 3200){
                 inf_combat.B3 = inf_combat.B3 || 0;
                 log_message(`沼泽辐射扩散: ${format_number(inf_combat.B3)} % -> ${format_number(inf_combat.B3 + 0.004)} % `,"enemy_defeated");
@@ -5770,7 +5775,7 @@ function update_family_data_sign(num,realm,op)//num当前【出事】人数，re
     }
 }
 let ali_data = [[],
-[0.4,1,1],
+[-0.4,1,1],
 [1,3,5],
 [2,5,15],
 [5,10,60],
@@ -5827,11 +5832,26 @@ function update_family_daily(){
     family_data.re_gain = 0;
     for(let r=1;r<=99;r+=1){
         if(family_data.mem[r].vis){
-            console.log(r,realm_rate,realm_rate[r]);
+            //console.log(r,realm_rate,realm_rate[r]);
             family_data.re_gain += family_data.mem[r].num * realm_rate[r][2] * ali_data[family_data.mem[r].ali][0];
         }
     }//算钱
-    character.money += family_data.re_gain;
+    if(character.money + family_data.re_gain < 0)
+    {
+        log_message(`因开了太多的[1]常规工作，家族净利润仅为 ${format_money(family_data.re_gain)} ，纳可破产了！`,"activity_money");
+        log_message(`所有[1]常规工作 已经改为 [2]秘境试炼！`,"activity_money");
+        
+        for(let r=0;r<=99;r+=1){
+            if(family_data.mem[r].vis){
+                if(family_data.mem[r].alt == 1){
+                    family_data.mem[r].alt = 2;
+
+                }
+            }
+        }
+    }
+    else character.money += family_data.re_gain;
+
     family_data.re_influ = 0;
     family_data.influ ||= 0;
     

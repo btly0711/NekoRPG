@@ -2678,6 +2678,12 @@ function update_gathering_tooltip(current_activity) {
 function update_displayed_health() { //call it when using healing items, resting or getting hit
     current_health_value_div.innerText = format_number(character.stats.full.health) + "/" + format_number(character.stats.full.max_health) + " HP";
     current_health_bar.style.width = (character.stats.full.health*100/character.stats.full.max_health).toString() +"%";
+    current_health_bar.style = 'background-color:rgb(255,46,46)';
+    
+    if(active_effects["死线"]!=undefined){
+        current_health_bar.style = 'background-color:rgb(189,46,255)';
+    }
+    //死线(3/3)
 }
 
 function update_displayed_stats() { //updates displayed stats
@@ -3716,7 +3722,9 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [57, "滋生", "#ff20c0","敌人死亡时，场上【心之灵·暴走】数量增加3个。"],
 [58, "暴走", "#fffc62","敌人死亡时，场上【心之灵·暴走】基础攻击/血量增加5%(叠加)。"],
 [59, "心之灵", "#b0f6ff","敌人死亡时，获取1点【灵魂之力】。"],
-
+[60, "败移" , "#32CD32", "空元素领悟。敌人会召唤一只本区敌人为它挡枪(不会循环召唤)"],
+[61, "小队" ,"#584af0", "小队成员为了生存而聚集在一起战斗。<br>由2-50个单位组成的小队。"],
+[62, "死线" ,"#DCDCDC", "不要忘记那些不得不做的事情。战斗结束后，角色获取60s5倍易伤(会显示在血条上)。"]
 
 
 ];
@@ -4027,6 +4035,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "大门派先锋") add_bestiary_lines(35);
     if(enemy_name == "奇异菇菇") add_bestiary_lines(36);
     if(enemy_name == "心魔") add_bestiary_lines(37);
+    if(enemy_name == "魔草绿球") add_bestiary_lines(41);
 }
 
 function reload_bestiary(){

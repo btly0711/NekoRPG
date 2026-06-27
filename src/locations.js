@@ -400,6 +400,13 @@ class Combat_zone {
                 enemies.push(this.get_enemy(halo,enemy_templates["舰船除草机B1"])); 
                 enemies.push(this.get_enemy(halo,enemy_templates["舰船除草机B1"])); 
             }//召唤
+            
+            if(enemy.spec.includes(60)) {
+                let E_name = this.enemies_list[Math.floor(Math.random() * this.enemies_list.length)];
+                enemy_group.push(this.get_enemy(halo,enemy_templates[E_name]));
+                log_message(`[败移] ${E_name} 被 ${enemy.name} 护在身前！`,"enemy_enhanced");
+
+            }//败移
         }
         return enemies;
     }
@@ -4429,7 +4436,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["幻境核心·森林"].connected_locations.push({location: locations["幻境核心·现世"]});  
     
     locations["幻境核心 - 6"] = new Combat_zone({
-        description: "请登上最后的决战之地，击败左阿！[将会在V2.69被添加]", 
+        description: "请登上最后的决战之地，击败左阿！", 
         enemy_count: 30, 
         enemies_list: ["暗杀飞蛾","巨人强豪","古龙小兽","血洛流浪剑客","大门派精英"],
         enemy_group_size: [4,4],
@@ -4541,7 +4548,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["纳家宝库"] = new Location({ 
         connected_locations: [{location: locations["幻境核心·出口"], custom_text: "回到幻境核心"},{location: locations["赫尔沼泽入口"], custom_text: "快速旅行 - 第三幕"}], 
-        description: "终于回到家族了！是时候夺走这家主大位……[V2.70前版本终点]",
+        description: "终于回到家族了！是时候夺走这家主大位……",
         name: "纳家宝库", 
         dialogues: ["纳布(宝库)"],//老登剧情！
         is_unlocked: false,
@@ -4575,8 +4582,65 @@ function get_location_type_penalty(type, stage, stat) {
     });//4-1
     locations["纳家宝库"].connected_locations.push({location: locations["狩猎大赛·城门战"]});
 
+    locations["城门战 - 1"] = new Combat_zone({
+        description: "紧张刺激的燕岗领狩猎大赛~全是云霄级战力哦~", 
+        enemy_count: 20, 
+        enemies_list: ["魔草绿球","刺穿的菇灵","奸猾绝凶兽","暴风野蝠","城门战傀儡"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        name: "城门战 - 1",
+        rank:301, 
+        bgm:21,
+        parent_location: locations["狩猎大赛·城门战"],
+        first_reward: {
+            xp: 3e12,
+        },
+        repeatable_reward: {
+            xp: 1e12,
+            locations: [{location: "城门战 - 2"}],
+        },
+    });
+    locations["城门战 - 2"] = new Combat_zone({
+        description: "紧张刺激的燕岗领狩猎大赛~全是云霄级战力哦~", 
+        enemy_count: 20, 
+        enemies_list: ["毒牙噬蝠","深邃法师小队","燕岗狂剑小队","古树蜘蛛","燕城看门人"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "城门战 - 2",
+        rank:302, 
+        bgm:21,
+        parent_location: locations["狩猎大赛·城门战"],
+        first_reward: {
+            xp: 4.5e12,
+        },
+        repeatable_reward: {
+            xp: 1.5e12,
+            locations: [{location: "城门战 - 3"}],
+        },
+    });
+    locations["城门战 - 3"] = new Combat_zone({
+        description: "紧张刺激的燕岗领狩猎大赛~全是云霄级战力哦~", 
+        enemy_count: 20, 
+        enemies_list: ["炽烈茸茸","城门战淘汰者","哥布林头目","燕岗知识分子","古古怪树"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        name: "城门战 - 3",
+        rank:303, 
+        bgm:21,
+        parent_location: locations["狩猎大赛·城门战"],
+        first_reward: {
+            xp: 6e12,
+        },
+        repeatable_reward: {
+            xp: 2e12,
+            //locations: [{location: "城门战 - X"}],
+        },
+    });
 
 
+    locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - 1"]}); 
+    locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - 2"]}); 
+    locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - 3"]});  
 
 
 

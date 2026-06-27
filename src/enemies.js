@@ -7261,28 +7261,266 @@ class Enemy {
             //28B
         ],
     });
+    //4-1
+    enemy_templates["魔草绿球"] = new Enemy({
+        name: "魔草绿球", 
+        description: "最弱的云霄1也是云霄1！很抱歉之前boss战的能力被收回了啦……要不要我给伊芙加点属性？", 
+        xp_value: 12586269025, 
+        rank: 4101,
+        image: "image/enemy/E4101.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 1400e8, attack: 290e8, agility:140e8, attack_speed: 1.4, defense:130e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["刺穿的菇灵"] = new Enemy({
+        name: "刺穿的菇灵", 
+        description: "牵制药水·高光时刻！再问删了？这下删不了了！", 
+        xp_value: 12586269025, 
+        rank: 4102,
+        image: "image/enemy/E4102.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 7290e8, attack: 300e8, agility:160e8, attack_speed: 1.6, defense:1}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["奸猾绝凶兽"] = new Enemy({
+        name: "奸滑绝凶兽", 
+        description: "死后召唤出本地图的随机敌人。强迫你多砍一刀……", 
+        xp_value: 12586269025, 
+        rank: 4103,
+        image: "image/enemy/E4103.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [60],
+        tags: [],
+        stats: {health: 5600e8, attack: 328e8, agility:180e8, attack_speed: 1.6, defense:125e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["暴风野蝠"] = new Enemy({
+        name: "暴风野蝠", 
+        description: "蝠学风老师~我还记得你~一拳一拳~把我打进迷雾里~", 
+        xp_value: 12586269025, 
+        rank: 4104,
+        image: "image/enemy/E4104.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [16],
+        tags: [],
+        stats: {health: 7840e8, attack: 255e8, agility:200e8, attack_speed: 1.5, defense:120e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["城门战傀儡"] = new Enemy({
+        name: "城门战傀儡", 
+        description: "能匹敌云霄级一阶的傀儡想必相当值钱吧。这些也是城门战奖品的一部分！", 
+        xp_value: 12586269025, 
+        rank: 4105,
+        image: "image/enemy/E4105.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 16810e8, attack: 280e8, agility:220e8, attack_speed: 1.5, defense:140e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["毒牙噬蝠"] = new Enemy({
+        name: "毒牙噬蝠", 
+        description: "怎么变异荒兽都是些蝙蝠。是因为生物量基数大并且基础面板还不错的？", 
+        xp_value: 12586269025, 
+        rank: 4106,
+        image: "image/enemy/E4106.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [7,8],
+        spec_value:{8:10},
+        tags: [],
+        stats: {health: 11560e8, attack: 370e8, agility:240e8, attack_speed: 1.5, defense:120e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["深邃法师小队"] = new Enemy({
+        name: "深邃法师小队", 
+        description: "10只天空8逆伐云霄1.这就是我们尊贵的法术系啊！对了，攻速没填错。", 
+        xp_value: 11349031700, 
+        rank: 4107,
+        image: "image/enemy/E4107.png",
+        realm: "<span class=realm_sky><b>天空级八阶 [x10]</b></span>",
+        size: "small",
+        spec: [61,0],
+        tags: [],
+        stats: {health: 5600e8, attack: 140e8, agility:200e8, attack_speed: 4.5, defense:160e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["燕岗狂剑小队"] = new Enemy({
+        name: "燕岗狂剑小队", 
+        description: "通过连续砍击造成更深的伤口的小队。多次有效攻击压缩成一次，有了云霄级破防实力。对了，这个攻速也没填错。", 
+        xp_value: 22698063400, 
+        rank: 4108,
+        image: "image/enemy/E4108.png",
+        realm: "<span class=realm_sky><b>天空级八阶 [x20]</b></span>",
+        size: "small",
+        spec: [61],
+        tags: [],
+        stats: {health: 6760e8, attack: 299e8, agility:220e8, attack_speed: 7.5, defense:0e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["古树蜘蛛"] = new Enemy({
+        name: "古树蜘蛛", 
+        description: "温馨提示：切巨星对破它的防御没有任何用处。", 
+        xp_value: 20365011074, 
+        rank: 4109,
+        image: "image/enemy/E4109.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [9],
+        tags: [],
+        stats: {health: 5290e8, attack: 625e8, agility:280e8, attack_speed: 1.2, defense:289e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.05},
+            //90B
+        ],
+    });
+    enemy_templates["燕城看门人"] = new Enemy({
+        name: "燕城看门人", 
+        description: "实际上居于燕岗城各个哨所，念力覆盖数个城门进行详细检查。但是如果真的要打的话这位拦得住吗……", 
+        xp_value: 12586269025, 
+        rank: 4110,
+        image: "image/enemy/E4110.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 8600e8, attack: 410e8, agility:300e8, attack_speed: 1.6, defense:170e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.03},
+            //50B
+        ],
+    });
+    enemy_templates["炽烈茸茸"] = new Enemy({
+        name: "炽烈茸茸", 
+        description: "发出绿光了！根据维恩位移定律，它的色温大概是5400K。至于为什么太阳不是绿的……可能是视锥细胞敏感度的问题吧。", 
+        xp_value: 20365011074, 
+        rank: 4111,
+        image: "image/enemy/E4111.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 932e8, attack: 466e8, agility:300e8, attack_speed: 1.6, defense:233e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.05},
+            //90B
+        ],
+    });
+    enemy_templates["城门战淘汰者"] = new Enemy({
+        name: "城门战淘汰者", 
+        description: "请道友入我人皇幡中一叙~喵可什么时候可以考虑锻造个人皇幡诶。", 
+        xp_value: 20365011074, 
+        rank: 4112,
+        image: "image/enemy/E4112.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 10890e8, attack: 484e8, agility:320e8, attack_speed: 1.6, defense:190e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.05},
+            //90B
+        ],
+    });
+    enemy_templates["哥布林头目"] = new Enemy({
+        name: "哥布林头目", 
+        description: "血洛强族哥布林……我们急需圣骑士来净化它们。", 
+        xp_value: 20365011074, 
+        rank: 4113,
+        image: "image/enemy/E4113.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 7400e8, attack: 710e8, agility:340e8, attack_speed: 1.7, defense:280e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.05},
+            //90B
+        ],
+    });
+    enemy_templates["燕岗知识分子"] = new Enemy({
+        name: "燕岗知识分子", 
+        description: "知识就是力量！我悟了！——他喊着这样的话，就冲上来了呢。", 
+        xp_value: 20365011074, 
+        rank: 4114,
+        image: "image/enemy/E4114.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [54],
+        tags: [],
+        stats: {health: 61000e8, attack: 540e8, agility:360e8, attack_speed: 1.7, defense:90e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.05},
+            //90B
+        ],
+    });
+    enemy_templates["古古怪树"] = new Enemy({
+        name: "古古怪树", 
+        description: "临时扣血不好做，所以改成了五倍易伤。老师血条有点发紫是不是心脏不太好？", 
+        xp_value: 20365011074, 
+        rank: 4115,
+        image: "image/enemy/E4115.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [62],
+        tags: [],
+        stats: {health: 12960e8, attack: 441e8, agility:360e8, attack_speed: 1.7, defense:256e8}, //血量100%
+        loot_list: [
+            {item_name: "传说绿宝石", chance:0.05},
+            //90B
+        ],
+    });
 
 
 
 
     
     /*
-     红   绿 
-B9  0.8% 0.3% 5B
-B9+ 0.3% 0.8% 9B
-B9++ ？？？
-B7 4'3349'4437 /7'0140'8733 exp
-B8 11'3490'3170/18'3631'1903exp
-B9 29'7121'5073/48'0752'6976exp
 
-B9++ 7,778,742,049exp 16B
-
-火烈茸茸和幻境飞蛾换位
+    [WIP/特殊属性]
+    败移/奸滑绝凶兽
+    死线/古古怪树
 
 
-圣荒城头目开始9阶+
-冈崎喵妖开始9阶++(考虑到C1=B9+4 B9+2是常规等级)
-大门派精英独占9阶+++(经验和C1一致 掉落比C1少半档)
+C1 125'8626'9025          /203'6501'1074          exp
+~咕咕怪树
+天空9的全部按裸2971215073算，然后加乘法
+
+炽烈茸茸开始云霄1+
+
 
 
 

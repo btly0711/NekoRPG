@@ -658,6 +658,7 @@ character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = tr
                 
         }
 
+        
         if(active_effects["坚固 A9"]!=undefined && damage_taken > character.stats.full.max_health * 0.05)
         {
                 log_message(`坚固药剂抵挡了溢出的 ${format_number(damage_taken - character.stats.full.max_health * 0.05)} 伤害！`,"enemy_enhanced")
@@ -669,6 +670,11 @@ character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = tr
                 damage_taken = character.stats.full.max_health * 0.0800001;
         }
 
+
+        if(active_effects["死线"]!=undefined && damage_taken != 0){
+                damage_taken *= 5;
+                log_message(`[死线]受到的伤害x5！`,"enemy_enhanced");
+        }//死线(2/3)
 
         character.stats.full.health -= damage_taken;
 
@@ -682,6 +688,7 @@ character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = tr
         if(give_skill_xp) {
                 //TODO give xp to resistance skills when taking damge
         }
+
 
         return {damage_taken, fainted};
 }

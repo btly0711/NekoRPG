@@ -418,4 +418,8 @@ effect_templates["灵魂之力 V"] = new ActiveEffect({
                 let MM2 = ["生命恢复 + 1%","暴击概率 x 1.5","暴击伤害 x 1.6","普攻倍率 x 1.4","攻击力 x 1.1","防御力 x 1.2","敏捷 x 1.2","速度 x 1.1"];*/
 
 
+effect_templates["死线"] = new ActiveEffect({
+    name: "死线",
+    effects: {stats: {}}
+});
 export {effect_templates, ActiveEffect};
