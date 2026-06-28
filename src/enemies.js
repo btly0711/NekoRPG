@@ -7295,7 +7295,7 @@ class Enemy {
         ],
     });
     enemy_templates["奸猾绝凶兽"] = new Enemy({
-        name: "奸滑绝凶兽", 
+        name: "奸猾绝凶兽", 
         description: "死后召唤出本地图的随机敌人。强迫你多砍一刀……", 
         xp_value: 12586269025, 
         rank: 4103,
@@ -7510,9 +7510,6 @@ class Enemy {
     
     /*
 
-    [WIP/特殊属性]
-    败移/奸滑绝凶兽
-    死线/古古怪树
 
 
 C1 125'8626'9025          /203'6501'1074          exp

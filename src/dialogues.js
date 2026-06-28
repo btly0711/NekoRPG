@@ -3106,11 +3106,11 @@ class Textline {
             "bk6": new Textline({ 
                 is_unlocked: false,
                 name: "这下可以了吧？",
-                text: "[纳布]好好好。<br>这是你要的东西。<br>呵，长大了……<br><br>[提醒]<br>获取了纳家奇宝【伊芙】！<br>[WIP->V3.01]家族系统 现已激活!",
+                text: "[纳布]好好好。<br>这是你要的东西。<br>呵，长大了……<br><br>[提醒]<br>获取了纳家奇宝【伊芙】！<br>家族系统 现已激活!",
                 unlocks: {
                     flags: ["is_family_enabled"],
                 },
-                locks_lines: ["bk5"],
+                locks_lines: ["bk6"],
             }),
         },
     });

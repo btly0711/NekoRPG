@@ -2677,12 +2677,12 @@ function update_gathering_tooltip(current_activity) {
 
 function update_displayed_health() { //call it when using healing items, resting or getting hit
     current_health_value_div.innerText = format_number(character.stats.full.health) + "/" + format_number(character.stats.full.max_health) + " HP";
-    current_health_bar.style.width = (character.stats.full.health*100/character.stats.full.max_health).toString() +"%";
     current_health_bar.style = 'background-color:rgb(255,46,46)';
     
     if(active_effects["死线"]!=undefined){
         current_health_bar.style = 'background-color:rgb(189,46,255)';
     }
+    current_health_bar.style.width = (character.stats.full.health*100/character.stats.full.max_health).toString() +"%";
     //死线(3/3)
 }
 

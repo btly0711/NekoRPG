@@ -403,7 +403,7 @@ class Combat_zone {
             
             if(enemy.spec.includes(60)) {
                 let E_name = this.enemies_list[Math.floor(Math.random() * this.enemies_list.length)];
-                enemy_group.push(this.get_enemy(halo,enemy_templates[E_name]));
+                enemies.push(this.get_enemy(halo,enemy_templates[E_name]));
                 log_message(`[败移] ${E_name} 被 ${enemy.name} 护在身前！`,"enemy_enhanced");
 
             }//败移
