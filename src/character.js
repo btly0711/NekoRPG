@@ -672,8 +672,15 @@ character.take_damage = function (enemy_spec = [0],{damage_value, can_faint = tr
 
 
         if(active_effects["死线"]!=undefined && damage_taken != 0){
-                damage_taken *= 5;
-                log_message(`[死线]受到的伤害x5！`,"enemy_enhanced");
+                
+                if(character.equipment.props?.name == "凝滞力场"){
+                        damage_taken *= 2;
+                        log_message(`[死线·凝滞]受到的伤害x2！`,"enemy_enhanced");
+                }
+                else{
+                        damage_taken *= 5;
+                        log_message(`[死线]受到的伤害x5！`,"enemy_enhanced");
+                }
         }//死线(2/3)
 
         character.stats.full.health -= damage_taken;

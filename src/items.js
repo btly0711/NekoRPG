@@ -2565,6 +2565,17 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["凝滞力场"] = new Props({
+        name: "凝滞力场",
+        id: "凝滞力场",
+        description: "可以大幅度削弱【死线】带来的易伤效果(5x->2x)，以及持续时间(60s->20s)。", 
+        value: 688e15,
+        stats: {
+            defense: {
+                flat: 18e8,
+            }
+        }
+    });
 
 })();
 
@@ -3574,6 +3585,22 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_speed: {
                 multiplier: 1.20,
+            },
+        }
+    });
+    item_templates["盖亚轮锋"] = new WeaponComponent({
+        name: "盖亚轮锋", description: "盖亚合金制造的【月轮】镀层。现在它已经变成完整版了！",
+        component_type: "wheel head",
+        value: 48210e12,
+        component_tier: 17,
+        name_prefix: "盖亚",
+        attack_value: 117600e4,
+        stats: {
+            crit_rate: {
+                flat: 0.30,
+            },
+            attack_speed: {
+                multiplier: 1.21,
             },
         }
     });
@@ -4860,6 +4887,14 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1000e15,
         image: "image/item/ice_jade.png",
     });
+    item_templates["盖亚合金锭"] = new Material({
+        id: "盖亚合金锭",
+        name: "盖亚合金锭", 
+        description: "与大地有着天然的亲和……人话就是很重！砍人超级疼！", 
+        value: 4.444e15,
+        material_type: "metal",
+        image: "image/item/gaia_ingot.png",
+    });
 })();
 
 //矿石
@@ -5988,6 +6023,25 @@ item_templates["Twist liek a snek"] = new Book({
         description: "天外飞船到底是怎么飞进血洛的？这就是答案了！", 
         value: 416e12,
         image: "image/item/gravi_error.png",
+    });
+    //4-1
+    item_templates["城门之星"] = new Loot({
+        name: "城门之星", 
+        description: "城门战的参与令牌。天空级小队也有一人一颗，所以爆的更多！", 
+        value: 2.4e15,
+        image: "image/item/C1_star.png",
+    });
+    item_templates["C1·能量核心"] = new Loot({
+        name: "C1·能量核心", 
+        description: "好吧。看起来只是变得更加大只和鲜艳了。总感觉它已经开始不稳定了……", 
+        value: 3.2e15,
+        image: "image/item/C1_crystal.png",
+    });
+    item_templates["力场发生器"] = new Loot({
+        name: "力场发生器", 
+        description: "怎么GregTech也干了啊！言归正传……死线的5倍伤害太op了。削弱之道，就在其中~", 
+        value: 4.4e15,
+        image: "image/item/C1_generator.png",
     });
 
 

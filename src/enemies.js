@@ -7275,6 +7275,7 @@ class Enemy {
         stats: {health: 1400e8, attack: 290e8, agility:140e8, attack_speed: 1.4, defense:130e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "C1·能量核心", chance:0.015},
             //50B
         ],
     });
@@ -7291,6 +7292,7 @@ class Enemy {
         stats: {health: 7290e8, attack: 300e8, agility:160e8, attack_speed: 1.6, defense:1}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "城门之星", chance:0.023},
             //50B
         ],
     });
@@ -7307,6 +7309,7 @@ class Enemy {
         stats: {health: 5600e8, attack: 328e8, agility:180e8, attack_speed: 1.6, defense:125e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "破空紫蕨", chance:0.082},
             //50B
         ],
     });
@@ -7323,6 +7326,8 @@ class Enemy {
         stats: {health: 7840e8, attack: 255e8, agility:200e8, attack_speed: 1.5, defense:120e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "中等进化结晶碎片", chance:0.005},
+            {item_name: "城门之星", chance:0.015},
             //50B
         ],
     });
@@ -7339,6 +7344,8 @@ class Enemy {
         stats: {health: 16810e8, attack: 280e8, agility:220e8, attack_speed: 1.5, defense:140e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "魂晶锭", chance:0.09},
+            {item_name: "盖亚合金锭", chance:0.001},
             //50B
         ],
     });
@@ -7356,6 +7363,7 @@ class Enemy {
         stats: {health: 11560e8, attack: 370e8, agility:240e8, attack_speed: 1.5, defense:120e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "C1·能量核心", chance:0.02},
             //50B
         ],
     });
@@ -7372,6 +7380,7 @@ class Enemy {
         stats: {health: 5600e8, attack: 140e8, agility:200e8, attack_speed: 4.5, defense:160e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "城门之星", chance:0.03},
             //50B
         ],
     });
@@ -7388,6 +7397,7 @@ class Enemy {
         stats: {health: 6760e8, attack: 299e8, agility:220e8, attack_speed: 7.5, defense:0e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "城门之星", chance:0.05},
             //50B
         ],
     });
@@ -7404,6 +7414,7 @@ class Enemy {
         stats: {health: 5290e8, attack: 625e8, agility:280e8, attack_speed: 1.2, defense:289e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.05},
+            {item_name: "力场发生器", chance:0.022},
             //90B
         ],
     });
@@ -7420,6 +7431,8 @@ class Enemy {
         stats: {health: 8600e8, attack: 410e8, agility:300e8, attack_speed: 1.6, defense:170e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.03},
+            {item_name: "破空紫蕨", chance:0.04},
+            {item_name: "魂晶锭", chance:0.04},
             //50B
         ],
     });
@@ -7436,6 +7449,7 @@ class Enemy {
         stats: {health: 932e8, attack: 466e8, agility:300e8, attack_speed: 1.6, defense:233e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.05},
+            {item_name: "C1·能量核心", chance:0.035},
             //90B
         ],
     });
@@ -7452,6 +7466,7 @@ class Enemy {
         stats: {health: 10890e8, attack: 484e8, agility:320e8, attack_speed: 1.6, defense:190e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.05},
+            {item_name: "力场发生器", chance:0.02},
             //90B
         ],
     });
@@ -7468,6 +7483,8 @@ class Enemy {
         stats: {health: 7400e8, attack: 710e8, agility:340e8, attack_speed: 1.7, defense:280e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.05},
+            {item_name: "城门之星", chance:0.03},
+            {item_name: "中等进化结晶碎片", chance:0.005},
             //90B
         ],
     });
@@ -7484,6 +7501,7 @@ class Enemy {
         stats: {health: 61000e8, attack: 540e8, agility:360e8, attack_speed: 1.7, defense:90e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.05},
+            {item_name: "魂晶锭", chance:0.15},
             //90B
         ],
     });
@@ -7500,6 +7518,8 @@ class Enemy {
         stats: {health: 12960e8, attack: 441e8, agility:360e8, attack_speed: 1.7, defense:256e8}, //血量100%
         loot_list: [
             {item_name: "传说绿宝石", chance:0.05},
+            {item_name: "城门之星", chance:0.02},
+            {item_name: "力场发生器", chance:0.01},
             //90B
         ],
     });

@@ -374,7 +374,8 @@ class Combat_zone {
             }
             if(character.equipment.props?.name == "光环法杖"){
                 if(enemy.rank >= 4000){
-                    log_message("[一段光环法杖遇到云霄级敌人增幅不动的剧情]","enemy_enhanced");
+                    log_message("光环法杖大放光彩，随即暗淡下来……","enemy_enhanced");
+                    log_message("它的材料不足以增幅如此强大的敌人！","enemy_enhanced");
                 }
                 else if(enemy.rank % 100 >= 50){
                     log_message("[光环法杖]BOSS级敌人无法被增幅!","enemy_enhanced");

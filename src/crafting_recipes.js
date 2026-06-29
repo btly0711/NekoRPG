@@ -6,7 +6,7 @@ import { skills } from "./skills.js";
 
 const crafting_recipes = {items: {}, items2: {},items3: {}, components: {}, equipment: {}};
 const cooking_recipes = {items: {}, items2: {},items3: {},};
-const smelting_recipes = {items: {}, items2: {},items3: {},};
+const smelting_recipes = {items: {}, items2: {},items3: {},items4:{}};
 const forging_recipes = {items: {}, items2: {} ,items3: {}, components: {}};
 const alchemy_recipes = {items: {}, items2: {},items3: {},};
 
@@ -301,7 +301,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
     if(!selected_recipe) {
         throw new Error(`Tried to use a recipe that doesn't exist: ${category} -> ${subcategory} -> ${recipe_id}`);
     }
-    if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
+    if(subcategory.includes("items")) {
         exp_value = Math.max(exp_value,1.2 ** selected_recipe.recipe_level[1] * 1);
         //maybe scale with materials needed?
     } else if (subcategory === "components" || selected_recipe.recipe_type === "component") {
@@ -381,7 +381,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "水素合金锭", count: 18, result_id: "水素轮锋"}, 
             {material_id: "宝石母锭", count: 18, result_id: "宝石轮锋"}, 
             {material_id: "魂晶锭", count: 18, result_id: "魂晶轮锋"}, 
-            //未完待续 某个临界点[月轮倍率过18]后改为36
+            {material_id: "盖亚合金锭", count: 36, result_id: "盖亚轮锋"}, 
         ],
         item_type: "Component",
         recipe_skill: "Forging"
@@ -1236,6 +1236,15 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [27,76],
         recipe_skill: "Smelting",
     });
+    smelting_recipes.items4["盖亚合金(x2)"] = new ItemRecipe({
+        name: "盖亚合金(x2)",
+        recipe_type: "material",
+        materials: [{material_id: "魂晶锭", count: 2},{material_id: "城门之星", count: 2},{material_id: "C1·能量核心", count: 1}], 
+        result: {result_id: "盖亚合金锭", count: 2},
+        success_chance: [0.5,1],
+        recipe_level: [88,88],
+        recipe_skill: "Smelting",
+    });
 })();
 
 (function(){
@@ -1511,6 +1520,17 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         result: {result_id: "死神之镰", count: 1},
         success_chance: [0.5,1],
         recipe_level: [1,80],
+        Q_able:240,
+        recipe_skill: "Forging",
+    });
+    forging_recipes.items["凝滞力场"] = new ItemRecipe({
+        name: "凝滞力场",
+        id: "凝滞力场",
+        recipe_type: "items",
+        materials: [{material_id:"盖亚合金锭",count:59},{material_id: "力场发生器", count: 99},{material_id: "中等进化结晶碎片", count: 3}],
+        result: {result_id: "凝滞力场", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [1,85],
         Q_able:240,
         recipe_skill: "Forging",
     });

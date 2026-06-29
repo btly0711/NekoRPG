@@ -2477,8 +2477,15 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             }//心之力
             if(target.spec.includes(62))
             {
-                log_message(`${character.name} 获取了60s【死线】效果！`,"enemy_enhanced");
-                active_effects["死线"] = new ActiveEffect({...effect_templates["死线"], duration:60});
+                
+                if(character.equipment.props?.name == "凝滞力场"){
+                    log_message(`${character.name} 获取了20s【死线】效果！`,"enemy_enhanced");
+                    active_effects["死线"] = new ActiveEffect({...effect_templates["死线"], duration:20});
+                }
+                else{
+                    log_message(`${character.name} 获取了60s【死线】效果！`,"enemy_enhanced");
+                    active_effects["死线"] = new ActiveEffect({...effect_templates["死线"], duration:60});
+                }
             }//死线(1/3)
             if(target.rank >= 3100 && target.rank <= 3200){
                 inf_combat.B3 = inf_combat.B3 || 0;
@@ -2984,7 +2991,7 @@ function use_recipe(target,stated = false) {
         const recipe_div = document.querySelector(`[data-crafting_category="${category}"] [data-crafting_subcategory="${subcategory}"] [data-recipe_id="${recipe_id}"]`);
         let leveled = false;
         let result;
-        if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
+        if(subcategory.includes("items")) {
             if(selected_recipe.get_availability()) {
                 total_crafting_attempts++;
                 const success_chance = selected_recipe.get_success_chance(station_tier);
@@ -3200,7 +3207,7 @@ function use_recipe_max(target) {
         const recipe_div = document.querySelector(`[data-crafting_category="${category}"] [data-crafting_subcategory="${subcategory}"] [data-recipe_id="${recipe_id}"]`);
         let leveled = false;
         let result;
-        if(subcategory === "items" || subcategory === "items2" || subcategory === "items3") {
+        if(subcategory.includes("items")) {
             let cnt = 0;
             let cnt_s = 0;
             let S_chance = selected_recipe.get_success_chance(station_tier);

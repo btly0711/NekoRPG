@@ -802,15 +802,18 @@
                         </div>
                         <div class="crafting_category" data-crafting_category="smelting"  style="display:none">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_3 active_selection_button" onclick="switchCraftingRecipesSubpage('smelting', 'items')">第一幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('smelting', 'items2')">第二幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_3" onclick="switchCraftingRecipesSubpage('smelting', 'items3')">第三幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4 active_selection_button" onclick="switchCraftingRecipesSubpage('smelting', 'items')">第一幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4" onclick="switchCraftingRecipesSubpage('smelting', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4" onclick="switchCraftingRecipesSubpage('smelting', 'items3')">第三幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_4" onclick="switchCraftingRecipesSubpage('smelting', 'items4')">第四幕</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items">
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items2">
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items3">
+                            </div>
+                            <div class="crafting_category crafting_recipe_list" data-crafting_category="smelting" data-crafting_subcategory="items4">
                             </div>
                         </div>
                         <div class="crafting_category" data-crafting_category="forging"  style="display:none">
@@ -1683,7 +1686,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V3.02a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V3.03";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
