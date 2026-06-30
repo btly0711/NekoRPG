@@ -962,6 +962,10 @@ body {
 	display: block;
 }
 
+.recipe_div:hover .items4_recipe_tooltip.recipe_tooltip{
+	display: block;
+}
+
 .recipe_creation_button:hover .recipe_tooltip{
 	display: block;
 }
