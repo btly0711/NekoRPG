@@ -5196,7 +5196,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["B9·灵闪药剂"] = new UsableItem({
         name: "B9·灵闪药剂", 
-        description: "如果敌人的攻击少于角色的2倍，角色受到的伤害减少(角色防御/敌人防御)的二分之一。反之，增加(角色防御/敌人防御)的两倍。该效果不会把伤害降低到0以下。", 
+        description: "如果敌人的攻击少于角色的2倍，角色受到的伤害减少(角色防御/敌人防御)的二分之一。反之，增加(角色防御/敌人防御)的两倍。该效果不会把伤害降低到0以下或提高到100倍以上。", 
         value: 8.4e12,
         realmcap:27,
         effects: [{effect: "灵闪 B9", duration: 120}],

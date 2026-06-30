@@ -2013,7 +2013,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     }
     if(attacker.spec.includes(54))
     {
-        E_atk_mul_f *= attacker.stats.health / character.stats.full.health;
+        E_atk_mul_f *= Math.min(100,attacker.stats.health / character.stats.full.health);
     }//生命限制
 
 
