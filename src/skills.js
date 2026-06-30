@@ -1949,7 +1949,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
         base_xp_cost: 100,
         xp_scaling: 2.0,
         max_level: 200,
-        max_level_bonus: 1.00,
+        max_level_bonus: 2.00,
         get_effect_description: ()=> {
             return `增加基础防御 ${Math.round(100*skills["Iron skin"].get_level_bonus())} %`;
         },
