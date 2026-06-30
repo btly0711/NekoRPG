@@ -1944,11 +1944,11 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     skills["Iron skin"] = new Skill({
         skill_id: "Iron skin",
         category: "Combat",
-        names: {0: "坚韧皮肤", 5: "铁制皮肤", 10: "精钢皮肤",15:"紫铜皮肤",20:"地宫皮肤",25:"充能皮肤",30:"脉冲皮肤",35:"海绿皮肤",40:"红钢皮肤",45:"秘银皮肤",50:"旋律皮肤",55:"冰髓皮肤"},
+        names: {0: "坚韧皮肤", 5: "铁制皮肤", 10: "精钢皮肤",15:"紫铜皮肤",20:"地宫皮肤",25:"充能皮肤",30:"脉冲皮肤",35:"海绿皮肤",40:"红钢皮肤",45:"秘银皮肤",50:"旋律皮肤",55:"冰髓皮肤",60:"晶化皮肤",65:"水素皮肤",70:"宝石皮肤",75:"魂晶皮肤",80:"盖亚皮肤"},
         description: "杀不死我的，都将使我更强大",
         base_xp_cost: 100,
         xp_scaling: 2.0,
-        max_level: 100,
+        max_level: 200,
         max_level_bonus: 1.00,
         get_effect_description: ()=> {
             return `增加基础防御 ${Math.round(100*skills["Iron skin"].get_level_bonus())} %`;

@@ -2003,7 +2003,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
             
             spec_hint += '[灵闪·正]';
         } else {
-            spec_mul *= (1 + 3 *character.stats.full.defense / Math.min(1,attacker.stats.defense));
+            spec_mul *= Math.min(100,(1 + 3 *character.stats.full.defense / Math.min(1,attacker.stats.defense)));
             spec_hint += '[灵闪·逆]';
         }
     }
