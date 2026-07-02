@@ -4577,6 +4577,7 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["纳家宝库"], custom_text: "回到纳家宝库"}], 
         description: "激动人心的燕岗领狩猎大赛。这里是第一阶段！[V2.74前版本终点]",
         name: "狩猎大赛·城门战", 
+        traders: ["声望商人"],
         dialogues: [],
         is_unlocked: false,
         bgm: 21,
@@ -4602,7 +4603,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["城门战 - 2"] = new Combat_zone({
-        description: "紧张刺激的燕岗领狩猎大赛~全是云霄级战力哦~", 
+        description: "听说这附近许多强者都选择抱团取暖。如果缺乏足够的影响力，或许买到补给都成问题？", 
         enemy_count: 20, 
         enemies_list: ["毒牙噬蝠","深邃法师小队","燕岗狂剑小队","古树蜘蛛","燕城看门人"],
         enemy_group_size: [4,4],
@@ -4617,10 +4618,11 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 1.5e12,
             locations: [{location: "城门战 - 3"}],
+            traders: [{traders:"声望商人"}],
         },
     });
     locations["城门战 - 3"] = new Combat_zone({
-        description: "紧张刺激的燕岗领狩猎大赛~全是云霄级战力哦~", 
+        description: "单靠一人奋勇杀敌是无法扩大整个势力的影响力的。真正重要的是大量中流砥柱……", 
         enemy_count: 20, 
         enemies_list: ["炽烈茸茸","城门战淘汰者","哥布林头目","燕岗知识分子","古古怪树"],
         enemy_group_size: [4,4],

@@ -3,7 +3,7 @@
 import { current_game_time } from "./game_time.js";
 import { InventoryHaver } from "./inventory.js";
 import { item_templates, getItem} from "./items.js";
-import { inf_combat } from "./main.js";
+import { inf_combat , family_data } from "./main.js";
 import { skills } from "./skills.js";
 
 var traders = {};
@@ -85,6 +85,12 @@ class Trader extends InventoryHaver {
         }
         for (let i = 0; i < inventory_template.length; i++) {
             if (inventory_template[i].chance >= Math.random()) {
+                if(inventory_template[i].influ.min >= 5){
+                    if(family_data.influ >= inventory_template[i].influ.min){
+                        item_mul *= Math.min(inventory_template[i].influ.min.cap,family_data.influ ** inventory_template[i].influ.exp);//影响力充足，计算倍数
+                    }
+                    else continue;//影响力不足，直接跳过
+                }
                 let item_count = inventory_template[i].count.length == 1 ?
                 inventory_template[i].count[0] : Math.round(Math.random() *
                     (inventory_template[i].count[1] - inventory_template[i].count[0]) + inventory_template[i].count[0]);
@@ -105,7 +111,11 @@ class Trader extends InventoryHaver {
             }
 
 
-        }
+        }//family_data.influ = 纳家影响力
+        
+        //influ.min:最低多少影响力解锁(1代表禁用)
+        //influ.exp:超过min的影响力对物品获取倍数
+        //influ.cap:倍数上限(冰宫商人惨案警钟长鸣)
 
         //just add items based on their chances and counts in inventory_template
         return inventory;
@@ -135,7 +145,8 @@ class TradeItem {
     constructor({ item_name,
                   chance = 1,
                   count = [1],
-                  quality = [0.2, 0.8]
+                  quality = [0.2, 0.8],
+                  influ = {min:1,exp:0.0,cap:1},
                 }) 
     {
         this.item_name = item_name;
@@ -144,6 +155,11 @@ class TradeItem {
         //how many can appear, will randomly choose something between min and max if specificed, otherwise will go with specific ammount
         
         this.quality = quality; //min and max quality of item
+
+        this.influ = influ;
+        //influ.min:最低多少影响力解锁(1代表禁用)
+        //influ.exp:超过min的影响力对物品获取倍数
+        //influ.cap:倍数上限(冰宫商人惨案警钟长鸣)
     }
 }
 
@@ -237,6 +253,13 @@ class TradeItem {
         is_unlocked: false,
         location_name: "传承幻境",
         profit_margin: 6.4,
+    });
+    traders["声望商人"] = new Trader({
+        name: "声望商人",
+        inventory_template: "Cloudy I",
+        is_unlocked: false,
+        location_name: "狩猎大赛·城门战",
+        profit_margin: 5.6,
     });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",
@@ -599,6 +622,33 @@ class TradeItem {
             new TradeItem({item_name: "传承水晶·白", count: [5,10]}),
             new TradeItem({item_name: "传承水晶·绿", count: [5,10]}),
             new TradeItem({item_name: "牵制-从入门到入土", count: [50,100]}),
+
+
+    ];
+    inventory_templates["Cloudy I"] = 
+    [
+            new TradeItem({item_name: "破空紫蕨", count: [30,150]}),
+            new TradeItem({item_name: "魂晶锭", count: [30,150]}),
+            new TradeItem({item_name: "传承水晶·粉", count: [100,500]}),
+
+
+            new TradeItem({item_name: "魂晶月轮", count: [1], quality: [161, 200]}),
+            new TradeItem({item_name: "盖亚月轮", count: [1], quality: [121, 160]}),
+
+            
+            new TradeItem({item_name: "魂晶头盔", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "魂晶胸甲", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "魂晶腿甲", count: [1], quality: [151, 190]}),
+            new TradeItem({item_name: "魂晶战靴", count: [1], quality: [151, 190]}),
+
+            
+            new TradeItem({item_name: "C1·能量核心", count: [3,8],influ:{min:10,exp:0.4,cap:1000}}),
+            new TradeItem({item_name: "城门之星", count: [3,8],influ:{min:10,exp:0.4,cap:1000}}),
+            new TradeItem({item_name: "力场发生器", count: [2,4],influ:{min:30,exp:0.4,cap:1000}}),
+
+
+
+            new TradeItem({item_name: "盖亚合金锭", count: [1,3],influ:{min:50,exp:0.4,cap:1000}}),
 
 
     ];

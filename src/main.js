@@ -2080,7 +2080,6 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     if(critted)
     {
-        console.log(options.option_combat_filter);
         if((!options.option_combat_filter) || damage_taken != 0) log_message(character.name + " 受到了 " + format_number(damage_taken) + " 伤害[暴击]" + spec_hint, "hero_attacked_critically");
     } else {
         if((!options.option_combat_filter) || damage_taken != 0) log_message(character.name + " 受到了 " + format_number(damage_taken) + "  伤害" + spec_hint, "hero_attacked");
@@ -3126,7 +3125,6 @@ function use_recipe(target,stated = false) {
                 } else {
                     let E_ttl = Math.min(character.inventory[component_1_key]?.count,character.inventory[component_2_key]?.count);
                     let E_range,E_base,E_imp1,E_cur,E_q,E_exp;
-                    console.log(E_ttl);
                     if(E_ttl >= 100 && stated){
                         const id_1 = JSON.parse(component_1_key).id;
                         const id_2 = JSON.parse(component_2_key).id;
@@ -3241,7 +3239,9 @@ function use_recipe_max(target) {
                 const {result_id, count} = result;
                 //读取结果
                 if(selected_recipe.Q_able != undefined){
-                    add_to_character_inventory([{item: getItem({...item_template[result_id], quality: selected_recipe.Q_able}), count: count * max_todo}]);
+                    add_to_character_inventory([{item: getItem({...item_templates[result_id], quality: selected_recipe.Q_able}), count: count * max_todo}]);
+                    
+                    //console.log("试做了",result_id,count,max_todo);
                 }
                 else{
                     add_to_character_inventory([{item: item_templates[result_id], count: count * max_todo}]); 
@@ -5864,7 +5864,7 @@ function update_family_daily(){
     
     for(let r=1;r<=99;r+=1){
         if(family_data.mem[r].vis){
-            family_data.re_influ += (family_data.mem[r].num ** 0.5) * (realm_rate[r][2]) * (ali_data[family_data.mem[r].ali][0])/ 1e8;
+            family_data.re_influ += (family_data.mem[r].num ** 0.5) * Math.abs(realm_rate[r][2]) * (ali_data[family_data.mem[r].ali][0])/ 1e8;
         }
     }//影响力(被策略影响^2)
 

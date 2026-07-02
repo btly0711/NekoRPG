@@ -273,6 +273,9 @@ function create_item_tooltip_content({item, options={}}) {
     }
 
     let quality = item.quality;
+    if(options?.quality && options.quality) {
+        quality = options.quality;
+    }
 
     //add stats if can be equipped
     if(item.item_type === "EQUIPPABLE"){ 
@@ -466,6 +469,7 @@ function create_item_tooltip_content({item, options={}}) {
     } else {
         item_tooltip += "<br>";
     }
+
     item_tooltip += `<br>价值: ${format_money(round_item_price(item.getValue(quality) * ((options && options.trader) ? traders[current_trader].getProfitMargin() : 1) || 0))}`;
 
     // if(item.saturates_market) {
@@ -1314,6 +1318,12 @@ function create_inventory_item_div({key, item_count, target, is_equipped, trade_
 
     if(typeof trade_index !== "undefined") {
         item_control_div.classList.add('item_to_trade');
+        if(item_control_div.classList.contains("trader_item_control")){
+            item_value_span.innerHTML = `${format_money(round_item_price(target_item.getValue()), true)}`;
+        }
+        if(item_control_div.classList.contains("character_item_control")){
+            item_value_span.innerHTML = `${format_money(round_item_price(target_item.getValue()*traders[current_trader].getProfitMargin()), true)}`;
+        }
     }
 
     return item_control_div;
@@ -2058,8 +2068,6 @@ function create_displayed_crafting_recipes() {
     Object.keys(recipes).forEach(recipe_category => {
         Object.keys(recipes[recipe_category]).forEach(recipe_subcategory => {
             if(recipe_subcategory.includes("items")) {
-                console.log(recipe_subcategory);
-                console.log(crafting_pages[recipe_category][recipe_subcategory]);
                 crafting_pages[recipe_category][recipe_subcategory].innerHTML = "";
             }
             Object.keys(recipes[recipe_category][recipe_subcategory]).forEach(recipe => {
@@ -2368,7 +2376,10 @@ function create_recipe_tooltip_content({category, subcategory, recipe_id, materi
                 tooltip += `<span style="color:red"><b>${item_templates[recipe.materials[i].material_id].getName()} x${character.inventory[key]?.count || 0}/${recipe.materials[i].count}</b></span><br>`;
             }
         }
-        tooltip += `<br>产物:<br><div class="recipe_result">${create_item_tooltip_content({item: item_templates[recipe.getResult().result_id], options: {skip_quality: true}})}</div>`;
+        //console.log(recipe.Q_able);
+        if(recipe.Q_able > 0) tooltip += `<br>产物:<br><div class="recipe_result">${create_item_tooltip_content({item: item_templates[recipe.getResult().result_id], options: {quality:recipe.Q_able,skip_quality:false}})}</div>`;
+        else tooltip += `<br>产物:<br><div class="recipe_result">${create_item_tooltip_content({item: item_templates[recipe.getResult().result_id], options: {skip_quality: true}})}</div>`;
+
     } else if(subcategory === "components"  || recipe.recipe_type === "component") {
         tooltip += `材料:<br>`;
         if(character.inventory[item_templates[material.material_id].getInventoryKey()]?.count >= material.count) {
@@ -3924,7 +3935,7 @@ function add_bestiary_tooltip(enemy_name){
         loot_line.append(loot_name, loot_chance);
 
         tooltip_drops.appendChild(loot_line);
-        perdicted_value += enemy.loot_list[i].chance * enemy.get_droprate_modifier() * item_templates[enemy.loot_list[i].item_name].value;
+        perdicted_value += enemy.loot_list[i].chance * (enemy.loot_list[i].ignore_luck?1:enemy.get_droprate_modifier()) * item_templates[enemy.loot_list[i].item_name].value;
     }
 
     bestiary_tooltip.classList.add("bestiary_entry_tooltip");
@@ -4115,11 +4126,11 @@ function add_levelary_tooltip(level_name) {
             let I_name = C_enemy.loot_list[k].item_name;
             if(I_list[I_name] == undefined) I_list[I_name] = C_enemy.loot_list[k].chance;
             else I_list[I_name] += C_enemy.loot_list[k].chance;
-            predict_value += C_enemy.loot_list[k].chance * item_templates[C_enemy.loot_list[k].item_name].value;
+            predict_value += C_enemy.loot_list[k].chance * item_templates[C_enemy.loot_list[k].item_name].value * (C_enemy.loot_list[k].ignore_luck?1:C_enemy.get_droprate_modifier());
         }
         //tooltip_enemies.innerHTML += `<img src=${enemy_templates[level.enemies_list[j]].image}>`;
     }
-
+    predict_value /= level.enemies_list.length;
 
     const value_loots = document.createElement("div");
     value_loots.innerHTML += `<br>预期收益/敌人：` + format_money(predict_value);

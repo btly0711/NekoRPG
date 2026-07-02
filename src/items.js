@@ -2569,7 +2569,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "凝滞力场",
         id: "凝滞力场",
         description: "可以大幅度削弱【死线】带来的易伤效果(5x->2x)，以及持续时间(60s->20s)。", 
-        value: 688e15,
+        value: 516e15,
         stats: {
             defense: {
                 flat: 18e8,
@@ -3713,6 +3713,18 @@ item_templates["Twist liek a snek"] = new Book({
         components: {
             head: "宝石轮锋",
             handle: "虹彩轮芯",
+        }
+    });
+    item_templates["魂晶月轮"] = new Weapon({
+        components: {
+            head: "魂晶轮锋",
+            handle: "破空轮芯",
+        }
+    });
+    item_templates["盖亚月轮"] = new Weapon({
+        components: {
+            head: "盖亚轮锋",
+            handle: "破空轮芯",
         }
     });
 })();
