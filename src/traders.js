@@ -76,18 +76,20 @@ class Trader extends InventoryHaver {
         const inventory = {};
         const inventory_template = inventory_templates[this.inventory_template];
         let quality_fix = 0;
-        let item_mul = 1;
+        let item_mul = 1;//全局乘数
         if(this.inventory_template == "Sky II"){
             let eff_N = inf_combat.B6 || 1;
             if(eff_N >= 9999) eff_N = 9999;
             quality_fix = 9 * Math.log(eff_N);
             item_mul = eff_N ** 0.8;
         }
+        let object_mul = 1;//局部乘数
         for (let i = 0; i < inventory_template.length; i++) {
             if (inventory_template[i].chance >= Math.random()) {
+                object_mul = 1;
                 if(inventory_template[i].influ.min >= 5){
                     if(family_data.influ >= inventory_template[i].influ.min){
-                        item_mul *= Math.min(inventory_template[i].influ.min.cap,family_data.influ ** inventory_template[i].influ.exp);//影响力充足，计算倍数
+                        object_mul *= Math.min(inventory_template[i].influ.cap,family_data.influ ** inventory_template[i].influ.exp);//影响力充足，计算倍数
                     }
                     else continue;//影响力不足，直接跳过
                 }
@@ -96,6 +98,7 @@ class Trader extends InventoryHaver {
                     (inventory_template[i].count[1] - inventory_template[i].count[0]) + inventory_template[i].count[0]);
                 let item_count_q = item_count;
                 item_count *= item_mul;
+                item_count *= object_mul;
                 item_count = Math.ceil(item_count);
 
                 if(inventory_template[i].quality[0] >= 10) {

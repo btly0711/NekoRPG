@@ -4282,8 +4282,13 @@ function load(save_data) {
                             //if it's present, item is "simple" (no components)
                             //and if it has no quality, it's something non-equippable
                             if(item_templates[id]) {
-                                if(save_data.traders[trader].inventory[key].count >= 1) trader_item_list.push({item: getItem(item_templates[id]), count: save_data.traders[trader].inventory[key].count});
-                                else console.warn(`Illegal value of ${id} x ${save_data.character.inventory[key].count} in traders , item was deleted`);
+                                if(save_data.traders[trader].inventory[key] == undefined){
+                                     console.warn(`undefined of ${id} in traders , item was deleted`);
+                                }
+                                else{
+                                    if(save_data.traders[trader].inventory[key].count >= 1) trader_item_list.push({item: getItem(item_templates[id]), count: save_data.traders[trader].inventory[key].count});
+                                    else console.warn(`Illegal value of ${id} x ${save_data.traders[trader].inventory[key].count} in traders , item was deleted`);
+                                }
                             } else {
                                 console.warn(`Inventory item "${key}" from save on version "${save_data["game version"]} couldn't be found!`);
                                 return;
