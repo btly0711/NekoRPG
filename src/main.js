@@ -383,29 +383,7 @@ function option_combat_autoswitch(option) {
 }
 const bgm = document.getElementById('bgm');
 
-const musicList = {
-  1: 'bgms/1.mp3',
-  2: 'bgms/2.mp3',
-  3: 'bgms/3.mp3',
-  4: 'bgms/4.mp3',
-  5: 'bgms/5.mp3',
-  6: 'bgms/6.mp3',
-  7: 'bgms/7.mp3',
-  8: 'bgms/8.mp3',
-  9: 'bgms/9.mp3',
-  10: 'bgms/10.mp3',
-  11: 'bgms/11.mp3',
-  12: 'bgms/12.mp3',
-  13: 'bgms/13.mp3',
-  14: 'bgms/14.mp3',
-  15: 'bgms/15.mp3',
-  16: 'bgms/16.mp3',
-  17: 'bgms/17.mp3',
-  18: 'bgms/18.mp3',
-  19: 'bgms/19.mp3',
-  20: 'bgms/20.mp3',
-  21: 'bgms/21.mp3',
-};
+function musicList(index){ return `bgms/${index}.mp3`}
 
 let hasPlayed = false;  // 确保只触发一次
 let enableBGM = true;
@@ -419,9 +397,9 @@ function switchBGM(key) {
             hasPlayed = false;
         });
     }
-  if (bgm.src.includes(musicList[key]) && bgm.src.length >= 5 && musicList[key].length >= 5) return;  // 已是当前音乐
+  if (bgm.src.includes(musicList(key)) && bgm.src.length >= 5 && musicList(key).length >= 5) return;  // 已是当前音乐
   bgm.pause();
-  bgm.src = musicList[key];
+  bgm.src = musicList(key);
   bgm.load();             // 重新加载新资源
   bgm.volume = 0.5;
   bgm.play();
@@ -5682,6 +5660,24 @@ window.engine_f = engine_f;
 window.engine_e = engine_e;
 window.engine_l = engine_l;
 
+function unlock_influ_related(influ){
+    console.log(locations["城门战 - 歧路"])
+    if(influ>1 && !locations["城门战 - 歧路"].is_unlocked){
+        
+        log_message(`<span class='realm_sky'>[百方]</span>：苦苦追寻这些年，总算让我找到了……`,"activity_money");
+        log_message(`纳可老祖，被族人簇拥的滋味好受吗？`,"activity_money");
+        log_message(`现在关于你的消息可是不胫而走哦？`,"activity_money");
+        log_message(`要不是在荒兽森林我抢来了牵制药水的配方，`,"activity_money");
+        log_message(`或许我也和炎塔他们一样，`,"activity_money");
+        log_message(`成为十三斧下的亡魂了吧。`,"activity_money");
+        log_message(`多说无益！来战！！`,"activity_money");
+        unlock_location(locations["城门战 - 歧路"]);
+    };
+
+
+}
+
+
 const baby_num = document.getElementById("baby_born_num");
 baby_num.addEventListener("change", () => family_data.baby = (Number(baby_num.value)!=Number(baby_num.value))?0:baby_num.value);
 const realm_rate =[
@@ -5874,6 +5870,8 @@ function update_family_daily(){
     }//影响力(被策略影响^2)
 
     family_data.influ += family_data.re_influ;
+
+    unlock_influ_related(family_data.influ);
 
 
 

@@ -7390,7 +7390,7 @@ class Enemy {
         xp_value: 22698063400, 
         rank: 4108,
         image: "image/enemy/E4108.png",
-        realm: "<span class=realm_sky><b>天空级八阶 [x20]</b></span>",
+        realm: "<span class=realm_sky><b>天空级八阶 ++ [x10]</b></span>",
         size: "small",
         spec: [61],
         tags: [],
@@ -8388,7 +8388,7 @@ C1 125'8626'9025          /203'6501'1074          exp
         name: "纳布[BOSS]", 
         description: "柿子之蒸向来如此……老东西，你的时代结束了！", 
         xp_value: 12586269025, 
-        rank: 4197,
+        rank: 4194,
         image: "image/boss/B4101.png",
         realm: "<span class=realm_cloudy><b>云霄级一阶</b></span>",
         size: "small",
@@ -8397,12 +8397,80 @@ C1 125'8626'9025          /203'6501'1074          exp
         stats: {health: 695000e8, attack: 625e8, agility: 337.5e8, attack_speed: 1.5, defense:220e8}, //属性5x(天空9)，血量额外50x
         loot_list: [{item_name:"伊芙",chance:1.00,ignore_luck:true}],
     });
+    
+    enemy_templates["百方[复仇 ver.][BOSS]"] = new Enemy({
+        name: "百方[复仇 ver.][BOSS]", 
+        description: "攻击攻速对于天空级也太高了，还带必中伤害。肯定是身上有好东西，此子断不可留……", 
+        xp_value: 4807526976, 
+        rank: 4195,
+        image: "image/boss/B4102.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 +++</b></span>",
+        size: "small",
+        spec: [34,43],
+        spec_value:{43:1000e8},
+        tags: [],
+        stats: {health: 777000e8, attack:512e8, agility: 300e8, attack_speed: 2.4, defense: 70e8}, 
+        loot_list: [{item_name:"C1镭射枪·残",chance:1.00,quality:200,ignore_luck:true}],
+    });//属性10000x 血量100x
+    //B4102
+    enemy_templates["薛奇[BOSS]"] = new Enemy({
+        name: "薛奇[BOSS]", 
+        description: "试图通过堵门不让任何人进来的可恨家伙！它甚至躲在天空级小队身后……", 
+        xp_value: 32951280099, 
+        rank: 4196,
+        image: "image/boss/B4103.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
+        size: "small",
+        spec: [26,51],
+        tags: [],
+        stats: {health: 841000e8, attack: 780e8, agility: 450e8, attack_speed: 1.2, defense:350e8}, //血量100x
+        loot_list: [{}],
+    });
+    enemy_templates["燕岗威武小队[BOSS]"] = new Enemy({
+        name: "燕岗威武小队[BOSS]", 
+        description: "比起迅捷的攻击更擅长吸引火力的小队。生存属性强的离谱……", 
+        xp_value: 29712150730, 
+        rank: 4197,
+        image: "image/boss/B4104.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 [x10]</b></span>",
+        size: "small",
+        spec: [5,61],
+        tags: [],
+        stats: {health: 1300000e8, attack: 570e8, agility: 350e8, attack_speed: 1.0, defense:290e8}, //血量100x
+        loot_list: [{}],
+    });
+    enemy_templates["燕岗骑砍小队[BOSS]"] = new Enemy({
+        name: "燕岗骑砍小队[BOSS]", 
+        description: "用压倒性的攻击速度迫使敌人屈服的小队。不过大量攻击被压缩成一次穿透性更强的攻击，使面板攻速没有那么快。", 
+        xp_value: 29712150730, 
+        rank: 4198,
+        image: "image/boss/B4105.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 [x10]</b></span>",
+        size: "small",
+        spec: [5,61],
+        tags: [],
+        stats: {health: 720000e8, attack: 700e8, agility: 350e8, attack_speed: 3.6, defense:200e8}, //血量100x
+        loot_list: [{}],
+    });
+    enemy_templates["燕岗卫戍小队[BOSS]"] = new Enemy({
+        name: "燕岗卫戍小队[BOSS]", 
+        description: "偏重防御阵法的小队。防御力比薛奇甚至略强一线，但皮还是很脆的。", 
+        xp_value: 29712150730, 
+        rank: 4199,
+        image: "image/boss/B4106.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 [x10]</b></span>",
+        size: "small",
+        spec: [61],
+        tags: [],
+        stats: {health: 169000e8, attack: 720e8, agility: 350e8, attack_speed: 1.8, defense:360e8}, //血量100x
+        loot_list: [{}],
+    });
 /*
 
-17776Z/113.56E/1W/44.4E/1.0
-
-属性是99.99J/113.56E/1W/44.4E/1.0，
-只有一个【压制·伪】属性。
+B8 11'3490'3170           /18'3631'1903           exp
+B9 29'7121'5073           /48'0752'6976           exp
+C1 125'8626'9025          /203'6501'1074          exp
+C2 329'5128'0099          /533'1629'1173          exp
  
 */
 

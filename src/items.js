@@ -2576,6 +2576,21 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["C1镭射枪·残"] = new Props({
+        name: "C1镭射枪·残",
+        id: "C1镭射枪·残",
+        description: "因为出现破损，无法进行超过10%的蓄力，必杀云霄级一阶的超级攻击也无从谈起。<br>但这也使得它的射速相当快，可以作为常规武器使用。<br>当然，还是有点容易被突然袭击的……", 
+        value: 1250e15,
+        stats: {
+            attack_power: {
+                flat: 60e8,
+            },
+            defense: {
+                flat: -20e8,
+            }
+        }
+    });
+
 
 })();
 
@@ -2693,7 +2708,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.12,
             },
             max_health: {
-                multiplier: 1.3,
+                multiplier: 1.4,
             },
             attack_mul: {
                 multiplier: 2.25,
@@ -2713,7 +2728,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.20,
             },
             max_health: {
-                multiplier: 1.35,
+                multiplier: 1.5,
             },
             attack_mul: {
                 multiplier: 2.50,
@@ -2733,7 +2748,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.30,
             },
             max_health: {
-                multiplier: 1.50,
+                multiplier: 2.00,
             },
             attack_mul: {
                 multiplier: 3.00,
@@ -3594,7 +3609,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 48210e12,
         component_tier: 17,
         name_prefix: "盖亚",
-        attack_value: 117600e4,
+        attack_value: 141120e4,
         stats: {
             crit_rate: {
                 flat: 0.30,

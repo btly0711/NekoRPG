@@ -4575,7 +4575,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["赫尔沼泽入口"].connected_locations.push({location: locations["纳家宝库"],custom_text:"快速旅行 - 第四幕"});
     locations["狩猎大赛·城门战"] = new Location({ 
         connected_locations: [{location: locations["纳家宝库"], custom_text: "回到纳家宝库"}], 
-        description: "激动人心的燕岗领狩猎大赛。这里是第一阶段！[V2.74前版本终点]",
+        description: "激动人心的燕岗领狩猎大赛。这里是第一阶段！",
         name: "狩猎大赛·城门战", 
         traders: ["声望商人"],
         dialogues: [],
@@ -4636,16 +4636,57 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 2e12,
-            //locations: [{location: "城门战 - X"}],
+            locations: [{location: "城门战 - X"}],
+        },
+    });
+    locations["城门战 - 歧路"] = new Challenge_zone({
+        description: "我从地狱回来了！你知道我这几十年怎么过的吗！！！", 
+        enemy_count: 1, 
+        enemies_list: ["百方[复仇 ver.][BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "城门战 - 歧路",
+        bgm:21,
+        parent_location: locations["狩猎大赛·城门战"],
+        repeatable_reward: {
         },
     });
 
+    locations["城门战 - X"] = new Challenge_zone({
+        description: "WIP:我不确定这玩意是不是真的打得过。如果打不过/虽然打得过但练度极高，务必联系我，我加强一下喵可……", 
+        enemy_count: 1, 
+        enemy_groups_list : [["薛奇[BOSS]","燕岗骑砍小队[BOSS]","燕岗骑砍小队[BOSS]","燕岗威武小队[BOSS]","燕岗威武小队[BOSS]","燕岗卫戍小队[BOSS]","燕岗卫戍小队[BOSS]"]],
+        enemy_group_size: [7,7],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "城门战 - X",
+        bgm:21,
+        parent_location: locations["狩猎大赛·城门战"],
+        repeatable_reward: {
+            locations: [{location: "狩猎大赛·密林战"}],
+        },
+    });
 
     locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - 1"]}); 
     locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - 2"]}); 
     locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - 3"]});  
+    locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - 歧路"]});  
+    locations["狩猎大赛·城门战"].connected_locations.push({location: locations["城门战 - X"]});  
 
 
+    locations["狩猎大赛·密林战"] = new Location({ 
+        connected_locations: [{location: locations["狩猎大赛·城门战"], custom_text: "回到城门前"}], 
+        description: "似乎是上纪元被废弃的老城区。人造物痕迹仍然存在，植被却已极度繁盛。",
+        name: "狩猎大赛·密林战", 
+        traders: [],
+        dialogues: [],
+        is_unlocked: false,
+        bgm: 22,
+    });//4-2
+    locations["狩猎大赛·城门战"].connected_locations.push({location: locations["狩猎大赛·密林战"]});
 
 
 
