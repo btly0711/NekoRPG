@@ -5875,6 +5875,21 @@ function update_family_daily(){
 
 
 
+    if(!(family_data.baby >= 0)){
+        
+        log_message(`哪个天才想出来的要${family_data.baby}个孩子！`,"message_sayuki");
+        log_message(`计划每日新生儿数目已经自动归零！`,"message_sayuki");
+        document.getElementById("baby_born_num").value = 0;
+        family_data.baby = 0;
+    }
+    if(Math.abs(Math.round(family_data.baby) - family_data.baby)>0.1 && family_data.baby < 1e9){
+        
+        log_message(`要${family_data.baby.toFixed(2)}个孩子又是什么个思路啊！`,"message_sayuki");
+        log_message(`多出来的是${((family_data.baby-Math.floor(family_data.baby))*5).toFixed(2)}条悟吗！`,"message_sayuki");
+        log_message(`计划每日新生儿数目已经自动取整到${Math.round(family_data.baby)}！`,"message_sayuki");
+        document.getElementById("baby_born_num").value = Math.round(family_data.baby);
+        family_data.baby = Math.round(family_data.baby);
+    }
     if(character.money < 1e3 * family_data.baby ** 1.5)
     {
         log_message(`因无力负担 ${format_number(family_data.baby )} 个新生儿产生的 ${format_money(1e3 * family_data.baby ** 1.5)} 费用，纳可破产了！`,"activity_money");
