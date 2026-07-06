@@ -8424,7 +8424,7 @@ C1 125'8626'9025          /203'6501'1074          exp
         spec: [26,51],
         tags: [],
         stats: {health: 841000e8, attack: 780e8, agility: 450e8, attack_speed: 1.2, defense:350e8}, //血量100x
-        loot_list: [{}],
+        loot_list: [],
     });
     enemy_templates["燕岗威武小队[BOSS]"] = new Enemy({
         name: "燕岗威武小队[BOSS]", 
@@ -8437,7 +8437,7 @@ C1 125'8626'9025          /203'6501'1074          exp
         spec: [5,61],
         tags: [],
         stats: {health: 1300000e8, attack: 570e8, agility: 350e8, attack_speed: 1.0, defense:290e8}, //血量100x
-        loot_list: [{}],
+        loot_list: [],
     });
     enemy_templates["燕岗骑砍小队[BOSS]"] = new Enemy({
         name: "燕岗骑砍小队[BOSS]", 
@@ -8450,7 +8450,7 @@ C1 125'8626'9025          /203'6501'1074          exp
         spec: [5,61],
         tags: [],
         stats: {health: 720000e8, attack: 700e8, agility: 350e8, attack_speed: 3.6, defense:200e8}, //血量100x
-        loot_list: [{}],
+        loot_list: [],
     });
     enemy_templates["燕岗卫戍小队[BOSS]"] = new Enemy({
         name: "燕岗卫戍小队[BOSS]", 
@@ -8463,7 +8463,7 @@ C1 125'8626'9025          /203'6501'1074          exp
         spec: [61],
         tags: [],
         stats: {health: 169000e8, attack: 720e8, agility: 350e8, attack_speed: 1.8, defense:360e8}, //血量100x
-        loot_list: [{}],
+        loot_list: [],
     });
 /*
 

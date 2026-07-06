@@ -5661,7 +5661,6 @@ window.engine_e = engine_e;
 window.engine_l = engine_l;
 
 function unlock_influ_related(influ){
-    console.log(locations["城门战 - 歧路"])
     if(influ>1 && !locations["城门战 - 歧路"].is_unlocked){
         
         log_message(`<span class='realm_sky'>[百方]</span>：苦苦追寻这些年，总算让我找到了……`,"activity_money");
