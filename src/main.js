@@ -5893,7 +5893,7 @@ function update_family_daily(){
         document.getElementById("baby_born_num").value = 0;
         family_data.baby = 0;
     }
-    if(Math.abs(Math.round(family_data.baby) - family_data.baby)>0.1 && family_data.baby < 1e9){
+    if((Math.round(family_data.baby) != family_data.baby) && family_data.baby < 1e9){
         
         log_message(`要${family_data.baby.toFixed(2)}个孩子又是什么个思路啊！`,"message_sayuki");
         log_message(`多出来的是${((family_data.baby-Math.floor(family_data.baby))*5).toFixed(2)}条悟吗！`,"message_sayuki");
