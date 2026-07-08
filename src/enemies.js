@@ -7523,20 +7523,305 @@ class Enemy {
             //90B
         ],
     });
+    enemy_templates["燕岗射手小队"] = new Enemy({
+        name: "燕岗射手小队", 
+        description: "我们至今仍然没有知道为什么阻击技能也可以被小队增幅。", 
+        xp_value: 77787420490, 
+        rank: 4201,
+        image: "image/enemy/E4201.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 ++[x10]</b></span>",
+        size: "small",
+        spec: [61,29],
+        spec_value:{29:500e8},
+        tags: [],
+        stats: {health: 12960e8, attack: 890e8, agility:540e8, attack_speed: 1.6, defense:490e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.015},
+            //160B
+        ],
+    });
+    enemy_templates["壮硕走地兽"] = new Enemy({
+        name: "壮硕走地兽", 
+        description: "全身覆盖鳞甲的均衡性选手。如果压制都无法带来优势，那肯定是本来就打不过了！", 
+        xp_value: 20365011074 , 
+        rank: 4202,
+        image: "image/enemy/E4202.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [51],
+        tags: [],
+        stats: {health: 7840e8, attack: 810e8, agility:420e8, attack_speed: 1.6, defense:340e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.005},
+            //90B
+        ],
+    });
+    enemy_templates["水晶骷髅"] = new Enemy({
+        name: "水晶骷髅", 
+        description: "如果骷髅全身都是水晶而不是骨头做的，那它还能被称为骷髅吗？", 
+        xp_value: 20365011074, 
+        rank: 4203,
+        image: "image/enemy/E4203.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [51,1],
+        tags: [],
+        stats: {health: 1000, attack: 660e8, agility:440e8, attack_speed: 1.8, defense:1}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.005},
+            //90B
+        ],
+    });
+    enemy_templates["绿原圣触"] = new Enemy({
+        name: "绿原圣触", 
+        description: "魔塔刻板印象1：任何长得像蛇或者触手的东西必定是挂debuff用的。这是假的。", 
+        xp_value: 20365011074, 
+        rank: 4204,
+        image: "image/enemy/E4204.png",
+        realm: "<span class=realm_cloudy><b>云霄级一阶 +</b></span>",
+        size: "small",
+        spec: [27,31],
+        tags: [],
+        stats: {health: 6760e8, attack: 680e8, agility:480e8, attack_speed: 1.6, defense:360e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.005},
+            //90B
+        ],
+    });
+    enemy_templates["腐毒仙子"] = new Enemy({
+        name: "腐毒仙子", 
+        description: "魔塔刻板印象2：带翅膀的家伙总是可以给自己回血。这倒是真的。", 
+        xp_value: 32951280099, 
+        rank: 4205,
+        image: "image/enemy/E4205.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
+        size: "small",
+        spec: [8,31],
+        spec_value:{8:10},
+        tags: [],
+        stats: {health: 9610e8, attack: 740e8, agility:460e8, attack_speed: 1.6, defense:370e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.01},
+            //160B
+        ],
+    });
+    enemy_templates["奥术大师"] = new Enemy({
+        name: "奥术大师", 
+        description: "守序邪恶：还记得376F的六边形红宝石吗？让你不看地图就吃六边形黄宝石……", 
+        xp_value: 32951280099, 
+        rank: 4206,
+        image: "image/enemy/E4206.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
+        size: "small",
+        spec: [0,12,60],
+        tags: [],
+        stats: {health: 500e8, attack: 900e8, agility:600e8, attack_speed: 1.6, defense:540e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.01},
+            //160B
+        ],
+    });
+    
+    enemy_templates["绿原蜂后"] = new Enemy({
+        name: "绿原蜂后", 
+        description: "上一个叫绿原的是不是1-3那个老登？难道他真是隐藏的高手……", 
+        xp_value: 53316291173 , 
+        rank: 4207,
+        image: "image/enemy/E4207.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶 +</b></span>",
+        size: "small",
+        spec: [8,31],
+        spec_value:{8:10},
+        tags: [],
+        stats: {health: 20800e8, attack: 1040e8, agility:600e8, attack_speed: 1.6, defense:520e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.015},
+            //280B
+        ],
+    });
+    enemy_templates["燕岗威武小队"] = new Enemy({
+        name: "燕岗威武小队", 
+        description: "比起迅捷的攻击更擅长吸引火力的小队。当然在这里只能算路边一条了。", 
+        xp_value: 29712150730, 
+        rank: 4208,
+        image: "image/enemy/E4208.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 [x10]</b></span>",
+        size: "small",
+        spec: [5,61],
+        tags: [],
+        stats: {health: 13000e8, attack: 570e8, agility: 350e8, attack_speed: 1.5, defense:290e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.005},
+            //90B
+        ],
+    });
+    enemy_templates["绿原守灵人"] = new Enemy({
+        name: "绿原守灵人", 
+        description: "按理来说50%光环应该是血量光环之类的。但是忘记做这个了！摸了！", 
+        xp_value: 53316291173 , 
+        rank: 4209,
+        image: "image/enemy/E4209.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶 +</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 10800e8, attack: 960e8, agility:760e8, attack_speed: 1.6, defense:640e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.015},
+            //280B
+        ],
+    });
+    enemy_templates["燕岗钢铁战士"] = new Enemy({
+        name: "燕岗钢铁战士", 
+        description: "这下想起伊芙的好了吗？当然，做一套装备肯定是更值得的。", 
+        xp_value: 32951280099, 
+        rank: 4210,
+        image: "image/enemy/E4210.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 10240e8, attack: 800e8, agility:600e8, attack_speed: 1.6, defense:400e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.01},
+            //160B
+        ],
+    });
+    enemy_templates["燕岗骑砍小队"] = new Enemy({
+        name: "燕岗骑砍小队", 
+        description: "用压倒性的攻击速度迫使敌人屈服的小队。你真的觉得混战还能占到便宜？", 
+        xp_value: 29712150730, 
+        rank: 4211,
+        image: "image/enemy/E4211.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 [x10]</b></span>",
+        size: "small",
+        spec: [5,61],
+        tags: [],
+        stats: {health: 7200e8, attack: 700e8, agility: 350e8, attack_speed: 3.6, defense:200e8}, //血量100x
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.005},
+            //90B
+        ],
+    });
+    enemy_templates["燕岗金甲战士"] = new Enemy({
+        name: "燕岗金甲战士", 
+        description: "爆攻，轻而易举啊……坏了!坏了坏了!!", 
+        xp_value: 32951280099, 
+        rank: 4212,
+        image: "image/enemy/E4212.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
+        size: "small",
+        spec: [16,],
+        tags: [],
+        stats: {health: 8410e8, attack: 740e8, agility:620e8, attack_speed: 1.6, defense:470e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.01},
+            //160B
+        ],
+    });
+    enemy_templates["燕岗卫戍小队"] = new Enemy({
+        name: "燕岗卫戍小队", 
+        description: "偏重防御阵法的小队……bro觉得360e防御在4-2老强了。", 
+        xp_value: 29712150730, 
+        rank: 4213,
+        image: "image/enemy/E4213.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 [x10]</b></span>",
+        size: "small",
+        spec: [61],
+        tags: [],
+        stats: {health: 1690e8, attack: 720e8, agility: 350e8, attack_speed: 1.8, defense:360e8}, //血量100x
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.005},
+            //90B
+        ],
+    });
+    enemy_templates["燕岗暮年强者"] = new Enemy({
+        name: "燕岗暮年强者", 
+        description: "反正时日无多，为何不为了家族最后再拼一把？但你的防御也太低了吧。", 
+        xp_value: 32951280099, 
+        rank: 4214,
+        image: "image/enemy/E4214.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
+        size: "small",
+        spec: [20],
+        tags: [],
+        stats: {health: 19200e8, attack: 650e8, agility:650e8, attack_speed: 1.6, defense:200e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.01},
+            //160B
+        ],
+    });
+    enemy_templates["燕岗精英铁卫"] = new Enemy({
+        name: "燕岗精英铁卫", 
+        description: "你确定你是精英？卫兵测试强度的方法不会是站着挨打吧。", 
+        xp_value: 32951280099, 
+        rank: 4215,
+        image: "image/enemy/E4215.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
+        size: "small",
+        spec: [],
+        tags: [],
+        stats: {health: 24900e8, attack: 690e8, agility:550e8, attack_speed: 1.6, defense:380e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.01},
+            //160B
+        ],
+    });
+    enemy_templates["燕岗名流商人"] = new Enemy({
+        name: "燕岗名流商人", 
+        description: "【求援】实在太难做了。RPG的【败移】反而更加适应这样的特性……那就直接用！", 
+        xp_value: 53316291173 , 
+        rank: 4216,
+        image: "image/enemy/E4216.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶 +</b></span>",
+        size: "small",
+        spec: [60],
+        tags: [],
+        stats: {health: 12600e8, attack: 1080e8, agility:650e8, attack_speed: 1.6, defense:480e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.015},
+            //280B
+        ],
+    });
+    enemy_templates["燕岗江洋大盗"] = new Enemy({
+        name: "燕岗江洋大盗", 
+        description: "清野江窃贼之所以改名了，不是因为混不下去了，而是因为太强了可以满燕岗领抢劫了。", 
+        xp_value: 53316291173 , 
+        rank: 4217,
+        image: "image/enemy/E4217.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶 +</b></span>",
+        size: "small",
+        spec: [46,47],
+        tags: [],
+        stats: {health: 10500e8, attack: 1100e8, agility:720e8, attack_speed: 1.6, defense:605e8}, //血量100%
+        loot_list: [
+            {item_name: "神话黄宝石", chance:0.015},
+            //280B
+        ],
+    });
+
 
 
 
 
     
     /*
+[1]["腐毒仙子","壮硕走地兽","燕岗威武小队","燕岗骑砍小队","燕岗卫戍小队"]
+[2]["古古怪树","水晶骷髅","绿原圣触","燕岗暮年强者","燕岗精英铁卫"]
+[3]["古古怪树","燕岗金甲战士","奥术大师","燕岗射手小队","燕岗钢铁战士"]
+[4]["燕岗金甲战士","绿原守灵人","绿原蜂后","燕岗名流商人","燕岗江洋大盗"]
 
 
 
 C1 125'8626'9025          /203'6501'1074          exp
-~咕咕怪树
-天空9的全部按裸2971215073算，然后加乘法
+C2 329'5128'0099          /533'1629'1173          exp
+
+77787420490
 
 炽烈茸茸开始云霄1+
+燕岗暮年强者开始云霄2+
+
+
 
 
 

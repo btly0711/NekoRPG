@@ -993,7 +993,7 @@ function textline_special(t_key){
         else if(t_key == "LR-sacrifice"){
             let C_realm = character.xp.current_level;
             
-                let C_money = Math.round(character.stats.full.max_health ** 1.5);
+                let C_money = Math.round(character.stats.full.max_health ** 1.4);
                 if(character.money < C_money)
                 {
                     displayed_text += `叮~余额不足！<br> ${format_money(character.money)} / ${format_money(C_money)}`;
@@ -2279,6 +2279,13 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         satk_mul *= 1 - target.stats.health / character.stats.full.health;
         satk_mul = Math.max(satk_mul,0);
     }//散华
+    if(target.spec.includes(63)){
+        if(character.stats.full.attack_power > character.stats.full.defense){
+            satk_mul = character.stats.full.defense / character.stats.full.attack_power;
+            Spec_E += "[硬化]";
+        }
+        else spec_E += "[硬化·免疫]"
+    }//硬化
 
     const hero_base_damage = attack_power * satk_mul * c_atk_mul;
 
@@ -3425,6 +3432,10 @@ function use_item(item_key,stated = false) {
         let SCGV = 30;//SoftCappedGemValue
         let HPMV = 50;//HealthPointMultiplierValue
         if(G_value > 7500) HPMV *= 2;//殿堂级修正
+        if(G_value > 7500e4){
+            HPMV *= 2.5;//神话级修正
+            //WIP:影响力延后软上限[SCGV]
+        }
         let P1,P2,P3,P4;//相对概率(修正后)
         P1=Math.pow(((character.stats.flat.gems.attack_power||0)/G_value +1),-1.5);
         if(character.stats.flat.gems.attack_power >= SCGV*G_value) P1*=0.5;

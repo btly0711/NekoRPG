@@ -5386,7 +5386,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["高级绿宝石"] = new UsableItem({
         name: "高级绿宝石", 
-        description: "高阶的晶体，使用时随机增加攻击/防御/敏捷200点或生命1万点", 
+        description: "高阶的晶体，使用时随机增加攻击/防御/敏捷200点或生命1万", 
         value: 200,
         image: "image/item/gem24_200.png",
         effects: [],
@@ -5394,7 +5394,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["极品黄宝石"] = new UsableItem({
         name: "极品黄宝石", 
-        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷500点或生命2.5万点", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷500点或生命2.5万", 
         value: 500,
         image: "image/item/gem31_500.png",
         effects: [],
@@ -5402,7 +5402,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["极品蓝宝石"] = new UsableItem({
         name: "极品蓝宝石", 
-        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷1000点或生命5万点", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷1000点或生命5万", 
         value: 1000,
         image: "image/item/gem32_1k.png",
         effects: [],
@@ -5410,7 +5410,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["极品红宝石"] = new UsableItem({
         name: "极品红宝石", 
-        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷2000点或生命10万点", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷2000点或生命10万", 
         value: 2000,
         image: "image/item/gem33_2k.png",
         effects: [],
@@ -5418,7 +5418,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["极品绿宝石"] = new UsableItem({
         name: "极品绿宝石", 
-        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷5000点或生命25万点", 
+        description: "极为珍贵的晶体，使用时随机增加攻击/防御/敏捷5000点或生命25万", 
         value: 5000,
         image: "image/item/gem34_5k.png",
         effects: [],
@@ -5426,7 +5426,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["殿堂黄宝石"] = new UsableItem({
         name: "殿堂黄宝石", 
-        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷1万点或生命100万点", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷1万或生命100万", 
         value: 10000,
         image: "image/item/gem41_10k.png",
         effects: [],
@@ -5434,7 +5434,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["殿堂蓝宝石"] = new UsableItem({
         name: "殿堂蓝宝石", 
-        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷2万点或生命200万点", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷2万或生命200万", 
         value: 20000,
         image: "image/item/gem42_20k.png",
         effects: [],
@@ -5442,7 +5442,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["殿堂红宝石"] = new UsableItem({
         name: "殿堂红宝石", 
-        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷5万点或生命500万点", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷5万或生命500万", 
         value: 50000,
         image: "image/item/gem43_50k.png",
         effects: [],
@@ -5450,7 +5450,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["殿堂绿宝石"] = new UsableItem({
         name: "殿堂绿宝石", 
-        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷10万点或生命1000万点", 
+        description: "普通人一生难得一见的晶体，使用时随机增加攻击/防御/敏捷10万或生命1000万", 
         value: 100000,
         image: "image/item/gem44_100k.png",
         effects: [],
@@ -5458,7 +5458,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["史诗黄宝石"] = new UsableItem({
         name: "史诗黄宝石", 
-        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷20万点或生命2000万点", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷20万或生命2000万", 
         value: 200000,
         image: "image/item/gem51_200k.png",
         effects: [],
@@ -5466,7 +5466,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["史诗蓝宝石"] = new UsableItem({
         name: "史诗蓝宝石", 
-        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷50万点或生命5000万点", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷50万或生命5000万", 
         value: 500000,
         image: "image/item/gem52_500k.png",
         effects: [],
@@ -5474,7 +5474,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["史诗红宝石"] = new UsableItem({
         name: "史诗红宝石", 
-        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷100万点或生命1亿点", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷100万或生命1亿", 
         value: 1000000,
         image: "image/item/gem53_1M.png",
         effects: [],
@@ -5482,7 +5482,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["史诗绿宝石"] = new UsableItem({
         name: "史诗绿宝石", 
-        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷200万点或生命2亿点", 
+        description: "极端稀有的晶体，使用时随机增加攻击/防御/敏捷200万或生命2亿", 
         value: 2000000,
         image: "image/item/gem54_2M.png",
         effects: [],
@@ -5490,7 +5490,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["传说黄宝石"] = new UsableItem({
         name: "传说黄宝石", 
-        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷500万点或生命5亿点", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷500万或生命5亿", 
         value: 5000000,
         image: "image/item/gem61_5M.png",
         effects: [],
@@ -5498,7 +5498,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["传说蓝宝石"] = new UsableItem({
         name: "传说蓝宝石", 
-        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷1000万点或生命10亿点", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷1000万或生命10亿", 
         value: 10000000,
         image: "image/item/gem62_10M.png",
         effects: [],
@@ -5506,7 +5506,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["传说红宝石"] = new UsableItem({
         name: "传说红宝石", 
-        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷2000万点或生命20亿点", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷2000万或生命20亿", 
         value: 20000000,
         image: "image/item/gem63_20M.png",
         effects: [],
@@ -5514,7 +5514,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["传说绿宝石"] = new UsableItem({
         name: "传说绿宝石", 
-        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷5000万点或生命50亿点", 
+        description: "能引发天空级强者厮杀的宝物，使用时随机增加攻击/防御/敏捷5000万或生命50亿", 
         value: 50000000,
         image: "image/item/gem64_50M.png",
         effects: [],
@@ -5522,7 +5522,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["血杀剑"] = new UsableItem({
         name: "血杀剑", 
-        description: "虽然看起来是剑，但其实是血洛晶的一丝碎片，蕴含着强烈的杀戮能量！使用时必定增加攻击1亿点。", 
+        description: "虽然看起来是剑，但其实是血洛晶的一丝碎片，蕴含着强烈的杀戮能量！使用时必定增加攻击1亿。", 
         value: 1e15,
         image: "image/item/bloodkill_sword.png",
         effects: [],
@@ -5530,7 +5530,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["神话黄宝石"] = new UsableItem({
         name: "神话黄宝石", 
-        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷1亿点或生命100亿点", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷1亿或生命250亿", 
         value: 100e6,
         image: "image/item/gem71_100M.png",
         effects: [],
@@ -5538,7 +5538,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["神话蓝宝石"] = new UsableItem({
         name: "神话蓝宝石", 
-        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷2亿点或生命200亿点", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷2亿或生命500亿", 
         value: 200e6,
         image: "image/item/gem72_200M.png",
         effects: [],
@@ -5546,7 +5546,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["神话红宝石"] = new UsableItem({
         name: "神话红宝石", 
-        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷5亿点或生命500亿点", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷5亿或生命1000亿", 
         value: 500e6,
         image: "image/item/gem73_500M.png",
         effects: [],
@@ -5554,7 +5554,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["神话绿宝石"] = new UsableItem({
         name: "神话绿宝石", 
-        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷10亿点或生命1000亿点", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷10亿或生命2500亿", 
         value: 1e9,
         image: "image/item/gem74_1B.png",
         effects: [],

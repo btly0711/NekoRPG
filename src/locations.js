@@ -4655,7 +4655,7 @@ function get_location_type_penalty(type, stage, stat) {
     });
 
     locations["城门战 - X"] = new Challenge_zone({
-        description: "WIP:我不确定这玩意是不是真的打得过。如果打不过/虽然打得过但练度极高，务必联系我，我加强一下喵可……", 
+        description: "结界湖BOSS战强势回归！依旧是法师-战士-坦克的阵容~", 
         enemy_count: 1, 
         enemy_groups_list : [["薛奇[BOSS]","燕岗骑砍小队[BOSS]","燕岗骑砍小队[BOSS]","燕岗威武小队[BOSS]","燕岗威武小队[BOSS]","燕岗卫戍小队[BOSS]","燕岗卫戍小队[BOSS]"]],
         enemy_group_size: [7,7],
@@ -4688,7 +4688,89 @@ function get_location_type_penalty(type, stage, stat) {
     });//4-2
     locations["狩猎大赛·城门战"].connected_locations.push({location: locations["狩猎大赛·密林战"]});
 
+    locations["密林战 - 1"] = new Combat_zone({
+        description: "这里暂时还是上区BOSS战的延续。不过，这种好日子不会延续多久的……", 
+        enemy_count: 20, 
+        enemies_list: ["水晶骷髅","壮硕走地兽","燕岗威武小队","燕岗骑砍小队","燕岗卫戍小队"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        name: "密林战 - 1",
+        rank:311, 
+        bgm:22,
+        parent_location: locations["狩猎大赛·密林战"],
+        first_reward: {
+            xp: 9e12,
+        },
+        repeatable_reward: {
+            xp: 3e12,
+            locations: [{location: "密林战 - 2"}],
+        },
+    });
+    locations["密林战 - 2"] = new Combat_zone({
+        description: "古古怪树真是天下第一雄关啊。告诉你们一个好消息：4-3没有这货。", 
+        enemy_count: 20, 
+        enemies_list: ["古古怪树","腐毒仙子","绿原圣触","燕岗暮年强者","燕岗精英铁卫"],
+        enemy_group_size: [4,4],
+        is_unlocked: false,
+        name: "密林战 - 2",
+        rank:312, 
+        bgm:22,
+        parent_location: locations["狩猎大赛·密林战"],
+        first_reward: {
+            xp: 12e12,
+        },
+        repeatable_reward: {
+            xp: 4e12,
+            locations: [{location: "密林战 - 3"}],
+        },
+    });
+    locations["密林战 - 3"] = new Combat_zone({
+        description: "对策卡并不只有纳可的道具：诺，那个【硬化】就是C1镭射枪·残的对策卡。", 
+        enemy_count: 20, 
+        enemies_list: ["古古怪树","燕岗金甲战士","奥术大师","燕岗射手小队","燕岗钢铁战士"],
+        enemy_group_size: [4,4],
+        is_unlocked: false,
+        name: "密林战 - 3",
+        rank:313, 
+        bgm:22,
+        parent_location: locations["狩猎大赛·密林战"],
+        first_reward: {
+            xp: 15e12,
+        },
+        repeatable_reward: {
+            xp: 5e12,
+            locations: [{location: "密林战 - 4"}],
+        },
+    });
+    locations["密林战 - 4"] = new Combat_zone({
+        description: "这里没有古古怪树了。但代价是……极致的数值和机制！", 
+        enemy_count: 20, 
+        enemies_list: ["燕岗金甲战士","绿原守灵人","绿原蜂后","燕岗名流商人","燕岗江洋大盗"],
+        enemy_group_size: [4,4],
+        is_unlocked: false,
+        name: "密林战 - 4",
+        rank:314, 
+        bgm:22,
+        parent_location: locations["狩猎大赛·密林战"],
+        first_reward: {
+            xp: 18e12,
+        },
+        repeatable_reward: {
+            xp: 6e12,
+            //locations: [{location: "密林战 - X"}],
+        },
+    });
+    locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 1"]}); 
+    locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 2"]}); 
+    locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 3"]}); 
+    locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 4"]}); 
 
+/* 
+[1]["水晶骷髅","壮硕走地兽","燕岗威武小队","燕岗骑砍小队","燕岗卫戍小队"]
+[2]["古古怪树","腐毒仙子","绿原圣触","燕岗暮年强者","燕岗精英铁卫"]
+[3]["古古怪树","燕岗金甲战士","奥术大师","燕岗射手小队","燕岗钢铁战士"]
+[4]["燕岗金甲战士","绿原守灵人","绿原蜂后","燕岗名流商人","燕岗江洋大盗"]
+*/
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 
