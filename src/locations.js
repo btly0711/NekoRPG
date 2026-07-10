@@ -4693,23 +4693,23 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["狩猎大赛·密林战"], custom_text: "回到战斗区"}], 
         description: "一个野生的补给区域。能发现它真是走运……这里甚至有些许水体，可以练习高难度游泳动作！",
         name: "狩猎大赛·补给点", 
-        traders: ["物品储存箱"],
+        traders: ["物品存储箱"],
         dialogues: [],
         sleeping: {
             text: "使用补给点修炼资源[+23040XP/s]",
-            xp: 23040
+            xp: 23040,
         },
-            crafting: {
-                is_unlocked: true, 
-                use_text: "使用前人留下的上古炼器炉[Tier+18]", 
-                tiers: {
-                    crafting: 18,
-                    forging: 18,
-                    smelting: 18,
-                    cooking: 18,
-                    alchemy: 18,
-                }
-            },
+        crafting: {
+            is_unlocked: true, 
+            use_text: "使用前人留下的上古炼器炉[Tier+18]", 
+            tiers: {
+                crafting: 18,
+                forging: 18,
+                smelting: 18,
+                cooking: 18,
+                alchemy: 18,
+            }
+        },
         is_unlocked: false,
         bgm: 22,
     });//4-2休息区
