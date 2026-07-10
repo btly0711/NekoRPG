@@ -2293,7 +2293,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             satk_mul = character.stats.full.defense / character.stats.full.attack_power;
             Spec_E += "[硬化]";
         }
-        else spec_E += "[硬化·免疫]"
+        else Spec_E += "[硬化·免疫]"
     }//硬化
 
     const hero_base_damage = attack_power * satk_mul * c_atk_mul;

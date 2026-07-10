@@ -5217,7 +5217,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "能量冰沙", 
         description: "将部分生命隐匿起来，从而增大生命的【容量】。", 
         value: 3e12,
-        realmcap:27,
+        realmcap:28,
         effects: [{effect: "恢复 B4", duration: 90}],
         image: "image/item/B4_medicine.png",
     });
@@ -5237,7 +5237,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "B9·反戈药剂", 
         description: "反弹50%伤害，无视防御还给敌人！代价是普攻倍率-30%，而且被反伤抢走击杀的敌人没有经验。(仍然有掉落)", 
         value: 8.4e12,
-        realmcap:27,
+        realmcap:28,
         effects: [{effect: "反戈 B9", duration: 120}],
         image: "image/item/B9_reflect.png",
     });
@@ -5245,7 +5245,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "B9·灵闪药剂", 
         description: "如果敌人的攻击少于角色的2倍，角色受到的伤害减少(角色防御/敌人防御)的二分之一。反之，增加(角色防御/敌人防御)的两倍。该效果不会把伤害降低到0以下或提高到100倍以上。", 
         value: 8.4e12,
-        realmcap:27,
+        realmcap:28,
         effects: [{effect: "灵闪 B9", duration: 120}],
         image: "image/item/B9_spiritdodge.png",
     });
@@ -5253,15 +5253,15 @@ item_templates["Twist liek a snek"] = new Book({
         name: "B9·散华药剂", 
         description: "敌人的攻击被削弱(角色生命/敌人生命)^0.5 * 10(单位:%)，但会造成生命流失1%。该效果不会把敌方基础攻击降低到0以下。", 
         value: 8.4e12,
-        realmcap:27,
+        realmcap:28,
         effects: [{effect: "散华 B9", duration: 120}],
         image: "image/item/B9_sublimhealth.png",
     });
     item_templates["B9·异界药剂"] = new UsableItem({
         name: "B9·异界药剂", 
-        description: "基础攻击倍率变为20%，但每次命中以40% 60%...递增。长线战斗就选它！", 
+        description: "基础攻击倍率变为10%，但每次命中以20% 30%...递增。长线战斗就选它！", 
         value: 8.4e12,
-        realmcap:27,
+        realmcap:28,
         effects: [{effect: "异界之门 B9", duration: 120}],
         image: "image/item/B9_portal.png",
     });
@@ -5269,7 +5269,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "B9·??药剂", 
         description: "使用后随机获取5瓶B9级炼金药剂。", 
         value: 50e12,
-        realmcap:27,
+        realmcap:28,
         spec:"random-potion",
         image: "image/item/B9_unknown.png",
     });
@@ -5279,7 +5279,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "被击碎的传承水晶·绿。是稀有的百分比恢复——别想囤几十万个！云霄级突破清buff的！", 
         value: 100e12,
         effects: [{effect: "恢复 B8", duration: 60}],
-        realmcap:27,
+        realmcap:28,
         image: "image/item/B8_medicine.png",
     });
     item_templates["幻境·狂暴精华"] = new UsableItem({
@@ -5287,7 +5287,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "被击碎的传承水晶·蓝。绝对出乎意料的是，这个没有debuff！结界的一百纪元里，配方已经变得完美了呢。", 
         value: 120e12,
         effects: [{effect: "强化 B8", duration: 60}],
-        realmcap:27,
+        realmcap:28,
         image: "image/item/B8_booster.png",
     });
 
