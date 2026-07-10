@@ -2090,6 +2090,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
             }
             
             kill_enemy(attacker);
+            console.log("反伤击杀/残余敌人数量:",current_enemies.filter(enemy => enemy.is_alive).length);
             if(current_enemies.filter(enemy => enemy.is_alive).length == 0){ //all enemies defeated, do relevant things and set new combat
                 current_location.enemy_groups_killed += 1;
                 if(current_location.enemy_groups_killed > 0 && current_location.enemy_groups_killed % current_location.enemy_count == 0) {
@@ -2097,9 +2098,11 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
                 }
                 document.getElementById("enemy_count_div").children[0].children[1].innerHTML = current_location.enemy_count - current_location.enemy_groups_killed % current_location.enemy_count;
                 set_new_combat();
+                console.log("触发刷新");
             }
         }
     }
+
 
     update_displayed_health();
 }
@@ -2216,6 +2219,12 @@ function update_neko_realm()
         add_to_character_inventory([{item: getItem({...item_templates["出云落月[领域四重]"], quality: 240}), count: 1}]);
         log_message(`领悟了第四重领域【出云落月】！请检查装备栏查看详情！`, "location_unlocked");
         inf_combat.RM = 5;
+    }
+    else if(S_level >= 45 && inf_combat.RM < 6)
+    {
+        add_to_character_inventory([{item: getItem({...item_templates["出云落月[领域五重]"], quality: 240}), count: 1}]);
+        log_message(`领域【出云落月】晋升为第三重！请检查装备栏查看详情！`, "location_unlocked");
+        inf_combat.RM = 6;
     }
 }
 function get_spirit_buff(S3_sp){
@@ -3433,7 +3442,7 @@ function use_item(item_key,stated = false) {
         let HPMV = 50;//HealthPointMultiplierValue
         if(G_value > 7500) HPMV *= 2;//殿堂级修正
         if(G_value > 7500e4){
-            HPMV *= 2.5;//神话级修正
+            HPMV *= 2;//神话级修正
             //WIP:影响力延后软上限[SCGV]
         }
         let P1,P2,P3,P4;//相对概率(修正后)
@@ -4675,7 +4684,12 @@ function get_time_passed(){
     let time_passed = 6;
     if((character.xp.current_level>=19)) time_passed = 48;
     if((character.xp.current_level>=28)) time_passed = 288;
-    time_passed *= is_sleeping?5:1;
+    if(is_sleeping){
+        time_passed *= 5;
+        if(skills["Sleeping"].current_level >= 50){
+            time_passed *= 2;
+        }
+    }
     if(current_location?.name.includes("水牢")) time_passed /= 3;
     time_passed = Math.ceil(time_passed);
     return time_passed;
@@ -5895,8 +5909,8 @@ function update_family_daily(){
     }
     if((Math.round(family_data.baby) != family_data.baby) && family_data.baby < 1e9){
         
-        log_message(`要${family_data.baby.toFixed(2)}个孩子又是什么个思路啊！`,"message_sayuki");
-        log_message(`多出来的是${((family_data.baby-Math.floor(family_data.baby))*5).toFixed(2)}条悟吗！`,"message_sayuki");
+        log_message(`要${family_data.baby}个孩子又是什么个思路啊！`,"message_sayuki");
+        log_message(`多出来的是${((family_data.baby-Math.floor(family_data.baby))*5)}条悟吗！`,"message_sayuki");
         log_message(`计划每日新生儿数目已经自动取整到${Math.round(family_data.baby)}！`,"message_sayuki");
         document.getElementById("baby_born_num").value = Math.round(family_data.baby);
         family_data.baby = Math.round(family_data.baby);

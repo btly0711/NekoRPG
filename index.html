@@ -737,13 +737,17 @@
                         <div id = "trade_control_div">
 
                             <div id = "trader_cost_mult">
-                                <div id = "trader_cost_mult_text"> 价格: </div>
+                                <div id = "trader_cost_mult_text">价格:</div>
                                 <div id = "trader_cost_mult_value"> </div>
                             </div>
                             
                             <div id = "trade_price_div">
-                                <div id = "trade_price_text"> 总计: </div>
+                                <div id = "trade_price_text">总计: </div>
                                 <div id = "trade_price_value"> 0C </div>
+                            </div>
+                            <div id = "trade_time_div">
+                                <div id = "trade_time_text">刷新: </div>
+                                <div id = "trade_time_value"> 1d </div>
                             </div>
 
                             <div id = "accept_trade_button" onclick = "acceptTrade()">
@@ -1686,7 +1690,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V3.11a";
+                document.getElementById("changelog_button").children[0].innerHTML = "V3.12";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

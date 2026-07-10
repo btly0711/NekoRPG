@@ -242,6 +242,7 @@ class TradeItem {
         is_unlocked: true,
         location_name: "飞云阁",
         profit_margin: 4.2,
+        refresh_time: 2,
     });
     traders["冰宫商人"] = new Trader({
         name: "冰宫商人",
@@ -249,6 +250,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "极寒冰宫",
         profit_margin: 4.8,
+        refresh_time: 2,
     });
     traders["窥秘商人"] = new Trader({
         name: "窥秘商人",
@@ -256,6 +258,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "传承幻境",
         profit_margin: 6.4,
+        refresh_time: 2,
     });
     traders["声望商人"] = new Trader({
         name: "声望商人",
@@ -263,6 +266,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "狩猎大赛·城门战",
         profit_margin: 5.6,
+        refresh_time: 5,
     });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",

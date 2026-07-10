@@ -731,13 +731,13 @@ function format_skill_rewards(milestone){
                                     }
                                 });
     skills["Neko_Realm"] = new Skill({skill_id: "Neko_Realm", 
-                                    names: {0: "微火",10:"燃灼术",20:"火灵幻海[领域一重]",30:"焰海霜天[领域二重]",35:"焰海霜天[领域三重]",40:"出云落月[领域四重]"}, 
+                                    names: {0: "微火",10:"燃灼术",20:"火灵幻海[领域一重]",30:"焰海霜天[领域二重]",35:"焰海霜天[领域三重]",40:"出云落月[领域四重]",45:"[出云落月[领域五重]"}, 
                                     parent_skill: "Stance mastery",
                                     description: "纳可的领域(雏形).每升一级都能获取基础属性，每提高一个阶段都能获取全新的领悟！", 
                                     max_level_coefficient: 1.25,
                                     base_xp_cost: 5000000,
                                     visibility_treshold: 1,
-                                    max_level: 49,
+                                    max_level: 54,
                                     xp_scaling:3,
                                     get_effect_description: ()=> {
                                         let R_value = 0;
@@ -747,11 +747,12 @@ function format_skill_rewards(milestone){
                                         else if(R_level<30) R_value = 15e4 * (R_level - 18);
                                         else if(R_level<35) R_value = 121.5e4 * (R_level - 24);
                                         else if(R_level<40) R_value = 486e4 * (R_level - 29);
-                                        else if(R_level<50) R_value = 2.048e8 * (R_level - 38);
+                                        else if(R_level<45) R_value = 2.048e8 * (R_level - 38);
+                                        else if(R_level<50) R_value = 20.28e8 * (R_level - 42);
                                         return `基础攻击,防御,敏捷 + ${format_number(R_value)}`;
                                         //30w 729w 2916w
                                         //出云落月：4.096e
-                                        
+                                        //五重：基础60.84e(3级)
                                     },
                                     category: "Stance",
                                     rewards: {
@@ -1380,13 +1381,13 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
 //non-work activity related
 (function(){
     skills["Sleeping"] = new Skill({skill_id: "Sleeping",
-                                    names: {0: "睡眠"}, 
-                                    description: "良好且规律的作息是好身体的基础",
+                                    names: {0: "睡眠",10: "冥想",25: "修炼",50:"时间跳跃"}, 
+                                    description: "良好且规律的作息是好身体的基础,也是修炼技能的基石。到了满级或许可以扭曲时间？",
                                     base_xp_cost: 1000,
                                     visibility_treshold: 300,
                                     xp_scaling: 2,
                                     category: "Activity",
-                                    max_level: 10,
+                                    max_level: 50,
                                     max_level_coefficient: 2.5,    
                                     rewards: {
                                         milestones: {
@@ -1439,7 +1440,67 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
                                                 xp_multipliers: {
                                                     all: 1.1,
                                                 }
-                                            }
+                                            },
+                                            15: {
+                                                stats: {
+                                                    "max_health": {
+                                                        multiplier: 1.05,
+                                                    }
+                                                },
+                                                xp_multipliers: {
+                                                    all: 1.05,
+                                                }
+                                            },
+                                            20: {
+                                                stats: {
+                                                    "max_health": {
+                                                        multiplier: 1.05,
+                                                    }
+                                                },
+                                                xp_multipliers: {
+                                                    all: 1.05,
+                                                }
+                                            },
+                                            25: {
+                                                stats: {
+                                                    "max_health": {
+                                                        multiplier: 1.1,
+                                                    }
+                                                },
+                                                xp_multipliers: {
+                                                    all: 1.1,
+                                                }
+                                            },
+                                            30: {
+                                                stats: {
+                                                    "max_health": {
+                                                        multiplier: 1.05,
+                                                    }
+                                                },
+                                                xp_multipliers: {
+                                                    all: 1.05,
+                                                }
+                                            },
+                                            40: {
+                                                stats: {
+                                                    "max_health": {
+                                                        multiplier: 1.05,
+                                                    }
+                                                },
+                                                xp_multipliers: {
+                                                    all: 1.05,
+                                                }
+                                            },
+                                            50: {
+                                                stats: {
+                                                    "max_health": {
+                                                        multiplier: 1.1,
+                                                    }
+                                                },
+                                                xp_multipliers: {
+                                                    all: 1.1,
+                                                }
+                                            },
                                         }
                                     }
                                 });

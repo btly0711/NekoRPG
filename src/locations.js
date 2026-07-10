@@ -2238,7 +2238,7 @@ function get_location_type_penalty(type, stage, stat) {
         
         traders: ["物品存储箱"],
         sleeping: {
-            text: "调息，冥想[+100XP/s]",
+            text: "调息，冥想[+10XP/s]",
             xp: 10
         },
         crafting: {
@@ -2716,8 +2716,8 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 10,
         traders: ["物品存储箱"],
         sleeping: {
-            text: "在符文之屋修炼[+1万XP/s]",
-            xp: 100
+            text: "在符文之屋修炼[+40XP/s]",
+            xp: 40
         },
             crafting: {
                 is_unlocked: true, 
@@ -3175,8 +3175,8 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 13,
         traders: ["物品存储箱"],
         sleeping: {
-            text: "使用天外聚能阵[+25万XP/s]",
-            xp: 500
+            text: "使用天外聚能阵[+120XP/s]",
+            xp: 120
         },
             crafting: {
                 is_unlocked: true, 
@@ -3474,8 +3474,8 @@ function get_location_type_penalty(type, stage, stat) {
         traders: ["物品存储箱","百宝楼"],
         dialogues: ["峰(飞云)"],
         sleeping: {
-            text: "在飞云阁休息[+36万XP/s]",
-            xp: 600
+            text: "在飞云阁休息[+360XP/s]",
+            xp: 360
         },
             crafting: {
                 is_unlocked: true, 
@@ -3865,8 +3865,8 @@ function get_location_type_penalty(type, stage, stat) {
         bgm: 18,
         traders: ["物品存储箱"],
         sleeping: {
-            text: "在水牢洞府修炼[+0.36亿XP/s]",
-            xp: 6000
+            text: "在水牢洞府修炼[+1440XP/s]",
+            xp: 1440
         },
             crafting: {
                 is_unlocked: true, 
@@ -4416,8 +4416,8 @@ function get_location_type_penalty(type, stage, stat) {
         
         traders: ["物品存储箱"],
         sleeping: {
-            text: "“借用”幻境阵法修炼[+25亿XP/s]",
-            xp: 50000
+            text: "“借用”幻境阵法修炼[+5760XP/s]",
+            xp: 5760
         },
             crafting: {
                 is_unlocked: true, 
@@ -4600,6 +4600,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 1e12,
             locations: [{location: "城门战 - 2"}],
+            activities: [{location:"狩猎大赛·城门战", activity:"Running"}],
         },
     });
     locations["城门战 - 2"] = new Combat_zone({
@@ -4688,6 +4689,33 @@ function get_location_type_penalty(type, stage, stat) {
     });//4-2
     locations["狩猎大赛·城门战"].connected_locations.push({location: locations["狩猎大赛·密林战"]});
 
+    locations["狩猎大赛·补给点"] = new Location({ 
+        connected_locations: [{location: locations["狩猎大赛·密林战"], custom_text: "回到战斗区"}], 
+        description: "一个野生的补给区域。能发现它真是走运……这里甚至有些许水体，可以练习高难度游泳动作！",
+        name: "狩猎大赛·补给点", 
+        traders: ["物品储存箱"],
+        dialogues: [],
+        sleeping: {
+            text: "使用补给点修炼资源[+23040XP/s]",
+            xp: 23040
+        },
+            crafting: {
+                is_unlocked: true, 
+                use_text: "使用前人留下的上古炼器炉[Tier+18]", 
+                tiers: {
+                    crafting: 18,
+                    forging: 18,
+                    smelting: 18,
+                    cooking: 18,
+                    alchemy: 18,
+                }
+            },
+        is_unlocked: false,
+        bgm: 22,
+    });//4-2休息区
+    locations["狩猎大赛·密林战"].connected_locations.push({location: locations["狩猎大赛·补给点"]});
+
+
     locations["密林战 - 1"] = new Combat_zone({
         description: "这里暂时还是上区BOSS战的延续。不过，这种好日子不会延续多久的……", 
         enemy_count: 20, 
@@ -4704,6 +4732,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 3e12,
             locations: [{location: "密林战 - 2"}],
+            activities: [{location:"狩猎大赛·密林战", activity:"Swimming"}],
         },
     });
     locations["密林战 - 2"] = new Combat_zone({
@@ -4721,7 +4750,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 4e12,
-            locations: [{location: "密林战 - 3"}],
+            locations: [{location: "密林战 - 3"},{location: "狩猎大赛·补给点"}],
         },
     });
     locations["密林战 - 3"] = new Combat_zone({
@@ -5498,6 +5527,29 @@ function get_location_type_penalty(type, stage, stat) {
             },
         }),
     }
+    locations["狩猎大赛·城门战"].activities = {
+        
+        "Running": new LocationActivity({
+            activity_name: "Running",
+            infinite: true,
+            starting_text: "在敌群中练习神行术[EXPx192]",
+            skill_xp_per_tick: 192,
+            is_unlocked: false,
+        }),
+    }
+    locations["狩猎大赛·密林战"].activities = {
+        
+        "Swimming": new LocationActivity({
+            activity_name: "Swimming",
+            infinite: true,
+            starting_text: "在密林的溪流中躲开追兵[EXPx192]",
+            skill_xp_per_tick: 192,
+            is_unlocked: false,
+        }),
+    }
+
+
+
 })();
 
 //add actions

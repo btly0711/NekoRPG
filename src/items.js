@@ -2649,7 +2649,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 1000,
             },
             attack_mul: {
-                multiplier: 1.5,
+                multiplier: 1.2,
             },
         }
     });
@@ -2669,7 +2669,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.2,
             },
             attack_mul: {
-                multiplier: 1.5,
+                multiplier: 1.3,
             },
         }
     });
@@ -2690,7 +2690,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.3,
             },
             attack_mul: {
-                multiplier: 2.0,
+                multiplier: 1.5,
             },
         }
     });
@@ -2711,7 +2711,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.4,
             },
             attack_mul: {
-                multiplier: 2.25,
+                multiplier: 2.0,
             },
         }
     });
@@ -2731,7 +2731,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.5,
             },
             attack_mul: {
-                multiplier: 2.50,
+                multiplier: 2.2,
             },
         }
     });
@@ -2751,7 +2751,27 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 2.00,
             },
             attack_mul: {
-                multiplier: 3.00,
+                multiplier: 2.5,
+            },
+        }
+    });
+    item_templates["出云落月[领域五重]"] = new Realm({
+        name: "出云落月[领域五重]",
+        id: "出云落月[领域五重]",
+        description: "水火元素纵横交错而成的领域。水帘之间，一袭布裙如同仙子临凡，出云之姿风华绝代；火焰灼烧，暗藏杀机凌厉，剑锋所向，斩断天际，月落星沉！。", 
+        value: 2857142e12,//10kU
+        stats: {
+            attack_power: {
+                multiplier: 1.35,
+            },
+            defense: {
+                multiplier: 1.35,
+            },
+            max_health: {
+                multiplier: 2.25,
+            },
+            attack_mul: {
+                multiplier: 2.70,
             },
         }
     });
@@ -5529,8 +5549,8 @@ item_templates["Twist liek a snek"] = new Book({
         gem_value: 100e6,
     });
     item_templates["神话黄宝石"] = new UsableItem({
-        name: "神话黄宝石", 
-        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷1亿或生命250亿", 
+        name: "黄宝石", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷1亿或生命200亿", 
         value: 100e6,
         image: "image/item/gem71_100M.png",
         effects: [],
@@ -5538,7 +5558,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["神话蓝宝石"] = new UsableItem({
         name: "神话蓝宝石", 
-        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷2亿或生命500亿", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷2亿或生命400亿", 
         value: 200e6,
         image: "image/item/gem72_200M.png",
         effects: [],
@@ -5554,7 +5574,7 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["神话绿宝石"] = new UsableItem({
         name: "神话绿宝石", 
-        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷10亿或生命2500亿", 
+        description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷10亿或生命2000亿", 
         value: 1e9,
         image: "image/item/gem74_1B.png",
         effects: [],

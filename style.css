@@ -2746,13 +2746,23 @@ i {
 	color: white;
 	outline: 1px solid white;
 	padding: 2px 1px 2px 1px;
-	width: 261px;
+	width: 200px;
 	float: left;
 	margin: 1px;
 }
+#trade_time_div {
+	color: white;
+	outline: 1px solid white;
+	padding: 2px 1px 2px 1px;
+	width: 94px;
+	float: left;
+	margin: 1px;
+	color: lightblue;
+	font-weight: bold;
+}
 
 #trader_cost_mult {
-	width: 131px;
+	width: 94px;
 	color: white;
 	outline: 1px solid white;
 	padding: 2px 1px 2px 1px;
@@ -2763,26 +2773,41 @@ i {
 }
 
 #trader_cost_mult_text {
-	width: 60px;
+	width: 42px;
 	float: left;
-	padding-left: 5px;
+	padding-left: 2px;
 }
 
 #trader_cost_mult_value {
-	width: 60px;
+	width: 48px;
 	float: left;
 	text-align: right;
-	padding-right: 5px;
+	padding-right: 2px;
+	padding-top: 5px;
 }
 
 #trade_price_text {
 	display: inline-block;
-	width: 80px;
-	padding-left: 5px;
+	width: 38px;
+	padding-left: 2px;
+	color: lightyellow;
+	font-weight: bold;
+}
+#trade_time_text {
+	display: inline-block;
+	width: 38px;
+	padding-left: 2px;
+}
+
+#trade_time_value {
+	display: inline-block;
+	width: 42px;
+	padding-left: 2px;
+	text-align: right;
 }
 
 #trade_price_value {
-	width: 164px;
+	width: 144px;
 	display: inline-block;
 	text-align: right;
 	padding-right: 5px;

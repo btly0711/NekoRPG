@@ -796,6 +796,11 @@ function update_displayed_trader() {
     action_div.style.display = "none";
     trade_div.style.display = "inherit";
     document.getElementById("trader_cost_mult_value").textContent = `${Math.round(100 * (traders[current_trader].getProfitMargin()))}%`
+
+    //WIP:刷新倒计时
+    let R_days = traders[current_trader].refresh_time - current_game_time.day_count + traders[current_trader].last_refresh ;
+    if(R_days <= 1e12) document.getElementById("trade_time_value").textContent = `${Math.round(R_days)}d`
+    else document.getElementById("trade_time_value").textContent = 'N/A';
     update_displayed_trader_inventory();
 }
 
@@ -4034,6 +4039,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "奇异菇菇") add_bestiary_lines(36);
     if(enemy_name == "心魔") add_bestiary_lines(37);
     if(enemy_name == "魔草绿球") add_bestiary_lines(41);
+    if(enemy_name == "水晶骷髅") add_bestiary_lines(42);
 }
 
 function reload_bestiary(){
