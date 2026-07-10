@@ -2223,7 +2223,7 @@ function update_neko_realm()
     else if(S_level >= 45 && inf_combat.RM < 6)
     {
         add_to_character_inventory([{item: getItem({...item_templates["出云落月[领域五重]"], quality: 240}), count: 1}]);
-        log_message(`领域【出云落月】晋升为第三重！请检查装备栏查看详情！`, "location_unlocked");
+        log_message(`领域【出云落月】晋升为第五重！请检查装备栏查看详情！`, "location_unlocked");
         inf_combat.RM = 6;
     }
 }
@@ -6241,12 +6241,17 @@ function update_quests(){
         //lgVP = 3;
         if(lgVP <= 10){
             R = B = Math.round(255-lgVP*25.5)
-        }
+        }//FFFFFF~00FF00
         else if(lgVP <= 20){
             R = Math.round((lgVP - 10) * 12.75);
             G = Math.round((20 - lgVP ) * 12.75 + 127.5);
             B = Math.round((lgVP - 10) * 25.5);
-        }
+        }//00FF00~8080FF
+        else if(lgVP <= 30){
+            R = Math.round((lgVP - 10) * 12.75);
+            G = 128;
+            B = 255;
+        }//8080FF~FF80FF
         let s_color = `<span style="color:rgb(${R},${G},${B})">`
 
 

@@ -5549,7 +5549,7 @@ item_templates["Twist liek a snek"] = new Book({
         gem_value: 100e6,
     });
     item_templates["神话黄宝石"] = new UsableItem({
-        name: "黄宝石", 
+        name: "神话黄宝石", 
         description: "仅仅一颗就可以掀起小范围的腥风血雨，使用时随机增加攻击/防御/敏捷1亿或生命200亿", 
         value: 100e6,
         image: "image/item/gem71_100M.png",
