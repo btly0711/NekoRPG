@@ -111,8 +111,8 @@ window.REALMS=[
 [25,"天空级七阶",72500000,350e8,6000e12,"sky"],//600e 
 [26,"天空级八阶",3e8,900e8,2.4e16,"sky"],//1500e
 [27,"天空级巅峰",8e8,1500e8,7.2e16,"sky"],//3000e 
-[28,"天空级破限",16e8,3000e8,170.1411e36,"sky"],//6000e  应为9.6e16
-[29,"云霄级一阶",40e8,6000e8,99.9999e16,"cloudy"],//1.2z 
+[28,"天空级破限",16e8,3000e8,21.6e16,"sky"],//6000e 
+[29,"云霄级一阶",40e8,6000e8,170.1411e36,"cloudy"],//1.2z 应为99.9999e16?
 [30,"云霄级二阶",150e8,28000e8,500e16,"cloudy"],//4z 
 [31,"云霄级三阶",600e8,6.5e12,4000e16,"cloudy"],//10.5z 
 [32,"云霄级四阶",1200e8,10.5e12,1.2e20,"cloudy"],//21.0z 
@@ -4683,7 +4683,7 @@ function get_time_passed(){
 
     let time_passed = 6;
     if((character.xp.current_level>=19)) time_passed = 48;
-    if((character.xp.current_level>=28)) time_passed = 288;
+    if((character.xp.current_level>=29)) time_passed = 288;
     if(is_sleeping){
         time_passed *= 5;
         if(skills["Sleeping"].current_level >= 50){

@@ -1293,7 +1293,7 @@ i {
 
 #accept_trade_button, #cancel_trade_button, .trader_sorting_button {
     float:left;
-	width: 198px;
+	width: 197px;
 	text-align: center;
 	outline: 1px solid white;
 	margin: -1px 1px;

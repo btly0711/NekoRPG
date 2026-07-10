@@ -7679,7 +7679,7 @@ class Enemy {
         image: "image/enemy/E4210.png",
         realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
         size: "small",
-        spec: [],
+        spec: [63],
         tags: [],
         stats: {health: 10240e8, attack: 800e8, agility:600e8, attack_speed: 1.6, defense:400e8}, //血量100%
         loot_list: [
@@ -7711,7 +7711,7 @@ class Enemy {
         image: "image/enemy/E4212.png",
         realm: "<span class=realm_cloudy><b>云霄级二阶</b></span>",
         size: "small",
-        spec: [16,],
+        spec: [16,63],
         tags: [],
         stats: {health: 8410e8, attack: 740e8, agility:620e8, attack_speed: 1.6, defense:470e8}, //血量100%
         loot_list: [
