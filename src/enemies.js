@@ -53,6 +53,13 @@ class Enemy {
         }
 
     }
+    dispose(){
+        this.image = null;
+        this.loot_list = null;
+        this.description = null;
+        this.stats = null;
+        this.realm = null;
+    }
     get_loot() {
         // goes through items and calculates drops
         // result is in form [{item: Item, count: item_count}, {...}, {...}]

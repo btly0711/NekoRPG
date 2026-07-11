@@ -525,6 +525,7 @@ function end_activity_animation() {
  * @param {String} message_to_add text to display
  * @param {String} message_type used for adding proper class to html element
  */
+let logs = 0;
  function log_message(message_to_add, message_type) {
     if(typeof message_to_add === 'undefined') {
         return;
@@ -676,9 +677,11 @@ function end_activity_animation() {
     ) {
         // find first child with specified group
         // delete it
+        message_log.getElementsByClassName(group_to_add)[0].innerHTML = '';
         message_log.removeChild(message_log.getElementsByClassName(group_to_add)[0]);
+        
     }
-
+    
     message.classList.add(class_to_add, group_to_add);
 
     message.innerHTML = message_to_add + "<div class='message_border'> </>";
@@ -1384,6 +1387,7 @@ function update_displayed_book(book_id) {
 function update_displayed_enemies() {
     for(let i = 0; i < 8; i++) { //go to max enemy count
         if(i < current_enemies.length) {
+            if(current_enemies[i].stats == null) continue;
             enemies_div.children[i].children[0].style.display = null;
             enemies_div.children[i].children[0].children[0].innerHTML = `<img src="${current_enemies[i].image}"><br>`/*current_enemies[i].image*/;
                     
@@ -1438,6 +1442,10 @@ function update_displayed_health_of_enemies() {
         } else {
             enemies_div.children[i].children[0].style.filter = "brightness(30%)";
             update_displayed_enemies();
+            enemies_div.children[i].children[0].children[2].children[0].children[0].style.width = 
+            "0%";
+            enemies_div.children[i].children[0].children[2].children[1].innerText = `0 hp`;
+            continue;
         }
 
         //update size of health bar

@@ -377,7 +377,7 @@ effect_templates["烈日祝福·艮"] = new ActiveEffect({
     //回风(普攻倍率80%)
 });
 effect_templates["烈日祝福·坤"] = new ActiveEffect({
-    name: "烈日赐福·坤",
+    name: "烈日祝福·坤",
     effects: {stats: {}}
     //坚固(无副作用/8%)
 });

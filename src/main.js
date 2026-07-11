@@ -1516,6 +1516,10 @@ let cd_needed = [0,0,0,0,0,0,0,0];
 let cur_cd = [0,0,0,0,0,0,0,0];
 function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_round:回合数
     count = count || 0;
+    if(!current_enemies[enemy_id].is_alive || !current_enemies[enemy_id]){
+        clear_enemy_attack_loop(current_enemies[enemy_id]);
+        return;
+    }
     //update_enemy_attack_bar(enemy_id, 0);
     let Spec_S = "";
     if(current_enemies[enemy_id].spec.includes(0)) Spec_S += "[魔攻]";
@@ -1589,8 +1593,11 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     let frametime = 25;
     clearTimeout(enemy_attack_loops[enemy_id]);
     enemy_attack_loops[enemy_id] = setTimeout(() => {
-        if(current_enemies != null)
-        {
+        
+        if(!current_enemies[enemy_id].is_alive || !current_enemies[enemy_id]){
+            clear_enemy_attack_loop(current_enemies[enemy_id]);
+            return;
+        }
             cur_cd[enemy_id] += frametime;
             //console.log(enemy_id,(cur_cd[enemy_id] / cd_needed[enemy_id])*100 )
             update_enemy_attack_bar(enemy_id, cur_cd[enemy_id] / cd_needed[enemy_id]);
@@ -1685,13 +1692,12 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
             }
             do_enemy_attack_loop(enemy_id, count,E_round + atk_sign,false);
 
-        }
-        else clearTimeout(enemy_attack_loops[enemy_id]);
     }, frametime);
 }
 
 function clear_enemy_attack_loop(enemy_id) {
     clearTimeout(enemy_attack_loops[enemy_id]);
+    enemy_attack_loops[enemy_id] = null;
 }
 
 /**
@@ -2631,6 +2637,10 @@ function kill_enemy(target) {
     }
     const enemy_id = current_enemies.findIndex(enemy => enemy===target);
     clear_enemy_attack_loop(enemy_id);
+
+    //彻底清理敌人的数据！
+    target.dispose();
+
 }
 
 
