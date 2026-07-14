@@ -3639,6 +3639,22 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["远古轮锋"] = new WeaponComponent({
+        name: "远古轮锋", description: "远古合金制造的【月轮】镀层。设定上应该可以缓慢成长，但是摸了。",
+        component_type: "wheel head",
+        value: 388.8e15,
+        component_tier: 18,
+        name_prefix: "盖亚",
+        attack_value: 38.88e8,
+        stats: {
+            crit_rate: {
+                flat: 0.32,
+            },
+            attack_speed: {
+                multiplier: 1.22,
+            },
+        }
+    });
 
 })();
 //武器
@@ -4115,7 +4131,7 @@ item_templates["Twist liek a snek"] = new Book({
                 flat: 0.288e8,
             },},});
 
-    //价格基本单位:10.1e15,防御基本单位:0.36e8  回血基本单位 1.44e8
+    //4.32e8
 
     item_templates["密林帽子"] = new Armor({
         name: "密林帽子", 
@@ -4124,8 +4140,8 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "helmet interior",
         base_defense: 1.80e8,
         component_tier: 18,
-        stats: {agility:{
-                flat: 7.20e8,
+        stats: {health_regeneration_flat:{
+                flat: 21.60e8,
             },},});
     item_templates["密林背心"] = new Armor({
         name: "密林背心", 
@@ -4135,8 +4151,8 @@ item_templates["Twist liek a snek"] = new Book({
         base_defense: 2.88e8,
         component_tier: 18,
         stats: { 
-            agility: {
-                flat: 11.52e8,
+            health_regeneration_flat: {
+                flat: 34.56e8,
             },},});
     item_templates["密林裤子"] = new Armor({
         name: "密林裤子", 
@@ -4146,8 +4162,8 @@ item_templates["Twist liek a snek"] = new Book({
         base_defense: 2.52e8,
         component_tier: 18,
         stats: {
-            agility: {
-                flat: 10.08e8,
+            health_regeneration_flat: {
+                flat: 30.24e8,
             },},});
     item_templates["密林袜子"] = new Armor({
         name: "密林袜子", 
@@ -4157,8 +4173,8 @@ item_templates["Twist liek a snek"] = new Book({
         base_defense: 1.44e8,
         component_tier: 18,
         stats: {
-            agility: {
-                flat: 5.76e8,
+            health_regeneration_flat: {
+                flat: 17.28e8,
             },},});
 
     item_templates["铁制头盔"] = new ArmorComponent({
@@ -4722,6 +4738,8 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             attack_mul: {
                 flat: 0.07,
+            },agility:{
+                flat: 7.20e8,
             },
         }
     });
@@ -4736,6 +4754,8 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             attack_mul: {
                 flat: 0.07,
+            },agility:{
+                flat: 11.52e8,
             },
         }
     });
@@ -4750,6 +4770,8 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             attack_mul: {
                 flat: 0.07,
+            },agility:{
+                flat: 10.08e8,
             },
         }
     });
@@ -4764,6 +4786,8 @@ item_templates["Twist liek a snek"] = new Book({
         stats: {
             attack_mul: {
                 flat: 0.07,
+            },agility:{
+                flat: 5.76e8,
             },
         }
     });

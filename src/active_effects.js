@@ -350,7 +350,7 @@ effect_templates["恢复 C2"] = new ActiveEffect({
     name: "恢复 C2",
     effects: {
         stats: {
-            health_regeneration_flat: {flat: 81.92e8},
+            health_regeneration_flat: {flat: 327.68e8},
         }
     }
 });
@@ -359,7 +359,7 @@ effect_templates["饱食 X"] = new ActiveEffect({
     name: "饱食 X",
     effects: {
         stats: {
-            health_regeneration_flat: {flat: 42.14e8},
+            health_regeneration_flat: {flat: 168.56e8},
             attack_power:{flat:27e8},
             defense:{flat:27e8},
             agility:{flat:27e8},
