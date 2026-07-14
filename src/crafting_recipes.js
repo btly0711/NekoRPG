@@ -5,10 +5,10 @@ import { Armor, ArmorComponent, Shield, ShieldComponent, Weapon, WeaponComponent
 import { skills } from "./skills.js";
 
 const crafting_recipes = {items: {}, items2: {},items3: {}, components: {}, equipment: {}};
-const cooking_recipes = {items: {}, items2: {},items3: {},};
+const cooking_recipes = {items: {}, items2: {},items3: {},items4:{}};
 const smelting_recipes = {items: {}, items2: {},items3: {},items4:{}};
 const forging_recipes = {items: {}, items2: {} ,items3: {}, components: {}};
-const alchemy_recipes = {items: {}, items2: {},items3: {},};
+const alchemy_recipes = {items: {}, items2: {},items3: {},items4:{}};
 
 /*
     recipes can be treated differently for display based on if they are in items/components/equipment category
@@ -488,6 +488,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "万载冰髓锭", count: 4, result_id: "冰髓胸甲"},
             {material_id: "水素合金锭", count: 4, result_id: "水素胸甲"},
             {material_id: "魂晶锭", count: 8, result_id: "魂晶胸甲"},
+            {material_id: "远古合金锭", count: 8, result_id: "远古胸甲"},
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -523,6 +524,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "万载冰髓锭", count: 4, result_id: "冰髓腿甲"},
             {material_id: "水素合金锭", count: 4, result_id: "水素腿甲"},
             {material_id: "魂晶锭", count: 7, result_id: "魂晶腿甲"},
+            {material_id: "远古合金锭", count: 7, result_id: "远古腿甲"},
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -559,6 +561,7 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
             {material_id: "万载冰髓锭", count: 2, result_id: "冰髓战靴"},
             {material_id: "水素合金锭", count: 2, result_id: "水素战靴"},
             {material_id: "魂晶锭", count: 4, result_id: "魂晶战靴"},
+            {material_id: "远古合金锭", count: 4, result_id: "远古战靴"},
         ],
         item_type: "Component",
         recipe_skill: "Forging",
@@ -1245,7 +1248,17 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [88,88],
         recipe_skill: "Smelting",
     });
+    smelting_recipes.items4["远古合金(x2)"] = new ItemRecipe({
+        name: "远古合金(x2)",
+        recipe_type: "material",
+        materials: [{material_id: "远古碎片", count: 3},{material_id: "城门之星", count: 1},{material_id: "C1·能量核心", count: 2}], 
+        result: {result_id: "远古合金锭", count: 2},
+        success_chance: [0.5,1],
+        recipe_level: [93,93],
+        recipe_skill: "Smelting",
+    });
 })();
+
 
 (function(){
     
@@ -1432,8 +1445,16 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [54,70],
         recipe_skill: "Cooking",
     });
+    cooking_recipes.items4["云霄级·烤肉"] = new ItemRecipe({
+        name: "云霄级·烤肉",
+        recipe_type: "material",
+        materials: [{material_id: "C1·能量核心", count: 1},{material_id: "血灵液", count: 2},{material_id: "云霄宝肉",count:2}], 
+        result: {result_id: "蘸酱烤肉", count: 2},
+        success_chance: [0.3,1],
+        recipe_level: [80,80],
+        recipe_skill: "Cooking",
+    });
 })();
-
 //锻造[镐头]
 (function(){
     
@@ -1766,9 +1787,20 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_level: [1,77],
         recipe_skill: "Alchemy",
     });
+    alchemy_recipes.items4["密林织料"] = new ItemRecipe({
+        name: "密林织料",
+        id: "密林织料",
+        recipe_type: "items",
+        materials: [{material_id:"C1·能量核心",count:1},{material_id: "血灵液", count: 2},{material_id:"草木之芯",count:3}],
+        result: {result_id: "密林织料", count: 3},
+        success_chance: [0.5,1],
+        recipe_level: [1,90],
+        recipe_skill: "Alchemy",
+    });
 
     
 })();
+
 
 const recipes = {
     crafting: crafting_recipes, 

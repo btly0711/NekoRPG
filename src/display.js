@@ -165,6 +165,7 @@ const crafting_pages = {
         items: document.querySelector(`[data-crafting_category="cooking"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="cooking"] [data-crafting_subcategory="items2"]`),
         items3: document.querySelector(`[data-crafting_category="cooking"] [data-crafting_subcategory="items3"]`),
+        items4: document.querySelector(`[data-crafting_category="cooking"] [data-crafting_subcategory="items4"]`),
     },
     smelting: {
         items: document.querySelector(`[data-crafting_category="smelting"] [data-crafting_subcategory="items"]`),
@@ -182,6 +183,7 @@ const crafting_pages = {
         items: document.querySelector(`[data-crafting_category="alchemy"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="alchemy"] [data-crafting_subcategory="items2"]`),
         items3: document.querySelector(`[data-crafting_category="alchemy"] [data-crafting_subcategory="items3"]`),
+        items4: document.querySelector(`[data-crafting_category="alchemy"] [data-crafting_subcategory="items4"]`),
     }
 }
 
@@ -3754,6 +3756,7 @@ function create_new_bestiary_entry(enemy_name) {
     
     const enemy = enemy_templates[enemy_name];
     if(enemy == undefined){
+        enemy_killcount[enemy_name] = null;
         console.warn("试图创建未定义的敌人 [" + enemy_name + "] 的怪物手册条目");
         return;
     }
@@ -4061,6 +4064,8 @@ function reload_bestiary(){
 
 
 function create_new_levelary_entry(level_name) {
+    console.log(levelary_entry_divs[level_name]);
+    if(levelary_entry_divs[level_name] != undefined) return;
     levelary_entry_divs[level_name] = document.createElement("div");
     
     const level = locations[level_name];

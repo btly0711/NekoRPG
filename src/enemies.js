@@ -7544,6 +7544,7 @@ class Enemy {
         stats: {health: 12960e8, attack: 890e8, agility:540e8, attack_speed: 1.6, defense:490e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.015},
+            {item_name: "城门之星", chance:0.05},
             //160B
         ],
     });
@@ -7560,6 +7561,7 @@ class Enemy {
         stats: {health: 7840e8, attack: 810e8, agility:420e8, attack_speed: 1.6, defense:340e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.005},
+            {item_name: "云霄宝肉", chance:0.008},
             //90B
         ],
     });
@@ -7576,6 +7578,7 @@ class Enemy {
         stats: {health: 1000, attack: 660e8, agility:440e8, attack_speed: 1.8, defense:1}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.005},
+            {item_name: "远古碎片", chance:0.014},
             //90B
         ],
     });
@@ -7592,6 +7595,7 @@ class Enemy {
         stats: {health: 6760e8, attack: 680e8, agility:480e8, attack_speed: 1.6, defense:360e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.005},
+            {item_name: "草木之芯", chance:0.01},
             //90B
         ],
     });
@@ -7609,6 +7613,8 @@ class Enemy {
         stats: {health: 9610e8, attack: 740e8, agility:460e8, attack_speed: 1.6, defense:370e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.01},
+            {item_name: "血灵液", chance:0.015},
+            {item_name: "C1·能量核心", chance:0.017},
             //160B
         ],
     });
@@ -7625,6 +7631,8 @@ class Enemy {
         stats: {health: 500e8, attack: 900e8, agility:600e8, attack_speed: 1.6, defense:540e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.01},
+            {item_name: "C1·能量核心", chance:0.03},
+            {item_name: "远古碎片", chance:0.015},
             //160B
         ],
     });
@@ -7643,6 +7651,7 @@ class Enemy {
         stats: {health: 20800e8, attack: 1040e8, agility:600e8, attack_speed: 1.6, defense:520e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.015},
+            {item_name: "血灵液", chance:0.035},
             //280B
         ],
     });
@@ -7659,6 +7668,8 @@ class Enemy {
         stats: {health: 13000e8, attack: 570e8, agility: 350e8, attack_speed: 1.5, defense:290e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.005},
+            {item_name: "城门之星", chance:0.01},
+            {item_name: "远古碎片", chance:0.01},
             //90B
         ],
     });
@@ -7675,6 +7686,7 @@ class Enemy {
         stats: {health: 10800e8, attack: 960e8, agility:760e8, attack_speed: 1.6, defense:640e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.015},
+            {item_name: "草木之芯", chance:0.03},
             //280B
         ],
     });
@@ -7691,6 +7703,8 @@ class Enemy {
         stats: {health: 10240e8, attack: 800e8, agility:600e8, attack_speed: 1.6, defense:400e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.01},
+            {item_name: "远古碎片", chance:0.015},
+            {item_name: "C1·能量核心", chance:0.025},
             //160B
         ],
     });
@@ -7707,6 +7721,7 @@ class Enemy {
         stats: {health: 7200e8, attack: 700e8, agility: 350e8, attack_speed: 3.6, defense:200e8}, //血量100x
         loot_list: [
             {item_name: "神话黄宝石", chance:0.005},
+            {item_name: "云霄宝肉", chance:0.008},
             //90B
         ],
     });
@@ -7723,6 +7738,8 @@ class Enemy {
         stats: {health: 8410e8, attack: 740e8, agility:620e8, attack_speed: 1.6, defense:470e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.01},
+            {item_name: "远古碎片", chance:0.015},
+            {item_name: "血灵液", chance:0.01},
             //160B
         ],
     });
@@ -7739,6 +7756,7 @@ class Enemy {
         stats: {health: 1690e8, attack: 720e8, agility: 350e8, attack_speed: 1.8, defense:360e8}, //血量100x
         loot_list: [
             {item_name: "神话黄宝石", chance:0.005},
+            {item_name: "血灵液", chance:0.012},
             //90B
         ],
     });
@@ -7755,6 +7773,8 @@ class Enemy {
         stats: {health: 19200e8, attack: 650e8, agility:650e8, attack_speed: 1.6, defense:200e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.01},
+            {item_name: "草木之芯", chance:0.01},
+            {item_name: "远古碎片", chance:0.01},
             //160B
         ],
     });
@@ -7771,12 +7791,13 @@ class Enemy {
         stats: {health: 24900e8, attack: 690e8, agility:550e8, attack_speed: 1.6, defense:380e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.01},
+            {item_name: "远古碎片", chance:0.025},
             //160B
         ],
     });
     enemy_templates["燕岗名流商人"] = new Enemy({
         name: "燕岗名流商人", 
-        description: "【求援】实在太难做了。RPG的【败移】反而更加适应这样的特性……那就直接用！", 
+        description: "【求援】实在太难做了。RPG的【败移】反而更加适应这样的特性……那就直接用！对了，掉落是它招来的杂兵掉的。", 
         xp_value: 53316291173 , 
         rank: 4216,
         image: "image/enemy/E4216.png",
@@ -7787,6 +7808,8 @@ class Enemy {
         stats: {health: 12600e8, attack: 1080e8, agility:650e8, attack_speed: 1.6, defense:480e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.015},
+            {item_name: "云霄宝肉", chance:0.012},
+            {item_name: "草木之芯", chance:0.015},
             //280B
         ],
     });
@@ -7803,6 +7826,9 @@ class Enemy {
         stats: {health: 10500e8, attack: 1100e8, agility:720e8, attack_speed: 1.6, defense:605e8}, //血量100%
         loot_list: [
             {item_name: "神话黄宝石", chance:0.015},
+            {item_name: "C1·能量核心", chance:0.02},
+            {item_name: "远古碎片", chance:0.03},
+            {item_name: "血灵液", chance:0.01},
             //280B
         ],
     });

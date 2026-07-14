@@ -4114,6 +4114,53 @@ item_templates["Twist liek a snek"] = new Book({
             agility: {
                 flat: 0.288e8,
             },},});
+
+    //价格基本单位:10.1e15,防御基本单位:0.36e8  回血基本单位 1.44e8
+
+    item_templates["密林帽子"] = new Armor({
+        name: "密林帽子", 
+        description: "密林织料制成的内甲。鲜红如血，在必要时候也能转化出血液用于恢复！", 
+        value: 50.5e15,
+        component_type: "helmet interior",
+        base_defense: 1.80e8,
+        component_tier: 18,
+        stats: {agility:{
+                flat: 7.20e8,
+            },},});
+    item_templates["密林背心"] = new Armor({
+        name: "密林背心", 
+        description: "密林织料制成的内甲。鲜红如血，在必要时候也能转化出血液用于恢复！", 
+        value: 80.8e15,
+        component_type: "chestplate interior",
+        base_defense: 2.88e8,
+        component_tier: 18,
+        stats: { 
+            agility: {
+                flat: 11.52e8,
+            },},});
+    item_templates["密林裤子"] = new Armor({
+        name: "密林裤子", 
+        description: "密林织料制成的内甲。鲜红如血，在必要时候也能转化出血液用于恢复！", 
+        value: 70.7e15,
+        component_type: "leg armor interior",
+        base_defense: 2.52e8,
+        component_tier: 18,
+        stats: {
+            agility: {
+                flat: 10.08e8,
+            },},});
+    item_templates["密林袜子"] = new Armor({
+        name: "密林袜子", 
+        description: "密林织料制成的内甲。鲜红如血，在必要时候也能转化出血液用于恢复！", 
+        value: 40.4e15,
+        component_type: "shoes interior",
+        base_defense: 1.44e8,
+        component_tier: 18,
+        stats: {
+            agility: {
+                flat: 5.76e8,
+            },},});
+
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
         description: "制式的铁制头盔外壳，因阻挡视野会略微影响攻击速度",
@@ -4663,6 +4710,63 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    //价格基本单位:10.8e15,防御基本单位:1.08e8
+    item_templates["远古头盔"] = new ArmorComponent({
+        name: "远古头盔",
+        description: "战场气息是叠易伤的一把好手。直观的体现就是普攻倍率。",
+        component_type: "helmet exterior",
+        value: 54e15,
+        component_tier: 18,
+        full_armor_name: "远古头盔",
+        defense_value: 5.4e8,
+        stats: {
+            attack_mul: {
+                flat: 0.07,
+            },
+        }
+    });
+    item_templates["远古胸甲"] = new ArmorComponent({
+        name: "远古胸甲",
+        description: "战场气息是叠易伤的一把好手。直观的体现就是普攻倍率。",
+        component_type: "chestplate exterior",
+        value: 86.4e15,
+        component_tier: 18,
+        full_armor_name: "远古胸甲",
+        defense_value: 8.64e8,
+        stats: {
+            attack_mul: {
+                flat: 0.07,
+            },
+        }
+    });
+    item_templates["远古腿甲"] = new ArmorComponent({
+        name: "远古腿甲",
+        description: "战场气息是叠易伤的一把好手。直观的体现就是普攻倍率。",
+        component_type: "leg armor exterior",
+        value: 75.6e15,
+        component_tier: 18,
+        full_armor_name: "远古腿甲",
+        defense_value: 7.56e8,
+        stats: {
+            attack_mul: {
+                flat: 0.07,
+            },
+        }
+    });
+    item_templates["远古战靴"] = new ArmorComponent({
+        name: "远古战靴",
+        description: "战场气息是叠易伤的一把好手。直观的体现就是普攻倍率。",
+        component_type: "shoes exterior",
+        value: 43.2e15,
+        component_tier: 18,
+        full_armor_name: "远古战靴",
+        defense_value: 4.32e8,
+        stats: {
+            attack_mul: {
+                flat: 0.07,
+            },
+        }
+    });
 
 
 
@@ -4942,8 +5046,22 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/gaia_ingot.png",
     });
+    item_templates["远古合金锭"] = new Material({
+        id: "远古合金锭",
+        name: "远古合金锭", 
+        description: "吸收了战场气息的金属。打人带破甲，也就是相当高的等效攻击！", 
+        value: 18.6e15,
+        material_type: "metal",
+        image: "image/item/ancientalloy_ingot.png",
+    });
+    
+    item_templates["密林织料"] = new OtherItem({
+        name: "密林织料", 
+        description: "可以视为大大增强的活性织料。正如看起来的一样，能给不少回血~",
+        value: 17.3e15,
+        image: "image/item/mixed_comp07.png",
+    });
 })();
-
 //矿石
 (function(){
     item_templates["紫铜矿"] = new OtherItem({
@@ -5289,6 +5407,22 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [{effect: "强化 B8", duration: 60}],
         realmcap:28,
         image: "image/item/B8_booster.png",
+    });
+    item_templates["草木之芯"] = new UsableItem({
+        name: "草木之芯", 
+        description: "类似于吞噬星空雾岛的那些东西，不过境界略高一筹。可以使用的同时它也是材料。", 
+        value: 9.6e15,
+        effects: [{effect: "恢复 C2", duration: 30}],
+        realmcap:34,
+        image: "image/item/woodcore.png",
+    });
+    item_templates["蘸酱烤肉"] = new UsableItem({
+        name: "蘸酱烤肉", 
+        description: "虽然是心头血做的酱料，但毕竟含有磅礴的生命能量，肯定好吃就是了~", 
+        value: 21.87e15,
+        effects: [{effect: "饱食 X", duration: 90}],
+        realmcap:34,
+        image: "image/item/C1_cooked_meat.png",
     });
 
 })();
@@ -6090,6 +6224,35 @@ item_templates["Twist liek a snek"] = new Book({
         value: 4.4e15,
         image: "image/item/C1_generator.png",
     });
+    //4-2
+    item_templates["远古碎片"] = new Loot({
+        name: "远古碎片", 
+        description: "本是被击碎的B5级普通金属，但在数纪元前的古战场中吸收了海量斗战气息，得到了巨大的强化。", 
+        value: 6.4e15,
+        image: "image/item/ancient_shard.png",
+    });
+    item_templates["血灵液"] = new Loot({
+        name: "血灵液", 
+        description: "云霄级敌人的精血。治疗效果很强，当然当酱料蘸也是可以的。", 
+        value: 8.0e15,
+        image: "image/item/blood_aura_drop.png",
+    });
+    item_templates["云霄宝肉"] = new Loot({
+        name: "云霄宝肉", 
+        description: "为什么只有荒兽不能杀了吃肉呢？好吧可以吃的。之所以掉率那么低是因为只有核心的一小块有云霄级别能量……", 
+        value: 11.1e15,
+        image: "image/item/C1_meat.png",
+    });
+
+
+
+
+    /*
+远古碎片(吸收了多年战场气息的普通金属)  ancient_shard
+血灵液(毒/疗一体两面)                 blood_aura_drop
+草木之芯(可以直接吃回血，也可以做内甲) wood_core
+云霄宝肉(只有精华部分是C级的)         C1_meat
+ */
 
 
     
