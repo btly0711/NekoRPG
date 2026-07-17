@@ -983,6 +983,7 @@ function format_skill_rewards(milestone){
         description: "对常见蚊虫毒液的免疫能力。",
         base_xp_cost: 1800e4,
         max_level: 20,
+        xp_scaling: 1.6,
         category: "Environmental",
         rewards: {
             milestones: {
