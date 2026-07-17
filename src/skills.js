@@ -384,9 +384,9 @@ function format_skill_rewards(milestone){
         Object.keys(milestone.stats).forEach(stat => {
             if(milestone.stats[stat].flat) {
                 if(formatted) {
-                    formatted += `, +${milestone.stats[stat].flat} ${stat_names[stat]}`;
+                    formatted += `, +${format_number(milestone.stats[stat].flat)} ${stat_names[stat]}`;
                 } else {
-                    formatted = `+${milestone.stats[stat].flat} ${stat_names[stat]}`;
+                    formatted = `+${format_number(milestone.stats[stat].flat)} ${stat_names[stat]}`;
                 }
             }
             if(milestone.stats[stat].multiplier) {

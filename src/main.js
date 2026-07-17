@@ -2249,7 +2249,6 @@ function get_spirit_buff(S3_sp){
 }
 
 function do_character_combat_action({target, attack_power}, target_num,c_atk_mul,c_hint) {
-    console.log(target);
     let satk_mul = 1;//角色攻击乘数
     let sdmg_mul = 1;//角色伤害乘数
     let Spec_E = c_hint;
@@ -2294,7 +2293,6 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
 
     add_xp_to_skill({skill: skills["Combat"], xp_to_add: target.xp_value});
 
-    console.log(target.stats);
     const hit_chance = get_hit_chance(character.stats.full.agility * hit_agi_modifier, target.stats.agility );
     
     if(hit_chance > Math.random()) {//hero's attack hits
