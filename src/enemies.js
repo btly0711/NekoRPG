@@ -59,6 +59,7 @@ class Enemy {
         this.description = null;
         this.stats = null;
         this.realm = null;
+        this.is_alive = false;
     }
     get_loot() {
         // goes through items and calculates drops

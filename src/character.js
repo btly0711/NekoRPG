@@ -536,12 +536,21 @@ character.stats.add_location_penalties = function() {
                         character.stats.multiplier.light_level.agility = 1;
                         character.stats.multiplier.light_level.attack_speed = 1;
                 }
+                character.stats.flat.environment.health_regeneration_flat = 0;
+                for(let i = 0; i < current_location.types.length; i++) {
+                        if(current_location.types[i].type =='toxic'){
+                                character.stats.flat.environment.health_regeneration_flat = -800e8*(1-skills["Toxic resistance"].current_level*0.05)*(0.99**skills["Iron skin"].current_level);
+                        }
+                        //toxic提供flat而不是multiplier，并且公式特殊，所以需要特殊判定
+                }
         }
+        
 
         character.stats.multiplier.environment = {};
         Object.keys(effects).forEach(effect => {
                 character.stats.multiplier.environment[effect] = effects[effect];
         });
+
 }
 
 /**

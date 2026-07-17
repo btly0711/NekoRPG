@@ -3644,7 +3644,7 @@ item_templates["Twist liek a snek"] = new Book({
         component_type: "wheel head",
         value: 388.8e15,
         component_tier: 18,
-        name_prefix: "盖亚",
+        name_prefix: "远古",
         attack_value: 38.88e8,
         stats: {
             crit_rate: {
@@ -5377,7 +5377,7 @@ item_templates["Twist liek a snek"] = new Book({
     
     item_templates["B9·反戈药剂"] = new UsableItem({
         name: "B9·反戈药剂", 
-        description: "反弹50%伤害，无视防御还给敌人！代价是普攻倍率-30%，而且被反伤抢走击杀的敌人没有经验。(仍然有掉落)", 
+        description: "反弹75%伤害，无视防御还给敌人！代价是普攻倍率-20%，且反伤不能击杀敌人(会保留1血)", 
         value: 8.4e12,
         realmcap:28,
         effects: [{effect: "反戈 B9", duration: 120}],
@@ -5438,7 +5438,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 9.6e15,
         effects: [{effect: "恢复 C2", duration: 30}],
         realmcap:34,
-        image: "image/item/woodcore.png",
+        image: "image/item/wood_core.png",
     });
     item_templates["蘸酱烤肉"] = new UsableItem({
         name: "蘸酱烤肉", 

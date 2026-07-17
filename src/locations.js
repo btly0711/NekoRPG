@@ -416,7 +416,7 @@ class Combat_zone {
     //launches on every combat action
     get_total_effect() {
         const effects = {multipliers: {}};
-        const hero_effects = {multipliers: {}};
+        const hero_effects = {multipliers: {},flat:{}};
         
         //iterate over types of location
         for(let i = 0; i < this.types.length; i++) {
@@ -434,9 +434,10 @@ class Combat_zone {
                 
                 hero_effects.multipliers[effect] = (hero_effects.multipliers[effect] || 1) * get_location_type_penalty(this.types[i].type, this.types[i].stage, effect);
             })
+
+
         }
 
-        
 
         return {base_penalty: effects, hero_penalty: hero_effects};
     }
@@ -821,6 +822,20 @@ function get_location_type_penalty(type, stage, stat) {
                     }
                 }
             }
+        }
+    });
+    location_types["toxic"] = new LocationType({
+        name: "toxic",
+        stages: {
+            1: {
+                description: "密林的毒虫叮咬使你疲于应对……",
+                related_skill: "Toxic resistance",
+                effects: {
+                    multipliers: {
+                        defense: 0.7,
+                    }
+                }
+            },
         }
     });
 })();
@@ -4717,11 +4732,12 @@ function get_location_type_penalty(type, stage, stat) {
 
 
     locations["密林战 - 1"] = new Combat_zone({
-        description: "这里暂时还是上区BOSS战的延续。不过，这种好日子不会延续多久的……", 
+        description: "夏日特辑：密林肯定有蚊子！还是云霄级的蚊子！不过多叮几口就习惯了啦……", 
         enemy_count: 20, 
         enemies_list: ["水晶骷髅","壮硕走地兽","燕岗威武小队","燕岗骑砍小队","燕岗卫戍小队"],
         enemy_group_size: [4,4],
         is_unlocked: true, 
+        types: [{type: "toxic", stage: 1, xp_gain: 1}],
         name: "密林战 - 1",
         rank:311, 
         bgm:22,
@@ -4731,6 +4747,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 3e12,
+            money:40e12,
             locations: [{location: "密林战 - 2"}],
             activities: [{location:"狩猎大赛·密林战", activity:"Swimming"}],
         },
@@ -4741,6 +4758,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["古古怪树","腐毒仙子","绿原圣触","燕岗暮年强者","燕岗精英铁卫"],
         enemy_group_size: [4,4],
         is_unlocked: false,
+        types: [{type: "toxic", stage: 1, xp_gain: 2}],
         name: "密林战 - 2",
         rank:312, 
         bgm:22,
@@ -4750,6 +4768,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 4e12,
+            money:88e12,
             locations: [{location: "密林战 - 3"},{location: "狩猎大赛·补给点"}],
         },
     });
@@ -4759,6 +4778,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["古古怪树","燕岗金甲战士","奥术大师","燕岗射手小队","燕岗钢铁战士"],
         enemy_group_size: [4,4],
         is_unlocked: false,
+        types: [{type: "toxic", stage: 1, xp_gain: 3}],
         name: "密林战 - 3",
         rank:313, 
         bgm:22,
@@ -4768,6 +4788,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 5e12,
+            money:144e12,
             locations: [{location: "密林战 - 4"}],
         },
     });
@@ -4777,6 +4798,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemies_list: ["燕岗金甲战士","绿原守灵人","绿原蜂后","燕岗名流商人","燕岗江洋大盗"],
         enemy_group_size: [4,4],
         is_unlocked: false,
+        types: [{type: "toxic", stage: 1, xp_gain: 4}],
         name: "密林战 - 4",
         rank:314, 
         bgm:22,
@@ -4786,6 +4808,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 6e12,
+            money:200e12,
             //locations: [{location: "密林战 - X"}],
         },
     });
@@ -5546,17 +5569,23 @@ function get_location_type_penalty(type, stage, stat) {
             skill_xp_per_tick: 192,
             is_unlocked: false,
         }),
+        "woodcuttingC1": new LocationActivity({
+            activity_name: "woodcutting",
+            infinite: true,
+            starting_text: "砍伐密林的云霄一阶树妖",
+            skill_xp_per_tick: 50,
+            is_unlocked: true,
+            gained_resources: {
+                resources: [{name: "草木之芯", ammount: [[1,1], [2,5]], chance: [0.2, 1]},{name: "C1·能量核心", ammount: [[1,2], [7,16]], chance: [0.3, 1]}],
+                time_period: [20, 2],
+                skill_required: [30, 60],
+                scales_with_skill: true,
+            },
+        }),
     }
-
-
 
 })();
 
 //add actions
 
 export {locations, location_types, get_location_type_penalty};
-
-/*
-TODO:
-    some "quick travel" location that would connect all important ones? (e.g. some towns?)
-*/

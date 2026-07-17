@@ -5,6 +5,7 @@ import { InventoryHaver } from "./inventory.js";
 import { item_templates, getItem} from "./items.js";
 import { inf_combat , family_data } from "./main.js";
 import { skills } from "./skills.js";
+import { locations } from "./locations.js";
 
 var traders = {};
 var inventory_templates = {};
@@ -19,6 +20,7 @@ class Trader extends InventoryHaver {
                  inventory_template,
                  profit_margin = 2,
                  is_unlocked = true,
+                 act = 1,
                 }) 
     {
         super();
@@ -42,6 +44,7 @@ class Trader extends InventoryHaver {
         //how much more expensive are the trader's items than their actual value, with default being 2 (so 2x more)
         //don't make it too low to prevent easy xp grinding for the haggling skill
         this.is_unlocked = is_unlocked;
+        this.act = act;
     }
     
     /**
@@ -50,11 +53,19 @@ class Trader extends InventoryHaver {
      */
     refresh() {
         if (this.can_refresh()) {
-            //refresh inventory
-            this.inventory = this.get_inventory_from_template();
+            if(this.have_closed()){
+                this.inventory = {};//物品栏清空
+                this.last_refresh = 9e15;//永不刷新
+                return false;
+            }
+            else{
 
-            this.last_refresh = (current_game_time.day_count);
-            return true;
+                //refresh inventory
+                this.inventory = this.get_inventory_from_template();
+
+                this.last_refresh = (current_game_time.day_count);
+                return true;
+            }
         }
         //otherwise do nothing
         return false;
@@ -64,6 +75,11 @@ class Trader extends InventoryHaver {
      * checks if enough time passed since last refresh
      * @returns {Boolean}
      */
+    have_closed(){
+        if(this.act <= 2 && (locations["幻境核心·出口"].is_unlocked )) return true;
+        if(this.act <= 1 && (locations["赫尔沼泽入口"].is_unlocked )) return true;
+        return false;
+    }
     can_refresh() {
         return (this.last_refresh < 0 || current_game_time.day_count - (this.last_refresh) >= this.refresh_time);
     }
@@ -163,6 +179,7 @@ class TradeItem {
         //influ.min:最低多少影响力解锁(1代表禁用)
         //influ.exp:超过min的影响力对物品获取倍数
         //influ.cap:倍数上限(冰宫商人惨案警钟长鸣)
+
     }
 }
 
@@ -173,6 +190,7 @@ class TradeItem {
         inventory_template: "Basic",
         is_unlocked: false,
         location_name: "Village",
+        act:1,
     });
     traders["suspicious trader"] = new Trader({
         name: "suspicious trader",
@@ -180,12 +198,14 @@ class TradeItem {
         is_unlocked: true,
         location_name: "Slums",
         profit_margin: 3,
+        act:1,
     });
     traders["自动售货机"] = new Trader({
         name: "自动售货机",
         inventory_template: "Basic I",
         is_unlocked: true,
         location_name: "纳家大厅",
+        act:1,
     });
     traders["燕岗杂货铺"] = new Trader({
         name: "燕岗杂货铺",
@@ -193,6 +213,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "燕岗城",
         profit_margin: 3,
+        act:1,
     });
     traders["矿井集市"] = new Trader({
         name: "矿井集市",
@@ -200,6 +221,7 @@ class TradeItem {
         is_unlocked: true,
         location_name: "燕岗矿井",
         profit_margin: 3.2,
+        act:1,
     });
     traders["金属批发商"] = new Trader({
         name: "金属批发商",
@@ -207,6 +229,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "地宫浅层",
         profit_margin: 1.5,
+        act:1,
     });
     traders["营地商铺"] = new Trader({
         name: "营地商铺",
@@ -214,6 +237,7 @@ class TradeItem {
         is_unlocked: true,
         location_name: "荒兽森林营地",
         profit_margin: 3.6,
+        act:2,
     });
     traders["行脚商人"] = new Trader({
         name: "行脚商人",
@@ -221,6 +245,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "清野江畔",
         profit_margin: 4.2,
+        act:2,
     });
     traders["废墟商人"] = new Trader({
         name: "废墟商人",
@@ -228,6 +253,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "声律城废墟",
         profit_margin: 4.8,
+        act:2,
     });
     traders["飞船集市"] = new Trader({
         name: "飞船集市",
@@ -235,6 +261,7 @@ class TradeItem {
         is_unlocked: false,
         location_name: "天外飞船",
         profit_margin: 5.4,
+        act:2,
     });
     traders["百宝楼"] = new Trader({
         name: "百宝楼",
@@ -243,6 +270,7 @@ class TradeItem {
         location_name: "飞云阁",
         profit_margin: 4.2,
         refresh_time: 2,
+        act:3,
     });
     traders["冰宫商人"] = new Trader({
         name: "冰宫商人",
@@ -251,6 +279,7 @@ class TradeItem {
         location_name: "极寒冰宫",
         profit_margin: 4.8,
         refresh_time: 2,
+        act:3,
     });
     traders["窥秘商人"] = new Trader({
         name: "窥秘商人",
@@ -259,6 +288,7 @@ class TradeItem {
         location_name: "传承幻境",
         profit_margin: 6.4,
         refresh_time: 2,
+        act:3,
     });
     traders["声望商人"] = new Trader({
         name: "声望商人",
@@ -267,6 +297,7 @@ class TradeItem {
         location_name: "狩猎大赛·城门战",
         profit_margin: 5.6,
         refresh_time: 5,
+        act:4,
     });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",
@@ -276,6 +307,7 @@ class TradeItem {
         location_name: "纳家秘境",
         profit_margin: 1.0,
         refresh_time: 9e15,
+        act:16,
     });
 })();
 

@@ -241,7 +241,7 @@ effect_templates["散华 B9"] = new ActiveEffect({
 });
 effect_templates["反戈 B9"] = new ActiveEffect({
     name: "反戈 B9",
-    effects: {stats: {attack_mul: {multiplier: 0.7}}}
+    effects: {stats: {attack_mul: {multiplier: 0.8}}}
 });
 effect_templates["异界之门 B9"] = new ActiveEffect({
     name: "异界之门 B9",

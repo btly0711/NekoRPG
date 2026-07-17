@@ -30,6 +30,7 @@ const stat_names = {"strength": "str",
                     "health_regeneration_flat": "生命恢复", //same as for "health"
                     "agility": "敏捷",
                     "dexterity": "dex",
+                    "defense": "防御",
                     "UK1": "UK1",
                     "attack_speed": "攻击速度",
                     "attack_power": "攻击",

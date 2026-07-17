@@ -1962,7 +1962,7 @@ function create_location_types_display(current_location){
     }
     for(let i = 0; i < current_location.types?.length; i++) {
         const type_div = document.createElement("div");
-        const LocationTypesMap = {"dark":"黑暗","aura":"光环","stress":"威压"}
+        const LocationTypesMap = {"dark":"黑暗","aura":"光环","stress":"威压","toxic":"毒液"}
         type_div.innerHTML = LocationTypesMap[current_location.types[i].type] + (current_location.types[i].stage>1?` ${"I".repeat(current_location.types[i].stage)}`:"");
         type_div.classList.add("location_type_div");
 
@@ -1988,6 +1988,14 @@ function create_location_types_display(current_location){
                 }
             })
         } //other effects to be done when/if they are added
+
+        //毒液伤害特殊判定
+        
+        if(type == 'toxic'){
+            type_tooltip.innerHTML += `<br>毒液伤害: ${format_number(800e8*(1-skills["Toxic resistance"].current_level*0.05)*(0.99**skills["Iron skin"].current_level))}`
+        }
+
+
 
         type_div.appendChild(type_tooltip);
         location_types_div.appendChild(type_div);
@@ -2808,7 +2816,7 @@ function update_stat_description(stat) {
     } 
     Object.keys(character.stats.flat).forEach(stat_type => {
         if(character.stats.flat[stat_type][stat] && character.stats.flat[stat_type][stat] !== 0) {
-            target.innerHTML += `<br>${BreakDownMap[stat_type]}: +${format_number(character.stats.flat[stat_type][stat])}`;
+            target.innerHTML += `<br>${BreakDownMap[stat_type]}: ${character.stats.flat[stat_type][stat]>0?'+':''}${format_number(character.stats.flat[stat_type][stat])}`;
         }
     });
     Object.keys(character.stats.multiplier).forEach(stat_type => {
@@ -4108,7 +4116,7 @@ function add_levelary_tooltip(level_name) {
     if(level.types.length > 0) {
         tooltip_tags.innerHTML = `<br><br>楼层属性：`;
         
-        const LocationTypesMap = {"dark":"黑暗","aura":"光环","stress":"威压"}
+        const LocationTypesMap = {"dark":"黑暗","aura":"光环","stress":"威压","toxic":"毒液"}
         const LocationStageMap = {1:"I",2:"II",3:"III"};
         for(let j=0;j<level.types.length;j++)
         {

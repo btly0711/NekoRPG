@@ -1767,7 +1767,7 @@ function do_character_attack_loop({base_cooldown, actual_cooldown, attack_power,
                 {
                     do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,0.8,"[回风-弱]");
                     alive_targets = current_enemies.filter(enemy => enemy.is_alive);
-                    if(current_enemies.filter(enemy => enemy.is_alive).length != 0) do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,1.2,"[回风-强]");
+                    if(targets[i].is_alive) do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,1.2,"[回风-强]");
                 }
                 else do_character_combat_action({target: targets[i], attack_power}, alive_targets.length - 1,1,"");
             }
@@ -2081,31 +2081,11 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
     if(fainted) faint(" 失败了");
     else if(active_effects["反戈 B9"]!=undefined){
-        attacker.stats.health -= damage_taken * 0.50;
-        log_message(attacker.name + " 受到了 " + format_number(damage_taken * 0.50)  + " 点反弹伤害","hero_attacked");
+        attacker.stats.health -= damage_taken * 0.75;
+        log_message(attacker.name + " 受到了 " + format_number(damage_taken * 0.75)  + " 点反弹伤害","hero_attacked");
         //attacker受到damage_taken点伤害
         if(attacker.stats.health <= 0){
-            total_kills++;
-            attacker.stats.health = 0; //to not go negative on displayed value
-            log_message(attacker.name + "被反伤击败。没有获取经验值。","enemy_defeated");
-
-            var loot = attacker.get_loot();
-            if(loot.length > 0) {
-                log_loot(loot);
-                add_to_character_inventory(loot);
-            }
-            
-            kill_enemy(attacker);
-            console.log("反伤击杀/残余敌人数量:",current_enemies.filter(enemy => enemy.is_alive).length);
-            if(current_enemies.filter(enemy => enemy.is_alive).length == 0){ //all enemies defeated, do relevant things and set new combat
-                current_location.enemy_groups_killed += 1;
-                if(current_location.enemy_groups_killed > 0 && current_location.enemy_groups_killed % current_location.enemy_count == 0) {
-                    get_location_rewards(current_location);
-                }
-                document.getElementById("enemy_count_div").children[0].children[1].innerHTML = current_location.enemy_count - current_location.enemy_groups_killed % current_location.enemy_count;
-                set_new_combat();
-                console.log("触发刷新");
-            }
+            attacker.stats.health = 1; //to not go negative on displayed value
         }
     }
 
@@ -2269,7 +2249,7 @@ function get_spirit_buff(S3_sp){
 }
 
 function do_character_combat_action({target, attack_power}, target_num,c_atk_mul,c_hint) {
-
+    console.log(target);
     let satk_mul = 1;//角色攻击乘数
     let sdmg_mul = 1;//角色伤害乘数
     let Spec_E = c_hint;
@@ -2314,7 +2294,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
 
     add_xp_to_skill({skill: skills["Combat"], xp_to_add: target.xp_value});
 
-    
+    console.log(target.stats);
     const hit_chance = get_hit_chance(character.stats.full.agility * hit_agi_modifier, target.stats.agility );
     
     if(hit_chance > Math.random()) {//hero's attack hits
@@ -2557,6 +2537,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
                 //unlock_location("荒兽森林营地");
                 if(enemy_killcount["舰船中枢B6[BOSS]"] <= 1){
                     current_game_time.go_up(1080000);
+                    log_message(`[纱雪]为性能考虑，【地宫养殖者】前的商人将不再进货。`,"sayuki");
                     //2年
                 }
             }
@@ -2575,6 +2556,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
                 Object.keys(active_effects).forEach(key => {
                     delete active_effects[key];
                 });
+                log_message(`[纱雪]为性能考虑，【舰船中枢B6】前的商人将不再进货。`,"sayuki");
 
             }
             kill_enemy(target);
@@ -2828,6 +2810,7 @@ function get_spec_rewards(money){
     
     character.money += Math.floor(RNG_M * money);
     update_displayed_money();
+    if(money >= 1e9) return;
     const trader = traders["废墟商人"];
     if(!trader.is_unlocked) {
         if(Math.random() >= money * 2e-7) {//4% 8% 12% 16% 20%
@@ -4273,6 +4256,41 @@ function load(save_data) {
         }
     }); //load for dialogues and their textlines their unlocked/finished status
 
+
+    
+
+    Object.keys(save_data.locations).forEach(function(key) {
+        if(locations[key]) {
+            if(save_data.locations[key].is_unlocked) {
+                locations[key].is_unlocked = true;
+            }
+            if(save_data.locations[key].is_finished) {
+                locations[key].is_finished = true;
+            }
+            if("parent_location" in locations[key]) { // if combat zone
+                locations[key].enemy_groups_killed = save_data.locations[key].enemy_groups_killed || 0;   
+            }
+
+            //unlock activities
+            if(save_data.locations[key].unlocked_activities) {
+                for(let i = 0; i < save_data.locations[key].unlocked_activities.length; i++) {
+                    if(!locations[key].activities[save_data.locations[key].unlocked_activities[i]]) {
+                        continue;
+                    }
+                    if(save_data.locations[key].unlocked_activities[i] === "plowing the fields") {
+                        locations[key].activities["fieldwork"].is_unlocked = true;
+                    } else {
+                        locations[key].activities[save_data.locations[key].unlocked_activities[i]].is_unlocked = true;
+                    }
+                }
+            }
+        } else {
+            console.warn(`Location "${key}" couldn't be found!`);
+            return;
+        }
+    }); //load for locations their unlocked status and their killcounts
+
+
     Object.keys(save_data.traders).forEach(function(trader) { 
         let trader_item_list = [];
         if(traders[trader]){
@@ -4446,37 +4464,6 @@ function load(save_data) {
             return;
         }
     }); //load trader inventories
-
-    Object.keys(save_data.locations).forEach(function(key) {
-        if(locations[key]) {
-            if(save_data.locations[key].is_unlocked) {
-                locations[key].is_unlocked = true;
-            }
-            if(save_data.locations[key].is_finished) {
-                locations[key].is_finished = true;
-            }
-            if("parent_location" in locations[key]) { // if combat zone
-                locations[key].enemy_groups_killed = save_data.locations[key].enemy_groups_killed || 0;   
-            }
-
-            //unlock activities
-            if(save_data.locations[key].unlocked_activities) {
-                for(let i = 0; i < save_data.locations[key].unlocked_activities.length; i++) {
-                    if(!locations[key].activities[save_data.locations[key].unlocked_activities[i]]) {
-                        continue;
-                    }
-                    if(save_data.locations[key].unlocked_activities[i] === "plowing the fields") {
-                        locations[key].activities["fieldwork"].is_unlocked = true;
-                    } else {
-                        locations[key].activities[save_data.locations[key].unlocked_activities[i]].is_unlocked = true;
-                    }
-                }
-            }
-        } else {
-            console.warn(`Location "${key}" couldn't be found!`);
-            return;
-        }
-    }); //load for locations their unlocked status and their killcounts
 
     Object.keys(save_data.activities).forEach(function(activity) {
         if(activities[activity]) {

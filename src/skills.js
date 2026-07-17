@@ -206,7 +206,7 @@ class Skill {
                     if (gains.stats) {
                         Object.keys(gains.stats).forEach(stat => {
                             if(gains.stats[stat].flat) {
-                                message += `<br> +${gains.stats[stat].flat} ${stat_names[stat].replace("_"," ")}`;
+                                message += `<br> +${format_number(gains.stats[stat].flat)} ${stat_names[stat].replace("_"," ")}`;
                             }
                             if(gains.stats[stat].multiplier) {
                                 message += `<br> x${Math.round(100*gains.stats[stat].multiplier)/100} ${stat_names[stat].replace("_"," ")}`;
@@ -975,6 +975,56 @@ function format_skill_rewards(milestone){
         category: "Environmental",
         get_effect_description: () => {
             return `Reduces penalty from cold locations`;
+        }
+    });
+    skills["Toxic resistance"] = new Skill({
+        skill_id: "Toxic resistance",
+        names: {0: "毒液抗性",10:"毒液抗性·精通",20:"毒液抗性·圆满"},
+        description: "对常见蚊虫毒液的免疫能力。",
+        base_xp_cost: 1800e4,
+        max_level: 20,
+        category: "Environmental",
+        rewards: {
+            milestones: {
+            4: {
+                stats: {
+                    agility: {
+                        flat:5e8
+                    },
+                    },
+                },
+            8: {
+                stats: {
+                    agility: {
+                        flat:10e8
+                    },
+                    },
+                },
+                12: {
+                stats: {
+                    agility: {
+                        flat:15e8
+                    },
+                    },
+                },
+                16: {
+                stats: {
+                    agility: {
+                        flat:20e8
+                    },
+                    },
+                },
+                20: {
+                stats: {
+                    agility: {
+                        flat:30e8
+                    },
+                    },
+                }
+            }
+        },
+        get_effect_description: () => {
+            return `毒液伤害削弱到原来的${100-skills["Toxic resistance"].current_level*5}%,<br>再因为【坚韧皮肤】削弱到原来的${(100*(0.99**skills["Iron skin"].current_level)).toFixed(2)}%.<br>毒液防御惩罚^${(1-skills["Toxic resistance"].current_level*0.05).toFixed(2)}`;
         }
     });
 
