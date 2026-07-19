@@ -4809,15 +4809,46 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 6e12,
             money:200e12,
-            //locations: [{location: "密林战 - X"}],
+            locations: [{location: "密林战 - X"}],
+        },
+    });
+    
+    locations["密林战 - X"] = new Challenge_zone({
+        description: "快点把它们全部干掉！虽然看起来血不多，但这些全是时封……", 
+        enemy_count: 1, 
+        enemy_groups_list : [["燕岗城警戒哨[BOSS]","燕岗城警戒哨[BOSS]","燕岗城警戒哨[BOSS]"]],
+        enemy_group_size: [3,3],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "密林战 - X",
+        bgm:22,
+        parent_location: locations["狩猎大赛·密林战"],
+        repeatable_reward: {
+            locations: [{location: "狩猎大赛·古墓战"}],
         },
     });
     locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 1"]}); 
     locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 2"]}); 
     locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 3"]}); 
     locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - 4"]}); 
+    locations["狩猎大赛·密林战"].connected_locations.push({location: locations["密林战 - X"]}); 
 
-/* 
+
+
+
+    locations["狩猎大赛·古墓战"] = new Location({ 
+        connected_locations: [{location: locations["狩猎大赛·密林战"], custom_text: "回到密林中"}], 
+        description: "就知道哨所前面指定有好东西~虽然古墓中弥漫着阴冷的气息，但可以隐约感应到，突破云霄，就在此地！[V4.20前版本终点]",
+        name: "狩猎大赛·古墓战", 
+        traders: [],
+        dialogues: [],
+        is_unlocked: false,
+        bgm: 23,
+    });//4-3
+    locations["狩猎大赛·密林战"].connected_locations.push({location: locations["狩猎大赛·古墓战"]});
+
+/* 燕岗城警戒哨[BOSS]
 [1]["水晶骷髅","壮硕走地兽","燕岗威武小队","燕岗骑砍小队","燕岗卫戍小队"]
 [2]["古古怪树","腐毒仙子","绿原圣触","燕岗暮年强者","燕岗精英铁卫"]
 [3]["古古怪树","燕岗金甲战士","奥术大师","燕岗射手小队","燕岗钢铁战士"]

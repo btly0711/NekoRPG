@@ -259,7 +259,7 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                                 gains += `大境界突破，【火灵幻海】获取了9999兆经验...?<br>`;
                                 gains += `怎么领悟已经突破了哇。也太能刷了叭。<br>`;
                         }
-                        add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 9999e12,should_info:true,use_bonus:false,add_to_parent:false},);
+                        add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 9999e12,should_info:true,use_bonus:false},);
                         gains += `角色属性<span style="color:#ffee11">【幸运】</span>现已解锁！<br>`;
                         gains += `同时，【暴击】属性被浓缩了！<br>【暴击概率】降低为四分之一，【暴击伤害】提高了四倍！<br>`;
                         character.stats.multiplier.level.crit_rate = 0.25;

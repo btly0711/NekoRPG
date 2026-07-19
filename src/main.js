@@ -1049,7 +1049,7 @@ function textline_special(t_key){
                     displayed_text += `【焰海霜天】获取了51.2垓经验...?<br>`;
                     displayed_text += `怎么领悟又已经突破了哇！也太能刷了叭！！<br>`;
             }
-            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 51.2e20,should_info:true,use_bonus:false,add_to_parent:false},);
+            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 51.2e20,should_info:true,use_bonus:false},);
         }
         else if(t_key == "jjhzx"){
 
@@ -1184,12 +1184,13 @@ function textline_special(t_key){
             remove_from_character_inventory([{item_key:"{\"id\":\"峰\"}"}]);
         }
         else if(t_key == "kill-zh"){
-            add_to_character_inventory([{item: getItem({...item_templates["晶化剑"], quality: 239}), count: 1}]);add_to_character_inventory([{ "item": getItem(item_templates["沼泽·荒兽肉块"]), "count": 5 }]);
+            add_to_character_inventory([{item: getItem({...item_templates["晶化剑"], quality: 239}), count: 1}]);
+            add_to_character_inventory([{ "item": getItem(item_templates["沼泽·荒兽肉块"]), "count": 5 }]);
             character.money += 259346107197056;
             update_displayed_money();
         }
         else if(t_key == "moonwheel-lv40"){
-            add_xp_to_skill({skill: skills["Moonwheels"], xp_to_add: 2.99e20,should_info:true,use_bonus:false,add_to_parent:false},);
+            add_xp_to_skill({skill: skills["Moonwheels"], xp_to_add: 2.99e20,should_info:true,use_bonus:false},);
         }
         else if(t_key == "realm-III"){
             if(skills["Neko_Realm"].current_level <= 34){
@@ -1199,8 +1200,8 @@ function textline_special(t_key){
                     displayed_text += `【焰海霜天[领域三重]】获取了1.68秭经验！<br>`;
                     displayed_text += `这次……能提前突破一点也不意外（笑！<br>`;
             }
-            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 1.68e24,should_info:true,use_bonus:false,add_to_parent:false},);
-            add_xp_to_skill({skill: skills["AquaElement"], xp_to_add: 3997e4,should_info:true,use_bonus:false,add_to_parent:false},);
+            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 1.68e24,should_info:true,use_bonus:false},);
+            add_xp_to_skill({skill: skills["AquaElement"], xp_to_add: 3997e4,should_info:true,use_bonus:false},);
         }
         else if(t_key == "realm-IV"){
             if(skills["Neko_Realm"].current_level <= 39){
@@ -1211,7 +1212,7 @@ function textline_special(t_key){
                     displayed_text += `【出云落月[领域四重]】获取了64秭经验！<br>`;
                     displayed_text += `抱歉纱雪高考去了……别说突破了都有人48级了！喵啊啊啊！<br>`;
             }
-            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 64e24,should_info:true,use_bonus:false,add_to_parent:false},);
+            add_xp_to_skill({skill: skills["Neko_Realm"], xp_to_add: 64e24,should_info:true,use_bonus:false},);
         }else if(t_key == "S3-start"){
             inf_combat.S3 = {live:true,sp:0,b1:8,b2:8,b3:0};
 
@@ -2072,7 +2073,7 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
 
 
     
-    if(!attacker.spec.includes(28)) add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*E_atk_mul_f*spec_mul/10});
+    if(!attacker.spec.includes(28)) add_xp_to_skill({skill: skills["Iron skin"], xp_to_add: enemy_base_damage*spec_mul/10});
     if(attacker.spec.includes(31)){
         attacker.stats.health += attacker.stats.max_health * 0.30;
         log_message(attacker.name + " 恢复了 " + format_number(attacker.stats.max_health * 0.30)  + " 点血量","enemy_enhanced");
@@ -2630,7 +2631,7 @@ function kill_enemy(target) {
  * @param {Number} xp_to_add 
  * @param {Boolean} should_info 
  */
-function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = true, add_to_parent = true})
+function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = true})
 {
     let leveled = false;
     if(xp_to_add == 0) {
@@ -2653,14 +2654,14 @@ function add_xp_to_skill({skill, xp_to_add = 1, should_info = true, use_bonus = 
     
     const {message, gains, unlocks} = skill.add_xp({xp_to_add: xp_to_add});
     const new_name = skill.name();
-    if(skill.parent_skill && add_to_parent) {
+    if(skill.parent_skill) {
         if(skill.total_xp > skills[skill.parent_skill].total_xp) {
             /*
                 add xp to parent if skill would now have more than the parent
                 calc xp ammount so that it's no more than the difference between child and parent
             */
             let xp_for_parent = Math.min(skill.total_xp - skills[skill.parent_skill].total_xp, xp_to_add);
-            add_xp_to_skill({skill: skills[skill.parent_skill], xp_to_add: xp_for_parent, should_info, use_bonus: false, add_to_parent});
+            add_xp_to_skill({skill: skills[skill.parent_skill], xp_to_add: xp_for_parent, should_info, use_bonus: false});
         }
     }
 
@@ -2799,7 +2800,7 @@ function get_spec_rewards(money){
         return;
     }
     if(money == 216){
-        add_xp_to_skill({skill: skills["Moonwheels"],xp_to_add: 9999e12,should_info:true,use_bonus:false,add_to_parent:false},);
+        add_xp_to_skill({skill: skills["Moonwheels"],xp_to_add: 9999e12,should_info:true,use_bonus:false},);
         log_message(`峰大哥演示了月轮的使用方法，【银霜月轮】获取了9999兆 经验！`, "activity_unlocked");
         return;
     }
@@ -3567,6 +3568,23 @@ function use_item_max(item_key)
     let cnt=0;
     let A0,D0,G0,H0,A1,D1,G1,H1;
     A0=character.stats.flat.gems.attack_power,D0=character.stats.flat.gems.defense,G0=character.stats.flat.gems.agility,H0=character.stats.flat.gems.max_health;
+    if(id == 'B9·??药剂' && character.item_inventory_cnt(item_key) >= 100){
+        let B9_all = character.item_inventory_cnt(item_key) * 5;
+        let B9_per = Math.floor(B9_all / 4 + 1e-6);
+        let B9_res = B9_all - B9_per * 4;
+        //console.log(item_key);
+        remove_from_character_inventory([{item_key: "{\"id\":\"B9·??药剂\"}", item_count: Math.round(B9_all/5)}]);
+        add_to_character_inventory([{item: getItem(item_templates["B9·散华药剂"]),count:(B9_per + (B9_res>0?1:0))}]);
+        add_to_character_inventory([{item: getItem(item_templates["B9·反戈药剂"]),count:(B9_per + (B9_res>1?1:0))}]);
+        add_to_character_inventory([{item: getItem(item_templates["B9·灵闪药剂"]),count:(B9_per + (B9_res>2?1:0))}]);
+        add_to_character_inventory([{item: getItem(item_templates["B9·异界药剂"]),count:(B9_per)}]);
+        log_message(`批量使用了 ${Math.round(B9_all/5)} 个 B9·??药剂。`,`gather_loot`);
+        log_message(`因数量过多(>100)，直接均分到了4种药剂上。`,`gather_loot`);
+        update_displayed_character_inventory(character_sorting);
+        return;
+    }//特判:B9药剂解包
+    //WIP:特判·真批量宝石(需要积分)
+
     while(character.is_in_inventory(item_key))
     {
         use_item(item_key,true);
@@ -3946,7 +3964,7 @@ function load(save_data) {
         if(skills[key] && !skills[key].is_parent){
             if(save_data.skills[key].total_xp > 0) {
                 add_xp_to_skill({skill: skills[key], xp_to_add: save_data.skills[key].total_xp, 
-                                    should_info: false, add_to_parent: true, use_bonus: false
+                                    should_info: false, use_bonus: false
                                 });
             }
         } else if(save_data.skills[key].total_xp > 0) {

@@ -8784,6 +8784,19 @@ C2 329'5128'0099          /533'1629'1173          exp
         stats: {health: 169000e8, attack: 720e8, agility: 350e8, attack_speed: 1.8, defense:360e8}, //血量100x
         loot_list: [],
     });
+    enemy_templates["燕岗城警戒哨[BOSS]"] = new Enemy({
+        name: "燕岗城警戒哨[BOSS]", 
+        description: "一呼百应，导致每一回合的伤害都会越来越夸张。对了，纳可比较能惹事，一次惹到了3只~", 
+        xp_value: 53316291173, 
+        rank: 4299,
+        image: "image/boss/B4201.png",
+        realm: "<span class=realm_cloudy><b>云霄级二阶 +</b></span>",
+        size: "small",
+        spec: [12],
+        tags: [],
+        stats: {health: 176000e8, attack: 1360e8, agility: 720e8, attack_speed: 1.8, defense:680e8}, //血量20x[时封，不开太高了]
+        loot_list: [],
+    });
 /*
 
 B8 11'3490'3170           /18'3631'1903           exp
