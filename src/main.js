@@ -6339,7 +6339,7 @@ function get_money(coin_type,coin_num)
     {
         log_message(`钱包: ${format_money(character.money)} -> ${format_money(character.money - value)} `,"activity_money");
         character.money -= value;
-        let coin_map = {1:"红色刀币",2:"黑色刀币",3:"绿色刀币",4:"紫色刀币",5:"宇宙币",6:"宇宙币堆"}
+        let coin_map = {1:"红色刀币",2:"黑色刀币",3:"绿色刀币",4:"紫色刀币",5:"宇宙币",6:"宇宙币堆",7:"宇宙币山"}
         let coin = coin_map[coin_type];
         log_message(`获取了 ${coin} x ${coin_num} !`,"combat_loot");
         add_to_character_inventory([{ "item": getItem(item_templates[coin]), "count": coin_num }]);

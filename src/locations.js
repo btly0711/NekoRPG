@@ -4654,6 +4654,7 @@ function get_location_type_penalty(type, stage, stat) {
             xp: 2e12,
             locations: [{location: "城门战 - X"}],
         },
+        unlock_text : "[纳可]诶，那边那个人看起来没了气息。是已经死亡被淘汰了吗……等会！怎么它变绿了也变强了！一定要避开它。",
     });
     locations["城门战 - 歧路"] = new Challenge_zone({
         description: "我从地狱回来了！你知道我这几十年怎么过的吗！！！", 
@@ -4695,18 +4696,19 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["狩猎大赛·密林战"] = new Location({ 
         connected_locations: [{location: locations["狩猎大赛·城门战"], custom_text: "回到城门前"}], 
-        description: "似乎是上纪元被废弃的老城区。人造物痕迹仍然存在，植被却已极度繁盛。",
+        description: "似乎是上纪元被废弃的古战场区域。人造物痕迹仍然存在，植被却已极度繁盛。",
         name: "狩猎大赛·密林战", 
         traders: [],
         dialogues: [],
         is_unlocked: false,
         bgm: 22,
+        unlock_text : "[纳可]怪事，战前似乎没有下发狩猎大赛的路线图。不过，既然是比狩猎，那跟着强者和荒兽多的路线走就对了！",
     });//4-2
     locations["狩猎大赛·城门战"].connected_locations.push({location: locations["狩猎大赛·密林战"]});
 
     locations["狩猎大赛·补给点"] = new Location({ 
         connected_locations: [{location: locations["狩猎大赛·密林战"], custom_text: "回到战斗区"}], 
-        description: "一个野生的补给区域。能发现它真是走运……这里甚至有些许水体，可以练习高难度游泳动作！",
+        description: "一个野生的补给区域。似乎上古炼器炉的气息驱散了这里的毒虫，使这里变成了密林中难得的清净之地。这里甚至有些许水体，可以练习高难度游泳动作！",
         name: "狩猎大赛·补给点", 
         traders: ["物品存储箱"],
         dialogues: [],
@@ -4732,7 +4734,7 @@ function get_location_type_penalty(type, stage, stat) {
 
 
     locations["密林战 - 1"] = new Combat_zone({
-        description: "夏日特辑：密林肯定有蚊子！还是云霄级的蚊子！不过多叮几口就习惯了啦……", 
+        description: "由于古战场上存在大量强者尸体，蚊子们逐步产生了适应进化，破防能力大大加强了！", 
         enemy_count: 20, 
         enemies_list: ["水晶骷髅","壮硕走地兽","燕岗威武小队","燕岗骑砍小队","燕岗卫戍小队"],
         enemy_group_size: [4,4],
@@ -4751,6 +4753,7 @@ function get_location_type_penalty(type, stage, stat) {
             locations: [{location: "密林战 - 2"}],
             activities: [{location:"狩猎大赛·密林战", activity:"Swimming"}],
         },
+        unlock_text : "[???]嗡嗡嗡嗡嗡……[纳可]看来这条路线上蚊子众多。在拥有强力恢复效果前，还是尽可能速战速决吧。",
     });
     locations["密林战 - 2"] = new Combat_zone({
         description: "古古怪树真是天下第一雄关啊。告诉你们一个好消息：4-3没有这货。", 
@@ -4771,6 +4774,7 @@ function get_location_type_penalty(type, stage, stat) {
             money:88e12,
             locations: [{location: "密林战 - 3"},{location: "狩猎大赛·补给点"}],
         },
+        unlock_text : "[纳可]随着逐步深入密林，敌人愈发强大，指示天地能量浓度的蚊虫量却几乎恒定。前方必有大机缘的入口！",
     });
     locations["密林战 - 3"] = new Combat_zone({
         description: "对策卡并不只有纳可的道具：诺，那个【硬化】就是C1镭射枪·残的对策卡。", 
@@ -4811,6 +4815,7 @@ function get_location_type_penalty(type, stage, stat) {
             money:200e12,
             locations: [{location: "密林战 - X"}],
         },
+        unlock_text : "[纳可]强者们似乎都聚集在一处固若金汤的主门前。绕过它只需要迅速击败3个警戒哨！好机会！",
     });
     
     locations["密林战 - X"] = new Challenge_zone({

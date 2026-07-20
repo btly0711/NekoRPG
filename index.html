@@ -1072,6 +1072,11 @@
                                         <span class="coin coin_moneyQa money_button" onclick = "get_money(6,10)">[10kU]</span>
                                         <span class="coin coin_moneyQa money_button" onclick = "get_money(6,100)">[100kU]</span>
                                 </div>
+                                <div id = "data_bankMU" class="data_entry">
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(7,1)">[1MU]</span>
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(7,10)">[10MU]</span>
+                                        <span class="coin coin_moneyQa money_button" onclick = "get_money(7,100)">[100MU]</span>
+                                </div>
                             </div>
 
                         </div>
@@ -1695,7 +1700,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V3.15";
+                document.getElementById("changelog_button").children[0].innerHTML = "V3.20";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

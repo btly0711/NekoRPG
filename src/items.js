@@ -6364,6 +6364,12 @@ item_templates["Twist liek a snek"] = new Book({
         value: 1000e15,
         image: "image/item/1000U.png",
     });
+    item_templates["宇宙币山"] = new Loot({
+        name: "宇宙币山", 
+        description: "堆成小山的宇宙币，共计1000000U(或记为1MU).<br>对了，按1000U=1m^3和30°堆积休止角，它们可以堆成高4.73m半径8.20m的圆锥。<br>实际上宇宙币不可能无缝堆积，所以堆起来更大……", 
+        value: 1000000e15,
+        image: "image/item/1MU.png",
+    });
 })();
 
 
