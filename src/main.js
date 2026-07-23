@@ -2408,6 +2408,9 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         if(target.stats.health <= 0) {
             damage_dealt = b_health;
             total_kills++;
+            if(target.spec.includes(61)) total_kills += 9;
+            if(target.spec.includes(64)) total_kills += 99;
+
             target.stats.health = 0; //to not go negative on displayed value
         
             //gained xp multiplied ny TOTAL size of enemy group raised to 1/3

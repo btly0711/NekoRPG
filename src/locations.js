@@ -4749,7 +4749,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 3e12,
-            money:40e12,
+            money:20e12,
             locations: [{location: "密林战 - 2"}],
             activities: [{location:"狩猎大赛·密林战", activity:"Swimming"}],
         },
@@ -4771,7 +4771,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 4e12,
-            money:88e12,
+            money:44e12,
             locations: [{location: "密林战 - 3"},{location: "狩猎大赛·补给点"}],
         },
         unlock_text : "[纳可]随着逐步深入密林，敌人愈发强大，指示天地能量浓度的蚊虫量却几乎恒定。前方必有大机缘的入口！",
@@ -4792,7 +4792,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 5e12,
-            money:144e12,
+            money:72e12,
             locations: [{location: "密林战 - 4"}],
         },
     });
@@ -4812,7 +4812,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 6e12,
-            money:200e12,
+            money:100e12,
             locations: [{location: "密林战 - X"}],
         },
         unlock_text : "[纳可]强者们似乎都聚集在一处固若金汤的主门前。绕过它只需要迅速击败3个警戒哨！好机会！",
@@ -4853,11 +4853,89 @@ function get_location_type_penalty(type, stage, stat) {
     });//4-3
     locations["狩猎大赛·密林战"].connected_locations.push({location: locations["狩猎大赛·古墓战"]});
 
+    locations["古墓战 - 1"] = new Combat_zone({
+        description: "附近似乎有人正在寻找纳家后人的下落！[提示:影响力达到50且通过此区域]", 
+        enemy_count: 20, 
+        enemies_list: ["燕岗战法小队","毛茸茸绅士","驯兽地龙","驯兽养殖者","燕岗巨斧斗士"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        types: [],
+        name: "古墓战 - 1",
+        rank:321, 
+        bgm:23,
+        parent_location: locations["狩猎大赛·古墓战"],
+        first_reward: {
+            xp: 300e12,
+        },
+        repeatable_reward: {
+            xp: 100e12,
+            locations: [{location: "古墓战 - 2"}],
+        },
+    });
+    locations["古墓战 - 2"] = new Combat_zone({
+        description: "[WIP/这里该塞点小剧情但其他啥都没填啊我写不出来啊]", 
+        enemy_count: 20, 
+        enemies_list: ["燕岗大剑战士","燕岗城警戒哨","独行双剑侠","诡计披甲人","自守的斗士"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "古墓战 - 2",
+        rank:322, 
+        bgm:23,
+        parent_location: locations["狩猎大赛·古墓战"],
+        first_reward: {
+            xp: 450e12,
+        },
+        repeatable_reward: {
+            xp: 150e12,
+            locations: [{location: "古墓战 - 3"}],
+        },
+    });
+    locations["古墓战 - 3"] = new Combat_zone({
+        description: "[WIP/这里该塞点小剧情但其他啥都没填啊我写不出来啊]", 
+        enemy_count: 20, 
+        enemies_list: ["燕岗杖剑大队","茸茸魔导师","燕岗城巡逻哨","燕岗魔力大队","燕岗全职大队"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "古墓战 - 3",
+        rank:323, 
+        bgm:23,
+        parent_location: locations["狩猎大赛·古墓战"],
+        first_reward: {
+            xp: 600e12,
+        },
+        repeatable_reward: {
+            xp: 200e12,
+            locations: [{location: "古墓战 - 4"}],
+        },
+    });
+    locations["古墓战 - 4"] = new Combat_zone({
+        description: "[WIP/这里该塞点小剧情但其他啥都没填啊我写不出来啊]", 
+        enemy_count: 20, 
+        enemies_list: ["燕岗双剑小队","燕岗壁垒大队","奸诈的恶棍","隐秘行刺者","青年天才","公正的袍师"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "古墓战 - 4",
+        rank:324, 
+        bgm:23,
+        parent_location: locations["狩猎大赛·古墓战"],
+        first_reward: {
+            xp: 600e12,
+        },
+        repeatable_reward: {
+            xp: 200e12,
+            //locations: [{location: "古墓战 - X"}],
+        },
+    });
+
 /* 燕岗城警戒哨[BOSS]
-[1]["水晶骷髅","壮硕走地兽","燕岗威武小队","燕岗骑砍小队","燕岗卫戍小队"]
-[2]["古古怪树","腐毒仙子","绿原圣触","燕岗暮年强者","燕岗精英铁卫"]
-[3]["古古怪树","燕岗金甲战士","奥术大师","燕岗射手小队","燕岗钢铁战士"]
-[4]["燕岗金甲战士","绿原守灵人","绿原蜂后","燕岗名流商人","燕岗江洋大盗"]
+
+["燕岗战法小队","毛茸茸绅士","驯兽地龙","驯兽养殖者","燕岗巨斧斗士"],
+["燕岗大剑战士","燕岗城警戒哨","独行双剑侠","诡计披甲人","自守的斗士"]
+["燕岗杖剑大队","茸茸魔导师","燕岗城巡逻哨","燕岗魔力大队","燕岗全职大队"]
+["燕岗双剑小队","燕岗壁垒大队","奸诈的恶棍","隐秘行刺者","青年天才","公正的袍师"]
 */
 
     locations["Nearby cave"] = new Location({ 

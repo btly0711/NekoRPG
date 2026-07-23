@@ -2767,7 +2767,7 @@ function update_displayed_stats() { //updates displayed stats
     else if(lgrank < 7.903) lgresult = 15.352 - 0.77 * lgrank;
     else lgresult = 18.352 - 1.3 * lgrank + 0.019 * lgrank ** 2;
     //
-    let chara_result = Math.round(Math.pow(10,lgresult));
+    let chara_result = Math.round(Math.max(1,Math.pow(10,lgresult)));
     
     character_rank_div.innerText = `燕岗领排名: ` + chara_result.toLocaleString('en-US');
     
@@ -3743,6 +3743,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [61, "小队" ,"#584af0", "小队成员为了生存而聚集在一起战斗。<br>由2-50个单位组成的小队。"],
 [62, "死线" ,"#DCDCDC", "不要忘记那些不得不做的事情。战斗结束后，角色获取<span style='color:#87CEFA'>60s 5倍易伤</span>(会显示在血条上)。"],
 [63, "硬化" ,"#94478a", "当角色攻击大于防御时，怪物将<span style='color:#FFFF00'>无视超出部分的攻击数值</span>。"],
+[64, "大队" ,"#d532eb", "大队成员气势汹汹，欲杀死所有阻拦自己的敌人。\n由100-5000个单位组成的大队。"],
 
 
 ];
