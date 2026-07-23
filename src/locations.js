@@ -4929,6 +4929,10 @@ function get_location_type_penalty(type, stage, stat) {
             //locations: [{location: "古墓战 - X"}],
         },
     });
+    locations["狩猎大赛·古墓战"].connected_locations.push({location: locations["古墓战 - 1"]}); 
+    locations["狩猎大赛·古墓战"].connected_locations.push({location: locations["古墓战 - 2"]}); 
+    locations["狩猎大赛·古墓战"].connected_locations.push({location: locations["古墓战 - 3"]}); 
+    locations["狩猎大赛·古墓战"].connected_locations.push({location: locations["古墓战 - 4"]}); 
 
 /* 燕岗城警戒哨[BOSS]
 
