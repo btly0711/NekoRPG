@@ -518,10 +518,11 @@ body {
 
 #stance_list_div {
 	display: none;
+    overflow-y: scroll;
 }
 #family_div {
 	display: none;
-	height:395px;
+	height:386px;
 	overflow-y: scroll;
 }
 
@@ -2101,11 +2102,11 @@ i {
 }
 
 #skill_list_div, #stance_list_div {
-	height: 395px;
+	height: 386px;
 }
 		#skill_list {
 			overflow-y: scroll;
-			height: 366px;
+			height: 360px;
 			padding-bottom:3px;
 		}
 
