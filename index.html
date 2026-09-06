@@ -917,6 +917,12 @@
                         
                         <table id = "family_member_list">
                         </table>
+
+                        <span style='color:plum'>解锁家族的 <span id='family_next_realm'></span> 境界:<br>
+                    需求战力 <span id='family_cur_power'></span> / <span id='family_next_power'></span><br>
+                    对应排名 <span id='family_cur_rank'></span> / <span id='family_next_rank'></span>
+                    </span>
+
                         </div>
                     </div>
                     <div id = "skill_and_stance_control_div" class="activable_buttons">
@@ -1721,7 +1727,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V3.43c";
+                document.getElementById("changelog_button").children[0].innerHTML = "V3.44";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;

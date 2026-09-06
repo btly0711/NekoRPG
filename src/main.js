@@ -63,6 +63,7 @@ import { end_activity_animation,
          clear_levelary_tooltip,
          update_displayed_family,
          update_displayed_family_members,
+         get_character_power,
         } from "./display.js";
 import { compare_game_version, get_hit_chance } from "./misc.js";
 import { stances } from "./combat_stances.js";
@@ -94,34 +95,41 @@ window.REALMS=[
 [9,"大地级一阶",550,120000,60000000,"terra"],
 [10,"大地级二阶",1000,250000,80000000,"terra"],
 [11,"大地级三阶",2000,550000,1.6e8,"terra"],
-[12,"大地级四阶",3000,1000000,4.8e8,"terra"],//200w
-[13,"大地级五阶",5000,1500000,12e8,"terra"],//350w
-[14,"大地级六阶",9000,2500000,36e8,"terra"],//600w
-[15,"大地级七阶",15000,6500000,108e8,"terra"],//1250w
-[16,"大地级八阶",36000,12500000,216e8,"terra"],//2500w
+[12,"大地级四阶",3000,1000000,4.8e8,"terra"],
+[13,"大地级五阶",5000,1500000,12e8,"terra"],
+[14,"大地级六阶",9000,2500000,36e8,"terra"],
+[15,"大地级七阶",15000,6500000,108e8,"terra"],
+[16,"大地级八阶",36000,12500000,216e8,"terra"],
 [17,"大地级巅峰",72000,22500000,432e8,"terra"],
 [18,"大地级破限",126000,32500000,1080e8,"terra"],
 
-[19,"天空级一阶",180000,1.2e8,10000e8,"sky"],//2e
-[20,"天空级二阶",550000,3e8,4e12,"sky"],//5e
-[21,"天空级三阶",1500000,10e8,16e12,"sky"],//15e
-[22,"天空级四阶",4000000,25e8,80e12,"sky"],//40e 
-[23,"天空级五阶",16000000,60e8,320e12,"sky"],//100e
-[24,"天空级六阶",40000000,150e8,1120e12,"sky"],//250e 
-[25,"天空级七阶",72500000,350e8,6000e12,"sky"],//600e 
-[26,"天空级八阶",3e8,900e8,2.4e16,"sky"],//1500e
-[27,"天空级巅峰",8e8,1500e8,7.2e16,"sky"],//3000e 
-[28,"天空级破限",16e8,3000e8,21.6e16,"sky"],//6000e 
-[29,"云霄级一阶",40e8,6000e8,100e16,"cloudy"],//1.2z
-[30,"云霄级二阶",150e8,28000e8,1200e16,"cloudy"],//4z 
-[31,"云霄级三阶",600e8,5.5e12,7200e16,"cloudy"],//9.5z 应为4800e16?
-[32,"云霄级四阶",1200e8,10.5e12,170.1411e36,"cloudy"],//21.0z 
-[33,"云霄级五阶",1,1,1,"cloudy"],//下面没填数据
-[34,"云霄级六阶",1,1,1,"cloudy"],
-[35,"云霄级七阶",1,1,1,"cloudy"],
-[36,"云霄级八阶",1,1,1,"cloudy"],
-[37,"云霄级巅峰",1,1,1,"cloudy"],
-
+[19,"天空级一阶",180000,1.2e8,10000e8,"sky"],//45w 2e
+[20,"天空级二阶",550000,3e8,4e12,"sky"],//100w 5e
+[21,"天空级三阶",1500000,10e8,16e12,"sky"],//250w 15e
+[22,"天空级四阶",4000000,25e8,80e12,"sky"],//650w 40e 
+[23,"天空级五阶",16000000,60e8,320e12,"sky"],//2250w 100e
+[24,"天空级六阶",40000000,150e8,1120e12,"sky"],//6250w 250e 
+[25,"天空级七阶",72500000,350e8,6000e12,"sky"],//1.35e600e 
+[26,"天空级八阶",3.15e8,900e8,2.4e16,"sky"],//4.5e 1500e
+[27,"天空级巅峰",8e8,1500e8,7.2e16,"sky"],//12.5e 3000e 
+[28,"天空级破限",17.5e8,3000e8,21.6e16,"sky"],//30e 6000e 
+[29,"云霄级一阶",45e8,6000e8,100e16,"cloudy"],//75e 1.2z
+[30,"云霄级二阶",150e8,28000e8,1200e16,"cloudy"],//225e 4z 
+[31,"云霄级三阶",375e8,4.5e12,7200e16,"cloudy"],//600e 8.5z 
+[32,"云霄级四阶·前期",600e8,7.5e12,28800e16,"cloudy"],//1200e 14z 
+[33,"云霄级四阶·后期",800e8,10e12,170.1411e36,"cloudy"],//2000e 24z 
+//1500e 划分:600+900
+[34,"云霄级五阶·前期",1,1,1,"cloudy"],//下面没填数据
+[35,"云霄级五阶·后期",1,1,1,"cloudy"],
+[36,"云霄级六阶·前期",1,1,1,"cloudy"],
+[37,"云霄级六阶·后期",1,1,1,"cloudy"],
+[38,"云霄级七阶·前期",1,1,1,"cloudy"],
+[39,"云霄级七阶·后期",1,1,1,"cloudy"],
+[40,"云霄级八阶·前期",1,1,1,"cloudy"],
+[41,"云霄级八阶·后期",1,1,1,"cloudy"],
+[42,"云霄级巅峰·前期",1,1,1,"cloudy"],
+[43,"云霄级巅峰·后期",1,1,1,"cloudy"],
+//前期后期2:3
 ];
 //境界，X级存储了该等级的数据
 //命名空间：0为境界编号，1为境界名（含颜色），2为提升属性，3为增加血量，4为需要经验值，5为display时使用realm_xxx类
@@ -172,6 +180,7 @@ let family_data = {
     re_gain:0,
     influ:0,
     re_influ:0,
+    cap:27,
 }
 
 //in seconds
@@ -4007,7 +4016,7 @@ function load(save_data) {
     total_crafting_attempts = save_data.total_crafting_attempts || 0;
     total_crafting_successes = save_data.total_crafting_successes || 0;
     inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8},"A7":{cur:0},"VP":{num:0}};//无限秘境
-    family_data = save_data.family_data || {};
+    family_data = save_data.family_data || {cap:27};
     name_field.value = save_data.character.name;
     character.name = save_data.character.name;
     character.bonus_skill_levels = save_data.character.bonus_skill_levels;
@@ -4045,10 +4054,6 @@ function load(save_data) {
     const is_from_before_eco_rework = compare_game_version("v0.3.5", save_data["game version"]) == 1;
     setLootSoldCount(save_data.loot_sold_count || {});
 
-    update_displayed_family();
-    update_displayed_family_members();
-    document.getElementById("baby_born_num").value = family_data.baby;
-    //重载家族
 
     character.money = (save_data.character.money || 0) * ((is_from_before_eco_rework == 1)*10 || 1);
     update_displayed_money();
@@ -4077,8 +4082,9 @@ function load(save_data) {
             let Luck_gain = (this_realm[0]==19?0.2:0.1);
             character.stats.flat.level.luck = ( character.stats.flat.level.luck || 0) + Luck_gain;
         }
-        if(this_realm[0]>=29 && this_realm[0]<=37){
+        if(this_realm[0]>=29 && this_realm[0]<=43){
             let SCGV_gain = (this_realm[0]==29?4:2);
+            if(this_realm[0]>32 && this_realm[0]%2==1) SCGV_gain = 0;//小阶段内突破
             character.stats.flat.level.SCGV = ( character.stats.flat.level.SCGV || 0) + SCGV_gain;
         }
         if(this_realm[0]==19){
@@ -4091,6 +4097,8 @@ function load(save_data) {
         if(this_realm[0]>=9) total_skill_xp_multiplier += 0.05;
         if(this_realm[0]>=19) total_skill_xp_multiplier += 0.15;
         if(this_realm[0]>=29) total_skill_xp_multiplier += 0.20;
+        
+        if(this_realm[0]>32 && this_realm[0]%2==1) total_skill_xp_multiplier -= 0.40;
         character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
         //复制粘贴的升级代码，只不过没有提示
         //注：以后升级代码需要在这里多写一份。
@@ -4104,6 +4112,8 @@ function load(save_data) {
     else if(character.xp.current_level >= 9 && character.xp.current_level <= 18) E_body.classList.add('terra_root');
 
 
+    
+    
     Object.keys(save_data.skills).forEach(function(key){ 
         if(key === "Literacy") {
             return; //done separately, for compatibility with older saves (can be eventually remove)
@@ -4674,6 +4684,11 @@ function load(save_data) {
     update_displayed_health();
     //load current health
     
+    update_displayed_family();
+    update_displayed_family_members();
+    document.getElementById("baby_born_num").value = family_data.baby;
+    //重载家族
+
     update_displayed_effects();
     if(save_data["enemy_killcount"]) {
         
@@ -5311,7 +5326,7 @@ let angle_time = 0.00;//记录上面那个生成函数的输入
 function summon_fish(){
     fish_id += 1;
     let NewFish = {id:fish_id};
-    let RNG_index =  Math.random() * Math.random() + skills["GroundDigging"].current_level * 0.01;//初始状态18%出二阶，最终状态50%一阶42%二阶8%三阶
+    let RNG_index =  (Math.random() + Math.random())/2 + skills["GroundDigging"].current_level * 0.01;//初始状态18%出二阶，最终状态50%一阶42%二阶8%三阶
     for(let f=0;f<=3;f+=1){
         if(RNG_index >= dig_loots[f][0]) NewFish.tier = f;
     }
@@ -6121,6 +6136,7 @@ function init_family(){
     re_gain:0,
     re_influ:0,
     influ:0,
+    cap:27,
     }
     for(let r = 1; r <= 99 ; r += 1){ family_data.mem[r] = {vis:false,num:0.0,break:0,die:0,ali:2};}
     //console.log(family_data.mem[r])}
@@ -6145,8 +6161,8 @@ function update_family_data_sign(num,realm,op)//num当前【出事】人数，re
 function get_baby_cost(num){
     if(num<=1e4) return 1e5 * num;
     if(num<=1e8) return 1e3 * num ** 1.5;
-    if(num<=1e12) return 10 * num ** 1.75;
-    return 0.01 * num ** 2;
+    if(num<=1e12) return 0.1 * num ** 2.0;
+    return 1e-7 * num ** 2.5;
 }
 let ali_data = [[],
 [0.4,1,1],
@@ -6155,6 +6171,21 @@ let ali_data = [[],
 [5,10,60],
 [20,30,300],
 ]//5个档次
+const PNtIC = [0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,
+    0,0,0,0,0,0,0,0,0,
+    6660e8,18005e8,69500e8,41.4e12,116.6e12,322.5e12,720e12,2639e12,114514e12/*WIP */
+    ];//PowerNeededtoIncreaseCap
+    //考虑敏捷(*1.5),暴击攻速一类(*2)，和等级最弱vs横压一级的需求，需求暂定为攻防和五倍
+    //云霄2：腐毒仙子，回春衰弱+20%，攻防和1110亿，最终结果为6660亿
+    //云霄3：奸诈的恶棍，求援败移不增战力，攻防和3601亿，最终结果为18005亿
+    //云霄4：红宝石近卫，无技能，攻防和1.39兆，最终结果为6.95兆
+    //云霄5：破败混乱骑士，反转衰弱+20%，攻防和6.9兆，最终结果为41.4兆
+    //云霄6：狗头军师，同调+10%，攻防和21.2兆，最终结果为116.6兆
+    //云霄7：清音谷髅，回风+50%，攻防和43兆，最终结果为322.5兆
+    //云霄8：丹阳殿调和师，饮剑饮盾忽略，攻防和144兆，最终结果为720兆
+    //云霄9：兔女郎舞者，光环+40%，攻防和377兆，最终结果为2639兆
+    //领域1：WIP
 function update_family_daily(){
     //realm_rate;//0突破率 1暴毙率 2赚钱率
     //每个境界先计算暴毙，再计算突破:
@@ -6168,10 +6199,16 @@ function update_family_daily(){
             update_family_data_sign(rel_die,r,2);
         }
     }//暴毙计算
+    while(get_character_power()>=PNtIC[family_data.cap]){
+        log_message(`因 ${character.name} 的战力超过了 ${format_number(PNtIC[family_data.cap])} , 家族系统开放了 <span class="${realm_rate[family_data.cap+1][4]}"> ${realm_rate[family_data.cap+1][3]} </span>!`,"combat_loot")
+        family_data.cap += 1;
+    }
+    //增加上限
+
     for(let r=99;r>=1;r-=1){
         if(family_data.mem[r-1].vis){
-            if(r>27 && character.xp.current_level < r) continue;
-            //本次要突破的境界超过【云霄级一阶】云霄1 r=27 29时最多可以允许r=28
+            if(r>27 && family_data.cap < r) continue;
+            //family_data.cap是目前开放最高等级，27对应云霄1
 
             let rel_break = binary_distri(family_data.mem[r-1].num,realm_rate[r-1][0] * ali_data[family_data.mem[r-1].ali][1])
             
@@ -6877,5 +6914,5 @@ export { current_enemies, can_work,
         global_flags,
         total_crafting_successes,total_crafting_attempts,
         get_time_passed,family_data,init_family,
-        realm_rate,
+        realm_rate, PNtIC,
         character_equip_item, get_baby_cost };

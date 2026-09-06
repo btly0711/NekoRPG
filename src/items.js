@@ -5461,7 +5461,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "传说有误！结界能量太充沛了，冰柱鱼王突破到天空级巅峰 +了！这里最强的不会有3+境吧……虽然没资源突破不了云霄级就是了啦。", 
         value: 864e12,
         effects: [{effect: "饱食 IX", duration: 360}],
-        realmcap:34,
+        realmcap:37,
         image: "image/item/ice_fish_king.png",
     });
 })();
@@ -5762,7 +5762,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "类似于吞噬星空雾岛的那些东西，不过境界略高一筹。可以使用的同时它也是材料。", 
         value: 9.6e15,
         effects: [{effect: "恢复 C2", duration: 30}],
-        realmcap:34,
+        realmcap:37,
         image: "image/item/wood_core.png",
     });
     item_templates["蘸酱烤肉"] = new UsableItem({
@@ -5770,7 +5770,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "虽然是心头血做的酱料，但毕竟含有磅礴的生命能量，肯定好吃就是了~", 
         value: 21.87e15,
         effects: [{effect: "饱食 X", duration: 90}],
-        realmcap:34,
+        realmcap:37,
         image: "image/item/C1_cooked_meat.png",
     });
     item_templates["灵红补给品"] = new UsableItem({
@@ -5786,7 +5786,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "古人埋在秘境里的东西。并没有那么稀有，毕竟这些补给品算是制式装备。", 
         value: 90e15,
         effects: [{effect: "恢复 C4", duration: 60}],
-        realmcap:37,
+        realmcap:39,
         image: "image/item/C4_medicine.png",
     });
     item_templates["燃血鲜花"] = new UsableItem({
@@ -5794,7 +5794,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "毬毬山谷四处都是长这样的A3级普通鲜花。然而，根据吞噬星空定律，其中有0.01%的B3级爆血鲜花和亿分之一的C3级燃血鲜花……诺，就在这里啦！", 
         value: 144e15,
         effects: [{effect: "强化 C3", duration: 90}],
-        realmcap:37,
+        realmcap:41,
         image: "image/item/blood_flower.png",
     });
     item_templates["焚血花王"] = new UsableItem({
@@ -5802,7 +5802,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "比【燃血鲜花】高6阶的罕有天材地宝。强化效果和【燃血鲜花】不冲突，且略强一线。下区的【血峰之心】同样需要它。", 
         value: 4608e15,
         effects: [{effect: "强化 C3G", duration: 1080}],
-        realmcap:37,
+        realmcap:43,
         image: "image/item/blood_flower_king.png",
     });
 
@@ -5811,7 +5811,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "C6·吹火药剂", 
         description: "角色每次攻击延迟被击中敌人攻击1/2轮，但攻速*0.7.", 
         value: 2500e15,
-        realmcap:34,
+        realmcap:37,
         effects: [{effect: "吹火 C6", duration: 120}],
         image: "image/item/C6_blowfire.png",
     });
@@ -5819,7 +5819,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "C6·血遁药剂", 
         description: "角色敏捷乘以1+血量比例/40%(满血即为3.5倍),但生命流失1%.", 
         value: 2500e15,
-        realmcap:34,
+        realmcap:37,
         effects: [{effect: "血遁 C6", duration: 120}],
         image: "image/item/C6_bloododge.png",
     });
@@ -5827,7 +5827,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "C6·硬化药剂", 
         description: "角色无视敌人攻击力超出防御力部分的50%，但普攻倍率*0.4.", 
         value: 2500e15,
-        realmcap:34,
+        realmcap:37,
         effects: [{effect: "硬化 C6", duration: 120}],
         image: "image/item/C6_harden.png",
     });
@@ -5835,7 +5835,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "C6·压制药剂", 
         description: "角色对敌人造成的伤害乘以1.25*(角色攻防和)/(敌人攻防和).加强的原因是你攻防和都超出敌人了还需要这个buff吗!", 
         value: 2500e15,
-        realmcap:34,
+        realmcap:37,
         effects: [{effect: "压制 C6", duration: 120}],
         image: "image/item/C6_overwhelm.png",
     });

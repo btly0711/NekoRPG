@@ -5285,7 +5285,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_count: 20, 
         enemies_list: ["鲜红水晶","撼瀚野熊","鲑红腐殖质","大红蜕钳蝎","红白闪"],
         enemy_group_size: [4,4],
-        enemy_stat_halo:0.20,
+        enemy_stat_halo:0.25,
         is_unlocked: false, 
         types: [],
         name: "鲜血峰 - 5",

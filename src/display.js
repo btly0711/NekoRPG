@@ -13,7 +13,7 @@ import { current_enemies, options,
     global_flags, get_enemy_killcount,
     total_crafting_successes,total_crafting_attempts,
     get_time_passed,family_data,init_family,
-    realm_rate, get_baby_cost,
+    realm_rate, get_baby_cost, PNtIC,
     inf_combat} from "./main.js";
 import { dialogues } from "./dialogues.js";
 import { activities } from "./activities.js";
@@ -2728,6 +2728,25 @@ function update_displayed_health() { //call it when using healing items, resting
     //死线(3/3)
 }
 
+function get_character_power(){
+    let proto_rank = (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility);
+    proto_rank *=  ((character.stats.full.attack_mul || 1)  * character.stats.full.attack_speed * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)) ** 0.5;
+    //攻防敏是按正常的来
+    //平均暴击&普攻倍率&攻速^0.5.
+    return proto_rank;
+
+}//战力函数
+function get_power_rank(cur_power){
+    let lgrank = Math.log10(cur_power);
+    let lgresult = 0;
+    if(lgrank < 3.84) lgresult = 14 - 0.11 * lgrank ** 2;
+    else if(lgrank < 7.903) lgresult = 15.352 - 0.77 * lgrank;
+    else lgresult = 18.352 - 1.3 * lgrank + 0.019 * lgrank ** 2;
+    //
+    return Math.round(Math.max(1,Math.pow(10,lgresult)));
+}
+
+
 function update_displayed_stats() { //updates displayed stats
     const A_mul = document.getElementById("A_mul_slot");
     A_mul.innerHTML = character.xp.current_level<=8?"Locked":"A.mul:";
@@ -2795,18 +2814,11 @@ function update_displayed_stats() { //updates displayed stats
     });
     //calculating ranks
 
-    const chara_rank = (character.stats.full.attack_mul || 1) * (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility) * character.stats.full.attack_speed  * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)
-    //攻防敏*攻速*（暴击率*暴击额外伤害+1）
+    const chara_rank = get_character_power()//攻防敏*攻速*（暴击率*暴击额外伤害+1）
     //character_rank_div.innerText = `战力: ${chara_rank}`;//看战力以拟合后续【排位】曲线
-    let lgrank = Math.log10(chara_rank);
-    let lgresult = 0;
-    if(lgrank < 3.84) lgresult = 14 - 0.11 * lgrank ** 2;
-    else if(lgrank < 7.903) lgresult = 15.352 - 0.77 * lgrank;
-    else lgresult = 18.352 - 1.3 * lgrank + 0.019 * lgrank ** 2;
-    //
-    let chara_result = Math.round(Math.max(1,Math.pow(10,lgresult)));
     
-    character_rank_div.innerText = `燕岗领排名: ` + chara_result.toLocaleString('en-US');
+    
+    character_rank_div.innerText = `燕岗领排名: ` + get_power_rank(get_character_power()).toLocaleString('en-US');
     
 
 
@@ -3626,8 +3638,8 @@ function update_displayed_family() {
         document.getElementById("family_timer_real").innerText = Math.ceil(re_time / time_speed) + 's'
         document.getElementById("family_baby_cost").innerHTML = format_money(get_baby_cost(family_data.baby));
         document.getElementById("baby_scale1").innerHTML = family_data.baby>1e4?"新生儿超过1万，花费受到一重软上限限制(^1.5)<br>":""
-        document.getElementById("baby_scale2").innerHTML = family_data.baby>1e8?"新生儿超过1亿，花费受到二重软上限限制(^1.75)<br>":""
-        document.getElementById("baby_scale3").innerHTML = family_data.baby>1e12?"新生儿超过1兆，花费受到三重软上限限制(^2.0)<br>":""
+        document.getElementById("baby_scale2").innerHTML = family_data.baby>1e8?"新生儿超过1亿，花费受到二重软上限限制(^2.0)<br>":""
+        document.getElementById("baby_scale3").innerHTML = family_data.baby>1e12?"新生儿超过1兆，花费受到三重软上限限制(^2.5)<br>":""
     }
     else{
         family_locked.style.display='block';
@@ -3698,7 +3710,12 @@ function update_displayed_family_members(){
             //console.log('created',r);
         }
     }
-
+     family_data.cap ||= 27;
+    document.getElementById("family_next_realm").innerHTML =  `<span class="${realm_rate[family_data.cap+1][4]}"> ${realm_rate[family_data.cap+1][3]} </span>`
+    document.getElementById("family_cur_power").innerText = format_number(get_character_power());
+    document.getElementById("family_next_power").innerText = format_number(PNtIC[family_data.cap]);
+    document.getElementById("family_cur_rank").innerText = get_power_rank(get_character_power()).toLocaleString('en-US');
+    document.getElementById("family_next_rank").innerText = get_power_rank(PNtIC[family_data.cap]).toLocaleString('en-US');
 }//刷新成员情况
 
 
@@ -3809,7 +3826,7 @@ function create_new_bestiary_entry(enemy_name) {
     
     const enemy = enemy_templates[enemy_name];
     if(enemy == undefined){
-        enemy_killcount[enemy_name] = null;
+        delete enemy_killcount[enemy_name];
         console.warn("试图创建未定义的敌人 [" + enemy_name + "] 的怪物手册条目");
         return;
     }
@@ -4438,5 +4455,5 @@ export {
     clear_levelary_tooltip,
     update_displayed_family,
     update_displayed_family_members,
-    format_numberL,
+    format_numberL,get_character_power,
 }
