@@ -1763,7 +1763,7 @@ Multiplies AP with daggers by ${Math.round((skills["Daggers"].get_coefficient("m
     },
     get_effect_description: ()=> {
       let value = skills["GroundDigging"].current_level;
-      return `钩爪抓取半径 ${format_number(16+0.5*value)}px ,摆动速度 ${format_number(0.2+0.02*value)}次/s,回收速度提升${format_number(10*value)}%, 发现新宝藏耗时 ${format_number(3-0.1*value)}s.<br><br>${format_number(character.stats.full.agility)}敏捷 -> ${format_number((character.stats.full.agility/1e8)**(2/3))} px/s 钩爪速度`;
+      return `钩爪抓取半径 ${format_number(16+0.8*value)}px ,宝藏鱼生成间隔 ${format_number(-+0.125*value)}s, 摆动速度 ${format_number(0.2+0.02*value)}次/s,回收速度提升${format_number(10*value)}%, 发现新宝藏耗时 ${format_number(3-0.1*value)}s.<br><br>${format_number(character.stats.full.agility)}敏捷 -> ${format_number((character.stats.full.agility/1e8)**(2/3))} px/s 钩爪速度`;
     },
     
     });

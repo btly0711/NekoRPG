@@ -113,10 +113,11 @@ window.REALMS=[
 [26,"天空级八阶",3.15e8,900e8,2.4e16,"sky"],//4.5e 1500e
 [27,"天空级巅峰",8e8,1500e8,7.2e16,"sky"],//12.5e 3000e 
 [28,"天空级破限",17.5e8,3000e8,21.6e16,"sky"],//30e 6000e 
+
 [29,"云霄级一阶",45e8,6000e8,100e16,"cloudy"],//75e 1.2z
-[30,"云霄级二阶",150e8,28000e8,1200e16,"cloudy"],//225e 4z 
-[31,"云霄级三阶",375e8,4.5e12,7200e16,"cloudy"],//600e 8.5z 
-[32,"云霄级四阶·前期",600e8,7.5e12,28800e16,"cloudy"],//1200e 14z 
+[30,"云霄级二阶",150e8,28000e8,600e16,"cloudy"],//225e 4z 
+[31,"云霄级三阶",375e8,4.5e12,3600e16,"cloudy"],//600e 8.5z 
+[32,"云霄级四阶·前期",600e8,7.5e12,14400e16,"cloudy"],//1200e 14z 
 [33,"云霄级四阶·后期",800e8,10e12,170.1411e36,"cloudy"],//2000e 24z 
 //1500e 划分:600+900
 [34,"云霄级五阶·前期",1,1,1,"cloudy"],//下面没填数据
@@ -160,7 +161,7 @@ const flag_unlock_texts = {
 // special stats
 
 //infinity combat
-let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"B3":0,"ST":0,"S3":{live:false,sp:0,b1:8,b2:8,b3:0},"InP":0};
+let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"B3":0,"ST":0,"S3":{live:false,sp:0,b1:8,b2:8,b3:0},"InP":0,"DF":0};
 //A6:秘境
 //A7:赶往声律城
 //RM:不是现实机器。是Realm(领域)层数
@@ -171,6 +172,7 @@ let inf_combat = {"A6":{cur:6,cap:8},"A7":{cur:0}, "VP":{num:0}, "RM":0,"MP":0,"
 //B6:拯救商人数
 //ST:SaveTime(上次保存时间)
 //S3:第三幕最终战，live表示开战与否，sp灵魂之力,b1b2b3是怪物数。
+//DF:DiggingFilter,低阶宝藏鱼过滤器。
 
 //vis可见性，num数量,break/die0代表无记录 正值代表数目 负值代表经过天数，ali1~5代表五种家族态度
 let family_data = {
@@ -3543,7 +3545,15 @@ function use_item(item_key,stated = false){
         {
             log_message(`你的境界是 <span class=realm_${window.REALMS[character.xp.current_level][5]}>${window.REALMS[character.xp.current_level][1]}</span> ,超过了 <span class=realm_${window.REALMS[item_templates[id].realmcap][5]}>${window.REALMS[item_templates[id].realmcap][1]}</span> ,因此无法使用 ${item_templates[id].name}`, `gather_loot`);
             
-            remove_from_character_inventory([{item_key}]);
+            let over_key = "{\"id\":\"" + item_templates[id].name + "\"}";
+            let over_cnt = character.item_inventory_cnt(over_key);
+            if(stated && over_cnt >= 100){
+                
+                log_message(`为避免批量使用带来的潜在卡顿，已清空 ${item_templates[id].name} .`, `gather_loot`);
+            
+                remove_from_character_inventory([{item_key: over_key, item_count: over_cnt}]);
+            }
+            else remove_from_character_inventory([{item_key}]);
             return;
         }
     }
@@ -4015,7 +4025,7 @@ function load(save_data) {
     total_deaths = save_data.total_deaths || 0;
     total_crafting_attempts = save_data.total_crafting_attempts || 0;
     total_crafting_successes = save_data.total_crafting_successes || 0;
-    inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8},"A7":{cur:0},"VP":{num:0}};//无限秘境
+    inf_combat = save_data.inf_combat || {"A6":{cur:6,cap:8},"A7":{cur:0},"VP":{num:0},"DF":0};//无限秘境
     family_data = save_data.family_data || {cap:27};
     name_field.value = save_data.character.name;
     character.name = save_data.character.name;
@@ -5366,10 +5376,13 @@ function start_digging_minigame(){
     claw_angle = 0.00,angle_time = 0,claw_op = 1;//三角函数模式，每秒运行2pi(0.2+0.02*value)
     claw_length = 0.00,claw_x = 200,claw_y = 0;
     claw_fish = -1;
+    if(inf_combat.DF==undefined) inf_combat.DF = 0;
+    
+    document.getElementById("digging_filter").innerText=inf_combat.DF;
     const DiggingId = setInterval(() => {
         fish_cd -= frametime;
         if(fish_cd <= 0){
-            fish_cd += 3 - skills["GroundDigging"].current_level * 0.1;
+            fish_cd += 3 - skills["GroundDigging"].current_level * 0.125;
             summon_fish();
         }//生成鱼
         Object.keys(fish_list).forEach(sfish => {
@@ -5416,7 +5429,7 @@ function start_digging_minigame(){
             let caught_fish = -1;
             Object.keys(fish_list).forEach(skey => {
                 let sfish = fish_list[skey];
-                if(caught_fish == -1 && ((sfish.px - claw_x - Math.sin(-claw_angle) * 32)**2 + (sfish.py - claw_y - Math.cos(claw_angle) * 32)**2 < (16+0.5*skills["GroundDigging"].current_level)**2)){//距离判定(钳子中心点碰触)
+                if((sfish.tier >= inf_combat.DF) && caught_fish == -1 && ((sfish.px - claw_x - Math.sin(-claw_angle) * 32)**2 + (sfish.py - claw_y - Math.cos(claw_angle) * 32)**2 < (16+0.8*skills["GroundDigging"].current_level)**2)){//距离判定(钳子中心点碰触)
                     caught_fish = sfish.tier;
                     delete fish_list[skey];//鱼被抓走了！
                 }
@@ -5444,8 +5457,18 @@ function claw_use()
 {
     if(claw_op == 1) claw_op = 2;
 }
+function filter_up(){
+    if(inf_combat.DF<=2) inf_combat.DF += 1;
+    document.getElementById("digging_filter").innerText=inf_combat.DF;
+}
+function filter_down(){
+    if(inf_combat.DF>=1) inf_combat.DF -= 1;
+    document.getElementById("digging_filter").innerText=inf_combat.DF;
+}
 window.leave_digging = leave_digging;
 window.claw_use = claw_use;
+window.filter_up = filter_up;
+window.filter_down = filter_down;
 //地层钻探小游戏
 
 
@@ -6174,7 +6197,7 @@ let ali_data = [[],
 const PNtIC = [0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,
     0,0,0,0,0,0,0,0,0,
-    6660e8,18005e8,69500e8,41.4e12,116.6e12,322.5e12,720e12,2639e12,114514e12/*WIP */
+    6660e8,18005e8,69500e8,41.4e12,116.6e12,322.5e12,720e12,2639e12,170.11e36/*WIP */
     ];//PowerNeededtoIncreaseCap
     //考虑敏捷(*1.5),暴击攻速一类(*2)，和等级最弱vs横压一级的需求，需求暂定为攻防和五倍
     //云霄2：腐毒仙子，回春衰弱+20%，攻防和1110亿，最终结果为6660亿

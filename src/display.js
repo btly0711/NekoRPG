@@ -2826,6 +2826,7 @@ function update_displayed_stats() { //updates displayed stats
     update_displayed_health();
 }
 
+
 function update_stat_description(stat) {
     let target;
 

@@ -398,7 +398,7 @@ class Combat_zone {
                 }
                 const key_id2 = item_templates["血峰增幅器"].getInventoryKey();
                 let key_cnt2 = character.inventory[key_id2]?character.inventory[key_id2].count:0;
-                key_cnt2 = Math.min(key_cnt2,999025);
+                key_cnt2 = Math.min(key_cnt2,990025);
                 if(key_cnt2 != 0){
                     halo_mul *= 1 + 0.2 * (key_cnt2 ** 0.5);
                 }
@@ -5106,7 +5106,8 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 400e12,
-            locations: [{location: "毬毬山谷 - 3"},{location: "毬毬山谷 - 歧路"}],
+            locations: [{location: "毬毬山谷 - 3"}],
+            textlines: [{dialogue: "地层钻探", lines: ["dczt"]}],
         },
         unlock_text : "[纳可]击败了之前的20波敌人，也空出了一个可用秘境……前方的敌人更加强大。先在此处稍作休整吧。",
     });
@@ -5126,8 +5127,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 500e12,
-            locations: [{location: "毬毬山谷 - 4"}],
-            textlines: [{dialogue: "地层钻探", lines: ["dczt"]}],
+            locations: [{location: "毬毬山谷 - 4"},{location: "毬毬山谷 - 歧路"}],
         },
         unlock_text : "[纳可]一块玄铁方尖碑？！这里一定蕴含着超规格的感悟升级契机！",
     });
