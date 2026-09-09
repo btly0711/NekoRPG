@@ -5193,8 +5193,8 @@ function get_location_type_penalty(type, stage, stat) {
         connected_locations: [{location: locations["毬毬山谷"], custom_text: "回到毬毬山谷"}], 
         description: "圣荒领与兰陵领的交界地带，争斗不断，血流漂杵。这座主峰是【大青王】的领地。[V3.50前版本终点]",
         name: "鲜血峰", 
-        traders: [],
-        dialogues: [],
+        traders: ["声望商人·三代"],
+        dialogues: ["昊荒"],
         is_unlocked: false,
         bgm: 25,
     });//4-5
@@ -5298,6 +5298,7 @@ function get_location_type_penalty(type, stage, stat) {
         repeatable_reward: {
             xp: 1600e12,
             //locations: [{location: "鲜血峰 - X"}],
+            textlines: [{dialogue: "昊荒", lines: ["hh1"]}],
         },
     });
     locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 1"]}); 
@@ -5305,8 +5306,42 @@ function get_location_type_penalty(type, stage, stat) {
     locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 3"]}); 
     locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 4"]}); 
     locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 5"]}); 
-/* 
-*/
+    locations["鲜血峰 - X"] = new Challenge_zone({
+        description: "就算击败了他也没办法进入破败之域的。毕竟还有他的上司——大青王拦着。", 
+        enemy_count: 1, 
+        enemies_list: ["昊荒[BOSS]"],
+        enemy_group_size: [1,1],
+        enemy_stat_halo:0.30,
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "鲜血峰 - X",
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        repeatable_reward: {
+            locations: [{location: "鲜血峰 - EX"}],
+            flags: ["is_CBlood_unlocked"],
+        },
+    });
+    locations["鲜血峰 - EX"] = new Challenge_zone({
+        description: "[WIP]如果你在3.46把这玩意开挂打死了你的存档就废了。继续开一把解4-6吧。", 
+        enemy_count: 1, 
+        enemies_list: ["大青王尤斯纳[BOSS]"],
+        enemy_group_size: [1,1],
+        enemy_stat_halo:0.30,
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "鲜血峰 - EX",
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        repeatable_reward: {
+            locations: [{location: "破败之域"}],
+        },
+    });
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - X"]}); 
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - EX"]}); 
+
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 

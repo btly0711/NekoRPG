@@ -143,6 +143,7 @@ const global_flags = {
     is_family_enabled: false,
     is_evolve_studied:false,
     is_moonwheel_unlocked: false,
+    is_Cblood_unlocked: false,
     qx_status: 0,
     lq_status: 0,//0:离开 1:杀害 2:侵犯
     qz_percent: 0,//牵制-从入门到精通 获取的百分比
@@ -156,6 +157,7 @@ const flag_unlock_texts = {
     is_evolve_studied: "你掌握了【初等进化结晶】的凝聚方法！",
     is_moonwheel_unlocked: "你掌握了【银霜月轮】的合成方法！",
     is_family_enabled: "【家族系统】已激活！(右下角第三栏)",
+    is_Cblood_enabled: "你获取了【提炼精血】的能力！[WIP/将在V3.47更新]",
 }
 
 // special stats
@@ -1585,6 +1587,8 @@ function do_enemy_attack_loop(enemy_id, count, E_round = 1,isnew = false) {//E_r
     if(current_enemies[enemy_id].spec.includes(54)) Spec_S += "[生命限制]";
     if(current_enemies[enemy_id].spec.includes(55)) Spec_S += "[贪婪·改]";
     
+    if(current_enemies[enemy_id].spec.includes(70)) Spec_S += "[贪婪 ω]";
+    
     if(isnew) {
         cd_needed[enemy_id] = 1000 / current_enemies[enemy_id].stats.attack_speed;
         cur_cd[enemy_id] = 0;
@@ -1965,6 +1969,9 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
     if(attacker.spec.includes(55)){//贪婪·改
         spec_mul *= (1 - 0.01*(character.money/attacker.spec_value[55]));
         spec_mul = Math.max(spec_mul,0.2);
+    }
+    if(attacker.spec.includes(70)){//贪婪 ω
+        spec_mul /= (1 + (character.money/attacker.spec_value[70]) ** 0.5);
     }
 
     if(attacker.spec.includes(7)) spec_mul *= 1.5;//撕裂
@@ -3700,7 +3707,7 @@ function use_item(item_key,stated = false){
 
     if(E_value != 0)
     {
-        let E_modi = (C_value==2)?(0.2**(Math.max(0,character.xp.current_level-19))):(1);
+        let E_modi = (E_value==1e11)?(0.2**(Math.max(0,character.xp.current_level-19))):(1);
         add_xp_to_character(E_value*E_modi,true,false,C_value);
         log_message(`使用了 ${item_templates[id].name} , 获取了 ${format_number(E_value*E_modi)} 经验${E_modi==1?"":`(压级-${format_number((1-E_modi)*100)}%)`}`,"gather_loot");
         if(E_modi != 1){
@@ -4698,6 +4705,7 @@ function load(save_data) {
     update_displayed_family_members();
     document.getElementById("baby_born_num").value = family_data.baby;
     //重载家族
+    if(skills["GroundDigging"].total_xp >= 1) add_xp_to_skill({skill:skills["GroundDigging"],xp_to_add:0.01,should_info:false,use_bonus:false});
 
     update_displayed_effects();
     if(save_data["enemy_killcount"]) {
@@ -6678,7 +6686,7 @@ function update_quests(){
             else{
                 inf_combat.InP = inf_combat.InP || 0;
                 quests.innerHTML += `<b><span style="color:#ff11dd">信仰祭坛</span> </b> - 炼化影响力<img src='image/item/B9_soul.png'>，延后宝石软上限<br>`;
-                quests.innerHTML += "<div id = 'influ_consumer' class = 'influ_consume_button' onclick='influ_consume()'>炼化1%的纳家影响力</div>"
+                quests.innerHTML += "<div id = 'influ_consumer' class = 'influ_consume_button' onclick='influ_consume()'>炼化10%的纳家影响力</div>"
                 quests.innerHTML += `<span style="color:lightskyblue">已炼化的影响力:${format_number(inf_combat.InP)}<img src='image/item/B9_soul.png'></span> <br>(加成 : <span style="color:#ff11dd">+${(format_number(0.5*(Math.log10(inf_combat.InP+1) ** 1.5)))}</span>)<br><br><br><br>`;
                 //心境三重
             }
@@ -6728,8 +6736,8 @@ function coin_consume(){
 function influ_consume(){
     inf_combat.InP = inf_combat.InP || 0;
     
-    inf_combat.InP += family_data.influ * 0.01;
-    family_data.influ *= 0.99;
+    inf_combat.InP += family_data.influ * 0.1;
+    family_data.influ *= 0.9;
 
 
     document.getElementById("family_influ").innerHTML = format_number(family_data.influ);

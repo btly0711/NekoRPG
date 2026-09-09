@@ -206,7 +206,7 @@ function format_number(some_number)
     if(some_number <= 1e-8) return '0';
     let len=Math.floor(Math.log10(some_number)) + 1;//位数！
     if(some_number<1e-4) f_result += '0';
-    if(options.option_format_change && some_number > 1e6){
+    if(some_number > 1e53 || (options.option_format_change && some_number > 1e6)){
         len--;//exp
         some_number *= 0.1 ** len;
         f_result += some_number.toFixed(2);
@@ -2745,6 +2745,8 @@ function get_power_rank(cur_power){
     //
     return Math.round(Math.max(1,Math.pow(10,lgresult)));
 }
+window.get_character_power = get_character_power;
+window.get_power_rank = get_power_rank;
 
 
 function update_displayed_stats() { //updates displayed stats
@@ -3807,6 +3809,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [67, "血杀","#f55882","你曾为自己的使命流过多少血？<br>当<span style='color:#FFFF00'>角色生命多于敌人</span>时，敌人伤害<span style='color:#87CEFA'>增加一半</span>，反之<span style='color:#87CEFA'>减少一半</span>。"],
 [68, "散华·改", "#d08e53","奇妙的能力，感应血气并作用于攻击。<br>角色攻击的效力削弱（敌人生命/角色生命）的<span style='color:#87CEFA'>10%</span><br>。"],
 [69, "反击" , "#B30000", "战斗前，敌人将角色攻击的<span style='color:#87CEFA'>100%</span>加到自己的攻击上"],
+[70, "贪婪 ω", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>敌人的伤害除以<span style='color:#87CEFA'>(1 + √(角色金钱/${format_money(enemy.spec_value[70])}) )</span>`}],
 
 ];
 //超过25倍倍率的攻击暂时视为必中！

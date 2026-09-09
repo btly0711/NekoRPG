@@ -7,6 +7,27 @@
 .coin_moneyQa{color: rgb(255, 253, 119);-webkit-text-stroke: 0.5px plum;}
 .coin{font-weight: bold;}
 </style>>_
+<br>V3.46：昊荒&三代目商人![2026-09-09]
+<br>·【幻符灵阵】不会在<span class='realm_cloudy'><b>云霄级四阶</b></span>失效了。根本没人用它。
+<br>·加入了【声望商人·三代】。这次里面的物品被精心设计过：
+<br>·无法单凭购买进行任何制作。(除了赔本的药剂)
+<br>·为了防止来回买东西做<img src='image/item/red_tungsten_ingot.png'>红钨锭，【声望商人·二代】不再销售<img src='image/item/explode_powder.png'>爆燃粉末。
+<br>·如果影响力超过1亿，【声望商人·三代】将有20%概率刷新出<img src='image/item/blood_flower_king.png'>焚血花王。
+<br>·修复了<img src='image/item/evolve_1e16_shard.png'>中等进化结晶碎片获取的经验会被压级-99%的bug。
+<br>·除此以外，<img src='image/item/evolve_1e16_shard.png'>中等进化结晶碎片的使用境界上限提高到了<span class='realm_cloudy'>云霄级三阶</span>，获取经验1000兆->1京。
+<br>·现在加载完成会后检查【钻探】技能总经验是否>1,如果是则发放0.01经验(不计加成)以刷新技能来解决刷新后钩爪速度无法显示的问题。
+<br>·这次大概真的可以卖峰大哥了。通过封装函数避免了在index里面访问character的报错情况。
+<br>·除此以外还加入了排名不足的动态提示。
+<br>·加入了<span class="realm_cloudy">昊荒</span>的剧情。交代了一下他们为什么打架，某种意义上暗示了用<img src='image/item/biohill_restricter.png'>血峰限制器降低难度。
+<br>·加入了<span class="realm_cloudy">昊荒</span>的战斗。给了一个【贪婪 ω】特殊属性，具体效果自己看。
+<br>·加入了【鲜血峰 - EX】，目前还只是一个占位符。里面塞了纳家待从图片，血防敏99999极的【准微尘级】大青王尤斯纳。
+<br>·之所以攻击不是99999极是因为那样就给你们皮肤刷爽了。
+<br>·当需要format的数据超过1e53，会强制使用【科学计数法】，来避免出现undefined单位。
+<br>·通过了【鲜血峰 - X】之后会解锁一个is_CBlood_unlocked的global-flag.
+<br>·暂时没用，但是等接下来V3.47就可以一把抓住顷刻炼化敌人了。
+<br>·因为很多人提出需求，所以纳家影响力单次点击炼化量:1% -> 10%.
+<br>
+<br>
 <br>V3.45：过渡性版本~六项调整[2026-09-07]
 <br>·如果境界超过消耗品的境界上限且批量使用超过100，会直接清空并提示。(这是为了防止卡顿……)
 <br>·【地层钻探】的钩爪抓取判定中等级因子提高了，现在20级的判定半径是0级的双倍。

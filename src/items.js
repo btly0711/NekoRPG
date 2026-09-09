@@ -2550,7 +2550,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["幻符灵阵"] = new Props({
         name: "幻符灵阵",
         id: "幻符灵阵",
-        description: "收拢月轮水晶，凝聚力量，蓄力一击。攻击的广度收窄许多，但深度却足以穿透最坚硬的天空级金属。<br><span class='realm_cloudy'><b>云霄级四阶</b></span>失效!", 
+        description: "收拢月轮水晶，凝聚力量，蓄力一击。攻击的广度收窄许多，但深度却足以穿透最坚硬的天空级金属。", 
         value: 24.16e15,
         stats: {
             attack_power: {
@@ -6449,10 +6449,10 @@ item_templates["Twist liek a snek"] = new Book({
         name: "中等进化结晶碎片", 
         description: "天地间充沛的能量滋养诞生的晶体碎片，接触后能够化作海量的经验为人所用。增加1000兆经验值，或等待【第四幕】合成【中等进化结晶】突破云霄级。", 
         value: 3e15,
-        E_value: 1000e12,
+        E_value: 1e16,
         effects:[],
         C_value: 2,
-        realmcap:28,
+        realmcap:31,
         image: "image/item/evolve_1e16_shard.png",
     });
     item_templates["一捆高能凝胶"] = new Loot({
@@ -6712,7 +6712,7 @@ item_templates["Twist liek a snek"] = new Book({
         value: 72e15,
         image: "image/item/ice_bone.png",
     });
-    //4-5 价格max=144.
+    //4-5 价格max=144. C4核心 灰暗军魂 血凝晶 亮青碎片 鲜红碎片
     item_templates["C4·能量核心"] = new Loot({
         name: "C4·能量核心", 
         description: "红温了……看起来距离爆炸不远了哇。领域级之后经过坍缩，意识和能量并入原核，就无法再获取这些能量核心了。", 

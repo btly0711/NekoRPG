@@ -9819,6 +9819,32 @@ C4 225851433717/365435296162/591286729879
         loot_list: [
         ],
     });
+    enemy_templates["昊荒[BOSS]"] = new Enemy({
+        name: "昊荒[BOSS]", 
+        description: "在圣荒城的这些年，他磨练出了如铁的心性。面对曾经让自己毫无抵抗之力的金钱，他也只会稍稍放水。才不是放走了纳可他就会倾家荡产。", 
+        xp_value: 956722026041, 
+        rank: 4598,
+        image: "image/boss/B4501.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶</b></span>",
+        spec: [20,51,70],
+        spec_value:{70:100000e15},
+        stats: {health: 7396e12, attack: 3.481e12, agility:9900e8, attack_speed: 2.0, defense:2890e8}, //血量200x
+        loot_list: [
+            //WIP:精血功法
+        ],
+    });
+    enemy_templates["大青王尤斯纳[BOSS]"] = new Enemy({
+        name: "大青王尤斯纳[BOSS]", 
+        description: "[WIP]还没做好。你最好不要打死它。", 
+        xp_value: 1, 
+        rank: 4599,
+        image: "image/boss/B1101.png",
+        realm: "<span class=realm_world><b>准 微 尘 级</b></span>",
+        spec: [],
+        stats: {health: 99999e48, attack: 1, agility:99999e48, attack_speed: 1.0, defense:99999e48}, //血量200x
+        loot_list: [//184.9e12*40
+        ],
+    });
 /*
 
 B8 11'3490'3170           /18'3631'1903           exp
