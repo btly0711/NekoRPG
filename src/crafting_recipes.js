@@ -1127,6 +1127,18 @@ function get_recipe_xp_value({category, subcategory, recipe_id, material_count, 
         recipe_skill: "Crafting",
     });
     
+    crafting_recipes.items4["血峰之心"] = new ItemRecipe({
+        name: "血峰之心",
+        id: "血峰之心",
+        recipe_type: "items",
+        materials: [{material_id: "幻境之心·材", count: 1},{material_id:"血峰增幅器",count:10},{material_id:"血峰限制器",count:10},{material_id:"中等进化结晶",count:1},{material_id:"血钻锭",count:99},{material_id:"焚血花王",count:1},{material_id:"至纯精血",count:5}],
+        result: {result_id: "血峰之心", count: 1},
+        success_chance: [0.5,1],
+        recipe_level: [1,1],
+        Q_able: 300,
+        recipe_skill: "Crafting",
+    });
+    
 })();
 //熔炼配方
 

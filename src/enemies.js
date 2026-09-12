@@ -9835,14 +9835,14 @@ C4 225851433717/365435296162/591286729879
     });
     enemy_templates["大青王尤斯纳[BOSS]"] = new Enemy({
         name: "大青王尤斯纳[BOSS]", 
-        description: "[WIP]还没做好。你最好不要打死它。", 
-        xp_value: 1, 
+        description: "注意【赌之神帝】的力量不会让你的血量瞬间回满。想想有什么回血手段是可以等比例增长的呢~", 
+        xp_value: 27777890035288, //C7+ = C8--
         rank: 4599,
-        image: "image/boss/B1101.png",
-        realm: "<span class=realm_world><b>准 微 尘 级</b></span>",
-        spec: [],
-        stats: {health: 99999e48, attack: 1, agility:99999e48, attack_speed: 1.0, defense:99999e48}, //血量200x
-        loot_list: [//184.9e12*40
+        image: "image/boss/B4502.png",
+        realm: "<span class=realm_world><b>云霄级八阶 --</b></span>",
+        spec: [23,62,71],
+        stats: {health: 132000e12, attack: 56e12, agility:16e12, attack_speed: 1.2, defense:14e12}, //血量200x
+        loot_list: [//3300e12*20
         ],
     });
 /*

@@ -1208,6 +1208,7 @@ i {
 	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke: 0.5px #ff8080;
 }
 
 .coin_consume_button {
@@ -1304,12 +1305,14 @@ i {
 	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke: 0.5px #80ff80;
 }
 .rarity_flawless{
 	background: linear-gradient(to bottom right,red,white,red);
 	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke: 0.5px #ff8080;
 }
 
 .pc_right {

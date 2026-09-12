@@ -5324,7 +5324,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
     });
     locations["鲜血峰 - EX"] = new Challenge_zone({
-        description: "[WIP]如果你在3.46把这玩意开挂打死了你的存档就废了。继续开一把解4-6吧。", 
+        description: "现在才是真正的战斗！这股力量不属于你……但即使如此，练练技能还是有用的。", 
         enemy_count: 1, 
         enemies_list: ["大青王尤斯纳[BOSS]"],
         enemy_group_size: [1,1],
@@ -5341,6 +5341,17 @@ function get_location_type_penalty(type, stage, stat) {
     });
     locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - X"]}); 
     locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - EX"]}); 
+
+    locations["破败之域"] = new Location({ 
+        connected_locations: [{location: locations["鲜血峰"], custom_text: "回到鲜血峰"}], 
+        description: "隐藏在三领交界处地下的一处大型秘境。当地唯一不禁止的【虔心】体系炼到天空级巅峰就会化作上好的修行资粮，但也正因为此，此地才能培养起大批外来云霄级强者。[V3.60前版本终点]",
+        name: "破败之域", 
+        traders: [],
+        dialogues: [],
+        is_unlocked: false,
+        bgm: 26,
+    });//4-6
+    locations["鲜血峰"].connected_locations.push({location: locations["破败之域"]});
 
 
     locations["Nearby cave"] = new Location({ 

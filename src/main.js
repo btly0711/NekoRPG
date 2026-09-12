@@ -157,7 +157,7 @@ const flag_unlock_texts = {
     is_evolve_studied: "你掌握了【初等进化结晶】的凝聚方法！",
     is_moonwheel_unlocked: "你掌握了【银霜月轮】的合成方法！",
     is_family_enabled: "【家族系统】已激活！(右下角第三栏)",
-    is_Cblood_enabled: "你获取了【提炼精血】的能力！[WIP/将在V3.47更新]",
+    is_Cblood_enabled: "你获取了【提炼精血】的能力！(使用【血杀】姿态战斗来提炼)",
 }
 
 // special stats
@@ -1987,6 +1987,13 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
         }
     }//血杀
     
+    if(attacker.spec.includes(71)){
+        if(active_effects["神帝之力"]==undefined){
+            spec_mul = 0;
+            spec_hint += "[神帝·护盾]"
+        }
+        active_effects["神帝之力"] = new ActiveEffect({...effect_templates["神帝之力"], duration:5});
+    }//神帝之力
 
     let E_atk_mul_f = E_atk_mul;
     if(attacker.spec.includes(42) && E_atk_mul != 1)
@@ -2691,11 +2698,24 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
         }
         if(current_stance == 'SR_Blood'){
             let extract_blood = skills["ReflectStarSkyRainbow"].current_level * 0.001 + 0.01;//吸血倍率
-            let pre_health = character.stats.full.health
+            let pre_health = character.stats.full.health;
+            let over_recover = 0;
             character.stats.full.health += damage_dealt * extract_blood;
+            over_recover = character.stats.full.health;
             character.stats.full.health = Math.min(character.stats.full.health,character.stats.full.max_health);
-
+            over_recover -= character.stats.full.health;
             log_message(`${character.name} 恢复了 ${format_number(character.stats.full.health - pre_health)} 点血量[吸血${(1+skills["ReflectStarSkyRainbow"].current_level*0.1).toFixed(1)}%]`, "hero_regened");
+            if(global_flags["is_Cblood_unlocked"] && (over_recover != 0)){//精血解锁>存在超疗
+                log_message(`溢出的 ${format_number(over_recover)} 恢复量 -> ${format_numberL(over_recover/1e16)} 精血获取率`, "hero_regened");
+                over_recover /= 1e16;
+                let CBlood = Math.floor(over_recover);
+                over_recover -= CBlood;
+                if(Math.random()<over_recover) CBlood += 1;
+                if(CBlood != 0){
+                    log_message(`提炼了 ${CBlood} 份【至纯精血】！`, "hero_regened");
+                    add_to_character_inventory([{ "item": getItem(item_templates["至纯精血"]), "count": Cblood }]);
+                }
+            }
         }
 
         if(target.spec.includes(32)){
@@ -5473,10 +5493,26 @@ function filter_down(){
     if(inf_combat.DF>=1) inf_combat.DF -= 1;
     document.getElementById("digging_filter").innerText=inf_combat.DF;
 }
+
+function digging_t(){
+    if(character.equipment.special?.name == "幻境之心")
+    {
+        character.equipment.special = null;
+        add_to_character_inventory([{item: item_templates["幻境之心·材"], count: 1}]);
+        update_displayed_equipment(); 
+        character.stats.add_all_equipment_bonus();
+        update_displayed_stats();
+        log_message("你的【幻境之心】已经被转化为【幻境之心·材】，","combat_loot");
+        log_message("可以继续升级为【血峰之心】。","combat_loot");
+    }
+    else log_message("请将【幻境之心】佩戴后再次尝试！`","combat_looot");
+    //借用代码……
+}
 window.leave_digging = leave_digging;
 window.claw_use = claw_use;
 window.filter_up = filter_up;
 window.filter_down = filter_down;
+window.digging_t = digging_t;
 //地层钻探小游戏
 
 
@@ -6231,6 +6267,11 @@ function update_family_daily(){
         }
     }//暴毙计算
     while(get_character_power()>=PNtIC[family_data.cap]){
+        if(active_effects["神帝之力"]!=undefined){
+            log_message(`携带临时神帝之力的 ${character.name}，再强大也是五秒真女人。`,"combat_loot");
+            log_message(`家族系统的 <span class="${realm_rate[family_data.cap+1][4]}"> ${realm_rate[family_data.cap+1][3]} </span> 不予开放！`,"combat_loot");
+            break;        
+        }
         log_message(`因 ${character.name} 的战力超过了 ${format_number(PNtIC[family_data.cap])} , 家族系统开放了 <span class="${realm_rate[family_data.cap+1][4]}"> ${realm_rate[family_data.cap+1][3]} </span>!`,"combat_loot")
         family_data.cap += 1;
     }

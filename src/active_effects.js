@@ -510,4 +510,11 @@ effect_templates["压制 C6"] = new ActiveEffect({
     name: "压制 C6",
     effects: {stats: {}}
 });
+effect_templates["神帝之力"] = new ActiveEffect({
+    name: "神帝之力",
+    effects: {stats: {
+            attack_power:{multiplier:100.81},
+            defense:{multiplier:100.81},
+            agility:{multiplier:100.81},
+            max_health:{multiplier:100.81},}}});
 export {effect_templates, ActiveEffect};

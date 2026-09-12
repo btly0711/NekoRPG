@@ -2996,6 +2996,26 @@ item_templates["Twist liek a snek"] = new Book({
             }
         }
     });
+    item_templates["血峰之心"] = new Special({
+        name: "血峰之心",
+        id: "血峰之心",
+        description: "欲戴皇冠，必承其重。下一次进化必将涤尽污血，去除杂质！", 
+        value: 166700e15,
+        stats: {
+            attack_power: {
+                multiplier: 1.15,
+            },
+            defense: {
+                multiplier: 1.15,
+            },
+            agility: {
+                multiplier: 1.15,
+            },
+            max_health: {
+                multiplier: 1.15,
+            }
+        }
+    });
 
 })();
 //usables:
@@ -5266,6 +5286,14 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/iceland_heart.png",
     });
+    item_templates["幻境之心·材"] = new Material({
+        id: "幻境之心·材",
+        name: "幻境之心·材", 
+        description: "无法继续被佩戴，只是用于合成【血峰之心】的临时材料。", 
+        value: 100e15,
+        material_type: "metal",
+        image: "image/item/fantasy_heart.png",
+    });
     item_templates["晶化合金锭"] = new Material({
         id: "晶化合金锭",
         name: "晶化合金锭", 
@@ -6289,6 +6317,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "在荒兽森林的战斗中，积累的战斗经验和突破感悟。(已弃用/现版本无法获取/请去找心之石像白嫖一颗突破)", 
         value: 0,
         image: "image/item/A1_break_trance.png",
+    });
+    item_templates["至纯精血"] = new Loot({
+        name: "至纯精血", 
+        description: "利用鲜血峰秘法与映星天彩吸取的精血。纯度极高，蕴含着满溢的杀气与一丝兽神血。未来可以辅助吸收血洛晶。(价格是0是因为这种邪修物品商人不敢收)", 
+        value: 0,
+        image: "image/item/C4_blood_essenca.png",
     });
     item_templates["凝实荒兽森林感悟"] = new  UsableItem({
         name: "凝实荒兽森林感悟", 

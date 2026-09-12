@@ -706,6 +706,7 @@
                             <div id = "digging_info_div">
                                 <b>= 地层钻探 =</b> 瞄准宝藏鱼,点击纳可驱动钩爪,抓上来!<br>
                                 <span style="color:chartreuse">忽略低阶宝藏鱼 : <span id="digging_filter">0</span> 阶↓ <span onclick="filter_down()">[-]</span><span onclick="filter_up()">[+]</span></span>
+                                <span style="background: linear-gradient(to bottom right,cyan,lime,yellow);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;" onclick="digging_t()"><b>[将幻境之心转化为材料版]</b></span><br>
                                 <span class="money_button" onclick = "leave_digging()"><b>[离开]</b></span>
                             </div>
                             <div id = "digging_neko_div">
@@ -1728,7 +1729,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V3.46";
+                document.getElementById("changelog_button").children[0].innerHTML = "V3.47";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
