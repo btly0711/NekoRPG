@@ -6322,7 +6322,7 @@ item_templates["Twist liek a snek"] = new Book({
         name: "至纯精血", 
         description: "利用鲜血峰秘法与映星天彩吸取的精血。纯度极高，蕴含着满溢的杀气与一丝兽神血。未来可以辅助吸收血洛晶。(价格是0是因为这种邪修物品商人不敢收)", 
         value: 0,
-        image: "image/item/C4_blood_essenca.png",
+        image: "image/item/C4_blood_essence.png",
     });
     item_templates["凝实荒兽森林感悟"] = new  UsableItem({
         name: "凝实荒兽森林感悟", 

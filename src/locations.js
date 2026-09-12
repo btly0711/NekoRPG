@@ -5328,7 +5328,7 @@ function get_location_type_penalty(type, stage, stat) {
         enemy_count: 1, 
         enemies_list: ["大青王尤斯纳[BOSS]"],
         enemy_group_size: [1,1],
-        enemy_stat_halo:0.30,
+        enemy_stat_halo:1.00,
         types: [],
         is_unlocked: false, 
         is_challenge: true,
