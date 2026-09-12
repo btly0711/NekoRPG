@@ -2712,7 +2712,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             character.stats.full.health = Math.min(character.stats.full.health,character.stats.full.max_health);
             over_recover -= character.stats.full.health;
             log_message(`${character.name} 恢复了 ${format_number(character.stats.full.health - pre_health)} 点血量[吸血${(1+skills["ReflectStarSkyRainbow"].current_level*0.1).toFixed(1)}%]`, "hero_regened");
-            console.log(over_recover);
+            //console.log(over_recover);
             if(global_flags["is_Cblood_unlocked"] && (over_recover != 0)){//精血解锁>存在超疗
                 log_message(`溢出的 ${format_number(over_recover)} 恢复量 -> ${format_numberL(over_recover/1e14)} 精血获取率`, "hero_regened");
                 over_recover /= 1e14;
@@ -2721,7 +2721,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
                 if(Math.random()<over_recover) CBlood += 1;
                 if(CBlood != 0){
                     log_message(`提炼了 ${CBlood} 份【至纯精血】！`, "hero_regened");
-                    add_to_character_inventory([{ "item": getItem(item_templates["至纯精血"]), "count": Cblood }]);
+                    add_to_character_inventory([{ "item": getItem(item_templates["至纯精血"]), "count": CBlood }]);
                 }
             }
         }
