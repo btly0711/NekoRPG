@@ -1822,7 +1822,6 @@ function create_location_choices({location, category, add_icons = true, is_comba
                         action.innerHTML = `<span style="color:#ffc0c0"><i class="material-icons">warning_amber</i>  ` + "进入 [" + location.connected_locations[i].location.name+"]</span>";
                     }
                     
-                    active_effects["神帝之力"] = undefined;
                 }
             
                 action.classList.add("action_travel");
