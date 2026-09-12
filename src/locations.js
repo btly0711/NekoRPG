@@ -5320,7 +5320,7 @@ function get_location_type_penalty(type, stage, stat) {
         parent_location: locations["鲜血峰"],
         repeatable_reward: {
             locations: [{location: "鲜血峰 - EX"}],
-            flags: ["is_CBlood_unlocked"],
+            flags: ["is_Cblood_unlocked"],
         },
     });
     locations["鲜血峰 - EX"] = new Challenge_zone({
@@ -5347,7 +5347,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "隐藏在三领交界处地下的一处大型秘境。当地唯一不禁止的【虔心】体系炼到天空级巅峰就会化作上好的修行资粮，但也正因为此，此地才能培养起大批外来云霄级强者。[V3.60前版本终点]",
         name: "破败之域", 
         traders: [],
-        dialogues: [],
+        dialogues: ["精血石碑"],//WIP:在3.514删除
         is_unlocked: false,
         bgm: 26,
     });//4-6

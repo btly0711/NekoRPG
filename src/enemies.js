@@ -9830,7 +9830,6 @@ C4 225851433717/365435296162/591286729879
         spec_value:{70:100000e15},
         stats: {health: 7396e12, attack: 3.481e12, agility:9900e8, attack_speed: 2.0, defense:2890e8}, //血量200x
         loot_list: [
-            //WIP:精血功法
         ],
     });
     enemy_templates["大青王尤斯纳[BOSS]"] = new Enemy({

@@ -3273,6 +3273,22 @@ class Textline {
     });
 
 
+    dialogues["精血石碑"] = new Dialogue({
+        name: "精血石碑",
+        starting_text: "补票【精血提炼】的功法",
+        textlines: {
+            "jxsb": new Textline({ 
+                is_unlocked: true,
+                name: "精血提炼/点击就送！！(在3.51将被移除)",
+                text: "...",
+                unlocks: {
+                    flags:["is_Cblood_unlocked"],
+                },
+                
+                locks_lines: ["jsxb"],
+            }),
+        }
+    });//WIP 3.53移除
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",
