@@ -288,7 +288,7 @@ stances["SR_Double"] = new Stance({
 stances["SR_Blood"] = new Stance({
     name: "映星天彩·血杀",
     id: "映星天彩·血杀",
-    description: "附带有吸血效果的秘法。吸血倍率为1%+0.1%x【映星天彩】等级，注意只能吸到实际存在的血——让敌人倒欠你一管血并不能增加你的恢复量，如果【精血炼化】被解锁，超过自身生命上限的治疗量每100兆点生命值就会提供1%获取【至纯精血】的概率",
+    description: "附带有吸血效果的秘法。吸血倍率为1%+0.1%x【映星天彩】等级，注意只能吸到实际存在的血——让敌人倒欠你一管血并不能增加你的恢复量，如果【精血炼化】被解锁，超过自身生命上限的治疗量每100亿点生命值就会提供0.01%获取【至纯精血】的概率",
     related_skill: "ReflectStarSkyRainbow",
     stat_multipliers: {
         attack_speed: 1.10,

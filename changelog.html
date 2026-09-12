@@ -15,7 +15,7 @@
 <br>·加入了特殊属性【神帝之力】。大概作用就是被打中的时候给五秒超强力buff，如果身上没buff免疫一次攻击。
 <br>·特殊属性【神帝之力】在切换区域时自动消失，且携带此效果时家族新境界无法解禁。
 <br>·加入了物品【<img src="image/item/C4_blood_essence.png">至纯精血】，在精血解锁提示和映星天彩·血杀中都描述了获取方法。
-<br>·获取量=超疗/1京。简单易懂。特别注意用于恢复已损失血量的部分不算超疗。
+<br>·获取量=超疗/100兆。简单易懂。特别注意用于恢复已损失血量的部分不算超疗。
 <br>·加入了幻境之心转换器。在【地层钻探】内。
 <br>·加入了【血峰之心】。作用是全属性*1.15.
 <br>·其他材料都是本来就有的。需要的物品包括<img src="image/item/C4_blood_essence.png">至纯精血*5，<img src="image/item/fantasy_heart.png">幻境之心·材*1，<img src="image/item/blood_flower_king.png">焚血花王*1，<img src="image/item/evolve_1e17.png">中等进化结晶*1，<img src='image/item/biohill_restricter.png'>血峰限制器*10，<img src='image/item/biohill_enhancer.png'>血峰增幅器*10，<img src='image/item/blomond_ingot.png'>血钻锭*99。
@@ -26,6 +26,9 @@
 <br>·修复了清除【神帝之力】时不会重算属性导致虐杀小怪或解云8/9的bug。
 <br>·修复了昊荒解锁is_CBlood_unlocked，而判定的是is_Cblood_unlocked的bug。
 <br>·因为boss不可再生，【破败之域】放入了临时NPC【精血石碑】。请在3.60前解了……
+<br>·修复了解锁【精血炼化】侧边提示undefined的问题。因为那个提示绑定的是is_Cblood_enabled.
+<br>·修复了超疗会堵塞战斗进程的bug，因为调用了main.js中未定义的format_numberL方法。
+<br>·因为实测超疗弄1兆都难，血峰之心需要五个<img src="image/item/C4_blood_essence.png">至纯精血，所以<img src="image/item/C4_blood_essence.png">至纯精血获取概率提升了100倍。
 <br>
 <br>
 <br>V3.46：昊荒&三代目商人![2026-09-09]

@@ -15,7 +15,7 @@ import { character,
          update_character_stats, get_total_skill_level,
          get_skill_xp_gain } from "./character.js";
 import { activities } from "./activities.js";
-import { end_activity_animation, 
+import { end_activity_animation, format_numberL,
          update_displayed_character_inventory, update_displayed_trader_inventory, sort_displayed_inventory, sort_displayed_skills,
          update_displayed_money, log_message,
          update_displayed_enemies, update_displayed_health_of_enemies,
@@ -157,7 +157,7 @@ const flag_unlock_texts = {
     is_evolve_studied: "你掌握了【初等进化结晶】的凝聚方法！",
     is_moonwheel_unlocked: "你掌握了【银霜月轮】的合成方法！",
     is_family_enabled: "【家族系统】已激活！(右下角第三栏)",
-    is_Cblood_enabled: "你获取了【提炼精血】的能力！(使用【血杀】姿态战斗来提炼)",
+    is_Cblood_unlocked: "你获取了【提炼精血】的能力！(使用【血杀】姿态战斗来提炼)",
 }
 
 // special stats
@@ -2712,9 +2712,10 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             character.stats.full.health = Math.min(character.stats.full.health,character.stats.full.max_health);
             over_recover -= character.stats.full.health;
             log_message(`${character.name} 恢复了 ${format_number(character.stats.full.health - pre_health)} 点血量[吸血${(1+skills["ReflectStarSkyRainbow"].current_level*0.1).toFixed(1)}%]`, "hero_regened");
+            console.log(over_recover);
             if(global_flags["is_Cblood_unlocked"] && (over_recover != 0)){//精血解锁>存在超疗
-                log_message(`溢出的 ${format_number(over_recover)} 恢复量 -> ${format_numberL(over_recover/1e16)} 精血获取率`, "hero_regened");
-                over_recover /= 1e16;
+                log_message(`溢出的 ${format_number(over_recover)} 恢复量 -> ${format_numberL(over_recover/1e14)} 精血获取率`, "hero_regened");
+                over_recover /= 1e14;
                 let CBlood = Math.floor(over_recover);
                 over_recover -= CBlood;
                 if(Math.random()<over_recover) CBlood += 1;
