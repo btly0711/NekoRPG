@@ -456,7 +456,11 @@ function change_location(location_name) {
     if(!location) {
         throw `No such location as "${location_name}"`;
     }
-    if(active_effects["神帝之力"]!=undefined) delete active_effects["神帝之力"]
+    if(active_effects["神帝之力"]!=undefined){
+        delete active_effects["神帝之力"];
+        
+        character.stats.add_active_effect_bonus();
+    }
 
     if(typeof current_location !== "undefined" && current_location.name !== location.name ) { 
         //so it's not called when initializing the location on page load or on reloading current location (due to new unlocks)
@@ -1994,6 +1998,8 @@ function do_enemy_combat_action(enemy_id,spec_hint,E_atk_mul = 1,E_dmg_mul = 1) 
             spec_hint += "[神帝·护盾]"
         }
         active_effects["神帝之力"] = new ActiveEffect({...effect_templates["神帝之力"], duration:5});
+        
+        character.stats.add_active_effect_bonus();
     }//神帝之力
 
     let E_atk_mul_f = E_atk_mul;
