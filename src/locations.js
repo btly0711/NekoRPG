@@ -5376,7 +5376,7 @@ function get_location_type_penalty(type, stage, stat) {
     locations["破败之域 - 2"] = new Combat_zone({
         description: "三领之间的三不管秘境。各种黑暗系修行法门四处流传：它们的修炼者没有未来。但如果不修行这些，这些修炼者连现在都未必能拥有。", 
         enemy_count: 20, 
-        enemies_list: ["欺诈面具人","破败守魂人","蒙面将军","破败堕落法师","破败牛头"],
+        enemies_list: ["欺诈面具人","破败狩魂人","蒙面将军","破败堕落法师","破败牛头"],
         enemy_group_size: [4,4],
         is_unlocked: false, 
         types: [],
@@ -5435,11 +5435,6 @@ function get_location_type_penalty(type, stage, stat) {
     locations["破败之域"].connected_locations.push({location: locations["破败之域 - 3"]}); 
     locations["破败之域"].connected_locations.push({location: locations["破败之域 - 4"]}); 
     /*
-    
-    ["红白闪","暗茸茸","银白穿心之刃","暗茸茸战士","银茸茸聚落"]
-    ["欺诈面具人","破败守魂人","蒙面将军","破败堕落法师","破败牛头"]
-    ["基岩","童面狮心匪","破败石人王","深渊幽灵","魔灵僵尸茸茸"]
-    ["破败混乱骑士","狂妒的勇士","破败铁卫C5","破败铁卫C5","破败刽子手","破败游荡魔"]
     
     */
 
