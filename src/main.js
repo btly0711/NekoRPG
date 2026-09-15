@@ -2536,6 +2536,7 @@ function do_character_combat_action({target, attack_power}, target_num,c_atk_mul
             total_kills++;
             if(target.spec.includes(61)){total_kills += 9;}
             if(target.spec.includes(64)){total_kills += 99;}
+            if(target.spec.includes(72)){total_kills += 9999;}
 
             target.stats.health = 0; //to not go negative on displayed value
         

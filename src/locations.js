@@ -5347,12 +5347,101 @@ function get_location_type_penalty(type, stage, stat) {
         description: "隐藏在三领交界处地下的一处大型秘境。当地唯一不禁止的【虔心】体系炼到天空级巅峰就会化作上好的修行资粮，但也正因为此，此地才能培养起大批外来云霄级强者。[V3.60前版本终点]",
         name: "破败之域", 
         traders: [],
-        dialogues: ["精血石碑"],//WIP:在3.514删除
+        dialogues: [/*"精血石碑"*/],
         is_unlocked: false,
         bgm: 26,
     });//4-6
     locations["鲜血峰"].connected_locations.push({location: locations["破败之域"]});
 
+
+    locations["破败之域 - 1"] = new Combat_zone({
+        description: "三领之间的三不管秘境。即使天空巅峰强者都需要组成族群方能生存。", 
+        enemy_count: 20, 
+        enemies_list: ["红白闪","暗茸茸","银白穿心之刃","暗茸茸战士","银茸茸聚落"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        types: [],
+        name: "破败之域 - 1",
+        rank:351, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 6000e12,
+        },
+        repeatable_reward: {
+            xp: 2000e12,
+            locations: [{location: "破败之域 - 2"}],
+        },
+    });
+    locations["破败之域 - 2"] = new Combat_zone({
+        description: "三领之间的三不管秘境。各种黑暗系修行法门四处流传：它们的修炼者没有未来。但如果不修行这些，这些修炼者连现在都未必能拥有。", 
+        enemy_count: 20, 
+        enemies_list: ["欺诈面具人","破败守魂人","蒙面将军","破败堕落法师","破败牛头"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "破败之域 - 2",
+        rank:352, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 9000e12,
+        },
+        repeatable_reward: {
+            xp: 3000e12,
+            locations: [{location: "破败之域 - 3"}],
+        },
+    });
+    locations["破败之域 - 3"] = new Combat_zone({
+        description: "三领之间的三不管秘境。常年乱战逸散的能量为这里的几乎万物都赋予了灵智……又反过来加强了乱战的规模。。", 
+        enemy_count: 20, 
+        enemies_list: ["基岩","童面狮心匪","破败石人王","深渊幽灵","魔灵僵尸茸茸"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "破败之域 - 3",
+        rank:353, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 12000e12,
+        },
+        repeatable_reward: {
+            xp: 4000e12,
+            locations: [{location: "破败之域 - 4"}],
+        },
+    });
+    locations["破败之域 - 4"] = new Combat_zone({
+        description: "三领之间的三不管秘境。机械，荒兽，魔族，人族……这些就是这片秘境的中坚力量。云霄级六阶以上强者已经不屑亲自争斗，也因此纳可才不会面对无法逃脱的危机。", 
+        enemy_count: 20, 
+        enemies_list: ["破败混乱骑士","狂妒的勇士","破败铁卫C5","破败铁卫C5","破败刽子手","破败游荡魔"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "破败之域 - 4",
+        rank:354, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 15000e12,
+        },
+        repeatable_reward: {
+            xp: 5000e12,
+            //locations: [{location: "破败之域 - X"}],
+        },
+    });
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 1"]}); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 2"]}); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 3"]}); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 4"]}); 
+    /*
+    
+    ["红白闪","暗茸茸","银白穿心之刃","暗茸茸战士","银茸茸聚落"]
+    ["欺诈面具人","破败守魂人","蒙面将军","破败堕落法师","破败牛头"]
+    ["基岩","童面狮心匪","破败石人王","深渊幽灵","魔灵僵尸茸茸"]
+    ["破败混乱骑士","狂妒的勇士","破败铁卫C5","破败铁卫C5","破败刽子手","破败游荡魔"]
+    
+    */
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 

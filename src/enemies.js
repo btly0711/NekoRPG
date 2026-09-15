@@ -8786,27 +8786,298 @@ class Enemy {
             //2.8U
         ],
     });
+    //4-6
+    
+    enemy_templates["暗茸茸"] = new Enemy({
+        name: "暗茸茸",
+        xp_value: 591286729879, 
+        description: "看似很弱，实际上等效属性抵达了2.5+，5/6步云霄五阶……", 
+        rank: 4601,
+        image: "image/enemy/E4601.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [8],
+        spec_value:{8:40},
+        stats: {health: 198e12, attack: 26010e8, agility:10000e8, attack_speed: 1.9, defense:9610e8}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["银白穿心之刃"] = new Enemy({
+        name: "银白穿心之刃",
+        xp_value: 591286729879, 
+        description: "你怎么混进这里的？属性连1+线都没到，有加号还得仰赖【硬化】！", 
+        rank: 4602,
+        image: "image/enemy/E4602.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 +</b></span>",
+        spec: [63],
+        stats: {health: 184.32e12, attack: 1.849e12, agility:1.1e12, attack_speed: 1.9, defense:0.8e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.003},
+            //2.8U
+        ],
+    });
+    enemy_templates["暗茸茸战士"] = new Enemy({
+        name: "暗茸茸战士",
+        xp_value: 591286729879, 
+        description: "为了一点基础数值把引以为傲的衰弱给退化了一大半！怎么能有这么笨的茸茸。", 
+        rank: 4603,
+        image: "image/enemy/E4603.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [8],
+        spec_value:{8:10},
+        stats: {health: 320e12, attack: 3.364e12, agility:1.2e12, attack_speed: 1.9, defense:1.089e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["银茸茸聚落"] = new Enemy({
+        name: "银茸茸聚落",
+        xp_value: 29712150730000, 
+        description: "注意到部分技能经验是不吃压级惩罚的。万倍经验宝藏怪，堂堂降临！", 
+        rank: 4604,
+        image: "image/enemy/E4604.png",
+        realm: "<span class=realm_sky><b>天空级巅峰 [x10000]</b></span>",
+        spec: [72],
+        stats: {health: 700e12, attack: 2.6e12, agility:1.3e12, attack_speed: 1.9, defense:1.1e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.003},
+            //2.8U[C4+1]
+        ],
+    });
+    enemy_templates["欺诈面具人"] = new Enemy({
+        name: "欺诈面具人",
+        xp_value: 591286729879, 
+        description: "轮锋狂热者有难了这下。我们急需一种防御道具……", 
+        rank: 4605,
+        image: "image/enemy/E4605.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [9],
+        stats: {health: 150e12, attack: 4.1e12, agility:1.4e12, attack_speed: 1.9, defense:1.4e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["破败狩魂人"] = new Enemy({
+        name: "破败狩魂人",
+        xp_value: 591286729879, 
+        description: "每一区简直都有这样的搅屎棍。属性碾压也没法一击清屏……所以八重攻击是时候安排了！", 
+        rank: 4606,
+        image: "image/enemy/E4606.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [60],
+        stats: {health: 840e12, attack: 2.8e12, agility:1.5e12, attack_speed: 1.9, defense:1.25e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["蒙面将军"] = new Enemy({
+        name: "蒙面将军",
+        xp_value: 591286729879, 
+        description: "13斧首领小时候就是他手下的兵。单科抵2+线，伟大无需多言。", 
+        rank: 4607,
+        image: "image/enemy/E4607.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [4],
+        stats: {health: 600e12, attack: 5.041e12, agility:1.6e12, attack_speed: 1.9, defense:1e8}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["基岩"] = new Enemy({
+        name: "基岩",
+        xp_value: 591286729879, 
+        description: "你的坚固呢……而且你的血好少。配得上这个象征着无敌的名字吗！", 
+        rank: 4608,
+        image: "image/enemy/E4608.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [],
+        stats: {health: 153.6e12, attack: 4.2e12, agility:1.7e12, attack_speed: 1.9, defense:2.1e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["童面狮心匪"] = new Enemy({
+        name: "童面狮心匪",
+        xp_value: 591286729879, 
+        description: "通过拖延攻击来试图取得优势的敌人。如果召唤出了同类就乐子大了……", 
+        rank: 4609,
+        image: "image/enemy/E4609.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [66,60],
+        stats: {health: 660e12, attack: 4.6e12, agility:1.8e12, attack_speed: 1.9, defense:1.024e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["破败堕落法师"] = new Enemy({
+        name: "破败堕落法师",
+        xp_value: 591286729879, 
+        description: "这个实力在同阶真不错了。硬要说堕落……说不定成功进阶就是秘银级魔法师了呢？", 
+        rank: 4610,
+        image: "image/enemy/E4610.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [0,3],
+        stats: {health: 300e12, attack: 1.8e12, agility:1.9e12, attack_speed: 1.9, defense:1.8e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["破败牛头"] = new Enemy({
+        name: "破败牛头",
+        xp_value: 591286729879, 
+        description: "只是一只用来抗伤害的牛头人。它出门连自己是个人都记不得了……", 
+        rank: 4611,
+        image: "image/enemy/E4611.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [],
+        stats: {health: 1160e12, attack: 3.844e12, agility:2.0e12, attack_speed: 1.9, defense:1.764e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["破败石人王"] = new Enemy({
+        name: "破败石人王",
+        xp_value: 591286729879, 
+        description: "它是头一只名字带王，却不是BOSS级的敌人……冰柱鱼王不算！喵可已经达到可以砍瓜切菜一般砍死王者的境界了。", 
+        rank: 4612,
+        image: "image/enemy/E4612.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [5,51],
+        stats: {health: 700e12, attack: 5e12, agility:2.1e12, attack_speed: 1.9, defense:2e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["深渊幽灵"] = new Enemy({
+        name: "深渊幽灵",
+        xp_value: 591286729879, 
+        description: "在炒鸡蛋里面这种怪铁定血薄然后99%虚化。喵可没有那些虚的……所以帮你换成等效血量了！谢谢喵可！", 
+        rank: 4613,
+        image: "image/enemy/E4613.png",
+        realm: "<span class=realm_cloudy><b>云霄级四阶 ++</b></span>",
+        spec: [],
+        stats: {health: 2560e12, attack: 3.84e12, agility:2.2e12, attack_speed: 1.9, defense:1.6e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.010},
+            //5U
+        ],
+    });
+    enemy_templates["魔灵僵尸茸茸"] = new Enemy({
+        name: "魔灵僵尸茸茸",
+        xp_value: 956722026041, 
+        description: "出乎意料地，云霄5守门员十分强劲。硬是没有一只云霄4抵达3+之境，掉落比肩云霄5……", 
+        rank: 4614,
+        image: "image/enemy/E4614.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶</b></span>",
+        spec: [13,34],
+        stats: {health: 2178e12, attack: 4.7e12, agility:2.3e12, attack_speed: 1.9, defense:2.1e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.025},
+            //9U
+        ],
+    });
+    enemy_templates["破败混乱骑士"] = new Enemy({
+        name: "破败混乱骑士",
+        xp_value: 956722026041, 
+        description: "晕头转向……话说这俩属性不会冲突的吧？", 
+        rank: 4615,
+        image: "image/enemy/E4615.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶</b></span>",
+        spec: [8,9],
+        spec_value:{8:10},
+        stats: {health: 1357.8e12, attack: 4.56e12, agility:2.4e12, attack_speed: 1.9, defense:2.34e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.025},
+            //9U
+        ],
+    });
+    enemy_templates["狂妒的勇士"] = new Enemy({
+        name: "狂妒的勇士",
+        xp_value: 956722026041, 
+        description: "“根本就没有这样的爆发”“你只是怕了”", 
+        rank: 4616,
+        image: "image/enemy/E4616.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶</b></span>",
+        spec: [7,22],
+        stats: {health: 1555.4e12, attack: 5.4e12, agility:2.5e12, attack_speed: 1.9, defense:2.22e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.025},
+            //9U
+        ],
+    });
+    enemy_templates["破败铁卫C5"] = new Enemy({
+        name: "破败铁卫C5",
+        xp_value: 956722026041, 
+        description: "你又是哪个科技文明的量产型机器人……最后重复一次。捕捉怪在楼层手册出现两次不是bug，是调概率。", 
+        rank: 4617,
+        image: "image/enemy/E4617.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶</b></span>",
+        spec: [6],
+        stats: {health: 1800e12, attack: 4.9e12, agility:2.6e12, attack_speed: 1.9, defense:1.8e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.025},
+            //9U
+        ],
+    });
+    enemy_templates["破败刽子手"] = new Enemy({
+        name: "破败刽子手",
+        xp_value: 956722026041, 
+        description: "闪电五连鞭~不对，没这么慢：1.9spd/7连击约等于200bpm的16分交互。", 
+        rank: 4618,
+        image: "image/enemy/E4618.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶 +</b></span>",
+        spec: [33],
+        spec_value:{33:7},
+        stats: {health: 144.5e12, attack: 6.6e12, agility:2.7e12, attack_speed: 1.9, defense:3.3e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.055},
+            //9U
+        ],
+    });
+    enemy_templates["破败游荡魔"] = new Enemy({
+        name: "破败游荡魔",
+        xp_value: 956722026041, 
+        description: "有点……菜？倒不如说上面那位3.3z防强的离谱了。[WIP:如果发现V3.52还是完全打不过那我会把上面那位丢到下一区]", 
+        rank: 4619,
+        image: "image/enemy/E4619.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶</b></span>",
+        spec: [],
+        stats: {health: 3380e12, attack: 5.4e12, agility:2.8e12, attack_speed: 1.9, defense:2.809e12}, //血量200%
+        loot_list: [
+            {item_name: "不朽黄宝石", chance:0.025},
+            //9U
+        ],
+    });
     
     /*
-
-["亮青水晶","难缠的红蝙蝠","翩然蝶仙","红宝石近卫","心火红茸茸"]
-["亮青水晶","报春红食人花","报春红食人花","红角邪恶触触","蓝泽追光者"]
-["亮青水晶","炽热幽闻藤","红甲射箭小队","灰暗双剑小队","红野人战士"]
-["鲜红水晶","品红野人战士","树莓龙勇士","树莓龙勇士","红巨人番队"]
-["鲜红水晶","撼瀚野熊","鲑红腐殖质","大红蜕钳蝎","红白闪"]
-
-除3固定光环外共19只，补2只上区的。
+    ["红白闪","暗茸茸","银白穿心之刃","暗茸茸战士","银茸茸聚落"]
+    ["欺诈面具人","破败守魂人","蒙面将军","破败堕落法师","破败牛头"]
+    ["基岩","童面狮心匪","破败石人王","深渊幽灵","魔灵僵尸茸茸"]
+    ["破败混乱骑士","狂妒的勇士","破败铁卫C5","破败铁卫C5","破败刽子手","破败游荡魔"]
 
 C1 125'8626'9025          /203'6501'1074          exp
 C2 329'5128'0099          /533'1629'1173          exp
 C3 862'6757'1272          /1395'8386'2445         exp
 C4 225851433717/365435296162/591286729879
+C5 956722026041/1548008755920/2504730781961
 
-1.6U/2.8U/5.0U
-光环5%-25%
-
-云霄4+线2.854z攻防和
+9.0U/16U/28U
 云霄4++线4.408z攻防和
+6.9z(5)
+10.03z 5+
+14.59z 5++
+21.2z(6)
+
 强力技能可以适当抵扣
 
 

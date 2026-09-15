@@ -6163,6 +6163,35 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [],
         gem_value: 1e9,
     });
+    item_templates["不朽黄宝石"] = new UsableItem({
+        name: "不朽黄宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷20亿或生命4000亿", 
+        value: 2e9,
+        image: "image/item/gem81_2B.png",
+        effects: [],
+        gem_value: 2e9,
+    });item_templates["不朽蓝宝石"] = new UsableItem({
+        name: "不朽蓝宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷50亿或生命1兆", 
+        value: 5e9,
+        image: "image/item/gem82_5B.png",
+        effects: [],
+        gem_value: 5e9,
+    });item_templates["不朽红宝石"] = new UsableItem({
+        name: "不朽红宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷100亿或生命2兆", 
+        value: 10e9,
+        image: "image/item/gem83_10B.png",
+        effects: [],
+        gem_value: 10e9,
+    });item_templates["不朽绿宝石"] = new UsableItem({
+        name: "不朽绿宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷200亿或生命4兆", 
+        value: 20e9,
+        image: "image/item/gem84_20B.png",
+        effects: [],
+        gem_value: 20e9,
+    });
 })();
 
 

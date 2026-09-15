@@ -3812,6 +3812,7 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [69, "反击" , "#B30000", "战斗前，敌人将角色攻击的<span style='color:#87CEFA'>100%</span>加到自己的攻击上"],
 [70, "贪婪 ω", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>敌人的伤害除以<span style='color:#87CEFA'>(1 + √(角色金钱/${format_money(enemy.spec_value[70])}) )</span>`}],
 [71, "神帝之力" , "#B3FFB3", "敌人每次攻击时，赋予角色5秒<span style='color:#FFFF00'>神帝之力</span>效果，不可叠加。如果角色在被击中前不携带该效果，则敌人该次攻击伤害<span style='color:#87CEFA'>归零</span>。<span style='color:#FFFF00'>神帝之力</span>效果为<span style='color:#87CEFA'>攻击/防御/敏捷/生命上限 乘以 100.81/span>.<br><span style='color:#FFFF00'>神帝之力</span>在切换区域时自动消失，且携带此效果时家族新境界无法解禁。"],
+[72, "战团" ,"#f527d3", "一个成组织战斗的集体。他们观察敌情，发现敌方境界并不高，而且人数并不多，所以他们开始了战斗。<br>由1万-100万个单位组成的战团。"],
 
 ];
 //超过25倍倍率的攻击暂时视为必中！
@@ -4131,6 +4132,7 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "燕岗战法小队") add_bestiary_lines(43);
     if(enemy_name == "青茸茸将军") add_bestiary_lines(44);
     if(enemy_name == "翩然蝶仙") add_bestiary_lines(45);
+    if(enemy_name == "暗茸茸") add_bestiary_lines(46);
 }
 
 function reload_bestiary(){
