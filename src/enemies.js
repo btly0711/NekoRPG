@@ -8800,6 +8800,7 @@ class Enemy {
         stats: {health: 198e12, attack: 26010e8, agility:10000e8, attack_speed: 1.9, defense:9610e8}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "玄铁母锭", chance:0.026},
             //5U
         ],
     });
@@ -8814,6 +8815,7 @@ class Enemy {
         stats: {health: 184.32e12, attack: 1.849e12, agility:1.1e12, attack_speed: 1.9, defense:0.8e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.003},
+            {item_name: "C4·能量核心", chance:0.061},
             //2.8U
         ],
     });
@@ -8829,6 +8831,7 @@ class Enemy {
         stats: {health: 320e12, attack: 3.364e12, agility:1.2e12, attack_speed: 1.9, defense:1.089e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "玄铁母锭", chance:0.022},
             //5U
         ],
     });
@@ -8843,6 +8846,7 @@ class Enemy {
         stats: {health: 700e12, attack: 2.6e12, agility:1.3e12, attack_speed: 1.9, defense:1.1e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.003},
+            {item_name: "灰暗军魂", chance:0.027},
             //2.8U[C4+1]
         ],
     });
@@ -8857,6 +8861,7 @@ class Enemy {
         stats: {health: 150e12, attack: 4.1e12, agility:1.4e12, attack_speed: 1.9, defense:1.4e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "虔心沉淀物", chance:0.016},
             //5U
         ],
     });
@@ -8871,6 +8876,7 @@ class Enemy {
         stats: {health: 840e12, attack: 2.8e12, agility:1.5e12, attack_speed: 1.9, defense:1.25e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "虔心沉淀物", chance:0.018},
             //5U
         ],
     });
@@ -8885,6 +8891,8 @@ class Enemy {
         stats: {health: 600e12, attack: 5.041e12, agility:1.6e12, attack_speed: 1.9, defense:1e8}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "鲜红碎片", chance:0.022},
+            {item_name: "虔心沉淀物", chance:0.01},
             //5U
         ],
     });
@@ -8899,6 +8907,7 @@ class Enemy {
         stats: {health: 153.6e12, attack: 4.2e12, agility:1.7e12, attack_speed: 1.9, defense:2.1e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "玄铁母锭", chance:0.025},
             //5U
         ],
     });
@@ -8913,6 +8922,7 @@ class Enemy {
         stats: {health: 660e12, attack: 4.6e12, agility:1.8e12, attack_speed: 1.9, defense:1.024e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "虔心沉淀物", chance:0.02},
             //5U
         ],
     });
@@ -8927,6 +8937,8 @@ class Enemy {
         stats: {health: 300e12, attack: 1.8e12, agility:1.9e12, attack_speed: 1.9, defense:1.8e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "C4·能量核心", chance:0.04},
+            {item_name: "灰暗军魂", chance:0.025},
             //5U
         ],
     });
@@ -8941,6 +8953,7 @@ class Enemy {
         stats: {health: 1160e12, attack: 3.844e12, agility:2.0e12, attack_speed: 1.9, defense:1.764e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "鲜红碎片", chance:0.04},
             //5U
         ],
     });
@@ -8955,6 +8968,7 @@ class Enemy {
         stats: {health: 700e12, attack: 5e12, agility:2.1e12, attack_speed: 1.9, defense:2e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "玄铁母锭", chance:0.035},
             //5U
         ],
     });
@@ -8969,6 +8983,7 @@ class Enemy {
         stats: {health: 2560e12, attack: 3.84e12, agility:2.2e12, attack_speed: 1.9, defense:1.6e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.010},
+            {item_name: "虔心沉淀物", chance:0.021},
             //5U
         ],
     });
@@ -8983,6 +8998,8 @@ class Enemy {
         stats: {health: 2178e12, attack: 4.7e12, agility:2.3e12, attack_speed: 1.9, defense:2.1e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.025},
+            {item_name: "灰暗军魂", chance:0.02},
+            {item_name: "虔心沉淀物", chance:0.022},
             //9U
         ],
     });
@@ -8998,6 +9015,8 @@ class Enemy {
         stats: {health: 1357.8e12, attack: 4.56e12, agility:2.4e12, attack_speed: 1.9, defense:2.34e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.025},
+            {item_name: "灰暗军魂", chance:0.05},
+            {item_name: "玄铁母锭", chance:0.02},
             //9U
         ],
     });
@@ -9012,6 +9031,8 @@ class Enemy {
         stats: {health: 1555.4e12, attack: 5.4e12, agility:2.5e12, attack_speed: 1.9, defense:2.22e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.025},
+            {item_name: "C4·能量核心", chance:0.06},
+            {item_name: "虔心沉淀物", chance:0.02},
             //9U
         ],
     });
@@ -9026,6 +9047,7 @@ class Enemy {
         stats: {health: 1800e12, attack: 4.9e12, agility:2.6e12, attack_speed: 1.9, defense:1.8e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.025},
+            {item_name: "玄铁母锭", chance:0.04},
             //9U
         ],
     });
@@ -9041,6 +9063,7 @@ class Enemy {
         stats: {health: 144.5e12, attack: 6.6e12, agility:2.7e12, attack_speed: 1.9, defense:3.3e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.055},
+            {item_name: "血钻锭", chance:0.027},
             //9U
         ],
     });
@@ -9055,6 +9078,8 @@ class Enemy {
         stats: {health: 3380e12, attack: 5.4e12, agility:2.8e12, attack_speed: 1.9, defense:2.809e12}, //血量200%
         loot_list: [
             {item_name: "不朽黄宝石", chance:0.025},
+            {item_name: "鲜红碎片", chance:0.015},
+            {item_name: "虔心沉淀物", chance:0.023},
             //9U
         ],
     });

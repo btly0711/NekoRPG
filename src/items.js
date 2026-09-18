@@ -3693,6 +3693,23 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["炼魂轮芯"] = new WeaponComponent({
+        name: "炼魂轮芯", description: "中高阶的【月轮】核心部件。挣扎的魂魄为了稍微松绑会尽一切努力找到敌人身上的额外物件！",
+        component_type: "wheel core",
+        value: 2376e15,
+        component_tier: 22,
+        stats: {
+            crit_multiplier: {
+                flat: 1.0,
+            },
+            attack_power: {
+                multiplier: 1.05,
+            },
+            luck: {
+                flat: 0.05,
+            }
+        }
+    });
     item_templates["宝石轮锋"] = new WeaponComponent({
         name: "宝石轮锋", description: "宝石母制造的【月轮】镀层。嗯……A1的宝石锭造不了轮锋。没有歧义！",
         component_type: "wheel head",
@@ -3802,6 +3819,22 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_speed: {
                 multiplier: 1.25,
+            },
+        }
+    });
+    item_templates["虔心轮锋"] = new WeaponComponent({
+        name: "虔心轮锋", description: "为信仰的【神明】而战。但残存的魂魄不知道的是，【神明】的定义早已在锻造时被篡改干净。",
+        component_type: "wheel head",
+        value: 7660e15,
+        component_tier: 22,
+        name_prefix: "虔心",
+        attack_value: 622.08e8,
+        stats: {
+            crit_rate: {
+                flat: 0.40,
+            },
+            attack_speed: {
+                multiplier: 1.26,
             },
         }
     });
@@ -5083,6 +5116,71 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    //价格基本单位:218.5e15,防御基本单位:27e8 恢复基本单位 36e8
+    item_templates["虔心头盔"] = new ArmorComponent({
+        name: "虔心头盔",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "helmet exterior",
+        value: 1092.5e15,
+        component_tier: 22,
+        full_armor_name: "虔心头盔",
+        defense_value: 135e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 180e8,
+            },
+        }
+    });
+    item_templates["虔心胸甲"] = new ArmorComponent({
+        name: "虔心胸甲",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "chestplate exterior",
+        value: 1748e15,
+        component_tier: 22,
+        full_armor_name: "虔心胸甲",
+        defense_value: 216e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 288e8,
+            },
+        }
+    });
+    item_templates["虔心腿甲"] = new ArmorComponent({
+        name: "虔心腿甲",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "leg armor exterior",
+        value: 1539.5e15,
+        component_tier: 22,
+        full_armor_name: "虔心腿甲",
+        defense_value: 189e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 252e8,
+            },
+        }
+    });
+    item_templates["虔心战靴"] = new ArmorComponent({
+        name: "虔心战靴",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "shoes exterior",
+        value: 874e15,
+        component_tier: 22,
+        full_armor_name: "虔心战靴",
+        defense_value: 108e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 144e8,
+            },
+        }
+    });
 
 
 
@@ -5422,6 +5520,22 @@ item_templates["Twist liek a snek"] = new Book({
         value: 333e15,
         material_type: "metal",
         image: "image/item/blomond_ingot.png",
+    });
+    item_templates["虔心钢锭"] = new Material({
+        id: "虔心钢锭",
+        name: "虔心钢锭", 
+        description: "以至纯精血融入了无数【虔心】一道修炼者凝聚成缕缕信仰的玄铁母。喵可你的人皇轮怎么库库冒黑气啊……", 
+        value: 655e15,
+        material_type: "metal",
+        image: "image/item/pious_ingot.png",
+    });
+    item_templates["炼魂血钻"] = new Material({
+        id: "炼魂血钻",
+        name: "炼魂血钻", 
+        description: "囚禁着不愿放弃信仰的天空级魂魄。在军魂加持下，总有一天可以逃出……结界系统和轮芯的飞行系统就是凭借这样的意志供能的。", 
+        value: 594e15,
+        material_type: "metal",
+        image: "image/item/soul_diamond.png",
     });
 })();
 //矿石
@@ -6806,7 +6920,19 @@ item_templates["Twist liek a snek"] = new Book({
         value: 128e15,
         image: "image/item/pink_fragment.png",
     });
-
+    //4-6 价格max=324
+    item_templates["虔心沉淀物"] = new Loot({
+        name: "虔心沉淀物", 
+        description: "被蛊惑的【虔心】体系修炼者在天空级巅峰就会被上位体系修炼者炼化。然而炼化过程并非完美，会留下部分信仰与能量的沉淀……", 
+        value: 324e15,
+        image: "image/item/pious_sediment.png",
+    });
+    item_templates["玄铁母锭"] = new Loot({
+        name: "玄铁母锭", 
+        description: "性质中正平和，但基础数值尚不足以在这个阶段发挥作用。尽管如此，它是容纳其他力量不错的金属。", 
+        value: 245e15,
+        image: "image/item/darkiron_ingot.png",
+    });
     
 
 
