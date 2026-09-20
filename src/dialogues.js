@@ -3288,7 +3288,7 @@ class Textline {
                 locks_lines: ["jsxb"],
             }),
         }
-    });//WIP 3.53移除
+    });//WIP 3.60移除
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

@@ -5358,7 +5358,7 @@ function get_location_type_penalty(type, stage, stat) {
         description: "“族长我们这样子把别人家抢来住真的没事吗！”“放心……在看住4-6-X之前他回不来的。4-6-X通了他就打不过咱了。”",
         name: "秘银行宫", 
         traders: ["物品存储箱"],
-        dialogues: [""],
+        dialogues: [],
         sleeping: {
             text: "使用秘银级魔法师的修炼资源[27.6wXP/s]",
             xp: 276480,
