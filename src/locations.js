@@ -5414,7 +5414,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 3000e12,
-            locations: [{location: "破败之域 - 3"}],
+            locations: [{location: "破败之域 - 3"},{location: "破败之域 - 歧路"}],
         },
     });
     locations["破败之域 - 3"] = new Combat_zone({
