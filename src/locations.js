@@ -5347,12 +5347,37 @@ function get_location_type_penalty(type, stage, stat) {
         description: "隐藏在三领交界处地下的一处大型秘境。当地唯一不禁止的【虔心】体系炼到天空级巅峰就会化作上好的修行资粮，但也正因为此，此地才能培养起大批外来云霄级强者。[V3.60前版本终点]",
         name: "破败之域", 
         traders: [],
-        dialogues: [/*"精血石碑"*/],
+        dialogues: ["精血石碑"],
         is_unlocked: false,
         bgm: 26,
     });//4-6
     locations["鲜血峰"].connected_locations.push({location: locations["破败之域"]});
 
+    locations["秘银行宫"] = new Location({ 
+        connected_locations: [{location: locations["破败之域"], custom_text: "回到战斗区"}], 
+        description: "“族长我们这样子把别人家抢来住真的没事吗！”“放心……在看住4-6-X之前他回不来的。4-6-X通了他就打不过咱了。”",
+        name: "秘银行宫", 
+        traders: ["物品存储箱"],
+        dialogues: [""],
+        sleeping: {
+            text: "使用秘银级魔法师的修炼资源[27.6wXP/s]",
+            xp: 276480,
+        },
+        crafting: {
+            is_unlocked: true, 
+            use_text: "使用秘银级魔法师的C6级合成台[Tier+22]", 
+            tiers: {
+                crafting: 22,
+                forging: 22,
+                smelting: 22,
+                cooking: 22,
+                alchemy: 22,
+            }
+        },
+        is_unlocked: false,
+        bgm: 26,
+    });//4-6休息区
+    locations["破败之域"].connected_locations.push({location: locations["秘银行宫"]});
 
     locations["破败之域 - 1"] = new Combat_zone({
         description: "三领之间的三不管秘境。即使天空巅峰强者都需要组成族群方能生存。", 
@@ -5434,6 +5459,22 @@ function get_location_type_penalty(type, stage, stat) {
     locations["破败之域"].connected_locations.push({location: locations["破败之域 - 2"]}); 
     locations["破败之域"].connected_locations.push({location: locations["破败之域 - 3"]}); 
     locations["破败之域"].connected_locations.push({location: locations["破败之域 - 4"]}); 
+    locations["破败之域 - 歧路"] = new Challenge_zone({
+        description: "听说秘银级魔法师留下了一座超棒的宫殿。他去守破败之域 - X了，留几只机器人看家……好机会！。", 
+        enemy_count: 1, 
+        enemies_list: ["永夜之锋C5[BOSS]"],
+        enemy_group_size: [4,4],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "破败之域 - 歧路",
+        bgm:26,
+        parent_location: locations["破败之域"],
+        repeatable_reward: {
+            locations: [{location: "秘银行宫"}],
+        },
+    }); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 歧路"]}); 
     /*
     
     */

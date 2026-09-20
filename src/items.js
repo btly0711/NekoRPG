@@ -3700,10 +3700,10 @@ item_templates["Twist liek a snek"] = new Book({
         component_tier: 22,
         stats: {
             crit_multiplier: {
-                flat: 1.0,
+                flat: 1.2,
             },
             attack_power: {
-                multiplier: 1.05,
+                multiplier: 1.06,
             },
             luck: {
                 flat: 0.05,

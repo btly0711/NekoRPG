@@ -1109,6 +1109,23 @@ function format_skill_rewards(milestone){
                                             },
                                             
                                             xp_multipliers: {
+                                                all: 1.05,
+                                            }
+                                        },
+
+                                        
+                                        40: {
+                                            stats: {
+                                                "attack_speed":{flat:0.01},
+                                                "crit_multiplier": {flat: 0.02},
+                                            },
+                                        },
+                                        60: {
+                                            stats: {
+                                                "attack_speed":{flat:0.02},
+                                                "crit_multiplier": {flat: 0.04},
+                                            },
+                                            xp_multipliers: {
                                                 all: 1.1,
                                             }
                                         },
@@ -1145,6 +1162,21 @@ function format_skill_rewards(milestone){
                                             stats: {
                                                 "crit_multiplier": {flat: 0.10},
                                             },
+                                        },
+                                        40: {
+                                            stats: {
+                                                "crit_rate":{flat:0.01},
+                                                "crit_multiplier": {flat: 0.04},
+                                            },
+                                        },
+                                        60: {
+                                            stats: {
+                                                "crit_rate":{flat:0.02},
+                                                "crit_multiplier": {flat: 0.08},
+                                            },
+                                            xp_multipliers: {
+                                                all: 1.1,
+                                            }
                                         },
                                     }
                                  },

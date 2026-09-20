@@ -10130,9 +10130,22 @@ C5 956722026041/1548008755920/2504730781961
         xp_value: 27777890035288, //C7+ = C8--
         rank: 4599,
         image: "image/boss/B4502.png",
-        realm: "<span class=realm_world><b>云霄级八阶 --</b></span>",
+        realm: "<span class=realm_cloudy><b>云霄级八阶 --</b></span>",
         spec: [23,62,71],
         stats: {health: 132000e12, attack: 56e12, agility:16e12, attack_speed: 1.2, defense:14e12}, //血量200x
+        loot_list: [//3300e12*20
+        ],
+    });
+    
+    enemy_templates["永夜之锋C5[BOSS]"] = new Enemy({
+        name: "永夜之锋C5[BOSS]", 
+        description: "毕竟秘银级魔法师比它强……所以主线boss和歧路boss的位置被换掉了！", 
+        xp_value: 2504730781961, //
+        rank: 4698,
+        image: "image/boss/B4601.png",
+        realm: "<span class=realm_cloudy><b>云霄级五阶 ++</b></span>",
+        spec: [15],
+        stats: {health: 3850e12, attack: 33.33e12, agility:1.2e12, attack_speed: 1.4, defense:1}, //血量200x
         loot_list: [//3300e12*20
         ],
     });
