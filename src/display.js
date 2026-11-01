@@ -13,7 +13,7 @@ import { current_enemies, options,
     global_flags, get_enemy_killcount,
     total_crafting_successes,total_crafting_attempts,
     get_time_passed,family_data,init_family,
-    realm_rate, get_baby_cost,
+    realm_rate, get_baby_cost, PNtIC,
     inf_combat} from "./main.js";
 import { dialogues } from "./dialogues.js";
 import { activities } from "./activities.js";
@@ -126,6 +126,7 @@ const stats_divs = {agility: document.getElementById("agility_slot"),
 let effect_divs = {};
 
 const character_attack_bar = document.getElementById("character_attack_bar");
+const character_attack_bar_cnt = document.getElementById("character_attack_bar_cnt");
 
 //equipment slots
 const equipment_slots_divs = {head: document.getElementById("head_slot"), torso: document.getElementById("torso_slot"),
@@ -159,6 +160,7 @@ const crafting_pages = {
         items: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="items"]`),
         items2: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="items2"]`),
         items3: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="items3"]`),
+        items4: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="items4"]`),
         components: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="components"]`),
         equipment: document.querySelector(`[data-crafting_category="crafting"] [data-crafting_subcategory="equipment"]`),
     },
@@ -204,7 +206,7 @@ function format_number(some_number)
     if(some_number <= 1e-8) return '0';
     let len=Math.floor(Math.log10(some_number)) + 1;//位数！
     if(some_number<1e-4) f_result += '0';
-    if(options.option_format_change && some_number > 1e6){
+    if(some_number > 1e53 || (options.option_format_change && some_number > 1e6)){
         len--;//exp
         some_number *= 0.1 ** len;
         f_result += some_number.toFixed(2);
@@ -334,7 +336,7 @@ function create_item_tooltip_content({item, options={}}) {
         }
 
         
-        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[%]","Luck":"幸运","SCGV":"SCGV"}
+        let EquipStatMap = {"Defense":"防御","Attack power":"攻击","Attack speed":"攻速","Agility":"敏捷","Crit rate":"暴率","Max health":"生命","Attack mul":"普攻倍率","Crit multiplier":"爆伤","Health regeneration_flat":"生命恢复","Health regeneration_percent":"生命恢复[%]","Luck":"幸运","SCGV":"宝石耐性"}
         if(!options.skip_quality && options?.quality?.length == 2) {
             if(item.getAttack) {
                 item_tooltip += 
@@ -508,7 +510,7 @@ function create_effect_tooltip(effect_name, duration) {
         //for regeneration bonuses, it is assumed they are only flat and not multiplicative
         //${capitalize_first_letter(key.replaceAll("_", " ").replace("flat","").replace("percent",""))}
             let sign = stat_value.flat > 0? "+":"";
-            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复[%]","crit_rate":"暴率","attack_speed":"攻速","max_health":"生命上限","luck":"幸运","SCGV":"SCGV"}
+            const EffectToolTipMap = {"attack_power":"攻击","defense":"防御","agility":"敏捷","crit_multiplier":"爆伤","attack_mul":"普攻倍率","health_regeneration_flat":"生命恢复","health_regeneration_percent":"生命恢复[%]","crit_rate":"暴率","attack_speed":"攻速","max_health":"生命上限","luck":"幸运","SCGV":"宝石耐性"}
             if(stat_value.flat == undefined){
                 let sign = "";
                 tooltip.innerHTML += `${EffectToolTipMap[key]} : x${sign}${stat_value.multiplier}`;
@@ -1819,6 +1821,7 @@ function create_location_choices({location, category, add_icons = true, is_comba
                     else {
                         action.innerHTML = `<span style="color:#ffc0c0"><i class="material-icons">warning_amber</i>  ` + "进入 [" + location.connected_locations[i].location.name+"]</span>";
                     }
+                    
                 }
             
                 action.classList.add("action_travel");
@@ -1963,6 +1966,22 @@ function create_location_types_display(current_location){
         if(current_location.name.includes("赫尔沼泽")){
             inf_combat.B3 = inf_combat.B3 || 0;
             c_halo = inf_combat.B3 * 0.01;
+        }
+        if(current_location.name.includes("鲜血峰 - ")){
+            const key_id1 = item_templates["血峰限制器"].getInventoryKey();
+            let key_cnt1 = character.inventory[key_id1]?character.inventory[key_id1].count:0;
+            key_cnt1 = Math.min(key_cnt1,5);
+            if(key_cnt1 != 0){
+                c_halo *= 1 - 0.2 * key_cnt1;
+                log_message(`[${key_cnt1}x限制器]本区光环已被降低${key_cnt1*20}%!`,"hero_regened");
+            }
+            const key_id2 = item_templates["血峰增幅器"].getInventoryKey();
+            let key_cnt2 = character.inventory[key_id2]?character.inventory[key_id2].count:0;
+            key_cnt2 = Math.min(key_cnt2,999025);
+            if(key_cnt2 != 0){
+                c_halo *= 1 + 0.2 * (key_cnt2 ** 0.5);
+                log_message(`[${key_cnt2}x增幅器]本区光环已被增幅${format_numberL(0.2*(key_cnt2**0.5))}!`,"enemy_enhanced");
+            }
         }
         type_div.innerHTML += `光环 ${format_number(c_halo*100.0)} %`;
         location_types_div.appendChild(type_div);
@@ -2710,6 +2729,27 @@ function update_displayed_health() { //call it when using healing items, resting
     //死线(3/3)
 }
 
+function get_character_power(){
+    let proto_rank = (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility);
+    proto_rank *=  ((character.stats.full.attack_mul || 1)  * character.stats.full.attack_speed * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)) ** 0.5;
+    //攻防敏是按正常的来
+    //平均暴击&普攻倍率&攻速^0.5.
+    return proto_rank;
+
+}//战力函数
+function get_power_rank(cur_power){
+    let lgrank = Math.log10(cur_power);
+    let lgresult = 0;
+    if(lgrank < 3.84) lgresult = 14 - 0.11 * lgrank ** 2;
+    else if(lgrank < 7.903) lgresult = 15.352 - 0.77 * lgrank;
+    else lgresult = 18.352 - 1.3 * lgrank + 0.019 * lgrank ** 2;
+    //
+    return Math.round(Math.max(1,Math.pow(10,lgresult)));
+}
+window.get_character_power = get_character_power;
+window.get_power_rank = get_power_rank;
+
+
 function update_displayed_stats() { //updates displayed stats
     const A_mul = document.getElementById("A_mul_slot");
     A_mul.innerHTML = character.xp.current_level<=8?"Locked":"A.mul:";
@@ -2722,8 +2762,7 @@ function update_displayed_stats() { //updates displayed stats
     const sCGV_ = document.getElementById("SCGV_slot");
     sCGV_.innerHTML = character.xp.current_level<=28?"Locked":"SCGV:";
     const sCGV_tt = document.getElementById("SCGV_tooltip");
-    sCGV_tt.innerHTML = character.xp.current_level<=28?"Not available":"宝石软上限起始点倍率";
-
+    sCGV_tt.innerHTML = character.xp.current_level<=28?"Not available":"宝石耐性，全称宝石软上限起始点倍率(SoftCappedGemValue)";
     Object.keys(stats_divs).forEach(function(key){
         if(key === "crit_rate" || key === "crit_multiplier") {
             stats_divs[key].innerHTML = `${format_numberL(character.stats.full[key])}`;
@@ -2778,24 +2817,18 @@ function update_displayed_stats() { //updates displayed stats
     });
     //calculating ranks
 
-    const chara_rank = (character.stats.full.attack_mul || 1) * (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility) * character.stats.full.attack_speed  * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)
-    //攻防敏*攻速*（暴击率*暴击额外伤害+1）
+    const chara_rank = get_character_power()//攻防敏*攻速*（暴击率*暴击额外伤害+1）
     //character_rank_div.innerText = `战力: ${chara_rank}`;//看战力以拟合后续【排位】曲线
-    let lgrank = Math.log10(chara_rank);
-    let lgresult = 0;
-    if(lgrank < 3.84) lgresult = 14 - 0.11 * lgrank ** 2;
-    else if(lgrank < 7.903) lgresult = 15.352 - 0.77 * lgrank;
-    else lgresult = 18.352 - 1.3 * lgrank + 0.019 * lgrank ** 2;
-    //
-    let chara_result = Math.round(Math.max(1,Math.pow(10,lgresult)));
     
-    character_rank_div.innerText = `燕岗领排名: ` + chara_result.toLocaleString('en-US');
+    
+    character_rank_div.innerText = `燕岗领排名: ` + get_power_rank(get_character_power()).toLocaleString('en-US');
     
 
 
 
     update_displayed_health();
 }
+
 
 function update_stat_description(stat) {
     let target;
@@ -3609,8 +3642,8 @@ function update_displayed_family() {
         document.getElementById("family_timer_real").innerText = Math.ceil(re_time / time_speed) + 's'
         document.getElementById("family_baby_cost").innerHTML = format_money(get_baby_cost(family_data.baby));
         document.getElementById("baby_scale1").innerHTML = family_data.baby>1e4?"新生儿超过1万，花费受到一重软上限限制(^1.5)<br>":""
-        document.getElementById("baby_scale2").innerHTML = family_data.baby>1e8?"新生儿超过1亿，花费受到二重软上限限制(^1.75)<br>":""
-        document.getElementById("baby_scale3").innerHTML = family_data.baby>1e12?"新生儿超过1兆，花费受到三重软上限限制(^2.0)<br>":""
+        document.getElementById("baby_scale2").innerHTML = family_data.baby>1e8?"新生儿超过1亿，花费受到二重软上限限制(^2.0)<br>":""
+        document.getElementById("baby_scale3").innerHTML = family_data.baby>1e12?"新生儿超过1兆，花费受到三重软上限限制(^2.5)<br>":""
     }
     else{
         family_locked.style.display='block';
@@ -3681,7 +3714,12 @@ function update_displayed_family_members(){
             //console.log('created',r);
         }
     }
-
+     family_data.cap ||= 27;
+    document.getElementById("family_next_realm").innerHTML =  `<span class="${realm_rate[family_data.cap+1][4]}"> ${realm_rate[family_data.cap+1][3]} </span>`
+    document.getElementById("family_cur_power").innerText = format_number(get_character_power());
+    document.getElementById("family_next_power").innerText = format_number(PNtIC[family_data.cap]);
+    document.getElementById("family_cur_rank").innerText = get_power_rank(get_character_power()).toLocaleString('en-US');
+    document.getElementById("family_next_rank").innerText = get_power_rank(PNtIC[family_data.cap]).toLocaleString('en-US');
 }//刷新成员情况
 
 
@@ -3768,10 +3806,13 @@ let spec_stat = [[0, '魔攻', '#bbb0ff','这个敌人似乎掌握了魔法。<b
 [63, "硬化" ,"#94478a", "当角色攻击大于防御时，怪物将<span style='color:#FFFF00'>无视超出部分的攻击数值</span>。"],
 [64, "大队" ,"#d532eb", "大队成员气势汹汹，欲杀死所有阻拦自己的敌人。<br>由100-5000个单位组成的大队。"],
 [65, "血遁" ,"#a8002d", "燃烧精血获取到的远超同境的移速，精血枯竭时即会原形毕露。<br>敌人有效敏捷上升<span style='color:#FFFF00'>敌人血量百分比的99倍</span>。"],
-[66, "吹火掌","#f55882","火、空元素领悟。穹斗世界古书中记载的某种斗技，控制与对手的距离。<br><span style='color:#FFFF00'>敌人命中角色时</span>，将角色下一次攻击<span style='color:#87CEFA'>延迟500毫秒</span>释放。"],
+[66, "吹火掌","#f55882","火、空元素领悟。穹斗世界古书中记载的某种斗技，控制与对手的距离。<br><span style='color:#FFFF00'>敌人命中角色时</span>，将角色下一次攻击冷却<span style='color:#87CEFA'>增加50%</span>(可叠加)"],
 [67, "血杀","#f55882","你曾为自己的使命流过多少血？<br>当<span style='color:#FFFF00'>角色生命多于敌人</span>时，敌人伤害<span style='color:#87CEFA'>增加一半</span>，反之<span style='color:#87CEFA'>减少一半</span>。"],
 [68, "散华·改", "#d08e53","奇妙的能力，感应血气并作用于攻击。<br>角色攻击的效力削弱（敌人生命/角色生命）的<span style='color:#87CEFA'>10%</span><br>。"],
-
+[69, "反击" , "#B30000", "战斗前，敌人将角色攻击的<span style='color:#87CEFA'>100%</span>加到自己的攻击上"],
+[70, "贪婪 ω", "#dfe650",function(enemy){return `这个敌人似乎对金钱十分敏感。<br>敌人的伤害除以<span style='color:#87CEFA'>(1 + √(角色金钱/${format_money(enemy.spec_value[70])}) )</span>`}],
+[71, "神帝之力" , "#B3FFB3", "敌人每次攻击时，赋予角色5秒<span style='color:#FFFF00'>神帝之力</span>效果，不可叠加。如果角色在被击中前不携带该效果，则敌人该次攻击伤害<span style='color:#87CEFA'>归零</span>。<span style='color:#FFFF00'>神帝之力</span>效果为<span style='color:#87CEFA'>攻击/防御/敏捷/生命上限 乘以 100.81/span>.<br><span style='color:#FFFF00'>神帝之力</span>在切换区域时自动消失，且携带此效果时家族新境界无法解禁。"],
+[72, "战团" ,"#f527d3", "一个成组织战斗的集体。他们观察敌情，发现敌方境界并不高，而且人数并不多，所以他们开始了战斗。<br>由1万-100万个单位组成的战团。"],
 
 ];
 //超过25倍倍率的攻击暂时视为必中！
@@ -3792,7 +3833,7 @@ function create_new_bestiary_entry(enemy_name) {
     
     const enemy = enemy_templates[enemy_name];
     if(enemy == undefined){
-        enemy_killcount[enemy_name] = null;
+        delete enemy_killcount[enemy_name];
         console.warn("试图创建未定义的敌人 [" + enemy_name + "] 的怪物手册条目");
         return;
     }
@@ -4090,6 +4131,8 @@ function add_bestiary_zones(enemy_name)
     if(enemy_name == "水晶骷髅") add_bestiary_lines(42);
     if(enemy_name == "燕岗战法小队") add_bestiary_lines(43);
     if(enemy_name == "青茸茸将军") add_bestiary_lines(44);
+    if(enemy_name == "翩然蝶仙") add_bestiary_lines(45);
+    if(enemy_name == "暗茸茸") add_bestiary_lines(46);
 }
 
 function reload_bestiary(){
@@ -4164,6 +4207,20 @@ function add_levelary_tooltip(level_name) {
         if(level_name.includes("赫尔沼泽")){
             inf_combat.B3 = inf_combat.B3 || 0;
             c_halo = inf_combat.B3 * 0.01;
+        }
+        if(level_name.includes("鲜血峰 - ")){
+            const key_id1 = item_templates["血峰限制器"].getInventoryKey();
+            let key_cnt1 = character.inventory[key_id1]?character.inventory[key_id1].count:0;
+            key_cnt1 = Math.min(key_cnt1,5);
+            if(key_cnt1 != 0){
+                c_halo *= 1 - 0.2 * key_cnt1;
+            }
+            const key_id2 = item_templates["血峰增幅器"].getInventoryKey();
+            let key_cnt2 = character.inventory[key_id2]?character.inventory[key_id2].count:0;
+            key_cnt2 = Math.min(key_cnt2,999025);
+            if(key_cnt2 != 0){
+                c_halo *= 1 + 0.2 * (key_cnt2 ** 0.5);
+            }
         }
         tooltip_tags.innerHTML += `<br>光环 ${format_number(c_halo * 100.0)} %(掉落 + ${format_number((Math.pow(c_halo+1,1)-1)*100.0)}%,经验 + ${format_number((Math.pow(c_halo+1,1.5)-1)*100.0)}%)`;
     }
@@ -4248,10 +4305,17 @@ function update_character_attack_bar(num) {
     if(num>=0){
         character_attack_bar.style.backgroundColor = 'rgb(156, 0, 156)';
         character_attack_bar.style.width = `${Math.min(num*100,100)}%`;
+        character_attack_bar_cnt.innerText = `/`
+        character_attack_bar_cnt.style.display = `none`;
     }
     else{
         character_attack_bar.style.backgroundColor = 'rgb(99, 255, 99)';
-        character_attack_bar.style.width = `${(num*(-1)).toFixed(0)}%`;
+        character_attack_bar.style.width = `${Math.round(num*(-100))%100}%`;
+        if(num<-1){
+            character_attack_bar_cnt.innerText = `(+x${Math.floor(num*-1)})`
+            character_attack_bar_cnt.style.display = `inherit`;
+        }
+        else character_attack_bar_cnt.style.display = `none`;
     }
 }
 
@@ -4399,4 +4463,5 @@ export {
     clear_levelary_tooltip,
     update_displayed_family,
     update_displayed_family_members,
+    format_numberL,get_character_power,
 }

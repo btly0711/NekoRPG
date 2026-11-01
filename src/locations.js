@@ -6,6 +6,7 @@ import { skills } from "./skills.js";
 import { current_game_time } from "./game_time.js";
 import { activities } from "./activities.js";
 import { inf_combat } from "./main.js";
+import { format_numberL } from "./display.js";
 
 import { book_stats, item_templates, Weapon, Armor, Shield } from "./items.js";
 import { get_total_skill_level,add_to_character_inventory, remove_from_character_inventory } from "./character.js";
@@ -241,6 +242,10 @@ class Combat_zone {
                 log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.agility * newEnemy.spec_value[30])} 攻击 [净化]`,"enemy_enhanced");
                 newEnemy.stats.attack += character.stats.full.agility * newEnemy.spec_value[30];//净化
             }
+            if(newEnemy.spec.includes(69)){ 
+                log_message(`${f_enemy.name} 吸取了 ${format_number(character.stats.full.attack_power)} 攻击 [反击]`,"enemy_enhanced");
+                newEnemy.stats.attack += character.stats.full.attack_power;//反击
+            }
             if(newEnemy.spec.includes(58)){
                 let M58 = ((8-inf_combat.S3.b2)*3-inf_combat.S3.b3)*0.05 + 1;
                 newEnemy.stats.health *= M58;
@@ -349,6 +354,7 @@ class Combat_zone {
 
             // } else {
             let halo_fix = 0;
+            let halo_mul = 1;
             if(enemy.name == "秘境心火精灵[BOSS]")//特判秘境心火
             {
                 const key_id = item_templates["微花残片"].getInventoryKey();
@@ -356,7 +362,7 @@ class Combat_zone {
                 key_cnt = Math.min(key_cnt,5);
                 if(key_cnt != 0)
                 {
-                    log_message(`由于持有 ${key_cnt} 个微花残片，光环削弱：140% -> ${140-key_cnt*8}%！`,"enemy_enhanced");
+                    log_message(`由于持有 ${key_cnt} 个微花残片，光环削弱：140% -> ${140-key_cnt*8}%！`,"hero_regened");
                     halo_fix -= 0.08*key_cnt;
                 }
             }
@@ -366,7 +372,7 @@ class Combat_zone {
                 key_cnt = Math.min(key_cnt,4);
                 if(key_cnt != 0)
                 {
-                    log_message(`由于持有 ${key_cnt} 个微花残片，光环削弱：132% -> ${132-key_cnt*8}%！`,"enemy_enhanced");
+                    log_message(`由于持有 ${key_cnt} 个微花残片，光环削弱：132% -> ${132-key_cnt*8}%！`,"hero_regened");
                     halo_fix -= 0.08*key_cnt;
                 }
             }
@@ -380,16 +386,30 @@ class Combat_zone {
             }
             else if(this.name.includes("纯白冰原") && character.is_in_inventory_nanami("{\"id\":\"峰\"}")){
                 remove_from_character_inventory([{item_key:"{\"id\":\"峰\"}"}]);
-                log_message("[峰]终于到地方了，不枉我盯了她一路。","enemy_enhanced");
-                log_message("[峰]那么，我也差不多该走了……","enemy_enhanced");
+                log_message("[峰]终于到地方了，不枉我盯了她一路。","hero_regened");
+                log_message("[峰]那么，我也差不多该走了……","hero_regened");
+            }
+            else if(this.name.includes("鲜血峰 - ")){
+                const key_id1 = item_templates["血峰限制器"].getInventoryKey();
+                let key_cnt1 = character.inventory[key_id1]?character.inventory[key_id1].count:0;
+                key_cnt1 = Math.min(key_cnt1,5);
+                if(key_cnt1 != 0){
+                    halo_mul *= 1 - 0.2 * key_cnt1;
+                }
+                const key_id2 = item_templates["血峰增幅器"].getInventoryKey();
+                let key_cnt2 = character.inventory[key_id2]?character.inventory[key_id2].count:0;
+                key_cnt2 = Math.min(key_cnt2,990025);
+                if(key_cnt2 != 0){
+                    halo_mul *= 1 + 0.2 * (key_cnt2 ** 0.5);
+                }
             }
             if(character.equipment.props?.name == "光环法杖"){
                 if(enemy.rank >= 4000){
-                    log_message("光环法杖大放光彩，随即暗淡下来……","enemy_enhanced");
-                    log_message("它的材料不足以增幅如此强大的敌人！","enemy_enhanced");
+                    log_message("光环法杖大放光彩，随即暗淡下来……","hero_regened");
+                    log_message("它的材料不足以增幅如此强大的敌人！","hero_regened");
                 }
                 else if(enemy.rank % 100 >= 50){
-                    log_message("[光环法杖]BOSS级敌人无法被增幅!","enemy_enhanced");
+                    log_message("[光环法杖]BOSS级敌人无法被增幅!","hero_regened");
                 }
                 else{
                     halo_fix += 0.25;
@@ -401,9 +421,9 @@ class Combat_zone {
                 
                 if((character.xp.current_level>=29)){
                     
-                    log_message("随着一声气球漏气一样的声音，","enemy_enhanced");
-                    log_message("荒兽傀儡被纳可的云霄级威压压扁了。","enemy_enhanced");
-                    log_message("用沼泽材料搓的东西能撑到现在已经不错了啦……","enemy_enhanced");
+                    log_message("随着一声气球漏气一样的声音，","hero_regened");
+                    log_message("荒兽傀儡被纳可的云霄级威压压扁了。","hero_regened");
+                    log_message("用沼泽材料搓的东西能撑到现在已经不错了啦……","hero_regened");
                     
                     character.equipment.props = null;
                     
@@ -413,7 +433,7 @@ class Combat_zone {
                 }
             }
                 
-            const halo = this.enemy_stat_halo + 1 + halo_fix;
+            const halo = this.enemy_stat_halo * halo_mul + 1 + halo_fix;
 
             enemies.push(this.get_enemy(halo,enemy)); 
             if(enemy.spec.includes(41)) {
@@ -5017,7 +5037,7 @@ function get_location_type_penalty(type, stage, stat) {
 
     locations["毬毬山谷"] = new Location({ 
         connected_locations: [{location: locations["狩猎大赛·古墓战"], custom_text: "回到古墓中"}], 
-        description: "【燕岗领】与【清波领】的交界地带，活跃着云霄级中期的探险强者！[V3.40前版本终点]",
+        description: "【燕岗领】与【清波领】的交界地带，活跃着云霄级中期的探险强者！",
         name: "毬毬山谷", 
         traders: [],
         dialogues: ["玄铁方尖碑"],
@@ -5026,6 +5046,31 @@ function get_location_type_penalty(type, stage, stat) {
     });//4-4
     locations["狩猎大赛·古墓战"].connected_locations.push({location: locations["毬毬山谷"]});
 
+    locations["山谷秘境"] = new Location({ 
+        connected_locations: [{location: locations["毬毬山谷"], custom_text: "回到战斗区"}], 
+        description: "原本被一批青茸茸将军和红仆小恶魔占据的秘境。在听闻纳可的事迹之后，它们都灰溜溜地逃跑了……",
+        name: "山谷秘境", 
+        traders: ["物品存储箱"],
+        dialogues: ["地层钻探"],
+        sleeping: {
+            text: "使用山谷秘境修炼资源[+92160XP/s]",
+            xp: 92160,
+        },
+        crafting: {
+            is_unlocked: true, 
+            use_text: "使用山谷中的C4级合成台[Tier+20]", 
+            tiers: {
+                crafting: 20,
+                forging: 20,
+                smelting: 20,
+                cooking: 20,
+                alchemy: 20,
+            }
+        },
+        is_unlocked: false,
+        bgm: 24,
+    });//4-4休息区
+    locations["毬毬山谷"].connected_locations.push({location: locations["山谷秘境"]});
     locations["毬毬山谷 - 1"] = new Combat_zone({
         description: "死线回归了真是一场恐怖事件啊……那如果这一区死线回归只是最小的问题呢？", 
         enemy_count: 20, 
@@ -5042,7 +5087,7 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 300e12,
-            locations: [{location: "毬毬山谷 - 2"}],
+            locations: [{location: "毬毬山谷 - 2"},{location: "山谷秘境"}],
         },
     });
     locations["毬毬山谷 - 2"] = new Combat_zone({
@@ -5061,8 +5106,10 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 400e12,
-            locations: [{location: "毬毬山谷 - 3"},{location: "毬毬山谷 - 歧路"}],
+            locations: [{location: "毬毬山谷 - 3"}],
+            textlines: [{dialogue: "地层钻探", lines: ["dczt"]}],
         },
+        unlock_text : "[纳可]击败了之前的20波敌人，也空出了一个可用秘境……前方的敌人更加强大。先在此处稍作休整吧。",
     });
     locations["毬毬山谷 - 3"] = new Combat_zone({
         description: "该区【冻伤】斩杀线位于8100亿攻防和处。没有那些败移和死线了，是时候喘口气了……", 
@@ -5080,11 +5127,12 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 500e12,
-            locations: [{location: "毬毬山谷 - 4"}],
+            locations: [{location: "毬毬山谷 - 4"},{location: "毬毬山谷 - 歧路"}],
         },
+        unlock_text : "[纳可]一块玄铁方尖碑？！这里一定蕴含着超规格的感悟升级契机！",
     });
     locations["毬毬山谷 - 4"] = new Combat_zone({
-        description: "该区【冰封术】斩杀线位于54兆剩余生命处，【追光】斩杀线位于7200亿防御处，还有【死线】增伤，【散华】【生命限制】收割残余生命。[WIP:将在V3.40删除这句话]我不知道你们打算怎么在更新物品和小巧思，吃到大加强之前过去……如果过去了告诉我一声！", 
+        description: "该区【冰封术】斩杀线位于54兆剩余生命处，【追光】斩杀线位于7200亿防御处，还有【死线】增伤，【散华】【生命限制】收割残余生命。", 
         enemy_count: 20, 
         enemies_list: ["青面大侠","青衣魔法使","难缠的红蝙蝠","蛮血枭蝎","蓝泽追光者"],
         enemy_group_size: [4,4],
@@ -5099,8 +5147,9 @@ function get_location_type_penalty(type, stage, stat) {
         },
         repeatable_reward: {
             xp: 600e12,
-            //locations: [{location: "毬毬山谷 - X"}],
+            locations: [{location: "毬毬山谷 - X"}],
         },
+        unlock_text : "[纳可]山谷秘境的地下似乎埋着不得了的东西……翻个底朝天肯定是做不到的。但用念力感受一下呢？",
     });
     locations["毬毬山谷 - 歧路"] = new Challenge_zone({
         description: "一座玄铁母制成的方尖碑！参拜它或许可以让【映星花】领悟产生质变。至于这些家伙……唯一有效的应对方法就是闪避更多的【吹火掌】。", 
@@ -5123,14 +5172,312 @@ function get_location_type_penalty(type, stage, stat) {
     locations["毬毬山谷"].connected_locations.push({location: locations["毬毬山谷 - 3"]}); 
     locations["毬毬山谷"].connected_locations.push({location: locations["毬毬山谷 - 4"]}); 
     locations["毬毬山谷"].connected_locations.push({location: locations["毬毬山谷 - 歧路"]}); 
-/* 燕岗城警戒哨[BOSS]
+    locations["毬毬山谷 - X"] = new Challenge_zone({
+        description: "完全是被拉过来凑数的家伙。这区的资源都用来供养地底的宝藏了……", 
+        enemy_count: 1, 
+        enemies_list: ["心火红茸茸[BOSS]"],
+        enemy_group_size: [1,1],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "毬毬山谷 - X",
+        bgm:24,
+        parent_location: locations["毬毬山谷"],
+        repeatable_reward: {
+            locations: [{location: "鲜血峰"}],
+        },
+    });
+    locations["毬毬山谷"].connected_locations.push({location: locations["毬毬山谷 - X"]}); 
 
-["青茸茸将军","红仆小恶魔","红角茸茸","飞飞茸茸","公正的袍师"],
-["青鬼八爪鱼","青衣卫巫小队","红邪鬼随从商","天青驯兽","红仆小恶魔"]//斩杀线：3600亿敏捷
-["飞飞茸茸","绯红剑侍","深红毒蛇刺剑","青面大侠","冰霜骸骨"],//斩杀线:8100亿攻防和
-["青面大侠","青衣魔法使","难缠的红蝙蝠","蛮血枭蝎","蓝泽追光者"],//斩杀线：54兆血量&死线&不可能防御的追光
+    locations["鲜血峰"] = new Location({ 
+        connected_locations: [{location: locations["毬毬山谷"], custom_text: "回到毬毬山谷"}], 
+        description: "圣荒领与兰陵领的交界地带，争斗不断，血流漂杵。这座主峰是【大青王】的领地。[V3.50前版本终点]",
+        name: "鲜血峰", 
+        traders: ["声望商人·三代"],
+        dialogues: ["昊荒"],
+        is_unlocked: false,
+        bgm: 25,
+    });//4-5
+    locations["毬毬山谷"].connected_locations.push({location: locations["鲜血峰"]});
 
-*/
+    locations["鲜血峰 - 1"] = new Combat_zone({
+        description: "【大青王尤斯纳】的领地。鲜血系的修炼法屡见不鲜……让人感到阴森呢。", 
+        enemy_count: 20, 
+        enemies_list: ["亮青水晶","难缠的红蝙蝠","翩然蝶仙","红宝石近卫","心火红茸茸"],
+        enemy_group_size: [4,4],
+        enemy_stat_halo:0.05,
+        is_unlocked: true, 
+        types: [],
+        name: "鲜血峰 - 1",
+        rank:341, 
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        first_reward: {
+            xp: 2400e12,
+        },
+        repeatable_reward: {
+            xp: 800e12,
+            locations: [{location: "鲜血峰 - 2"}],
+        },
+    });
+    locations["鲜血峰 - 2"] = new Combat_zone({
+        description: "经过一番调查，附近并没有人类养殖场。血都是养殖高等血统的荒兽，那个长的快，而且血质量高。", 
+        enemy_count: 20, 
+        enemies_list: ["亮青水晶","报春红食人花","报春红食人花","红角邪恶触触","蓝泽追光者"],
+        enemy_group_size: [4,4],
+        enemy_stat_halo:0.10,
+        is_unlocked: false, 
+        types: [],
+        name: "鲜血峰 - 2",
+        rank:342, 
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        first_reward: {
+            xp: 3000e12,
+        },
+        repeatable_reward: {
+            xp: 1000e12,
+            locations: [{location: "鲜血峰 - 3"}],
+        },
+    });
+    locations["鲜血峰 - 3"] = new Combat_zone({
+        description: "所谓“吸收精血过于驳杂导致被残留意识入侵”至少在云霄境还不存在。无论人类还是动物类荒兽，大脑没了就死透了。", 
+        enemy_count: 20, 
+        enemies_list: ["亮青水晶","炽热幽闻藤","红甲射箭小队","灰暗双剑小队","红野人战士"],
+        enemy_group_size: [4,4],
+        enemy_stat_halo:0.15,
+        is_unlocked: false, 
+        types: [],
+        name: "鲜血峰 - 3",
+        rank:343, 
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        first_reward: {
+            xp: 3600e12,
+        },
+        repeatable_reward: {
+            xp: 1200e12,
+            locations: [{location: "鲜血峰 - 4"}],
+        },
+    });
+    locations["鲜血峰 - 4"] = new Combat_zone({
+        description: "对了，毕竟实在是有很多荒兽养殖场……所以这片区域有不少强大而逃出来的荒兽也不奇怪。野人和巨人某种意义上也算荒兽——它们连血洛通用语都不会。", 
+        enemy_count: 20, 
+        enemies_list: ["鲜红水晶","品红野人战士","树莓龙勇士","树莓龙勇士","红巨人番队"],
+        enemy_group_size: [4,4],
+        enemy_stat_halo:0.20,
+        is_unlocked: false, 
+        types: [],
+        name: "鲜血峰 - 4",
+        rank:344, 
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        first_reward: {
+            xp: 4200e12,
+        },
+        repeatable_reward: {
+            xp: 1400e12,
+            locations: [{location: "鲜血峰 - 5"}],
+        },
+    });
+    locations["鲜血峰 - 5"] = new Combat_zone({
+        description: "刻意保留，用于防止鲜血峰上发生争斗的山腰混乱之地正中央。大量彼此决一死战的强者汇聚于此，但都干掉就可以得到两边的财产了……", 
+        enemy_count: 20, 
+        enemies_list: ["鲜红水晶","撼瀚野熊","鲑红腐殖质","大红蜕钳蝎","红白闪"],
+        enemy_group_size: [4,4],
+        enemy_stat_halo:0.25,
+        is_unlocked: false, 
+        types: [],
+        name: "鲜血峰 - 5",
+        rank:345, 
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        first_reward: {
+            xp: 4800e12,
+        },
+        repeatable_reward: {
+            xp: 1600e12,
+            //locations: [{location: "鲜血峰 - X"}],
+            textlines: [{dialogue: "昊荒", lines: ["hh1"]}],
+        },
+    });
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 1"]}); 
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 2"]}); 
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 3"]}); 
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 4"]}); 
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - 5"]}); 
+    locations["鲜血峰 - X"] = new Challenge_zone({
+        description: "就算击败了他也没办法进入破败之域的。毕竟还有他的上司——大青王拦着。", 
+        enemy_count: 1, 
+        enemies_list: ["昊荒[BOSS]"],
+        enemy_group_size: [1,1],
+        enemy_stat_halo:0.30,
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "鲜血峰 - X",
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        repeatable_reward: {
+            locations: [{location: "鲜血峰 - EX"}],
+            flags: ["is_Cblood_unlocked"],
+        },
+    });
+    locations["鲜血峰 - EX"] = new Challenge_zone({
+        description: "现在才是真正的战斗！这股力量不属于你……但即使如此，练练技能还是有用的。", 
+        enemy_count: 1, 
+        enemies_list: ["大青王尤斯纳[BOSS]"],
+        enemy_group_size: [1,1],
+        enemy_stat_halo:1.00,
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "鲜血峰 - EX",
+        bgm:25,
+        parent_location: locations["鲜血峰"],
+        repeatable_reward: {
+            locations: [{location: "破败之域"}],
+        },
+    });
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - X"]}); 
+    locations["鲜血峰"].connected_locations.push({location: locations["鲜血峰 - EX"]}); 
+
+    locations["破败之域"] = new Location({ 
+        connected_locations: [{location: locations["鲜血峰"], custom_text: "回到鲜血峰"}], 
+        description: "隐藏在三领交界处地下的一处大型秘境。当地唯一不禁止的【虔心】体系炼到天空级巅峰就会化作上好的修行资粮，但也正因为此，此地才能培养起大批外来云霄级强者。[V3.60前版本终点]",
+        name: "破败之域", 
+        traders: [],
+        dialogues: ["精血石碑"],
+        is_unlocked: false,
+        bgm: 26,
+    });//4-6
+    locations["鲜血峰"].connected_locations.push({location: locations["破败之域"]});
+
+    locations["秘银行宫"] = new Location({ 
+        connected_locations: [{location: locations["破败之域"], custom_text: "回到战斗区"}], 
+        description: "“族长我们这样子把别人家抢来住真的没事吗！”“放心……在看住4-6-X之前他回不来的。4-6-X通了他就打不过咱了。”",
+        name: "秘银行宫", 
+        traders: ["物品存储箱"],
+        dialogues: [],
+        sleeping: {
+            text: "使用秘银级魔法师的修炼资源[27.6wXP/s]",
+            xp: 276480,
+        },
+        crafting: {
+            is_unlocked: true, 
+            use_text: "使用秘银级魔法师的C6级合成台[Tier+22]", 
+            tiers: {
+                crafting: 22,
+                forging: 22,
+                smelting: 22,
+                cooking: 22,
+                alchemy: 22,
+            }
+        },
+        is_unlocked: false,
+        bgm: 26,
+    });//4-6休息区
+    locations["破败之域"].connected_locations.push({location: locations["秘银行宫"]});
+
+    locations["破败之域 - 1"] = new Combat_zone({
+        description: "三领之间的三不管秘境。即使天空巅峰强者都需要组成族群方能生存。", 
+        enemy_count: 20, 
+        enemies_list: ["红白闪","暗茸茸","银白穿心之刃","暗茸茸战士","银茸茸聚落"],
+        enemy_group_size: [4,4],
+        is_unlocked: true, 
+        types: [],
+        name: "破败之域 - 1",
+        rank:351, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 6000e12,
+        },
+        repeatable_reward: {
+            xp: 2000e12,
+            locations: [{location: "破败之域 - 2"}],
+        },
+    });
+    locations["破败之域 - 2"] = new Combat_zone({
+        description: "三领之间的三不管秘境。各种黑暗系修行法门四处流传：它们的修炼者没有未来。但如果不修行这些，这些修炼者连现在都未必能拥有。", 
+        enemy_count: 20, 
+        enemies_list: ["欺诈面具人","破败狩魂人","蒙面将军","破败堕落法师","破败牛头"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "破败之域 - 2",
+        rank:352, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 9000e12,
+        },
+        repeatable_reward: {
+            xp: 3000e12,
+            locations: [{location: "破败之域 - 3"},{location: "破败之域 - 歧路"}],
+        },
+    });
+    locations["破败之域 - 3"] = new Combat_zone({
+        description: "三领之间的三不管秘境。常年乱战逸散的能量为这里的几乎万物都赋予了灵智……又反过来加强了乱战的规模。。", 
+        enemy_count: 20, 
+        enemies_list: ["基岩","童面狮心匪","破败石人王","深渊幽灵","魔灵僵尸茸茸"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "破败之域 - 3",
+        rank:353, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 12000e12,
+        },
+        repeatable_reward: {
+            xp: 4000e12,
+            locations: [{location: "破败之域 - 4"}],
+        },
+    });
+    locations["破败之域 - 4"] = new Combat_zone({
+        description: "三领之间的三不管秘境。机械，荒兽，魔族，人族……这些就是这片秘境的中坚力量。云霄级六阶以上强者已经不屑亲自争斗，也因此纳可才不会面对无法逃脱的危机。", 
+        enemy_count: 20, 
+        enemies_list: ["破败混乱骑士","狂妒的勇士","破败铁卫C5","破败铁卫C5","破败刽子手","破败游荡魔"],
+        enemy_group_size: [4,4],
+        is_unlocked: false, 
+        types: [],
+        name: "破败之域 - 4",
+        rank:354, 
+        bgm:26,
+        parent_location: locations["破败之域"],
+        first_reward: {
+            xp: 15000e12,
+        },
+        repeatable_reward: {
+            xp: 5000e12,
+            //locations: [{location: "破败之域 - X"}],
+        },
+    });
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 1"]}); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 2"]}); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 3"]}); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 4"]}); 
+    locations["破败之域 - 歧路"] = new Challenge_zone({
+        description: "听说秘银级魔法师留下了一座超棒的宫殿。他去守破败之域 - X了，留几只机器人看家……好机会！。", 
+        enemy_count: 1, 
+        enemies_list: ["永夜之锋C5[BOSS]"],
+        enemy_group_size: [4,4],
+        types: [],
+        is_unlocked: false, 
+        is_challenge: true,
+        name: "破败之域 - 歧路",
+        bgm:26,
+        parent_location: locations["破败之域"],
+        repeatable_reward: {
+            locations: [{location: "秘银行宫"}],
+        },
+    }); 
+    locations["破败之域"].connected_locations.push({location: locations["破败之域 - 歧路"]}); 
+    /*
+    
+    */
 
     locations["Nearby cave"] = new Location({ 
         connected_locations: [{location: locations["Village"], custom_text: "Go outside and to the village"}], 

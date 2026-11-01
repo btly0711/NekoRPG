@@ -3219,7 +3219,76 @@ class Textline {
             }),
         }
     });
+    dialogues["地层钻探"] = new Dialogue({
+        name: "地层钻探",
+        starting_text: "【地层钻探】",
+        textlines: {
+            "dczt": new Textline({ 
+                is_unlocked: false,
+                name: "进行【地层钻探】",
+                text: "...",
+                unlocks: {
+                    spec:"ground-digging",
+                },
+            }),
+        }
+    });
+    
 
+    dialogues["昊荒"] = new Dialogue({
+        name: "昊荒",
+        textlines: {
+            "hh1": new Textline({ 
+                is_unlocked: false,
+                name: "礼貌请求进入【破败之域】",
+                text: "[昊荒]呵，这不是声律城外，心惊胆战观战的那小丫头吗。<br>再重复一遍，【破败之域】不是你能来的地方！<br>我上司下达了严格的命令：放进来一个罚一半的家产！<br>",
+                unlocks: {
+                    textlines: [{dialogue: "昊荒", lines: ["hh2"]}],
+                },
+                
+                locks_lines: ["hh1"],
+            }),
+            
+            "hh2": new Textline({ 
+                is_unlocked: false,
+                name: "(晃晃钱袋子)想要吗?",
+                text: "[昊荒]要是换别人我早就给他过了。<br>但你，纳可……<br>方圆五个领，谁不知道你到哪里就把全家带到哪里！<br>让家族成员去秘境探险！<br>然后一整个领的秘境都被扫空了！！<br>我要是把你放进去，能交几千血洛晶的罚金！<br>把我卖了都还不起！谔啊啊啊！",
+                unlocks: {
+                    textlines: [{dialogue: "昊荒", lines: ["hh3"]}],
+                },
+                
+                locks_lines: ["hh2"],
+            }),
+            "hh3": new Textline({ 
+                is_unlocked: false,
+                name: "那……咱俩试试?",
+                text: "[昊荒]要战，便战！<br>我的身后可是有六颗鲜红水晶！<br>我是无敌的！",
+                unlocks: {
+                    locations:["鲜血峰 - X"],
+                },
+                
+                locks_lines: ["hh3"],
+            }),
+        }
+    });
+
+
+    dialogues["精血石碑"] = new Dialogue({
+        name: "精血石碑",
+        starting_text: "补票【精血提炼】的功法",
+        textlines: {
+            "jxsb": new Textline({ 
+                is_unlocked: true,
+                name: "精血提炼/点击就送！！(在3.51将被移除)",
+                text: "...",
+                unlocks: {
+                    flags:["is_Cblood_unlocked"],
+                },
+                
+                locks_lines: ["jsxb"],
+            }),
+        }
+    });//WIP 3.60移除
     dialogues["心之石像"] = new Dialogue({
         name: "心之石像",
         starting_text: "凝聚战斗中积累的感悟",

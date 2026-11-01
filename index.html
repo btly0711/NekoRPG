@@ -126,8 +126,12 @@
                         
                         </div>
                     </div>
+                    
                     <div id = "character_attack_bar">
 
+                    </div>
+                    <div id = "character_attack_bar_cnt">
+                        
                     </div>
                 </div>
 
@@ -524,185 +528,198 @@
                 
                 <!-- actions and stuff-->
                 <div id = "location_related_div" class = "box_div">
-                    <div id = "fish_div">
-                        <div id = "fish_background_div">
-                            <div id = "neko_fish_div">
-                                <img src="image/spec/neko.png">
-                                <div id = "fish_progress_div">
-                                    <div id = "fish_progress_bar">
+                    <div id = "mini_games_div">
+                        <div id = "fish_div">
+                            <div id = "fish_background_div">
+                                <div id = "neko_fish_div">
+                                    <img src="image/spec/neko.png">
+                                    <div id = "fish_progress_div">
+                                        <div id = "fish_progress_bar">
+                                        </div>
+                                    </div>
+                                    
+                                    <div id = "fish_mark_div">
+                                        <img src="image/spec/fishmark.png">
+                                    </div>
+
+                                </div>
+                                <div id = "fish_minigame_div">
+                                    <div id = "fish_rod_div">
+                                    </div>
+                                    
+                                    <div id = "fish_game_div">
+                                        <img src="image/spec/fishmark.png">
                                     </div>
                                 </div>
-                                
-                                <div id = "fish_mark_div">
-                                    <img src="image/spec/fishmark.png">
-                                </div>
+                            </div>
+                            <div id = "fish_font_div">
+                                少<br><br>
+                                &emsp; 女<br><br>
+                                &emsp; &emsp; 钓<br><br>
+                                &emsp; &emsp; &emsp; 鱼<br><br>
+                                &emsp; &emsp; &emsp; &emsp; 中<br><br>
+                                &emsp; &emsp; &emsp; &emsp; &emsp; ...
+                            </div>
+                        </div>
+                        <div id = "fish_changed_div">
+                            <div id = "fish_background_changed_div">
+                                <div id = "neko_fish_changed_div">
+                                    <img src="image/spec/neko.png">
+                                    <div id = "fish_progress_changed_div">
+                                        <div id = "fish_progress_changed_bar">
+                                        </div>
+                                    </div>
+                                    
+                                    <div id = "fish_mark_changed_div">
+                                        <img src="image/spec/fishmark.png">
+                                    </div>
 
-                            </div>
-                            <div id = "fish_minigame_div">
-                                <div id = "fish_rod_div">
                                 </div>
-                                
-                                <div id = "fish_game_div">
-                                    <img src="image/spec/fishmark.png">
-                                </div>
-                            </div>
-                        </div>
-                        <div id = "fish_font_div">
-                            少<br><br>
-                            &emsp; 女<br><br>
-                            &emsp; &emsp; 钓<br><br>
-                            &emsp; &emsp; &emsp; 鱼<br><br>
-                            &emsp; &emsp; &emsp; &emsp; 中<br><br>
-                            &emsp; &emsp; &emsp; &emsp; &emsp; ...
-                        </div>
-                    </div>
-                    <div id = "fish_changed_div">
-                        <div id = "fish_background_changed_div">
-                            <div id = "neko_fish_changed_div">
-                                <img src="image/spec/neko.png">
-                                <div id = "fish_progress_changed_div">
-                                    <div id = "fish_progress_changed_bar">
+                                <div id = "fish_minigame_changed_div">
+                                    <div id = "fish_rod_changed_div">
+                                    </div>
+                                    <div id = "fish_rod_2nd_div">
+                                    </div>
+                                    
+                                    <div id = "fish_game_changed_div">
+                                        <img src="image/spec/fishmark.png">
                                     </div>
                                 </div>
-                                
-                                <div id = "fish_mark_changed_div">
-                                    <img src="image/spec/fishmark.png">
-                                </div>
-
                             </div>
-                            <div id = "fish_minigame_changed_div">
-                                <div id = "fish_rod_changed_div">
-                                </div>
-                                <div id = "fish_rod_2nd_div">
-                                </div>
-                                
-                                <div id = "fish_game_changed_div">
-                                    <img src="image/spec/fishmark.png">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id = "reactor_div">
-                        <div id = "reactor_info_div">
-                            <b>= 核心反应堆 = </b> 超高品质凝胶剑柄的最佳选择！<br>
-                            <span style="color:red">警告：反应堆温度达到9999°C时会熔毁,摧毁其中的一切.</span><br>
-                        </div>
-                        <div id = "B1_core_div">
-                            <div id = "reactor_B1_bar_max"> 
-                                <div id = "reactor_B1_bar_current">
-                                </div>
-                            </div>
-                            <span style="color:#CFFEE3">
-                                <b>B1·能量核心</b>:<span id="B1_core_num">0</span>
-                            <span id="B1_core_diff">0</span>
-                            <br>
-                                <span class="money_button" onclick = "reactor(1,1)">[+1]</span>
-                                <span class="money_button" onclick = "reactor(1,10)">[+10]</span>
-                                <span class="money_button" onclick = "reactor(1,100)">[+100]</span>
-                                <span class="money_button" onclick = "reactor(1,1000)">[+1K]</span>
-
-                            </span> 
-                        </div>
-                        <div id = "A7_core_div">
-                            <div id = "reactor_A7_bar_max"> 
-                                <div id = "reactor_A7_bar_current">
-                                </div>
-                            </div>
-                            <span style="color:#FBD6FB">
-                                <b>A7·能量核心</b>:<span id="A7_core_num">0</span>
-                            <span id="A7_core_diff">0</span>
-                            <br>
-                                <span class="money_button" onclick = "reactor(2,1)">[+1]</span>
-                                <span class="money_button" onclick = "reactor(2,10)">[+10]</span>
-                                <span class="money_button" onclick = "reactor(2,100)">[+100]</span>
-                                <span class="money_button" onclick = "reactor(2,1000)">[+1K]</span>
-                            </span> 
-                        </div>
-                        <div id = "LD_core_div">
-                            <div id = "reactor_LD_bar_max"> 
-                                <div id = "reactor_LD_bar_current">
-                                </div>
-                            </div>
-                            <span style="color:#0066FF">
-                                <b>雷电加护</b>:<span id="LD_core_num">0</span>
-                                <span class="money_button" onclick = "reactor(3,1)">[+1]</span>
-                                <span class="money_button" onclick = "reactor(3,10)">[+10]</span>
-                                <span class="money_button" onclick = "reactor(3,100)">[+100]</span>
-                                <span class="money_button" onclick = "reactor(3,1000)">[+1K]</span>
-                            </span> 
-                            <br>
-                        </div>
-                        <div id = "ER_core_div">
-                            <div id = "reactor_ER_bar_max"> 
-                                <div id = "reactor_ER_bar_current">
-                                </div>
-                            </div>
-                            <span style="color:#808080">
-                                <b>高能凝胶 </b>:<span id="ER_core_num">0</span>
-                                <span class="money_button" onclick = "reactor(4,1)">[+1]</span>
-                                <span class="money_button" onclick = "reactor(4,10)">[+10]</span>
-                                <span class="money_button" onclick = "reactor(4,100)">[+100]</span>
-                                <span class="money_button" onclick = "reactor(4,1000)">[+1K]</span>
-                            </span> 
-                            <br>
                         </div>
                         
-                        <div id = "temp_div">
-                            <div id = "temp_bar_max"> 
-                                <div id = "temp_bar_current">
-                                </div>
+                        <div id = "reactor_div">
+                            <div id = "reactor_info_div">
+                                <b>= 核心反应堆 = </b> 超高品质凝胶剑柄的最佳选择！<br>
+                                <span style="color:red">警告：反应堆温度达到9999°C时会熔毁,摧毁其中的一切.</span><br>
                             </div>
-                            <span style="color:#ffb0b0">
-                                <b>反应堆温度 </b>:<span id="temp_num">5600</span>°C
-                                
-                                <span id="temp_diff">0</span>
-                            </span> 
-                            <br>
-                        </div>
-                        <div id = "rad_div">
-                            <div id = "rad_bar_max"> 
-                                <div id = "rad_bar_current">
+                            <div id = "B1_core_div">
+                                <div id = "reactor_B1_bar_max"> 
+                                    <div id = "reactor_B1_bar_current">
+                                    </div>
                                 </div>
+                                <span style="color:#CFFEE3">
+                                    <b>B1·能量核心</b>:<span id="B1_core_num">0</span>
+                                <span id="B1_core_diff">0</span>
+                                <br>
+                                    <span class="money_button" onclick = "reactor(1,1)">[+1]</span>
+                                    <span class="money_button" onclick = "reactor(1,10)">[+10]</span>
+                                    <span class="money_button" onclick = "reactor(1,100)">[+100]</span>
+                                    <span class="money_button" onclick = "reactor(1,1000)">[+1K]</span>
+
+                                </span> 
                             </div>
-                            <span style="color:#d0ffc0">
-                                <b>总吸收原能 </b>:<span id="rad_num">0</span>
-                                <span id="rad_diff">0</span>
-                                 (品质:<span id="rad_quality">160</span>%)
-                            </span> 
-                            <br>
-                        </div>
+                            <div id = "A7_core_div">
+                                <div id = "reactor_A7_bar_max"> 
+                                    <div id = "reactor_A7_bar_current">
+                                    </div>
+                                </div>
+                                <span style="color:#FBD6FB">
+                                    <b>A7·能量核心</b>:<span id="A7_core_num">0</span>
+                                <span id="A7_core_diff">0</span>
+                                <br>
+                                    <span class="money_button" onclick = "reactor(2,1)">[+1]</span>
+                                    <span class="money_button" onclick = "reactor(2,10)">[+10]</span>
+                                    <span class="money_button" onclick = "reactor(2,100)">[+100]</span>
+                                    <span class="money_button" onclick = "reactor(2,1000)">[+1K]</span>
+                                </span> 
+                            </div>
+                            <div id = "LD_core_div">
+                                <div id = "reactor_LD_bar_max"> 
+                                    <div id = "reactor_LD_bar_current">
+                                    </div>
+                                </div>
+                                <span style="color:#0066FF">
+                                    <b>雷电加护</b>:<span id="LD_core_num">0</span>
+                                    <span class="money_button" onclick = "reactor(3,1)">[+1]</span>
+                                    <span class="money_button" onclick = "reactor(3,10)">[+10]</span>
+                                    <span class="money_button" onclick = "reactor(3,100)">[+100]</span>
+                                    <span class="money_button" onclick = "reactor(3,1000)">[+1K]</span>
+                                </span> 
+                                <br>
+                            </div>
+                            <div id = "ER_core_div">
+                                <div id = "reactor_ER_bar_max"> 
+                                    <div id = "reactor_ER_bar_current">
+                                    </div>
+                                </div>
+                                <span style="color:#808080">
+                                    <b>高能凝胶 </b>:<span id="ER_core_num">0</span>
+                                    <span class="money_button" onclick = "reactor(4,1)">[+1]</span>
+                                    <span class="money_button" onclick = "reactor(4,10)">[+10]</span>
+                                    <span class="money_button" onclick = "reactor(4,100)">[+100]</span>
+                                    <span class="money_button" onclick = "reactor(4,1000)">[+1K]</span>
+                                </span> 
+                                <br>
+                            </div>
+                            
+                            <div id = "temp_div">
+                                <div id = "temp_bar_max"> 
+                                    <div id = "temp_bar_current">
+                                    </div>
+                                </div>
+                                <span style="color:#ffb0b0">
+                                    <b>反应堆温度 </b>:<span id="temp_num">5600</span>°C
+                                    
+                                    <span id="temp_diff">0</span>
+                                </span> 
+                                <br>
+                            </div>
+                            <div id = "rad_div">
+                                <div id = "rad_bar_max"> 
+                                    <div id = "rad_bar_current">
+                                    </div>
+                                </div>
+                                <span style="color:#d0ffc0">
+                                    <b>总吸收原能 </b>:<span id="rad_num">0</span>
+                                    <span id="rad_diff">0</span>
+                                    (品质:<span id="rad_quality">160</span>%)
+                                </span> 
+                                <br>
+                            </div>
 
-                        <div id="reactor_exit">
-                            <span class="money_button_wide" onclick = "extract_reactor()" style="color:#808080"><b>[提取凝胶剑柄]</b></span>
-                            <span class="money_button_wider" onclick = "extract_evolve()" style="color:#80FF80" id="reactor_evolve"><b>[凝聚进化结晶(100万原能)]</b></span>
-                            <span class="money_button" onclick = "leave_reactor()"><b>[离开]</b></span>
+                            <div id="reactor_exit">
+                                <span class="money_button_wide" onclick = "extract_reactor()" style="color:#808080"><b>[提取凝胶剑柄]</b></span>
+                                <span class="money_button_wider" onclick = "extract_evolve()" style="color:#80FF80" id="reactor_evolve"><b>[凝聚进化结晶(100万原能)]</b></span>
+                                <span class="money_button" onclick = "leave_reactor()"><b>[离开]</b></span>
+                            </div>
                         </div>
-
-
-
-
-                    </div>
-                    
-                    <div id = "grass_div">
-                        <div id = "grass_info_div">
-                            <b>= 绝音蕨 = </b> Tier 16内甲与轮芯的必需品！ <br>
-                            <span style="color:lime">小概率获取噬芒兰！概率与收割技能相关.</span><br>
+                        
+                        <div id = "grass_div">
+                            <div id = "grass_info_div">
+                                <b>= 绝音蕨 = </b> Tier 16内甲与轮芯的必需品！ <br>
+                                <span style="color:lime">小概率获取噬芒兰！概率与收割技能相关.</span><br>
+                            </div>
+                            <div id = "grass_stat_div">
+                                <span style="font-size:large;color:#c0ffc0;left:10px"><b>
+                                <span id='grassfield_current'> 0</span> / <span id='grassfield_cap'>10</span> (<span id='grasstimer_current'>0.00</span> / <span id='grasstimer_cap'>2.00</span> s) ~ 已收割:<span id='grass_harvested'>0</span>
+                                </b></span>
+                            </div>
+                            <div id = "grassfield_div">
+                                <canvas id="grassCanvas" width="384" height="320"></canvas>
+                            </div>
+                            <div id="grass_exit">
+                                <span class="money_button" onclick = "leave_grass()"><b>[离开]</b></span>
+                            </div>
                         </div>
-                        <div id = "grass_stat_div">
-                            <span style="font-size:large;color:#c0ffc0;left:10px"><b>
-                            <span id='grassfield_current'> 0</span> / <span id='grassfield_cap'>10</span> (<span id='grasstimer_current'>0.00</span> / <span id='grasstimer_cap'>2.00</span> s) ~ 已收割:<span id='grass_harvested'>0</span>
-                            </b></span>
-                        </div>
-                        <div id = "grassfield_div">
-                            <canvas id="grassCanvas" width="384" height="320"></canvas>
-                        </div>
-                        <div id="grass_exit">
-                            <span class="money_button" onclick = "leave_grass()"><b>[离开]</b></span>
+                        <div id = "digging_div">
+                            <div id = "digging_info_div">
+                                <b>= 地层钻探 =</b> 瞄准宝藏鱼,点击纳可驱动钩爪,抓上来!<br>
+                                <span style="color:chartreuse">忽略低阶宝藏鱼 : <span id="digging_filter">0</span> 阶↓ <span onclick="filter_down()">[-]</span><span onclick="filter_up()">[+]</span></span>
+                                <span style="background: linear-gradient(to bottom right,cyan,lime,yellow);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;" onclick="digging_t()"><b>[将幻境之心转化为材料版]</b></span><br>
+                                <span class="money_button" onclick = "leave_digging()"><b>[离开]</b></span>
+                            </div>
+                            <div id = "digging_neko_div">
+                                <img src="image/spec/neko.png" onclick="claw_use()">
+                            </div>
+                            <div id="claw_line"></div>
+                                <img src="image/spec/claw.png" style = "transform-origin:left top" id="digging_claw">
+                            <div id = "digging_field_div">
+                        
+                            </div>
                         </div>
                     </div>
                     <div id = "location_actions_div">	
-                        
                     </div>
 
 
@@ -772,11 +789,12 @@
                         </div>
                         <div class="crafting_category" data-crafting_category="crafting">
                             <div class="crafting_subpage_buttons activable_buttons">
-                                <div class="crafting_subpage_button crafting_subpage_button_5 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items')">第一幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_5 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items2')">第二幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_5 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items3')">第三幕</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_5" onclick="switchCraftingRecipesSubpage('crafting', 'components')">部件</div>
-                                <div class="crafting_subpage_button crafting_subpage_button_5" onclick="switchCraftingRecipesSubpage('crafting', 'equipment')">装备</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_6 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items')">第一幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_6 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items2')">第二幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_6 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items3')">第三幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_6 active_selection_button" onclick="switchCraftingRecipesSubpage('crafting', 'items4')">第四幕</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_6" onclick="switchCraftingRecipesSubpage('crafting', 'components')">部件</div>
+                                <div class="crafting_subpage_button crafting_subpage_button_6" onclick="switchCraftingRecipesSubpage('crafting', 'equipment')">装备</div>
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items">
                                 
@@ -790,6 +808,8 @@
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items2">
                             </div>
                             <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items3">
+                            </div>
+                            <div class="crafting_category crafting_recipe_list" data-crafting_category="crafting" data-crafting_subcategory="items4">
                             </div>
                         </div>
                         <div class="crafting_category" data-crafting_category="cooking"  style="display:none">
@@ -899,6 +919,12 @@
                         
                         <table id = "family_member_list">
                         </table>
+
+                        <span style='color:plum'>解锁家族的 <span id='family_next_realm'></span> 境界:<br>
+                    需求战力 <span id='family_cur_power'></span> / <span id='family_next_power'></span><br>
+                    对应排名 <span id='family_cur_rank'></span> / <span id='family_next_rank'></span>
+                    </span>
+
                         </div>
                     </div>
                     <div id = "skill_and_stance_control_div" class="activable_buttons">
@@ -1703,7 +1729,7 @@
 
             function prepareGame() { //called on body loaded
                 
-                document.getElementById("changelog_button").children[0].innerHTML = "V3.32b";
+                document.getElementById("changelog_button").children[0].innerHTML = "V3.53b";
 
                 let tooltip_move_ticks = 60;
                 let tooltip_wait = 0;
@@ -2185,24 +2211,16 @@
                             //add to to sell
 
                             if(selected_item == "{\"id\":\"峰\"}"){
-                                const chara_rank = (character.stats.full.attack_mul || 1) * (character.stats.full.attack_power + character.stats.full.defense + character.stats.full.agility) * character.stats.full.attack_speed  * (1 + (character.stats.full.crit_multiplier  - 1 ) *character.stats.full.crit_rate)
-                                //攻防敏*攻速*（暴击率*暴击额外伤害+1）
-                                //character_rank_div.innerText = `战力: ${chara_rank}`;//看战力以拟合后续【排位】曲线
-                                let lgrank = Math.log10(chara_rank);
-                                let lgresult = 0;
-                                if(lgrank < 3.84) lgresult = 14 - 0.11 * lgrank ** 2;
-                                else if(lgrank < 7.903) lgresult = 15.352 - 0.77 * lgrank;
-                                else lgresult = 18.352 - 1.3 * lgrank + 0.019 * lgrank ** 2;
-                                //
-                                let chara_result = Math.round(Math.max(1,Math.pow(10,lgresult)));
-                                if(chara_result > 1){
+                                let chara_result = get_power_rank(get_character_power());
+                                if(chara_result > 10){
                                     log_message("[纱雪]哈?卖掉峰大哥?","sayuki");
                                     log_message("[纱雪]为了防止他把你揍死，帮你取消交易了哦~","sayuki");
+                                    log_message(`[纱雪]达到燕岗领排名 ${chara_result.toLocateString('en-US')} / 10 之后随便卖！`,"sayuki");
                                     return;
                                 }
                                 else{
                                     
-                                    log_message("[纱雪]虽然不知道都燕岗领第一了峰大哥怎么还在你身上……","sayuki");
+                                    log_message("[纱雪]虽然不知道都燕岗领前10了峰大哥怎么还在你身上……","sayuki");
                                     log_message("[纱雪]但是没关系！既然你那么努力，这些钱就给你了啦。","sayuki");
                                     total_price += add_to_selling_list({item_key: selected_item, count: number_to_move})
                                 }

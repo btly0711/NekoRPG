@@ -378,6 +378,36 @@ effect_templates["恢复 C3"] = new ActiveEffect({
         }
     }
 });
+effect_templates["恢复 C4"] = new ActiveEffect({
+    name: "恢复 C4",
+    effects: {
+        stats: {
+            health_regeneration_flat: {flat: 983.04e8},
+            health_regeneration_percent: {flat: 0.125},
+        }
+    }
+});
+
+effect_templates["强化 C3"] = new ActiveEffect({
+    name: "强化 C3",
+    effects: {
+        stats: {
+            attack_power:{flat:162e8},
+            defense:{flat:162e8},
+            agility:{flat:162e8},
+        }
+    }
+});
+effect_templates["强化 C3G"] = new ActiveEffect({
+    name: "强化 C3G",
+    effects: {
+        stats: {
+            attack_power:{flat:216e8},
+            defense:{flat:216e8},
+            agility:{flat:216e8},
+        }
+    }
+});
 
 
 
@@ -462,4 +492,29 @@ effect_templates["死线"] = new ActiveEffect({
     name: "死线",
     effects: {stats: {}}
 });
+
+
+effect_templates["吹火 C6"] = new ActiveEffect({
+    name: "吹火 C6",
+    effects: {stats: {attack_speed: {multiplier: 0.7}}}
+});
+effect_templates["硬化 C6"] = new ActiveEffect({
+    name: "硬化 C6",
+    effects: {stats: {attack_mul: {multiplier: 0.4}}}
+});
+effect_templates["血遁 C6"] = new ActiveEffect({
+    name: "血遁 C6",
+    effects: {stats: {health_regeneration_percent: {flat: -1},}}
+});
+effect_templates["压制 C6"] = new ActiveEffect({
+    name: "压制 C6",
+    effects: {stats: {}}
+});
+effect_templates["神帝之力"] = new ActiveEffect({
+    name: "神帝之力",
+    effects: {stats: {
+            attack_power:{multiplier:100.81},
+            defense:{multiplier:100.81},
+            agility:{multiplier:100.81},
+            max_health:{multiplier:100.81},}}});
 export {effect_templates, ActiveEffect};

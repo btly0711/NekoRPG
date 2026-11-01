@@ -2550,7 +2550,7 @@ item_templates["Twist liek a snek"] = new Book({
     item_templates["幻符灵阵"] = new Props({
         name: "幻符灵阵",
         id: "幻符灵阵",
-        description: "收拢月轮水晶，凝聚力量，蓄力一击。攻击的广度收窄许多，但深度却足以穿透最坚硬的天空级金属。<br><span class='realm_cloudy'><b>云霄级四阶</b></span>失效!", 
+        description: "收拢月轮水晶，凝聚力量，蓄力一击。攻击的广度收窄许多，但深度却足以穿透最坚硬的天空级金属。", 
         value: 24.16e15,
         stats: {
             attack_power: {
@@ -2607,8 +2607,34 @@ item_templates["Twist liek a snek"] = new Book({
             agility: {
                 flat: 800e8,
             },
+            defense: {
+                flat: 800e8,
+            },
             attack_speed: {
                 multiplier:0.85,
+            }
+        }
+    });
+    item_templates["伪·焚血花王"] = new Props({
+        name: "伪·焚血花王",
+        id: "伪·焚血花王",
+        description: "「この世で造花より綺麗な花は無いわ」", 
+        value: 6000e15,
+        stats: {
+            attack_power: {
+                flat: 486e8,
+            },
+            defense: {
+                flat: 486e8,
+            },
+            agility: {
+                flat: 486e8,
+            },
+            health_regeneration_flat: {
+                multiplier:0.5,
+            },
+            health_regeneration_percent: {
+                multiplier:0.5,
             }
         }
     });
@@ -2685,7 +2711,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.05,
             },
             defense: {
-                multiplier: 1.025,
+                multiplier: 1.05,
             },
             max_health: {
                 multiplier: 1.2,
@@ -2706,7 +2732,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.08,
             },
             defense: {
-                multiplier: 1.04,
+                multiplier: 1.08,
             },
             max_health: {
                 multiplier: 1.45,
@@ -2727,7 +2753,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.12,
             },
             defense: {
-                multiplier: 1.06,
+                multiplier: 1.12,
             },
             max_health: {
                 multiplier: 1.75,
@@ -2747,7 +2773,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.20,
             },
             defense: {
-                multiplier: 1.1,
+                multiplier: 1.20,
             },
             max_health: {
                 multiplier: 2.0,
@@ -2767,7 +2793,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.30,
             },
             defense: {
-                multiplier: 1.15,
+                multiplier: 1.30,
             },
             max_health: {
                 multiplier: 3.00,
@@ -2787,7 +2813,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.35,
             },
             defense: {
-                multiplier: 1.175,
+                multiplier: 1.35,
             },
             max_health: {
                 multiplier: 3.60,
@@ -2807,7 +2833,7 @@ item_templates["Twist liek a snek"] = new Book({
                 multiplier: 1.40,
             },
             defense: {
-                multiplier: 1.20,
+                multiplier: 1.40,
             },
             max_health: {
                 multiplier: 4.50,
@@ -2967,6 +2993,26 @@ item_templates["Twist liek a snek"] = new Book({
             },
             max_health: {
                 multiplier: 1.10,
+            }
+        }
+    });
+    item_templates["血峰之心"] = new Special({
+        name: "血峰之心",
+        id: "血峰之心",
+        description: "欲戴皇冠，必承其重。下一次进化必将涤尽污血，去除杂质！", 
+        value: 166700e15,
+        stats: {
+            attack_power: {
+                multiplier: 1.15,
+            },
+            defense: {
+                multiplier: 1.15,
+            },
+            agility: {
+                multiplier: 1.15,
+            },
+            max_health: {
+                multiplier: 1.15,
             }
         }
     });
@@ -3647,6 +3693,23 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    item_templates["炼魂轮芯"] = new WeaponComponent({
+        name: "炼魂轮芯", description: "中高阶的【月轮】核心部件。挣扎的魂魄为了稍微松绑会尽一切努力找到敌人身上的额外物件！",
+        component_type: "wheel core",
+        value: 2376e15,
+        component_tier: 22,
+        stats: {
+            crit_multiplier: {
+                flat: 1.2,
+            },
+            attack_power: {
+                multiplier: 1.06,
+            },
+            luck: {
+                flat: 0.05,
+            }
+        }
+    });
     item_templates["宝石轮锋"] = new WeaponComponent({
         name: "宝石轮锋", description: "宝石母制造的【月轮】镀层。嗯……A1的宝石锭造不了轮锋。没有歧义！",
         component_type: "wheel head",
@@ -3724,6 +3787,54 @@ item_templates["Twist liek a snek"] = new Book({
             },
             attack_speed: {
                 multiplier: 1.23,
+            },
+        }
+    });
+    item_templates["红钨轮锋"] = new WeaponComponent({
+        name: "红钨轮锋", description: "红钨制造的【月轮】镀层。月轮附加属性将会和274级以后的腐化一样，永远平衡的进行下去……",
+        component_type: "wheel head",
+        value: 2430e15,
+        component_tier: 20,
+        name_prefix: "红钨",
+        attack_value: 155.52e8,
+        stats: {
+            crit_rate: {
+                flat: 0.36,
+            },
+            attack_speed: {
+                multiplier: 1.24,
+            },
+        }
+    });
+    item_templates["血钻轮锋"] = new WeaponComponent({
+        name: "血钻轮锋", description: "血钻制造的【月轮】镀层。对于这样性质的材料来说，镀层和镶嵌的定义或许有些模糊？",
+        component_type: "wheel head",
+        value: 3999e15,
+        component_tier: 21,
+        name_prefix: "血钻",
+        attack_value: 311.04e8,
+        stats: {
+            crit_rate: {
+                flat: 0.38,
+            },
+            attack_speed: {
+                multiplier: 1.25,
+            },
+        }
+    });
+    item_templates["虔心轮锋"] = new WeaponComponent({
+        name: "虔心轮锋", description: "为信仰的【神明】而战。但残存的魂魄不知道的是，【神明】的定义早已在锻造时被篡改干净。",
+        component_type: "wheel head",
+        value: 7660e15,
+        component_tier: 22,
+        name_prefix: "虔心",
+        attack_value: 622.08e8,
+        stats: {
+            crit_rate: {
+                flat: 0.40,
+            },
+            attack_speed: {
+                multiplier: 1.26,
             },
         }
     });
@@ -4261,6 +4372,70 @@ item_templates["Twist liek a snek"] = new Book({
             health_regeneration_flat: {
                 flat: 17.28e8,
             },},});
+    //基础防御2.7e8 基础敏捷/回血5.4e8 基础价格85e8
+
+    item_templates["冰棉帽子"] = new Armor({
+        name: "冰棉帽子", 
+        description: "青冰棉制成的内甲。侧重敏捷，也提供部分恢复和一丁点对宝石的吸收效果。", 
+        value: 425e15,
+        component_type: "helmet interior",
+        base_defense: 13.5e8,
+        component_tier: 20,
+        stats: {health_regeneration_flat:{
+                flat: 27.0e8,
+            },agility:{
+                flat: 27.0e8,
+            },SCGV:{
+                flat: 0.10,
+            },
+        },});
+    item_templates["冰棉背心"] = new Armor({
+        name: "冰棉背心", 
+        description: "青冰棉制成的内甲。侧重敏捷，也提供部分恢复和一丁点对宝石的吸收效果。", 
+        value: 680e15,
+        component_type: "chestplate interior",
+        base_defense: 21.6e8,
+        component_tier: 20,
+        stats: { health_regeneration_flat:{
+                flat: 43.2e8,
+            },agility:{
+                flat: 43.2e8,
+            },SCGV:{
+                flat: 0.10,
+            },
+        },});
+    item_templates["冰棉裤子"] = new Armor({
+        name: "冰棉裤子", 
+        description: "青冰棉制成的内甲。侧重敏捷，也提供部分恢复和一丁点对宝石的吸收效果。", 
+        value: 595e15,
+        component_type: "leg armor interior",
+        base_defense: 18.9e8,
+        component_tier: 20,
+        stats: {health_regeneration_flat:{
+                flat: 37.8e8,
+            },agility:{
+                flat: 37.8e8,
+            },SCGV:{
+                flat: 0.10,
+            },
+        },});
+    item_templates["冰棉袜子"] = new Armor({
+        name: "冰棉袜子", 
+        description: "青冰棉制成的内甲。侧重敏捷，也提供部分恢复和一丁点对宝石的吸收效果。", 
+        value: 240e15,
+        component_type: "shoes interior",
+        base_defense: 10.8e8,
+        component_tier: 20,
+        stats: {health_regeneration_flat:{
+                flat: 21.6e8,
+            },agility:{
+                flat: 21.6e8,
+            },SCGV:{
+                flat: 0.10,
+            },
+        },});
+
+
 
     item_templates["铁制头盔"] = new ArmorComponent({
         name: "铁制头盔",
@@ -4876,6 +5051,136 @@ item_templates["Twist liek a snek"] = new Book({
             },
         }
     });
+    //价格基本单位:67.5e15,防御基本单位:5.4e8 攻击基本单位 2.7e8
+    item_templates["红钨头盔"] = new ArmorComponent({
+        name: "红钨头盔",
+        description: "让敌人因为自己的精血气息受到震慑……换谁谁不怕哇！",
+        component_type: "helmet exterior",
+        value: 337.5e15,
+        component_tier: 20,
+        full_armor_name: "红钨头盔",
+        defense_value: 27e8,
+        stats: {
+            attack_mul: {
+                flat: 0.08,
+            },attack_power:{
+                flat: 13.5e8,
+            },
+        }
+    });
+    item_templates["红钨胸甲"] = new ArmorComponent({
+        name: "红钨胸甲",
+        description: "让敌人因为自己的精血气息受到震慑……换谁谁不怕哇！",
+        component_type: "chestplate exterior",
+        value: 540e15,
+        component_tier: 20,
+        full_armor_name: "红钨胸甲",
+        defense_value: 43.2e8,
+        stats: {
+            attack_mul: {
+                flat: 0.08,
+            },attack_power:{
+                flat: 21.6e8,
+            },
+        }
+    });
+    item_templates["红钨腿甲"] = new ArmorComponent({
+        name: "红钨腿甲",
+        description: "让敌人因为自己的精血气息受到震慑……换谁谁不怕哇！",
+        component_type: "leg armor exterior",
+        value: 472.5e15,
+        component_tier: 20,
+        full_armor_name: "红钨腿甲",
+        defense_value: 37.8e8,
+        stats: {
+            attack_mul: {
+                flat: 0.08,
+            },attack_power:{
+                flat: 18.9e8,
+            },
+        }
+    });
+    item_templates["红钨战靴"] = new ArmorComponent({
+        name: "红钨战靴",
+        description: "让敌人因为自己的精血气息受到震慑……换谁谁不怕哇！",
+        component_type: "shoes exterior",
+        value: 270e15,
+        component_tier: 20,
+        full_armor_name: "红钨战靴",
+        defense_value: 21.6e8,
+        stats: {
+            attack_mul: {
+                flat: 0.08,
+            },attack_power:{
+                flat: 10.8e8,
+            },
+        }
+    });
+    //价格基本单位:218.5e15,防御基本单位:27e8 恢复基本单位 36e8
+    item_templates["虔心头盔"] = new ArmorComponent({
+        name: "虔心头盔",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "helmet exterior",
+        value: 1092.5e15,
+        component_tier: 22,
+        full_armor_name: "虔心头盔",
+        defense_value: 135e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 180e8,
+            },
+        }
+    });
+    item_templates["虔心胸甲"] = new ArmorComponent({
+        name: "虔心胸甲",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "chestplate exterior",
+        value: 1748e15,
+        component_tier: 22,
+        full_armor_name: "虔心胸甲",
+        defense_value: 216e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 288e8,
+            },
+        }
+    });
+    item_templates["虔心腿甲"] = new ArmorComponent({
+        name: "虔心腿甲",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "leg armor exterior",
+        value: 1539.5e15,
+        component_tier: 22,
+        full_armor_name: "虔心腿甲",
+        defense_value: 189e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 252e8,
+            },
+        }
+    });
+    item_templates["虔心战靴"] = new ArmorComponent({
+        name: "虔心战靴",
+        description: "【神明大人】，让我为您恢复力量……",
+        component_type: "shoes exterior",
+        value: 874e15,
+        component_tier: 22,
+        full_armor_name: "虔心战靴",
+        defense_value: 108e8,
+        stats: {
+            attack_mul: {
+                flat: 0.09,
+            },health_regeneration_flat:{
+                flat: 144e8,
+            },
+        }
+    });
 
 
 
@@ -5079,6 +5384,14 @@ item_templates["Twist liek a snek"] = new Book({
         material_type: "metal",
         image: "image/item/iceland_heart.png",
     });
+    item_templates["幻境之心·材"] = new Material({
+        id: "幻境之心·材",
+        name: "幻境之心·材", 
+        description: "无法继续被佩戴，只是用于合成【血峰之心】的临时材料。", 
+        value: 100e15,
+        material_type: "metal",
+        image: "image/item/fantasy_heart.png",
+    });
     item_templates["晶化合金锭"] = new Material({
         id: "晶化合金锭",
         name: "晶化合金锭", 
@@ -5185,6 +5498,45 @@ item_templates["Twist liek a snek"] = new Book({
         value: 47.2e15,
         image: "image/item/bloody_bone.png",
     });
+    item_templates["红钨锭"] = new Material({
+        id: "红钨锭",
+        name: "红钨锭", 
+        description: "也许有人好奇为什么这些百家精血的装备就不会造反了。其实是因为高温灭灵过了……", 
+        value: 162e15,
+        material_type: "metal",
+        image: "image/item/red_tungsten_ingot.png",
+    });
+    item_templates["青冰棉"] = new Material({
+        id: "青冰棉",
+        name: "青冰棉", 
+        description: "这一区虽然有茸茸和追光者……但凝胶的性质决定了它无法刻录稳定符文和法阵。这使凝胶类物品在C1级以上越来越不占优。", 
+        value: 204e15,
+        image: "image/item/cyan_ice_cotton.png",
+    });
+    item_templates["血钻锭"] = new Material({
+        id: "血钻锭",
+        name: "血钻锭", 
+        description: "血钻听起来不像是能熔炼成锭的金属的样子。但是，有什么斥力，和云霄级大锤子说去吧！", 
+        value: 333e15,
+        material_type: "metal",
+        image: "image/item/blomond_ingot.png",
+    });
+    item_templates["虔心钢锭"] = new Material({
+        id: "虔心钢锭",
+        name: "虔心钢锭", 
+        description: "以至纯精血融入了无数【虔心】一道修炼者凝聚成缕缕信仰的玄铁母。喵可你的人皇轮怎么库库冒黑气啊……", 
+        value: 655e15,
+        material_type: "metal",
+        image: "image/item/pious_ingot.png",
+    });
+    item_templates["炼魂血钻"] = new Material({
+        id: "炼魂血钻",
+        name: "炼魂血钻", 
+        description: "囚禁着不愿放弃信仰的天空级魂魄。在军魂加持下，总有一天可以逃出……结界系统和轮芯的飞行系统就是凭借这样的意志供能的。", 
+        value: 594e15,
+        material_type: "metal",
+        image: "image/item/soul_diamond.png",
+    });
 })();
 //矿石
 (function(){
@@ -5251,7 +5603,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "传说有误！结界能量太充沛了，冰柱鱼王突破到天空级巅峰 +了！这里最强的不会有3+境吧……虽然没资源突破不了云霄级就是了啦。", 
         value: 864e12,
         effects: [{effect: "饱食 IX", duration: 360}],
-        realmcap:34,
+        realmcap:37,
         image: "image/item/ice_fish_king.png",
     });
 })();
@@ -5314,6 +5666,21 @@ item_templates["Twist liek a snek"] = new Book({
         value: 168e12,
         spec:"HeartDemon_nerf",
         image: "image/item/BurnBloodPlus.png",
+    });
+
+    
+    
+    item_templates["血峰限制器"] = new OtherItem({
+        name: "血峰限制器", 
+        description: "呼……被这股气息笼罩着，感觉神智都清明了不少。(持有时每个将4-5区域光环-20%,最多生效5个)",
+        value: 2800e15,
+        image: "image/item/biohill_restricter.png",
+    });
+    item_templates["血峰增幅器"] = new OtherItem({
+        name: "血峰增幅器", 
+        description: "让暴风雨(和掉落物)来的更猛烈一些吧！。(持有时每个将4-5区域光环*(1+20%*sqrt(数量)),最多生效990025个)",
+        value: 3600e15,
+        image: "image/item/biohill_enhancer.png",
     });
 })();
 
@@ -5537,7 +5904,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "类似于吞噬星空雾岛的那些东西，不过境界略高一筹。可以使用的同时它也是材料。", 
         value: 9.6e15,
         effects: [{effect: "恢复 C2", duration: 30}],
-        realmcap:34,
+        realmcap:37,
         image: "image/item/wood_core.png",
     });
     item_templates["蘸酱烤肉"] = new UsableItem({
@@ -5545,7 +5912,7 @@ item_templates["Twist liek a snek"] = new Book({
         description: "虽然是心头血做的酱料，但毕竟含有磅礴的生命能量，肯定好吃就是了~", 
         value: 21.87e15,
         effects: [{effect: "饱食 X", duration: 90}],
-        realmcap:34,
+        realmcap:37,
         image: "image/item/C1_cooked_meat.png",
     });
     item_templates["灵红补给品"] = new UsableItem({
@@ -5556,7 +5923,71 @@ item_templates["Twist liek a snek"] = new Book({
         realmcap:37,
         image: "image/item/C3_medicine.png",
     });
+    item_templates["灵蓝补给品"] = new UsableItem({
+        name: "灵蓝补给品", 
+        description: "古人埋在秘境里的东西。并没有那么稀有，毕竟这些补给品算是制式装备。", 
+        value: 90e15,
+        effects: [{effect: "恢复 C4", duration: 60}],
+        realmcap:39,
+        image: "image/item/C4_medicine.png",
+    });
+    item_templates["燃血鲜花"] = new UsableItem({
+        name: "燃血鲜花", 
+        description: "毬毬山谷四处都是长这样的A3级普通鲜花。然而，根据吞噬星空定律，其中有0.01%的B3级爆血鲜花和亿分之一的C3级燃血鲜花……诺，就在这里啦！", 
+        value: 144e15,
+        effects: [{effect: "强化 C3", duration: 90}],
+        realmcap:41,
+        image: "image/item/blood_flower.png",
+    });
+    item_templates["焚血花王"] = new UsableItem({
+        name: "焚血花王", 
+        description: "比【燃血鲜花】高6阶的罕有天材地宝。强化效果和【燃血鲜花】不冲突，且略强一线。下区的【血峰之心】同样需要它。", 
+        value: 4608e15,
+        effects: [{effect: "强化 C3G", duration: 1080}],
+        realmcap:43,
+        image: "image/item/blood_flower_king.png",
+    });
 
+
+    item_templates["C6·吹火药剂"] = new UsableItem({
+        name: "C6·吹火药剂", 
+        description: "角色每次攻击延迟被击中敌人攻击1/2轮，但攻速*0.7.", 
+        value: 2500e15,
+        realmcap:37,
+        effects: [{effect: "吹火 C6", duration: 120}],
+        image: "image/item/C6_blowfire.png",
+    });
+    item_templates["C6·血遁药剂"] = new UsableItem({
+        name: "C6·血遁药剂", 
+        description: "角色敏捷乘以1+血量比例/40%(满血即为3.5倍),但生命流失1%.", 
+        value: 2500e15,
+        realmcap:37,
+        effects: [{effect: "血遁 C6", duration: 120}],
+        image: "image/item/C6_bloododge.png",
+    });
+    item_templates["C6·硬化药剂"] = new UsableItem({
+        name: "C6·硬化药剂", 
+        description: "角色无视敌人攻击力超出防御力部分的50%，但普攻倍率*0.4.", 
+        value: 2500e15,
+        realmcap:37,
+        effects: [{effect: "硬化 C6", duration: 120}],
+        image: "image/item/C6_harden.png",
+    });
+    item_templates["C6·压制药剂"] = new UsableItem({
+        name: "C6·压制药剂", 
+        description: "角色对敌人造成的伤害乘以1.25*(角色攻防和)/(敌人攻防和).加强的原因是你攻防和都超出敌人了还需要这个buff吗!", 
+        value: 2500e15,
+        realmcap:37,
+        effects: [{effect: "压制 C6", duration: 120}],
+        image: "image/item/C6_overwhelm.png",
+    });
+
+    /*
+加入C6级炼金药剂！
+吹火(攻击可以延迟敌人攻击1/2轮，但攻速*0.7)
+血遁(有效敏捷乘以血量/40%，附带1%掉血效果)
+硬化(无视敌人超出防御部分攻击的一半，但普攻倍率*0.5)
+压制(百分百效果，但你的攻防和都超过对面了还要喝药？) */
 })();
 //炼金
 (function(){
@@ -5846,6 +6277,35 @@ item_templates["Twist liek a snek"] = new Book({
         effects: [],
         gem_value: 1e9,
     });
+    item_templates["不朽黄宝石"] = new UsableItem({
+        name: "不朽黄宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷20亿或生命4000亿", 
+        value: 2e9,
+        image: "image/item/gem81_2B.png",
+        effects: [],
+        gem_value: 2e9,
+    });item_templates["不朽蓝宝石"] = new UsableItem({
+        name: "不朽蓝宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷50亿或生命1兆", 
+        value: 5e9,
+        image: "image/item/gem82_5B.png",
+        effects: [],
+        gem_value: 5e9,
+    });item_templates["不朽红宝石"] = new UsableItem({
+        name: "不朽红宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷100亿或生命2兆", 
+        value: 10e9,
+        image: "image/item/gem83_10B.png",
+        effects: [],
+        gem_value: 10e9,
+    });item_templates["不朽绿宝石"] = new UsableItem({
+        name: "不朽绿宝石", 
+        description: "虽然无法帮你抵达不朽之境，但也是领内有数的宝物。使用时随机增加基础攻击/防御/敏捷200亿或生命4兆", 
+        value: 20e9,
+        image: "image/item/gem84_20B.png",
+        effects: [],
+        gem_value: 20e9,
+    });
 })();
 
 
@@ -6000,6 +6460,12 @@ item_templates["Twist liek a snek"] = new Book({
         description: "在荒兽森林的战斗中，积累的战斗经验和突破感悟。(已弃用/现版本无法获取/请去找心之石像白嫖一颗突破)", 
         value: 0,
         image: "image/item/A1_break_trance.png",
+    });
+    item_templates["至纯精血"] = new Loot({
+        name: "至纯精血", 
+        description: "利用鲜血峰秘法与映星天彩吸取的精血。纯度极高，蕴含着满溢的杀气与一丝兽神血。未来可以辅助吸收血洛晶。(价格是0是因为这种邪修物品商人不敢收)", 
+        value: 0,
+        image: "image/item/C4_blood_essence.png",
     });
     item_templates["凝实荒兽森林感悟"] = new  UsableItem({
         name: "凝实荒兽森林感悟", 
@@ -6158,11 +6624,12 @@ item_templates["Twist liek a snek"] = new Book({
     });
     item_templates["中等进化结晶碎片"] = new  UsableItem({
         name: "中等进化结晶碎片", 
-        description: "天地间充沛的能量滋养诞生的晶体碎片，接触后能够化作海量的经验为人所用。增加1000兆经验值，或等待【第四幕】更新后合成【中等进化结晶】突破云霄级。", 
+        description: "天地间充沛的能量滋养诞生的晶体碎片，接触后能够化作海量的经验为人所用。增加1000兆经验值，或等待【第四幕】合成【中等进化结晶】突破云霄级。", 
         value: 3e15,
-        E_value: 1000e12,
+        E_value: 1e16,
         effects:[],
         C_value: 2,
+        realmcap:31,
         image: "image/item/evolve_1e16_shard.png",
     });
     item_templates["一捆高能凝胶"] = new Loot({
@@ -6403,16 +6870,81 @@ item_templates["Twist liek a snek"] = new Book({
         value: 13.4e15,
         image: "image/item/explode_powder.png",
     });
-
+    //4-4
+    item_templates["残破兽铠"] = new Loot({
+        name: "残破兽铠", 
+        description: "极致坚硬的云霄级荒兽皮肤。呈红色是因为融入了部分精血，因此也成为了上等的炼器材料。", 
+        value: 48e15,
+        image: "image/item/beast_armor.png",
+    });
+    item_templates["魔力布匹"] = new Loot({
+        name: "魔力布匹", 
+        description: "刻录许多自增幅符文的布匹，对基因原能和精神念力都有一定比例的增幅作用……至少在它饱和之前。", 
+        value: 60e15,
+        image: "image/item/magic_wool.png",
+    });
+    item_templates["极冰骨髓"] = new Loot({
+        name: "极冰骨髓", 
+        description: "按照冰元素密度来看，已经达到了【万载冰髓精】的级别。也不知道山谷里是怎么出现的这些冰属性荒兽——难道还有其他秘境？", 
+        value: 72e15,
+        image: "image/item/ice_bone.png",
+    });
+    //4-5 价格max=144. C4核心 灰暗军魂 血凝晶 亮青碎片 鲜红碎片
+    item_templates["C4·能量核心"] = new Loot({
+        name: "C4·能量核心", 
+        description: "红温了……看起来距离爆炸不远了哇。领域级之后经过坍缩，意识和能量并入原核，就无法再获取这些能量核心了。", 
+        value: 54e15,
+        image: "image/item/C4_crystal.png",
+    });
+    item_templates["灰暗军魂"] = new Loot({
+        name: "灰暗军魂", 
+        description: "灰暗领的小队在长期作战中凝结的军魂，即使小队因减员解散，军魂也可维持大半纪元不灭。", 
+        value: 104e15,
+        image: "image/item/darkness_soul.png",
+    });
+    item_templates["血凝晶"] = new Loot({
+        name: "血凝晶", 
+        description: "海量精血经过特殊手法淬炼出的精华，蕴含着血洛晶同源的能量。分量大约在0.0001Δ，但因驳杂价值远低于此。", 
+        value: 144e15,
+        image: "image/item/soild_blood.png",
+    });
+    item_templates["亮青碎片"] = new Loot({
+        name: "亮青碎片", 
+        description: "散发着温和的气息，仿佛能让狂暴的荒兽都平静下来。", 
+        value: 88e15,
+        image: "image/item/cyan_fragment.png",
+    });
+    item_templates["鲜红碎片"] = new Loot({
+        name: "鲜红碎片", 
+        description: "散发着暴戾的气息，仿佛能让荒兽突破极限，二次进化。", 
+        value: 128e15,
+        image: "image/item/pink_fragment.png",
+    });
+    //4-6 价格max=324
+    item_templates["虔心沉淀物"] = new Loot({
+        name: "虔心沉淀物", 
+        description: "被蛊惑的【虔心】体系修炼者在天空级巅峰就会被上位体系修炼者炼化。然而炼化过程并非完美，会留下部分信仰与能量的沉淀……", 
+        value: 324e15,
+        image: "image/item/pious_sediment.png",
+    });
+    item_templates["玄铁母锭"] = new Loot({
+        name: "玄铁母锭", 
+        description: "性质中正平和，但基础数值尚不足以在这个阶段发挥作用。尽管如此，它是容纳其他力量不错的金属。", 
+        value: 245e15,
+        image: "image/item/darkiron_ingot.png",
+    });
+    
 
 
 
 
     /*
-远古碎片(吸收了多年战场气息的普通金属)  ancient_shard
-血灵液(毒/疗一体两面)                 blood_aura_drop
-草木之芯(可以直接吃回血，也可以做内甲) wood_core
-云霄宝肉(只有精华部分是C级的)         C1_meat
+C1·能量核心(还是你啊)
+爆燃粉末(返场！)
+残破兽铠(就那些红的东西的掉落物)
+燃血之花(山谷中的天然暴走灵药，效果低下但可以合成红钨锭)
+魔力布匹(就那些蓝的东西的掉落物)
+极冰骨髓(设定上与冰髓精差不多冰元素密度了)
  */
 
 

@@ -308,6 +308,15 @@ class TradeItem {
         refresh_time: 5,
         act:4,
     });
+    traders["声望商人·三代"] = new Trader({
+        name: "声望商人·三代",
+        inventory_template: "Cloudy III",
+        is_unlocked: true,
+        location_name: "鲜血峰",
+        profit_margin: 9.6,
+        refresh_time: 5,
+        act:4,
+    });
     traders["物品存储箱"] = new Trader({
         name: "物品存储箱",
         trade_text: `<span style="color:#c0ffe0"> <i class="material-icons">work_outline</i> 向箱子里存取物品</span>`,
@@ -719,13 +728,47 @@ class TradeItem {
 
             
             new TradeItem({item_name: "云霄级魂魄", count: [5,12],influ:{min:150,exp:0.4,cap:1000}}),
-            new TradeItem({item_name: "爆燃粉末", count: [5,12],influ:{min:200,exp:0.4,cap:1000}}),
             new TradeItem({item_name: "琥珀金骨", count: [3,10],influ:{min:250,exp:0.4,cap:1000}}),
 
 
 
             new TradeItem({item_name: "古源金锭", count: [3,8],influ:{min:1000,exp:0.4,cap:1000}}),
             new TradeItem({item_name: "血灵骨棉", count: [3,8],influ:{min:1000,exp:0.4,cap:1000}}),
+
+
+
+    ];
+    inventory_templates["Cloudy III"] = 
+    [
+            new TradeItem({item_name: "灵蓝补给品", count: [30,150]}),
+            new TradeItem({item_name: "残破兽铠", count: [100,500]}),
+            new TradeItem({item_name: "极冰骨髓", count: [100,500]}),
+            new TradeItem({item_name: "魔力布匹", count: [100,500]}),
+
+            
+            new TradeItem({item_name: "灰暗军魂", count: [5,12],influ:{min:1500,exp:0.4,cap:1000}}),
+            new TradeItem({item_name: "血凝晶", count: [3,8],influ:{min:2500,exp:0.4,cap:1000}}),
+            new TradeItem({item_name: "亮青碎片", count: [7,18],influ:{min:1000,exp:0.4,cap:1000}}),
+            new TradeItem({item_name: "鲜红碎片", count: [5,12],influ:{min:1500,exp:0.4,cap:1000}}),
+
+            new TradeItem({item_name: "C6·吹火药剂", count: [2,5],influ:{min:10000,exp:0.3,cap:100}}),
+            new TradeItem({item_name: "C6·血遁药剂", count: [2,5],influ:{min:10000,exp:0.3,cap:100}}),
+            new TradeItem({item_name: "C6·硬化药剂", count: [2,5],influ:{min:10000,exp:0.3,cap:100}}),
+            new TradeItem({item_name: "C6·压制药剂", count: [2,5],influ:{min:10000,exp:0.3,cap:100}}),
+            
+            new TradeItem({item_name: "焚血花王", count: [1,1],influ:{min:1e8,exp:0.1,cap:2},chance:0.2}),
+
+            /*
+大概思路是无论上区还是本区的物品都不能凑齐制作装备材料的材料。
+至于恢复品啥的倒是可以放心放
+
+上区几个掉落加补给品(不需要影响力)
+这区几个掉落(第一层次)
+几个特殊药剂+燃血鲜花(第二层次)
+1亿影响力下20%概率刷一朵焚血花王(论外)
+
+
+*/
 
 
 

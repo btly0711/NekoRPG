@@ -38,13 +38,13 @@ const stat_names = {"strength": "str",
                     "crit_multiplier": "暴击伤害",
                     "attack_mul": "普攻倍率",
                     "luck": "幸运",
-                    "SCGV": "SCGV",
                     "intuition": "int",
                     "block_strength": "shield strength",
                     "hit_chance": "hit chance",
                     "evasion": "EP",
                     "evasion_points": "EP",
                     "attack_points": "AP",
+                    "SCGV": "宝石耐性",
                 };
 
 function get_hit_chance(attack_agi, evasion_agi) {

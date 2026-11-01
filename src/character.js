@@ -140,9 +140,11 @@ character.get_xp_bonus = function(){
         return (character.xp_bonuses.total_multiplier.hero || 1) * (character.xp_bonuses.total_multiplier.all || 1) * (character.stats.full.luck || 1);
 }
 character.get_hero_realm = function(){
-        if(character.xp.current_level >= 28) return character.xp.current_level - 2;//天空级破限[28]记为天空巅峰[26]。
-        if(character.xp.current_level >= 18) return character.xp.current_level - 1;//大地级破限[18]记为大地巅峰[17]。
-        return character.xp.current_level;
+        let p_level = character.xp.current_level;
+        if(p_level >= 33) p_level -= Math.floor((p_level-31)/2);//云霄级四阶·后期[33]以后每个后期将计算等级-1.
+        if(p_level >= 28) p_level -= 1;//天空级破限[28]记为天空巅峰[26]。
+        if(p_level >= 18) p_level -= 1;//大地级破限[18]记为大地巅峰[17]。
+        return p_level;
 }
 character.upgrade_effects = function(lvl){
         if(lvl == 9){
@@ -254,7 +256,9 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                 if(this_realm[0]>=9) total_skill_xp_multiplier += 0.05;
                 if(this_realm[0]>=19) total_skill_xp_multiplier += 0.15;
                 if(this_realm[0]>=29) total_skill_xp_multiplier += 0.20;
-                //微尘10% 万物15% 潮汐20% 大地25% 天空40% 云霄60%
+                
+                if(this_realm[0]>32 && this_realm[0]%2==1) total_skill_xp_multiplier -= 0.40;
+                //微尘10% 万物15% 潮汐20% 大地25% 天空40% 云霄60%(云霄内前期->后期只有20%)
                 character.xp_bonuses.multiplier.levels.all_skill = (character.xp_bonuses.multiplier.levels.all_skill || 1) * total_skill_xp_multiplier;
 
                 //显示-提高属性
@@ -323,13 +327,15 @@ character.add_xp = function ({xp_to_add, use_bonus = true},ignore_cap) {
                         gains += `<span style="color:#ffee11">幸运</span>增加了${Luck_gain.toFixed(2)}<br>`;
                 }
 
-                if(this_realm[0]>=29 && this_realm[0]<=37)
+                if(this_realm[0]>=29 && this_realm[0]<=43)
                 {
                         let SCGV_gain = (this_realm[0]==29?4:2);
-                        character.stats.flat.level.SCGV = ( character.stats.flat.level.SCGV || 0) + SCGV_gain;
-                        gains += `<span style="color:#ff11dd"> SCGV </span>增加了${SCGV_gain.toFixed(2)}<br>`;
+                        if(this_realm[0]>32 && this_realm[0]%2==1) SCGV_gain = 0;//小阶段内突破
+                        else{
+                                character.stats.flat.level.SCGV = ( character.stats.flat.level.SCGV || 0) + SCGV_gain;
+                                gains += `<span style="color:#ff11dd"> SCGV </span>增加了${SCGV_gain.toFixed(2)}<br>`;
+                        }
                 }
-
 
                 gains += `技能经验倍率提高了${Math.round(total_skill_xp_multiplier*100-100)}%<br>`;
                 gains += `生命值完全恢复了<br>`;

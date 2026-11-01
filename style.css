@@ -518,7 +518,8 @@ body {
 
 #stance_list_div {
 	display: none;
-    overflow-y: scroll;
+	height:395px;
+	overflow-y: scroll;
 }
 #family_div {
 	display: none;
@@ -889,6 +890,9 @@ body {
 		.crafting_subpage_button_5 {
 			width: 79px;
 		}
+		.crafting_subpage_button_6 {
+			width: 65.5px;
+		}
 
 .crafting_recipe_list {
 	height: 333px;
@@ -1204,6 +1208,7 @@ i {
 	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke: 0.5px #ff8080;
 }
 
 .coin_consume_button {
@@ -1300,12 +1305,14 @@ i {
 	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke: 0.5px #80ff80;
 }
 .rarity_flawless{
 	background: linear-gradient(to bottom right,red,white,red);
 	background-clip:text;
 	-webkit-background-clip:text;
 	-webkit-text-fill-color:transparent;
+	-webkit-text-stroke: 0.5px #ff8080;
 }
 
 .pc_right {
@@ -1923,6 +1930,14 @@ i {
 		display: var(--character_combat_div_display);
 	}
 		#character_stance_name {
+			padding: 3px;
+			margin-top: 2px;
+			margin-bottom: 2px;
+			width: 244px;
+			border: 1px solid gray;
+			text-align: center;
+		}
+		#character_attack_bar_cnt {
 			padding: 3px;
 			margin-top: 2px;
 			margin-bottom: 2px;
@@ -2630,17 +2645,27 @@ i {
     display: none;
 }
 
-#reactor_div {
+#reactor_div , #grass_div {
     display: none;
     height: 411px;
 	width: 100%;
 	flex-direction:row;
 }
-#grass_div {
+#digging_div{
+
     display: none;
     height: 411px;
 	width: 100%;
 	flex-direction:row;
+}
+#claw_line{
+	background-color: #562C19;
+	transform-origin:left ;
+	position:absolute;
+	top:89px;
+	left:200px;
+	height:2px;
+	z-index:2;
 }
 #grassfield_div{
     height: 321px;
@@ -2650,6 +2675,32 @@ i {
 	left: 2%;
 	outline: 2px solid gray; 
 	display: flex; 
+}
+#digging_neko_div{
+	left:188px;
+	top:51px;
+	position:absolute;
+}
+#digging_claw{
+	left:200px;
+	top:91px;
+	z-index:20;
+	position:absolute;
+}
+#digging_field_div{
+
+    height: 321px;
+	width: 96%;
+	background: linear-gradient(to bottom ,lime,lightyellow,lightpink);
+	position:absolute;
+	left: 2%;
+	bottom:2%;
+	outline: 2px solid gray; 
+	display: flex; 
+	overflow:hidden;
+}
+.digging_fish{
+	z-index:1;
 }
 #fish_div {
     display: none;
